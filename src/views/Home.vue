@@ -42,12 +42,15 @@
 
     computed: {
       ...mapState(['displayRegister', 'username']),
+
       textSearch: function () {
         return this.$route.params.textSearch;
       },
+
       searchId: function () {
         return this.$route.params.id;
       },
+
       routeName: function () {
         return this.$route.name;
       }

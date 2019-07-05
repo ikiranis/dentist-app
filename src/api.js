@@ -20,6 +20,16 @@ let api = {
      *
      * @returns {Promise<void>}
      */
+    async getUsersCount() {
+        let {data} = await axios.get(ROOT_API + '/usersCount');
+
+        return data;
+    },
+
+    /**
+     *
+     * @returns {Promise<void>}
+     */
     async getCurrentUser() {
         let {data} = await axios.get(ROOT_API + '/user');
 
