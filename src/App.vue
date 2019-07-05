@@ -8,7 +8,7 @@
         <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
         <b-navbar-brand>
-          <router-link class="navbar-brand" to="/">Bookmarks</router-link>
+          <router-link class="navbar-brand" to="/">Dentist Files</router-link>
         </b-navbar-brand>
 
         <b-collapse is-nav id="nav_collapse">
