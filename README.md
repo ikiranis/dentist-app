@@ -1,11 +1,17 @@
 # Dentist Files App frontend
 
 
-## Clone project
+### Clone project
 
 git clone git@github.com:ikiranis/dentist-app.git
 
-## Project setup
+### Create and edit .env files
+
+.env.development & .env.production
+
+Add passport key and api path
+
+### Project setup
 ```
 npm install
 ```
