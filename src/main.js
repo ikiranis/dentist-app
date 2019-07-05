@@ -13,7 +13,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 
 // User Authentication
-import user from '@/library/user'
+import user from '@/library/user';
 user.setUserTokenHeader();
 
 // Set routes titles
