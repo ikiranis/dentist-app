@@ -1,5 +1,10 @@
 # Dentist Files App frontend
 
+
+## Clone project
+
+git clone git@github.com:ikiranis/dentist-app.git
+
 ## Project setup
 ```
 npm install
@@ -34,3 +39,8 @@ npm run test:e2e
 ```
 npm run test:unit
 ```
+
+
+Dentist-api
+
+https://github.com/ikiranis/dentist-api
