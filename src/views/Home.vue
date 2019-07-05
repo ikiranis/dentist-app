@@ -30,13 +30,16 @@
   // TODO delete localStorage.accessToken if not valid
   export default {
     name: 'home',
+
     components: {
       Login,
       Register
     },
+
     data: () => ({
       isUserLoggedIn: false
     }),
+
     computed: {
       ...mapState(['displayRegister', 'username']),
       textSearch: function () {
@@ -49,15 +52,18 @@
         return this.$route.name;
       }
     },
+
     watch: {
       username() {
         // We make sure to take new value of localStorage.accessToken when username is changed
         this.isUserLoggedIn = !!localStorage.accessToken;
       }
     },
+
     mounted: function() {
       this.isUserLoggedIn = !!localStorage.accessToken;
     },
+
     beforeCreate: function () {
       api.getUsersCount()
               .then(response => {
@@ -67,11 +73,14 @@
               })
               .catch(error => console.log(error.response));
     },
+
     methods: {
       ...mapMutations(['setDisplayRegister']),
+
       displayRegisterComponent() {
         this.setDisplayRegister(true);
       },
+
       displayLoginComponent() {
         this.setDisplayRegister(false);
       }

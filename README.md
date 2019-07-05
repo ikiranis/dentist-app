@@ -6,6 +6,12 @@
 sudo npm install -g npm@latest
 ``
 
+### Update vue-cli
+
+``
+npm install -g @vue/cli@latest
+``
+
 ### Clone project
 
 git clone git@github.com:ikiranis/dentist-app.git

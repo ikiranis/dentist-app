@@ -66,8 +66,10 @@
     import DisplayError from "../basic/DisplayError";
     import FormError from "../basic/FormError";
     import Loading from "../basic/Loading";
+
     export default {
         components: {Loading, DisplayError, FormError},
+
         data: () => ({
             response: {
                 message: '',
@@ -82,11 +84,14 @@
             },
             password_confirmation: ''
         }),
+
         computed: {
             ...mapState(['loading'])
         },
+
         methods: {
             ...mapMutations(['setDisplayRegister', 'setLoading']),
+
             /**
              * Register new user
              */

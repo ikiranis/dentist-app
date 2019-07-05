@@ -52,8 +52,10 @@
     import user from "@/library/user";
     import DisplayError from "../basic/DisplayError";
     import Loading from "../basic/Loading";
+
     export default {
         components: {Loading, DisplayError},
+
         data: () => ({
             response: {
                 message: '',
@@ -64,11 +66,14 @@
                 password: ''
             }
         }),
+
         computed: {
             ...mapState(['loading'])
         },
+
         methods: {
             ...mapMutations(['setLoading']),
+
             /**
              * Do the login
              */
