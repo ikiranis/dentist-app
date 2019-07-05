@@ -19,7 +19,7 @@ user.setUserTokenHeader();
 // Set routes titles
 router.beforeEach((to, from, next) => {
   document.title = to.meta.title;
-  next()
+  next();
 });
 
 new Vue({

@@ -58,8 +58,6 @@ export default new Vuex.Store({
           .then(response => {
             context.commit('setUsername', response.name);
             context.commit('setUserId', response.id);
-            context.dispatch('getGroups');
-            context.dispatch('getTags');
           })
           .catch(error => {
             if (error.response.statusText === 'Unauthorized') {
