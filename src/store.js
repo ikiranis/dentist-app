@@ -11,6 +11,7 @@ export default new Vuex.Store({
     username: null,
     userId: 0,
     displayRegister: false,
+    loading: false
   },
 
   mutations: {
@@ -43,6 +44,17 @@ export default new Vuex.Store({
     setDisplayRegister(state, value) {
       state.displayRegister = value;
     },
+
+    /**
+     * loading setter
+     *
+     * @param state
+     * @param value
+     */
+    setLoading(state, value) {
+      state.loading = value;
+    },
+
   },
 
   actions: {

@@ -60,7 +60,7 @@
     import {mapState, mapMutations} from 'vuex';
     import DisplayError from "@/components/basic/DisplayError";
     import FormError from "@/components/basic/FormError";
-    import Loading from "../components/basic/Loading";
+    import Loading from "@/components/basic/Loading";
 
     export default {
 
@@ -86,6 +86,10 @@
 
         computed: {
             ...mapState(['loading']),
+
+            userToken: function () {
+                return localStorage.accessToken ? localStorage.accessToken : null;
+            }
         },
 
         created: function () {
@@ -99,7 +103,9 @@
              * Get current user info
              */
             getCurrentUser() {
+
                 this.setLoading(true);
+
                 api.getCurrentUser()
                     .then(response => {
                         this.userInfo = response;
