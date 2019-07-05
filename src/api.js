@@ -11,7 +11,6 @@ let api = {
      * @returns {Promise<void>}
      */
     async getApiWorks() {
-        console.log(ROOT_API + '/apiWorks')
         let {data} = await axios.get(ROOT_API + '/apiWorks');
 
         return data;
