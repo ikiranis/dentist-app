@@ -1,14 +1,18 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-Vue.use(Vuex)
+Vue.use(Vuex);
+
+import api from '@/api';
 
 export default new Vuex.Store({
+
   state: {
     username: null,
     userId: 0,
     displayRegister: false,
   },
+
   mutations: {
     /**
      * username setter
@@ -40,7 +44,9 @@ export default new Vuex.Store({
       state.displayRegister = value;
     },
   },
+
   actions: {
+
     /**
      * Call api to get the current user and set store variables
      *
@@ -62,5 +68,6 @@ export default new Vuex.Store({
             }
           });
     },
+
   }
 })
