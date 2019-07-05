@@ -2,14 +2,15 @@
   <div class="container-fluid mt-3">
 
     <div v-if="!isUserLoggedIn">
+
       <Login v-if="!displayRegister && !username"/>
+
       <div class="row">
                 <span class="btn btn-info my-3 ml-auto mr-auto" v-if="!displayRegister && !username"
                       @click="displayRegisterComponent">Register User</span>
       </div>
-    </div>
 
-    <display-bookmarks v-if="username" :searchId="searchId" :routeName="routeName" :textSearch="textSearch" />
+    </div>
 
     <Register v-if="displayRegister"/>
 
@@ -42,14 +43,6 @@
 
     computed: {
       ...mapState(['displayRegister', 'username']),
-
-      textSearch: function () {
-        return this.$route.params.textSearch;
-      },
-
-      searchId: function () {
-        return this.$route.params.id;
-      },
 
       routeName: function () {
         return this.$route.name;
