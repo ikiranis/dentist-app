@@ -1,5 +1,10 @@
 # Dentist Files App frontend
 
+### Update npm
+
+``
+sudo npm install -g npm@latest
+``
 
 ### Clone project
 
@@ -15,6 +20,12 @@ Add passport key and api path
 ```
 npm install
 ```
+
+### Run vue ui
+
+``
+vue ui
+``
 
 ### Compiles and hot-reloads for development
 ```
