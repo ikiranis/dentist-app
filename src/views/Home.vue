@@ -26,12 +26,11 @@
   import Login from '@/components/users/Login.vue'
   import Register from '@/components/users/Register.vue'
   import {mapState, mapMutations} from 'vuex';
-  import DisplayBookmarks from "@/components/bookmarks/DisplayBookmarks";
+
   // TODO delete localStorage.accessToken if not valid
   export default {
     name: 'home',
     components: {
-      DisplayBookmarks,
       Login,
       Register
     },
