@@ -124,15 +124,18 @@
 </script>
 
 <style lang="scss">
-  // Fonts
-  @import url("https://fonts.googleapis.com/css?family=Alegreya+Sans:300,400,600");
   #app {
+    @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
     color: #2c3e50;
-    font-family: 'Alegreya Sans', cursive;
+    font-family: 'Roboto', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
+
   #logout {
     cursor: pointer;
   }
+
   .btn-icon {
     cursor: pointer;
   }
