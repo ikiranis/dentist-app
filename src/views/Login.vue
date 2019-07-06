@@ -66,8 +66,8 @@
                 status: ''
             },
             credentials: {
-                username: '',
-                password: ''
+                username: 'rocean@error.gr',
+                password: '123456'
             }
         }),
 

@@ -10,7 +10,6 @@ export default new Vuex.Store({
   state: {
     username: null,
     userId: 0,
-    displayRegister: false,
     loading: false
   },
 
@@ -33,16 +32,6 @@ export default new Vuex.Store({
      */
     setUserId(state, userId) {
       state.userId = userId;
-    },
-
-    /**
-     * displayRegister setter
-     *
-     * @param state
-     * @param value
-     */
-    setDisplayRegister(state, value) {
-      state.displayRegister = value;
     },
 
     /**
