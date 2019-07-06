@@ -1,14 +1,16 @@
 <template>
-    <span>
-        <li class="nav-item" v-if="username">
-            <router-link to="/user" >
-                <span class="nav-link">
-                    {{ username }}
-                </span>
-            </router-link>
-        </li>
-        <li v-else class="nav-link"><router-link to="/login" >Σύνδεση</router-link></li>
-    </span>
+    <li class="nav-item" v-if="username">
+        <router-link to="/user" >
+            <span class="nav-link">
+                {{ username }}
+            </span>
+        </router-link>
+    </li>
+    <li v-else class="nav-item">
+        <router-link to="/login">
+            <span class="nav-link">Σύνδεση</span>
+        </router-link>
+    </li>
 </template>
 
 <script>
