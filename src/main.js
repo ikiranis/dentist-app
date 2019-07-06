@@ -6,11 +6,11 @@ import store from './store'
 Vue.config.productionTip = true; // Display console warning at development mode
 
 // Bootstrap
-import BootstrapVue from 'bootstrap-vue';
+import BootstrapVue from 'bootstrap-vue'
 Vue.use(BootstrapVue);
 
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap-vue/dist/bootstrap-vue.css';
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 // User Authentication
 import user from '@/library/user';
