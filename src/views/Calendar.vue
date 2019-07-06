@@ -3,11 +3,9 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card card-default">
-                    <div class="card-header">About</div>
-                    <div class="card-body">
-                        <p><strong>Dentist Files</strong> created by <strong><a href="http://apps4net.eu">apps4net</a></strong>
+                    <div class="card-header">Ημερολόγιο</div>
 
-                        <p>Send your feedback at <strong><u>info (at) apps4net.eu</u></strong></p>
+                    <div class="card-body">
 
                     </div>
                 </div>
