@@ -40,8 +40,9 @@
               <router-link to="/about" class="nav-link">About</router-link>
             </b-nav-item>
 
-            <b-nav-item href="#"><a class="nav-link" id="logout" @click="logout()"
-                                    v-if="username">Αποσύνδεση</a></b-nav-item>
+            <b-nav-item href="#" v-if="username">
+              <a class="nav-link" id="logout" @click="logout()">Αποσύνδεση</a>
+            </b-nav-item>
 
           </b-navbar-nav>
 
