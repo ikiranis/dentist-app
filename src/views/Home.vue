@@ -1,6 +1,24 @@
 <template>
     <div class="container-fluid mt-3">
 
+        <div class="container mb-3 col-12 col-lg-4 mx-auto" v-if="isUserLoggedIn">
+            <router-link to="/patients" class="nav-link">
+                <b-button variant="secondary" class="w-100 mt-3">Ασθενείς</b-button>
+            </router-link>
+
+            <router-link to="/economy" class="nav-link">
+                <b-button variant="secondary" class="w-100 mt-3">Οικονομικά</b-button>
+            </router-link>
+
+            <router-link to="/calendar" class="nav-link">
+                <b-button variant="secondary" class="w-100 mt-3">Ημερολόγιο</b-button>
+            </router-link>
+
+            <router-link to="/tools" class="nav-link">
+                <b-button variant="secondary" class="w-100 mt-3">Εργαλεία</b-button>
+            </router-link>
+        </div>
+
         <div v-if="!isUserLoggedIn">
 
             <Login v-if="!displayRegister && !username"/>
@@ -13,6 +31,7 @@
         </div>
 
         <Register v-if="displayRegister"/>
+
 
         <div class="row">
             <span class="btn btn-info my-3 ml-auto mr-auto" v-if="displayRegister" @click="displayLoginComponent">Login User</span>
