@@ -41,7 +41,7 @@
             </b-nav-item>
 
             <b-nav-item href="#"><a class="nav-link" id="logout" @click="logout()"
-                                    v-if="username">Logout</a></b-nav-item>
+                                    v-if="username">Αποσύνδεση</a></b-nav-item>
 
           </b-navbar-nav>
 
@@ -50,18 +50,18 @@
 
       <router-view class="mt-5 pt-5"/>
 
-      <b-navbar toggleable="md" type="dark" variant="dark">
+<!--      <b-navbar toggleable="md" type="dark" variant="dark">-->
 
-        <!-- Right aligned nav items -->
-        <b-navbar-nav class="ml-auto">
+<!--        &lt;!&ndash; Right aligned nav items &ndash;&gt;-->
+<!--        <b-navbar-nav class="ml-auto">-->
 
-          <b-nav-item href="http://apps4net.eu">
-            Created by apps4net.eu
-          </b-nav-item>
+<!--          <b-nav-item href="http://apps4net.eu">-->
+<!--            Created by apps4net.eu-->
+<!--          </b-nav-item>-->
 
-        </b-navbar-nav>
+<!--        </b-navbar-nav>-->
 
-      </b-navbar>
+<!--      </b-navbar>-->
 
     </div>
 

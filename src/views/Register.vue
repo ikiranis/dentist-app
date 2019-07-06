@@ -63,9 +63,9 @@
 <script>
     import api from '@/api';
     import {mapState, mapMutations} from 'vuex';
-    import DisplayError from "../basic/DisplayError";
-    import FormError from "../basic/FormError";
-    import Loading from "../basic/Loading";
+    import DisplayError from "@/components/basic/DisplayError";
+    import FormError from "@/components/basic/FormError";
+    import Loading from "@/components/basic/Loading";
 
     export default {
         components: {Loading, DisplayError, FormError},
@@ -90,7 +90,7 @@
         },
 
         methods: {
-            ...mapMutations(['setDisplayRegister', 'setLoading']),
+            ...mapMutations(['setLoading']),
 
             /**
              * Register new user

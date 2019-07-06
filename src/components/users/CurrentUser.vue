@@ -7,7 +7,7 @@
                 </span>
             </router-link>
         </li>
-        <li v-else class="nav-link"><router-link to="/" >Login</router-link></li>
+        <li v-else class="nav-link"><router-link to="/login" >Σύνδεση</router-link></li>
     </span>
 </template>
 

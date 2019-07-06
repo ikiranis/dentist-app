@@ -33,6 +33,10 @@
                                 <router-link to="/forgotPassword" class="nav-link mx-auto">Forgot Password</router-link>
                             </div>
 
+                            <div class="row">
+                                <span class="btn btn-info my-3 mx-auto" @click="displayRegister">Εγγραφή</span>
+                            </div>
+
                         </form>
                     </div>
                 </div>
@@ -74,6 +78,11 @@
         methods: {
             ...mapMutations(['setLoading']),
 
+
+            displayRegister() {
+                this.$router.push({name: 'register'});
+            },
+
             /**
              * Do the login
              */
@@ -89,7 +98,7 @@
                         // Get the current username and store it
                         this.$store.dispatch('getCurrentUser');
                         this.setLoading(false);
-                        this.$router.push({name: 'home'}); // Force to load Login page
+                        this.$router.push({name: 'home'}); // Force to load Home page
                     })
                     .catch(error => {
                         this.response.message = error.response.data.message;
