@@ -16,16 +16,30 @@
           <!--TODO fix cursor pointer after choose a menu-->
           <b-navbar-nav class="ml-auto">
 
-            <!--<b-nav-item href="#" v-if="userId !== 0">-->
-              <!--<router-link to="/insertBookmark" class="nav-link">Insert Bookmark</router-link>-->
-            <!--</b-nav-item>-->
+            <b-nav-item href="#" v-if="userId !== 0">
+              <router-link to="/patients" class="nav-link">Ασθενείς</router-link>
+            </b-nav-item>
+
+            <b-nav-item href="#" v-if="userId !== 0">
+              <router-link to="/economy" class="nav-link">Οικονομικά</router-link>
+            </b-nav-item>
+
+            <b-nav-item href="#" v-if="userId !== 0">
+              <router-link to="/calendar" class="nav-link">Ημερολόγιο</router-link>
+            </b-nav-item>
+
+            <b-nav-item href="#" v-if="userId !== 0">
+              <router-link to="/tools" class="nav-link">Εργαλεία</router-link>
+            </b-nav-item>
 
             <b-nav-item href="#">
               <CurrentUser/>
             </b-nav-item>
+
             <b-nav-item href="#">
               <router-link to="/about" class="nav-link">About</router-link>
             </b-nav-item>
+
             <b-nav-item href="#"><a class="nav-link" id="logout" @click="logout()"
                                     v-if="username">Logout</a></b-nav-item>
 
