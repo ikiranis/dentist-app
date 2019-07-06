@@ -2,7 +2,7 @@
     <div class="container-fluid mt-3">
 
         <div class="container mb-3 col-12 col-lg-4 mx-auto" v-if="isUserLoggedIn">
-            <h1 class="text-center">Dentist Files</h1>
+            <h1 class="text-center">Dentist</h1>
 
             <router-link to="/patients">
                 <b-button variant="secondary" class="w-100 mt-3">Ασθενείς</b-button>

@@ -21,7 +21,7 @@ export default new Router({
       name: 'home',
       component: Home,
       meta: {
-        title: 'Home Page - Dentist Files',
+        title: 'Dentist',
         metaTags: [
           {
             name: 'description',
@@ -39,7 +39,7 @@ export default new Router({
       name: 'patients',
       component: Patients,
       meta: {
-        title: 'Ασθενείς - Dentist Files'
+        title: 'Ασθενείς - Dentist'
       }
     },
     {
@@ -47,7 +47,7 @@ export default new Router({
       name: 'patient',
       component: Patient,
       meta: {
-        title: 'Ασθενής - Dentist Files'
+        title: 'Ασθενής - Dentist'
       }
     },
     {
@@ -55,7 +55,7 @@ export default new Router({
       name: 'economy',
       component: Economy,
       meta: {
-        title: 'Οικονομικά - Dentist Files'
+        title: 'Οικονομικά - Dentist'
       }
     },
     {
@@ -63,7 +63,7 @@ export default new Router({
       name: 'calendar',
       component: Calendar,
       meta: {
-        title: 'Ημερολόγιο - Dentist Files'
+        title: 'Ημερολόγιο - Dentist'
       }
     },
     {
@@ -71,7 +71,7 @@ export default new Router({
       name: 'tools',
       component: Tools,
       meta: {
-        title: 'Εργαλεία - Dentist Files'
+        title: 'Εργαλεία - Dentist'
       }
     },
     {
@@ -79,7 +79,7 @@ export default new Router({
       name: 'about',
       component: About,
       meta: {
-        title: 'About - Dentist Files'
+        title: 'About - Dentist'
       }
     },
     {
@@ -87,7 +87,7 @@ export default new Router({
       name: 'user',
       component: User,
       meta: {
-        title: 'User - Dentist Files'
+        title: 'User - Dentist'
       }
     },
   ]

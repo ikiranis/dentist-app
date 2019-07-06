@@ -1,58 +1,53 @@
 <template>
-    <div class="container-fluid my-3">
+    <div class="container my-3">
         <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card card-default">
-                    <div class="card-header"><h1 class="text-center">Λίστα ασθενών</h1></div>
 
-                    <div class="card-body">
+            <div class="col-12"><h1>Ασθενείς</h1></div>
 
-                        <form @submit.prevent="searchText" class="row col-lg-8 col-12 mx-auto">
+            <form @submit.prevent="searchText" class="row col-lg-8 col-12 mx-auto">
 
-                            <label for="search" class="sr-only">Search</label>
-                            <input type="text" max="100" class="form-control col-md-5 col-12 my-1"
-                                   id="search" name="search" v-model="search">
+                <label for="search" class="sr-only">Search</label>
+                <input type="text" max="100" class="form-control col-md-5 col-12 my-1"
+                       id="search" name="search" v-model="search">
 
-                            <input type="submit" class="btn btn-small btn-success col-md-3 col-12 my-1 mx-auto" value="Αναζήτηση">
-                            <button class="btn btn-small btn-danger col-md-3 col-12 my-1" @click="clearSearch()">Καθαρισμός</button>
+                <input type="submit" class="btn btn-small btn-success col-md-3 col-12 my-1 mx-auto" value="Αναζήτηση">
+                <button class="btn btn-small btn-danger col-md-3 col-12 my-1" @click="clearSearch()">Καθαρισμός</button>
 
-                        </form>
+            </form>
 
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Όνομα</th>
-                                    <th scope="col">Επώνυμο</th>
-                                    <th scope="col">Σημειώσεις</th>
-                                </tr>
-                            </thead>
-                            <tbody v-for="patient in patients">
-                                <tr>
-                                    <th scope="row">{{ patient.id }}</th>
-                                    <td>
-                                        <router-link :to="{ name: 'patient', params: { id: patient.id } }"
-                                                     :key="$route.fullPath">
-                                            {{ patient.fname }}
-                                        </router-link>
-                                    </td>
-                                    <td><router-link :to="{ name: 'patient', params: { id: patient.id } }"
-                                                     :key="$route.fullPath">
-                                        {{ patient.lname }}
-                                    </router-link></td>
-                                    <td>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Όνομα</th>
+                    <th scope="col">Επώνυμο</th>
+                    <th scope="col">Σημειώσεις</th>
+                </tr>
+                </thead>
+                <tbody v-for="patient in patients">
+                <tr>
+                    <th scope="row">{{ patient.id }}</th>
+                    <td>
+                        <router-link :to="{ name: 'patient', params: { id: patient.id } }"
+                                     :key="$route.fullPath">
+                            {{ patient.fname }}
+                        </router-link>
+                    </td>
+                    <td><router-link :to="{ name: 'patient', params: { id: patient.id } }"
+                                     :key="$route.fullPath">
+                        {{ patient.lname }}
+                    </router-link></td>
+                    <td>
                                         <span v-for="icon in patient.icons">
                                            <eye-icon v-if="icon.id === 1" :title="icon.label"/>
                                            <pencil-icon v-if="icon.id === 2" :title="icon.label"/>
                                            <file-hidden-icon v-if="icon.id === 3" :title="icon.label"/>
                                         </span>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
         </div>
     </div>
 </template>
