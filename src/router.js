@@ -4,6 +4,7 @@ import Home from './views/Home.vue'
 import About from './views/About.vue'
 import User from './views/User.vue'
 import Patients from './views/Patients.vue'
+import Patient from './views/Patient.vue'
 import Economy from './views/Economy.vue'
 import Calendar from './views/Calendar.vue'
 import Tools from './views/Tools.vue'
@@ -39,6 +40,14 @@ export default new Router({
       component: Patients,
       meta: {
         title: 'Ασθενείς - Dentist Files'
+      }
+    },
+    {
+      path: '/patient/:id',
+      name: 'patient',
+      component: Patient,
+      meta: {
+        title: 'Ασθενής - Dentist Files'
       }
     },
     {

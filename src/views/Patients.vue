@@ -30,8 +30,16 @@
                             <tbody v-for="patient in patients">
                                 <tr>
                                     <th scope="row">{{ patient.id }}</th>
-                                    <td>{{ patient.fname }}</td>
-                                    <td>{{ patient.lname }}</td>
+                                    <td>
+                                        <router-link :to="{ name: 'patient', params: { id: patient.id } }"
+                                                     :key="$route.fullPath">
+                                            {{ patient.fname }}
+                                        </router-link>
+                                    </td>
+                                    <td><router-link :to="{ name: 'patient', params: { id: patient.id } }"
+                                                     :key="$route.fullPath">
+                                        {{ patient.lname }}
+                                    </router-link></td>
                                     <td>
                                         <span v-for="icon in patient.icons">
                                            <eye-icon v-if="icon.id === 1" :title="icon.label"/>
@@ -53,6 +61,8 @@
     export default {
         data() {
             return {
+                search: '',
+
                 patients: [
                     {
                         id: 1,
@@ -116,6 +126,28 @@
                     }
                 ]
             }
+        },
+
+        methods: {
+
+            /**
+             * Search for the text
+             */
+            searchText() {
+                if(this.routeName === 'home') { // If you are at home just search the bookmarks
+                    // this.getBookmarks(null);
+                } else { // Else go to home and then search
+                    // this.$router.push({name: 'home', params: {textSearch: this.search}});
+                }
+            },
+
+            /**
+             * Clear the search text and get the bookmarks
+             */
+            clearSearch() {
+                this.search = '';
+                // this.getBookmarks(null);
+            },
         }
 
     }
