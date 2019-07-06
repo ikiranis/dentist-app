@@ -50,8 +50,8 @@
     import api from '@/api';
     import {mapState, mapMutations} from 'vuex';
     import user from "@/library/user";
-    import DisplayError from "../basic/DisplayError";
-    import Loading from "../basic/Loading";
+    import DisplayError from "@/components/basic/DisplayError";
+    import Loading from "@/components/basic/Loading";
 
     export default {
         components: {Loading, DisplayError},
@@ -79,6 +79,7 @@
              */
             login() {
                 this.setLoading(true);
+
                 api.login(this.credentials.username, this.credentials.password)
                     .then(response => {
                         // Store token to localStorage
@@ -88,6 +89,7 @@
                         // Get the current username and store it
                         this.$store.dispatch('getCurrentUser');
                         this.setLoading(false);
+                        this.$router.push({name: 'home'}); // Force to load Login page
                     })
                     .catch(error => {
                         this.response.message = error.response.data.message;

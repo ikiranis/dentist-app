@@ -2,7 +2,7 @@
     <div class="container-fluid mt-3">
 
         <div class="container mb-3 col-12 col-lg-4 mx-auto" v-if="isUserLoggedIn">
-            <h1 class="text-center">Βασικές Επιλογές</h1>
+            <h1 class="text-center">Επιλογές</h1>
 
             <router-link to="/patients">
                 <b-button variant="secondary" class="w-100 mt-3">Ασθενείς</b-button>
@@ -74,6 +74,10 @@
             username() {
                 // We make sure to take new value of localStorage.accessToken when username is changed
                 this.isUserLoggedIn = !!localStorage.accessToken;
+
+                if(this.isUserLoggedIn === false) {
+                    this.$router.push({name: 'login'}); // Force to load Login page
+                }
             }
         },
 
