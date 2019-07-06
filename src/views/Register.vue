@@ -102,8 +102,8 @@
                         .then(response => {
                             this.response.message = response.statusText;
                             this.response.status = true;
-                            this.setDisplayRegister(false);
                             this.setLoading(false);
+                            this.$router.push({name: 'login'});
                         })
                         .catch(error => {
                             this.response.message = error.response.data.message;
