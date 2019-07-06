@@ -6,7 +6,42 @@
                     <div class="card-header"><h1 class="text-center">Λίστα ασθενών</h1></div>
 
                     <div class="card-body">
-                         <b-table striped hover :items="patients" :fields="fields"></b-table>
+
+                        <form @submit.prevent="searchText" class="row col-lg-8 col-12 mx-auto">
+
+                            <label for="search" class="sr-only">Search</label>
+                            <input type="text" max="100" class="form-control col-md-5 col-12 my-1"
+                                   id="search" name="search" v-model="search">
+
+                            <input type="submit" class="btn btn-small btn-success col-md-3 col-12 my-1 mx-auto" value="Αναζήτηση">
+                            <button class="btn btn-small btn-danger col-md-3 col-12 my-1" @click="clearSearch()">Καθαρισμός</button>
+
+                        </form>
+
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Όνομα</th>
+                                    <th scope="col">Επώνυμο</th>
+                                    <th scope="col">Σημειώσεις</th>
+                                </tr>
+                            </thead>
+                            <tbody v-for="patient in patients">
+                                <tr>
+                                    <th scope="row">{{ patient.id }}</th>
+                                    <td>{{ patient.fname }}</td>
+                                    <td>{{ patient.lname }}</td>
+                                    <td>
+                                        <span v-for="icon in patient.icons">
+                                           <eye-icon v-if="icon.id === 1" :title="icon.label"/>
+                                           <pencil-icon v-if="icon.id === 2" :title="icon.label"/>
+                                           <file-hidden-icon v-if="icon.id === 3" :title="icon.label"/>
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -18,54 +53,66 @@
     export default {
         data() {
             return {
-                fields: [
-                    {
-                        key: 'id',
-                        label: 'id',
-                        sortable: false
-                    },
-                    {
-                        key: 'lname',
-                        label: 'Επώνυμο',
-                        sortable: true
-                    },
-                    {
-                        key: 'fname',
-                        label: 'Όνομα',
-                        sortable: true
-                    }
-                ],
-
                 patients: [
                     {
                         id: 1,
                         lname: 'Lundquist',
-                        fname: 'Rosana'
+                        fname: 'Rosana',
+                        icons: [
+                            {id: 1, label: 'Ασθένεια'},
+                            {id: 2, label: 'Θεραπείες'},
+                            {id: 3, label: 'Χρέος'},
+                        ]
                     },
                     {
                         id: 2,
                         lname: 'Gulbranson',
-                        fname: 'Kati'
+                        fname: 'Kati',
+                        icons: [
+                            {id: 1, label: 'Ασθένεια'},
+                            {id: 2, label: 'Θεραπείες'},
+                            {id: 3, label: 'Χρέος'},
+                        ]
                     },
                     {
                         id: 3,
                         lname: 'Gamet',
-                        fname: 'Dayle'
+                        fname: 'Dayle',
+                        icons: [
+                            {id: 1, label: 'Ασθένεια'},
+                            {id: 2, label: 'Θεραπείες'},
+                            {id: 3, label: 'Χρέος'},
+                        ]
                     },
                     {
                         id: 4,
                         lname: 'Henriquez',
-                        fname: 'Luann'
+                        fname: 'Luann',
+                        icons: [
+                            {id: 1, label: 'Ασθένεια'},
+                            {id: 2, label: 'Θεραπείες'},
+                            {id: 3, label: 'Χρέος'},
+                        ]
                     },
                     {
                         id: 5,
                         lname: 'Matas',
-                        fname: 'Minnie'
+                        fname: 'Minnie',
+                        icons: [
+                            {id: 1, label: 'Ασθένεια'},
+                            {id: 2, label: 'Θεραπείες'},
+                            {id: 3, label: 'Χρέος'},
+                        ]
                     },
                     {
                         id: 6,
                         lname: 'Battle',
-                        fname: 'Pedro'
+                        fname: 'Pedro',
+                        icons: [
+                            {id: 1, label: 'Ασθένεια'},
+                            {id: 2, label: 'Θεραπείες'},
+                            {id: 3, label: 'Χρέος'},
+                        ]
                     }
                 ]
             }
