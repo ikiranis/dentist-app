@@ -32,10 +32,11 @@
                             {{ patient.fname }}
                         </router-link>
                     </td>
-                    <td><router-link :to="{ name: 'patient', params: { id: patient.id } }">
-<!--                        :key="$route.fullPath"-->
-                        {{ patient.lname }}
-                    </router-link></td>
+                    <td>
+                        <router-link :to="{ name: 'patient', params: { id: patient.id } }">
+                            {{ patient.lname }}
+                        </router-link>
+                    </td>
                     <td>
                                         <span v-for="icon in patient.icons">
                                            <eye-icon v-if="icon.id === 1" :title="icon.label"/>
