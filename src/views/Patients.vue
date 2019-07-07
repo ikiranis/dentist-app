@@ -28,13 +28,12 @@
                 <tr>
                     <th scope="row">{{ patient.id }}</th>
                     <td>
-                        <router-link :to="{ name: 'patient', params: { id: patient.id } }"
-                                     :key="$route.fullPath">
+                        <router-link :to="{ name: 'patient', params: { id: patient.id } }">
                             {{ patient.fname }}
                         </router-link>
                     </td>
-                    <td><router-link :to="{ name: 'patient', params: { id: patient.id } }"
-                                     :key="$route.fullPath">
+                    <td><router-link :to="{ name: 'patient', params: { id: patient.id } }">
+<!--                        :key="$route.fullPath"-->
                         {{ patient.lname }}
                     </router-link></td>
                     <td>
