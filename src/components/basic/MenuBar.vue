@@ -1,5 +1,5 @@
 <template>
-    <b-navbar toggleable="md" type="dark" variant="dark" :fixed="fixed">
+    <b-navbar toggleable="md" :type="type" :variant="variant" :fixed="fixed">
 
         <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
@@ -10,7 +10,7 @@
         <b-collapse is-nav id="nav_collapse">
 
             <!--TODO fix cursor pointer after choose a menu-->
-            <b-navbar-nav class="ml-auto">
+            <b-navbar-nav :class="align">
 
                 <!-- User LoggedIn items -->
                 <b-nav-item href="#" v-for="item in menuItems" v-if="userId !== 0 && item.loggedIn">
@@ -50,7 +50,10 @@
             brand: String,
             menuItems: Array,
             userInfo: String,
-            fixed: String
+            fixed: String,
+            variant: String,
+            type: String,
+            align: String
         },
 
         computed: {

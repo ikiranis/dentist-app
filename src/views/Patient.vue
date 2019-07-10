@@ -2,7 +2,8 @@
     <div class="container-fluid my-3">
         <div class="justify-content-center">
 
-            <menu-bar brand="" :menuItems="menuItems" userInfo="false" fixed=""/>
+            <menu-bar brand="" :menuItems="menuItems" userInfo="false" fixed=""
+                      variant="light" type="light" align="mx-auto" />
 
             <div class="col-12">
                 <h1>#{{ patientId }} {{ patient.info.fname }} {{ patient.info.lname }}</h1>
