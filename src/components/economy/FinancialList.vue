@@ -3,7 +3,7 @@
         <thead>
             <tr>
                 <th scope="col">Ημ/νία</th>
-                <th scope="col">Κίνηση</th>
+                <th scope="col">Περιγραφή</th>
                 <th scope="col">Ποσό</th>
             </tr>
         </thead>
@@ -12,7 +12,7 @@
             <tr>
                 <th scope="row">{{ transaction.date }}</th>
                 <td>
-                    {{ transaction.text }}
+                    {{ transaction.description }}
                 </td>
                 <td>
                     {{ transaction.value }}
