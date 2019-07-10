@@ -21,20 +21,6 @@
             </router-link>
         </div>
 
-<!--        <div v-if="!isUserLoggedIn">-->
-
-<!--            <div class="row">-->
-<!--                <span class="btn btn-info my-3 ml-auto mr-auto" v-if="!displayRegister && !username"-->
-<!--                      @click="displayRegisterComponent">Register User</span>-->
-<!--            </div>-->
-
-<!--        </div>-->
-
-<!--        <Register v-if="displayRegister"/>-->
-
-
-
-
     </div>
 </template>
 
