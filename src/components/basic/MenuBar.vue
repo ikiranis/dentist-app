@@ -12,31 +12,22 @@
             <!--TODO fix cursor pointer after choose a menu-->
             <b-navbar-nav class="ml-auto">
 
-                <b-nav-item href="#" v-if="userId !== 0">
-                    <router-link to="/patients" class="nav-link">Ασθενείς</router-link>
+                <!-- User LoggedIn items -->
+                <b-nav-item href="#" v-for="item in menuItems" v-if="userId !== 0 && item.loggedIn">
+                    <router-link :to="item.route" class="nav-link">{{ item.name }}</router-link>
                 </b-nav-item>
 
-                <b-nav-item href="#" v-if="userId !== 0">
-                    <router-link to="/economy" class="nav-link">Οικονομικά</router-link>
-                </b-nav-item>
-
-                <b-nav-item href="#" v-if="userId !== 0">
-                    <router-link to="/calendar" class="nav-link">Ημερολόγιο</router-link>
-                </b-nav-item>
-
-                <b-nav-item href="#" v-if="userId !== 0">
-                    <router-link to="/tools" class="nav-link">Εργαλεία</router-link>
-                </b-nav-item>
-
-                <b-nav-item href="#">
-                    <CurrentUser/>
-                </b-nav-item>
-
-                <b-nav-item href="#">
+                <!-- All users items -->
+                <b-nav-item href="#" v-for="item in menuItems" v-if="!item.loggedIn">
                     <router-link to="/about" class="nav-link">About</router-link>
                 </b-nav-item>
 
-                <b-nav-item href="#" v-if="username">
+                <!-- User info items -->
+                <b-nav-item href="#" v-if="userInfo">
+                    <CurrentUser/>
+                </b-nav-item>
+
+                <b-nav-item href="#" v-if="username && userInfo">
                     <a class="nav-link" id="logout" @click="logout()">Αποσύνδεση</a>
                 </b-nav-item>
 
@@ -62,7 +53,9 @@
         },
 
         props: {
-            brand: String
+            brand: String,
+            menuItems: Array,
+            userInfo: Boolean
         },
 
         computed: {
