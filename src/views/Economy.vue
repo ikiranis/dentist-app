@@ -22,14 +22,14 @@
                             </tr>
                             </thead>
 
-                            <tbody v-for="traffic in financialTraffic">
-                            <tr v-if="traffic.kind === 'income'">
-                                <th scope="row">{{ traffic.date }}</th>
+                            <tbody v-for="transaction in transactions">
+                            <tr v-if="transaction.kind === 'income'">
+                                <th scope="row">{{ transaction.date }}</th>
                                 <td>
-                                    {{ traffic.text }}
+                                    {{ transaction.text }}
                                 </td>
                                 <td>
-                                    {{ traffic.value }}
+                                    {{ transaction.value }}
                                 </td>
                             </tr>
                             </tbody>
@@ -53,14 +53,14 @@
                             </tr>
                             </thead>
 
-                            <tbody v-for="traffic in financialTraffic">
-                            <tr v-if="traffic.kind === 'outcome'">
-                                <th scope="row">{{ traffic.date }}</th>
+                            <tbody v-for="transaction in transactions">
+                            <tr v-if="transaction.kind === 'expense'">
+                                <th scope="row">{{ transaction.date }}</th>
                                 <td>
-                                    {{ traffic.text }}
+                                    {{ transaction.text }}
                                 </td>
                                 <td>
-                                    {{ traffic.value }}
+                                    {{ transaction.value }}
                                 </td>
                             </tr>
                             </tbody>
@@ -82,7 +82,7 @@
     export default {
         data() {
             return {
-                financialTraffic: [
+                transactions: [
                     {
                         date: '12/01/2019',
                         text: 'Θεραπεία',
@@ -95,7 +95,7 @@
                         text: 'Εξοπλισμός',
                         patient: 0,
                         value: 150,
-                        kind: 'outcome'
+                        kind: 'expense'
                     },
                     {
                         date: '12/02/2019',
@@ -123,14 +123,14 @@
                         text: 'Εξοπλισμός',
                         patient: 0,
                         value: 350,
-                        kind: 'outcome'
+                        kind: 'expense'
                     },
                     {
                         date: '12/01/2019',
                         text: 'Θεραπεία',
                         patient: 0,
                         value: 400,
-                        kind: 'outcome'
+                        kind: 'expense'
                     },
                     {
                         date: '14/02/2019',
@@ -144,7 +144,7 @@
                         text: 'Εξοπλισμός',
                         patient: 0,
                         value: 500,
-                        kind: 'outcome'
+                        kind: 'expense'
                     },
                     {
                         date: '27/03/2019',
@@ -165,14 +165,14 @@
                         text: 'Εξοπλισμός',
                         patient: 0,
                         value: 100,
-                        kind: 'outcome'
+                        kind: 'expense'
                     },
                     {
                         date: '22/01/2019',
                         text: 'Θεραπεία',
                         patient: 0,
                         value: 150,
-                        kind: 'outcome'
+                        kind: 'expense'
                     }
                 ]
             }
