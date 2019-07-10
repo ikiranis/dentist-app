@@ -37,17 +37,21 @@
                             {{ patient.lname }}
                         </router-link>
                     </td>
-                    <td>
-                                        <span v-for="icon in patient.icons">
-                                           <eye-icon v-if="icon.id === 1" :title="icon.label"/>
-                                           <pencil-icon v-if="icon.id === 2" :title="icon.label"/>
-                                           <file-hidden-icon v-if="icon.id === 3" :title="icon.label"/>
-                                        </span>
+                    <td class="text-center">
+                        <span v-for="icon in patient.icons">
+                           <eye-icon v-if="icon.id === 1" :title="icon.label"/>
+                           <pencil-icon v-if="icon.id === 2" :title="icon.label"/>
+                           <file-hidden-icon v-if="icon.id === 3" :title="icon.label"/>
+                        </span>
                     </td>
                 </tr>
                 </tbody>
             </table>
 
+        </div>
+
+        <div class="row">
+            <button class="btn btn-success col-lg-6 col-12 my-3 mx-auto" @click="newPatient">Εισαγωγή νέου ασθενή</button>
         </div>
     </div>
 </template>
@@ -129,7 +133,7 @@
              * Search for the text
              */
             searchText() {
-                if(this.routeName === 'home') { // If you are at home just search the bookmarks
+                if (this.routeName === 'home') { // If you are at home just search the bookmarks
                     // this.getBookmarks(null);
                 } else { // Else go to home and then search
                     // this.$router.push({name: 'home', params: {textSearch: this.search}});
@@ -143,6 +147,10 @@
                 this.search = '';
                 // this.getBookmarks(null);
             },
+
+            newPatient() {
+                this.$router.push({name: 'patient', params: {id: 0}});
+            }
         }
 
     }
