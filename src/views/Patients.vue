@@ -72,7 +72,7 @@
                         fname: 'Rosana',
                         icons: [
                             {id: 1, label: 'Ασθένεια'},
-                            {id: 2, label: 'Θεραπείες'},
+                            {id: 2, label: 'Εκρεμείς θεραπείες'},
                             {id: 3, label: 'Χρέος'},
                         ]
                     },

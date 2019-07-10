@@ -39,7 +39,7 @@
                             <label for="fatherName" class="col-md-6 col-form-label text-md-right">Όνομα πατρός</label>
                             <div class="col-md-6">
                                 <input id="fatherName" type="text" class="form-control"
-                                       v-model="patient.info.fatherName" required>
+                                       v-model="patient.info.fatherName">
                                 <form-error v-if="response.errors.fatherName" :error="response.errors.fatherName[0]"/>
                             </div>
                         </div>
@@ -48,7 +48,7 @@
                             <label for="birthday" class="col-md-6 col-form-label text-md-right">Ημ. γέννησης</label>
                             <div class="col-md-6">
                                 <input id="birthday" type="date" class="form-control"
-                                       v-model="patient.info.birthday" required>
+                                       v-model="patient.info.birthday">
                                 <form-error v-if="response.errors.birthday" :error="response.errors.birthday[0]"/>
                             </div>
                         </div>
@@ -106,24 +106,22 @@
                             <div class="card-body">
 
                                 <div class="form-group row my-1">
-                                    <label for="disease" class="col-md-4 col-form-label text-md-right">
-                                        <biohazard-icon title="Ασθένεια"/>
-                                        Ασθένεια
+                                    <label for="disease" class="col-md-5 col-form-label text-md-right">
+                                        Ασθένεια <biohazard-icon title="Ασθένεια"/>
                                     </label>
-                                    <div class="col-md-8">
-                                        <input id="disease" type="text" class="form-control"
+                                    <div class="col-md-7">
+                                        <input id="disease" type="text" class="form-control col-form"
                                                v-model="patient.info.disease">
                                         <form-error v-if="response.errors.disease" :error="response.errors.disease[0]"/>
                                     </div>
                                 </div>
 
                                 <div class="form-group row my-1">
-                                    <label for="treatment" class="col-md-4 col-form-label text-md-right">
-                                        <medical-bag-icon title="Θεραπείες"/>
-                                        Θεραπείες
+                                    <label for="treatment" class="col-md-5 col-form-label text-md-right">
+                                        Εκρεμείς θεραπείες <medical-bag-icon title="Εκρεμείς θεραπείες"/>
                                     </label>
-                                    <div class="col-md-8">
-                                        <input id="treatment" type="text" class="form-control"
+                                    <div class="col-md-7">
+                                        <input id="treatment" type="text" class="form-control col-form"
                                                v-model="patient.info.treatment">
                                         <form-error v-if="response.errors.treatment"
                                                     :error="response.errors.treatment[0]"/>
@@ -131,12 +129,11 @@
                                 </div>
 
                                 <div class="form-group row my-1">
-                                    <label for="debt" class="col-md-4 col-form-label text-md-right">
-                                        <currency-eur-icon title="Χρέος"/>
-                                        Χρέος
+                                    <label for="debt" class="col-md-5 col-form-label text-md-right">
+                                        Χρέος <currency-eur-icon title="Χρέος"/>
                                     </label>
-                                    <div class="col-md-8">
-                                        <input id="debt" type="text" class="form-control"
+                                    <div class="col-md-7">
+                                        <input id="debt" type="text" class="form-control col-form"
                                                v-model="patient.info.debt">
                                         <form-error v-if="response.errors.debt" :error="response.errors.debt[0]"/>
                                     </div>
