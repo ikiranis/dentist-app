@@ -1,5 +1,5 @@
 <template>
-    <b-navbar toggleable="md" :type="type" :variant="variant" :fixed="fixed">
+    <b-navbar :toggleable="toggle" :type="type" :variant="variant" :fixed="fixed">
 
         <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
@@ -53,7 +53,8 @@
             fixed: String,
             variant: String,
             type: String,
-            align: String
+            align: String,
+            toggle: String
         },
 
         computed: {

@@ -2,12 +2,12 @@
     <div class="container-fluid my-3">
         <div class="justify-content-center">
 
-            <menu-bar brand="" :menuItems="menuItems" userInfo="false" fixed=""
-                      variant="light" type="light" align="mx-auto" />
-
             <div class="col-12">
                 <h1>#{{ patientId }} {{ patient.info.fname }} {{ patient.info.lname }}</h1>
             </div>
+
+            <menu-bar brand="" :menuItems="menuItems" userInfo="false" fixed=""
+                      variant="" type="light" align="mx-auto" toggle="lg" />
 
             <div class="container">
 
@@ -94,49 +94,6 @@
                     </div>
 
                     <div class="col-lg-6 col-12">
-
-                        <!-- Επιλογές -->
-                        <div class="col-lg-8 col-12 mb-2 mx-auto">
-                            <router-link to="/medicalHistory">
-                                <button class="btn btn-secondary col-12">Ιατρικό ιστορικό</button>
-                            </router-link>
-                        </div>
-
-                        <div class="col-lg-8 col-12 mb-2 mx-auto">
-                            <router-link to="/dentalHistory">
-                                <button class="btn btn-secondary col-12">Οδοντιατρικό ιστορικό</button>
-                            </router-link>
-                        </div>
-
-                        <div class="col-lg-8 col-12 mb-2 mx-auto">
-                            <router-link to="/dentalGram">
-                                <button class="btn btn-secondary col-12">Οδοντόγραμμα</button>
-                            </router-link>
-                        </div>
-
-                        <div class="col-lg-8 col-12 mb-2 mx-auto">
-                            <router-link to="/periodDentalGram">
-                                <button class="btn btn-secondary col-12">Περιοδοντόγραμμα</button>
-                            </router-link>
-                        </div>
-
-                        <div class="col-lg-8 col-12 mb-2 mx-auto">
-                            <router-link to="/treatmentHistory">
-                                <button class="btn btn-secondary col-12">Ιστορικό θεραπειών</button>
-                            </router-link>
-                        </div>
-
-                        <div class="col-lg-8 col-12 mb-2 mx-auto">
-                            <router-link to="/denervation">
-                                <button class="btn btn-secondary col-12">Απονεύρωση</button>
-                            </router-link>
-                        </div>
-
-                        <div class="col-lg-8 col-12 mb-2 mx-auto">
-                            <router-link to="/files">
-                                <button class="btn btn-secondary col-12">Αρχεία</button>
-                            </router-link>
-                        </div>
 
                         <!-- Σημειώσεις -->
                         <div class="card">
