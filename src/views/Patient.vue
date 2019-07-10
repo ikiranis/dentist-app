@@ -88,44 +88,6 @@
 
                 <div class="col-lg-6 col-12">
 
-                    <!-- Σημειώσεις -->
-                    <div class="form-group row">
-                        <label for="disease" class="col-md-6 col-form-label text-md-right">
-                            <eye-icon title="Ασθένεια"/>
-                            Ασθένεια
-                        </label>
-                        <div class="col-md-6">
-                            <input id="disease" type="text" class="form-control"
-                                   v-model="patient.info.disease">
-                            <form-error v-if="response.errors.disease" :error="response.errors.disease[0]"/>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="treatment" class="col-md-6 col-form-label text-md-right">
-                            <pencil-icon title="Θεραπείες"/>
-                            Θεραπείες
-                        </label>
-                        <div class="col-md-6" >
-                            <input id="treatment" type="text" class="form-control"
-                                   v-model="patient.info.treatment">
-                            <form-error v-if="response.errors.treatment" :error="response.errors.treatment[0]"/>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="debt" class="col-md-6 col-form-label text-md-right">
-                            <file-hidden-icon title="Χρέος"/>
-                            Χρέος
-                        </label>
-                        <div class="col-md-6">
-                            <input id="debt" type="text" class="form-control"
-                                   v-model="patient.info.debt">
-                            <form-error v-if="response.errors.debt" :error="response.errors.debt[0]"/>
-                        </div>
-                    </div>
-
-
                     <!-- Επιλογές -->
                     <div class="col-lg-8 col-12 mb-2 mx-auto">
                         <router-link to="/patients">
@@ -167,6 +129,55 @@
                         <router-link to="/tools">
                             <button class="btn btn-secondary col-12">Αρχεία</button>
                         </router-link>
+                    </div>
+
+                    <!-- Σημειώσεις -->
+                    <div class="card">
+
+                        <div class="card-header">
+                            Σημειώσεις
+                        </div>
+
+                        <div class="card-body">
+
+                            <div class="form-group row my-1">
+                                <label for="disease" class="col-md-4 col-form-label text-md-right">
+                                    <eye-icon title="Ασθένεια"/>
+                                    Ασθένεια
+                                </label>
+                                <div class="col-md-8">
+                                    <input id="disease" type="text" class="form-control"
+                                           v-model="patient.info.disease">
+                                    <form-error v-if="response.errors.disease" :error="response.errors.disease[0]"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group row my-1">
+                                <label for="treatment" class="col-md-4 col-form-label text-md-right">
+                                    <pencil-icon title="Θεραπείες"/>
+                                    Θεραπείες
+                                </label>
+                                <div class="col-md-8">
+                                    <input id="treatment" type="text" class="form-control"
+                                           v-model="patient.info.treatment">
+                                    <form-error v-if="response.errors.treatment" :error="response.errors.treatment[0]"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group row my-1">
+                                <label for="debt" class="col-md-4 col-form-label text-md-right">
+                                    <file-hidden-icon title="Χρέος"/>
+                                    Χρέος
+                                </label>
+                                <div class="col-md-8">
+                                    <input id="debt" type="text" class="form-control"
+                                           v-model="patient.info.debt">
+                                    <form-error v-if="response.errors.debt" :error="response.errors.debt[0]"/>
+                                </div>
+                            </div>
+
+                        </div>
+
                     </div>
 
                 </div>
