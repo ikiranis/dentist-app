@@ -1,5 +1,10 @@
 <template>
     <div class="container-fluid my-3">
+
+        <b-modal ref="transactionModal" size="lg" centered hide-footer :title="transactionTitle">
+            <div>something</div>
+        </b-modal>
+
         <div class="row justify-content-center">
 
             <div class="col-12">
@@ -157,14 +162,18 @@
                         value: 150,
                         kind: 'expense'
                     }
-                ]
+                ],
+                transactionKind: '',
+                transactionTitle: ''
             }
         },
 
         methods: {
 
             newTransaction(kind) {
-            //
+                this.transactionKind = kind;
+                this.transactionTitle = (kind === 'income') ? 'Εισαγωγή εσόδου' : 'Εισαγωγή εξόδου';
+                this.$refs.transactionModal.show();
             }
         }
     }
