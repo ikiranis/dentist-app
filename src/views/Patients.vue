@@ -39,9 +39,9 @@
                     </td>
                     <td class="text-center">
                         <span v-for="icon in patient.icons">
-                           <eye-icon v-if="icon.id === 1" :title="icon.label"/>
-                           <pencil-icon v-if="icon.id === 2" :title="icon.label"/>
-                           <file-hidden-icon v-if="icon.id === 3" :title="icon.label"/>
+                           <biohazard-icon v-if="icon.id === 1" :title="icon.label"/>
+                           <medical-bag-icon v-if="icon.id === 2" :title="icon.label"/>
+                           <currency-eur-icon v-if="icon.id === 3" :title="icon.label"/>
                         </span>
                     </td>
                 </tr>

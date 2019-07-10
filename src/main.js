@@ -24,12 +24,12 @@ router.beforeEach((to, from, next) => {
 
 // Material Design icons
 // @link https://materialdesignicons.com/
-import EyeIcon from "vue-material-design-icons/Eye.vue";
-Vue.component("eye-icon", EyeIcon);
-import PencilIcon from "vue-material-design-icons/Pencil.vue";
-Vue.component("pencil-icon", PencilIcon);
-import FileHiddenIcon from "vue-material-design-icons/FileHidden.vue";
-Vue.component("file-hidden-icon", FileHiddenIcon);
+import Biohazard from "vue-material-design-icons/Biohazard.vue";
+Vue.component("biohazard-icon", Biohazard);
+import MedicalBag from "vue-material-design-icons/MedicalBag.vue";
+Vue.component("medical-bag-icon", MedicalBag);
+import CurrencyEur from "vue-material-design-icons/CurrencyEur.vue";
+Vue.component("currency-eur-icon", CurrencyEur);
 
 new Vue({
   router,

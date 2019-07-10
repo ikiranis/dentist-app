@@ -142,7 +142,7 @@
 
                             <div class="form-group row my-1">
                                 <label for="disease" class="col-md-4 col-form-label text-md-right">
-                                    <eye-icon title="Ασθένεια"/>
+                                    <biohazard-icon title="Ασθένεια"/>
                                     Ασθένεια
                                 </label>
                                 <div class="col-md-8">
@@ -154,7 +154,7 @@
 
                             <div class="form-group row my-1">
                                 <label for="treatment" class="col-md-4 col-form-label text-md-right">
-                                    <pencil-icon title="Θεραπείες"/>
+                                    <medical-bag-icon title="Θεραπείες"/>
                                     Θεραπείες
                                 </label>
                                 <div class="col-md-8">
@@ -166,7 +166,7 @@
 
                             <div class="form-group row my-1">
                                 <label for="debt" class="col-md-4 col-form-label text-md-right">
-                                    <file-hidden-icon title="Χρέος"/>
+                                    <currency-eur-icon title="Χρέος"/>
                                     Χρέος
                                 </label>
                                 <div class="col-md-8">
