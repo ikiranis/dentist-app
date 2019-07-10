@@ -1,21 +1,26 @@
 <template>
     <div class="container-fluid my-3">
         <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card card-default">
-                    <div class="card-header">Εργαλεία</div>
 
-                    <div class="card-body">
-
-                    </div>
-                </div>
+            <div class="col-12">
+                <h1>Εργαλεία</h1>
             </div>
+
+
         </div>
     </div>
 </template>
 
 <script>
     export default {
-        data: () => ({})
+        data() {
+            return {
+                //
+            }
+        },
+
+        methods: {
+            //
+        }
     }
 </script>
