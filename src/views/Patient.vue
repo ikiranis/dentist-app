@@ -6,7 +6,8 @@
                 <h1>#{{ patientId }} {{ patient.info.fname }} {{ patient.info.lname }}</h1>
             </div>
 
-            <menu-bar brand="" :menuItems="menuItems" userInfo="false" fixed=""
+            <menu-bar brand="Ασθενής" :brandRoute="{ name: 'patient', params: { id: patientId } }"
+                      :menuItems="menuItems" userInfo="false" fixed=""
                       variant="" type="light" align="mx-auto" toggle="lg" />
 
             <div class="container">

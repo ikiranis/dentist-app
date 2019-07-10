@@ -6,7 +6,8 @@
                 <h1>Οδοντόγραμμα</h1>
             </div>
 
-            <menu-bar brand="" :menuItems="menuItems" userInfo="false" fixed=""
+            <menu-bar brand="Ασθενής" :brandRoute="{ name: 'patient', params: { id: 1 } }"
+                      :menuItems="menuItems" userInfo="false" fixed=""
                       variant="" type="light" align="mx-auto" toggle="lg" />
 
         </div>
