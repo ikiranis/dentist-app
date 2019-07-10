@@ -10,6 +10,10 @@
                       :menuItems="menuItems" userInfo="false" fixed=""
                       variant="" type="light" align="mx-auto" toggle="lg" />
 
+            <div class="container">
+
+            </div>
+
         </div>
     </div>
 </template>

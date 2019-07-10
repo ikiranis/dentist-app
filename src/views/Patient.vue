@@ -1,6 +1,6 @@
 <template>
     <div class="container-fluid my-3">
-        <div class="justify-content-center">
+        <div class="row justify-content-center">
 
             <div class="col-12">
                 <h1>#{{ patientId }} {{ patient.info.fname }} {{ patient.info.lname }}</h1>
@@ -155,7 +155,6 @@
                 </div>
 
             </div>
-
 
         </div>
 
