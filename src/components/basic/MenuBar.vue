@@ -1,5 +1,5 @@
 <template>
-    <b-navbar toggleable="md" type="dark" variant="dark" fixed="top">
+    <b-navbar toggleable="md" type="dark" variant="dark" :fixed="fixed">
 
         <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
@@ -23,11 +23,11 @@
                 </b-nav-item>
 
                 <!-- User info items -->
-                <b-nav-item href="#" v-if="userInfo">
+                <b-nav-item href="#" v-if="userInfo === 'true'">
                     <CurrentUser/>
                 </b-nav-item>
 
-                <b-nav-item href="#" v-if="username && userInfo">
+                <b-nav-item href="#" v-if="username && userInfo === 'true'">
                     <a class="nav-link" id="logout" @click="logout()">Αποσύνδεση</a>
                 </b-nav-item>
 
@@ -46,16 +46,11 @@
     export default {
         components: { CurrentUser },
 
-        data() {
-            return {
-                //
-            }
-        },
-
         props: {
             brand: String,
             menuItems: Array,
-            userInfo: Boolean
+            userInfo: String,
+            fixed: String
         },
 
         computed: {

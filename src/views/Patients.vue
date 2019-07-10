@@ -1,5 +1,5 @@
 <template>
-    <div class="container my-3">
+    <div class="container-fluid my-3">
         <div class="row justify-content-center">
 
             <div class="col-12"><h1>Ασθενείς</h1></div>
@@ -15,43 +15,46 @@
 
             </form>
 
-            <table class="table">
-                <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Όνομα</th>
-                    <th scope="col">Επώνυμο</th>
-                    <th scope="col">Σημειώσεις</th>
-                </tr>
-                </thead>
-                <tbody v-for="patient in patients">
-                <tr>
-                    <th scope="row">{{ patient.id }}</th>
-                    <td>
-                        <router-link :to="{ name: 'patient', params: { id: patient.id } }">
-                            {{ patient.fname }}
-                        </router-link>
-                    </td>
-                    <td>
-                        <router-link :to="{ name: 'patient', params: { id: patient.id } }">
-                            {{ patient.lname }}
-                        </router-link>
-                    </td>
-                    <td class="text-center">
+            <div class="container">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Όνομα</th>
+                        <th scope="col">Επώνυμο</th>
+                        <th scope="col">Σημειώσεις</th>
+                    </tr>
+                    </thead>
+                    <tbody v-for="patient in patients">
+                    <tr>
+                        <th scope="row">{{ patient.id }}</th>
+                        <td>
+                            <router-link :to="{ name: 'patient', params: { id: patient.id } }">
+                                {{ patient.fname }}
+                            </router-link>
+                        </td>
+                        <td>
+                            <router-link :to="{ name: 'patient', params: { id: patient.id } }">
+                                {{ patient.lname }}
+                            </router-link>
+                        </td>
+                        <td class="text-center">
                         <span v-for="icon in patient.icons">
                            <biohazard-icon v-if="icon.id === 1" :title="icon.label"/>
                            <medical-bag-icon v-if="icon.id === 2" :title="icon.label"/>
                            <currency-eur-icon v-if="icon.id === 3" :title="icon.label"/>
                         </span>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
 
         </div>
 
         <div class="row">
-            <button class="btn btn-success col-lg-6 col-12 my-3 mx-auto" @click="newPatient">Εισαγωγή νέου ασθενή</button>
+            <button class="btn btn-success col-lg-6 col-12 my-3 mx-auto" @click="newPatient">Εισαγωγή νέου ασθενή
+            </button>
         </div>
     </div>
 </template>

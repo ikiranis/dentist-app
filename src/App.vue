@@ -3,7 +3,7 @@
 
         <div v-if="apiWorks">
 
-            <menu-bar brand="Dentist" :menuItems="menuItems" userInfo=true />
+            <menu-bar brand="Dentist" :menuItems="menuItems" userInfo="true" fixed="top" />
 
             <router-view class="mt-5 pt-5"/>
 
