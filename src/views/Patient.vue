@@ -90,43 +90,43 @@
 
                     <!-- Επιλογές -->
                     <div class="col-lg-8 col-12 mb-2 mx-auto">
-                        <router-link to="/patients">
+                        <router-link to="/medicalHistory">
                             <button class="btn btn-secondary col-12">Ιατρικό ιστορικό</button>
                         </router-link>
                     </div>
 
                     <div class="col-lg-8 col-12 mb-2 mx-auto">
-                        <router-link to="/economy">
+                        <router-link to="/dentalHistory">
                             <button class="btn btn-secondary col-12">Οδοντιατρικό ιστορικό</button>
                         </router-link>
                     </div>
 
                     <div class="col-lg-8 col-12 mb-2 mx-auto">
-                        <router-link to="/calendar">
+                        <router-link to="/dentalGram">
                             <button class="btn btn-secondary col-12">Οδοντόγραμμα</button>
                         </router-link>
                     </div>
 
                     <div class="col-lg-8 col-12 mb-2 mx-auto">
-                        <router-link to="/tools">
+                        <router-link to="/periodDentalGram">
                             <button class="btn btn-secondary col-12">Περιοδοντόγραμμα</button>
                         </router-link>
                     </div>
 
                     <div class="col-lg-8 col-12 mb-2 mx-auto">
-                        <router-link to="/tools">
+                        <router-link to="/treatmentHistory">
                             <button class="btn btn-secondary col-12">Ιστορικό θεραπειών</button>
                         </router-link>
                     </div>
 
                     <div class="col-lg-8 col-12 mb-2 mx-auto">
-                        <router-link to="/tools">
+                        <router-link to="/denervation">
                             <button class="btn btn-secondary col-12">Απονεύρωση</button>
                         </router-link>
                     </div>
 
                     <div class="col-lg-8 col-12 mb-2 mx-auto">
-                        <router-link to="/tools">
+                        <router-link to="/files">
                             <button class="btn btn-secondary col-12">Αρχεία</button>
                         </router-link>
                     </div>

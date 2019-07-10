@@ -10,6 +10,13 @@ import Patient from './views/Patient.vue'
 import Economy from './views/Economy.vue'
 import Calendar from './views/Calendar.vue'
 import Tools from './views/Tools.vue'
+import Denervation from './views/Denervation.vue'
+import Files from './views/Files.vue'
+import DentalGram from './views/DentalGram.vue'
+import MedicalHistory from './views/MedicalHistory.vue'
+import PeriodDentalGram from './views/PeriodDentalGram.vue'
+import TreatmentHistory from './views/TreatmentHistory.vue'
+import DentalHistory from './views/DentalHistory.vue'
 
 Vue.use(Router);
 
@@ -106,6 +113,62 @@ export default new Router({
       component: User,
       meta: {
         title: 'User - Dentist'
+      }
+    },
+    {
+      path: '/denervation',
+      name: 'denervation',
+      component: Denervation,
+      meta: {
+        title: 'Απονεύρωση - Dentist'
+      }
+    },
+    {
+      path: '/files',
+      name: 'files',
+      component: Files,
+      meta: {
+        title: 'Αρχεία - Dentist'
+      }
+    },
+    {
+      path: '/dentalGram',
+      name: 'dentalGram',
+      component: DentalGram,
+      meta: {
+        title: 'Οδοντόγραμμα - Dentist'
+      }
+    },
+    {
+      path: '/medicalHistory',
+      name: 'medicalHistory',
+      component: MedicalHistory,
+      meta: {
+        title: 'Ιατρικό ιστορικό - Dentist'
+      }
+    },
+    {
+      path: '/periodDentalGram',
+      name: 'periodDentalGram',
+      component: PeriodDentalGram,
+      meta: {
+        title: 'Περιοδοντόγραμμα - Dentist'
+      }
+    },
+    {
+      path: '/treatmentHistory',
+      name: 'treatmentHistory',
+      component: TreatmentHistory,
+      meta: {
+        title: 'Ιστορικό θεραπειών - Dentist'
+      }
+    },
+    {
+      path: '/dentalHistory',
+      name: 'dentalHistory',
+      component: DentalHistory,
+      meta: {
+        title: 'Οδοντιατρικό ιστοριό - Dentist'
       }
     },
   ]
