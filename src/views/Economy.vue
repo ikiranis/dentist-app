@@ -6,6 +6,7 @@
                 <h1>Οικονομικά</h1>
             </div>
 
+            <!-- Λίστες εσόδων/εξόδων -->
             <div class="container row">
 
                 <div class="col-lg-6 col-12">
@@ -30,9 +31,27 @@
 
                 </div>
 
-
             </div>
 
+            <div class="container row">
+
+                <div class="col-lg-6 col-12">
+                    <div class="row">
+                        <button class="btn btn-success col-lg-6 col-12 my-3 mx-auto" @click="newTransaction('income')">
+                            Εισαγωγή εσόδου
+                        </button>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 col-12">
+                    <div class="row">
+                        <button class="btn btn-success col-lg-6 col-12 my-3 mx-auto" @click="newTransaction('expense')">
+                            Εισαγωγή εξόδου
+                        </button>
+                    </div>
+                </div>
+
+            </div>
 
         </div>
     </div>
@@ -143,7 +162,10 @@
         },
 
         methods: {
+
+            newTransaction(kind) {
             //
+            }
         }
     }
 </script>
