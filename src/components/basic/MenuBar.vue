@@ -4,15 +4,13 @@
         <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
 
         <b-navbar-brand>
-            <router-link class="navbar-brand" to="/">Dentist</router-link>
+            <router-link class="navbar-brand" to="/">{{ brand }}</router-link>
         </b-navbar-brand>
 
         <b-collapse is-nav id="nav_collapse">
 
             <!--TODO fix cursor pointer after choose a menu-->
             <b-navbar-nav class="ml-auto">
-
-
 
                 <b-nav-item href="#" v-if="userId !== 0">
                     <router-link to="/patients" class="nav-link">Ασθενείς</router-link>
@@ -61,6 +59,10 @@
             return {
                 //
             }
+        },
+
+        props: {
+            brand: String
         },
 
         computed: {

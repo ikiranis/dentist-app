@@ -3,22 +3,9 @@
 
     <div v-if="apiWorks">
 
-      <menu-bar />
+      <menu-bar brand="Dentist" />
 
       <router-view class="mt-5 pt-5"/>
-
-<!--      <b-navbar toggleable="md" type="dark" variant="dark">-->
-
-<!--        &lt;!&ndash; Right aligned nav items &ndash;&gt;-->
-<!--        <b-navbar-nav class="ml-auto">-->
-
-<!--          <b-nav-item href="http://apps4net.eu">-->
-<!--            Created by apps4net.eu-->
-<!--          </b-nav-item>-->
-
-<!--        </b-navbar-nav>-->
-
-<!--      </b-navbar>-->
 
     </div>
 

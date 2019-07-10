@@ -16,9 +16,11 @@
                 showDismissibleAlert: true
             }
         },
+
         props: {
             error: String
         },
+
         watch: {
             error() {
                 this.showDismissibleAlert = true;
