@@ -13,27 +13,7 @@
                     <div class="col-12 text-center">
                         <h3>Έσοδα</h3>
 
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th scope="col">Ημ/νία</th>
-                                <th scope="col">Κίνηση</th>
-                                <th scope="col">Ποσό</th>
-                            </tr>
-                            </thead>
-
-                            <tbody v-for="transaction in transactions">
-                            <tr v-if="transaction.kind === 'income'">
-                                <th scope="row">{{ transaction.date }}</th>
-                                <td>
-                                    {{ transaction.text }}
-                                </td>
-                                <td>
-                                    {{ transaction.value }}
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
+                        <financial-list :transactions="transactions" kind="income" />
 
                     </div>
 
@@ -44,27 +24,7 @@
                     <div class="col-12 text-center">
                         <h3>Έξοδα</h3>
 
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th scope="col">Ημ/νία</th>
-                                <th scope="col">Κίνηση</th>
-                                <th scope="col">Ποσό</th>
-                            </tr>
-                            </thead>
-
-                            <tbody v-for="transaction in transactions">
-                            <tr v-if="transaction.kind === 'expense'">
-                                <th scope="row">{{ transaction.date }}</th>
-                                <td>
-                                    {{ transaction.text }}
-                                </td>
-                                <td>
-                                    {{ transaction.value }}
-                                </td>
-                            </tr>
-                            </tbody>
-                        </table>
+                        <financial-list :transactions="transactions" kind="expense" />
 
                     </div>
 
@@ -79,7 +39,11 @@
 </template>
 
 <script>
+    import FinancialList from "@/components/economy/FinancialList.vue";
+
     export default {
+        components: { FinancialList },
+
         data() {
             return {
                 transactions: [
