@@ -7,9 +7,9 @@
             </div>
 
             <div class="container">
-                <p><strong>Dentist Files</strong> created by <strong><a href="http://apps4net.eu">apps4net</a></strong>
+                <p><strong>Dentist</strong> created by <strong><a href="http://apps4net.eu">apps4net</a></strong>
 
-                <p>Send your feedback at <strong><u>info (at) apps4net.eu</u></strong></p>
+                <p>Send your feedback at <strong><u>info@apps4net.eu</u></strong></p>
             </div>
 
         </div>
