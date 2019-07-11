@@ -10,7 +10,7 @@
         <b-collapse is-nav id="nav_collapse">
 
             <!--TODO fix cursor pointer after choose a menu-->
-            <b-navbar-nav :class="align">
+            <b-navbar-nav :class="valign">
 
                 <!-- User LoggedIn items -->
                 <b-nav-item href="#" v-for="item in menuItems" v-if="userId !== 0 && item.loggedIn">
@@ -54,7 +54,7 @@
             fixed: String,
             variant: String,
             type: String,
-            align: String,
+            valign: String,
             toggle: String
         },
 

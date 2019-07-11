@@ -4,7 +4,7 @@
         <div v-if="apiWorks">
 
             <menu-bar brand="Dentist" :brandRoute="{ name: 'home' }" :menuItems="menuItems" userInfo="true" fixed="top"
-                      variant="dark" type="dark" align="ml-auto" toggle="md" />
+                      variant="dark" type="dark" valign="ml-auto" toggle="md" />
 
             <router-view class="mt-5 pt-5"/>
 
