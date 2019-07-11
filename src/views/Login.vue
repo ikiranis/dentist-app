@@ -23,9 +23,7 @@
                             </div>
                             <div class="form-group row mb-0">
                                 <div class="col-md-8 ml-auto mr-auto">
-                                    <button type="submit" class="btn btn-primary w-100" @click.prevent="login">
-                                        Login
-                                    </button>
+                                    <input id="login" type="submit" class="btn btn-primary w-100" @click.prevent="login" value="Login">
                                 </div>
                             </div>
 
