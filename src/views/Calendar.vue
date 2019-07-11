@@ -1,26 +1,86 @@
 <template>
     <div class="container-fluid my-3">
+
+        <b-modal ref="eventModal" size="md" centered hide-footer title="Εισαγωγή ραντεβού">
+
+            <form class="container-fluid">
+
+                <div class="form-group row">
+                    <label for="date" class="col-md-4 col-form-label text-md-right">Ημ/νία</label>
+                    <div class="col-md-8">
+                        <input id="date" type="date" class="form-control"
+                               v-model="event.date" required>
+                        <form-error v-if="response.errors.date" :error="response.errors.date[0]"/>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="time" class="col-md-4 col-form-label text-md-right">Ώρα</label>
+                    <div class="col-md-8">
+                        <input id="time" type="datetime-local" class="form-control"
+                               v-model="event.time" required>
+                        <form-error v-if="response.errors.time" :error="response.errors.time[0]"/>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="description" class="col-md-4 col-form-label text-md-right">Περιγραφή</label>
+                    <div class="col-md-8">
+                        <input id="description" type="text" class="form-control"
+                               v-model="event.description" required>
+                        <form-error v-if="response.errors.description" :error="response.errors.description[0]"/>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="patient" class="col-md-4 col-form-label text-md-right">Ασθενής</label>
+                    <div class="col-md-8">
+                        <input id="patient" type="text" class="form-control"
+                               v-model="event.patient" required>
+                        <form-error v-if="response.errors.patient" :error="response.errors.patient[0]"/>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <button class="btn btn-success col-lg-6 col-12 my-3 mx-auto" @click="saveEvent">Εισαγωγή</button>
+                </div>
+
+            </form>
+
+        </b-modal>
+
         <div class="row justify-content-center">
 
             <div class="col-12">
                 <h1>Ημερολόγιο</h1>
             </div>
 
-            <div class="container row">
-                <div v-for="event in events" class="col-4 mb-3">
-                    <div class="card">
-                        <div class="card-header">
-                            {{ event.date }} {{ event.time }}
-                        </div>
+            <div class="container">
 
-                        <div class="card-body">
-                            {{ event.description }}
-                        </div>
+                <div class="row">
 
-                        <div class="card-footer">
-                            {{ event.patient }}
+                    <div v-for="event in events" class="col-4 mb-3">
+                        <div class="card">
+                            <div class="card-header">
+                                {{ event.date }} {{ event.time }}
+                            </div>
+
+                            <div class="card-body">
+                                {{ event.description }}
+                            </div>
+
+                            <div class="card-footer">
+                                {{ event.patient }}
+                            </div>
                         </div>
                     </div>
+
+                </div>
+
+                <div class="row">
+                    <button class="btn btn-success col-lg-6 col-12 my-3 mx-auto" @click="newEvent()">
+                        Εισαγωγή ραντεβού
+                    </button>
                 </div>
 
             </div>
@@ -29,9 +89,28 @@
 </template>
 
 <script>
+    import DisplayError from "@/components/basic/DisplayError";
+    import FormError from "@/components/basic/FormError";
+
     export default {
+        components: {DisplayError, FormError},
+
         data() {
             return {
+
+                response: {
+                    message: '',
+                    status: '',
+                    errors: []
+                },
+
+                event: {
+                    date: '',
+                    time: '',
+                    description: '',
+                    patient: 0
+                },
+
                 events: [
                     {
                         date: '12/01/2019',
@@ -116,7 +195,17 @@
         },
 
         methods: {
+
+            /**
+             * Display event modal
+             */
+            newEvent() {
+                this.$refs.eventModal.show();
+            },
+
+            saveEvent() {
             //
+            }
         }
     }
 </script>
