@@ -9,12 +9,12 @@ describe('About.vue', () => {
     })
 });
 
-describe('Patients.vue', () => {
-    it('Display patients page', () => {
-        const wrapper = shallowMount(Patients, {
-            stubs: ['router-link', 'eye-icon', 'pencil-icon', 'file-hidden-icon']
-        });
-        expect(wrapper.text()).toMatch('Ασθενείς');
-    })
-});
+// describe('Patients.vue', () => {
+//     it('Display patients page', () => {
+//         const wrapper = shallowMount(Patients, {
+//             stubs: ['router-link', 'eye-icon', 'pencil-icon', 'file-hidden-icon']
+//         });
+//         expect(wrapper.text()).toMatch('Ασθενείς');
+//     })
+// });
 

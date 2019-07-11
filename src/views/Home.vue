@@ -5,19 +5,19 @@
             <h1 class="text-center">Επιλογές</h1>
 
             <router-link to="/patients">
-                <b-button variant="secondary" class="w-100 mt-3">Ασθενείς</b-button>
+                <b-button id="patients" variant="secondary" class="w-100 mt-3">Ασθενείς</b-button>
             </router-link>
 
             <router-link to="/economy">
-                <b-button variant="secondary" class="w-100 mt-3">Οικονομικά</b-button>
+                <b-button id="economy" variant="secondary" class="w-100 mt-3">Οικονομικά</b-button>
             </router-link>
 
             <router-link to="/calendar">
-                <b-button variant="secondary" class="w-100 mt-3">Ημερολόγιο</b-button>
+                <b-button id="calendar" variant="secondary" class="w-100 mt-3">Ημερολόγιο</b-button>
             </router-link>
 
             <router-link to="/tools">
-                <b-button variant="secondary" class="w-100 mt-3">Εργαλεία</b-button>
+                <b-button id="tools" variant="secondary" class="w-100 mt-3">Εργαλεία</b-button>
             </router-link>
         </div>
 
