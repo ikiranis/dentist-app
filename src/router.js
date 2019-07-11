@@ -17,6 +17,8 @@ import MedicalHistory from './views/MedicalHistory.vue'
 import PeriodDentalGram from './views/PeriodDentalGram.vue'
 import TreatmentHistory from './views/TreatmentHistory.vue'
 import DentalHistory from './views/DentalHistory.vue'
+import Backup from './views/Backup.vue'
+import Export from './views/Export.vue'
 
 Vue.use(Router);
 
@@ -168,7 +170,23 @@ export default new Router({
       name: 'dentalHistory',
       component: DentalHistory,
       meta: {
-        title: 'Οδοντιατρικό ιστοριό - Dentist'
+        title: 'Οδοντιατρικό ιστορικό - Dentist'
+      }
+    },
+    {
+      path: '/backup',
+      name: 'backup',
+      component: Backup,
+      meta: {
+        title: 'Backup - Dentist'
+      }
+    },
+    {
+      path: '/export',
+      name: 'export',
+      component: Export,
+      meta: {
+        title: 'Εξαγωγή δεδομένων - Dentist'
       }
     },
   ]
