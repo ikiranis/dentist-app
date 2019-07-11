@@ -45,7 +45,7 @@
                        id="search" name="search" v-model="search">
 
                 <input type="submit" class="btn btn-small btn-success col-md-3 col-12 my-1 mx-auto" value="Αναζήτηση">
-                <button class="btn btn-small btn-danger col-md-3 col-12 my-1" @click="clearSearch()">Καθαρισμός</button>
+                <input type="submit" class="btn btn-small btn-danger col-md-3 col-12 my-1" @click="clearSearch()" value="Καθαρισμός">
 
             </form>
 
@@ -105,6 +105,8 @@
 
         data() {
             return {
+
+                search: '',
 
                 response: {
                     message: '',
@@ -204,6 +206,14 @@
 
             saveFile() {
             //
+            },
+
+            searchText() {
+
+            },
+
+            clearSearch() {
+
             }
         }
     }
