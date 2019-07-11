@@ -175,27 +175,6 @@
                         description: 'something about something else',
                         date: '01/10/2018',
                         size: '156'
-                    },
-                    {
-                        thumbnail: 'https://picsum.photos/50',
-                        filename: 'something',
-                        description: 'something about something else',
-                        date: '01/10/2018',
-                        size: '156'
-                    },
-                    {
-                        thumbnail: 'https://picsum.photos/50',
-                        filename: 'something',
-                        description: 'something about something else',
-                        date: '01/10/2018',
-                        size: '156'
-                    },
-                    {
-                        thumbnail: 'https://picsum.photos/50',
-                        filename: 'something',
-                        description: 'something about something else',
-                        date: '01/10/2018',
-                        size: '156'
                     }
                 ]
 
