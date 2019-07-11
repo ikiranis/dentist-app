@@ -38,7 +38,18 @@
                       :menuItems="menuItems" userInfo="false" fixed=""
                       variant="" type="light" align="mx-auto" toggle="lg" />
 
-            <div class="container">
+            <form @submit.prevent="searchText" class="row col-lg-8 col-12 mx-auto">
+
+                <label for="search" class="sr-only">Search</label>
+                <input type="text" max="100" class="form-control col-md-5 col-12 my-1"
+                       id="search" name="search" v-model="search">
+
+                <input type="submit" class="btn btn-small btn-success col-md-3 col-12 my-1 mx-auto" value="Αναζήτηση">
+                <button class="btn btn-small btn-danger col-md-3 col-12 my-1" @click="clearSearch()">Καθαρισμός</button>
+
+            </form>
+
+            <div class="container mt-4">
 
                 <table class="table table-hover">
                     <thead>
