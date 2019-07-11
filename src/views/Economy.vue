@@ -55,6 +55,31 @@
                 <h1>Οικονομικά</h1>
             </div>
 
+            <!-- Αναζήτηση -->
+            <div class="row col-12 mx-auto">
+                <div class="form-group row col-md-4 col-12">
+                    <label for="dateFrom" class="col-md-4 col-form-label text-md-right">Από</label>
+                    <div class="col-md-8">
+                        <input id="dateFrom" type="date" class="form-control"
+                               v-model="dateFrom">
+                        <form-error v-if="response.errors.dateFrom" :error="response.errors.dateFrom[0]"/>
+                    </div>
+                </div>
+
+                <div class="form-group row col-md-4 col-12">
+                    <label for="dateTo" class="col-md-4 col-form-label text-md-right">Μέχρι</label>
+                    <div class="col-md-8">
+                        <input id="dateTo" type="date" class="form-control"
+                               v-model="dateTo">
+                        <form-error v-if="response.errors.dateTo" :error="response.errors.dateTo[0]"/>
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-12 ">
+                    <input type="submit" class="btn btn-small btn-success w-100" value="Αναζήτηση">
+                </div>
+            </div>
+
             <!-- Λίστες εσόδων/εξόδων -->
             <div class="container row">
 
@@ -82,6 +107,7 @@
 
             </div>
 
+            <!-- Κουμπιά εισαγωγής -->
             <div class="container row">
 
                 <div class="col-lg-6 col-12">
