@@ -13,7 +13,7 @@
 
             <div class="container">
 
-                <table class="table">
+                <table class="table table-hover">
                     <thead>
                     <tr>
                         <th scope="col">Μικρογραφία</th>
@@ -29,16 +29,16 @@
                         <th scope="row" class="text-center">
                             <img :src="file.thumbnail">
                         </th>
-                        <td>
+                        <td class="align-middle">
                             {{ file.filename }}
                         </td>
-                        <td>
+                        <td class="align-middle">
                             {{ file.description }}
                         </td>
-                        <td>
+                        <td class="align-middle">
                             {{ file.date }}
                         </td>
-                        <td>
+                        <td class="align-middle">
                             {{ file.size }} kb
                         </td>
                     </tr>
