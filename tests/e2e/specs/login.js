@@ -8,12 +8,19 @@ module.exports = {
             .waitForElementVisible('#app', 5000)
             .assert.elementPresent('.card-header')
             .assert.containsText('div', 'Login')
-            // .setValue('input[id=email]', 'rocean@error.gr')
-            // .setValue('input[id=password]', '123456')
+            .setValue('input[id=email]', 'rocean@error.gr')
+            .setValue('input[id=password]', '123456')
             .click('input[id=login]')
             .waitForElementVisible('.container-fluid', 5000)
             .assert.containsText('h1', 'Επιλογές')
-            // .assert.elementCount('img', 1)
+    },
+
+    'Logout app': browser => {
+        browser
+            .assert.elementPresent('#logout')
+            .click('#logout')
+            .assert.elementPresent('.card-header')
+            .assert.containsText('div', 'Login')
             .end()
     }
 }
