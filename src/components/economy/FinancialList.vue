@@ -8,7 +8,7 @@
             </tr>
         </thead>
 
-        <tbody v-for="transaction in transactions" v-if="transaction.kind === kind">
+        <tbody v-for="transaction in transactions" :key="transaction.value" v-if="transaction.kind === kind">
             <tr>
                 <th scope="row">{{ transaction.date }}</th>
                 <td>

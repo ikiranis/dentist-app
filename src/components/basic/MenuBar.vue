@@ -13,12 +13,12 @@
             <b-navbar-nav :class="valign">
 
                 <!-- User LoggedIn items -->
-                <b-nav-item href="#" v-for="item in menuItems" v-if="userId !== 0 && item.loggedIn">
+                <b-nav-item href="#" v-for="item in menuItems" :key="item.name" v-if="userId !== 0 && item.loggedIn">
                     <router-link :to="item.route" class="nav-link">{{ item.name }}</router-link>
                 </b-nav-item>
 
                 <!-- All users items -->
-                <b-nav-item href="#" v-for="item in menuItems" v-if="!item.loggedIn">
+                <b-nav-item href="#" v-for="item in menuItems" :key="item.name" v-if="!item.loggedIn">
                     <router-link to="/about" class="nav-link">About</router-link>
                 </b-nav-item>
 
