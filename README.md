@@ -1,37 +1,9 @@
-# Dentist Files App frontend
+# dentist-app
 
-### Update npm
-
-``
-sudo npm install -g npm@latest
-``
-
-### Update vue-cli
-
-``
-npm install -g @vue/cli@latest
-``
-
-### Clone project
-
-git clone git@github.com:ikiranis/dentist-app.git
-
-### Create and edit .env files
-
-.env.development & .env.production
-
-Add passport key and api path
-
-### Project setup
+## Project setup
 ```
 npm install
 ```
-
-### Run vue ui
-
-``
-vue ui
-``
 
 ### Compiles and hot-reloads for development
 ```
@@ -63,7 +35,5 @@ npm run test:e2e
 npm run test:unit
 ```
 
-
-Dentist-api
-
-https://github.com/ikiranis/dentist-api
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
