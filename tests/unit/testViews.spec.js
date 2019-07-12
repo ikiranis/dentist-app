@@ -1,6 +1,6 @@
 import { shallowMount } from '@vue/test-utils'
 import About from '@/views/About.vue'
-import Patients from '@/views/Patients.vue'
+// import Patients from '@/views/Patients.vue'
 
 describe('About.vue', () => {
     it('Display about page', () => {

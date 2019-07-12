@@ -5,12 +5,12 @@ let user = {
     /**
      * Set localStorage token data. User logged in
      *
-     * @param access_token
-     * @param token_type
+     * @param accessToken
+     * @param tokenType
      */
-    login (access_token, token_type) {
-        localStorage.accessToken = access_token
-        localStorage.tokenType = token_type
+    login (accessToken, tokenType) {
+        localStorage.accessToken = accessToken
+        localStorage.tokenType = tokenType
     },
 
     /**

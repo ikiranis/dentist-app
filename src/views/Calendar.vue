@@ -59,7 +59,7 @@
 
                 <div class="row">
 
-                    <div v-for="event in events" class="col-4 mb-3">
+                    <div v-for="event in events" :key="event.date" class="col-4 mb-3">
                         <div class="card">
                             <div class="card-header">
                                 {{ event.date }} {{ event.time }}

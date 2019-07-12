@@ -233,7 +233,7 @@ export default {
     },
 
     props: {
-        patientId: Number
+        // patientId: Number
     },
 
     methods: {
