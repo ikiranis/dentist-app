@@ -143,6 +143,9 @@
         data() {
             return {
 
+                dateFrom: '',
+                dateTo: '',
+
                 response: {
                     message: '',
                     status: '',
@@ -150,6 +153,7 @@
                 },
 
                 transaction: {
+                    id: 0,
                     date: '',
                     description: '',
                     patient: 0,
@@ -159,6 +163,7 @@
 
                 transactions: [
                     {
+                        id: 1,
                         date: '12/01/2019',
                         description: 'Θεραπεία',
                         patient: 1,
@@ -166,6 +171,7 @@
                         kind: 'income'
                     },
                     {
+                        id: 2,
                         date: '15/01/2019',
                         description: 'Εξοπλισμός',
                         patient: 0,
@@ -173,6 +179,7 @@
                         kind: 'expense'
                     },
                     {
+                        id: 3,
                         date: '12/02/2019',
                         description: 'Θεραπεία',
                         patient: 2,
@@ -180,6 +187,7 @@
                         kind: 'income'
                     },
                     {
+                        id: 4,
                         date: '14/01/2019',
                         description: 'Θεραπεία',
                         patient: 4,
@@ -187,6 +195,7 @@
                         kind: 'income'
                     },
                     {
+                        id: 5,
                         date: '18/01/2019',
                         description: 'Θεραπεία',
                         patient: 3,
@@ -194,6 +203,7 @@
                         kind: 'income'
                     },
                     {
+                        id: 6,
                         date: '14/02/2019',
                         description: 'Εξοπλισμός',
                         patient: 0,
@@ -201,6 +211,7 @@
                         kind: 'expense'
                     },
                     {
+                        id: 7,
                         date: '12/01/2019',
                         description: 'Θεραπεία',
                         patient: 0,
@@ -208,6 +219,7 @@
                         kind: 'expense'
                     },
                     {
+                        id: 8,
                         date: '14/02/2019',
                         description: 'Θεραπεία',
                         patient: 1,
@@ -215,6 +227,7 @@
                         kind: 'income'
                     },
                     {
+                        id: 9,
                         date: '12/03/2019',
                         description: 'Εξοπλισμός',
                         patient: 0,
@@ -222,6 +235,7 @@
                         kind: 'expense'
                     },
                     {
+                        id: 10,
                         date: '27/03/2019',
                         description: 'Θεραπεία',
                         patient: 5,
@@ -229,6 +243,7 @@
                         kind: 'income'
                     },
                     {
+                        id: 11,
                         date: '12/05/2019',
                         description: 'Θεραπεία',
                         patient: 6,
@@ -236,6 +251,7 @@
                         kind: 'income'
                     },
                     {
+                        id: 12,
                         date: '13/01/2019',
                         description: 'Εξοπλισμός',
                         patient: 0,
@@ -243,6 +259,7 @@
                         kind: 'expense'
                     },
                     {
+                        id: 13,
                         date: '22/01/2019',
                         description: 'Θεραπεία',
                         patient: 0,
