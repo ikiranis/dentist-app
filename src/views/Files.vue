@@ -62,7 +62,7 @@
                     </tr>
                     </thead>
 
-                    <tbody v-for="file in files">
+                    <tbody v-for="file in files" :key="file.filename">
                     <tr>
                         <th scope="row" class="text-center">
                             <img :src="file.thumbnail">
@@ -96,126 +96,124 @@
 </template>
 
 <script>
-    import MenuBar from "@/components/basic/MenuBar";
-    import DisplayError from "@/components/basic/DisplayError";
-    import FormError from "@/components/basic/FormError";
+import MenuBar from '@/components/basic/MenuBar'
+import FormError from '@/components/basic/FormError'
 
-    export default {
-        components: { MenuBar, DisplayError, FormError },
+export default {
+    components: { MenuBar, FormError },
 
-        data() {
-            return {
+    data () {
+        return {
 
-                search: '',
+            search: '',
 
-                response: {
-                    message: '',
-                    status: '',
-                    errors: []
+            response: {
+                message: '',
+                status: '',
+                errors: []
+            },
+
+            file: {
+                thumbnail: '',
+                filename: '',
+                description: '',
+                date: '',
+                size: ''
+            },
+
+            menuItems: [
+                {
+                    route: '/medicalHistory',
+                    name: 'Ιατρικό ιστορικό',
+                    loggedIn: true
                 },
-
-                file: {
-                    thumbnail: '',
-                    filename: '',
-                    description: '',
-                    date: '',
-                    size: ''
+                {
+                    route: '/dentalHistory',
+                    name: 'Οδοντιατρικό ιστορικό',
+                    loggedIn: true
                 },
+                {
+                    route: '/dentalGram',
+                    name: 'Οδοντόγραμμα',
+                    loggedIn: true
+                },
+                {
+                    route: '/periodDentalGram',
+                    name: 'Περιοδοντόγραμμα',
+                    loggedIn: true
+                },
+                {
+                    route: '/treatmentHistory',
+                    name: 'Ιστορικό θεραπειών',
+                    loggedIn: true
+                },
+                {
+                    route: '/denervation',
+                    name: 'Απονεύρωση',
+                    loggedIn: true
+                },
+                {
+                    route: '/files',
+                    name: 'Αρχεία',
+                    loggedIn: true
+                }
+            ],
 
-                menuItems: [
-                    {
-                        route: '/medicalHistory',
-                        name: 'Ιατρικό ιστορικό',
-                        loggedIn: true
-                    },
-                    {
-                        route: '/dentalHistory',
-                        name: 'Οδοντιατρικό ιστορικό',
-                        loggedIn: true
-                    },
-                    {
-                        route: '/dentalGram',
-                        name: 'Οδοντόγραμμα',
-                        loggedIn: true
-                    },
-                    {
-                        route: '/periodDentalGram',
-                        name: 'Περιοδοντόγραμμα',
-                        loggedIn: true
-                    },
-                    {
-                        route: '/treatmentHistory',
-                        name: 'Ιστορικό θεραπειών',
-                        loggedIn: true
-                    },
-                    {
-                        route: '/denervation',
-                        name: 'Απονεύρωση',
-                        loggedIn: true
-                    },
-                    {
-                        route: '/files',
-                        name: 'Αρχεία',
-                        loggedIn: true
-                    }
-                ],
+            files: [
+                {
+                    thumbnail: 'https://picsum.photos/50',
+                    filename: 'something',
+                    description: 'something about something else',
+                    date: '01/10/2018',
+                    size: '156'
+                },
+                {
+                    thumbnail: 'https://picsum.photos/50',
+                    filename: 'something',
+                    description: 'something about something else',
+                    date: '01/10/2018',
+                    size: '156'
+                },
+                {
+                    thumbnail: 'https://picsum.photos/50',
+                    filename: 'something',
+                    description: 'something about something else',
+                    date: '01/10/2018',
+                    size: '156'
+                },
+                {
+                    thumbnail: 'https://picsum.photos/50',
+                    filename: 'something',
+                    description: 'something about something else',
+                    date: '01/10/2018',
+                    size: '156'
+                }
+            ]
 
-                files: [
-                    {
-                        thumbnail: 'https://picsum.photos/50',
-                        filename: 'something',
-                        description: 'something about something else',
-                        date: '01/10/2018',
-                        size: '156'
-                    },
-                    {
-                        thumbnail: 'https://picsum.photos/50',
-                        filename: 'something',
-                        description: 'something about something else',
-                        date: '01/10/2018',
-                        size: '156'
-                    },
-                    {
-                        thumbnail: 'https://picsum.photos/50',
-                        filename: 'something',
-                        description: 'something about something else',
-                        date: '01/10/2018',
-                        size: '156'
-                    },
-                    {
-                        thumbnail: 'https://picsum.photos/50',
-                        filename: 'something',
-                        description: 'something about something else',
-                        date: '01/10/2018',
-                        size: '156'
-                    }
-                ]
+        }
+    },
 
-            }
+    methods: {
+
+        newFile () {
+            this.$refs.fileModal.show()
         },
 
-        methods: {
-
-            newFile() {
-                this.$refs.fileModal.show();
-            },
-
-            uploadFile() {
+        uploadFile () {
             //
-            },
+        },
 
-            saveFile() {
+        saveFile () {
             //
-            },
+        },
 
-            searchText() {
+        searchText () {
 
-            },
+        },
 
-            clearSearch() {
+        clearSearch () {
 
-            }
         }
     }
+}
 </script>
-

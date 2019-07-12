@@ -11,25 +11,30 @@
 </template>
 
 <script>
-    // TODO make it dismissible with counter if it has a specific flag
-    export default {
-        data() {
-            return {
-                showDismissibleAlert: true
-            }
-        },
-        props: {
-            response: Object
-        },
-        computed: {
-            message: function () {
-                return this.response.message;
-            }
-        },
-        watch: {
-            message() {
-                this.showDismissibleAlert = true;
-            }
+
+// TODO make it dismissible with counter if it has a specific flag
+export default {
+
+    data () {
+        return {
+            showDismissibleAlert: true
+        }
+    },
+
+    props: {
+        response: Object
+    },
+
+    computed: {
+        message: function () {
+            return this.response.message
+        }
+    },
+
+    watch: {
+        message () {
+            this.showDismissibleAlert = true
         }
     }
+}
 </script>

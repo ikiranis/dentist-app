@@ -5,9 +5,9 @@
 </template>
 
 <script>
-    export default {
-        props: {
-            loading: Boolean
-        }
+export default {
+    props: {
+        loading: Boolean
     }
+}
 </script>

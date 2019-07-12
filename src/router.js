@@ -20,175 +20,175 @@ import DentalHistory from './views/DentalHistory.vue'
 import Backup from './views/Backup.vue'
 import Export from './views/Export.vue'
 
-Vue.use(Router);
+Vue.use(Router)
 
 export default new Router({
 
-  mode: 'history',
+    mode: 'history',
 
-  routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: Home,
-      meta: {
-        title: 'Dentist',
-        metaTags: [
-          {
-            name: 'description',
-            content: 'The home page of our example app.'
-          },
-          {
-            property: 'og:description',
-            content: 'The home page of our example app.'
-          }
-        ]
-      }
-    },
-    {
-      path: '/login',
-      name: 'login',
-      component: Login,
-      meta: {
-        title: 'Σύνδεση - Dentist'
-      }
-    },
-    {
-      path: '/register',
-      name: 'register',
-      component: Register,
-      meta: {
-        title: 'Εγγραφή - Dentist'
-      }
-    },
-    {
-      path: '/patients',
-      name: 'patients',
-      component: Patients,
-      meta: {
-        title: 'Ασθενείς - Dentist'
-      }
-    },
-    {
-      path: '/patient/:id',
-      name: 'patient',
-      component: Patient,
-      meta: {
-        title: 'Ασθενής - Dentist'
-      }
-    },
-    {
-      path: '/economy',
-      name: 'economy',
-      component: Economy,
-      meta: {
-        title: 'Οικονομικά - Dentist'
-      }
-    },
-    {
-      path: '/calendar',
-      name: 'calendar',
-      component: Calendar,
-      meta: {
-        title: 'Ημερολόγιο - Dentist'
-      }
-    },
-    {
-      path: '/tools',
-      name: 'tools',
-      component: Tools,
-      meta: {
-        title: 'Εργαλεία - Dentist'
-      }
-    },
-    {
-      path: '/about',
-      name: 'about',
-      component: About,
-      meta: {
-        title: 'About - Dentist'
-      }
-    },
-    {
-      path: '/user',
-      name: 'user',
-      component: User,
-      meta: {
-        title: 'User - Dentist'
-      }
-    },
-    {
-      path: '/denervation',
-      name: 'denervation',
-      component: Denervation,
-      meta: {
-        title: 'Απονεύρωση - Dentist'
-      }
-    },
-    {
-      path: '/files',
-      name: 'files',
-      component: Files,
-      meta: {
-        title: 'Αρχεία - Dentist'
-      }
-    },
-    {
-      path: '/dentalGram',
-      name: 'dentalGram',
-      component: DentalGram,
-      meta: {
-        title: 'Οδοντόγραμμα - Dentist'
-      }
-    },
-    {
-      path: '/medicalHistory',
-      name: 'medicalHistory',
-      component: MedicalHistory,
-      meta: {
-        title: 'Ιατρικό ιστορικό - Dentist'
-      }
-    },
-    {
-      path: '/periodDentalGram',
-      name: 'periodDentalGram',
-      component: PeriodDentalGram,
-      meta: {
-        title: 'Περιοδοντόγραμμα - Dentist'
-      }
-    },
-    {
-      path: '/treatmentHistory',
-      name: 'treatmentHistory',
-      component: TreatmentHistory,
-      meta: {
-        title: 'Ιστορικό θεραπειών - Dentist'
-      }
-    },
-    {
-      path: '/dentalHistory',
-      name: 'dentalHistory',
-      component: DentalHistory,
-      meta: {
-        title: 'Οδοντιατρικό ιστορικό - Dentist'
-      }
-    },
-    {
-      path: '/backup',
-      name: 'backup',
-      component: Backup,
-      meta: {
-        title: 'Backup - Dentist'
-      }
-    },
-    {
-      path: '/export',
-      name: 'export',
-      component: Export,
-      meta: {
-        title: 'Εξαγωγή δεδομένων - Dentist'
-      }
-    },
-  ]
+    routes: [
+        {
+            path: '/',
+            name: 'home',
+            component: Home,
+            meta: {
+                title: 'Dentist',
+                metaTags: [
+                    {
+                        name: 'description',
+                        content: 'The home page of our example app.'
+                    },
+                    {
+                        property: 'og:description',
+                        content: 'The home page of our example app.'
+                    }
+                ]
+            }
+        },
+        {
+            path: '/login',
+            name: 'login',
+            component: Login,
+            meta: {
+                title: 'Σύνδεση - Dentist'
+            }
+        },
+        {
+            path: '/register',
+            name: 'register',
+            component: Register,
+            meta: {
+                title: 'Εγγραφή - Dentist'
+            }
+        },
+        {
+            path: '/patients',
+            name: 'patients',
+            component: Patients,
+            meta: {
+                title: 'Ασθενείς - Dentist'
+            }
+        },
+        {
+            path: '/patient/:id',
+            name: 'patient',
+            component: Patient,
+            meta: {
+                title: 'Ασθενής - Dentist'
+            }
+        },
+        {
+            path: '/economy',
+            name: 'economy',
+            component: Economy,
+            meta: {
+                title: 'Οικονομικά - Dentist'
+            }
+        },
+        {
+            path: '/calendar',
+            name: 'calendar',
+            component: Calendar,
+            meta: {
+                title: 'Ημερολόγιο - Dentist'
+            }
+        },
+        {
+            path: '/tools',
+            name: 'tools',
+            component: Tools,
+            meta: {
+                title: 'Εργαλεία - Dentist'
+            }
+        },
+        {
+            path: '/about',
+            name: 'about',
+            component: About,
+            meta: {
+                title: 'About - Dentist'
+            }
+        },
+        {
+            path: '/user',
+            name: 'user',
+            component: User,
+            meta: {
+                title: 'User - Dentist'
+            }
+        },
+        {
+            path: '/denervation',
+            name: 'denervation',
+            component: Denervation,
+            meta: {
+                title: 'Απονεύρωση - Dentist'
+            }
+        },
+        {
+            path: '/files',
+            name: 'files',
+            component: Files,
+            meta: {
+                title: 'Αρχεία - Dentist'
+            }
+        },
+        {
+            path: '/dentalGram',
+            name: 'dentalGram',
+            component: DentalGram,
+            meta: {
+                title: 'Οδοντόγραμμα - Dentist'
+            }
+        },
+        {
+            path: '/medicalHistory',
+            name: 'medicalHistory',
+            component: MedicalHistory,
+            meta: {
+                title: 'Ιατρικό ιστορικό - Dentist'
+            }
+        },
+        {
+            path: '/periodDentalGram',
+            name: 'periodDentalGram',
+            component: PeriodDentalGram,
+            meta: {
+                title: 'Περιοδοντόγραμμα - Dentist'
+            }
+        },
+        {
+            path: '/treatmentHistory',
+            name: 'treatmentHistory',
+            component: TreatmentHistory,
+            meta: {
+                title: 'Ιστορικό θεραπειών - Dentist'
+            }
+        },
+        {
+            path: '/dentalHistory',
+            name: 'dentalHistory',
+            component: DentalHistory,
+            meta: {
+                title: 'Οδοντιατρικό ιστορικό - Dentist'
+            }
+        },
+        {
+            path: '/backup',
+            name: 'backup',
+            component: Backup,
+            meta: {
+                title: 'Backup - Dentist'
+            }
+        },
+        {
+            path: '/export',
+            name: 'export',
+            component: Export,
+            meta: {
+                title: 'Εξαγωγή δεδομένων - Dentist'
+            }
+        }
+    ]
 
 })

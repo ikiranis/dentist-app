@@ -19,64 +19,64 @@
 </template>
 
 <script>
-    import api from "@/api";
-    import MenuBar from "@/components/basic/MenuBar";
+import api from '@/api'
+import MenuBar from '@/components/basic/MenuBar'
 
-    export default {
-        components: { MenuBar },
+export default {
+    components: { MenuBar },
 
-        data: () => ({
-            apiWorks: true,
+    data: () => ({
+        apiWorks: true,
 
-            menuItems: [
-                {
-                    route: '/patients',
-                    name: 'Ασθενείς',
-                    loggedIn: true
-                },
-                {
-                    route: '/economy',
-                    name: 'Οικονομικά',
-                    loggedIn: true
-                },
-                {
-                    route: '/calendar',
-                    name: 'Ημερολόγιο',
-                    loggedIn: true
-                },
-                {
-                    route: '/tools',
-                    name: 'Εργαλεία',
-                    loggedIn: true
-                },
-                {
-                    route: '/about',
-                    name: 'About',
-                    loggedIn: false
-                },
-            ]
-
-        }),
-
-        created: function () {
-            this.getApiWorks();
-        },
-
-        methods: {
-
-            getApiWorks() {
-                api.getApiWorks()
-                    .then(() => {
-                        this.apiWorks = true;
-                    })
-                    .catch(error => {
-                        this.apiWorks = false;
-                        console.log(error);
-                    });
+        menuItems: [
+            {
+                route: '/patients',
+                name: 'Ασθενείς',
+                loggedIn: true
+            },
+            {
+                route: '/economy',
+                name: 'Οικονομικά',
+                loggedIn: true
+            },
+            {
+                route: '/calendar',
+                name: 'Ημερολόγιο',
+                loggedIn: true
+            },
+            {
+                route: '/tools',
+                name: 'Εργαλεία',
+                loggedIn: true
+            },
+            {
+                route: '/about',
+                name: 'About',
+                loggedIn: false
             }
+        ]
 
+    }),
+
+    created: function () {
+        this.getApiWorks()
+    },
+
+    methods: {
+
+        getApiWorks () {
+            api.getApiWorks()
+                .then(() => {
+                    this.apiWorks = true
+                })
+                .catch(error => {
+                    this.apiWorks = false
+                    console.log(error)
+                })
         }
+
     }
+}
 </script>
 
 <style lang="scss">

@@ -14,19 +14,19 @@
 </template>
 
 <script>
-    import {mapState, mapActions} from 'vuex';
+import { mapState, mapActions } from 'vuex'
 
-    export default {
-        computed: {
-            ...mapState(['username'])
-        },
+export default {
+    computed: {
+        ...mapState(['username'])
+    },
 
-        beforeCreate: function () {
-            this.$store.dispatch('getCurrentUser');
-        },
+    beforeCreate: function () {
+        this.$store.dispatch('getCurrentUser')
+    },
 
-        methods: {
-            ...mapActions(['getCurrentUser'])
-        }
+    methods: {
+        ...mapActions(['getCurrentUser'])
     }
+}
 </script>

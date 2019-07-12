@@ -25,7 +25,7 @@
                         <th scope="col">Σημειώσεις</th>
                     </tr>
                     </thead>
-                    <tbody v-for="patient in patients">
+                    <tbody v-for="patient in patients" :key="patient.id">
                     <tr>
                         <th scope="row">{{ patient.id }}</th>
                         <td>
@@ -60,101 +60,104 @@
 </template>
 
 <script>
-    export default {
-        data() {
-            return {
-                search: '',
+export default {
+    data () {
+        return {
+            search: '',
 
-                patients: [
-                    {
-                        id: 1,
-                        lname: 'Lundquist',
-                        fname: 'Rosana',
-                        icons: [
-                            {id: 1, label: 'Ασθένεια'},
-                            {id: 2, label: 'Εκρεμείς θεραπείες'},
-                            {id: 3, label: 'Χρέος'},
-                        ]
-                    },
-                    {
-                        id: 2,
-                        lname: 'Gulbranson',
-                        fname: 'Kati',
-                        icons: [
-                            {id: 1, label: 'Ασθένεια'},
-                            {id: 2, label: 'Θεραπείες'},
-                            {id: 3, label: 'Χρέος'},
-                        ]
-                    },
-                    {
-                        id: 3,
-                        lname: 'Gamet',
-                        fname: 'Dayle',
-                        icons: [
-                            {id: 1, label: 'Ασθένεια'},
-                            {id: 2, label: 'Θεραπείες'},
-                            {id: 3, label: 'Χρέος'},
-                        ]
-                    },
-                    {
-                        id: 4,
-                        lname: 'Henriquez',
-                        fname: 'Luann',
-                        icons: [
-                            {id: 1, label: 'Ασθένεια'},
-                            {id: 2, label: 'Θεραπείες'},
-                            {id: 3, label: 'Χρέος'},
-                        ]
-                    },
-                    {
-                        id: 5,
-                        lname: 'Matas',
-                        fname: 'Minnie',
-                        icons: [
-                            {id: 1, label: 'Ασθένεια'},
-                            {id: 2, label: 'Θεραπείες'},
-                            {id: 3, label: 'Χρέος'},
-                        ]
-                    },
-                    {
-                        id: 6,
-                        lname: 'Battle',
-                        fname: 'Pedro',
-                        icons: [
-                            {id: 1, label: 'Ασθένεια'},
-                            {id: 2, label: 'Θεραπείες'},
-                            {id: 3, label: 'Χρέος'},
-                        ]
-                    }
-                ]
+            patients: [
+                {
+                    id: 1,
+                    lname: 'Lundquist',
+                    fname: 'Rosana',
+                    icons: [
+                        { id: 1, label: 'Ασθένεια' },
+                        { id: 2, label: 'Εκρεμείς θεραπείες' },
+                        { id: 3, label: 'Χρέος' }
+                    ]
+                },
+                {
+                    id: 2,
+                    lname: 'Gulbranson',
+                    fname: 'Kati',
+                    icons: [
+                        { id: 1, label: 'Ασθένεια' },
+                        { id: 2, label: 'Θεραπείες' },
+                        { id: 3, label: 'Χρέος' }
+                    ]
+                },
+                {
+                    id: 3,
+                    lname: 'Gamet',
+                    fname: 'Dayle',
+                    icons: [
+                        { id: 1, label: 'Ασθένεια' },
+                        { id: 2, label: 'Θεραπείες' },
+                        { id: 3, label: 'Χρέος' }
+                    ]
+                },
+                {
+                    id: 4,
+                    lname: 'Henriquez',
+                    fname: 'Luann',
+                    icons: [
+                        { id: 1, label: 'Ασθένεια' },
+                        { id: 2, label: 'Θεραπείες' },
+                        { id: 3, label: 'Χρέος' }
+                    ]
+                },
+                {
+                    id: 5,
+                    lname: 'Matas',
+                    fname: 'Minnie',
+                    icons: [
+                        { id: 1, label: 'Ασθένεια' },
+                        { id: 2, label: 'Θεραπείες' },
+                        { id: 3, label: 'Χρέος' }
+                    ]
+                },
+                {
+                    id: 6,
+                    lname: 'Battle',
+                    fname: 'Pedro',
+                    icons: [
+                        { id: 1, label: 'Ασθένεια' },
+                        { id: 2, label: 'Θεραπείες' },
+                        { id: 3, label: 'Χρέος' }
+                    ]
+                }
+            ]
+        }
+    },
+
+    methods: {
+
+        /**
+         * Search for the text
+         */
+        searchText () {
+            if (this.routeName === 'home') { // If you are at home just search the bookmarks
+                // this.getBookmarks(null);
+            } else { // Else go to home and then search
+                // this.$router.push({name: 'home', params: {textSearch: this.search}});
             }
         },
 
-        methods: {
+        /**
+         * Clear the search text and get the bookmarks
+         */
+        clearSearch () {
+            this.search = ''
+            // this.getBookmarks(null);
+        },
 
-            /**
-             * Search for the text
-             */
-            searchText() {
-                if (this.routeName === 'home') { // If you are at home just search the bookmarks
-                    // this.getBookmarks(null);
-                } else { // Else go to home and then search
-                    // this.$router.push({name: 'home', params: {textSearch: this.search}});
-                }
-            },
-
-            /**
-             * Clear the search text and get the bookmarks
-             */
-            clearSearch() {
-                this.search = '';
-                // this.getBookmarks(null);
-            },
-
-            newPatient() {
-                this.$router.push({name: 'patient', params: {id: 0}});
-            }
+        /**
+         *  Create ne patient
+         *  */
+        newPatient () {
+            this.$router.push({ name: 'patient', params: { id: 0 } })
         }
-
     }
+
+}
 </script>

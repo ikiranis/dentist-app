@@ -56,111 +56,109 @@
 </template>
 
 <script>
-    import api from '@/api';
-    import {mapState, mapMutations} from 'vuex';
-    import DisplayError from "@/components/basic/DisplayError";
-    import FormError from "@/components/basic/FormError";
-    import Loading from "@/components/basic/Loading";
+import api from '@/api'
+import { mapState, mapMutations } from 'vuex'
+import DisplayError from '@/components/basic/DisplayError'
+import FormError from '@/components/basic/FormError'
+import Loading from '@/components/basic/Loading'
 
-    export default {
+export default {
 
-        components: {Loading, DisplayError, FormError},
+    components: { Loading, DisplayError, FormError },
 
-        data: () => ({
-            response: {
-                message: '',
-                status: '',
-                errors: []
-            },
-            userInfo: {
-                id: null,
-                name: null,
-                email: null,
-                password: null,
-                role_id: 2,
-                api_key: null
-            },
-            password_confirmation: '',
-            progressMax: 100
-        }),
+    data: () => ({
+        response: {
+            message: '',
+            status: '',
+            errors: []
+        },
+        userInfo: {
+            id: null,
+            name: null,
+            email: null,
+            password: null,
+            role_id: 2,
+            api_key: null
+        },
+        password_confirmation: '',
+        progressMax: 100
+    }),
 
-        computed: {
-            ...mapState(['loading']),
+    computed: {
+        ...mapState(['loading']),
 
-            userToken: function () {
-                return localStorage.accessToken ? localStorage.accessToken : null;
+        userToken: function () {
+            return localStorage.accessToken ? localStorage.accessToken : null
+        }
+    },
+
+    created: function () {
+        this.getCurrentUser()
+    },
+
+    methods: {
+        ...mapMutations(['setLoading']),
+
+        /**
+             * Get current user info
+             */
+        getCurrentUser () {
+            this.setLoading(true)
+
+            api.getCurrentUser()
+                .then(response => {
+                    this.userInfo = response
+                    this.setLoading(false)
+                })
+                .catch(error => {
+                    this.response.message = error.respone.message
+                    this.response.status = false
+                    this.setLoading(false)
+                })
+        },
+
+        /**
+             * Update user's info
+             */
+        updateUser () {
+            if (this.userInfo.password === undefined || this.userInfo.password === this.password_confirmation) {
+                let args = {
+                    id: this.userInfo.id,
+                    email: this.userInfo.email,
+                    password: this.userInfo.password
+                }
+                this.setLoading(true)
+                api.updateUser(args)
+                    .then(response => {
+                        this.response.message = `User ${response.name} updated`
+                        this.response.status = true
+                        this.setLoading(false)
+                    })
+                    .catch(error => {
+                        this.response.message = error.response.data.message
+                        this.response.status = false
+                        if (error.response.data.errors) {
+                            this.response.errors = error.response.data.errors
+                        }
+                        this.setLoading(false)
+                    })
+            } else {
+                this.response.message = 'Passwords not validated'
+                this.response.status = false
+                this.setLoading(false)
             }
         },
 
-        created: function () {
-            this.getCurrentUser();
-        },
-
-        methods: {
-            ...mapMutations(['setLoading']),
-
-            /**
-             * Get current user info
-             */
-            getCurrentUser() {
-
-                this.setLoading(true);
-
-                api.getCurrentUser()
-                    .then(response => {
-                        this.userInfo = response;
-                        this.setLoading(false);
-                    })
-                    .catch(error => {
-                        this.response.message = error.respone.message;
-                        this.response.status = false;
-                        this.setLoading(false);
-                    });
-            },
-
-            /**
-             * Update user's info
-             */
-            updateUser() {
-                if (this.userInfo.password === undefined || this.userInfo.password === this.password_confirmation) {
-                    let args = {
-                        id: this.userInfo.id,
-                        email: this.userInfo.email,
-                        password: this.userInfo.password
-                    };
-                    this.setLoading(true);
-                    api.updateUser(args)
-                        .then(response => {
-                            this.response.message = `User ${response.name} updated`;
-                            this.response.status = true;
-                            this.setLoading(false);
-                        })
-                        .catch(error => {
-                            this.response.message = error.response.data.message;
-                            this.response.status = false;
-                            if (error.response.data.errors) {
-                                this.response.errors = error.response.data.errors;
-                            }
-                            this.setLoading(false);
-                        });
-                } else {
-                    this.response.message = 'Passwords not validated';
-                    this.response.status = false;
-                    this.setLoading(false);
-                }
-            },
-
-            /**
+        /**
              * Display the error on every error
              */
-            handleError(error) {
-                this.response.message = error;
-                this.response.status = false;
-            },
-
-
+        handleError (error) {
+            this.response.message = error
+            this.response.status = false
         }
+
     }
+}
 </script>
 
 <style scoped>

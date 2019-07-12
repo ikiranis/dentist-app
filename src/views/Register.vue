@@ -59,68 +59,67 @@
     </div>
 </template>
 
-
 <script>
-    import api from '@/api';
-    import {mapState, mapMutations} from 'vuex';
-    import DisplayError from "@/components/basic/DisplayError";
-    import FormError from "@/components/basic/FormError";
-    import Loading from "@/components/basic/Loading";
+import api from '@/api'
+import { mapState, mapMutations } from 'vuex'
+import DisplayError from '@/components/basic/DisplayError'
+import FormError from '@/components/basic/FormError'
+import Loading from '@/components/basic/Loading'
 
-    export default {
-        components: {Loading, DisplayError, FormError},
+export default {
+    components: { Loading, DisplayError, FormError },
 
-        data: () => ({
-            response: {
-                message: '',
-                status: '',
-                errors: []
-            },
-            userInfo: {
-                name: '',
-                email: '',
-                password: '',
-                role_id: 2
-            },
-            password_confirmation: ''
-        }),
-
-        computed: {
-            ...mapState(['loading'])
+    data: () => ({
+        response: {
+            message: '',
+            status: '',
+            errors: []
         },
+        userInfo: {
+            name: '',
+            email: '',
+            password: '',
+            role_id: 2
+        },
+        password_confirmation: ''
+    }),
 
-        methods: {
-            ...mapMutations(['setLoading']),
+    computed: {
+        ...mapState(['loading'])
+    },
 
-            /**
+    methods: {
+        ...mapMutations(['setLoading']),
+
+        /**
              * Register new user
              */
-            register() {
-                this.setLoading(true);
-                if (this.userInfo.password === this.password_confirmation) {
-                    api.register(this.userInfo)
-                        .then(response => {
-                            this.response.message = response.statusText;
-                            this.response.status = true;
-                            this.setLoading(false);
-                            this.$router.push({name: 'login'});
-                        })
-                        .catch(error => {
-                            this.response.message = error.response.data.message;
-                            this.response.status = false;
-                            if (error.response.data.errors) {
-                                this.response.errors = error.response.data.errors;
-                            }
-                            this.setLoading(false);
-                        });
-                } else {
-                    this.response.message = 'Passwords not validated';
-                    this.response.status = false;
-                    this.setLoading(false);
-                }
+        register () {
+            this.setLoading(true)
+            if (this.userInfo.password === this.password_confirmation) {
+                api.register(this.userInfo)
+                    .then(response => {
+                        this.response.message = response.statusText
+                        this.response.status = true
+                        this.setLoading(false)
+                        this.$router.push({ name: 'login' })
+                    })
+                    .catch(error => {
+                        this.response.message = error.response.data.message
+                        this.response.status = false
+                        if (error.response.data.errors) {
+                            this.response.errors = error.response.data.errors
+                        }
+                        this.setLoading(false)
+                    })
+            } else {
+                this.response.message = 'Passwords not validated'
+                this.response.status = false
+                this.setLoading(false)
             }
         }
     }
+}
 </script>
 
 <style scoped>

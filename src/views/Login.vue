@@ -49,61 +49,60 @@
 </template>
 
 <script>
-    import api from '@/api';
-    import {mapState, mapMutations} from 'vuex';
-    import user from "@/library/user";
-    import DisplayError from "@/components/basic/DisplayError";
-    import Loading from "@/components/basic/Loading";
+import api from '@/api'
+import { mapState, mapMutations } from 'vuex'
+import user from '@/library/user'
+import DisplayError from '@/components/basic/DisplayError'
+import Loading from '@/components/basic/Loading'
 
-    export default {
-        components: {Loading, DisplayError},
+export default {
+    components: { Loading, DisplayError },
 
-        data: () => ({
-            response: {
-                message: '',
-                status: ''
-            },
-            credentials: {
-                username: 'rocean@error.gr',
-                password: '123456'
-            }
-        }),
+    data: () => ({
+        response: {
+            message: '',
+            status: ''
+        },
+        credentials: {
+            username: 'rocean@error.gr',
+            password: '123456'
+        }
+    }),
 
-        computed: {
-            ...mapState(['loading'])
+    computed: {
+        ...mapState(['loading'])
+    },
+
+    methods: {
+        ...mapMutations(['setLoading']),
+
+        displayRegister () {
+            this.$router.push({ name: 'register' })
         },
 
-        methods: {
-            ...mapMutations(['setLoading']),
-
-
-            displayRegister() {
-                this.$router.push({name: 'register'});
-            },
-
-            /**
+        /**
              * Do the login
              */
-            login() {
-                this.setLoading(true);
+        login () {
+            this.setLoading(true)
 
-                api.login(this.credentials.username, this.credentials.password)
-                    .then(response => {
-                        // Store token to localStorage
-                        user.login(response.data.access_token, response.data.token_type);
-                        // Set the header for axios
-                        user.setUserTokenHeader();
-                        // Get the current username and store it
-                        this.$store.dispatch('getCurrentUser');
-                        this.setLoading(false);
-                        this.$router.push({name: 'home'}); // Force to load Home page
-                    })
-                    .catch(error => {
-                        this.response.message = error.response.data.message;
-                        this.response.status = false;
-                        this.setLoading(false);
-                    });
-            }
+            api.login(this.credentials.username, this.credentials.password)
+                .then(response => {
+                    // Store token to localStorage
+                    user.login(response.data.access_token, response.data.token_type)
+                    // Set the header for axios
+                    user.setUserTokenHeader()
+                    // Get the current username and store it
+                    this.$store.dispatch('getCurrentUser')
+                    this.setLoading(false)
+                    this.$router.push({ name: 'home' }) // Force to load Home page
+                })
+                .catch(error => {
+                    this.response.message = error.response.data.message
+                    this.response.status = false
+                    this.setLoading(false)
+                })
         }
     }
+}
 </script>

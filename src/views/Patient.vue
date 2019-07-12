@@ -159,89 +159,88 @@
 </template>
 
 <script>
-    import DisplayError from "@/components/basic/DisplayError";
-    import FormError from "@/components/basic/FormError";
-    import MenuBar from "@/components/basic/MenuBar";
+import FormError from '@/components/basic/FormError'
+import MenuBar from '@/components/basic/MenuBar'
 
-    export default {
-        components: {DisplayError, FormError, MenuBar},
+export default {
+    components: { FormError, MenuBar },
 
-        data() {
-            return {
-                response: {
-                    message: '',
-                    status: '',
-                    errors: []
-                },
-
-                patient: {
-                    info: {
-                        fname: 'Rosana',
-                        lname: 'Lundquist',
-                        fatherName: 'Luann',
-                        birthday: '12/11/1974',
-                        phoneLandline: '2463056325',
-                        phoneMobile: '6954568234',
-                        address: '25ης Μαρτίου 1345',
-                        dateCreated: '01/06/2019'
-                    }
-                },
-
-                menuItems: [
-                    {
-                        route: '/medicalHistory',
-                        name: 'Ιατρικό ιστορικό',
-                        loggedIn: true
-                    },
-                    {
-                        route: '/dentalHistory',
-                        name: 'Οδοντιατρικό ιστορικό',
-                        loggedIn: true
-                    },
-                    {
-                        route: '/dentalGram',
-                        name: 'Οδοντόγραμμα',
-                        loggedIn: true
-                    },
-                    {
-                        route: '/periodDentalGram',
-                        name: 'Περιοδοντόγραμμα',
-                        loggedIn: true
-                    },
-                    {
-                        route: '/treatmentHistory',
-                        name: 'Ιστορικό θεραπειών',
-                        loggedIn: true
-                    },
-                    {
-                        route: '/denervation',
-                        name: 'Απονεύρωση',
-                        loggedIn: true
-                    },
-                    {
-                        route: '/files',
-                        name: 'Αρχεία',
-                        loggedIn: true
-                    }
-                ]
-            }
-        },
-
-        computed: {
-            patientId: function () {
-                return this.$route.params.id;
+    data () {
+        return {
+            response: {
+                message: '',
+                status: '',
+                errors: []
             },
-        },
 
-        props: {
-            patientId: Number
-        },
+            patient: {
+                info: {
+                    fname: 'Rosana',
+                    lname: 'Lundquist',
+                    fatherName: 'Luann',
+                    birthday: '12/11/1974',
+                    phoneLandline: '2463056325',
+                    phoneMobile: '6954568234',
+                    address: '25ης Μαρτίου 1345',
+                    dateCreated: '01/06/2019'
+                }
+            },
 
-        methods: {
+            menuItems: [
+                {
+                    route: '/medicalHistory',
+                    name: 'Ιατρικό ιστορικό',
+                    loggedIn: true
+                },
+                {
+                    route: '/dentalHistory',
+                    name: 'Οδοντιατρικό ιστορικό',
+                    loggedIn: true
+                },
+                {
+                    route: '/dentalGram',
+                    name: 'Οδοντόγραμμα',
+                    loggedIn: true
+                },
+                {
+                    route: '/periodDentalGram',
+                    name: 'Περιοδοντόγραμμα',
+                    loggedIn: true
+                },
+                {
+                    route: '/treatmentHistory',
+                    name: 'Ιστορικό θεραπειών',
+                    loggedIn: true
+                },
+                {
+                    route: '/denervation',
+                    name: 'Απονεύρωση',
+                    loggedIn: true
+                },
+                {
+                    route: '/files',
+                    name: 'Αρχεία',
+                    loggedIn: true
+                }
+            ]
+        }
+    },
 
-            saveInfo() {
-                //
-            }
+    computed: {
+        patientId: function () {
+            return this.$route.params.id
+        }
+    },
+
+    props: {
+        patientId: Number
+    },
+
+    methods: {
+
+        saveInfo () {
+            //
         }
     }
+}
 </script>

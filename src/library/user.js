@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios'
 
 let user = {
 
@@ -8,32 +8,32 @@ let user = {
      * @param access_token
      * @param token_type
      */
-    login(access_token, token_type) {
-        localStorage.accessToken = access_token;
-        localStorage.tokenType = token_type;
+    login (access_token, token_type) {
+        localStorage.accessToken = access_token
+        localStorage.tokenType = token_type
     },
 
     /**
      * Delete the token data, to logout the user
      */
-    logout() {
-        localStorage.removeItem("accessToken");
-        localStorage.removeItem("tokenType");
-        this.setUserTokenHeader();
+    logout () {
+        localStorage.removeItem('accessToken')
+        localStorage.removeItem('tokenType')
+        this.setUserTokenHeader()
     },
 
     /**
      * Set authentication token header to axios
      */
-    setUserTokenHeader() {
-        // axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+    setUserTokenHeader () {
+    // axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
-        if(typeof localStorage.accessToken !== undefined) {
-            axios.defaults.headers.common['Accept'] = 'application/json';
-            axios.defaults.headers.common['Authorization'] = localStorage.tokenType + " " + localStorage.accessToken;
+        if (typeof localStorage.accessToken !== 'undefined') {
+            axios.defaults.headers.common['Accept'] = 'application/json'
+            axios.defaults.headers.common['Authorization'] = localStorage.tokenType + ' ' + localStorage.accessToken
         }
     }
 
-};
+}
 
-export default user;
+export default user

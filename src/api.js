@@ -1,7 +1,7 @@
-import axios from 'axios';
+import axios from 'axios'
 
-const API_HOST = process.env.VUE_APP_API_HOST;
-const ROOT_API = API_HOST + process.env.VUE_APP_API_SUFFIX;
+const API_HOST = process.env.VUE_APP_API_HOST
+const ROOT_API = API_HOST + process.env.VUE_APP_API_SUFFIX
 
 let api = {
 
@@ -10,30 +10,30 @@ let api = {
      *
      * @returns {Promise<void>}
      */
-    async getApiWorks() {
-        let {data} = await axios.get(ROOT_API + '/apiWorks');
+    async getApiWorks () {
+        let { data } = await axios.get(ROOT_API + '/apiWorks')
 
-        return data;
+        return data
     },
 
     /**
      *
      * @returns {Promise<void>}
      */
-    async getUsersCount() {
-        let {data} = await axios.get(ROOT_API + '/usersCount');
+    async getUsersCount () {
+        let { data } = await axios.get(ROOT_API + '/usersCount')
 
-        return data;
+        return data
     },
 
     /**
      *
      * @returns {Promise<void>}
      */
-    async getCurrentUser() {
-        let {data} = await axios.get(ROOT_API + '/user');
+    async getCurrentUser () {
+        let { data } = await axios.get(ROOT_API + '/user')
 
-        return data;
+        return data
     },
 
     /**
@@ -42,14 +42,14 @@ let api = {
      * @param args
      * @returns {Promise<any>}
      */
-    async register(args) {
-        return await axios.post(ROOT_API + '/register', args);
+    async register (args) {
+        return await axios.post(ROOT_API + '/register', args)
     },
 
-    async updateUser(args) {
-        let {data} = await axios.patch(ROOT_API + '/user', args);
+    async updateUser (args) {
+        let { data } = await axios.patch(ROOT_API + '/user', args)
 
-        return data;
+        return data
     },
 
     /**
@@ -58,17 +58,17 @@ let api = {
      * @param password
      * @returns {Promise<void>}
      */
-    async login(username, password) {
+    async login (username, password) {
         let args = {
-            grant_type: "password",
+            grant_type: 'password',
             client_id: process.env.VUE_APP_CLIENT_ID,
             client_secret: process.env.VUE_APP_CLIENT_SECRET,
             username: username,
             password: password,
-            scope: "*"
-        };
+            scope: '*'
+        }
 
-        return await axios.post(API_HOST + '/oauth/token', args);
+        return await axios.post(API_HOST + '/oauth/token', args)
     },
 
     /**
@@ -77,8 +77,8 @@ let api = {
      * @param args
      * @returns {Promise<any>}
      */
-    async sendResetToken(args) {
-        return await axios.post(ROOT_API + '/sendResetToken', args);
+    async sendResetToken (args) {
+        return await axios.post(ROOT_API + '/sendResetToken', args)
     },
 
     /**
@@ -87,18 +87,18 @@ let api = {
      * @param args
      * @returns {Promise<any>}
      */
-    async resetPassword(args) {
-        return await axios.patch(ROOT_API + '/resetPassword', args);
+    async resetPassword (args) {
+        return await axios.patch(ROOT_API + '/resetPassword', args)
     },
 
     /**
      *
      * @returns {*}
      */
-    rootApi() {
-        return ROOT_API;
+    rootApi () {
+        return ROOT_API
     }
 
-};
+}
 
-export default api;
+export default api

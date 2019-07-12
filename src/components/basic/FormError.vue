@@ -10,21 +10,21 @@
 </template>
 
 <script>
-    export default {
-        data() {
-            return {
-                showDismissibleAlert: true
-            }
-        },
+export default {
+    data () {
+        return {
+            showDismissibleAlert: true
+        }
+    },
 
-        props: {
-            error: String
-        },
+    props: {
+        error: String
+    },
 
-        watch: {
-            error() {
-                this.showDismissibleAlert = true;
-            }
+    watch: {
+        error () {
+            this.showDismissibleAlert = true
         }
     }
+}
 </script>

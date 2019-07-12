@@ -144,7 +144,6 @@
 
                     </div>
 
-
                     <div class="col-lg-6 col-12">
 
                         <div class="form-group row">
@@ -206,89 +205,88 @@
 </template>
 
 <script>
-    import MenuBar from "@/components/basic/MenuBar";
-    import DisplayError from "@/components/basic/DisplayError";
-    import FormError from "@/components/basic/FormError";
+import MenuBar from '@/components/basic/MenuBar'
+import FormError from '@/components/basic/FormError'
 
-    export default {
-        components: { MenuBar, DisplayError, FormError },
+export default {
+    components: { MenuBar, FormError },
 
-        data() {
-            return {
+    data () {
+        return {
 
-                response: {
-                    message: '',
-                    status: '',
-                    errors: []
+            response: {
+                message: '',
+                status: '',
+                errors: []
+            },
+
+            menuItems: [
+                {
+                    route: '/medicalHistory',
+                    name: 'Ιατρικό ιστορικό',
+                    loggedIn: true
                 },
-
-                menuItems: [
-                    {
-                        route: '/medicalHistory',
-                        name: 'Ιατρικό ιστορικό',
-                        loggedIn: true
-                    },
-                    {
-                        route: '/dentalHistory',
-                        name: 'Οδοντιατρικό ιστορικό',
-                        loggedIn: true
-                    },
-                    {
-                        route: '/dentalGram',
-                        name: 'Οδοντόγραμμα',
-                        loggedIn: true
-                    },
-                    {
-                        route: '/periodDentalGram',
-                        name: 'Περιοδοντόγραμμα',
-                        loggedIn: true
-                    },
-                    {
-                        route: '/treatmentHistory',
-                        name: 'Ιστορικό θεραπειών',
-                        loggedIn: true
-                    },
-                    {
-                        route: '/denervation',
-                        name: 'Απονεύρωση',
-                        loggedIn: true
-                    },
-                    {
-                        route: '/files',
-                        name: 'Αρχεία',
-                        loggedIn: true
-                    }
-                ],
-
-                medicalHistory: {
-                    respiratoryDiseases: '',
-                    cardiovascularDiseases: '',
-                    hematopoieticSystemDiseases: '',
-                    infectiousDiseases: '',
-                    endocrineDisorders: '',
-                    diabetes: '',
-                    allergy: '',
-                    degenerativeArthropathy: '',
-                    rheumatoidArthritis: '',
-                    epilepsy: '',
-                    ulcer: '',
-                    neuropsychiatricDisorders: '',
-                    sleepApnea: '',
-                    others: '',
-                    pregnancy: '',
-                    pregnacyCheck: false,
-                    smoking: '',
-                    smokingCheck: false,
-                    medicines: [],
-                    familyHistory: ''
+                {
+                    route: '/dentalHistory',
+                    name: 'Οδοντιατρικό ιστορικό',
+                    loggedIn: true
+                },
+                {
+                    route: '/dentalGram',
+                    name: 'Οδοντόγραμμα',
+                    loggedIn: true
+                },
+                {
+                    route: '/periodDentalGram',
+                    name: 'Περιοδοντόγραμμα',
+                    loggedIn: true
+                },
+                {
+                    route: '/treatmentHistory',
+                    name: 'Ιστορικό θεραπειών',
+                    loggedIn: true
+                },
+                {
+                    route: '/denervation',
+                    name: 'Απονεύρωση',
+                    loggedIn: true
+                },
+                {
+                    route: '/files',
+                    name: 'Αρχεία',
+                    loggedIn: true
                 }
-            }
-        },
+            ],
 
-        methods: {
-            //
+            medicalHistory: {
+                respiratoryDiseases: '',
+                cardiovascularDiseases: '',
+                hematopoieticSystemDiseases: '',
+                infectiousDiseases: '',
+                endocrineDisorders: '',
+                diabetes: '',
+                allergy: '',
+                degenerativeArthropathy: '',
+                rheumatoidArthritis: '',
+                epilepsy: '',
+                ulcer: '',
+                neuropsychiatricDisorders: '',
+                sleepApnea: '',
+                others: '',
+                pregnancy: '',
+                pregnacyCheck: false,
+                smoking: '',
+                smokingCheck: false,
+                medicines: [],
+                familyHistory: ''
+            }
         }
+    },
+
+    methods: {
+    //
     }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -303,7 +301,4 @@
         padding: 10px;
     }
 
-
-
 </style>
-

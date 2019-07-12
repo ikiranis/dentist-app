@@ -39,44 +39,44 @@
 
 <script>
 
-    import CurrentUser from "@/components/users/CurrentUser";
-    import { mapState, mapMutations } from 'vuex';
-    import user from '@/library/user'
+import CurrentUser from '@/components/users/CurrentUser'
+import { mapState, mapMutations } from 'vuex'
+import user from '@/library/user'
 
-    export default {
-        components: { CurrentUser },
+export default {
+    components: { CurrentUser },
 
-        props: {
-            brand: String,
-            brandRoute: Object,
-            menuItems: Array,
-            userInfo: String,
-            fixed: String,
-            variant: String,
-            type: String,
-            valign: String,
-            toggle: String
-        },
+    props: {
+        brand: String,
+        brandRoute: Object,
+        menuItems: Array,
+        userInfo: String,
+        fixed: String,
+        variant: String,
+        type: String,
+        valign: String,
+        toggle: String
+    },
 
-        computed: {
-            ...mapState(['userId', 'username'])
-        },
+    computed: {
+        ...mapState(['userId', 'username'])
+    },
 
-        methods: {
-            ...mapMutations(['setUsername']),
+    methods: {
+        ...mapMutations(['setUsername']),
 
-            /**
+        /**
              * Do the logout
              */
-            logout() {
-                user.logout();
-                this.$store.dispatch('getCurrentUser');
-                // Hack Alert!!!
-                // Force to empty the username, because it need some time to run getCurrentUser and do it
-                this.setUsername(null);
-                this.$router.push({name: 'home'}); // Force to load home page
-            }
-
+        logout () {
+            user.logout()
+            this.$store.dispatch('getCurrentUser')
+            // Hack Alert!!!
+            // Force to empty the username, because it need some time to run getCurrentUser and do it
+            this.setUsername(null)
+            this.$router.push({ name: 'home' }) // Force to load home page
         }
+
     }
+}
 </script>

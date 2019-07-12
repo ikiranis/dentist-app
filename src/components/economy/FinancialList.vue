@@ -23,11 +23,11 @@
 </template>
 
 <script>
-    export default {
-        props: {
-            transactions: Array,
-            kind: String
-        }
+export default {
+    props: {
+        transactions: Array,
+        kind: String
     }
+}
 
 </script>
