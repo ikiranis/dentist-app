@@ -1,6 +1,15 @@
 // For authoring Nightwatch tests, see
 // http://nightwatchjs.org/guide#usage
 
+
+describe('My First Test', () => {
+  it('Visits the app root url', () => {
+    cy.visit('/')
+    cy.contains('h1', 'Welcome to Your Vue.js App')
+  })
+})
+
+
 module.exports = {
     'Login app': browser => {
         browser
