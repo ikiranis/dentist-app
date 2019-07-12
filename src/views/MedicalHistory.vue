@@ -34,6 +34,114 @@
                             </div>
                         </div>
 
+                        <div class="form-group row">
+                            <label for="hematopoieticSystemDiseases" class="col-md-4 col-form-label text-md-right">Γ. Νόσοι αιμοποιητικού συστήματος</label>
+                            <div class="col-md-8 my-auto">
+                                <input id="hematopoieticSystemDiseases" type="text" class="form-control"
+                                       v-model="medicalHistory.hematopoieticSystemDiseases" maxlength="60">
+                                <form-error v-if="response.errors.hematopoieticSystemDiseases" :error="response.errors.hematopoieticSystemDiseases[0]"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="infectiousDiseases" class="col-md-4 col-form-label text-md-right">Δ. Λοιμώδεις νόσοι</label>
+                            <div class="col-md-8 my-auto">
+                                <input id="infectiousDiseases" type="text" class="form-control"
+                                       v-model="medicalHistory.infectiousDiseases" maxlength="60">
+                                <form-error v-if="response.errors.infectiousDiseases" :error="response.errors.infectiousDiseases[0]"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="endocrineDisorders" class="col-md-4 col-form-label text-md-right">Ε. Ενδοκρινείς διαταραχές</label>
+                            <div class="col-md-8 my-auto">
+                                <input id="endocrineDisorders" type="text" class="form-control"
+                                       v-model="medicalHistory.endocrineDisorders" maxlength="60">
+                                <form-error v-if="response.errors.endocrineDisorders" :error="response.errors.endocrineDisorders[0]"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="diabetes" class="col-md-4 col-form-label text-md-right">ΣΤ. Σακχαρώδης διαβήτης</label>
+                            <div class="col-md-8 my-auto">
+                                <input id="diabetes" type="text" class="form-control"
+                                       v-model="medicalHistory.diabetes" maxlength="60">
+                                <form-error v-if="response.errors.diabetes" :error="response.errors.diabetes[0]"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="allergy" class="col-md-4 col-form-label text-md-right">Ζ. Αλλεργία</label>
+                            <div class="col-md-8 my-auto">
+                                <input id="allergy" type="text" class="form-control"
+                                       v-model="medicalHistory.allergy" maxlength="60">
+                                <form-error v-if="response.errors.allergy" :error="response.errors.allergy[0]"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="degenerativeArthropathy" class="col-md-4 col-form-label text-md-right">Η. Εκφυλιστική αρθροπάθεια</label>
+                            <div class="col-md-8 my-auto">
+                                <input id="degenerativeArthropathy" type="text" class="form-control"
+                                       v-model="medicalHistory.degenerativeArthropathy" maxlength="60">
+                                <form-error v-if="response.errors.degenerativeArthropathy" :error="response.errors.degenerativeArthropathy[0]"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="rheumatoidArthritis" class="col-md-4 col-form-label text-md-right">Θ. Ρευματοειδής αρθρίτιδα</label>
+                            <div class="col-md-8 my-auto">
+                                <input id="rheumatoidArthritis" type="text" class="form-control"
+                                       v-model="medicalHistory.rheumatoidArthritis" maxlength="60">
+                                <form-error v-if="response.errors.rheumatoidArthritis" :error="response.errors.rheumatoidArthritis[0]"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="epilepsy" class="col-md-4 col-form-label text-md-right">Ι. Επιληψία</label>
+                            <div class="col-md-8 my-auto">
+                                <input id="epilepsy" type="text" class="form-control"
+                                       v-model="medicalHistory.epilepsy" maxlength="60">
+                                <form-error v-if="response.errors.epilepsy" :error="response.errors.epilepsy[0]"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="ulcer" class="col-md-4 col-form-label text-md-right">ΙΑ. Έλκος</label>
+                            <div class="col-md-8 my-auto">
+                                <input id="ulcer" type="text" class="form-control"
+                                       v-model="medicalHistory.ulcer" maxlength="60">
+                                <form-error v-if="response.errors.ulcer" :error="response.errors.ulcer[0]"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="neuropsychiatricDisorders" class="col-md-4 col-form-label text-md-right">ΙΒ. Νευροψυχικές διαταραχές</label>
+                            <div class="col-md-8 my-auto">
+                                <input id="neuropsychiatricDisorders" type="text" class="form-control"
+                                       v-model="medicalHistory.neuropsychiatricDisorders" maxlength="60">
+                                <form-error v-if="response.errors.neuropsychiatricDisorders" :error="response.errors.neuropsychiatricDisorders[0]"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="sleepApnea" class="col-md-4 col-form-label text-md-right">ΙΓ. Άπνοια ύπνου</label>
+                            <div class="col-md-8 my-auto">
+                                <input id="sleepApnea" type="text" class="form-control"
+                                       v-model="medicalHistory.sleepApnea" maxlength="60">
+                                <form-error v-if="response.errors.sleepApnea" :error="response.errors.sleepApnea[0]"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="others" class="col-md-4 col-form-label text-md-right">Άλλα</label>
+                            <div class="col-md-8 my-auto">
+                                <input id="others" type="text" class="form-control"
+                                       v-model="medicalHistory.others" maxlength="60">
+                                <form-error v-if="response.errors.others" :error="response.errors.others[0]"/>
+                            </div>
+                        </div>
+
                     </div>
 
 
@@ -50,6 +158,32 @@
                                 <input id="pregnancy" type="text" class="form-control"
                                        v-model="medicalHistory.pregnancy" maxlength="60">
                                 <form-error v-if="response.errors.pregnancy" :error="response.errors.pregnancy[0]"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="smoking" class="col-md-3 col-form-label text-md-right">Κάπνισμα</label>
+
+                            <div class="form-check col-md-1 form-check-inline" id="smokingCheck">
+                                <input class="form-check-input" type="checkbox">
+                            </div>
+
+                            <div class="col-md-7 my-auto">
+                                <input id="smoking" type="text" class="form-control"
+                                       v-model="medicalHistory.smoking" maxlength="60">
+                                <form-error v-if="response.errors.smoking" :error="response.errors.smoking[0]"/>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="form-group row">
+                            <label for="familyHistory" class="col-md-4 col-form-label text-md-right">Οικογεγειακό ιστορικό</label>
+                            <div class="col-md-8 my-auto">
+                                <input id="familyHistory" type="text" class="form-control"
+                                       v-model="medicalHistory.familyHistory" maxlength="60">
+                                <form-error v-if="response.errors.familyHistory" :error="response.errors.familyHistory[0]"/>
                             </div>
                         </div>
 
@@ -121,8 +255,24 @@
                 medicalHistory: {
                     respiratoryDiseases: '',
                     cardiovascularDiseases: '',
-
+                    hematopoieticSystemDiseases: '',
+                    infectiousDiseases: '',
+                    endocrineDisorders: '',
+                    diabetes: '',
+                    allergy: '',
+                    degenerativeArthropathy: '',
+                    rheumatoidArthritis: '',
+                    epilepsy: '',
+                    ulcer: '',
+                    neuropsychiatricDisorders: '',
+                    sleepApnea: '',
+                    others: '',
                     pregnancy: '',
+                    pregnacyCheck: false,
+                    smoking: '',
+                    smokingCheck: false,
+                    medicines: 0,
+                    familyHistory: ''
                 }
             }
         },
