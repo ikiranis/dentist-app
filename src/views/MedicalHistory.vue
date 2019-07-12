@@ -175,15 +175,16 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="medicines" class="col-md-3 col-form-label text-md-right">Φάρμακα</label>
-                            <div class="col-md-9 my-auto">
-                                <input id="medicines" type="text" class="form-control"
-                                       v-model="medicalHistory.medicines" maxlength="60">
-                                <form-error v-if="response.errors.medicines" :error="response.errors.medicines[0]"/>
-                            </div>
+                        <div class="form-group">
+                            <label for="medicines">Φάρμακα</label>
+                            <input id="madicine" type="text" class="form-control"
+                                   v-model="madicine" maxlength="60">
+                            <select multiple class="form-control mt-2" id="medicines">
+                                <option>Φάρμακο 1</option>
+                                <option>Φάρμακο 2</option>
+                                <option>Φάρμακο 3</option>
+                            </select>
                         </div>
-
 
                         <div class="form-group row">
                             <label for="familyHistory" class="col-md-3 col-form-label text-md-right">Οικογενειακό ιστορικό</label>
@@ -278,7 +279,7 @@
                     pregnacyCheck: false,
                     smoking: '',
                     smokingCheck: false,
-                    medicines: 0,
+                    medicines: [],
                     familyHistory: ''
                 }
             }
