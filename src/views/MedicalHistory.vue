@@ -150,11 +150,11 @@
                         <div class="form-group row">
                             <label for="pregnancy" class="col-md-3 col-form-label text-md-right">Εγκυμοσύνη</label>
 
-                            <div class="form-check col-md-1 form-check-inline" id="pregnacyCheck">
+                            <div class="form-check form-check-inline" id="pregnacyCheck">
                                 <input class="form-check-input" type="checkbox">
                             </div>
 
-                            <div class="col-md-7 my-auto">
+                            <div class="col-md-8 my-auto">
                                 <input id="pregnancy" type="text" class="form-control"
                                        v-model="medicalHistory.pregnancy" maxlength="60">
                                 <form-error v-if="response.errors.pregnancy" :error="response.errors.pregnancy[0]"/>
@@ -164,23 +164,30 @@
                         <div class="form-group row">
                             <label for="smoking" class="col-md-3 col-form-label text-md-right">Κάπνισμα</label>
 
-                            <div class="form-check col-md-1 form-check-inline" id="smokingCheck">
+                            <div class="form-check form-check-inline" id="smokingCheck">
                                 <input class="form-check-input" type="checkbox">
                             </div>
 
-                            <div class="col-md-7 my-auto">
+                            <div class="col-md-8 my-auto">
                                 <input id="smoking" type="text" class="form-control"
                                        v-model="medicalHistory.smoking" maxlength="60">
                                 <form-error v-if="response.errors.smoking" :error="response.errors.smoking[0]"/>
                             </div>
                         </div>
 
-
+                        <div class="form-group row">
+                            <label for="medicines" class="col-md-3 col-form-label text-md-right">Φάρμακα</label>
+                            <div class="col-md-9 my-auto">
+                                <input id="medicines" type="text" class="form-control"
+                                       v-model="medicalHistory.medicines" maxlength="60">
+                                <form-error v-if="response.errors.medicines" :error="response.errors.medicines[0]"/>
+                            </div>
+                        </div>
 
 
                         <div class="form-group row">
-                            <label for="familyHistory" class="col-md-4 col-form-label text-md-right">Οικογεγειακό ιστορικό</label>
-                            <div class="col-md-8 my-auto">
+                            <label for="familyHistory" class="col-md-3 col-form-label text-md-right">Οικογενειακό ιστορικό</label>
+                            <div class="col-md-9 my-auto">
                                 <input id="familyHistory" type="text" class="form-control"
                                        v-model="medicalHistory.familyHistory" maxlength="60">
                                 <form-error v-if="response.errors.familyHistory" :error="response.errors.familyHistory[0]"/>
