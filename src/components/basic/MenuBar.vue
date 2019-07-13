@@ -22,7 +22,7 @@
                     <router-link :to="item.route" class="nav-link">{{ item.name }}</router-link>
                 </b-nav-item>
 
-                <b-nav-item href="#" v-if="username && userInfo === 'true'">
+                <b-nav-item href="#" v-if="userInfo === 'true'">
                     <CurrentUser/>
                 </b-nav-item>
 
