@@ -19,11 +19,10 @@
 
                 <!-- All users items -->
                 <b-nav-item href="#" v-for="item in menuItems" :key="item.name" v-if="!item.loggedIn">
-                    <router-link to="/about" class="nav-link">About</router-link>
+                    <router-link :to="item.route" class="nav-link">{{ item.name }}</router-link>
                 </b-nav-item>
 
-                <!-- User info items -->
-                <b-nav-item href="#" v-if="userInfo === 'true'">
+                <b-nav-item href="#" v-if="username && userInfo === 'true'">
                     <CurrentUser/>
                 </b-nav-item>
 

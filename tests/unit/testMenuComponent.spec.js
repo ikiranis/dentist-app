@@ -14,7 +14,7 @@ describe('MenuBar.vue', () => {
             mocks: {
                 $store: {
                     state: {
-                        useId: 1,
+                        userId: 1,
                         username: 'user'
                     }
                 }
@@ -45,7 +45,7 @@ describe('MenuBar.vue', () => {
                         loggedIn: false
                     }
                 ],
-                userInfo: 'false',
+                userInfo: 'true',
                 fixed: '',
                 variant: '',
                 type: 'light',
@@ -55,5 +55,13 @@ describe('MenuBar.vue', () => {
         })
 
         expect(wrapper.find('#brandTitle').text()).toMatch('Brand')
+
+        const navItems = wrapper.findAll('.nav-link')
+
+        expect(navItems.at(0).text()).toMatch('Route 1')
+        expect(navItems.at(1).text()).toMatch('Route 2')
+        expect(navItems.at(2).text()).toMatch('Route 3')
+        expect(navItems.at(3).text()).toMatch('Route 4')
+        expect(navItems.at(4).text()).toMatch('Αποσύνδεση')
     })
 })
