@@ -2,34 +2,21 @@
 // http://nightwatchjs.org/guide#usage
 
 
-describe('My First Test', () => {
-  it('Visits the app root url', () => {
+describe('Test Login and logout', () => {
+
+  it('Load the app', () => {
     cy.visit('/')
-    cy.contains('h1', 'Welcome to Your Vue.js App')
+    cy.contains('div', 'Login')
   })
+
+  it('Login to app', () => {
+    cy.get('#login').click()
+    cy.contains('h1', 'Επιλογές')
+  })
+
+  it('Logout', () => {
+    cy.get('#logout').click();
+    cy.contains('div', 'Login1')
+  })
+
 })
-
-
-module.exports = {
-    'Login app': browser => {
-        browser
-            .url(process.env.VUE_DEV_SERVER_URL)
-            .waitForElementVisible('#app', 5000)
-            .assert.elementPresent('.card-header')
-            .assert.containsText('div', 'Login')
-        // .setValue('input[id=email]', 'rocean@error.gr')
-        // .setValue('input[id=password]', '123456')
-            .click('input[id=login]')
-            .waitForElementVisible('.container-fluid', 5000)
-            .assert.containsText('h1', 'Επιλογές')
-    },
-
-    'Logout app': browser => {
-        browser
-            .assert.elementPresent('#logout')
-            .click('#logout')
-            .assert.elementPresent('.card-header')
-            .assert.containsText('div', 'Login')
-            .end()
-    }
-}
