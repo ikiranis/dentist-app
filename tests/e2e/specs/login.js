@@ -14,6 +14,6 @@ describe('Test Login and logout', () => {
 
     it('Logout', () => {
         cy.get('#logout').click()
-        cy.contains('div', 'Login1')
+        cy.contains('div', 'Login')
     })
 })
