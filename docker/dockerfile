@@ -1,0 +1,17 @@
+FROM node:latest
+
+ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
+ENV PATH=$PATH:/home/node/.npm-global/bin
+WORKDIR /home/node/app
+
+USER node
+
+ENV PORT 8085
+
+EXPOSE 8085
+EXPOSE 8086
+
+RUN npm install -g @vue/cli
+
+ENTRYPOINT /bin/bash
+
