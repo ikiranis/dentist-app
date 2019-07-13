@@ -2,7 +2,6 @@ import { shallowMount, createLocalVue } from '@vue/test-utils'
 import MenuBar from '@/components/basic/MenuBar.vue'
 import BootstrapVue from 'bootstrap-vue'
 import router from '@/router.js'
-// import store from '@/store.js'
 
 const localVue = createLocalVue()
 localVue.use(BootstrapVue)
@@ -20,8 +19,6 @@ describe('MenuBar.vue', () => {
                     }
                 }
             },
-
-            // stubs: ['router-link'],
 
             propsData: {
                 brand: 'Brand',
