@@ -15,6 +15,7 @@ describe('Test browsing the routes', () => {
 
     it('Click Ασθενείς', () => {
         cy.get('.navbar-nav > li').contains('Ασθενείς').click()
+        cy.contains('h1', 'Ασθενείς')
     })
 
 })
