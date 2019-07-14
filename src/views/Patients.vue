@@ -53,8 +53,8 @@
         </div>
 
         <div class="row">
-            <button class="btn btn-success col-lg-6 col-12 my-3 mx-auto" @click="newPatient">Εισαγωγή νέου ασθενή
-            </button>
+            <input type="submit" class="btn btn-success col-lg-6 col-12 my-3 mx-auto"
+                   @click="newPatient" value="Εισαγωγή νέου ασθενή">
         </div>
     </div>
 </template>

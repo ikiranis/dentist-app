@@ -112,17 +112,15 @@
 
                 <div class="col-lg-6 col-12">
                     <div class="row">
-                        <button class="btn btn-success col-lg-6 col-12 my-3 mx-auto" @click="newTransaction('income')">
-                            Εισαγωγή εσόδου
-                        </button>
+                        <input type="submit" class="btn btn-success col-lg-6 col-12 my-3 mx-auto"
+                               @click="newTransaction('income')" value="Εισαγωγή εσόδου">
                     </div>
                 </div>
 
                 <div class="col-lg-6 col-12">
                     <div class="row">
-                        <button class="btn btn-success col-lg-6 col-12 my-3 mx-auto" @click="newTransaction('expense')">
-                            Εισαγωγή εξόδου
-                        </button>
+                        <input type="submit" class="btn btn-success col-lg-6 col-12 my-3 mx-auto"
+                               @click="newTransaction('expense')" value="Εισαγωγή εξόδου">
                     </div>
                 </div>
 
