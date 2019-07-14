@@ -29,12 +29,12 @@
                     <tr>
                         <th scope="row">{{ patient.id }}</th>
                         <td>
-                            <router-link :to="{ name: 'patient', params: { id: patient.id } }">
+                            <router-link :to="{ name: 'patient', params: { id: patient.id } }" class="patientName">
                                 {{ patient.fname }}
                             </router-link>
                         </td>
                         <td>
-                            <router-link :to="{ name: 'patient', params: { id: patient.id } }">
+                            <router-link :to="{ name: 'patient', params: { id: patient.id } }" class="patientName">
                                 {{ patient.lname }}
                             </router-link>
                         </td>

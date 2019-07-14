@@ -13,11 +13,6 @@ describe('Test browsing the routes', () => {
         cy.wait(1000)
     })
 
-    it('Load patients page', () => {
-        cy.get('.navbar-nav > li').contains('Ασθενείς').click()
-        cy.contains('h1', 'Ασθενείς')
-    })
-
     it('Load economy page', () => {
         cy.get('.navbar-nav > li').contains('Οικονομικά').click()
         cy.contains('h1', 'Οικονομικά')
@@ -41,6 +36,51 @@ describe('Test browsing the routes', () => {
     it('Load user page', () => {
         cy.get('.navbar-nav > li > a > li > a').contains('rocean').click()
         cy.contains('#username', 'rocean')
+    })
+
+    it('Load patients page', () => {
+        cy.get('.navbar-nav > li').contains('Ασθενείς').click()
+        cy.contains('h1', 'Ασθενείς')
+    })
+
+    it('Load patient page', () => {
+        cy.get('.patientName').first().click()
+        cy.contains('#brandTitle', 'Ασθενής')
+    })
+
+    it('Load medical history', () => {
+        cy.get('.nav-link').contains('Ιατρικό ιστορικό').click()
+        cy.contains('h1', 'Ιατρικό ιστορικό')
+    })
+
+    it('Load dental history', () => {
+        cy.get('.nav-link').contains('Οδοντιατρικό ιστορικό').click()
+        cy.contains('h1', 'Οδοντιατρικό ιστορικό')
+    })
+
+    it('Load dentalgram', () => {
+        cy.get('.nav-link').contains('Οδοντόγραμμα').click()
+        cy.contains('h1', 'Οδοντόγραμμα')
+    })
+
+    it('Load periodDentalgram', () => {
+        cy.get('.nav-link').contains('Περιοδοντόγραμμα').click()
+        cy.contains('h1', 'Περιοδοντόγραμμα')
+    })
+
+    it('Load treatment history', () => {
+        cy.get('.nav-link').contains('Ιστορικό θεραπειών').click()
+        cy.contains('h1', 'Ιστορικό θεραπειών')
+    })
+
+    it('Load denervation', () => {
+        cy.get('.nav-link').contains('Απονεύρωση').click()
+        cy.contains('h1', 'Απονεύρωση')
+    })
+
+    it('Load files', () => {
+        cy.get('.nav-link').contains('Αρχεία').click()
+        cy.contains('h1', 'Αρχεία')
     })
 
 })
