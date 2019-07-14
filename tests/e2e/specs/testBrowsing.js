@@ -10,12 +10,37 @@ describe('Test browsing the routes', () => {
     it('Login to app', () => {
         cy.get('#login').click()
         cy.contains('h1', 'Επιλογές')
-        cy.wait(2000)
+        cy.wait(1000)
     })
 
     it('Load patients page', () => {
         cy.get('.navbar-nav > li').contains('Ασθενείς').click()
         cy.contains('h1', 'Ασθενείς')
+    })
+
+    it('Load economy page', () => {
+        cy.get('.navbar-nav > li').contains('Οικονομικά').click()
+        cy.contains('h1', 'Οικονομικά')
+    })
+
+    it('Load calendar page', () => {
+        cy.get('.navbar-nav > li').contains('Ημερολόγιο').click()
+        cy.contains('h1', 'Ημερολόγιο')
+    })
+
+    it('Load tools page', () => {
+        cy.get('.navbar-nav > li').contains('Εργαλεία').click()
+        cy.contains('h1', 'Εργαλεία')
+    })
+
+    it('Load about page', () => {
+        cy.get('.navbar-nav > li').contains('About').click()
+        cy.contains('h1', 'About')
+    })
+
+    it('Load user page', () => {
+        cy.get('.navbar-nav > li > a > li > a').contains('rocean').click()
+        cy.contains('#username', 'rocean')
     })
 
 })

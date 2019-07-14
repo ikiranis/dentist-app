@@ -1,9 +1,9 @@
 <template>
-    <div class="my-3 mx-3" v-if="userToken">
+    <div class="my-3 mx-3">
 
         <div class="card">
             <div class="card-header">
-                <strong>{{ userInfo.name }}</strong>
+                <span id="username">{{ userInfo.name }}</span>
             </div>
 
             <div class="card-body">
