@@ -272,10 +272,10 @@ export default {
     methods: {
 
         /**
-             * Display transaction modal
-             *
-             * @param kind
-             */
+         * Display transaction modal
+         *
+         * @param kind
+         */
         newTransaction (kind) {
             this.transaction.kind = kind
             this.transactionTitle = (kind === 'income') ? 'Εισαγωγή εσόδου' : 'Εισαγωγή εξόδου'
