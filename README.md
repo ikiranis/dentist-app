@@ -1,5 +1,15 @@
 # dentist-app
 
+# Build and run node/vue docker environment
+
+``
+docker-compose build
+``
+
+``
+docker-compose run --rm --service-ports nod_dev_env
+``
+
 ## Project setup
 ```
 npm install
