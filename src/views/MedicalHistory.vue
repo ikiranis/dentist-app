@@ -200,6 +200,11 @@
 
                 </form>
 
+                <div class="row">
+                    <input type="submit" class="btn btn-success col-lg-6 col-12 my-3 mx-auto"
+                           @click="save()" value="Αποθήκευση">
+                </div>
+
             </div>
 
         </div>
@@ -380,7 +385,9 @@ export default {
     },
 
     methods: {
-    //
+        save() {
+        //
+        }
     }
 }
 </script>
