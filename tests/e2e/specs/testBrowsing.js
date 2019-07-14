@@ -13,7 +13,7 @@ describe('Test browsing the routes', () => {
         cy.wait(2000)
     })
 
-    it('Click Ασθενείς', () => {
+    it('Load patients page', () => {
         cy.get('.navbar-nav > li').contains('Ασθενείς').click()
         cy.contains('h1', 'Ασθενείς')
     })
