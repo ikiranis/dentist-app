@@ -12,6 +12,8 @@
 
             <div class="container">
 
+<!--                <FieldsList :fields="fields"/>-->
+
                 <form class="row col-12">
 
                     <div class="col-lg-6 col-12">
@@ -207,9 +209,10 @@
 <script>
 import MenuBar from '@/components/basic/MenuBar'
 import FormError from '@/components/basic/FormError'
+import FieldsList from '@/components/patients/FieldsList'
 
 export default {
-    components: { MenuBar, FormError },
+    components: { MenuBar, FormError, FieldsList },
 
     data () {
         return {
@@ -255,6 +258,99 @@ export default {
                     route: '/files',
                     name: 'Αρχεία',
                     loggedIn: true
+                }
+            ],
+
+            fields: [
+                {
+                    id: 1,
+                    name: 'respiratoryDiseases',
+                    label: 'Α. Νόσοι αναπνευστικού'
+                },
+                {
+                    id: 2,
+                    name: 'cardiovascularDiseases',
+                    label: 'Β. Καρδιαγγειακές παθήσεις'
+                },
+                {
+                    id: 3,
+                    name: 'hematopoieticSystemDiseases',
+                    label: 'Γ. Νόσοι αιμοποιητικού συστήματος'
+                },
+                {
+                    id: 4,
+                    name: 'infectiousDiseases',
+                    label: 'Δ. Λοιμώδεις νόσοι'
+                },
+                {
+                    id: 5,
+                    name: 'endocrineDisorders',
+                    label: 'Ε. Ενδοκρινείς διαταραχές'
+                },
+                {
+                    id: 6,
+                    name: 'diabetes',
+                    label: 'ΣΤ. Σακχαρώδης διαβήτης'
+                },
+                {
+                    id: 7,
+                    name: 'allergy',
+                    label: 'Ζ. Αλλεργία'
+                },
+                {
+                    id: 8,
+                    name: 'degenerativeArthropathy',
+                    label: 'Η. Εκφυλιστική αρθροπάθεια'
+                },
+                {
+                    id: 9,
+                    name: 'rheumatoidArthritis',
+                    label: 'Θ. Ρευματοειδής αρθρίτιδα'
+                },
+                {
+                    id: 10,
+                    name: 'epilepsy',
+                    label: 'Ι. Επιληψία'
+                },
+                {
+                    id: 11,
+                    name: 'ulcer',
+                    label: 'ΙΑ. Έλκος'
+                },
+                {
+                    id: 12,
+                    name: 'neuropsychiatricDisorders',
+                    label: 'ΙΒ. Νευροψυχικές διαταραχές'
+                },
+                {
+                    id: 13,
+                    name: 'sleepApnea',
+                    label: 'ΙΓ. Άπνοια ύπνου'
+                },
+                {
+                    id: 14,
+                    name: 'others',
+                    label: 'Άλλα'
+                },
+                {
+                    id: 15,
+                    name: 'pregnancy',
+                    label: 'Εγκυμοσύνη'
+                },
+                {
+                    id: 16,
+                    name: 'smoking',
+                    label: 'Κάπνισμα'
+                },
+                {
+                    id: 17,
+                    name: 'medicines',
+                    label: 'Φάρμακα'
+                },
+                {
+                    id: 18,
+                    name: 'familyHistory',
+                    label: 'Οικογενειακό ιστορικό'
                 }
             ],
 
