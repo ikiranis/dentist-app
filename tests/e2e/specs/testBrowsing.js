@@ -82,5 +82,4 @@ describe('Test browsing the routes', () => {
         cy.get('.nav-link').contains('Αρχεία').click()
         cy.contains('h1', 'Αρχεία')
     })
-
 })

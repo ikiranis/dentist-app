@@ -12,7 +12,7 @@
 
             <div class="container">
 
-<!--                <FieldsList :fields="fields"/>-->
+                <FieldsList :fields="fields"/>
 
                 <form class="row col-12">
 
