@@ -14,186 +14,260 @@
 
                 <FieldsList :fields="fields"/>
 
-                <form class="row col-12">
+                <form class="row col-12 mt-3">
 
                     <div class="col-lg-6 col-12">
 
-                        <div class="form-group row">
-                            <label for="respiratoryDiseases" class="col-md-4 col-form-label text-md-right">Α. Νόσοι αναπνευστικού</label>
-                            <div class="col-md-8 my-auto">
-                                <input id="respiratoryDiseases" type="text" class="form-control"
-                                       v-model="medicalHistory.respiratoryDiseases" maxlength="60">
-                                <form-error v-if="response.errors.respiratoryDiseases" :error="response.errors.respiratoryDiseases[0]"/>
+                        <div class="input-group row mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <label for="respiratoryDiseases" class="my-auto">Νόσοι αναπνευστικού</label>
+                                </div>
                             </div>
+
+                            <input id="respiratoryDiseases" type="text" class="form-control"
+                                   v-model="medicalHistory.respiratoryDiseases" maxlength="60">
+                            <form-error v-if="response.errors.respiratoryDiseases"
+                                        :error="response.errors.respiratoryDiseases[0]"/>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="cardiovascularDiseases" class="col-md-4 col-form-label text-md-right">Β. Καρδιαγγειακές παθήσεις</label>
-                            <div class="col-md-8 my-auto">
-                                <input id="cardiovascularDiseases" type="text" class="form-control"
-                                       v-model="medicalHistory.cardiovascularDiseases" maxlength="60">
-                                <form-error v-if="response.errors.cardiovascularDiseases" :error="response.errors.cardiovascularDiseases[0]"/>
+                        <div class="input-group row mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <label for="cardiovascularDiseases" class="my-auto">Καρδιαγγειακές παθήσεις</label>
+                                </div>
                             </div>
+
+                            <input id="cardiovascularDiseases" type="text" class="form-control"
+                                   v-model="medicalHistory.cardiovascularDiseases" maxlength="60">
+                            <form-error v-if="response.errors.cardiovascularDiseases"
+                                        :error="response.errors.cardiovascularDiseases[0]"/>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="hematopoieticSystemDiseases" class="col-md-4 col-form-label text-md-right">Γ. Νόσοι αιμοποιητικού συστήματος</label>
-                            <div class="col-md-8 my-auto">
-                                <input id="hematopoieticSystemDiseases" type="text" class="form-control"
-                                       v-model="medicalHistory.hematopoieticSystemDiseases" maxlength="60">
-                                <form-error v-if="response.errors.hematopoieticSystemDiseases" :error="response.errors.hematopoieticSystemDiseases[0]"/>
+                        <div class="input-group row mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <label for="hematopoieticSystemDiseases" class="my-auto">Νόσοι αιμοποιητικού συστήματος</label>
+                                </div>
                             </div>
+
+                            <input id="hematopoieticSystemDiseases" type="text" class="form-control"
+                                   v-model="medicalHistory.hematopoieticSystemDiseases" maxlength="60">
+                            <form-error v-if="response.errors.hematopoieticSystemDiseases"
+                                        :error="response.errors.hematopoieticSystemDiseases[0]"/>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="infectiousDiseases" class="col-md-4 col-form-label text-md-right">Δ. Λοιμώδεις νόσοι</label>
-                            <div class="col-md-8 my-auto">
-                                <input id="infectiousDiseases" type="text" class="form-control"
-                                       v-model="medicalHistory.infectiousDiseases" maxlength="60">
-                                <form-error v-if="response.errors.infectiousDiseases" :error="response.errors.infectiousDiseases[0]"/>
+                        <div class="input-group row mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <label for="infectiousDiseases" class="my-auto">Λοιμώδεις νόσοι</label>
+                                </div>
                             </div>
+
+                            <input id="infectiousDiseases" type="text" class="form-control"
+                                   v-model="medicalHistory.infectiousDiseases" maxlength="60">
+                            <form-error v-if="response.errors.infectiousDiseases"
+                                        :error="response.errors.infectiousDiseases[0]"/>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="endocrineDisorders" class="col-md-4 col-form-label text-md-right">Ε. Ενδοκρινείς διαταραχές</label>
-                            <div class="col-md-8 my-auto">
-                                <input id="endocrineDisorders" type="text" class="form-control"
-                                       v-model="medicalHistory.endocrineDisorders" maxlength="60">
-                                <form-error v-if="response.errors.endocrineDisorders" :error="response.errors.endocrineDisorders[0]"/>
+                        <div class="input-group row mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <label for="endocrineDisorders" class="my-auto">Ενδοκρινείς διαταραχές</label>
+                                </div>
                             </div>
+
+                            <input id="endocrineDisorders" type="text" class="form-control"
+                                   v-model="medicalHistory.endocrineDisorders" maxlength="60">
+                            <form-error v-if="response.errors.endocrineDisorders"
+                                        :error="response.errors.endocrineDisorders[0]"/>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="diabetes" class="col-md-4 col-form-label text-md-right">ΣΤ. Σακχαρώδης διαβήτης</label>
-                            <div class="col-md-8 my-auto">
-                                <input id="diabetes" type="text" class="form-control"
-                                       v-model="medicalHistory.diabetes" maxlength="60">
-                                <form-error v-if="response.errors.diabetes" :error="response.errors.diabetes[0]"/>
+                        <div class="input-group row mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <label for="diabetes" class="my-auto">Σακχαρώδης διαβήτης</label>
+                                </div>
                             </div>
+
+                            <input id="diabetes" type="text" class="form-control"
+                                   v-model="medicalHistory.diabetes" maxlength="60">
+                            <form-error v-if="response.errors.diabetes"
+                                        :error="response.errors.diabetes[0]"/>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="allergy" class="col-md-4 col-form-label text-md-right">Ζ. Αλλεργία</label>
-                            <div class="col-md-8 my-auto">
-                                <input id="allergy" type="text" class="form-control"
-                                       v-model="medicalHistory.allergy" maxlength="60">
-                                <form-error v-if="response.errors.allergy" :error="response.errors.allergy[0]"/>
+                        <div class="input-group row mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <label for="allergy" class="my-auto">Αλλεργία</label>
+                                </div>
                             </div>
+
+                            <input id="allergy" type="text" class="form-control"
+                                   v-model="medicalHistory.allergy" maxlength="60">
+                            <form-error v-if="response.errors.allergy"
+                                        :error="response.errors.allergy[0]"/>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="degenerativeArthropathy" class="col-md-4 col-form-label text-md-right">Η. Εκφυλιστική αρθροπάθεια</label>
-                            <div class="col-md-8 my-auto">
-                                <input id="degenerativeArthropathy" type="text" class="form-control"
-                                       v-model="medicalHistory.degenerativeArthropathy" maxlength="60">
-                                <form-error v-if="response.errors.degenerativeArthropathy" :error="response.errors.degenerativeArthropathy[0]"/>
+                        <div class="input-group row mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <label for="degenerativeArthropathy" class="my-auto">Εκφυλιστική αρθροπάθεια</label>
+                                </div>
                             </div>
+
+                            <input id="degenerativeArthropathy" type="text" class="form-control"
+                                   v-model="medicalHistory.degenerativeArthropathy" maxlength="60">
+                            <form-error v-if="response.errors.degenerativeArthropathy"
+                                        :error="response.errors.degenerativeArthropathy[0]"/>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="rheumatoidArthritis" class="col-md-4 col-form-label text-md-right">Θ. Ρευματοειδής αρθρίτιδα</label>
-                            <div class="col-md-8 my-auto">
-                                <input id="rheumatoidArthritis" type="text" class="form-control"
-                                       v-model="medicalHistory.rheumatoidArthritis" maxlength="60">
-                                <form-error v-if="response.errors.rheumatoidArthritis" :error="response.errors.rheumatoidArthritis[0]"/>
+                        <div class="input-group row mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <label for="rheumatoidArthritis" class="my-auto">Ρευματοειδής αρθρίτιδα</label>
+                                </div>
                             </div>
+
+                            <input id="rheumatoidArthritis" type="text" class="form-control"
+                                   v-model="medicalHistory.rheumatoidArthritis" maxlength="60">
+                            <form-error v-if="response.errors.rheumatoidArthritis"
+                                        :error="response.errors.rheumatoidArthritis[0]"/>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="epilepsy" class="col-md-4 col-form-label text-md-right">Ι. Επιληψία</label>
-                            <div class="col-md-8 my-auto">
-                                <input id="epilepsy" type="text" class="form-control"
-                                       v-model="medicalHistory.epilepsy" maxlength="60">
-                                <form-error v-if="response.errors.epilepsy" :error="response.errors.epilepsy[0]"/>
+                        <div class="input-group row mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <label for="epilepsy" class="my-auto">Επιληψία</label>
+                                </div>
                             </div>
+
+                            <input id="epilepsy" type="text" class="form-control"
+                                   v-model="medicalHistory.epilepsy" maxlength="60">
+                            <form-error v-if="response.errors.epilepsy"
+                                        :error="response.errors.epilepsy[0]"/>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="ulcer" class="col-md-4 col-form-label text-md-right">ΙΑ. Έλκος</label>
-                            <div class="col-md-8 my-auto">
-                                <input id="ulcer" type="text" class="form-control"
-                                       v-model="medicalHistory.ulcer" maxlength="60">
-                                <form-error v-if="response.errors.ulcer" :error="response.errors.ulcer[0]"/>
+                        <div class="input-group row mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <label for="ulcer" class="my-auto">Έλκος</label>
+                                </div>
                             </div>
+
+                            <input id="ulcer" type="text" class="form-control"
+                                   v-model="medicalHistory.ulcer" maxlength="60">
+                            <form-error v-if="response.errors.ulcer"
+                                        :error="response.errors.ulcer[0]"/>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="neuropsychiatricDisorders" class="col-md-4 col-form-label text-md-right">ΙΒ. Νευροψυχικές διαταραχές</label>
-                            <div class="col-md-8 my-auto">
-                                <input id="neuropsychiatricDisorders" type="text" class="form-control"
-                                       v-model="medicalHistory.neuropsychiatricDisorders" maxlength="60">
-                                <form-error v-if="response.errors.neuropsychiatricDisorders" :error="response.errors.neuropsychiatricDisorders[0]"/>
+                        <div class="input-group row mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <label for="neuropsychiatricDisorders" class="my-auto">Νευροψυχικές διαταραχές</label>
+                                </div>
                             </div>
+
+                            <input id="neuropsychiatricDisorders" type="text" class="form-control"
+                                   v-model="medicalHistory.neuropsychiatricDisorders" maxlength="60">
+                            <form-error v-if="response.errors.neuropsychiatricDisorders"
+                                        :error="response.errors.neuropsychiatricDisorders[0]"/>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="sleepApnea" class="col-md-4 col-form-label text-md-right">ΙΓ. Άπνοια ύπνου</label>
-                            <div class="col-md-8 my-auto">
-                                <input id="sleepApnea" type="text" class="form-control"
-                                       v-model="medicalHistory.sleepApnea" maxlength="60">
-                                <form-error v-if="response.errors.sleepApnea" :error="response.errors.sleepApnea[0]"/>
+                        <div class="input-group row mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <label for="sleepApnea" class="my-auto">Άπνοια ύπνου</label>
+                                </div>
                             </div>
+
+                            <input id="sleepApnea" type="text" class="form-control"
+                                   v-model="medicalHistory.sleepApnea" maxlength="60">
+                            <form-error v-if="response.errors.sleepApnea"
+                                        :error="response.errors.sleepApnea[0]"/>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="others" class="col-md-4 col-form-label text-md-right">Άλλα</label>
-                            <div class="col-md-8 my-auto">
-                                <input id="others" type="text" class="form-control"
-                                       v-model="medicalHistory.others" maxlength="60">
-                                <form-error v-if="response.errors.others" :error="response.errors.others[0]"/>
+                        <div class="input-group row mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <label for="others" class="my-auto">Άλλα</label>
+                                </div>
                             </div>
+
+                            <input id="others" type="text" class="form-control"
+                                   v-model="medicalHistory.others" maxlength="60">
+                            <form-error v-if="response.errors.others"
+                                        :error="response.errors.others[0]"/>
                         </div>
 
                     </div>
 
                     <div class="col-lg-6 col-12">
 
-                        <div class="form-group row">
-                            <label for="pregnancy" class="col-md-3 col-form-label text-md-right">Εγκυμοσύνη</label>
+                        <div class="input-group row mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <input type="checkbox" id="pregnacyCheck">
+                                </div>
 
-                            <div class="form-check form-check-inline" id="pregnacyCheck">
-                                <input class="form-check-input" type="checkbox">
+                                <div class="input-group-text">
+                                    <label for="pregnancy" class="my-auto">Εγκυμοσύνη</label>
+                                </div>
                             </div>
 
-                            <div class="col-md-8 my-auto">
-                                <input id="pregnancy" type="text" class="form-control"
-                                       v-model="medicalHistory.pregnancy" maxlength="60">
-                                <form-error v-if="response.errors.pregnancy" :error="response.errors.pregnancy[0]"/>
+                            <input id="pregnancy" type="text" class="form-control"
+                                   v-model="medicalHistory.pregnancy" maxlength="20">
+                            <form-error v-if="response.errors.pregnancy"
+                                        :error="response.errors.pregnancy[0]"/>
+                        </div>
+
+                        <div class="input-group row mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <input type="checkbox" id="smokingCheck">
+                                </div>
+
+                                <div class="input-group-text">
+                                    <label for="smoking" class="my-auto">Κάπνισμα</label>
+                                </div>
+                            </div>
+
+                            <input id="smoking" type="text" class="form-control"
+                                   v-model="medicalHistory.smoking" maxlength="20">
+                            <form-error v-if="response.errors.smoking"
+                                        :error="response.errors.smoking[0]"/>
+                        </div>
+
+                        <div class="input-group row mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <label for="medicine" class="my-auto">Φάρμακα</label>
+                                </div>
+                            </div>
+
+                            <input id="medicine" type="text" class="form-control"
+                                   v-model="medicine" maxlength="60">
+
+                            <div class="col-12">
+                                <select multiple class="form-control mt-2" id="medicines">
+                                    <option>Φάρμακο 1</option>
+                                    <option>Φάρμακο 2</option>
+                                    <option>Φάρμακο 3</option>
+                                </select>
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="smoking" class="col-md-3 col-form-label text-md-right">Κάπνισμα</label>
-
-                            <div class="form-check form-check-inline" id="smokingCheck">
-                                <input class="form-check-input" type="checkbox">
+                        <div class="input-group row mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <label for="familyHistory" class="my-auto">Οικογενειακό ιστορικό</label>
+                                </div>
                             </div>
 
-                            <div class="col-md-8 my-auto">
-                                <input id="smoking" type="text" class="form-control"
-                                       v-model="medicalHistory.smoking" maxlength="60">
-                                <form-error v-if="response.errors.smoking" :error="response.errors.smoking[0]"/>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="medicines">Φάρμακα</label>
-                            <input id="madicine" type="text" class="form-control"
-                                   v-model="madicine" maxlength="60">
-                            <select multiple class="form-control mt-2" id="medicines">
-                                <option>Φάρμακο 1</option>
-                                <option>Φάρμακο 2</option>
-                                <option>Φάρμακο 3</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="familyHistory" class="col-md-3 col-form-label text-md-right">Οικογενειακό ιστορικό</label>
-                            <div class="col-md-9 my-auto">
-                                <input id="familyHistory" type="text" class="form-control"
-                                       v-model="medicalHistory.familyHistory" maxlength="60">
-                                <form-error v-if="response.errors.familyHistory" :error="response.errors.familyHistory[0]"/>
-                            </div>
+                            <input id="familyHistory" type="text" class="form-control"
+                                   v-model="medicalHistory.familyHistory" maxlength="60">
+                            <form-error v-if="response.errors.familyHistory"
+                                        :error="response.errors.familyHistory[0]"/>
                         </div>
 
                     </div>
@@ -380,7 +454,9 @@ export default {
                 smokingCheck: false,
                 medicines: [],
                 familyHistory: ''
-            }
+            },
+
+            medicine: ''
         }
     },
 
