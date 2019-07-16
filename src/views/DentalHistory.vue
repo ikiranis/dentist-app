@@ -28,20 +28,21 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="sensitivityToStimuli" class="col-md-3 col-form-label text-md-right">Ευαισθησία
-                                σε ερεθίσματα</label>
+                        <div class="input-group row mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <input type="checkbox" id="sensitivityToStimuliCheck">
+                                </div>
 
-                            <div class="form-check form-check-inline" id="sensitivityToStimuliCheck">
-                                <input class="form-check-input" type="checkbox">
+                                <div class="input-group-text">
+                                    <label for="sensitivityToStimuli" class="my-auto">Ευαισθησία σε ερεθίσματα</label>
+                                </div>
                             </div>
 
-                            <div class="col-md-8 my-auto">
-                                <input id="sensitivityToStimuli" type="text" class="form-control"
-                                       v-model="dentalHistory.sensitivityToStimuli" maxlength="20">
-                                <form-error v-if="response.errors.sensitivityToStimuli"
-                                            :error="response.errors.sensitivityToStimuli[0]"/>
-                            </div>
+                            <input id="sensitivityToStimuli" type="text" class="form-control"
+                                   v-model="dentalHistory.sensitivityToStimuli" maxlength="20">
+                            <form-error v-if="response.errors.sensitivityToStimuli"
+                                        :error="response.errors.sensitivityToStimuli[0]"/>
                         </div>
 
                         <div class="form-group row">
