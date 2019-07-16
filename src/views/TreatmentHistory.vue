@@ -86,112 +86,112 @@
 </template>
 
 <script>
-    import FormError from '@/components/basic/FormError'
-    import MenuBar from '@/components/basic/MenuBar'
+import FormError from '@/components/basic/FormError'
+import MenuBar from '@/components/basic/MenuBar'
 
-    export default {
-        components: { MenuBar, FormError },
+export default {
+    components: { MenuBar, FormError },
 
-        data() {
-            return {
-                response: {
-                    message: '',
-                    status: '',
-                    errors: []
-                },
-
-                menuItems: [
-                    {
-                        route: '/medicalHistory',
-                        name: 'Ιατρικό ιστορικό',
-                        loggedIn: true
-                    },
-                    {
-                        route: '/dentalHistory',
-                        name: 'Οδοντιατρικό ιστορικό',
-                        loggedIn: true
-                    },
-                    {
-                        route: '/dentalGram',
-                        name: 'Οδοντόγραμμα',
-                        loggedIn: true
-                    },
-                    {
-                        route: '/periodDentalGram',
-                        name: 'Περιοδοντόγραμμα',
-                        loggedIn: true
-                    },
-                    {
-                        route: '/treatmentHistory',
-                        name: 'Ιστορικό θεραπειών',
-                        loggedIn: true
-                    },
-                    {
-                        route: '/denervation',
-                        name: 'Απονεύρωση',
-                        loggedIn: true
-                    },
-                    {
-                        route: '/files',
-                        name: 'Αρχεία',
-                        loggedIn: true
-                    }
-                ],
-
-                treatment: {
-                    id: 0,
-                    date: '',
-                    description: '',
-                    value: 0
-                },
-
-                treatments: [
-                    {
-                        id: 1,
-                        date: '12/01/2019',
-                        description: 'Θεραπεία',
-                        value: 50
-                    },
-                    {
-                        id: 2,
-                        date: '12/02/2019',
-                        description: 'Θεραπεία 2',
-                        value: 150
-                    },
-                    {
-                        id: 3,
-                        date: '12/03/2019',
-                        description: 'Θεραπεία 3',
-                        value: 75
-                    },
-                    {
-                        id: 4,
-                        date: '12/04/2019',
-                        description: 'Θεραπεία 4',
-                        value: 30
-                    },
-                    {
-                        id: 5,
-                        date: '12/05/2019',
-                        description: 'Θεραπεία 5',
-                        value: 250
-                    },
-                ]
-            }
-        },
-
-        methods: {
-
-            /**
-             * Display treatment modal
-             */
-            newTreatment () {
-                this.$refs.treatmentModal.show()
+    data () {
+        return {
+            response: {
+                message: '',
+                status: '',
+                errors: []
             },
 
-            saveTreatment() {
+            menuItems: [
+                {
+                    route: '/medicalHistory',
+                    name: 'Ιατρικό ιστορικό',
+                    loggedIn: true
+                },
+                {
+                    route: '/dentalHistory',
+                    name: 'Οδοντιατρικό ιστορικό',
+                    loggedIn: true
+                },
+                {
+                    route: '/dentalGram',
+                    name: 'Οδοντόγραμμα',
+                    loggedIn: true
+                },
+                {
+                    route: '/periodDentalGram',
+                    name: 'Περιοδοντόγραμμα',
+                    loggedIn: true
+                },
+                {
+                    route: '/treatmentHistory',
+                    name: 'Ιστορικό θεραπειών',
+                    loggedIn: true
+                },
+                {
+                    route: '/denervation',
+                    name: 'Απονεύρωση',
+                    loggedIn: true
+                },
+                {
+                    route: '/files',
+                    name: 'Αρχεία',
+                    loggedIn: true
+                }
+            ],
+
+            treatment: {
+                id: 0,
+                date: '',
+                description: '',
+                value: 0
+            },
+
+            treatments: [
+                {
+                    id: 1,
+                    date: '12/01/2019',
+                    description: 'Θεραπεία',
+                    value: 50
+                },
+                {
+                    id: 2,
+                    date: '12/02/2019',
+                    description: 'Θεραπεία 2',
+                    value: 150
+                },
+                {
+                    id: 3,
+                    date: '12/03/2019',
+                    description: 'Θεραπεία 3',
+                    value: 75
+                },
+                {
+                    id: 4,
+                    date: '12/04/2019',
+                    description: 'Θεραπεία 4',
+                    value: 30
+                },
+                {
+                    id: 5,
+                    date: '12/05/2019',
+                    description: 'Θεραπεία 5',
+                    value: 250
+                }
+            ]
+        }
+    },
+
+    methods: {
+
+        /**
+             * Display treatment modal
+             */
+        newTreatment () {
+            this.$refs.treatmentModal.show()
+        },
+
+        saveTreatment () {
             //
-            }
         }
     }
+}
 </script>

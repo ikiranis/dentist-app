@@ -18,16 +18,19 @@
 
                     <div class="col-lg-6 col-12">
 
-                        <div class="form-group row">
-                            <label for="frequentStrokes" class="col-md-3 col-form-label text-md-right">Συχνές οδονταλγίες</label>
+                        <div class="input-group row mb-2">
+                            <div class="input-group-text">
+                                <input type="checkbox" id="frequentStrokes">
+                            </div>
 
-                            <div class="form-check form-check-inline" id="frequentStrokes">
-                                <input class="form-check-input" type="checkbox">
+                            <div class="col">
+                                <label for="frequentStrokes" class="my-1">Συχνές οδονταλγίες</label>
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="sensitivityToStimuli" class="col-md-3 col-form-label text-md-right">Ευαισθησία σε ερεθίσματα</label>
+                            <label for="sensitivityToStimuli" class="col-md-3 col-form-label text-md-right">Ευαισθησία
+                                σε ερεθίσματα</label>
 
                             <div class="form-check form-check-inline" id="sensitivityToStimuliCheck">
                                 <input class="form-check-input" type="checkbox">
@@ -36,12 +39,14 @@
                             <div class="col-md-8 my-auto">
                                 <input id="sensitivityToStimuli" type="text" class="form-control"
                                        v-model="dentalHistory.sensitivityToStimuli" maxlength="20">
-                                <form-error v-if="response.errors.sensitivityToStimuli" :error="response.errors.sensitivityToStimuli[0]"/>
+                                <form-error v-if="response.errors.sensitivityToStimuli"
+                                            :error="response.errors.sensitivityToStimuli[0]"/>
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="painWhenChewing" class="col-md-3 col-form-label text-md-right">Πόνος κατά τη μάσηση</label>
+                            <label for="painWhenChewing" class="col-md-3 col-form-label text-md-right">Πόνος κατά τη
+                                μάσηση</label>
 
                             <div class="form-check form-check-inline" id="painWhenChewingCheck">
                                 <input class="form-check-input" type="checkbox">
@@ -50,12 +55,14 @@
                             <div class="col-md-8 my-auto">
                                 <input id="painWhenChewing" type="text" class="form-control"
                                        v-model="dentalHistory.painWhenChewing" maxlength="20">
-                                <form-error v-if="response.errors.painWhenChewing" :error="response.errors.painWhenChewing[0]"/>
+                                <form-error v-if="response.errors.painWhenChewing"
+                                            :error="response.errors.painWhenChewing[0]"/>
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="gingivalBleeding" class="col-md-3 col-form-label text-md-right">Αιμοραγία ούλων</label>
+                            <label for="gingivalBleeding" class="col-md-3 col-form-label text-md-right">Αιμοραγία
+                                ούλων</label>
 
                             <div class="form-check form-check-inline" id="gingivalBleedingCheck">
                                 <input class="form-check-input" type="checkbox">
@@ -64,63 +71,81 @@
                             <div class="col-md-8 my-auto">
                                 <input id="gingivalBleeding" type="text" class="form-control"
                                        v-model="dentalHistory.gingivalBleeding" maxlength="20">
-                                <form-error v-if="response.errors.gingivalBleeding" :error="response.errors.gingivalBleeding[0]"/>
+                                <form-error v-if="response.errors.gingivalBleeding"
+                                            :error="response.errors.gingivalBleeding[0]"/>
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="tasteAbnormality" class="col-md-3 col-form-label text-md-right">Ανωμαλία γεύσης</label>
+                        <div class="input-group row mb-2">
+                            <div class="input-group-text">
+                                <input type="checkbox" id="tasteAbnormality">
+                            </div>
 
-                            <div class="form-check form-check-inline" id="tasteAbnormality">
-                                <input class="form-check-input" type="checkbox">
+                            <div class="col">
+                                <label for="tasteAbnormality" class="my-1">Ανωμαλία
+                                    γεύσης</label>
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="dryMouth" class="col-md-3 col-form-label text-md-right">Ξηροστομία</label>
+                        <div class="input-group row mb-2">
+                            <div class="input-group-text">
+                                <input type="checkbox" id="dryMouth">
+                            </div>
 
-                            <div class="form-check form-check-inline" id="dryMouth">
-                                <input class="form-check-input" type="checkbox">
+                            <div class="col">
+                                <label for="dryMouth" class="my-1">Ξηροστομία</label>
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="badSmell" class="col-md-3 col-form-label text-md-right">Κακοσμία</label>
+                        <div class="input-group row mb-2">
+                            <div class="input-group-text">
+                                <input type="checkbox" id="badSmell">
+                            </div>
 
-                            <div class="form-check form-check-inline" id="badSmell">
-                                <input class="form-check-input" type="checkbox">
+                            <div class="col">
+                                <label for="badSmell" class="my-1">Κακοσμία</label>
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="burningMouth" class="col-md-3 col-form-label text-md-right">Καυσαλγία</label>
+                        <div class="input-group row mb-2">
+                            <div class="input-group-text">
+                                <input type="checkbox" id="burningMouth">
+                            </div>
 
-                            <div class="form-check form-check-inline" id="burningMouth">
-                                <input class="form-check-input" type="checkbox">
+                            <div class="col">
+                                <label for="burningMouth" class="my-1">Καυσαλγία</label>
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="painFromCrownFibrousStructure" class="col-md-3 col-form-label text-md-right">Πόνος από ΚΓΔ</label>
+                        <div class="input-group row mb-2">
+                            <div class="input-group-text">
+                                <input type="checkbox" id="painFromCrownFibrousStructure">
+                            </div>
 
-                            <div class="form-check form-check-inline" id="painFromCrownFibrousStructure">
-                                <input class="form-check-input" type="checkbox">
+                            <div class="col">
+                                <label for="painFromCrownFibrousStructure" class="my-1">Πόνος
+                                    από ΚΓΔ</label>
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="soundFromCrownFibrousStructure" class="col-md-3 col-form-label text-md-right">Ήχος από ΚΓΔ</label>
+                        <div class="input-group row mb-2">
+                            <div class="input-group-text">
+                                <input type="checkbox" id="soundFromCrownFibrousStructure">
+                            </div>
 
-                            <div class="form-check form-check-inline" id="soundFromCrownFibrousStructure">
-                                <input class="form-check-input" type="checkbox">
+                            <div class="col">
+                                <label for="soundFromCrownFibrousStructure" class="my-1">Ήχος
+                                    από ΚΓΔ</label>
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="prosopalgia" class="col-md-3 col-form-label text-md-right">Προσωπαλγία</label>
+                        <div class="input-group row mb-2">
+                            <div class="input-group-text">
+                                <input type="checkbox" id="prosopalgia">
+                            </div>
 
-                            <div class="form-check form-check-inline" id="prosopalgia">
-                                <input class="form-check-input" type="checkbox">
+                            <div class="col">
+                                <label for="prosopalgia" class="my-1">Προσωπαλγία</label>
                             </div>
                         </div>
 
@@ -129,42 +154,52 @@
                     <div class="col-lg-6 col-12">
 
                         <div class="form-group row">
-                            <label for="surgicalProcedures" class="col-md-4 col-form-label text-md-right">Χειρουργικές επεμβάσεις</label>
+                            <label for="surgicalProcedures" class="col-md-4 col-form-label text-md-right">Χειρουργικές
+                                επεμβάσεις</label>
                             <div class="col-md-8 my-auto">
                                 <input id="surgicalProcedures" type="text" class="form-control"
                                        v-model="dentalHistory.surgicalProcedures" maxlength="60">
-                                <form-error v-if="response.errors.surgicalProcedures" :error="response.errors.surgicalProcedures[0]"/>
+                                <form-error v-if="response.errors.surgicalProcedures"
+                                            :error="response.errors.surgicalProcedures[0]"/>
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="traumaticLesions" class="col-md-4 col-form-label text-md-right">Τραυματικές βλάβες</label>
+                            <label for="traumaticLesions" class="col-md-4 col-form-label text-md-right">Τραυματικές
+                                βλάβες</label>
                             <div class="col-md-8 my-auto">
                                 <input id="traumaticLesions" type="text" class="form-control"
                                        v-model="dentalHistory.traumaticLesions" maxlength="60">
-                                <form-error v-if="response.errors.traumaticLesions" :error="response.errors.traumaticLesions[0]"/>
+                                <form-error v-if="response.errors.traumaticLesions"
+                                            :error="response.errors.traumaticLesions[0]"/>
+                            </div>
+                        </div>
+
+                        <div class="input-group row mb-2">
+                            <div class="input-group-text">
+                                <input type="checkbox" id="problemsWithLocalAnesthesia">
+                            </div>
+
+                            <div class="col">
+                                <label for="problemsWithLocalAnesthesia" class="my-1">Προβλήματα
+                                    με τοπική αναισθησία</label>
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="problemsWithLocalAnesthesia" class="col-md-3 col-form-label text-md-right">Προβλήματα με τοπική αναισθησία</label>
-
-                            <div class="form-check form-check-inline" id="problemsWithLocalAnesthesia">
-                                <input class="form-check-input" type="checkbox">
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="radiotherapy" class="col-md-4 col-form-label text-md-right">Ακτινοθεραπεία</label>
+                            <label for="radiotherapy"
+                                   class="col-md-4 col-form-label text-md-right">Ακτινοθεραπεία</label>
                             <div class="col-md-8 my-auto">
                                 <input id="radiotherapy" type="text" class="form-control"
                                        v-model="dentalHistory.radiotherapy" maxlength="60">
-                                <form-error v-if="response.errors.radiotherapy" :error="response.errors.radiotherapy[0]"/>
+                                <form-error v-if="response.errors.radiotherapy"
+                                            :error="response.errors.radiotherapy[0]"/>
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="oralSprains" class="col-md-4 col-form-label text-md-right">Στοματικές έξεις</label>
+                            <label for="oralSprains" class="col-md-4 col-form-label text-md-right">Στοματικές
+                                έξεις</label>
                             <div class="col-md-8 my-auto">
                                 <input id="oralSprains" type="text" class="form-control"
                                        v-model="dentalHistory.oralSprains" maxlength="60">
@@ -173,7 +208,8 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="oralHygiene" class="col-md-4 col-form-label text-md-right">Στοματική υγιεινή</label>
+                            <label for="oralHygiene" class="col-md-4 col-form-label text-md-right">Στοματική
+                                υγιεινή</label>
                             <div class="col-md-8 my-auto">
                                 <input id="oralHygiene" type="text" class="form-control"
                                        v-model="dentalHistory.oralHygiene" maxlength="20">
@@ -201,7 +237,7 @@
     import FormError from '@/components/basic/FormError'
 
     export default {
-        components: { MenuBar, FormError },
+        components: {MenuBar, FormError},
 
         data() {
             return {
@@ -282,8 +318,7 @@
 
 <style lang="scss" scoped>
 
-    input[type=checkbox]
-    {
+    input[type=checkbox] {
         /* Double-sized Checkboxes */
         -ms-transform: scale(2); /* IE */
         -moz-transform: scale(2); /* FF */

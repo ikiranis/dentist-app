@@ -7,9 +7,9 @@
 </template>
 
 <script>
-    export default {
-        props: {
-            fields: Array
-        }
+export default {
+    props: {
+        fields: Array
     }
+}
 </script>

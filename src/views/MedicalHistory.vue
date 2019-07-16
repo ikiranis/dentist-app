@@ -385,7 +385,7 @@ export default {
     },
 
     methods: {
-        save() {
+        save () {
         //
         }
     }
