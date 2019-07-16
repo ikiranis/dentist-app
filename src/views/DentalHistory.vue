@@ -19,11 +19,11 @@
                     <div class="col-lg-6 col-12">
 
                         <div class="input-group row mb-2">
-                            <div class="input-group-text mr-3">
+                            <div class="input-group-text">
                                 <input type="checkbox" id="frequentStrokes">
                             </div>
 
-                            <div class="col">
+                            <div class="input-group-text col">
                                 <label for="frequentStrokes" class="my-1">Συχνές οδονταλγίες</label>
                             </div>
                         </div>
@@ -82,74 +82,74 @@
                         </div>
 
                         <div class="input-group row mb-2">
-                            <div class="input-group-text mr-3">
+                            <div class="input-group-text">
                                 <input type="checkbox" id="tasteAbnormality">
                             </div>
 
-                            <div class="col">
+                            <div class="input-group-text col">
                                 <label for="tasteAbnormality" class="my-1">Ανωμαλία
                                     γεύσης</label>
                             </div>
                         </div>
 
                         <div class="input-group row mb-2">
-                            <div class="input-group-text mr-3">
+                            <div class="input-group-text">
                                 <input type="checkbox" id="dryMouth">
                             </div>
 
-                            <div class="col">
+                            <div class="input-group-text col">
                                 <label for="dryMouth" class="my-1">Ξηροστομία</label>
                             </div>
                         </div>
 
                         <div class="input-group row mb-2">
-                            <div class="input-group-text mr-3">
+                            <div class="input-group-text">
                                 <input type="checkbox" id="badSmell">
                             </div>
 
-                            <div class="col">
+                            <div class="input-group-text col">
                                 <label for="badSmell" class="my-1">Κακοσμία</label>
                             </div>
                         </div>
 
                         <div class="input-group row mb-2">
-                            <div class="input-group-text mr-3">
+                            <div class="input-group-text">
                                 <input type="checkbox" id="burningMouth">
                             </div>
 
-                            <div class="col">
+                            <div class="input-group-text col">
                                 <label for="burningMouth" class="my-1">Καυσαλγία</label>
                             </div>
                         </div>
 
                         <div class="input-group row mb-2">
-                            <div class="input-group-text mr-3">
+                            <div class="input-group-text">
                                 <input type="checkbox" id="painFromCrownFibrousStructure">
                             </div>
 
-                            <div class="col">
+                            <div class="input-group-text col">
                                 <label for="painFromCrownFibrousStructure" class="my-1">Πόνος
                                     από ΚΓΔ</label>
                             </div>
                         </div>
 
                         <div class="input-group row mb-2">
-                            <div class="input-group-text mr-3">
+                            <div class="input-group-text">
                                 <input type="checkbox" id="soundFromCrownFibrousStructure">
                             </div>
 
-                            <div class="col">
+                            <div class="input-group-text col">
                                 <label for="soundFromCrownFibrousStructure" class="my-1">Ήχος
                                     από ΚΓΔ</label>
                             </div>
                         </div>
 
                         <div class="input-group row mb-2">
-                            <div class="input-group-text mr-3">
+                            <div class="input-group-text">
                                 <input type="checkbox" id="prosopalgia">
                             </div>
 
-                            <div class="col">
+                            <div class="input-group-text col">
                                 <label for="prosopalgia" class="my-1">Προσωπαλγία</label>
                             </div>
                         </div>
@@ -187,11 +187,11 @@
                         </div>
 
                         <div class="input-group row mb-2">
-                            <div class="input-group-text mr-3">
+                            <div class="input-group-text">
                                 <input type="checkbox" id="problemsWithLocalAnesthesia">
                             </div>
 
-                            <div class="col">
+                            <div class="input-group-text col">
                                 <label for="problemsWithLocalAnesthesia" class="my-1">Προβλήματα
                                     με τοπική αναισθησία</label>
                             </div>
