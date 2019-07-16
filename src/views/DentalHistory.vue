@@ -158,26 +158,32 @@
 
                     <div class="col-lg-6 col-12">
 
-                        <div class="form-group row">
-                            <label for="surgicalProcedures" class="col-md-4 col-form-label text-md-right">Χειρουργικές
-                                επεμβάσεις</label>
-                            <div class="col-md-8 my-auto">
-                                <input id="surgicalProcedures" type="text" class="form-control"
-                                       v-model="dentalHistory.surgicalProcedures" maxlength="60">
-                                <form-error v-if="response.errors.surgicalProcedures"
-                                            :error="response.errors.surgicalProcedures[0]"/>
+                        <div class="input-group row mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <label for="surgicalProcedures" class="my-auto">Χειρουργικές
+                                        επεμβάσεις</label>
+                                </div>
                             </div>
+
+                            <input id="surgicalProcedures" type="text" class="form-control"
+                                   v-model="dentalHistory.surgicalProcedures" maxlength="60">
+                            <form-error v-if="response.errors.surgicalProcedures"
+                                        :error="response.errors.surgicalProcedures[0]"/>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="traumaticLesions" class="col-md-4 col-form-label text-md-right">Τραυματικές
-                                βλάβες</label>
-                            <div class="col-md-8 my-auto">
-                                <input id="traumaticLesions" type="text" class="form-control"
-                                       v-model="dentalHistory.traumaticLesions" maxlength="60">
-                                <form-error v-if="response.errors.traumaticLesions"
-                                            :error="response.errors.traumaticLesions[0]"/>
+                        <div class="input-group row mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <label for="traumaticLesions" class="my-auto">Τραυματικές
+                                        βλάβες</label>
+                                </div>
                             </div>
+
+                            <input id="traumaticLesions" type="text" class="form-control"
+                                   v-model="dentalHistory.traumaticLesions" maxlength="60">
+                            <form-error v-if="response.errors.traumaticLesions"
+                                        :error="response.errors.traumaticLesions[0]"/>
                         </div>
 
                         <div class="input-group row mb-2">
@@ -191,35 +197,45 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="radiotherapy"
-                                   class="col-md-4 col-form-label text-md-right">Ακτινοθεραπεία</label>
-                            <div class="col-md-8 my-auto">
-                                <input id="radiotherapy" type="text" class="form-control"
-                                       v-model="dentalHistory.radiotherapy" maxlength="60">
-                                <form-error v-if="response.errors.radiotherapy"
-                                            :error="response.errors.radiotherapy[0]"/>
+                        <div class="input-group row mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <label for="radiotherapy" class="my-auto">Ακτινοθεραπεία</label>
+                                </div>
                             </div>
+
+                            <input id="radiotherapy" type="text" class="form-control"
+                                   v-model="dentalHistory.radiotherapy" maxlength="60">
+                            <form-error v-if="response.errors.radiotherapy"
+                                        :error="response.errors.radiotherapy[0]"/>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="oralSprains" class="col-md-4 col-form-label text-md-right">Στοματικές
-                                έξεις</label>
-                            <div class="col-md-8 my-auto">
-                                <input id="oralSprains" type="text" class="form-control"
-                                       v-model="dentalHistory.oralSprains" maxlength="60">
-                                <form-error v-if="response.errors.oralSprains" :error="response.errors.oralSprains[0]"/>
+                        <div class="input-group row mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <label for="oralSprains" class="my-auto">Στοματικές
+                                        έξεις</label>
+                                </div>
                             </div>
+
+                            <input id="oralSprains" type="text" class="form-control"
+                                   v-model="dentalHistory.oralSprains" maxlength="60">
+                            <form-error v-if="response.errors.oralSprains"
+                                        :error="response.errors.oralSprains[0]"/>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="oralHygiene" class="col-md-4 col-form-label text-md-right">Στοματική
-                                υγιεινή</label>
-                            <div class="col-md-8 my-auto">
-                                <input id="oralHygiene" type="text" class="form-control"
-                                       v-model="dentalHistory.oralHygiene" maxlength="20">
-                                <form-error v-if="response.errors.oralHygiene" :error="response.errors.oralHygiene[0]"/>
+                        <div class="input-group row mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">
+                                    <label for="oralHygiene" class="my-auto">Στοματική
+                                        υγιεινή</label>
+                                </div>
                             </div>
+
+                            <input id="oralHygiene" type="text" class="form-control"
+                                   v-model="dentalHistory.oralHygiene" maxlength="60">
+                            <form-error v-if="response.errors.oralHygiene"
+                                        :error="response.errors.oralHygiene[0]"/>
                         </div>
 
                     </div>
