@@ -18,7 +18,7 @@
 
                     <div class="col-lg-6 col-12">
 
-                        <div class="input-group row mb-2">
+                        <div class="input-group row mb-2" v-if="fields[0].display">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
                                     <label for="respiratoryDiseases" class="my-auto">Νόσοι αναπνευστικού</label>
@@ -31,7 +31,7 @@
                                         :error="response.errors.respiratoryDiseases[0]"/>
                         </div>
 
-                        <div class="input-group row mb-2">
+                        <div class="input-group row mb-2" v-if="fields[1].display">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
                                     <label for="cardiovascularDiseases" class="my-auto">Καρδιαγγειακές παθήσεις</label>
@@ -44,7 +44,7 @@
                                         :error="response.errors.cardiovascularDiseases[0]"/>
                         </div>
 
-                        <div class="input-group row mb-2">
+                        <div class="input-group row mb-2" v-if="fields[2].display">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
                                     <label for="hematopoieticSystemDiseases" class="my-auto">Νόσοι αιμοποιητικού συστήματος</label>
@@ -57,7 +57,7 @@
                                         :error="response.errors.hematopoieticSystemDiseases[0]"/>
                         </div>
 
-                        <div class="input-group row mb-2">
+                        <div class="input-group row mb-2" v-if="fields[3].display">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
                                     <label for="infectiousDiseases" class="my-auto">Λοιμώδεις νόσοι</label>
@@ -70,7 +70,7 @@
                                         :error="response.errors.infectiousDiseases[0]"/>
                         </div>
 
-                        <div class="input-group row mb-2">
+                        <div class="input-group row mb-2" v-if="fields[4].display">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
                                     <label for="endocrineDisorders" class="my-auto">Ενδοκρινείς διαταραχές</label>
@@ -83,7 +83,7 @@
                                         :error="response.errors.endocrineDisorders[0]"/>
                         </div>
 
-                        <div class="input-group row mb-2">
+                        <div class="input-group row mb-2" v-if="fields[5].display">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
                                     <label for="diabetes" class="my-auto">Σακχαρώδης διαβήτης</label>
@@ -96,7 +96,7 @@
                                         :error="response.errors.diabetes[0]"/>
                         </div>
 
-                        <div class="input-group row mb-2">
+                        <div class="input-group row mb-2" v-if="fields[6].display">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
                                     <label for="allergy" class="my-auto">Αλλεργία</label>
@@ -109,7 +109,7 @@
                                         :error="response.errors.allergy[0]"/>
                         </div>
 
-                        <div class="input-group row mb-2">
+                        <div class="input-group row mb-2" v-if="fields[7].display">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
                                     <label for="degenerativeArthropathy" class="my-auto">Εκφυλιστική αρθροπάθεια</label>
@@ -122,7 +122,7 @@
                                         :error="response.errors.degenerativeArthropathy[0]"/>
                         </div>
 
-                        <div class="input-group row mb-2">
+                        <div class="input-group row mb-2" v-if="fields[8].display">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
                                     <label for="rheumatoidArthritis" class="my-auto">Ρευματοειδής αρθρίτιδα</label>
@@ -135,7 +135,7 @@
                                         :error="response.errors.rheumatoidArthritis[0]"/>
                         </div>
 
-                        <div class="input-group row mb-2">
+                        <div class="input-group row mb-2" v-if="fields[9].display">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
                                     <label for="epilepsy" class="my-auto">Επιληψία</label>
@@ -148,7 +148,7 @@
                                         :error="response.errors.epilepsy[0]"/>
                         </div>
 
-                        <div class="input-group row mb-2">
+                        <div class="input-group row mb-2" v-if="fields[10].display">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
                                     <label for="ulcer" class="my-auto">Έλκος</label>
@@ -161,7 +161,7 @@
                                         :error="response.errors.ulcer[0]"/>
                         </div>
 
-                        <div class="input-group row mb-2">
+                        <div class="input-group row mb-2" v-if="fields[11].display">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
                                     <label for="neuropsychiatricDisorders" class="my-auto">Νευροψυχικές διαταραχές</label>
@@ -174,7 +174,7 @@
                                         :error="response.errors.neuropsychiatricDisorders[0]"/>
                         </div>
 
-                        <div class="input-group row mb-2">
+                        <div class="input-group row mb-2" v-if="fields[12].display">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
                                     <label for="sleepApnea" class="my-auto">Άπνοια ύπνου</label>
@@ -187,7 +187,7 @@
                                         :error="response.errors.sleepApnea[0]"/>
                         </div>
 
-                        <div class="input-group row mb-2">
+                        <div class="input-group row mb-2" v-if="fields[13].display">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
                                     <label for="others" class="my-auto">Άλλα</label>
@@ -204,7 +204,7 @@
 
                     <div class="col-lg-6 col-12">
 
-                        <div class="input-group row mb-2">
+                        <div class="input-group row mb-2" v-if="fields[14].display">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
                                     <input type="checkbox" id="pregnacyCheck">
@@ -221,7 +221,7 @@
                                         :error="response.errors.pregnancy[0]"/>
                         </div>
 
-                        <div class="input-group row mb-2">
+                        <div class="input-group row mb-2" v-if="fields[15].display">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
                                     <input type="checkbox" id="smokingCheck">
@@ -238,7 +238,7 @@
                                         :error="response.errors.smoking[0]"/>
                         </div>
 
-                        <div class="input-group row mb-2">
+                        <div class="input-group row mb-2" v-if="fields[16].display">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
                                     <label for="medicine" class="my-auto">Φάρμακα</label>
@@ -257,7 +257,7 @@
                             </div>
                         </div>
 
-                        <div class="input-group row mb-2">
+                        <div class="input-group row mb-2" v-if="fields[17].display">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
                                     <label for="familyHistory" class="my-auto">Οικογενειακό ιστορικό</label>
