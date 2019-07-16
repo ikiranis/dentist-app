@@ -343,93 +343,93 @@ export default {
             fields: [
                 {
                     id: 1,
-                    name: 'respiratoryDiseases',
-                    label: 'Νόσοι αναπνευστικού'
+                    label: 'Νόσοι αναπνευστικού',
+                    display: false
                 },
                 {
                     id: 2,
-                    name: 'cardiovascularDiseases',
-                    label: 'Καρδιαγγειακές παθήσεις'
+                    label: 'Καρδιαγγειακές παθήσεις',
+                    display: false
                 },
                 {
                     id: 3,
-                    name: 'hematopoieticSystemDiseases',
-                    label: 'Νόσοι αιμοποιητικού συστήματος'
+                    label: 'Νόσοι αιμοποιητικού συστήματος',
+                    display: false
                 },
                 {
                     id: 4,
-                    name: 'infectiousDiseases',
-                    label: 'Λοιμώδεις νόσοι'
+                    label: 'Λοιμώδεις νόσοι',
+                    display: false
                 },
                 {
                     id: 5,
-                    name: 'endocrineDisorders',
-                    label: 'Ενδοκρινείς διαταραχές'
+                    label: 'Ενδοκρινείς διαταραχές',
+                    display: false
                 },
                 {
                     id: 6,
-                    name: 'diabetes',
-                    label: 'Σακχαρώδης διαβήτης'
+                    label: 'Σακχαρώδης διαβήτης',
+                    display: false
                 },
                 {
                     id: 7,
-                    name: 'allergy',
-                    label: 'Αλλεργία'
+                    label: 'Αλλεργία',
+                    display: false
                 },
                 {
                     id: 8,
-                    name: 'degenerativeArthropathy',
-                    label: 'Εκφυλιστική αρθροπάθεια'
+                    label: 'Εκφυλιστική αρθροπάθεια',
+                    display: false
                 },
                 {
                     id: 9,
-                    name: 'rheumatoidArthritis',
-                    label: 'Ρευματοειδής αρθρίτιδα'
+                    label: 'Ρευματοειδής αρθρίτιδα',
+                    display: false
                 },
                 {
                     id: 10,
-                    name: 'epilepsy',
-                    label: 'Επιληψία'
+                    label: 'Επιληψία',
+                    display: false
                 },
                 {
                     id: 11,
-                    name: 'ulcer',
-                    label: 'Έλκος'
+                    label: 'Έλκος',
+                    display: false
                 },
                 {
                     id: 12,
-                    name: 'neuropsychiatricDisorders',
-                    label: 'Νευροψυχικές διαταραχές'
+                    label: 'Νευροψυχικές διαταραχές',
+                    display: false
                 },
                 {
                     id: 13,
-                    name: 'sleepApnea',
-                    label: 'Άπνοια ύπνου'
+                    label: 'Άπνοια ύπνου',
+                    display: false
                 },
                 {
                     id: 14,
-                    name: 'others',
-                    label: 'Άλλα'
+                    label: 'Άλλα',
+                    display: false
                 },
                 {
                     id: 15,
-                    name: 'pregnancy',
-                    label: 'Εγκυμοσύνη'
+                    label: 'Εγκυμοσύνη',
+                    display: false
                 },
                 {
                     id: 16,
-                    name: 'smoking',
-                    label: 'Κάπνισμα'
+                    label: 'Κάπνισμα',
+                    display: false
                 },
                 {
                     id: 17,
-                    name: 'medicines',
-                    label: 'Φάρμακα'
+                    label: 'Φάρμακα',
+                    display: false
                 },
                 {
                     id: 18,
-                    name: 'familyHistory',
-                    label: 'Οικογενειακό ιστορικό'
+                    label: 'Οικογενειακό ιστορικό',
+                    display: false
                 }
             ],
 
