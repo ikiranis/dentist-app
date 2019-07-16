@@ -8,50 +8,50 @@ localVue.use(BootstrapVue)
 localVue.use(router)
 
 describe('MenuBar.vue', () => {
+    let propsData = {
+        brand: 'Brand',
+        brandRoute: {},
+        menuItems: [
+            {
+                route: '/route1',
+                name: 'Route 1',
+                loggedIn: true
+            },
+            {
+                route: '/route2',
+                name: 'Route 2',
+                loggedIn: true
+            },
+            {
+                route: '/route3',
+                name: 'Route 3',
+                loggedIn: false
+            },
+            {
+                route: '/route4',
+                name: 'Route 4',
+                loggedIn: false
+            }
+        ],
+        userInfo: 'true',
+        fixed: '',
+        variant: '',
+        type: 'light',
+        valign: 'mx-auto',
+        toggle: 'lg'
+    }
+    let mocks = {
+        $store: {
+            state: {
+                userId: 1,
+                username: 'user'
+            }
+        }
+    }
+
     it('Test MenuBar component', () => {
         const wrapper = shallowMount(MenuBar, {
-            localVue,
-            mocks: {
-                $store: {
-                    state: {
-                        userId: 1,
-                        username: 'user'
-                    }
-                }
-            },
-
-            propsData: {
-                brand: 'Brand',
-                brandRoute: {},
-                menuItems: [
-                    {
-                        route: '/route1',
-                        name: 'Route 1',
-                        loggedIn: true
-                    },
-                    {
-                        route: '/route2',
-                        name: 'Route 2',
-                        loggedIn: true
-                    },
-                    {
-                        route: '/route3',
-                        name: 'Route 3',
-                        loggedIn: false
-                    },
-                    {
-                        route: '/route4',
-                        name: 'Route 4',
-                        loggedIn: false
-                    }
-                ],
-                userInfo: 'true',
-                fixed: '',
-                variant: '',
-                type: 'light',
-                valign: 'mx-auto',
-                toggle: 'lg'
-            }
+            localVue, propsData, mocks
         })
 
         expect(wrapper.find('#brandTitle').text()).toMatch('Brand')
