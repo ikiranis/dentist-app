@@ -19,7 +19,7 @@
                     <div class="col-lg-6 col-12">
 
                         <div class="input-group row mb-2">
-                            <div class="input-group-text">
+                            <div class="input-group-text mr-3">
                                 <input type="checkbox" id="frequentStrokes">
                             </div>
 
@@ -77,7 +77,7 @@
                         </div>
 
                         <div class="input-group row mb-2">
-                            <div class="input-group-text">
+                            <div class="input-group-text mr-3">
                                 <input type="checkbox" id="tasteAbnormality">
                             </div>
 
@@ -88,7 +88,7 @@
                         </div>
 
                         <div class="input-group row mb-2">
-                            <div class="input-group-text">
+                            <div class="input-group-text mr-3">
                                 <input type="checkbox" id="dryMouth">
                             </div>
 
@@ -98,7 +98,7 @@
                         </div>
 
                         <div class="input-group row mb-2">
-                            <div class="input-group-text">
+                            <div class="input-group-text mr-3">
                                 <input type="checkbox" id="badSmell">
                             </div>
 
@@ -108,7 +108,7 @@
                         </div>
 
                         <div class="input-group row mb-2">
-                            <div class="input-group-text">
+                            <div class="input-group-text mr-3">
                                 <input type="checkbox" id="burningMouth">
                             </div>
 
@@ -118,7 +118,7 @@
                         </div>
 
                         <div class="input-group row mb-2">
-                            <div class="input-group-text">
+                            <div class="input-group-text mr-3">
                                 <input type="checkbox" id="painFromCrownFibrousStructure">
                             </div>
 
@@ -129,7 +129,7 @@
                         </div>
 
                         <div class="input-group row mb-2">
-                            <div class="input-group-text">
+                            <div class="input-group-text mr-3">
                                 <input type="checkbox" id="soundFromCrownFibrousStructure">
                             </div>
 
@@ -140,7 +140,7 @@
                         </div>
 
                         <div class="input-group row mb-2">
-                            <div class="input-group-text">
+                            <div class="input-group-text mr-3">
                                 <input type="checkbox" id="prosopalgia">
                             </div>
 
@@ -176,7 +176,7 @@
                         </div>
 
                         <div class="input-group row mb-2">
-                            <div class="input-group-text">
+                            <div class="input-group-text mr-3">
                                 <input type="checkbox" id="problemsWithLocalAnesthesia">
                             </div>
 
