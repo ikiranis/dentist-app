@@ -1,11 +1,5 @@
 import { shallowMount, createLocalVue } from '@vue/test-utils'
 import FieldsList from '@/components/patients/FieldsList.vue'
-import BootstrapVue from 'bootstrap-vue'
-import router from '@/router.js'
-
-const localVue = createLocalVue()
-localVue.use(BootstrapVue)
-localVue.use(router)
 
 describe('FieldsList.vue', () => {
     let fields = [
@@ -26,7 +20,7 @@ describe('FieldsList.vue', () => {
 
     it('Test FieldsList component', () => {
         const wrapper = shallowMount(FieldsList, {
-            localVue, propsData
+            propsData
         })
 
         const fieldItems = wrapper.findAll('.field')
