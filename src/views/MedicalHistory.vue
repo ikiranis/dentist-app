@@ -344,67 +344,67 @@ export default {
                 {
                     id: 1,
                     name: 'respiratoryDiseases',
-                    label: 'Α. Νόσοι αναπνευστικού'
+                    label: 'Νόσοι αναπνευστικού'
                 },
                 {
                     id: 2,
                     name: 'cardiovascularDiseases',
-                    label: 'Β. Καρδιαγγειακές παθήσεις'
+                    label: 'Καρδιαγγειακές παθήσεις'
                 },
                 {
                     id: 3,
                     name: 'hematopoieticSystemDiseases',
-                    label: 'Γ. Νόσοι αιμοποιητικού συστήματος'
+                    label: 'Νόσοι αιμοποιητικού συστήματος'
                 },
                 {
                     id: 4,
                     name: 'infectiousDiseases',
-                    label: 'Δ. Λοιμώδεις νόσοι'
+                    label: 'Λοιμώδεις νόσοι'
                 },
                 {
                     id: 5,
                     name: 'endocrineDisorders',
-                    label: 'Ε. Ενδοκρινείς διαταραχές'
+                    label: 'Ενδοκρινείς διαταραχές'
                 },
                 {
                     id: 6,
                     name: 'diabetes',
-                    label: 'ΣΤ. Σακχαρώδης διαβήτης'
+                    label: 'Σακχαρώδης διαβήτης'
                 },
                 {
                     id: 7,
                     name: 'allergy',
-                    label: 'Ζ. Αλλεργία'
+                    label: 'Αλλεργία'
                 },
                 {
                     id: 8,
                     name: 'degenerativeArthropathy',
-                    label: 'Η. Εκφυλιστική αρθροπάθεια'
+                    label: 'Εκφυλιστική αρθροπάθεια'
                 },
                 {
                     id: 9,
                     name: 'rheumatoidArthritis',
-                    label: 'Θ. Ρευματοειδής αρθρίτιδα'
+                    label: 'Ρευματοειδής αρθρίτιδα'
                 },
                 {
                     id: 10,
                     name: 'epilepsy',
-                    label: 'Ι. Επιληψία'
+                    label: 'Επιληψία'
                 },
                 {
                     id: 11,
                     name: 'ulcer',
-                    label: 'ΙΑ. Έλκος'
+                    label: 'Έλκος'
                 },
                 {
                     id: 12,
                     name: 'neuropsychiatricDisorders',
-                    label: 'ΙΒ. Νευροψυχικές διαταραχές'
+                    label: 'Νευροψυχικές διαταραχές'
                 },
                 {
                     id: 13,
                     name: 'sleepApnea',
-                    label: 'ΙΓ. Άπνοια ύπνου'
+                    label: 'Άπνοια ύπνου'
                 },
                 {
                     id: 14,
