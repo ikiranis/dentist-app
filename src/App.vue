@@ -93,6 +93,6 @@ export default {
     }
 
     .btn-icon {
-        cursor: pointer;
+            cursor: pointer;
     }
 </style>

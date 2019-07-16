@@ -1,7 +1,7 @@
 <template>
     <div class="text-center">
         <span v-for="field in falseFields" :key="field.id">
-            <span class="field badge badge-secondary mx-1">{{ field.label }}</span>
+            <span class="field badge badge-secondary mx-1" @click="removeField(field.id)">{{ field.label }}</span>
         </span>
     </div>
 </template>
@@ -18,6 +18,18 @@ export default {
                 return !field.display
             })
         }
+    },
+
+    methods: {
+        removeField (field) {
+            this.fields[field].display = true
+        }
     }
 }
 </script>
+
+<style scoped>
+    .field {
+        cursor: pointer;
+    }
+</style>

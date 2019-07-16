@@ -27,6 +27,7 @@
 
                             <input id="respiratoryDiseases" type="text" class="form-control"
                                    v-model="medicalHistory.respiratoryDiseases" maxlength="60">
+                            <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου" @click="removeField(0)"/>
                             <form-error v-if="response.errors.respiratoryDiseases"
                                         :error="response.errors.respiratoryDiseases[0]"/>
                         </div>
@@ -40,6 +41,7 @@
 
                             <input id="cardiovascularDiseases" type="text" class="form-control"
                                    v-model="medicalHistory.cardiovascularDiseases" maxlength="60">
+                            <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου" @click="removeField(1)"/>
                             <form-error v-if="response.errors.cardiovascularDiseases"
                                         :error="response.errors.cardiovascularDiseases[0]"/>
                         </div>
@@ -53,6 +55,7 @@
 
                             <input id="hematopoieticSystemDiseases" type="text" class="form-control"
                                    v-model="medicalHistory.hematopoieticSystemDiseases" maxlength="60">
+                            <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου" @click="removeField(2)"/>
                             <form-error v-if="response.errors.hematopoieticSystemDiseases"
                                         :error="response.errors.hematopoieticSystemDiseases[0]"/>
                         </div>
@@ -66,6 +69,7 @@
 
                             <input id="infectiousDiseases" type="text" class="form-control"
                                    v-model="medicalHistory.infectiousDiseases" maxlength="60">
+                            <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου" @click="removeField(3)"/>
                             <form-error v-if="response.errors.infectiousDiseases"
                                         :error="response.errors.infectiousDiseases[0]"/>
                         </div>
@@ -79,6 +83,7 @@
 
                             <input id="endocrineDisorders" type="text" class="form-control"
                                    v-model="medicalHistory.endocrineDisorders" maxlength="60">
+                            <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου" @click="removeField(4)"/>
                             <form-error v-if="response.errors.endocrineDisorders"
                                         :error="response.errors.endocrineDisorders[0]"/>
                         </div>
@@ -92,6 +97,7 @@
 
                             <input id="diabetes" type="text" class="form-control"
                                    v-model="medicalHistory.diabetes" maxlength="60">
+                            <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου" @click="removeField(5)"/>
                             <form-error v-if="response.errors.diabetes"
                                         :error="response.errors.diabetes[0]"/>
                         </div>
@@ -105,6 +111,7 @@
 
                             <input id="allergy" type="text" class="form-control"
                                    v-model="medicalHistory.allergy" maxlength="60">
+                            <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου" @click="removeField(6)"/>
                             <form-error v-if="response.errors.allergy"
                                         :error="response.errors.allergy[0]"/>
                         </div>
@@ -118,6 +125,7 @@
 
                             <input id="degenerativeArthropathy" type="text" class="form-control"
                                    v-model="medicalHistory.degenerativeArthropathy" maxlength="60">
+                            <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου" @click="removeField(7)"/>
                             <form-error v-if="response.errors.degenerativeArthropathy"
                                         :error="response.errors.degenerativeArthropathy[0]"/>
                         </div>
@@ -131,6 +139,7 @@
 
                             <input id="rheumatoidArthritis" type="text" class="form-control"
                                    v-model="medicalHistory.rheumatoidArthritis" maxlength="60">
+                            <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου" @click="removeField(8)"/>
                             <form-error v-if="response.errors.rheumatoidArthritis"
                                         :error="response.errors.rheumatoidArthritis[0]"/>
                         </div>
@@ -144,6 +153,7 @@
 
                             <input id="epilepsy" type="text" class="form-control"
                                    v-model="medicalHistory.epilepsy" maxlength="60">
+                            <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου" @click="removeField(9)"/>
                             <form-error v-if="response.errors.epilepsy"
                                         :error="response.errors.epilepsy[0]"/>
                         </div>
@@ -157,6 +167,7 @@
 
                             <input id="ulcer" type="text" class="form-control"
                                    v-model="medicalHistory.ulcer" maxlength="60">
+                            <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου" @click="removeField(10)"/>
                             <form-error v-if="response.errors.ulcer"
                                         :error="response.errors.ulcer[0]"/>
                         </div>
@@ -170,6 +181,7 @@
 
                             <input id="neuropsychiatricDisorders" type="text" class="form-control"
                                    v-model="medicalHistory.neuropsychiatricDisorders" maxlength="60">
+                            <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου" @click="removeField(11)"/>
                             <form-error v-if="response.errors.neuropsychiatricDisorders"
                                         :error="response.errors.neuropsychiatricDisorders[0]"/>
                         </div>
@@ -183,6 +195,7 @@
 
                             <input id="sleepApnea" type="text" class="form-control"
                                    v-model="medicalHistory.sleepApnea" maxlength="60">
+                            <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου" @click="removeField(12)"/>
                             <form-error v-if="response.errors.sleepApnea"
                                         :error="response.errors.sleepApnea[0]"/>
                         </div>
@@ -196,6 +209,7 @@
 
                             <input id="others" type="text" class="form-control"
                                    v-model="medicalHistory.others" maxlength="60">
+                            <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου" @click="removeField(13)"/>
                             <form-error v-if="response.errors.others"
                                         :error="response.errors.others[0]"/>
                         </div>
@@ -217,6 +231,7 @@
 
                             <input id="pregnancy" type="text" class="form-control"
                                    v-model="medicalHistory.pregnancy" maxlength="20">
+                            <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου" @click="removeField(14)"/>
                             <form-error v-if="response.errors.pregnancy"
                                         :error="response.errors.pregnancy[0]"/>
                         </div>
@@ -234,6 +249,7 @@
 
                             <input id="smoking" type="text" class="form-control"
                                    v-model="medicalHistory.smoking" maxlength="20">
+                            <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου" @click="removeField(15)"/>
                             <form-error v-if="response.errors.smoking"
                                         :error="response.errors.smoking[0]"/>
                         </div>
@@ -247,6 +263,8 @@
 
                             <input id="medicine" type="text" class="form-control"
                                    v-model="medicine" maxlength="60">
+
+                            <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου" @click="removeField(16)"/>
 
                             <div class="col-12">
                                 <select multiple class="form-control mt-2" id="medicines">
@@ -266,6 +284,7 @@
 
                             <input id="familyHistory" type="text" class="form-control"
                                    v-model="medicalHistory.familyHistory" maxlength="60">
+                            <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου" @click="removeField(17)"/>
                             <form-error v-if="response.errors.familyHistory"
                                         :error="response.errors.familyHistory[0]"/>
                         </div>
@@ -342,92 +361,92 @@ export default {
 
             fields: [
                 {
-                    id: 1,
+                    id: 0,
                     label: 'Νόσοι αναπνευστικού',
                     display: false
                 },
                 {
-                    id: 2,
+                    id: 1,
                     label: 'Καρδιαγγειακές παθήσεις',
                     display: false
                 },
                 {
-                    id: 3,
+                    id: 2,
                     label: 'Νόσοι αιμοποιητικού συστήματος',
                     display: false
                 },
                 {
-                    id: 4,
+                    id: 3,
                     label: 'Λοιμώδεις νόσοι',
                     display: false
                 },
                 {
-                    id: 5,
+                    id: 4,
                     label: 'Ενδοκρινείς διαταραχές',
                     display: false
                 },
                 {
-                    id: 6,
+                    id: 5,
                     label: 'Σακχαρώδης διαβήτης',
                     display: false
                 },
                 {
-                    id: 7,
+                    id: 6,
                     label: 'Αλλεργία',
                     display: false
                 },
                 {
-                    id: 8,
+                    id: 7,
                     label: 'Εκφυλιστική αρθροπάθεια',
                     display: false
                 },
                 {
-                    id: 9,
+                    id: 8,
                     label: 'Ρευματοειδής αρθρίτιδα',
                     display: false
                 },
                 {
-                    id: 10,
+                    id: 9,
                     label: 'Επιληψία',
                     display: false
                 },
                 {
-                    id: 11,
+                    id: 10,
                     label: 'Έλκος',
                     display: false
                 },
                 {
-                    id: 12,
+                    id: 11,
                     label: 'Νευροψυχικές διαταραχές',
                     display: false
                 },
                 {
-                    id: 13,
+                    id: 12,
                     label: 'Άπνοια ύπνου',
                     display: false
                 },
                 {
-                    id: 14,
+                    id: 13,
                     label: 'Άλλα',
                     display: false
                 },
                 {
-                    id: 15,
+                    id: 14,
                     label: 'Εγκυμοσύνη',
                     display: false
                 },
                 {
-                    id: 16,
+                    id: 15,
                     label: 'Κάπνισμα',
                     display: false
                 },
                 {
-                    id: 17,
+                    id: 16,
                     label: 'Φάρμακα',
                     display: false
                 },
                 {
-                    id: 18,
+                    id: 17,
                     label: 'Οικογενειακό ιστορικό',
                     display: false
                 }
@@ -463,6 +482,15 @@ export default {
     methods: {
         save () {
         //
+        },
+
+        /**
+         * Εξαφάνιση του πεδίου
+         *
+         * @param field
+         */
+        removeField (field) {
+            this.fields[field].display = false
         }
     }
 }
@@ -478,6 +506,10 @@ export default {
         -webkit-transform: scale(2); /* Safari and Chrome */
         -o-transform: scale(2); /* Opera */
         padding: 10px;
+    }
+
+    .removeItem {
+        cursor: pointer;
     }
 
 </style>
