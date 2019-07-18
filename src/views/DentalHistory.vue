@@ -25,7 +25,7 @@
 <script>
 import MenuBar from '@/components/basic/MenuBar'
 import ClinicalExamination from '@/components/patients/ClinicalExamination'
-import DentalHistory from '@/components/patients/DentalHistory'
+import DentalHistory from '@/components/patients/DentalHistoryCompo'
 
 export default {
     components: { MenuBar, ClinicalExamination, DentalHistory },
