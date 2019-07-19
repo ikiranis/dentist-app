@@ -1,5 +1,36 @@
 <template>
     <div class="container-fluid my-3">
+
+        <b-modal ref="noteModal" size="md" centered hide-footer title="Εισαγωγή σημείωσης">
+
+            <form class="container-fluid">
+
+                <div class="form-group row">
+                    <label for="date" class="col-md-4 col-form-label text-md-right">Ημ/νία</label>
+                    <div class="col-md-8">
+                        <input id="date" type="date" class="form-control"
+                               v-model="note.date">
+                        <form-error v-if="response.errors.date" :error="response.errors.date[0]"/>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="description" class="col-md-4 col-form-label text-md-right">Περιγραφή</label>
+                    <div class="col-md-8">
+                        <input id="description" type="text" class="form-control"
+                               v-model="note.description" required>
+                        <form-error v-if="response.errors.description" :error="response.errors.description[0]"/>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <button class="btn btn-success col-lg-6 col-12 my-3 mx-auto" @click="saveNote">Εισαγωγή</button>
+                </div>
+
+            </form>
+
+        </b-modal>
+
         <div class="row justify-content-center">
 
             <div class="col-12">
@@ -12,7 +43,7 @@
 
             <div class="container row no-gutters">
 
-                <div v-for="tooth in tooths" :key="tooth.id" class="card mb-3 col-2 mx-auto">
+                <div v-for="tooth in tooths" :key="tooth.id" class="card mb-3 col-3 mx-auto">
                     <div class="card-header text-center">
                         {{ tooth.id }}
                     </div>
@@ -28,6 +59,11 @@
                                 </small>
                             </p>
                         </div>
+
+                        <div class="row">
+                            <input type="submit" class="btn btn-sm btn-success col-lg-6 col-12 my-3 mx-auto"
+                                   @click="newNote()" value="Εισαγωγή">
+                        </div>
                     </div>
 
                 </div>
@@ -40,12 +76,19 @@
 
 <script>
 import MenuBar from '@/components/basic/MenuBar'
+import FormError from '@/components/basic/FormError'
 
 export default {
-    components: { MenuBar },
+    components: { MenuBar, FormError },
 
     data () {
         return {
+            response: {
+                message: '',
+                status: '',
+                errors: []
+            },
+
             menuItems: [
                 {
                     route: '/medicalHistory',
@@ -83,6 +126,12 @@ export default {
                     loggedIn: true
                 }
             ],
+
+            note: {
+                toothId: 0,
+                date: '',
+                description: ''
+            },
 
             tooths: [
                 {
@@ -730,7 +779,17 @@ export default {
     },
 
     methods: {
-    //
+
+        /**
+         * Display note modal
+         */
+        newNote () {
+            this.$refs.noteModal.show()
+        },
+
+        saveNote () {
+        //
+        }
     }
 }
 </script>
