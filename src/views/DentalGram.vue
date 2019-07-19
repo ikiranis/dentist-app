@@ -45,7 +45,7 @@
 
                 <div v-for="tooth in tooths" :key="tooth.id" class="card mb-3 col-3 mx-auto">
                     <div class="card-header text-center">
-                        {{ tooth.id }}
+                        <h1>{{ tooth.id }}</h1>
                     </div>
 
                     <div class="card-body">
