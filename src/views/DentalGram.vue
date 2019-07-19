@@ -106,7 +106,7 @@ export default {
                     loggedIn: true
                 },
                 {
-                    route: '/periodDentalGram',
+                    route: '/periodicDentalGram',
                     name: 'Περιοδοντόγραμμα',
                     loggedIn: true
                 },
