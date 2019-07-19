@@ -1,6 +1,36 @@
 <template>
     <div>
 
+        <b-modal ref="noteModal" size="md" centered hide-footer title="Εισαγωγή σημείωσης">
+
+            <form class="container-fluid">
+
+                <div class="form-group row">
+                    <label for="date" class="col-md-4 col-form-label text-md-right">Ημ/νία</label>
+                    <div class="col-md-8">
+                        <input id="date" type="date" class="form-control"
+                               v-model="note.date">
+                        <form-error v-if="response.errors.date" :error="response.errors.date[0]"/>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="description" class="col-md-4 col-form-label text-md-right">Περιγραφή</label>
+                    <div class="col-md-8">
+                        <input id="description" type="text" class="form-control"
+                               v-model="note.description" required>
+                        <form-error v-if="response.errors.description" :error="response.errors.description[0]"/>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <button class="btn btn-success col-lg-6 col-12 my-3 mx-auto" @click="saveNote">Εισαγωγή</button>
+                </div>
+
+            </form>
+
+        </b-modal>
+
         <div class="col-12 text-center">
             <h1>Ενδοδοντική θεραπεία</h1>
         </div>
@@ -81,7 +111,9 @@
                        v-model="endoTreatment.Benchmark" maxlength="20">
 
                 <select class="form-control" id="chozenBenchmark">
-                    <option v-for="benchmark in benchmarks" :key="benchmark.id" :value="benchmark.id">{{ benchmark.name }}</option>
+                    <option v-for="benchmark in benchmarks" :key="benchmark.id" :value="benchmark.id">{{ benchmark.name
+                        }}
+                    </option>
                 </select>
 
                 <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
@@ -136,6 +168,31 @@
                                       @click="removeField(5)"/>
             </div>
 
+            <div v-if="fields[6].display">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">Ημ/νία</th>
+                        <th scope="col">Περιγραφή</th>
+                    </tr>
+                    </thead>
+
+                    <tbody v-for="note in notes" :key="note.id">
+                    <tr>
+                        <th scope="row">{{ note.date }}</th>
+                        <td>
+                            {{ note.description }}
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                    <div class="row">
+                        <input type="submit" class="btn btn-success col-lg-6 col-12 my-3 mx-auto"
+                               @click="newNote()" value="Εισαγωγή σημείωσης">
+                    </div>
+            </div>
+
         </form>
 
         <div class="row">
@@ -152,7 +209,7 @@
     import FieldsList from '@/components/patients/FieldsList'
 
     export default {
-        components: {FormError, FieldsList},
+        components: { FormError, FieldsList },
 
         data() {
             return {
@@ -195,12 +252,7 @@
                     },
                     {
                         id: 6,
-                        label: 'Αίσθηση επιμήκυνησης δοντιού',
-                        display: false
-                    },
-                    {
-                        id: 7,
-                        label: 'Παρατηρήσεις',
+                        label: 'Σημειώσεις',
                         display: false
                     }
                 ],
@@ -297,7 +349,36 @@
                         id: 8,
                         name: 'Άπω υπερώιο'
                     }
-                ]
+                ],
+
+                notes: [
+                    {
+                        id: 0,
+                        date: '12/01/2019',
+                        description: "something"
+                    },
+                    {
+                        id: 1,
+                        date: '22/01/2019',
+                        description: "something about something"
+                    },
+                    {
+                        id: 2,
+                        date: '13/02/2019',
+                        description: "something for something"
+                    },
+                    {
+                        id: 3,
+                        date: '25/03/2019',
+                        description: "somethings about somethings"
+                    }
+                ],
+
+                note: {
+                    id: 0,
+                    date: '',
+                    description: ''
+                }
 
             }
         },
@@ -309,8 +390,16 @@
              *
              * @param field
              */
-            removeField(field) {
+            removeField (field) {
                 this.fields[field].display = false
+            },
+
+            newNote () {
+                this.$refs.noteModal.show()
+            },
+
+            saveNote () {
+            //
             }
         }
     }
