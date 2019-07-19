@@ -16,6 +16,8 @@
 
                 <diagnosis/>
 
+                <endo-treatment/>
+
             </div>
 
         </div>
@@ -26,9 +28,10 @@
 import MenuBar from '@/components/basic/MenuBar'
 import EndoTreatmentCard from '@/components/patients/EndoTreatmentCard'
 import Diagnosis from '@/components/patients/Diagnosis'
+import EndoTreatment from '@/components/patients/EndoTreatment'
 
 export default {
-    components: { MenuBar, EndoTreatmentCard, Diagnosis },
+    components: { MenuBar, EndoTreatmentCard, Diagnosis, EndoTreatment },
 
     data () {
         return {
