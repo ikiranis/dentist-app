@@ -508,7 +508,7 @@ export default {
          */
         removeField (field) {
             this.fields[field].display = false
-        },
+        }
     }
 }
 </script>

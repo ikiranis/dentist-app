@@ -12,7 +12,7 @@
 
             <div class="container">
 
-                <endo-treatment/>
+                <endo-treatment-card/>
 
                 <diagnosis/>
 
@@ -24,11 +24,11 @@
 
 <script>
 import MenuBar from '@/components/basic/MenuBar'
-import EndoTreatment from '@/components/patients/EndoTreatment'
+import EndoTreatmentCard from '@/components/patients/EndoTreatmentCard'
 import Diagnosis from '@/components/patients/Diagnosis'
 
 export default {
-    components: { MenuBar, EndoTreatment, Diagnosis },
+    components: { MenuBar, EndoTreatmentCard, Diagnosis },
 
     data () {
         return {
