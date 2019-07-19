@@ -197,200 +197,200 @@
 </template>
 
 <script>
-    import FormError from '@/components/basic/FormError'
-    import FieldsList from '@/components/patients/FieldsList'
+import FormError from '@/components/basic/FormError'
+import FieldsList from '@/components/patients/FieldsList'
 
-    export default {
-        components: { FormError, FieldsList },
+export default {
+    components: { FormError, FieldsList },
 
-        data() {
-            return {
-                response: {
-                    message: '',
-                    status: '',
-                    errors: []
-                },
+    data () {
+        return {
+            response: {
+                message: '',
+                status: '',
+                errors: []
+            },
 
-                fields: [
-                    {
-                        id: 0,
-                        label: 'Μήκος εργαλείου',
-                        display: false
-                    },
-                    {
-                        id: 1,
-                        label: 'Μήκος εργασίας',
-                        display: false
-                    },
-                    {
-                        id: 2,
-                        label: 'Σημείο αναφοράς',
-                        display: false
-                    },
-                    {
-                        id: 3,
-                        label: 'MAF',
-                        display: false
-                    },
-                    {
-                        id: 4,
-                        label: 'Χημικομηχανική επεξεργασία',
-                        display: false
-                    },
-                    {
-                        id: 5,
-                        label: 'Τεχνική έμφραξης',
-                        display: false
-                    },
-                    {
-                        id: 6,
-                        label: 'Σημειώσεις',
-                        display: false
-                    }
-                ],
-
-                endoTreatment: {
-                    counter: '',
-                    radiography: '',
-                    workingLength: '',
-                    Benchmark: '',
-                    chozenBenchmark: 0,
-                    MAF: '',
-                    chemicalMechanicalTreatment: '',
-                    chozenBlockingTechnique: 0,
-                    chozenRoot: 0
-                },
-
-                roots: [
-                    {
-                        id: 0,
-                        name: 'Απερώια'
-                    },
-                    {
-                        id: 1,
-                        name: 'Προστομιακή'
-                    },
-                    {
-                        id: 2,
-                        name: 'Προστομιακή εγγύς'
-                    },
-                    {
-                        id: 3,
-                        name: 'Προστομιακή άπω'
-                    },
-                    {
-                        id: 4,
-                        name: '2η προσ. εγγύς'
-                    },
-                    {
-                        id: 5,
-                        name: 'Υπερώια'
-                    },
-                    {
-                        id: 6,
-                        name: 'Άπο γλωσσική'
-                    },
-                    {
-                        id: 7,
-                        name: 'Εγγύς γλωσσική'
-                    },
-                    {
-                        id: 8,
-                        name: 'Άπω προστομιακή'
-                    },
-                    {
-                        id: 9,
-                        name: 'Εγγύς προστομιακή'
-                    }
-                ],
-
-                benchmarks: [
-                    {
-                        id: 0,
-                        name: 'Κοπτικό χείλος'
-                    },
-                    {
-                        id: 1,
-                        name: 'Παρειακό φύμα'
-                    },
-                    {
-                        id: 2,
-                        name: 'Υπερώιο φύμα'
-                    },
-                    {
-                        id: 3,
-                        name: 'Εγγύς παρειακό'
-                    },
-                    {
-                        id: 4,
-                        name: 'Άπω παρειακό'
-                    },
-                    {
-                        id: 5,
-                        name: 'Εγγύς γλωσσικό'
-                    },
-                    {
-                        id: 6,
-                        name: 'Άπω γλωσσικό'
-                    },
-                    {
-                        id: 7,
-                        name: 'Εγγύς υπερώιο'
-                    },
-                    {
-                        id: 8,
-                        name: 'Άπω υπερώιο'
-                    }
-                ],
-
-                notes: [
-                    {
-                        id: 0,
-                        date: '12/01/2019',
-                        description: "something"
-                    },
-                    {
-                        id: 1,
-                        date: '22/01/2019',
-                        description: "something about something"
-                    },
-                    {
-                        id: 2,
-                        date: '13/02/2019',
-                        description: "something for something"
-                    },
-                    {
-                        id: 3,
-                        date: '25/03/2019',
-                        description: "somethings about somethings"
-                    }
-                ],
-
-                note: {
+            fields: [
+                {
                     id: 0,
-                    date: '',
-                    description: ''
+                    label: 'Μήκος εργαλείου',
+                    display: false
+                },
+                {
+                    id: 1,
+                    label: 'Μήκος εργασίας',
+                    display: false
+                },
+                {
+                    id: 2,
+                    label: 'Σημείο αναφοράς',
+                    display: false
+                },
+                {
+                    id: 3,
+                    label: 'MAF',
+                    display: false
+                },
+                {
+                    id: 4,
+                    label: 'Χημικομηχανική επεξεργασία',
+                    display: false
+                },
+                {
+                    id: 5,
+                    label: 'Τεχνική έμφραξης',
+                    display: false
+                },
+                {
+                    id: 6,
+                    label: 'Σημειώσεις',
+                    display: false
                 }
+            ],
 
+            endoTreatment: {
+                counter: '',
+                radiography: '',
+                workingLength: '',
+                Benchmark: '',
+                chozenBenchmark: 0,
+                MAF: '',
+                chemicalMechanicalTreatment: '',
+                chozenBlockingTechnique: 0,
+                chozenRoot: 0
+            },
+
+            roots: [
+                {
+                    id: 0,
+                    name: 'Απερώια'
+                },
+                {
+                    id: 1,
+                    name: 'Προστομιακή'
+                },
+                {
+                    id: 2,
+                    name: 'Προστομιακή εγγύς'
+                },
+                {
+                    id: 3,
+                    name: 'Προστομιακή άπω'
+                },
+                {
+                    id: 4,
+                    name: '2η προσ. εγγύς'
+                },
+                {
+                    id: 5,
+                    name: 'Υπερώια'
+                },
+                {
+                    id: 6,
+                    name: 'Άπο γλωσσική'
+                },
+                {
+                    id: 7,
+                    name: 'Εγγύς γλωσσική'
+                },
+                {
+                    id: 8,
+                    name: 'Άπω προστομιακή'
+                },
+                {
+                    id: 9,
+                    name: 'Εγγύς προστομιακή'
+                }
+            ],
+
+            benchmarks: [
+                {
+                    id: 0,
+                    name: 'Κοπτικό χείλος'
+                },
+                {
+                    id: 1,
+                    name: 'Παρειακό φύμα'
+                },
+                {
+                    id: 2,
+                    name: 'Υπερώιο φύμα'
+                },
+                {
+                    id: 3,
+                    name: 'Εγγύς παρειακό'
+                },
+                {
+                    id: 4,
+                    name: 'Άπω παρειακό'
+                },
+                {
+                    id: 5,
+                    name: 'Εγγύς γλωσσικό'
+                },
+                {
+                    id: 6,
+                    name: 'Άπω γλωσσικό'
+                },
+                {
+                    id: 7,
+                    name: 'Εγγύς υπερώιο'
+                },
+                {
+                    id: 8,
+                    name: 'Άπω υπερώιο'
+                }
+            ],
+
+            notes: [
+                {
+                    id: 0,
+                    date: '12/01/2019',
+                    description: 'something'
+                },
+                {
+                    id: 1,
+                    date: '22/01/2019',
+                    description: 'something about something'
+                },
+                {
+                    id: 2,
+                    date: '13/02/2019',
+                    description: 'something for something'
+                },
+                {
+                    id: 3,
+                    date: '25/03/2019',
+                    description: 'somethings about somethings'
+                }
+            ],
+
+            note: {
+                id: 0,
+                date: '',
+                description: ''
             }
-        },
 
-        methods: {
+        }
+    },
 
-            /**
+    methods: {
+
+        /**
              * Εξαφάνιση του πεδίου
              *
              * @param field
              */
-            removeField (field) {
-                this.fields[field].display = false
-            },
+        removeField (field) {
+            this.fields[field].display = false
+        },
 
-            saveNote () {
+        saveNote () {
             //
-            }
         }
     }
+}
 </script>
 
 <style lang="scss" scoped>

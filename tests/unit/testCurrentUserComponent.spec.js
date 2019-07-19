@@ -41,7 +41,6 @@ describe('CurrentUser.vue', () => {
     })
 
     it('Test CurrentUser component when user is logged in', () => {
-
         const wrapper = shallowMount(CurrentUser, {
             localVue,
             store
