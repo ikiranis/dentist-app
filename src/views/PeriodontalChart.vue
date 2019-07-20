@@ -65,7 +65,8 @@
 
                 <div v-for="tooth in tooths" :key="tooth.id" class="card mb-3 col-lg-3 col-12 mx-auto">
                     <div class="card-header text-center">
-                        <h1>{{ tooth.id }}</h1>
+                        <img :src="'images/teeths/' + tooth.id + '.png'" class="toothImage">
+                        <h5>{{ tooth.id }}</h5>
                     </div>
 
                     <div class="card-body">
@@ -1493,3 +1494,9 @@
         }
     }
 </script>
+
+<style scoped>
+    .toothImage {
+        height: 2em;
+    }
+</style>
