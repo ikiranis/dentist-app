@@ -14,7 +14,7 @@ import Denervation from './views/Denervation.vue'
 import Files from './views/Files.vue'
 import DentalGram from './views/DentalGram.vue'
 import MedicalHistory from './views/MedicalHistory.vue'
-import PeriodicDentalGram from './views/PeriodicDentalGram.vue'
+import PeriodontalChart from './views/PeriodontalChart.vue'
 import TreatmentHistory from './views/TreatmentHistory.vue'
 import DentalHistory from './views/DentalHistory.vue'
 import Backup from './views/Backup.vue'
@@ -150,9 +150,9 @@ export default new Router({
             }
         },
         {
-            path: '/periodicDentalGram',
-            name: 'periodicDentalGram',
-            component: PeriodicDentalGram,
+            path: '/periodontalChart',
+            name: 'periodontalChart',
+            component: PeriodontalChart,
             meta: {
                 title: 'Περιοδοντόγραμμα - Dentist'
             }

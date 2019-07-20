@@ -97,7 +97,7 @@ export default {
                     loggedIn: true
                 },
                 {
-                    route: '/periodicDentalGram',
+                    route: '/periodontalChart',
                     name: 'Περιοδοντόγραμμα',
                     loggedIn: true
                 },
