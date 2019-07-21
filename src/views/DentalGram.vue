@@ -34,47 +34,9 @@
 
             <div class="container row no-gutters mx-auto">
 
-                <table class="table table-responsive">
+                <dental-gram-tooths-table :tooths="upperTooths"/>
 
-                    <thead>
-                    <tr>
-                        <th v-for="tooth in upperTooths" :key="tooth.id"
-                            class="text-center">{{ tooth.id }}</th>
-                    </tr>
-                    </thead>
-
-                    <tbody>
-                    <td v-for="tooth in upperTooths" :key="tooth.id">
-                        <tr v-for="note in tooth.notes" :key="note.id" class="mb-2">
-                            <span class="toothNotes">
-                                {{ note.date }}
-                            </span>
-                        </tr>
-                    </td>
-                    </tbody>
-
-                </table>
-
-                <table class="table table-responsive">
-
-                    <thead>
-                    <tr>
-                        <th v-for="tooth in downTooths" :key="tooth.id"
-                            class="text-center">{{ tooth.id }}</th>
-                    </tr>
-                    </thead>
-
-                    <tbody>
-                    <td v-for="tooth in upperTooths" :key="tooth.id">
-                        <tr v-for="note in tooth.notes" :key="note.id" class="mb-2">
-                            <span class="toothNotes">
-                                {{ note.date }}
-                            </span>
-                        </tr>
-                    </td>
-                    </tbody>
-
-                </table>
+                <dental-gram-tooths-table :tooths="downTooths"/>
 
             </div>
 
@@ -85,9 +47,10 @@
 <script>
 import MenuBar from '@/components/basic/MenuBar'
 import FormError from '@/components/basic/FormError'
+import DentalGramToothsTable from '@/components/patients/DentalGramToothsTable'
 
 export default {
-    components: { MenuBar, FormError },
+    components: { MenuBar, FormError, DentalGramToothsTable },
 
     data () {
         return {
