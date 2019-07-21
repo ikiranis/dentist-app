@@ -34,9 +34,9 @@
 
             <div class="container row no-gutters mx-auto">
 
-                <dental-gram-tooths-table :tooths="upperTooths"/>
+                <dental-gram-tooths-table :tooths="upperTooths" @click="newNote"/>
 
-                <dental-gram-tooths-table :tooths="downTooths"/>
+                <dental-gram-tooths-table :tooths="downTooths" @click="newNote"/>
 
             </div>
 
@@ -773,7 +773,7 @@ export default {
         },
 
         saveNote () {
-            //
+            alert('Saving note!')
         }
     }
 }
