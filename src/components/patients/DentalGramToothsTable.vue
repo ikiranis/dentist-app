@@ -35,3 +35,9 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+    .toothNotes {
+        font-size: 0.5em;
+    }
+</style>
