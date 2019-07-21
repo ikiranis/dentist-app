@@ -30,34 +30,51 @@
 
             <menu-bar brand="Ασθενής" :brandRoute="{ name: 'patient', params: { id: 1 } }"
                       :menuItems="menuItems" userInfo="false" fixed=""
-                      variant="" type="light" valign="mx-auto" toggle="lg" />
+                      variant="" type="light" valign="mx-auto" toggle="lg"/>
 
-            <div class="container row no-gutters">
+            <div class="container row no-gutters mx-auto">
 
-                <div v-for="tooth in tooths" :key="tooth.id" class="card mb-3 col-lg-3 col-12 mx-auto">
-                    <div class="card-header text-center">
-                        <h1>{{ tooth.id }}</h1>
-                    </div>
+                <table class="table table-responsive">
 
-                    <div class="card-body">
-                        <div v-for="note in tooth.notes" :key="note.id" class="mb-2">
-                            <small>
-                                <strong>{{ note.date }}</strong>
-                            </small>
-                            <p>
-                                <small>
-                                    {{ note.description }}
-                                </small>
-                            </p>
-                        </div>
+                    <thead>
+                    <tr>
+                        <th v-for="tooth in upperTooths" :key="tooth.id"
+                            class="text-center">{{ tooth.id }}</th>
+                    </tr>
+                    </thead>
 
-                        <div class="row">
-                            <input type="submit" class="btn btn-sm btn-success col-lg-6 col-12 my-3 mx-auto"
-                                   @click="newNote()" value="Εισαγωγή">
-                        </div>
-                    </div>
+                    <tbody>
+                    <td v-for="tooth in upperTooths" :key="tooth.id">
+                        <tr v-for="note in tooth.notes" :key="note.id" class="mb-2">
+                            <span class="toothNotes">
+                                {{ note.date }}
+                            </span>
+                        </tr>
+                    </td>
+                    </tbody>
 
-                </div>
+                </table>
+
+                <table class="table table-responsive">
+
+                    <thead>
+                    <tr>
+                        <th v-for="tooth in downTooths" :key="tooth.id"
+                            class="text-center">{{ tooth.id }}</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <td v-for="tooth in upperTooths" :key="tooth.id">
+                        <tr v-for="note in tooth.notes" :key="note.id" class="mb-2">
+                            <span class="toothNotes">
+                                {{ note.date }}
+                            </span>
+                        </tr>
+                    </td>
+                    </tbody>
+
+                </table>
 
             </div>
 
@@ -66,721 +83,741 @@
 </template>
 
 <script>
-import MenuBar from '@/components/basic/MenuBar'
-import FormError from '@/components/basic/FormError'
+    import MenuBar from '@/components/basic/MenuBar'
+    import FormError from '@/components/basic/FormError'
 
-export default {
-    components: { MenuBar, FormError },
+    export default {
+        components: {MenuBar, FormError},
 
-    data () {
-        return {
-            response: {
-                message: '',
-                status: '',
-                errors: []
-            },
+        data() {
+            return {
+                response: {
+                    message: '',
+                    status: '',
+                    errors: []
+                },
 
-            menuItems: [
-                {
-                    route: '/medicalHistory',
-                    name: 'Ιατρικό ιστορικό',
-                    loggedIn: true
-                },
-                {
-                    route: '/dentalHistory',
-                    name: 'Οδοντιατρικό ιστορικό',
-                    loggedIn: true
-                },
-                {
-                    route: '/dentalGram',
-                    name: 'Οδοντόγραμμα',
-                    loggedIn: true
-                },
-                {
-                    route: '/periodontalChart',
-                    name: 'Περιοδοντόγραμμα',
-                    loggedIn: true
-                },
-                {
-                    route: '/treatmentHistory',
-                    name: 'Ιστορικό θεραπειών',
-                    loggedIn: true
-                },
-                {
-                    route: '/denervation',
-                    name: 'Απονεύρωση',
-                    loggedIn: true
-                },
-                {
-                    route: '/files',
-                    name: 'Αρχεία',
-                    loggedIn: true
-                }
-            ],
+                menuItems: [
+                    {
+                        route: '/medicalHistory',
+                        name: 'Ιατρικό ιστορικό',
+                        loggedIn: true
+                    },
+                    {
+                        route: '/dentalHistory',
+                        name: 'Οδοντιατρικό ιστορικό',
+                        loggedIn: true
+                    },
+                    {
+                        route: '/dentalGram',
+                        name: 'Οδοντόγραμμα',
+                        loggedIn: true
+                    },
+                    {
+                        route: '/periodontalChart',
+                        name: 'Περιοδοντόγραμμα',
+                        loggedIn: true
+                    },
+                    {
+                        route: '/treatmentHistory',
+                        name: 'Ιστορικό θεραπειών',
+                        loggedIn: true
+                    },
+                    {
+                        route: '/denervation',
+                        name: 'Απονεύρωση',
+                        loggedIn: true
+                    },
+                    {
+                        route: '/files',
+                        name: 'Αρχεία',
+                        loggedIn: true
+                    }
+                ],
 
-            note: {
-                toothId: 0,
-                date: '',
-                description: ''
-            },
+                note: {
+                    toothId: 0,
+                    date: '',
+                    description: ''
+                },
 
-            tooths: [
-                {
-                    id: 18,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something'
-                        }
-                    ]
-                },
-                {
-                    id: 17,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something'
-                        }
-                    ]
-                },
-                {
-                    id: 16,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something'
-                        }
-                    ]
-                },
-                {
-                    id: 15,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something'
-                        }
-                    ]
-                },
-                {
-                    id: 14,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something'
-                        }
-                    ]
-                },
-                {
-                    id: 13,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something'
-                        }
-                    ]
-                },
-                {
-                    id: 12,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something'
-                        }
-                    ]
-                },
-                {
-                    id: 11,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something'
-                        }
-                    ]
-                },
-                {
-                    id: 21,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something'
-                        }
-                    ]
-                },
-                {
-                    id: 22,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something'
-                        }
-                    ]
-                },
-                {
-                    id: 23,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something'
-                        }
-                    ]
-                },
-                {
-                    id: 24,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something'
-                        }
-                    ]
-                },
-                {
-                    id: 25,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something'
-                        }
-                    ]
-                },
-                {
-                    id: 26,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something'
-                        }
-                    ]
-                },
-                {
-                    id: 27,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something'
-                        }
-                    ]
-                },
-                {
-                    id: 28,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something'
-                        }
-                    ]
-                },
-                {
-                    id: 48,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something'
-                        }
-                    ]
-                },
-                {
-                    id: 47,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something'
-                        }
-                    ]
-                },
-                {
-                    id: 46,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something'
-                        }
-                    ]
-                },
-                {
-                    id: 45,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something'
-                        }
-                    ]
-                },
-                {
-                    id: 44,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something'
-                        }
-                    ]
-                },
-                {
-                    id: 43,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something'
-                        }
-                    ]
-                },
-                {
-                    id: 42,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something'
-                        }
-                    ]
-                },
-                {
-                    id: 41,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something'
-                        }
-                    ]
-                },
-                {
-                    id: 31,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something'
-                        }
-                    ]
-                },
-                {
-                    id: 32,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something'
-                        }
-                    ]
-                },
-                {
-                    id: 33,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something'
-                        }
-                    ]
-                },
-                {
-                    id: 34,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something'
-                        }
-                    ]
-                },
-                {
-                    id: 35,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something'
-                        }
-                    ]
-                },
-                {
-                    id: 36,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something'
-                        }
-                    ]
-                },
-                {
-                    id: 37,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something'
-                        }
-                    ]
-                },
-                {
-                    id: 38,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something'
-                        }
-                    ]
-                }
-            ]
-        }
-    },
-
-    methods: {
-
-        /**
-         * Display note modal
-         */
-        newNote () {
-            this.$refs.noteModal.show()
+                tooths: [
+                    {
+                        id: 18,
+                        notes: [
+                            {
+                                id: 0,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 1,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 2,
+                                date: '21/01/2019',
+                                description: 'something'
+                            }
+                        ]
+                    },
+                    {
+                        id: 17,
+                        notes: [
+                            {
+                                id: 0,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 1,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 2,
+                                date: '21/01/2019',
+                                description: 'something'
+                            }
+                        ]
+                    },
+                    {
+                        id: 16,
+                        notes: [
+                            {
+                                id: 0,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 1,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 2,
+                                date: '21/01/2019',
+                                description: 'something'
+                            }
+                        ]
+                    },
+                    {
+                        id: 15,
+                        notes: [
+                            {
+                                id: 0,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 1,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 2,
+                                date: '21/01/2019',
+                                description: 'something'
+                            }
+                        ]
+                    },
+                    {
+                        id: 14,
+                        notes: [
+                            {
+                                id: 0,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 1,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 2,
+                                date: '21/01/2019',
+                                description: 'something'
+                            }
+                        ]
+                    },
+                    {
+                        id: 13,
+                        notes: [
+                            {
+                                id: 0,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 1,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 2,
+                                date: '21/01/2019',
+                                description: 'something'
+                            }
+                        ]
+                    },
+                    {
+                        id: 12,
+                        notes: [
+                            {
+                                id: 0,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 1,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 2,
+                                date: '21/01/2019',
+                                description: 'something'
+                            }
+                        ]
+                    },
+                    {
+                        id: 11,
+                        notes: [
+                            {
+                                id: 0,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 1,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 2,
+                                date: '21/01/2019',
+                                description: 'something'
+                            }
+                        ]
+                    },
+                    {
+                        id: 21,
+                        notes: [
+                            {
+                                id: 0,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 1,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 2,
+                                date: '21/01/2019',
+                                description: 'something'
+                            }
+                        ]
+                    },
+                    {
+                        id: 22,
+                        notes: [
+                            {
+                                id: 0,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 1,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 2,
+                                date: '21/01/2019',
+                                description: 'something'
+                            }
+                        ]
+                    },
+                    {
+                        id: 23,
+                        notes: [
+                            {
+                                id: 0,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 1,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 2,
+                                date: '21/01/2019',
+                                description: 'something'
+                            }
+                        ]
+                    },
+                    {
+                        id: 24,
+                        notes: [
+                            {
+                                id: 0,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 1,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 2,
+                                date: '21/01/2019',
+                                description: 'something'
+                            }
+                        ]
+                    },
+                    {
+                        id: 25,
+                        notes: [
+                            {
+                                id: 0,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 1,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 2,
+                                date: '21/01/2019',
+                                description: 'something'
+                            }
+                        ]
+                    },
+                    {
+                        id: 26,
+                        notes: [
+                            {
+                                id: 0,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 1,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 2,
+                                date: '21/01/2019',
+                                description: 'something'
+                            }
+                        ]
+                    },
+                    {
+                        id: 27,
+                        notes: [
+                            {
+                                id: 0,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 1,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 2,
+                                date: '21/01/2019',
+                                description: 'something'
+                            }
+                        ]
+                    },
+                    {
+                        id: 28,
+                        notes: [
+                            {
+                                id: 0,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 1,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 2,
+                                date: '21/01/2019',
+                                description: 'something'
+                            }
+                        ]
+                    },
+                    {
+                        id: 48,
+                        notes: [
+                            {
+                                id: 0,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 1,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 2,
+                                date: '21/01/2019',
+                                description: 'something'
+                            }
+                        ]
+                    },
+                    {
+                        id: 47,
+                        notes: [
+                            {
+                                id: 0,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 1,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 2,
+                                date: '21/01/2019',
+                                description: 'something'
+                            }
+                        ]
+                    },
+                    {
+                        id: 46,
+                        notes: [
+                            {
+                                id: 0,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 1,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 2,
+                                date: '21/01/2019',
+                                description: 'something'
+                            }
+                        ]
+                    },
+                    {
+                        id: 45,
+                        notes: [
+                            {
+                                id: 0,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 1,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 2,
+                                date: '21/01/2019',
+                                description: 'something'
+                            }
+                        ]
+                    },
+                    {
+                        id: 44,
+                        notes: [
+                            {
+                                id: 0,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 1,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 2,
+                                date: '21/01/2019',
+                                description: 'something'
+                            }
+                        ]
+                    },
+                    {
+                        id: 43,
+                        notes: [
+                            {
+                                id: 0,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 1,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 2,
+                                date: '21/01/2019',
+                                description: 'something'
+                            }
+                        ]
+                    },
+                    {
+                        id: 42,
+                        notes: [
+                            {
+                                id: 0,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 1,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 2,
+                                date: '21/01/2019',
+                                description: 'something'
+                            }
+                        ]
+                    },
+                    {
+                        id: 41,
+                        notes: [
+                            {
+                                id: 0,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 1,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 2,
+                                date: '21/01/2019',
+                                description: 'something'
+                            }
+                        ]
+                    },
+                    {
+                        id: 31,
+                        notes: [
+                            {
+                                id: 0,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 1,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 2,
+                                date: '21/01/2019',
+                                description: 'something'
+                            }
+                        ]
+                    },
+                    {
+                        id: 32,
+                        notes: [
+                            {
+                                id: 0,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 1,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 2,
+                                date: '21/01/2019',
+                                description: 'something'
+                            }
+                        ]
+                    },
+                    {
+                        id: 33,
+                        notes: [
+                            {
+                                id: 0,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 1,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 2,
+                                date: '21/01/2019',
+                                description: 'something'
+                            }
+                        ]
+                    },
+                    {
+                        id: 34,
+                        notes: [
+                            {
+                                id: 0,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 1,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 2,
+                                date: '21/01/2019',
+                                description: 'something'
+                            }
+                        ]
+                    },
+                    {
+                        id: 35,
+                        notes: [
+                            {
+                                id: 0,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 1,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 2,
+                                date: '21/01/2019',
+                                description: 'something'
+                            }
+                        ]
+                    },
+                    {
+                        id: 36,
+                        notes: [
+                            {
+                                id: 0,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 1,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 2,
+                                date: '21/01/2019',
+                                description: 'something'
+                            }
+                        ]
+                    },
+                    {
+                        id: 37,
+                        notes: [
+                            {
+                                id: 0,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 1,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 2,
+                                date: '21/01/2019',
+                                description: 'something'
+                            }
+                        ]
+                    },
+                    {
+                        id: 38,
+                        notes: [
+                            {
+                                id: 0,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 1,
+                                date: '21/01/2019',
+                                description: 'something'
+                            },
+                            {
+                                id: 2,
+                                date: '21/01/2019',
+                                description: 'something'
+                            }
+                        ]
+                    }
+                ]
+            }
         },
 
-        saveNote () {
-        //
+        computed: {
+            upperTooths () {
+                return this.tooths.filter((tooth) => {
+                    return tooth.id<=28;
+                })
+            },
+
+            downTooths () {
+                return this.tooths.filter((tooth) => {
+                    return tooth.id>28;
+                })
+            }
+        },
+
+        methods: {
+
+            /**
+             * Display note modal
+             */
+            newNote() {
+                this.$refs.noteModal.show()
+            },
+
+            saveNote() {
+                //
+            }
         }
     }
-}
 </script>
+
+<style scoped>
+    .toothNotes {
+        font-size: 0.5em;
+    }
+</style>
