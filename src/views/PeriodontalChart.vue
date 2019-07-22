@@ -88,10 +88,9 @@
 <script>
 import MenuBar from '@/components/basic/MenuBar'
 import PeriodontalChartToothsTable from '@/components/patients/PeriodontalChartToothsTable'
-import PeriodontalNotesModal from '@/components/patients/PeriodontalNotesModal'
 
 export default {
-    components: { MenuBar, PeriodontalChartToothsTable, PeriodontalNotesModal },
+    components: { MenuBar, PeriodontalChartToothsTable },
 
     data () {
         return {
