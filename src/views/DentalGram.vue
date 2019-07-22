@@ -34,9 +34,9 @@
 
             <div class="container row no-gutters mx-auto">
 
-                <dental-gram-tooths-table :tooths="upperTooths" @click="newNote"/>
+                <dental-gram-tooths-table :tooths="upperTooths" @click="newNote" @mouseover="displayNote"/>
 
-                <dental-gram-tooths-table :tooths="downTooths" @click="newNote"/>
+                <dental-gram-tooths-table :tooths="downTooths" @click="newNote" @mouseover="displayNote"/>
 
             </div>
 
@@ -774,6 +774,10 @@ export default {
 
         saveNote () {
             alert('Saving note!')
+        },
+
+        displayNote () {
+            alert('mouse hover')
         }
     }
 }
