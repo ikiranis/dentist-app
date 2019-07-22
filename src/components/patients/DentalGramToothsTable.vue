@@ -18,8 +18,8 @@
             </tr>
 
             <div class="row">
-                <input type="submit" class="btn btn-sm btn-success col-lg-6 col-12 my-3 mx-auto"
-                       @click="listeners.click" value="Εισαγωγή">
+                <plus-circle-outline @click="listeners.click" fillColor="green"
+                                     class="btn-icon mx-auto" title="Εισαγωγή σημείωσης"/>
             </div>
         </td>
         </tbody>
