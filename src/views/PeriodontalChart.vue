@@ -15,9 +15,11 @@
 
             <div class="container row no-gutters">
 
-                <periodontal-chart-tooths-table :tooths="upperTooths" @click="newNote" @mouseover="displayNote"/>
+                <periodontal-chart-tooths-table :tooths="upperTooths"
+                                                @click="newNote" @mouseover="displayNote" @mouseleave="hideNote"/>
 
-                <div class="alert alert-secondary w-50 mx-auto" role="alert" v-if="chozenNote.measurements">
+                <div class="alert alert-warning w-100 mx-auto fixed-top" role="alert"
+                     v-if="chozenNote.measurements">
                     <div class="row col-lg-3 col-12 mx-auto">
                         <span v-for="measurement in chozenNote.measurements" :key="measurement.id"
                               class="col-4 text-center">
@@ -26,7 +28,8 @@
                     </div>
                 </div>
 
-                <periodontal-chart-tooths-table :tooths="downTooths" @click="newNote" @mouseover="displayNote"/>
+                <periodontal-chart-tooths-table :tooths="downTooths"
+                                                @click="newNote" @mouseover="displayNote" @mouseleave="hideNote"/>
 
             </div>
 
@@ -1454,6 +1457,13 @@ export default {
         displayNote (obj) {
             let tooth = this.tooths.find((tooth) => tooth.id === obj.toothId)
             this.chozenNote = tooth.notes.find((note) => note.id === obj.noteId)
+        },
+
+        /**
+         * Hide the note alert box
+         */
+        hideNote () {
+            this.chozenNote = {}
         }
     }
 }

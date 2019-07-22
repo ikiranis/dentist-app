@@ -12,7 +12,8 @@
         <tbody>
         <td v-for="tooth in props.tooths" :key="tooth.id">
             <tr v-for="note in tooth.notes" :key="note.id" class="mb-2">
-                <span class="toothNotes" @mouseover="listeners.mouseover({toothId: tooth.id, noteId: note.id})">
+                <span class="toothNotes" @mouseover="listeners.mouseover({toothId: tooth.id, noteId: note.id})"
+                    @mouseleave="listeners.mouseleave">
                     <span class="date-icon">{{ note.date }}</span>
                 </span>
             </tr>

@@ -15,13 +15,16 @@
 
             <div class="container row no-gutters mx-auto">
 
-                <dental-gram-tooths-table :tooths="upperTooths" @click="newNote" @mouseover="displayNote"/>
+                <dental-gram-tooths-table :tooths="upperTooths"
+                                          @click="newNote" @mouseover="displayNote" @mouseleave="hideNote"/>
 
-                <div class="alert alert-secondary w-50 mx-auto text-center" role="alert" v-if="textDisplayed !== ''">
+                <div class="alert alert-warning w-100 mx-auto text-center fixed-top"
+                     role="alert" v-if="textDisplayed !== ''">
                     {{ textDisplayed }}
                 </div>
 
-                <dental-gram-tooths-table :tooths="downTooths" @click="newNote" @mouseover="displayNote"/>
+                <dental-gram-tooths-table :tooths="downTooths"
+                                          @click="newNote" @mouseover="displayNote" @mouseleave="hideNote"/>
 
             </div>
 
@@ -774,6 +777,13 @@ export default {
             let note = tooth.notes.find((note) => note.id === obj.noteId)
 
             this.textDisplayed = note.description
+        },
+
+        /**
+         * Hide the note's alert box
+         */
+        hideNote () {
+            this.textDisplayed = ''
         }
     }
 }
