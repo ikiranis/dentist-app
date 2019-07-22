@@ -36,7 +36,7 @@
 
                 <dental-gram-tooths-table :tooths="upperTooths" @click="newNote" @mouseover="displayNote"/>
 
-                <div class="alert alert-primary w-100 text-center" role="alert">
+                <div class="alert alert-primary w-50 mx-auto text-center" role="alert" v-if="textDisplayed !== ''">
                     {{ textDisplayed }}
                 </div>
 
