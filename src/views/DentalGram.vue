@@ -1,7 +1,7 @@
 <template>
     <div class="container-fluid my-3">
 
-        <dental-gram-notes-modal :note="note" @click="saveNote"/>
+        <dental-gram-notes-modal :note="note" :response="response" @click="saveNote"/>
 
         <div class="row justify-content-center">
 

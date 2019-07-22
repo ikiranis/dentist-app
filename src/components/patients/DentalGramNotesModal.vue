@@ -9,7 +9,9 @@
                 <div class="col-md-8">
                     <input id="description" type="text" class="form-control" maxlength="60"
                            v-model="props.note.description" required>
-                    <!--<form-error v-if="response.errors.description" :error="response.errors.description[0]"/>-->
+
+                    <form-error v-if="props.response.errors.description"
+                                :error="props.response.errors.description[0]" />
                 </div>
             </div>
 
@@ -24,11 +26,20 @@
 </template>
 
 <script>
+import FormError from '@/components/basic/FormError'
+
 export default {
+    components: { FormError },
+
     name: 'DentalGramNotesModal',
 
     props: {
         note: {
+            required: true,
+            type: Object
+        },
+
+        response: {
             required: true,
             type: Object
         }
