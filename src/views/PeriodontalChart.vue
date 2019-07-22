@@ -66,9 +66,11 @@
                 <periodontal-chart-tooths-table :tooths="upperTooths" @click="newNote" @mouseover="displayNote"/>
 
                 <div class="alert alert-primary w-100 text-center" role="alert">
-                    <div v-for="measurement in chozenNote.measurements" :key="measurement.id"
-                         class="col-4 text-center">
-                        {{ measurement.number }}
+                    <div class="row col-lg-3 col-12 mx-auto">
+                        <span v-for="measurement in chozenNote.measurements" :key="measurement.id"
+                              class="col-4 text-center">
+                            {{ measurement.number }}
+                        </span>
                     </div>
                 </div>
 
