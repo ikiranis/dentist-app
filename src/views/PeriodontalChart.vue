@@ -15,9 +15,6 @@
 
             <div class="container row no-gutters">
 
-                <periodontal-chart-tooths-table :tooths="upperTooths"
-                                                @click="newNote" @mouseover="displayNote" @mouseleave="hideNote"/>
-
                 <div class="alert alert-warning w-100 mx-auto fixed-top" role="alert"
                      v-if="chozenNote.measurements">
                     <div class="row col-lg-3 col-12 mx-auto">
@@ -27,6 +24,9 @@
                         </span>
                     </div>
                 </div>
+
+                <periodontal-chart-tooths-table :tooths="upperTooths"
+                                                @click="newNote" @mouseover="displayNote" @mouseleave="hideNote"/>
 
                 <periodontal-chart-tooths-table :tooths="downTooths"
                                                 @click="newNote" @mouseover="displayNote" @mouseleave="hideNote"/>

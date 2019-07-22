@@ -15,13 +15,13 @@
 
             <div class="container row no-gutters mx-auto">
 
-                <dental-gram-tooths-table :tooths="upperTooths"
-                                          @click="newNote" @mouseover="displayNote" @mouseleave="hideNote"/>
-
                 <div class="alert alert-warning w-100 mx-auto text-center fixed-top"
                      role="alert" v-if="textDisplayed !== ''">
                     {{ textDisplayed }}
                 </div>
+
+                <dental-gram-tooths-table :tooths="upperTooths"
+                                          @click="newNote" @mouseover="displayNote" @mouseleave="hideNote"/>
 
                 <dental-gram-tooths-table :tooths="downTooths"
                                           @click="newNote" @mouseover="displayNote" @mouseleave="hideNote"/>
