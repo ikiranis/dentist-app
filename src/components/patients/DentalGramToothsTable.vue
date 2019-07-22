@@ -18,7 +18,7 @@
             </tr>
 
             <div class="row">
-                <plus-circle-outline @click="listeners.click" fillColor="green"
+                <plus-circle-outline @click="listeners.click" fillColor="green" size="15"
                                      class="btn-icon mx-auto" title="Εισαγωγή σημείωσης"/>
             </div>
         </td>
