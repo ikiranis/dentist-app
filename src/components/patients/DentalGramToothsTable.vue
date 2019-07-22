@@ -13,7 +13,7 @@
         <td v-for="tooth in props.tooths" :key="tooth.id">
             <tr v-for="note in tooth.notes" :key="note.id" class="mb-2">
                 <span class="toothNotes" @mouseover="listeners.mouseover({toothId: tooth.id, noteId: note.id})">
-                    {{ note.date }}
+                    <span class="date-icon">{{ note.date }}</span>
                 </span>
             </tr>
 
@@ -45,5 +45,9 @@ export default {
 <style scoped>
     .toothNotes {
         font-size: 0.5em;
+    }
+
+    .date-icon {
+        cursor: crosshair;
     }
 </style>
