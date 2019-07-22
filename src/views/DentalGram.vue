@@ -1,26 +1,7 @@
 <template>
     <div class="container-fluid my-3">
 
-        <b-modal ref="noteModal" size="md" centered hide-footer title="Εισαγωγή σημείωσης">
-
-            <form class="container-fluid">
-
-                <div class="form-group row">
-                    <label for="description" class="col-md-4 col-form-label text-md-right">Περιγραφή</label>
-                    <div class="col-md-8">
-                        <input id="description" type="text" class="form-control" maxlength="60"
-                               v-model="note.description" required>
-                        <form-error v-if="response.errors.description" :error="response.errors.description[0]"/>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <button class="btn btn-success col-lg-6 col-12 my-3 mx-auto" @click="saveNote">Εισαγωγή</button>
-                </div>
-
-            </form>
-
-        </b-modal>
+        <dental-gram-notes-modal :note="note" @click="saveNote"/>
 
         <div class="row justify-content-center">
 
@@ -50,11 +31,11 @@
 
 <script>
 import MenuBar from '@/components/basic/MenuBar'
-import FormError from '@/components/basic/FormError'
 import DentalGramToothsTable from '@/components/patients/DentalGramToothsTable'
+import DentalGramNotesModal from '@/components/patients/DentalGramNotesModal'
 
 export default {
-    components: { MenuBar, FormError, DentalGramToothsTable },
+    components: { MenuBar, DentalGramToothsTable, DentalGramNotesModal },
 
     data () {
         return {
