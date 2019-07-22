@@ -771,23 +771,23 @@ export default {
 
     methods: {
         /**
-             * Display note modal
-             */
+         * Display note modal
+         */
         newNote () {
             this.$refs.noteModal.show()
         },
 
         /**
-             * Save the note
-             */
+         * Save the note
+         */
         saveNote () {
             alert('Saving note!')
         },
 
         /**
-             * Display note's description on alert box
-             * @param obj
-             */
+         * Display note's description on alert box
+         * @param obj
+         */
         displayNote (obj) {
             let tooth = this.tooths.find((tooth) => tooth.id === obj.toothId)
             let note = tooth.notes.find((note) => note.id === obj.noteId)

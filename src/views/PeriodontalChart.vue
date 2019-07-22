@@ -63,32 +63,16 @@
 
             <div class="container row no-gutters">
 
-                <div v-for="tooth in tooths" :key="tooth.id" class="card mb-3 col-lg-3 col-12 mx-auto">
-                    <div class="card-header text-center">
-                        <img :src="'images/teeths/' + tooth.id + '.png'" class="toothImage">
-                        <h5>{{ tooth.id }}</h5>
+                <periodontal-chart-tooths-table :tooths="upperTooths" @click="newNote" @mouseover="displayNote"/>
+
+                <div class="alert alert-primary w-100 text-center" role="alert">
+                    <div v-for="measurement in chozenNote.measurements" :key="measurement.id"
+                         class="col-4 text-center">
+                        {{ measurement.number }}
                     </div>
-
-                    <div class="card-body">
-                        <div v-for="note in tooth.notes" :key="note.id" class="mb-2">
-                            <small>
-                                <strong>{{ note.date }}</strong>
-                            </small>
-                            <div class="row">
-                                <div v-for="measurement in note.measurements" :key="measurement.id"
-                                    class="col-4 text-center">
-                                    {{ measurement.number }}
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <input type="submit" class="btn btn-sm btn-success col-lg-6 col-12 my-3 mx-auto"
-                                   @click="newNote()" value="Εισαγωγή">
-                        </div>
-                    </div>
-
                 </div>
+
+                <periodontal-chart-tooths-table :tooths="downTooths" @click="newNote" @mouseover="displayNote"/>
 
             </div>
 
@@ -98,12 +82,15 @@
 
 <script>
 import MenuBar from '@/components/basic/MenuBar'
+import PeriodontalChartToothsTable from '@/components/patients/PeriodontalChartToothsTable'
 
 export default {
-    components: { MenuBar },
+    components: { MenuBar, PeriodontalChartToothsTable },
 
     data () {
         return {
+            chozenNote: {},
+
             response: {
                 message: '',
                 status: '',
@@ -1478,24 +1465,41 @@ export default {
         }
     },
 
+    computed: {
+        upperTooths () {
+            return this.tooths.filter((tooth) => {
+                return tooth.id <= 28
+            })
+        },
+
+        downTooths () {
+            return this.tooths.filter((tooth) => {
+                return tooth.id > 28
+            })
+        }
+    },
+
     methods: {
 
         /**
-             * Display note modal
-             */
+         * Display note modal
+         */
         newNote () {
             this.$refs.noteModal.show()
         },
 
         saveNote () {
-            //
+            alert('Saving measurements...')
+        },
+
+        /**
+         * Display note's description on alert box
+         * @param obj
+         */
+        displayNote (obj) {
+            let tooth = this.tooths.find((tooth) => tooth.id === obj.toothId)
+            this.chozenNote = tooth.notes.find((note) => note.id === obj.noteId)
         }
     }
 }
 </script>
-
-<style scoped>
-    .toothImage {
-        height: 3em;
-    }
-</style>
