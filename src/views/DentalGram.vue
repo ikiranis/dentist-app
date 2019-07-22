@@ -32,6 +32,10 @@
                       :menuItems="menuItems" userInfo="false" fixed=""
                       variant="" type="light" valign="mx-auto" toggle="lg"/>
 
+            <div class="alert" v-if="noteDisplayed">
+                {{ textDisplayed }}
+            </div>
+
             <div class="container row no-gutters mx-auto">
 
                 <dental-gram-tooths-table :tooths="upperTooths" @click="newNote" @mouseover="displayNote"/>
@@ -54,6 +58,9 @@ export default {
 
     data () {
         return {
+            noteDisplayed: false,
+            textDisplayed: '',
+
             response: {
                 message: '',
                 status: '',
@@ -776,8 +783,13 @@ export default {
             alert('Saving note!')
         },
 
-        displayNote () {
-            alert('mouse hover')
+        displayNote (obj) {
+            this.noteDisplayed = true
+            // console.log(note)
+            let tooth = this.tooths.find((tooth) => tooth.id === obj.toothId);
+            let note = tooth.notes.find((note) => note.id === obj.noteId)
+
+            console.log(note.id)
         }
     }
 }

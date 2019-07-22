@@ -12,14 +12,14 @@
         <tbody>
         <td v-for="tooth in props.tooths" :key="tooth.id">
             <tr v-for="note in tooth.notes" :key="note.id" class="mb-2">
-                <span class="toothNotes" @mouseover="listeners.mouseover">
+                <span class="toothNotes" @mouseover="listeners.mouseover({toothId: tooth.id, noteId: note.id})">
                     {{ note.date }}
                 </span>
             </tr>
 
             <div class="row">
                 <plus-circle-outline @click="listeners.click"
-                                     fillColor="green" size="15"
+                                     fillColor="green" :size="15"
                                      class="btn-icon mx-auto" title="Εισαγωγή σημείωσης"/>
             </div>
         </td>
