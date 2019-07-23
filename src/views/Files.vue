@@ -87,12 +87,11 @@
                     </tbody>
                 </table>
 
-                <div class="row">
-                    <button class="btn btn-success col-lg-6 col-12 my-3 mx-auto" @click="newFile()">
-                        Εισαγωγή αρχείου
-                    </button>
-                </div>
+            </div>
 
+            <div class="row w-100">
+                <input type="button" class="btn btn-success col-lg-6 col-12 my-3 mx-auto"
+                       @click="newFile()" value="Εισαγωγή αρχείου">
             </div>
 
         </div>
