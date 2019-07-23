@@ -80,15 +80,19 @@
                 </div>
             </div>
 
+            <div class="alert alert-success text-center w-50 mt-5 mx-auto" v-if="!transactions.length">
+                Δεν βρέθηκαν οικονομικές κινήσεις
+            </div>
+
             <!-- Λίστες εσόδων/εξόδων -->
-            <div class="container row">
+            <div class="container row" v-if="transactions.length">
 
                 <div class="col-lg-6 col-12">
 
                     <div class="col-12 text-center">
                         <h3>Έσοδα</h3>
 
-                        <financial-list :transactions="transactions" kind="income"/>
+                        <financial-list :transactions="income"/>
 
                     </div>
 
@@ -99,7 +103,7 @@
                     <div class="col-12 text-center">
                         <h3>Έξοδα</h3>
 
-                        <financial-list :transactions="transactions" kind="expense"/>
+                        <financial-list :transactions="expenses"/>
 
                     </div>
 
@@ -266,6 +270,20 @@ export default {
             ],
 
             transactionTitle: ''
+        }
+    },
+
+    computed: {
+        income () {
+            return this.transactions.filter((transaction) => {
+                return transaction.kind === 'income'
+            })
+        },
+
+        expenses () {
+            return this.transactions.filter((transaction) => {
+                return transaction.kind === 'expense'
+            })
         }
     },
 

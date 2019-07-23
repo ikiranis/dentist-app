@@ -1,14 +1,20 @@
 <template>
-    <table class="table">
-        <thead>
+    <div>
+
+        <div class="alert alert-success text-center w-50 mt-5 mx-auto" v-if="!transactions.length">
+            Δεν βρέθηκαν οικονομικές κινήσεις
+        </div>
+
+        <table class="table" v-if="transactions.length">
+            <thead>
             <tr>
                 <th scope="col">Ημ/νία</th>
                 <th scope="col">Περιγραφή</th>
                 <th scope="col">Ποσό</th>
             </tr>
-        </thead>
+            </thead>
 
-        <tbody v-for="transaction in transactions" :key="transaction.id" v-if="transaction.kind === kind">
+            <tbody v-for="transaction in transactions" :key="transaction.id">
             <tr>
                 <th scope="row">{{ transaction.date }}</th>
                 <td>
@@ -18,16 +24,20 @@
                     {{ transaction.value }}
                 </td>
             </tr>
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+
+    </div>
 </template>
 
 <script>
-export default {
-    props: {
-        transactions: Array,
-        kind: String
+    export default {
+        props: {
+            transactions: {
+                required: true,
+                type: Array
+            }
+        }
     }
-}
 
 </script>
