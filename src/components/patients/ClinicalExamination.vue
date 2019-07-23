@@ -655,7 +655,7 @@ export default {
     computed: {
         fieldSelected () {
             return this.fields.find((field) => {
-                return field.display;
+                return field.display
             })
         }
     },

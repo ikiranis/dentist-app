@@ -31,13 +31,13 @@
 </template>
 
 <script>
-    export default {
-        props: {
-            transactions: {
-                required: true,
-                type: Array
-            }
+export default {
+    props: {
+        transactions: {
+            required: true,
+            type: Array
         }
     }
+}
 
 </script>
