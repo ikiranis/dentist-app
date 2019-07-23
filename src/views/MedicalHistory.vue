@@ -18,7 +18,7 @@
                     Επιλογή πεδίων
                 </div>
 
-                <form class="row col-12 mt-3">
+                <form v-on:submit.prevent class="row col-12 mt-3">
 
                     <div class="col-lg-6 col-12">
 
@@ -266,15 +266,13 @@
                             </div>
 
                             <input id="medicine" type="text" class="form-control"
-                                   v-model="medicine" maxlength="60">
+                                   v-model="medicine" maxlength="60" v-on:keyup.enter="addMedicine">
 
                             <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου" @click="removeField(16)"/>
 
                             <div class="col-12">
                                 <select multiple class="form-control mt-2" id="medicines">
-                                    <option>Φάρμακο 1</option>
-                                    <option>Φάρμακο 2</option>
-                                    <option>Φάρμακο 3</option>
+                                    <option v-for="medicine in medicalHistory.medicines">{{ medicine.name }}</option>
                                 </select>
                             </div>
                         </div>
@@ -503,6 +501,10 @@ export default {
          */
         removeField (field) {
             this.fields[field].display = false
+        },
+
+        addMedicine () {
+            this.medicalHistory.medicines.push({ name: this.medicine })
         }
     }
 }
