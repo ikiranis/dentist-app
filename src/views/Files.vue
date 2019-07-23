@@ -49,7 +49,11 @@
 
             </form>
 
-            <div class="container mt-4">
+            <div class="alert alert-success text-center w-50 mt-5 mx-auto" v-if="!files.length">
+                Δεν βρέθηκαν αρχεία
+            </div>
+
+            <div class="container mt-4" v-if="files.length">
 
                 <table class="table table-hover">
                     <thead>
