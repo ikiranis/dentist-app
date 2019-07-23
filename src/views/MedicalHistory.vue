@@ -505,6 +505,7 @@ export default {
 
         addMedicine () {
             this.medicalHistory.medicines.push({ name: this.medicine })
+            this.medicine = ''
         }
     }
 }
