@@ -14,6 +14,10 @@
 
                 <FieldsList :fields="fields"/>
 
+                <div class="alert alert-success text-center w-50 mt-5 mx-auto" v-if="!fieldChozen">
+                    Επιλογή πεδίων
+                </div>
+
                 <form class="row col-12 mt-3">
 
                     <div class="col-lg-6 col-12">
@@ -293,7 +297,7 @@
 
                 </form>
 
-                <div class="row">
+                <div class="row" v-if="fieldChozen">
                     <input type="submit" class="btn btn-success col-lg-6 col-12 my-3 mx-auto"
                            @click="save()" value="Αποθήκευση">
                 </div>
@@ -479,9 +483,17 @@ export default {
         }
     },
 
+    computed: {
+        fieldChozen () {
+            return this.fields.find((field) => {
+                return field.display;
+            })
+        }
+    },
+
     methods: {
         save () {
-        //
+            alert('Saving...')
         },
 
         /**
