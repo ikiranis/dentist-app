@@ -50,7 +50,11 @@
                       :menuItems="menuItems" userInfo="false" fixed=""
                       variant="" type="light" valign="mx-auto" toggle="lg"/>
 
-            <div class="container">
+            <div class="alert alert-success text-center w-50 mt-5 mx-auto" v-if="!treatments.length">
+                Δεν βρέθηκαν θεραπείες
+            </div>
+
+            <div class="container" v-if="treatments.length">
 
                 <table class="table">
                     <thead>
@@ -74,11 +78,11 @@
                     </tbody>
                 </table>
 
-                <div class="row">
-                    <input type="submit" class="btn btn-success col-lg-6 col-12 my-3 mx-auto"
-                           @click="newTreatment()" value="Εισαγωγή θεραπείας">
-                </div>
+            </div>
 
+            <div class="row w-100">
+                <input type="submit" class="btn btn-success col-lg-6 col-12 my-3 mx-auto"
+                       @click="newTreatment()" value="Εισαγωγή θεραπείας">
             </div>
 
         </div>
