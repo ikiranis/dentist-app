@@ -15,7 +15,11 @@
 
             </form>
 
-            <div class="container mt-4">
+            <div class="alert alert-success text-center w-50 mt-5 mx-auto" v-if="!patients.length">
+                Δεν βρέθηκαν ασθενείς
+            </div>
+
+            <div class="container mt-4" v-if="patients.length">
                 <table class="table">
                     <thead>
                     <tr>
@@ -50,12 +54,13 @@
                 </table>
             </div>
 
+            <div class="row w-100">
+                <input type="submit" class="btn btn-success col-lg-6 col-12 my-3 mx-auto"
+                       @click="newPatient" value="Εισαγωγή νέου ασθενή">
+            </div>
+
         </div>
 
-        <div class="row">
-            <input type="submit" class="btn btn-success col-lg-6 col-12 my-3 mx-auto"
-                   @click="newPatient" value="Εισαγωγή νέου ασθενή">
-        </div>
     </div>
 </template>
 
