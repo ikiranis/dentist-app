@@ -11,7 +11,7 @@
             Επιλογή πεδίων
         </div>
 
-        <form class="row col-12 mt-3">
+        <form class="row col-lg-6 col-12 mt-3 mx-auto">
 
             <div class="input-group row mb-2" v-if="fields[0].display">
                 <div class="input-group-prepend">
@@ -46,34 +46,28 @@
             </div>
 
             <div class="input-group row mb-2" v-if="fields[2].display">
-                <div class="input-group-prepend">
-                    <div class="input-group-text">
-                        <input type="checkbox" id="acutePulpitis">
-                    </div>
-
-                    <div class="input-group-text">
-                        <label for="acutePulpitis" class="my-auto">Οξεία πολφίτιδα</label>
-                    </div>
+                <div class="input-group-text">
+                    <input type="checkbox" id="acutePulpitis">
                 </div>
 
-                <div class="input-group-prepend">
-                    <div class="input-group-text">
-                        <input type="checkbox" id="partialAcutePulpitis">
-                    </div>
-
-                    <div class="input-group-text">
-                        <label for="partialAcutePulpitis" class="my-auto">Μερική</label>
-                    </div>
+                <div class="input-group-text col">
+                    <label for="acutePulpitis" class="my-auto">Οξεία πολφίτιδα</label>
                 </div>
 
-                <div class="input-group-prepend">
-                    <div class="input-group-text">
-                        <input type="checkbox" id="universalAcutePulpitis">
-                    </div>
+                <div class="input-group-text">
+                    <input type="checkbox" id="partialAcutePulpitis">
+                </div>
 
-                    <div class="input-group-text">
-                        <label for="universalAcutePulpitis" class="my-auto">Καθολική</label>
-                    </div>
+                <div class="input-group-text">
+                    <label for="partialAcutePulpitis" class="my-auto">Μερική</label>
+                </div>
+
+                <div class="input-group-text">
+                    <input type="checkbox" id="universalAcutePulpitis">
+                </div>
+
+                <div class="input-group-text">
+                    <label for="universalAcutePulpitis" class="my-auto">Καθολική</label>
                 </div>
 
                 <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
@@ -81,34 +75,28 @@
             </div>
 
             <div class="input-group row mb-2" v-if="fields[3].display">
-                <div class="input-group-prepend">
-                    <div class="input-group-text">
-                        <input type="checkbox" id="chronicPulpitis">
-                    </div>
-
-                    <div class="input-group-text">
-                        <label for="chronicPulpitis" class="my-auto">Χρονία πολφίτιδα</label>
-                    </div>
+                <div class="input-group-text">
+                    <input type="checkbox" id="chronicPulpitis">
                 </div>
 
-                <div class="input-group-prepend">
-                    <div class="input-group-text">
-                        <input type="checkbox" id="ulceratingChronicPulpitis">
-                    </div>
-
-                    <div class="input-group-text">
-                        <label for="ulceratingChronicPulpitis" class="my-auto">Ελκωτική</label>
-                    </div>
+                <div class="input-group-text col">
+                    <label for="chronicPulpitis" class="my-auto">Χρονία πολφίτιδα</label>
                 </div>
 
-                <div class="input-group-prepend">
-                    <div class="input-group-text">
-                        <input type="checkbox" id="superplasticChronicPulpitis">
-                    </div>
+                <div class="input-group-text">
+                    <input type="checkbox" id="ulceratingChronicPulpitis">
+                </div>
 
-                    <div class="input-group-text">
-                        <label for="superplasticChronicPulpitis" class="my-auto">Υπερπλαστική</label>
-                    </div>
+                <div class="input-group-text">
+                    <label for="ulceratingChronicPulpitis" class="my-auto">Ελκωτική</label>
+                </div>
+
+                <div class="input-group-text">
+                    <input type="checkbox" id="superplasticChronicPulpitis">
+                </div>
+
+                <div class="input-group-text">
+                    <label for="superplasticChronicPulpitis" class="my-auto">Υπερπλαστική</label>
                 </div>
 
                 <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
@@ -200,34 +188,28 @@
             </div>
 
             <div class="input-group row mb-2" v-if="fields[10].display">
-                <div class="input-group-prepend">
-                    <div class="input-group-text">
-                        <input type="checkbox" id="absorption">
-                    </div>
-
-                    <div class="input-group-text">
-                        <label for="absorption" class="my-auto">Απορρόφηση</label>
-                    </div>
+                <div class="input-group-text">
+                    <input type="checkbox" id="absorption">
                 </div>
 
-                <div class="input-group-prepend">
-                    <div class="input-group-text">
-                        <input type="checkbox" id="innerAbsorption">
-                    </div>
-
-                    <div class="input-group-text">
-                        <label for="innerAbsorption" class="my-auto">Εσωτερική</label>
-                    </div>
+                <div class="input-group-text col">
+                    <label for="absorption" class="my-auto">Απορρόφηση</label>
                 </div>
 
-                <div class="input-group-prepend">
-                    <div class="input-group-text">
-                        <input type="checkbox" id="outerAbsorption">
-                    </div>
+                <div class="input-group-text">
+                    <input type="checkbox" id="innerAbsorption">
+                </div>
 
-                    <div class="input-group-text">
-                        <label for="outerAbsorption" class="my-auto">Εξωτερική</label>
-                    </div>
+                <div class="input-group-text">
+                    <label for="innerAbsorption" class="my-auto">Εσωτερική</label>
+                </div>
+
+                <div class="input-group-text">
+                    <input type="checkbox" id="outerAbsorption">
+                </div>
+
+                <div class="input-group-text">
+                    <label for="outerAbsorption" class="my-auto">Εξωτερική</label>
                 </div>
 
                 <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
