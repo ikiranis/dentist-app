@@ -358,7 +358,6 @@
                     absorption: false,
                     innerAbsorption: false,
                     outerAbsorption: false,
-                    absorptionChecked: false,
                     fracture: '',
                     fractureCheck: false
                 }
