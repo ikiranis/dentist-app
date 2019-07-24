@@ -519,6 +519,11 @@ export default {
             this.medicine = ''
         },
 
+        /**
+         * Delete item from medicines array
+         *
+         * @param event
+         */
         deleteMedicine (event) {
             let index = this.medicalHistory.medicines.find((medicine) => medicine.id === event.target.value);
             this.medicalHistory.medicines.splice(index, 1)
