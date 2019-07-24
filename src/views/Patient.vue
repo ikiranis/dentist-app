@@ -111,7 +111,7 @@
                                     </label>
                                     <div class="col-md-7">
                                         <input id="disease" type="text" class="form-control col-form"
-                                               v-model="patient.icons[0].name">
+                                               v-model="patient.icons[0].name" maxlength="60">
                                     </div>
                                 </div>
 
@@ -121,7 +121,7 @@
                                     </label>
                                     <div class="col-md-7">
                                         <input id="treatment" type="text" class="form-control col-form"
-                                               v-model="patient.icons[1].name">
+                                               v-model="patient.icons[1].name" maxlength="60">
                                     </div>
                                 </div>
 
@@ -131,7 +131,7 @@
                                     </label>
                                     <div class="col-md-7">
                                         <input id="debt" type="text" class="form-control col-form"
-                                               v-model="patient.icons[2].name">
+                                               v-model="patient.icons[2].name" maxlength="60">
                                     </div>
                                 </div>
 

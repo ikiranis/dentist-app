@@ -464,6 +464,7 @@ export default {
             ],
 
             medicalHistory: {
+                id: 0,
                 respiratoryDiseases: '',
                 cardiovascularDiseases: '',
                 hematopoieticSystemDiseases: '',
