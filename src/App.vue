@@ -59,7 +59,6 @@ export default {
     }),
 
     created: function () {
-        console.log(process.env.VUE_APP_CLIENT_SECRET)
         this.getApiWorks()
     },
 
