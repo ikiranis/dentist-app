@@ -13,7 +13,7 @@
 
                 <div class="input-group row mb-2" v-if="fields[0].display">
                     <div class="input-group-text">
-                        <input type="checkbox" id="frequentStrokes">
+                        <input type="checkbox" id="frequentStrokes" v-model="dentalHistory.frequentStrokes">
                     </div>
 
                     <div class="input-group-text col">
@@ -26,7 +26,7 @@
                 <div class="input-group row mb-2" v-if="fields[1].display">
                     <div class="input-group-prepend">
                         <div class="input-group-text">
-                            <input type="checkbox" id="sensitivityToStimuliCheck">
+                            <input type="checkbox" id="sensitivityToStimuliCheck" v-model="dentalHistory.sensitivityToStimuliCheck">
                         </div>
 
                         <div class="input-group-text">
@@ -35,7 +35,8 @@
                     </div>
 
                     <input id="sensitivityToStimuli" type="text" class="form-control"
-                           v-model="dentalHistory.sensitivityToStimuli" maxlength="20">
+                           v-model="dentalHistory.sensitivityToStimuli" maxlength="20"
+                           :disabled="dentalHistory.sensitivityToStimuliCheck ? disabled : ''">
                     <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου" @click="removeField(1)"/>
                     <form-error v-if="response.errors.sensitivityToStimuli"
                                 :error="response.errors.sensitivityToStimuli[0]"/>
@@ -44,7 +45,7 @@
                 <div class="input-group row mb-2" v-if="fields[2].display">
                     <div class="input-group-prepend">
                         <div class="input-group-text">
-                            <input type="checkbox" id="painWhenChewingCheck">
+                            <input type="checkbox" id="painWhenChewingCheck" v-model="dentalHistory.painWhenChewingCheck">
                         </div>
 
                         <div class="input-group-text">
@@ -55,7 +56,8 @@
                     </div>
 
                     <input id="painWhenChewing" type="text" class="form-control"
-                           v-model="dentalHistory.painWhenChewing" maxlength="20">
+                           v-model="dentalHistory.painWhenChewing" maxlength="20"
+                           :disabled="dentalHistory.painWhenChewingCheck ? disabled : ''">
                     <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου" @click="removeField(2)"/>
                     <form-error v-if="response.errors.painWhenChewing"
                                 :error="response.errors.painWhenChewing[0]"/>
@@ -64,7 +66,7 @@
                 <div class="input-group row mb-2" v-if="fields[3].display">
                     <div class="input-group-prepend">
                         <div class="input-group-text">
-                            <input type="checkbox" id="gingivalBleedingCheck">
+                            <input type="checkbox" id="gingivalBleedingCheck" v-model="dentalHistory.gingivalBleedingCheck">
                         </div>
 
                         <div class="input-group-text">
@@ -74,7 +76,8 @@
                     </div>
 
                     <input id="gingivalBleeding" type="text" class="form-control"
-                           v-model="dentalHistory.gingivalBleeding" maxlength="20">
+                           v-model="dentalHistory.gingivalBleeding" maxlength="20"
+                           :disabled="dentalHistory.gingivalBleedingCheck ? disabled : ''">
                     <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου" @click="removeField(3)"/>
                     <form-error v-if="response.errors.gingivalBleeding"
                                 :error="response.errors.gingivalBleeding[0]"/>
@@ -82,7 +85,7 @@
 
                 <div class="input-group row mb-2" v-if="fields[4].display">
                     <div class="input-group-text">
-                        <input type="checkbox" id="tasteAbnormality">
+                        <input type="checkbox" id="tasteAbnormality" v-model="dentalHistory.tasteAbnormality">
                     </div>
 
                     <div class="input-group-text col">
@@ -95,7 +98,7 @@
 
                 <div class="input-group row mb-2" v-if="fields[5].display">
                     <div class="input-group-text">
-                        <input type="checkbox" id="dryMouth">
+                        <input type="checkbox" id="dryMouth" v-model="dentalHistory.dryMouth">
                     </div>
 
                     <div class="input-group-text col">
@@ -107,7 +110,7 @@
 
                 <div class="input-group row mb-2" v-if="fields[6].display">
                     <div class="input-group-text">
-                        <input type="checkbox" id="badSmell">
+                        <input type="checkbox" id="badSmell" v-model="dentalHistory.badSmell">
                     </div>
 
                     <div class="input-group-text col">
@@ -119,7 +122,7 @@
 
                 <div class="input-group row mb-2" v-if="fields[7].display">
                     <div class="input-group-text">
-                        <input type="checkbox" id="burningMouth">
+                        <input type="checkbox" id="burningMouth" v-model="dentalHistory.burningMouth">
                     </div>
 
                     <div class="input-group-text col">
@@ -131,7 +134,7 @@
 
                 <div class="input-group row mb-2" v-if="fields[8].display">
                     <div class="input-group-text">
-                        <input type="checkbox" id="painFromCrownFibrousStructure">
+                        <input type="checkbox" id="painFromCrownFibrousStructure" v-model="dentalHistory.painFromCrownFibrousStructure">
                     </div>
 
                     <div class="input-group-text col">
@@ -144,7 +147,7 @@
 
                 <div class="input-group row mb-2" v-if="fields[9].display">
                     <div class="input-group-text">
-                        <input type="checkbox" id="soundFromCrownFibrousStructure">
+                        <input type="checkbox" id="soundFromCrownFibrousStructure" v-model="dentalHistory.soundFromCrownFibrousStructure">
                     </div>
 
                     <div class="input-group-text col">
@@ -157,7 +160,7 @@
 
                 <div class="input-group row mb-2" v-if="fields[10].display">
                     <div class="input-group-text">
-                        <input type="checkbox" id="prosopalgia">
+                        <input type="checkbox" id="prosopalgia" v-model="dentalHistory.prosopalgia">
                     </div>
 
                     <div class="input-group-text col">
@@ -203,7 +206,7 @@
 
                 <div class="input-group row mb-2" v-if="fields[13].display">
                     <div class="input-group-text">
-                        <input type="checkbox" id="problemsWithLocalAnesthesia">
+                        <input type="checkbox" id="problemsWithLocalAnesthesia" v-model="dentalHistory.problemsWithLocalAnesthesia">
                     </div>
 
                     <div class="input-group-text col">
