@@ -515,7 +515,7 @@ export default {
 
             this.medicalHistory.medicines.push({
                 id: this.medicalHistory.medicines.length,
-                name: this.medicine });
+                name: this.medicine })
             this.medicine = ''
         },
 
@@ -525,7 +525,7 @@ export default {
          * @param event
          */
         deleteMedicine (event) {
-            let index = this.medicalHistory.medicines.find((medicine) => medicine.id === event.target.value);
+            let index = this.medicalHistory.medicines.find((medicine) => medicine.id === event.target.value)
             this.medicalHistory.medicines.splice(index, 1)
         }
     }
