@@ -225,7 +225,7 @@
                         <div class="input-group row mb-2" v-if="fields[14].display">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
-                                    <input type="checkbox" id="pregnacyCheck">
+                                    <input type="checkbox" id="pregnacyCheck" v-model="medicalHistory.pregnacyCheck">
                                 </div>
 
                                 <div class="input-group-text">
@@ -234,7 +234,8 @@
                             </div>
 
                             <input id="pregnancy" type="text" class="form-control"
-                                   v-model="medicalHistory.pregnancy" maxlength="20">
+                                   v-model="medicalHistory.pregnancy" maxlength="20"
+                                   :disabled="medicalHistory.pregnacyCheck ? disabled : ''">
                             <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου" @click="removeField(14)"/>
                             <form-error v-if="response.errors.pregnancy"
                                         :error="response.errors.pregnancy[0]"/>
@@ -243,7 +244,7 @@
                         <div class="input-group row mb-2" v-if="fields[15].display">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
-                                    <input type="checkbox" id="smokingCheck">
+                                    <input type="checkbox" id="smokingCheck" v-model="medicalHistory.smokingCheck">
                                 </div>
 
                                 <div class="input-group-text">
@@ -252,7 +253,8 @@
                             </div>
 
                             <input id="smoking" type="text" class="form-control"
-                                   v-model="medicalHistory.smoking" maxlength="20">
+                                   v-model="medicalHistory.smoking" maxlength="20"
+                                   :disabled="medicalHistory.smokingCheck ? disabled : ''">
                             <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου" @click="removeField(15)"/>
                             <form-error v-if="response.errors.smoking"
                                         :error="response.errors.smoking[0]"/>
