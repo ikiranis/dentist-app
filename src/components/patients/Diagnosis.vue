@@ -48,7 +48,7 @@
 
             <div class="input-group row mb-2" v-if="fields[2].display">
                 <div class="input-group-text">
-                    <input type="checkbox" id="acutePulpitis">
+                    <input type="checkbox" id="acutePulpitis" v-model="diagnosis.acutePulpitis">
                 </div>
 
                 <div class="input-group-text col">
@@ -56,7 +56,9 @@
                 </div>
 
                 <div class="input-group-text">
-                    <input type="checkbox" id="partialAcutePulpitis">
+                    <input type="radio" id="partialAcutePulpitis" name="acutePulpitisChecked"
+                           value="partialAcutePulpitis"
+                           :disabled="diagnosis.acutePulpitis ? disabled : ''">
                 </div>
 
                 <div class="input-group-text">
@@ -64,7 +66,9 @@
                 </div>
 
                 <div class="input-group-text">
-                    <input type="checkbox" id="universalAcutePulpitis">
+                    <input type="radio" id="universalAcutePulpitis" name="acutePulpitisChecked"
+                           value="universalAcutePulpitis"
+                           :disabled="diagnosis.acutePulpitis ? disabled : ''">
                 </div>
 
                 <div class="input-group-text">
@@ -77,7 +81,7 @@
 
             <div class="input-group row mb-2" v-if="fields[3].display">
                 <div class="input-group-text">
-                    <input type="checkbox" id="chronicPulpitis">
+                    <input type="checkbox" id="chronicPulpitis" v-model="diagnosis.chronicPulpitis">
                 </div>
 
                 <div class="input-group-text col">
@@ -85,7 +89,9 @@
                 </div>
 
                 <div class="input-group-text">
-                    <input type="checkbox" id="ulceratingChronicPulpitis">
+                    <input type="radio" id="ulceratingChronicPulpitis" name="chronicPulpitisChecked"
+                           value="ulceratingChronicPulpitis"
+                           :disabled="diagnosis.chronicPulpitis ? disabled : ''">
                 </div>
 
                 <div class="input-group-text">
@@ -93,7 +99,9 @@
                 </div>
 
                 <div class="input-group-text">
-                    <input type="checkbox" id="superplasticChronicPulpitis">
+                    <input type="radio" id="superplasticChronicPulpitis" name="chronicPulpitisChecked"
+                           value="superplasticChronicPulpitis"
+                           :disabled="diagnosis.chronicPulpitis ? disabled : ''">
                 </div>
 
                 <div class="input-group-text">
@@ -172,7 +180,8 @@
             <div class="input-group row mb-2" v-if="fields[9].display">
                 <div class="input-group-prepend">
                     <div class="input-group-text">
-                        <input type="checkbox" id="endoPeriodontalDamageCheck" v-model="diagnosis.endoPeriodontalDamageCheck">
+                        <input type="checkbox" id="endoPeriodontalDamageCheck"
+                               v-model="diagnosis.endoPeriodontalDamageCheck">
                     </div>
 
                     <div class="input-group-text">
@@ -191,7 +200,7 @@
 
             <div class="input-group row mb-2" v-if="fields[10].display">
                 <div class="input-group-text">
-                    <input type="checkbox" id="absorption">
+                    <input type="checkbox" id="absorption" v-model="diagnosis.absorption">
                 </div>
 
                 <div class="input-group-text col">
@@ -199,7 +208,9 @@
                 </div>
 
                 <div class="input-group-text">
-                    <input type="checkbox" id="innerAbsorption">
+                    <input type="radio" id="innerAbsorption" name="absorptionChecked"
+                           value="innerAbsorption"
+                           :disabled="diagnosis.absorption ? disabled : ''">
                 </div>
 
                 <div class="input-group-text">
@@ -207,7 +218,9 @@
                 </div>
 
                 <div class="input-group-text">
-                    <input type="checkbox" id="outerAbsorption">
+                    <input type="radio" id="outerAbsorption" name="absorptionChecked"
+                           value="outerAbsorption"
+                           :disabled="diagnosis.absorption ? disabled : ''">
                 </div>
 
                 <div class="input-group-text">
@@ -248,129 +261,130 @@
 </template>
 
 <script>
-import FormError from '@/components/basic/FormError'
-import FieldsList from '@/components/patients/FieldsList'
+    import FormError from '@/components/basic/FormError'
+    import FieldsList from '@/components/patients/FieldsList'
 
-export default {
-    components: { FormError, FieldsList },
+    export default {
+        components: {FormError, FieldsList},
 
-    data () {
-        return {
-            response: {
-                message: '',
-                status: '',
-                errors: []
-            },
+        data() {
+            return {
+                response: {
+                    message: '',
+                    status: '',
+                    errors: []
+                },
 
-            fields: [
-                {
-                    id: 0,
-                    label: 'Αποκάλυψη',
-                    display: false
-                },
-                {
-                    id: 1,
-                    label: 'Υπεραιμία',
-                    display: false
-                },
-                {
-                    id: 2,
-                    label: 'Οξεία Πολφίτιδα',
-                    display: false
-                },
-                {
-                    id: 3,
-                    label: 'Χρονία Πολφίτιδα',
-                    display: false
-                },
-                {
-                    id: 4,
-                    label: 'Νέκρωση',
-                    display: false
-                },
-                {
-                    id: 5,
-                    label: 'Απόστημα',
-                    display: false
-                },
-                {
-                    id: 6,
-                    label: 'Κοκκίωμα',
-                    display: false
-                },
-                {
-                    id: 7,
-                    label: 'Κύστη',
-                    display: false
-                },
-                {
-                    id: 8,
-                    label: 'Αντιδραστική οστεοπύκνωση',
-                    display: false
-                },
-                {
-                    id: 9,
-                    label: 'Ενδοπεριοδοντική βλάβη',
-                    display: false
-                },
-                {
-                    id: 10,
-                    label: 'Απορρόφηση',
-                    display: false
-                },
-                {
-                    id: 11,
-                    label: 'Κάταγμα',
-                    display: false
+                fields: [
+                    {
+                        id: 0,
+                        label: 'Αποκάλυψη',
+                        display: false
+                    },
+                    {
+                        id: 1,
+                        label: 'Υπεραιμία',
+                        display: false
+                    },
+                    {
+                        id: 2,
+                        label: 'Οξεία Πολφίτιδα',
+                        display: false
+                    },
+                    {
+                        id: 3,
+                        label: 'Χρονία Πολφίτιδα',
+                        display: false
+                    },
+                    {
+                        id: 4,
+                        label: 'Νέκρωση',
+                        display: false
+                    },
+                    {
+                        id: 5,
+                        label: 'Απόστημα',
+                        display: false
+                    },
+                    {
+                        id: 6,
+                        label: 'Κοκκίωμα',
+                        display: false
+                    },
+                    {
+                        id: 7,
+                        label: 'Κύστη',
+                        display: false
+                    },
+                    {
+                        id: 8,
+                        label: 'Αντιδραστική οστεοπύκνωση',
+                        display: false
+                    },
+                    {
+                        id: 9,
+                        label: 'Ενδοπεριοδοντική βλάβη',
+                        display: false
+                    },
+                    {
+                        id: 10,
+                        label: 'Απορρόφηση',
+                        display: false
+                    },
+                    {
+                        id: 11,
+                        label: 'Κάταγμα',
+                        display: false
+                    }
+                ],
+
+                diagnosis: {
+                    revelation: '',
+                    revelationCheck: false,
+                    hyperemia: false,
+                    acutePulpitis: false,
+                    partialAcutePulpitis: false,
+                    universalAcutePulpitis: false,
+                    chronicPulpitis: false,
+                    ulceratingChronicPulpitis: false,
+                    superplasticChronicPulpitis: false,
+                    necrosis: false,
+                    abscess: false,
+                    granulation: false,
+                    cyst: false,
+                    reactiveOsteoconduction: false,
+                    endoPeriodontalDamage: '',
+                    endoPeriodontalDamageCheck: false,
+                    absorption: false,
+                    innerAbsorption: false,
+                    outerAbsorption: false,
+                    absorptionChecked: false,
+                    fracture: '',
+                    fractureCheck: false
                 }
-            ],
+            }
+        },
 
-            diagnosis: {
-                revelation: '',
-                revelationCheck: false,
-                hyperemia: false,
-                acutePulpitis: false,
-                partialAcutePulpitis: false,
-                universalAcutePulpitis: false,
-                chronicPulpitis: false,
-                ulceratingChronicPulpitis: false,
-                superplasticChronicPulpitis: false,
-                necrosis: false,
-                abscess: false,
-                granulation: false,
-                cyst: false,
-                reactiveOsteoconduction: false,
-                endoPeriodontalDamage: '',
-                endoPeriodontalDamageCheck: false,
-                absorption: false,
-                innerAbsorption: false,
-                outerAbsorption: false,
-                fracture: '',
-                fractureCheck: false
+        computed: {
+            fieldSelected() {
+                return this.fields.find((field) => {
+                    return field.display
+                })
+            }
+        },
+
+        methods: {
+
+            /**
+             * Εξαφάνιση του πεδίου
+             *
+             * @param field
+             */
+            removeField(field) {
+                this.fields[field].display = false
             }
         }
-    },
-
-    computed: {
-        fieldSelected () {
-            return this.fields.find((field) => {
-                return field.display
-            })
-        }
-    },
-
-    methods: {
-
-        /**
-         * Εξαφάνιση του πεδίου
-         *
-         * @param field
-         */
-        removeField (field) {
-            this.fields[field].display = false
-        }
     }
-}
 </script>
 
 <style lang="scss" scoped>
