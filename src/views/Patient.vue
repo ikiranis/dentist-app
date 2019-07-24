@@ -21,7 +21,7 @@
                             <label for="lname" class="col-md-6 col-form-label text-md-right">Επώνυμο</label>
                             <div class="col-md-6">
                                 <input id="lname" type="text" class="form-control"
-                                       v-model="patient.lname" required>
+                                       v-model="patient.lname" required maxlength="20">
                                 <form-error v-if="response.errors.lname" :error="response.errors.lname[0]"/>
                             </div>
                         </div>
@@ -30,7 +30,7 @@
                             <label for="lname" class="col-md-6 col-form-label text-md-right">Όνομα</label>
                             <div class="col-md-6">
                                 <input id="fname" type="text" class="form-control"
-                                       v-model="patient.fname" required>
+                                       v-model="patient.fname" required maxlength="20">
                                 <form-error v-if="response.errors.fname" :error="response.errors.fname[0]"/>
                             </div>
                         </div>
@@ -39,7 +39,7 @@
                             <label for="fatherName" class="col-md-6 col-form-label text-md-right">Όνομα πατρός</label>
                             <div class="col-md-6">
                                 <input id="fatherName" type="text" class="form-control"
-                                       v-model="patient.fatherName">
+                                       v-model="patient.fatherName" maxlength="20">
                                 <form-error v-if="response.errors.fatherName" :error="response.errors.fatherName[0]"/>
                             </div>
                         </div>
@@ -58,7 +58,7 @@
                                 (σταθερό)</label>
                             <div class="col-md-6">
                                 <input id="phoneLandline" type="text" class="form-control"
-                                       v-model="patient.phoneLandline">
+                                       v-model="patient.phoneLandline" maxlength="10">
                                 <form-error v-if="response.errors.phoneLandline"
                                             :error="response.errors.phoneLandline[0]"/>
                             </div>
@@ -69,7 +69,7 @@
                                 (κινητό)</label>
                             <div class="col-md-6">
                                 <input id="phoneMobile" type="text" class="form-control"
-                                       v-model="patient.phoneMobile">
+                                       v-model="patient.phoneMobile" maxlength="10">
                                 <form-error v-if="response.errors.phoneMobile" :error="response.errors.phoneMobile[0]"/>
                             </div>
                         </div>
@@ -78,7 +78,7 @@
                             <label for="address" class="col-md-6 col-form-label text-md-right">Διεύθυνση</label>
                             <div class="col-md-6">
                                 <input id="address" type="text" class="form-control"
-                                       v-model="patient.address">
+                                       v-model="patient.address" maxlength="60">
                                 <form-error v-if="response.errors.address" :error="response.errors.address[0]"/>
                             </div>
                         </div>
@@ -87,7 +87,7 @@
                             <label for="dateCreated" class="col-md-6 col-form-label text-md-right">Ημ. Εγγραφής</label>
                             <div class="col-md-6">
                                 <input id="dateCreated" type="date" class="form-control"
-                                       v-model="patient.dateCreated">
+                                       v-model="patient.dateCreated" disabled>
                                 <form-error v-if="response.errors.dateCreated" :error="response.errors.dateCreated[0]"/>
                             </div>
                         </div>
@@ -182,7 +182,7 @@ export default {
                 phoneMobile: '697056325',
                 phoneLandline: '2463056325',
                 address: '25ης Μαρτίου 1345',
-                dateCreated: '01/06/2019'
+                dateCreated: '2019-01-15'
             },
 
             menuItems: [
