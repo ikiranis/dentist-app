@@ -3,7 +3,7 @@
         <div class="row justify-content-center">
 
             <div class="col-12">
-                <h1>#{{ patientId }} {{ patient.fname }} {{ patient.lname }}</h1>
+                <h1>#{{ patient.id }} {{ patient.fname }} {{ patient.lname }}</h1>
             </div>
 
             <menu-bar brand="Ασθενής" :brandRoute="{ name: 'patient', params: { id: patientId } }"
@@ -170,6 +170,7 @@ export default {
             },
 
             patient: {
+                id: this.patientId,
                 fname: 'Rosana',
                 lname: 'Lundquist',
                 fatherName: 'Luann',
