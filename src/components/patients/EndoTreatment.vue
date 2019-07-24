@@ -12,7 +12,7 @@
             Επιλογή πεδίων
         </div>
 
-        <form class="container col-lg-6 col-12 mt-3">
+        <form class="container col-lg-7 col-12 mt-3">
 
             <div class="input-group row mb-2 mx-auto">
                 <div class="input-group-prepend">

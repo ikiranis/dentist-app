@@ -11,7 +11,7 @@
             Επιλογή πεδίων
         </div>
 
-        <form class="row col-lg-6 col-12 mt-3 mx-auto">
+        <form class="row col-lg-7 col-12 mt-3 mx-auto">
 
             <div class="input-group row mb-2" v-if="fields[0].display">
                 <div class="input-group-prepend">
