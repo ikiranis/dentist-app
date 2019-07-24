@@ -511,7 +511,7 @@ export default {
          */
         addMedicine () {
             if(this.medicine === '')
-                return;
+                return
 
             this.medicalHistory.medicines.push({
                 id: this.medicalHistory.medicines.length,
