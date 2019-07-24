@@ -1,4 +1,36 @@
-# dentist-app
+# Dentist App Frontend
+
+### Install prod server
+
+``
+git clone git@github.com:ikiranis/apache-for-vue-app.git .
+``
+
+- Edit .env file
+
+``
+docker-compose up -d
+``
+
+- Clone app files at /www folder
+
+``
+git clone git@github.com:ikiranis/dentist-app.git .
+``
+
+- Install npm depedencies
+
+``
+npm install
+``
+
+# Create and edit .env files
+
+# Build app
+
+``
+npm run build
+``
 
 # Build and run node/vue docker environment
 
