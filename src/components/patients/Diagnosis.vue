@@ -261,129 +261,129 @@
 </template>
 
 <script>
-    import FormError from '@/components/basic/FormError'
-    import FieldsList from '@/components/patients/FieldsList'
+import FormError from '@/components/basic/FormError'
+import FieldsList from '@/components/patients/FieldsList'
 
-    export default {
-        components: {FormError, FieldsList},
+export default {
+    components: { FormError, FieldsList },
 
-        data() {
-            return {
-                response: {
-                    message: '',
-                    status: '',
-                    errors: []
+    data () {
+        return {
+            response: {
+                message: '',
+                status: '',
+                errors: []
+            },
+
+            fields: [
+                {
+                    id: 0,
+                    label: 'Αποκάλυψη',
+                    display: false
                 },
-
-                fields: [
-                    {
-                        id: 0,
-                        label: 'Αποκάλυψη',
-                        display: false
-                    },
-                    {
-                        id: 1,
-                        label: 'Υπεραιμία',
-                        display: false
-                    },
-                    {
-                        id: 2,
-                        label: 'Οξεία Πολφίτιδα',
-                        display: false
-                    },
-                    {
-                        id: 3,
-                        label: 'Χρονία Πολφίτιδα',
-                        display: false
-                    },
-                    {
-                        id: 4,
-                        label: 'Νέκρωση',
-                        display: false
-                    },
-                    {
-                        id: 5,
-                        label: 'Απόστημα',
-                        display: false
-                    },
-                    {
-                        id: 6,
-                        label: 'Κοκκίωμα',
-                        display: false
-                    },
-                    {
-                        id: 7,
-                        label: 'Κύστη',
-                        display: false
-                    },
-                    {
-                        id: 8,
-                        label: 'Αντιδραστική οστεοπύκνωση',
-                        display: false
-                    },
-                    {
-                        id: 9,
-                        label: 'Ενδοπεριοδοντική βλάβη',
-                        display: false
-                    },
-                    {
-                        id: 10,
-                        label: 'Απορρόφηση',
-                        display: false
-                    },
-                    {
-                        id: 11,
-                        label: 'Κάταγμα',
-                        display: false
-                    }
-                ],
-
-                diagnosis: {
-                    revelation: '',
-                    revelationCheck: false,
-                    hyperemia: false,
-                    acutePulpitis: false,
-                    partialAcutePulpitis: false,
-                    universalAcutePulpitis: false,
-                    chronicPulpitis: false,
-                    ulceratingChronicPulpitis: false,
-                    superplasticChronicPulpitis: false,
-                    necrosis: false,
-                    abscess: false,
-                    granulation: false,
-                    cyst: false,
-                    reactiveOsteoconduction: false,
-                    endoPeriodontalDamage: '',
-                    endoPeriodontalDamageCheck: false,
-                    absorption: false,
-                    innerAbsorption: false,
-                    outerAbsorption: false,
-                    fracture: '',
-                    fractureCheck: false
+                {
+                    id: 1,
+                    label: 'Υπεραιμία',
+                    display: false
+                },
+                {
+                    id: 2,
+                    label: 'Οξεία Πολφίτιδα',
+                    display: false
+                },
+                {
+                    id: 3,
+                    label: 'Χρονία Πολφίτιδα',
+                    display: false
+                },
+                {
+                    id: 4,
+                    label: 'Νέκρωση',
+                    display: false
+                },
+                {
+                    id: 5,
+                    label: 'Απόστημα',
+                    display: false
+                },
+                {
+                    id: 6,
+                    label: 'Κοκκίωμα',
+                    display: false
+                },
+                {
+                    id: 7,
+                    label: 'Κύστη',
+                    display: false
+                },
+                {
+                    id: 8,
+                    label: 'Αντιδραστική οστεοπύκνωση',
+                    display: false
+                },
+                {
+                    id: 9,
+                    label: 'Ενδοπεριοδοντική βλάβη',
+                    display: false
+                },
+                {
+                    id: 10,
+                    label: 'Απορρόφηση',
+                    display: false
+                },
+                {
+                    id: 11,
+                    label: 'Κάταγμα',
+                    display: false
                 }
+            ],
+
+            diagnosis: {
+                revelation: '',
+                revelationCheck: false,
+                hyperemia: false,
+                acutePulpitis: false,
+                partialAcutePulpitis: false,
+                universalAcutePulpitis: false,
+                chronicPulpitis: false,
+                ulceratingChronicPulpitis: false,
+                superplasticChronicPulpitis: false,
+                necrosis: false,
+                abscess: false,
+                granulation: false,
+                cyst: false,
+                reactiveOsteoconduction: false,
+                endoPeriodontalDamage: '',
+                endoPeriodontalDamageCheck: false,
+                absorption: false,
+                innerAbsorption: false,
+                outerAbsorption: false,
+                fracture: '',
+                fractureCheck: false
             }
-        },
+        }
+    },
 
-        computed: {
-            fieldSelected() {
-                return this.fields.find((field) => {
-                    return field.display
-                })
-            }
-        },
+    computed: {
+        fieldSelected () {
+            return this.fields.find((field) => {
+                return field.display
+            })
+        }
+    },
 
-        methods: {
+    methods: {
 
-            /**
+        /**
              * Εξαφάνιση του πεδίου
              *
              * @param field
              */
-            removeField(field) {
-                this.fields[field].display = false
-            }
+        removeField (field) {
+            this.fields[field].display = false
         }
     }
+}
 </script>
 
 <style lang="scss" scoped>

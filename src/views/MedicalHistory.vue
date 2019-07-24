@@ -516,8 +516,7 @@ export default {
          * Add medicine to medicines array
          */
         addMedicine () {
-            if(this.medicine === '')
-                return
+            if (this.medicine === '') { return }
 
             this.medicalHistory.medicines.push({
                 id: this.medicalHistory.medicines.length,

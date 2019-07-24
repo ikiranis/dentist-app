@@ -360,190 +360,190 @@
 </template>
 
 <script>
-    import FormError from '@/components/basic/FormError'
-    import FieldsList from '@/components/patients/FieldsList'
+import FormError from '@/components/basic/FormError'
+import FieldsList from '@/components/patients/FieldsList'
 
-    export default {
-        components: {FormError, FieldsList},
+export default {
+    components: { FormError, FieldsList },
 
-        data() {
-            return {
-                response: {
-                    message: '',
-                    status: '',
-                    errors: []
-                },
-
-                fields: [
-                    {
-                        id: 0,
-                        label: 'Αυτόματος',
-                        display: false
-                    },
-                    {
-                        id: 1,
-                        label: 'Προκλητός',
-                        display: false
-                    },
-                    {
-                        id: 2,
-                        label: 'Αιτία',
-                        display: false
-                    },
-                    {
-                        id: 3,
-                        label: 'Διάρκεια',
-                        display: false
-                    },
-                    {
-                        id: 4,
-                        label: 'Μείωση στο ψυχρό',
-                        display: false
-                    },
-                    {
-                        id: 5,
-                        label: 'Ιστορικό : Οίδημα',
-                        display: false
-                    },
-                    {
-                        id: 6,
-                        label: 'Αίσθηση επιμήκυνησης δοντιού',
-                        display: false
-                    },
-                    {
-                        id: 7,
-                        label: 'Πυρετός',
-                        display: false
-                    },
-                    {
-                        id: 8,
-                        label: 'Λεμφαδενίτιδα',
-                        display: false
-                    },
-                    {
-                        id: 9,
-                        label: 'Άλλα',
-                        display: false
-                    },
-                    {
-                        id: 10,
-                        label: 'Προηγούμενη αγωγή',
-                        display: false
-                    },
-                    {
-                        id: 11,
-                        label: 'Κλινική εξέταση : Οίδημα',
-                        display: false
-                    },
-                    {
-                        id: 12,
-                        label: 'Συρίγγιο',
-                        display: false
-                    },
-                    {
-                        id: 13,
-                        label: 'Απόχρωση μύλης',
-                        display: false
-                    },
-                    {
-                        id: 14,
-                        label: 'Αποκάλυψη πολφού',
-                        display: false
-                    },
-                    {
-                        id: 15,
-                        label: 'Ευαισθησία στη ψηλάφηση ακρορριζικά',
-                        display: false
-                    },
-                    {
-                        id: 16,
-                        label: 'Πόνος στην επίκρουση',
-                        display: false
-                    },
-                    {
-                        id: 17,
-                        label: 'Ευσειστότητα',
-                        display: false
-                    },
-                    {
-                        id: 18,
-                        label: 'Ζωτικότητα',
-                        display: false
-                    },
-                    {
-                        id: 19,
-                        label: 'Περιοδοντικοί ιστοί',
-                        display: false
-                    },
-                    {
-                        id: 20,
-                        label: 'Ακτινογραφική εξέταση',
-                        display: false
-                    },
-                    {
-                        id: 21,
-                        label: 'Επιλογή δοντιού',
-                        display: false
-                    }
-                ],
-
-                endoTreatment: {
-                    automatic: false,
-                    challenged: false,
-                    reason: '',
-                    duration: '',
-                    reduceToTheCold: false,
-                    historyEdema: false,
-                    feelingOfToothElongation: false,
-                    fever: false,
-                    lymphadenitis: false,
-                    others: '',
-                    previousAction: '',
-                    treatEdema: false,
-                    fistula: false,
-                    tintOfAMill: false,
-                    revelationOfPulp: '',
-                    revelationOfPulpCheck: false,
-                    sensitivityToPalpationAtTheTip: false,
-                    painInTheAttack: false,
-                    elation: false,
-                    vitality: false,
-                    periodontalTissues: '',
-                    radiographicExamination: '',
-                    toothChoise: 0
-                }
-
-            }
-        },
-
-        computed: {
-            fieldSelected() {
-                return this.fields.find((field) => {
-                    return field.display
-                })
+    data () {
+        return {
+            response: {
+                message: '',
+                status: '',
+                errors: []
             },
 
-            painFields() {
-                return (this.fields[0].display
-                    || this.fields[1].display
-                    || this.fields[2].display
-                    || this.fields[3].display
-                    || this.fields[4].display)
+            fields: [
+                {
+                    id: 0,
+                    label: 'Αυτόματος',
+                    display: false
+                },
+                {
+                    id: 1,
+                    label: 'Προκλητός',
+                    display: false
+                },
+                {
+                    id: 2,
+                    label: 'Αιτία',
+                    display: false
+                },
+                {
+                    id: 3,
+                    label: 'Διάρκεια',
+                    display: false
+                },
+                {
+                    id: 4,
+                    label: 'Μείωση στο ψυχρό',
+                    display: false
+                },
+                {
+                    id: 5,
+                    label: 'Ιστορικό : Οίδημα',
+                    display: false
+                },
+                {
+                    id: 6,
+                    label: 'Αίσθηση επιμήκυνησης δοντιού',
+                    display: false
+                },
+                {
+                    id: 7,
+                    label: 'Πυρετός',
+                    display: false
+                },
+                {
+                    id: 8,
+                    label: 'Λεμφαδενίτιδα',
+                    display: false
+                },
+                {
+                    id: 9,
+                    label: 'Άλλα',
+                    display: false
+                },
+                {
+                    id: 10,
+                    label: 'Προηγούμενη αγωγή',
+                    display: false
+                },
+                {
+                    id: 11,
+                    label: 'Κλινική εξέταση : Οίδημα',
+                    display: false
+                },
+                {
+                    id: 12,
+                    label: 'Συρίγγιο',
+                    display: false
+                },
+                {
+                    id: 13,
+                    label: 'Απόχρωση μύλης',
+                    display: false
+                },
+                {
+                    id: 14,
+                    label: 'Αποκάλυψη πολφού',
+                    display: false
+                },
+                {
+                    id: 15,
+                    label: 'Ευαισθησία στη ψηλάφηση ακρορριζικά',
+                    display: false
+                },
+                {
+                    id: 16,
+                    label: 'Πόνος στην επίκρουση',
+                    display: false
+                },
+                {
+                    id: 17,
+                    label: 'Ευσειστότητα',
+                    display: false
+                },
+                {
+                    id: 18,
+                    label: 'Ζωτικότητα',
+                    display: false
+                },
+                {
+                    id: 19,
+                    label: 'Περιοδοντικοί ιστοί',
+                    display: false
+                },
+                {
+                    id: 20,
+                    label: 'Ακτινογραφική εξέταση',
+                    display: false
+                },
+                {
+                    id: 21,
+                    label: 'Επιλογή δοντιού',
+                    display: false
+                }
+            ],
+
+            endoTreatment: {
+                automatic: false,
+                challenged: false,
+                reason: '',
+                duration: '',
+                reduceToTheCold: false,
+                historyEdema: false,
+                feelingOfToothElongation: false,
+                fever: false,
+                lymphadenitis: false,
+                others: '',
+                previousAction: '',
+                treatEdema: false,
+                fistula: false,
+                tintOfAMill: false,
+                revelationOfPulp: '',
+                revelationOfPulpCheck: false,
+                sensitivityToPalpationAtTheTip: false,
+                painInTheAttack: false,
+                elation: false,
+                vitality: false,
+                periodontalTissues: '',
+                radiographicExamination: '',
+                toothChoise: 0
             }
+
+        }
+    },
+
+    computed: {
+        fieldSelected () {
+            return this.fields.find((field) => {
+                return field.display
+            })
         },
 
-        methods: {
+        painFields () {
+            return (this.fields[0].display ||
+                    this.fields[1].display ||
+                    this.fields[2].display ||
+                    this.fields[3].display ||
+                    this.fields[4].display)
+        }
+    },
 
-            /**
+    methods: {
+
+        /**
              * Εξαφάνιση του πεδίου
              *
              * @param field
              */
-            removeField(field) {
-                this.fields[field].display = false
-            }
+        removeField (field) {
+            this.fields[field].display = false
         }
     }
+}
 </script>
 
 <style lang="scss" scoped>
