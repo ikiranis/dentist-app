@@ -266,17 +266,21 @@
                             </div>
 
                             <input id="medicine" type="text" class="form-control"
-                                   v-model="medicine" maxlength="60" @keyup.enter="addMedicine">
+                                   v-model="medicine" maxlength="60" placeholder="Πάτα enter για εισαγωγή"
+                                   @keyup.enter="addMedicine">
 
                             <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου" @click="removeField(16)"/>
 
                             <div class="col-12">
                                 <select multiple class="form-control mt-2" id="medicines"
-                                        @keyup.delete="deleteMedicine($event)">
+                                        @keyup.delete="deleteMedicine($event)" v-if="medicalHistory.medicines.length">
                                     <option v-for="medicine in medicalHistory.medicines" :key="medicine.id" :value="medicine.id">
                                         {{ medicine.name }}
                                     </option>
                                 </select>
+                                <div class="row w-100" v-if="medicalHistory.medicines.length">
+                                    <small class="text-danger mx-auto">Πάτα delete για διαγραφή</small>
+                                </div>
                             </div>
                         </div>
 
