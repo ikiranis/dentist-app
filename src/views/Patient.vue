@@ -178,7 +178,7 @@ export default {
                     { id: 2, label: 'Εκρεμείς θεραπείες', name: '' },
                     { id: 3, label: 'Χρέος', name: '' }
                 ],
-                birthday: '12/11/1974',
+                birthday: '1974-11-12',
                 phoneMobile: '697056325',
                 phoneLandline: '2463056325',
                 address: '25ης Μαρτίου 1345',
