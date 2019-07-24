@@ -271,9 +271,10 @@
                             <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου" @click="removeField(16)"/>
 
                             <div class="col-12">
-                                <select multiple class="form-control mt-2" id="medicines">
-                                    <option v-for="medicine in medicalHistory.medicines" :key="medicine.id">
-                                        {{ medicine.id }} {{ medicine.name }}
+                                <select multiple class="form-control mt-2" id="medicines"
+                                        @keyup.delete="deleteMedicine($event)">
+                                    <option v-for="medicine in medicalHistory.medicines" :key="medicine.id" :value="medicine.id">
+                                        {{ medicine.name }}
                                     </option>
                                 </select>
                             </div>
@@ -516,6 +517,11 @@ export default {
                 id: this.medicalHistory.medicines.length,
                 name: this.medicine });
             this.medicine = ''
+        },
+
+        deleteMedicine (event) {
+            let index = this.medicalHistory.medicines.find((medicine) => medicine.id === event.target.value);
+            this.medicalHistory.medicines.splice(index, 1)
         }
     }
 }
