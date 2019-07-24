@@ -21,7 +21,7 @@
 
                 <div class="input-group row mb-2" v-if="fields[0].display">
                     <div class="input-group-text">
-                        <input type="checkbox" id="automatic">
+                        <input type="checkbox" id="automatic" v-model="endoTreatment.automatic">
                     </div>
 
                     <div class="input-group-text col">
@@ -34,7 +34,7 @@
 
                 <div class="input-group row mb-2" v-if="fields[1].display">
                     <div class="input-group-text">
-                        <input type="checkbox" id="challenged">
+                        <input type="checkbox" id="challenged" v-model="endoTreatment.challenged">
                     </div>
 
                     <div class="input-group-text col">
@@ -77,7 +77,7 @@
 
                 <div class="input-group row mb-2" v-if="fields[4].display">
                     <div class="input-group-text">
-                        <input type="checkbox" id="reduceToTheCold">
+                        <input type="checkbox" id="reduceToTheCold" v-model="endoTreatment.reduceToTheCold">
                     </div>
 
                     <div class="input-group-text col">
@@ -90,7 +90,7 @@
 
                 <div class="input-group row mb-2" v-if="fields[5].display">
                     <div class="input-group-text">
-                        <input type="checkbox" id="historyEdema">
+                        <input type="checkbox" id="historyEdema" v-model="endoTreatment.historyEdema">
                     </div>
 
                     <div class="input-group-text col">
@@ -103,7 +103,7 @@
 
                 <div class="input-group row mb-2" v-if="fields[6].display">
                     <div class="input-group-text">
-                        <input type="checkbox" id="feelingOfToothElongation">
+                        <input type="checkbox" id="feelingOfToothElongation" v-model="endoTreatment.feelingOfToothElongation">
                     </div>
 
                     <div class="input-group-text col">
@@ -116,7 +116,7 @@
 
                 <div class="input-group row mb-2" v-if="fields[7].display">
                     <div class="input-group-text">
-                        <input type="checkbox" id="fever">
+                        <input type="checkbox" id="fever" v-model="endoTreatment.fever">
                     </div>
 
                     <div class="input-group-text col">
@@ -129,7 +129,7 @@
 
                 <div class="input-group row mb-2" v-if="fields[8].display">
                     <div class="input-group-text">
-                        <input type="checkbox" id="lymphadenitis">
+                        <input type="checkbox" id="lymphadenitis" v-model="endoTreatment.lymphadenitis">
                     </div>
 
                     <div class="input-group-text col">
@@ -195,7 +195,7 @@
 
                 <div class="input-group row mb-2" v-if="fields[11].display">
                     <div class="input-group-text">
-                        <input type="checkbox" id="treatEdema">
+                        <input type="checkbox" id="treatEdema" v-model="endoTreatment.treatEdema">
                     </div>
 
                     <div class="input-group-text col">
@@ -208,7 +208,7 @@
 
                 <div class="input-group row mb-2" v-if="fields[12].display">
                     <div class="input-group-text">
-                        <input type="checkbox" id="fistula">
+                        <input type="checkbox" id="fistula" v-model="endoTreatment.fistula">
                     </div>
 
                     <div class="input-group-text col">
@@ -221,7 +221,7 @@
 
                 <div class="input-group row mb-2" v-if="fields[13].display">
                     <div class="input-group-text">
-                        <input type="checkbox" id="tintOfAMill">
+                        <input type="checkbox" id="tintOfAMill" v-model="endoTreatment.tintOfAMill">
                     </div>
 
                     <div class="input-group-text col">
@@ -235,7 +235,7 @@
                 <div class="input-group row mb-2" v-if="fields[14].display">
                     <div class="input-group-prepend">
                         <div class="input-group-text">
-                            <input type="checkbox" id="revelationOfPulpCheck">
+                            <input type="checkbox" id="revelationOfPulpCheck" v-model="endoTreatment.revelationOfPulpCheck">
                         </div>
 
                         <div class="input-group-text">
@@ -244,7 +244,8 @@
                     </div>
 
                     <input id="revelationOfPulp" type="text" class="form-control"
-                           v-model="endoTreatment.revelationOfPulp" maxlength="20">
+                           v-model="endoTreatment.revelationOfPulp" maxlength="20"
+                           :disabled="endoTreatment.revelationOfPulpCheck ? disabled : ''">
                     <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                           @click="removeField(14)"/>
                     <form-error v-if="response.errors.revelationOfPulp"
@@ -253,7 +254,7 @@
 
                 <div class="input-group row mb-2" v-if="fields[15].display">
                     <div class="input-group-text">
-                        <input type="checkbox" id="sensitivityToPalpationAtTheTip">
+                        <input type="checkbox" id="sensitivityToPalpationAtTheTip" v-model="endoTreatment.sensitivityToPalpationAtTheTip">
                     </div>
 
                     <div class="input-group-text col">
@@ -266,7 +267,7 @@
 
                 <div class="input-group row mb-2" v-if="fields[16].display">
                     <div class="input-group-text">
-                        <input type="checkbox" id="painInTheAttack">
+                        <input type="checkbox" id="painInTheAttack" v-model="endoTreatment.painInTheAttack">
                     </div>
 
                     <div class="input-group-text col">
@@ -279,7 +280,7 @@
 
                 <div class="input-group row mb-2" v-if="fields[17].display">
                     <div class="input-group-text">
-                        <input type="checkbox" id="elation">
+                        <input type="checkbox" id="elation" v-model="endoTreatment.elation">
                     </div>
 
                     <div class="input-group-text col">
@@ -292,7 +293,7 @@
 
                 <div class="input-group row mb-2" v-if="fields[18].display">
                     <div class="input-group-text">
-                        <input type="checkbox" id="vitality">
+                        <input type="checkbox" id="vitality" v-model="endoTreatment.vitality">
                     </div>
 
                     <div class="input-group-text col">
