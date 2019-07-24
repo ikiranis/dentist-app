@@ -524,7 +524,11 @@
             },
 
             painFields() {
-                return (this.fields[0].display || this.fields[1].display || this.fields[2].display || this.fields[3].display || this.fields[4].display)
+                return (this.fields[0].display
+                    || this.fields[1].display
+                    || this.fields[2].display
+                    || this.fields[3].display
+                    || this.fields[4].display)
             }
         },
 
