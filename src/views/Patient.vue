@@ -3,7 +3,7 @@
         <div class="row justify-content-center">
 
             <div class="col-12">
-                <h1>#{{ patientId }} {{ patient.info.fname }} {{ patient.info.lname }}</h1>
+                <h1>#{{ patientId }} {{ patient.fname }} {{ patient.lname }}</h1>
             </div>
 
             <menu-bar brand="Ασθενής" :brandRoute="{ name: 'patient', params: { id: patientId } }"
@@ -21,7 +21,7 @@
                             <label for="lname" class="col-md-6 col-form-label text-md-right">Επώνυμο</label>
                             <div class="col-md-6">
                                 <input id="lname" type="text" class="form-control"
-                                       v-model="patient.info.lname" required>
+                                       v-model="patient.lname" required>
                                 <form-error v-if="response.errors.lname" :error="response.errors.lname[0]"/>
                             </div>
                         </div>
@@ -30,7 +30,7 @@
                             <label for="lname" class="col-md-6 col-form-label text-md-right">Όνομα</label>
                             <div class="col-md-6">
                                 <input id="fname" type="text" class="form-control"
-                                       v-model="patient.info.fname" required>
+                                       v-model="patient.fname" required>
                                 <form-error v-if="response.errors.fname" :error="response.errors.fname[0]"/>
                             </div>
                         </div>
@@ -39,7 +39,7 @@
                             <label for="fatherName" class="col-md-6 col-form-label text-md-right">Όνομα πατρός</label>
                             <div class="col-md-6">
                                 <input id="fatherName" type="text" class="form-control"
-                                       v-model="patient.info.fatherName">
+                                       v-model="patient.fatherName">
                                 <form-error v-if="response.errors.fatherName" :error="response.errors.fatherName[0]"/>
                             </div>
                         </div>
@@ -48,7 +48,7 @@
                             <label for="birthday" class="col-md-6 col-form-label text-md-right">Ημ. γέννησης</label>
                             <div class="col-md-6">
                                 <input id="birthday" type="date" class="form-control"
-                                       v-model="patient.info.birthday">
+                                       v-model="patient.birthday">
                                 <form-error v-if="response.errors.birthday" :error="response.errors.birthday[0]"/>
                             </div>
                         </div>
@@ -58,7 +58,7 @@
                                 (σταθερό)</label>
                             <div class="col-md-6">
                                 <input id="phoneLandline" type="text" class="form-control"
-                                       v-model="patient.info.phoneLandline">
+                                       v-model="patient.phoneLandline">
                                 <form-error v-if="response.errors.phoneLandline"
                                             :error="response.errors.phoneLandline[0]"/>
                             </div>
@@ -69,7 +69,7 @@
                                 (κινητό)</label>
                             <div class="col-md-6">
                                 <input id="phoneMobile" type="text" class="form-control"
-                                       v-model="patient.info.phoneMobile">
+                                       v-model="patient.phoneMobile">
                                 <form-error v-if="response.errors.phoneMobile" :error="response.errors.phoneMobile[0]"/>
                             </div>
                         </div>
@@ -78,7 +78,7 @@
                             <label for="address" class="col-md-6 col-form-label text-md-right">Διεύθυνση</label>
                             <div class="col-md-6">
                                 <input id="address" type="text" class="form-control"
-                                       v-model="patient.info.address">
+                                       v-model="patient.address">
                                 <form-error v-if="response.errors.address" :error="response.errors.address[0]"/>
                             </div>
                         </div>
@@ -87,7 +87,7 @@
                             <label for="dateCreated" class="col-md-6 col-form-label text-md-right">Ημ. Εγγραφής</label>
                             <div class="col-md-6">
                                 <input id="dateCreated" type="date" class="form-control"
-                                       v-model="patient.info.dateCreated">
+                                       v-model="patient.dateCreated">
                                 <form-error v-if="response.errors.dateCreated" :error="response.errors.dateCreated[0]"/>
                             </div>
                         </div>
@@ -111,8 +111,7 @@
                                     </label>
                                     <div class="col-md-7">
                                         <input id="disease" type="text" class="form-control col-form"
-                                               v-model="patient.info.disease">
-                                        <form-error v-if="response.errors.disease" :error="response.errors.disease[0]"/>
+                                               v-model="patient.icons[0].name">
                                     </div>
                                 </div>
 
@@ -122,9 +121,7 @@
                                     </label>
                                     <div class="col-md-7">
                                         <input id="treatment" type="text" class="form-control col-form"
-                                               v-model="patient.info.treatment">
-                                        <form-error v-if="response.errors.treatment"
-                                                    :error="response.errors.treatment[0]"/>
+                                               v-model="patient.icons[1].name">
                                     </div>
                                 </div>
 
@@ -134,8 +131,7 @@
                                     </label>
                                     <div class="col-md-7">
                                         <input id="debt" type="text" class="form-control col-form"
-                                               v-model="patient.info.debt">
-                                        <form-error v-if="response.errors.debt" :error="response.errors.debt[0]"/>
+                                               v-model="patient.icons[2].name">
                                     </div>
                                 </div>
 
@@ -174,16 +170,19 @@ export default {
             },
 
             patient: {
-                info: {
-                    fname: 'Rosana',
-                    lname: 'Lundquist',
-                    fatherName: 'Luann',
-                    birthday: '12/11/1974',
-                    phoneLandline: '2463056325',
-                    phoneMobile: '6954568234',
-                    address: '25ης Μαρτίου 1345',
-                    dateCreated: '01/06/2019'
-                }
+                fname: 'Rosana',
+                lname: 'Lundquist',
+                fatherName: 'Luann',
+                icons: [
+                    { id: 1, label: 'Ασθένεια', name: '' },
+                    { id: 2, label: 'Εκρεμείς θεραπείες', name: '' },
+                    { id: 3, label: 'Χρέος', name: '' }
+                ],
+                birthday: '12/11/1974',
+                phoneMobile: '697056325',
+                phoneLandline: '2463056325',
+                address: '25ης Μαρτίου 1345',
+                dateCreated: '01/06/2019'
             },
 
             menuItems: [
@@ -239,7 +238,7 @@ export default {
     methods: {
 
         saveInfo () {
-            //
+            alert('Saving...')
         }
     }
 }
