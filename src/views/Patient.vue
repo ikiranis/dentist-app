@@ -170,7 +170,7 @@ export default {
             },
 
             patient: {
-                id: this.patientId,
+                id: 0,
                 fname: 'Rosana',
                 lname: 'Lundquist',
                 fatherName: 'Luann',
