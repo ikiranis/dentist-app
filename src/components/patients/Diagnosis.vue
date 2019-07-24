@@ -16,7 +16,7 @@
             <div class="input-group row mb-2" v-if="fields[0].display">
                 <div class="input-group-prepend">
                     <div class="input-group-text">
-                        <input type="checkbox" id="revelationCheck">
+                        <input type="checkbox" id="revelationCheck" v-model="diagnosis.revelationCheck">
                     </div>
 
                     <div class="input-group-text">
@@ -25,7 +25,8 @@
                 </div>
 
                 <input id="revelation" type="text" class="form-control"
-                       v-model="diagnosis.revelation" maxlength="20">
+                       v-model="diagnosis.revelation" maxlength="20"
+                       :disabled="diagnosis.revelationCheck ? disabled : ''">
                 <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                       @click="removeField(0)"/>
                 <form-error v-if="response.errors.revelation"
@@ -34,7 +35,7 @@
 
             <div class="input-group row mb-2" v-if="fields[1].display">
                 <div class="input-group-text">
-                    <input type="checkbox" id="hyperemia">
+                    <input type="checkbox" id="hyperemia" v-model="diagnosis.hyperemia">
                 </div>
 
                 <div class="input-group-text col">
@@ -105,7 +106,7 @@
 
             <div class="input-group row mb-2" v-if="fields[4].display">
                 <div class="input-group-text">
-                    <input type="checkbox" id="necrosis">
+                    <input type="checkbox" id="necrosis" v-model="diagnosis.necrosis">
                 </div>
 
                 <div class="input-group-text col">
@@ -118,7 +119,7 @@
 
             <div class="input-group row mb-2" v-if="fields[5].display">
                 <div class="input-group-text">
-                    <input type="checkbox" id="abscess">
+                    <input type="checkbox" id="abscess" v-model="diagnosis.abscess">
                 </div>
 
                 <div class="input-group-text col">
@@ -131,7 +132,7 @@
 
             <div class="input-group row mb-2" v-if="fields[6].display">
                 <div class="input-group-text">
-                    <input type="checkbox" id="granulation">
+                    <input type="checkbox" id="granulation" v-model="diagnosis.granulation">
                 </div>
 
                 <div class="input-group-text col">
@@ -144,7 +145,7 @@
 
             <div class="input-group row mb-2" v-if="fields[7].display">
                 <div class="input-group-text">
-                    <input type="checkbox" id="cyst">
+                    <input type="checkbox" id="cyst" v-model="diagnosis.cyst">
                 </div>
 
                 <div class="input-group-text col">
@@ -157,7 +158,7 @@
 
             <div class="input-group row mb-2" v-if="fields[8].display">
                 <div class="input-group-text">
-                    <input type="checkbox" id="reactiveOsteoconduction">
+                    <input type="checkbox" id="reactiveOsteoconduction" v-model="diagnosis.reactiveOsteoconduction">
                 </div>
 
                 <div class="input-group-text col">
@@ -171,7 +172,7 @@
             <div class="input-group row mb-2" v-if="fields[9].display">
                 <div class="input-group-prepend">
                     <div class="input-group-text">
-                        <input type="checkbox" id="endoPeriodontalDamageCheck">
+                        <input type="checkbox" id="endoPeriodontalDamageCheck" v-model="diagnosis.endoPeriodontalDamageCheck">
                     </div>
 
                     <div class="input-group-text">
@@ -180,7 +181,8 @@
                 </div>
 
                 <input id="endoPeriodontalDamage" type="text" class="form-control"
-                       v-model="diagnosis.endoPeriodontalDamage" maxlength="20">
+                       v-model="diagnosis.endoPeriodontalDamage" maxlength="20"
+                       :disabled="diagnosis.endoPeriodontalDamageCheck ? disabled : ''">
                 <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                       @click="removeField(9)"/>
                 <form-error v-if="response.errors.endoPeriodontalDamage"
@@ -219,7 +221,7 @@
             <div class="input-group row mb-2" v-if="fields[11].display">
                 <div class="input-group-prepend">
                     <div class="input-group-text">
-                        <input type="checkbox" id="fractureCheck">
+                        <input type="checkbox" id="fractureCheck" v-model="diagnosis.fractureCheck">
                     </div>
 
                     <div class="input-group-text">
