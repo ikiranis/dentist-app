@@ -66,7 +66,7 @@
                     </tr>
                     </thead>
 
-                    <tbody v-for="file in files" :key="file.filename">
+                    <tbody v-for="file in files" :key="file.id">
                     <tr>
                         <th scope="row" class="text-center">
                             <img :src="file.thumbnail">
@@ -164,6 +164,7 @@ export default {
 
             files: [
                 {
+                    id: 0,
                     thumbnail: 'https://picsum.photos/50',
                     filename: 'something',
                     description: 'something about something else',
@@ -171,6 +172,7 @@ export default {
                     size: '156'
                 },
                 {
+                    id: 1,
                     thumbnail: 'https://picsum.photos/50',
                     filename: 'something',
                     description: 'something about something else',
@@ -178,6 +180,7 @@ export default {
                     size: '156'
                 },
                 {
+                    id: 2,
                     thumbnail: 'https://picsum.photos/50',
                     filename: 'something',
                     description: 'something about something else',
@@ -185,6 +188,7 @@ export default {
                     size: '156'
                 },
                 {
+                    id: 3,
                     thumbnail: 'https://picsum.photos/50',
                     filename: 'something',
                     description: 'something about something else',
