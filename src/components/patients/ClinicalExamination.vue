@@ -375,16 +375,16 @@
                 <div class="input-group row mb-2" v-if="fields[23].display">
                     <div class="input-group-prepend">
                         <div class="input-group-text">
-                            <label for="oralGrouno" class="my-auto">Έδαφος στόματος</label>
+                            <label for="oralGround" class="my-auto">Έδαφος στόματος</label>
                         </div>
                     </div>
 
-                    <input id="oralGrouno" type="text" class="form-control"
-                           v-model="clinicalExamination.oralGrouno" maxlength="20">
+                    <input id="oralGround" type="text" class="form-control"
+                           v-model="clinicalExamination.oralGround" maxlength="20">
                     <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                           @click="removeField(23)"/>
-                    <form-error v-if="response.errors.oralGrouno"
-                                :error="response.errors.oralGrouno[0]"/>
+                    <form-error v-if="response.errors.oralGround"
+                                :error="response.errors.oralGround[0]"/>
                 </div>
 
                 <div class="input-group row mb-2" v-if="fields[24].display">
