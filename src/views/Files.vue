@@ -117,6 +117,7 @@ export default {
             },
 
             file: {
+                id: 0,
                 thumbnail: '',
                 filename: '',
                 description: '',
