@@ -83,12 +83,12 @@
             <div class="input-group row mb-2 mx-auto" v-if="fields[2].display">
                 <div class="input-group-prepend">
                     <div class="input-group-text">
-                        <label for="Benchmark" class="my-auto">Σημείο αναφοράς</label>
+                        <label for="benchmark" class="my-auto">Σημείο αναφοράς</label>
                     </div>
                 </div>
 
-                <input id="Benchmark" type="text" class="form-control"
-                       v-model="endoTreatment.Benchmark" maxlength="20">
+                <input id="benchmark" type="text" class="form-control"
+                       v-model="endoTreatment.benchmark" maxlength="20">
 
                 <select class="form-control" id="chozenBenchmark">
                     <option v-for="benchmark in benchmarks" :key="benchmark.id" :value="benchmark.id">{{ benchmark.name
@@ -98,8 +98,8 @@
 
                 <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                       @click="removeField(2)"/>
-                <form-error v-if="response.errors.Benchmark"
-                            :error="response.errors.Benchmark[0]"/>
+                <form-error v-if="response.errors.benchmark"
+                            :error="response.errors.benchmark[0]"/>
             </div>
 
             <div class="input-group row mb-2 mx-auto" v-if="fields[3].display">
@@ -264,7 +264,7 @@ export default {
                 counter: '',
                 radiography: '',
                 workingLength: '',
-                Benchmark: '',
+                benchmark: '',
                 chozenBenchmark: 0,
                 MAF: '',
                 chemicalMechanicalTreatment: '',
