@@ -27,19 +27,7 @@
 
 				<div class="container mt-4" v-if="patients.length && !loading">
 
-					<nav v-if="pagination.links" aria-label="Patients navigation" class="col-12 row mt-3">
-						<ul class="pagination ml-auto mr-auto">
-							<li class="page-item" :class="pagination.links.prev ? '' : 'disabled'">
-								<span class="page-link btn-icon" v-on:click="getPatients(pagination.links.prev)">Προηγούμενη</span>
-							</li>
-							<li class="page-item disabled">
-								<span class="page-link">Page {{ pagination.meta.current_page }} of {{ pagination.meta.last_page }}</span>
-							</li>
-							<li class="page-item" :class="pagination.links.next ? '' : 'disabled' ">
-								<span class="page-link btn-icon" v-on:click="getPatients(pagination.links.next)">Επόμενη</span>
-							</li>
-						</ul>
-					</nav>
+					<paginate :pagination="pagination" @click="getPatients"/>
 
 					<table class="table">
 						<thead>
@@ -92,10 +80,11 @@
 import api from '@/api'
 import DisplayError from '@/components/basic/DisplayError'
 import Loading from '@/components/basic/Loading'
+import Paginate from '@/components/basic/Paginate'
 import { mapState, mapMutations } from 'vuex'
 
 export default {
-    components: { Loading, DisplayError },
+    components: { Loading, DisplayError, Paginate },
 
     data () {
         return {
@@ -106,8 +95,8 @@ export default {
             },
 
             pagination: {
-                meta: null,
-                links: null
+                meta: {},
+                links: {}
             },
 
             search: '',
