@@ -61,6 +61,8 @@
 						</tr>
 						</tbody>
 					</table>
+
+					<paginate :pagination="pagination" @click="getPatients"/>
 				</div>
 
 				<div class="row w-100">
