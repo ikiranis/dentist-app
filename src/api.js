@@ -104,8 +104,14 @@ let api = {
 	 *
 	 * @returns {Promise<void>}
 	 */
-    async getPatients () {
-        let { data } = await axios.get(ROOT_API + '/patients')
+    async getPatients (page) {
+        if (page !== null) {
+            page = '?' + page.toString().split('?')[1];
+        } else {
+            page = '';
+        }
+
+        let { data } = await axios.get(ROOT_API + '/patients' + page)
 
         return data
     }

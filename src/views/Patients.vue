@@ -26,6 +26,21 @@
 				</div>
 
 				<div class="container mt-4" v-if="patients.length && !loading">
+
+					<nav v-if="pagination.links" aria-label="Patients navigation" class="col-12 row mt-3">
+						<ul class="pagination ml-auto mr-auto">
+							<li class="page-item" :class="pagination.links.prev ? '' : 'disabled'">
+								<span class="page-link btn-icon" v-on:click="getPatients(pagination.links.prev)">Προηγούμενη</span>
+							</li>
+							<li class="page-item disabled">
+								<span class="page-link">Page {{ pagination.meta.current_page }} of {{ pagination.meta.last_page }}</span>
+							</li>
+							<li class="page-item" :class="pagination.links.next ? '' : 'disabled' ">
+								<span class="page-link btn-icon" v-on:click="getPatients(pagination.links.next)">Επόμενη</span>
+							</li>
+						</ul>
+					</nav>
+
 					<table class="table">
 						<thead>
 						<tr>
@@ -169,18 +184,23 @@ export default {
     },
 
     created: function () {
-        this.getPatients()
+        this.getPatients(1)
     },
 
     methods: {
         ...mapMutations(['setLoading']),
 
-        getPatients () {
+        getPatients (page) {
             this.setLoading(true)
 
-            api.getPatients()
+            api.getPatients(page)
                 .then(response => {
                     this.patients = response.data
+					this.pagination.meta = response.meta;
+					this.pagination.links = response.links;
+
+					window.scrollTo(0, 0);
+
                     this.setLoading(false)
                 })
                 .catch(error => {
