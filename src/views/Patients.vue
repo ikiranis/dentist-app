@@ -1,7 +1,6 @@
 <template>
 	<div class="container-fluid my-3">
 
-
 		<div class="justify-content-center">
 
 			<div class="col-12"><h1>Ασθενείς</h1></div>
@@ -75,148 +74,148 @@
 </template>
 
 <script>
-    import api from '@/api';
-    import DisplayError from "@/components/basic/DisplayError";
-    import Loading from "@/components/basic/Loading";
-    import {mapState, mapMutations} from 'vuex';
+import api from '@/api'
+import DisplayError from '@/components/basic/DisplayError'
+import Loading from '@/components/basic/Loading'
+import { mapState, mapMutations } from 'vuex'
 
-    export default {
-        components: {Loading, DisplayError},
+export default {
+    components: { Loading, DisplayError },
 
-        data() {
-            return {
-                response: {
-                    message: '',
-                    status: '',
-                    errors: []
-                },
-
-                pagination: {
-                    meta: null,
-                    links: null
-                },
-
-                search: '',
-
-                patients: []
-
-                // patients: [
-                // 	{
-                // 		id: 1,
-                // 		lname: 'Lundquist',
-                // 		fname: 'Rosana',
-                // 		icons: [
-                // 			{id: 1, label: 'Ασθένεια'},
-                // 			{id: 2, label: 'Εκρεμείς θεραπείες'},
-                // 			{id: 3, label: 'Χρέος'}
-                // 		]
-                // 	},
-                // 	{
-                // 		id: 2,
-                // 		lname: 'Gulbranson',
-                // 		fname: 'Kati',
-                // 		icons: [
-                // 			{id: 1, label: 'Ασθένεια'},
-                // 			{id: 2, label: 'Θεραπείες'},
-                // 			{id: 3, label: 'Χρέος'}
-                // 		]
-                // 	},
-                // 	{
-                // 		id: 3,
-                // 		lname: 'Gamet',
-                // 		fname: 'Dayle',
-                // 		icons: [
-                // 			{id: 1, label: 'Ασθένεια'},
-                // 			{id: 2, label: 'Θεραπείες'},
-                // 			{id: 3, label: 'Χρέος'}
-                // 		]
-                // 	},
-                // 	{
-                // 		id: 4,
-                // 		lname: 'Henriquez',
-                // 		fname: 'Luann',
-                // 		icons: [
-                // 			{id: 1, label: 'Ασθένεια'},
-                // 			{id: 2, label: 'Θεραπείες'},
-                // 			{id: 3, label: 'Χρέος'}
-                // 		]
-                // 	},
-                // 	{
-                // 		id: 5,
-                // 		lname: 'Matas',
-                // 		fname: 'Minnie',
-                // 		icons: [
-                // 			{id: 1, label: 'Ασθένεια'},
-                // 			{id: 2, label: 'Θεραπείες'},
-                // 			{id: 3, label: 'Χρέος'}
-                // 		]
-                // 	},
-                // 	{
-                // 		id: 6,
-                // 		lname: 'Battle',
-                // 		fname: 'Pedro',
-                // 		icons: [
-                // 			{id: 1, label: 'Ασθένεια'},
-                // 			{id: 2, label: 'Θεραπείες'},
-                // 			{id: 3, label: 'Χρέος'}
-                // 		]
-                // 	}
-                // ]
-            }
-        },
-
-        computed: {
-            ...mapState(['loading'])
-        },
-
-        created: function () {
-            this.getPatients()
-        },
-
-        methods: {
-            ...mapMutations(['setLoading']),
-
-            getPatients() {
-                this.setLoading(true)
-
-                api.getPatients()
-                    .then(response => {
-                        this.patients = response.data
-                        this.setLoading(false)
-                    })
-                    .catch(error => {
-                        this.response.message = error.response.data.message;
-                        this.response.status = false;
-                        this.setLoading(false)
-                    })
+    data () {
+        return {
+            response: {
+                message: '',
+                status: '',
+                errors: []
             },
 
-            /**
+            pagination: {
+                meta: null,
+                links: null
+            },
+
+            search: '',
+
+            patients: []
+
+            // patients: [
+            // 	{
+            // 		id: 1,
+            // 		lname: 'Lundquist',
+            // 		fname: 'Rosana',
+            // 		icons: [
+            // 			{id: 1, label: 'Ασθένεια'},
+            // 			{id: 2, label: 'Εκρεμείς θεραπείες'},
+            // 			{id: 3, label: 'Χρέος'}
+            // 		]
+            // 	},
+            // 	{
+            // 		id: 2,
+            // 		lname: 'Gulbranson',
+            // 		fname: 'Kati',
+            // 		icons: [
+            // 			{id: 1, label: 'Ασθένεια'},
+            // 			{id: 2, label: 'Θεραπείες'},
+            // 			{id: 3, label: 'Χρέος'}
+            // 		]
+            // 	},
+            // 	{
+            // 		id: 3,
+            // 		lname: 'Gamet',
+            // 		fname: 'Dayle',
+            // 		icons: [
+            // 			{id: 1, label: 'Ασθένεια'},
+            // 			{id: 2, label: 'Θεραπείες'},
+            // 			{id: 3, label: 'Χρέος'}
+            // 		]
+            // 	},
+            // 	{
+            // 		id: 4,
+            // 		lname: 'Henriquez',
+            // 		fname: 'Luann',
+            // 		icons: [
+            // 			{id: 1, label: 'Ασθένεια'},
+            // 			{id: 2, label: 'Θεραπείες'},
+            // 			{id: 3, label: 'Χρέος'}
+            // 		]
+            // 	},
+            // 	{
+            // 		id: 5,
+            // 		lname: 'Matas',
+            // 		fname: 'Minnie',
+            // 		icons: [
+            // 			{id: 1, label: 'Ασθένεια'},
+            // 			{id: 2, label: 'Θεραπείες'},
+            // 			{id: 3, label: 'Χρέος'}
+            // 		]
+            // 	},
+            // 	{
+            // 		id: 6,
+            // 		lname: 'Battle',
+            // 		fname: 'Pedro',
+            // 		icons: [
+            // 			{id: 1, label: 'Ασθένεια'},
+            // 			{id: 2, label: 'Θεραπείες'},
+            // 			{id: 3, label: 'Χρέος'}
+            // 		]
+            // 	}
+            // ]
+        }
+    },
+
+    computed: {
+        ...mapState(['loading'])
+    },
+
+    created: function () {
+        this.getPatients()
+    },
+
+    methods: {
+        ...mapMutations(['setLoading']),
+
+        getPatients () {
+            this.setLoading(true)
+
+            api.getPatients()
+                .then(response => {
+                    this.patients = response.data
+                    this.setLoading(false)
+                })
+                .catch(error => {
+                    this.response.message = error.response.data.message
+                    this.response.status = false
+                    this.setLoading(false)
+                })
+        },
+
+        /**
              * Search for the text
              */
-            searchText() {
-                if (this.routeName === 'home') { // If you are at home just search the bookmarks
-                    // this.getBookmarks(null);
-                } else { // Else go to home and then search
-                    // this.$router.push({name: 'home', params: {textSearch: this.search}});
-                }
-            },
+        searchText () {
+            if (this.routeName === 'home') { // If you are at home just search the bookmarks
+                // this.getBookmarks(null);
+            } else { // Else go to home and then search
+                // this.$router.push({name: 'home', params: {textSearch: this.search}});
+            }
+        },
 
-            /**
+        /**
              * Clear the search text and get the bookmarks
              */
-            clearSearch() {
-                this.search = ''
-                // this.getBookmarks(null);
-            },
+        clearSearch () {
+            this.search = ''
+            // this.getBookmarks(null);
+        },
 
-            /**
+        /**
              *  Create ne patient
              *  */
-            newPatient() {
-                this.$router.push({name: 'patient', params: {id: 0}})
-            }
+        newPatient () {
+            this.$router.push({ name: 'patient', params: { id: 0 } })
         }
-
     }
+
+}
 </script>
