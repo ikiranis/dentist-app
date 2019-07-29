@@ -105,7 +105,7 @@ let api = {
 	 * @returns {Promise<void>}
 	 */
     async getPatients () {
-        let { data } = axios.get(ROOT_API + '/patients')
+        let { data } = await axios.get(ROOT_API + '/patients')
 
         return data
     }
