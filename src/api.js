@@ -43,7 +43,7 @@ let api = {
      * @returns {Promise<any>}
      */
     async register (args) {
-        return await axios.post(ROOT_API + '/register', args)
+        return axios.post(ROOT_API + '/register', args)
     },
 
     async updateUser (args) {
@@ -68,7 +68,7 @@ let api = {
             scope: '*'
         }
 
-        return await axios.post(API_HOST + '/oauth/token', args)
+        return axios.post(API_HOST + '/oauth/token', args)
     },
 
     /**
@@ -78,7 +78,7 @@ let api = {
      * @returns {Promise<any>}
      */
     async sendResetToken (args) {
-        return await axios.post(ROOT_API + '/sendResetToken', args)
+        return axios.post(ROOT_API + '/sendResetToken', args)
     },
 
     /**
@@ -88,7 +88,7 @@ let api = {
      * @returns {Promise<any>}
      */
     async resetPassword (args) {
-        return await axios.patch(ROOT_API + '/resetPassword', args)
+        return axios.patch(ROOT_API + '/resetPassword', args)
     },
 
     /**
@@ -97,8 +97,18 @@ let api = {
      */
     rootApi () {
         return ROOT_API
-    }
+    },
 
+    /**
+	 * Get all patients
+	 *
+	 * @returns {Promise<void>}
+	 */
+    async getPatients () {
+        let { data } = axios.get(ROOT_API + '/patients')
+
+        return data
+    }
 }
 
 export default api
