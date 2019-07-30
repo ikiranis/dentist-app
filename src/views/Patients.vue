@@ -5,14 +5,14 @@
 
             <div class="col-12"><h1>Ασθενείς</h1></div>
 
-            <form @submit.prevent="searchText" class="row col-lg-8 col-12 mx-auto">
+            <form @submit.prevent="getPatients(null)" class="row col-lg-8 col-12 mx-auto">
 
                 <label for="search" class="sr-only">Search</label>
                 <input type="text" max="100" class="form-control col-md-5 col-12 my-1"
                        id="search" name="search" v-model="search">
 
                 <input type="submit" class="btn btn-small btn-success col-md-3 col-12 my-1 mx-auto"
-                       value="Αναζήτηση" @click="searchPatients(null)">
+                       value="Αναζήτηση" @click="getPatients(null)">
                 <input type="submit" class="btn btn-small btn-danger col-md-3 col-12 my-1"
                        @click="clearSearch" value="Καθαρισμός">
 
@@ -104,7 +104,7 @@
                     links: {}
                 },
 
-                search: '',
+                search: null,
 
                 patients: []
 
@@ -142,33 +142,10 @@
             getPatients(page) {
                 this.setLoading(true)
 
-                api.getPatients(page)
+                api.getPatients(page, this.search)
                     .then(response => {
-                        this.patients = response.data
-                        this.pagination.meta = response.meta;
-                        this.pagination.links = response.links;
-
-                        window.scrollTo(0, 0);
-
                         this.setLoading(false)
-                    })
-                    .catch(error => {
-                        this.response.message = error.response.data.message
-                        this.response.status = false
-                        this.setLoading(false)
-                    })
-            },
 
-            /**
-             * Search for patients
-             *
-             * @param page
-             */
-            searchPatients(page) {
-                this.setLoading(true)
-
-                api.searchPatients(this.search, page)
-                    .then(response => {
                         if (response.status === 200) {
                             this.patients = response.data.data
                             this.pagination.meta = response.meta
@@ -176,20 +153,16 @@
 
                             window.scrollTo(0, 0)
 
-                            this.setLoading(false)
-
                             return
                         }
 
-                        this.response.message = response.message
                         this.patients = []
-
-                        this.setLoading(false)
                     })
                     .catch(error => {
+                        this.setLoading(false)
+
                         this.response.message = error.response.data.message
                         this.response.status = false
-                        this.setLoading(false)
                     })
             },
 
@@ -197,7 +170,7 @@
              * Clear the search text and get the bookmarks
              */
             clearSearch() {
-                this.search = ''
+                this.search = null
                 this.getPatients(null);
             },
 

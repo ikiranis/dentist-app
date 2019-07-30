@@ -104,33 +104,18 @@ let api = {
 	 *
 	 * @returns {Promise<void>}
 	 */
-    async getPatients (page) {
+    async getPatients (page, search) {
         if (page !== null) {
             page = '?' + page.toString().split('?')[1];
         } else {
             page = '';
         }
 
-        let { data } = await axios.get(ROOT_API + '/patients' + page)
-
-        return data;
-    },
-
-    /**
-     * Search for patients
-     *
-     * @param search
-     * @param page
-     * @returns {Promise<T>}
-     */
-    async searchPatients (search, page) {
-        if (page !== null) {
-            page = '?' + page.toString().split('?')[1];
-        } else {
-            page = '';
+        if(search) {
+            return await axios.get(ROOT_API + '/patients/search/' + search + page)
         }
 
-        return await axios.get(ROOT_API + '/patients/search/' + search + page)
+        return await axios.get(ROOT_API + '/patients' + page)
     }
 }
 
