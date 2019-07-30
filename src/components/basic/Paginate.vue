@@ -19,14 +19,14 @@
 </template>
 
 <script>
-    export default {
-        name: 'Paginate',
+export default {
+    name: 'Paginate',
 
-        props: {
-            pagination: {
-                required: true,
-                type: Object
-            }
+    props: {
+        pagination: {
+            required: true,
+            type: Object
         }
     }
+}
 </script>

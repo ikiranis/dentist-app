@@ -164,7 +164,7 @@ import MenuBar from '@/components/basic/MenuBar'
 import api from '@/api'
 import DisplayError from '@/components/basic/DisplayError'
 import Loading from '@/components/basic/Loading'
-import {mapState, mapMutations} from 'vuex'
+import { mapState, mapMutations } from 'vuex'
 import moment from 'moment'
 
 export default {
@@ -245,20 +245,19 @@ export default {
         }
     },
 
-    created: function() {
+    created: function () {
         this.getPatient()
     },
 
     methods: {
         ...mapMutations(['setLoading']),
 
-		moment,
+        moment,
 
         /**
          * Get the patient
          */
-        getPatient ()
-        {
+        getPatient () {
             api.getPatient(this.patientId)
                 .then(response => {
                     this.setLoading(false)
@@ -266,7 +265,7 @@ export default {
                     if (response.status === 200) {
                         this.patient = response.data
 
-						this.patient.created_at = moment(this.patient.created_at).format('YYYY-MM-DD')
+                        this.patient.created_at = moment(this.patient.created_at).format('YYYY-MM-DD')
                     }
                 })
                 .catch(error => {

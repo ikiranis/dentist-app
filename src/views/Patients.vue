@@ -82,105 +82,105 @@
 </template>
 
 <script>
-    import api from '@/api'
-    import DisplayError from '@/components/basic/DisplayError'
-    import Loading from '@/components/basic/Loading'
-    import Paginate from '@/components/basic/Paginate'
-    import {mapState, mapMutations} from 'vuex'
+import api from '@/api'
+import DisplayError from '@/components/basic/DisplayError'
+import Loading from '@/components/basic/Loading'
+import Paginate from '@/components/basic/Paginate'
+import { mapState, mapMutations } from 'vuex'
 
-    export default {
-        components: {Loading, DisplayError, Paginate},
+export default {
+    components: { Loading, DisplayError, Paginate },
 
-        data() {
-            return {
-                response: {
-                    message: '',
-                    status: '',
-                    errors: []
-                },
+    data () {
+        return {
+            response: {
+                message: '',
+                status: '',
+                errors: []
+            },
 
-                pagination: {
-                    meta: {},
-                    links: {}
-                },
+            pagination: {
+                meta: {},
+                links: {}
+            },
 
-                search: null,
+            search: null,
 
-                patients: []
+            patients: []
 
-                // patients: [
-                // 	{
-                // 		id: 1,
-                // 		lname: 'Lundquist',
-                // 		fname: 'Rosana',
-                // 		icons: [
-                // 			{id: 1, label: 'Ασθένεια'},
-                // 			{id: 2, label: 'Εκρεμείς θεραπείες'},
-                // 			{id: 3, label: 'Χρέος'}
-                // 		]
-                // 	},
+            // patients: [
+            // 	{
+            // 		id: 1,
+            // 		lname: 'Lundquist',
+            // 		fname: 'Rosana',
+            // 		icons: [
+            // 			{id: 1, label: 'Ασθένεια'},
+            // 			{id: 2, label: 'Εκρεμείς θεραπείες'},
+            // 			{id: 3, label: 'Χρέος'}
+            // 		]
+            // 	},
 
-            }
-        },
+        }
+    },
 
-        computed: {
-            ...mapState(['loading'])
-        },
+    computed: {
+        ...mapState(['loading'])
+    },
 
-        created: function () {
-            this.getPatients(null)
-        },
+    created: function () {
+        this.getPatients(null)
+    },
 
-        methods: {
-            ...mapMutations(['setLoading']),
+    methods: {
+        ...mapMutations(['setLoading']),
 
-            /**
+        /**
              * Get all the patients
              *
              * @param page
              */
-            getPatients(page) {
-                this.setLoading(true)
+        getPatients (page) {
+            this.setLoading(true)
 
-                api.getPatients(page, this.search)
-                    .then(response => {
-                        this.setLoading(false)
+            api.getPatients(page, this.search)
+                .then(response => {
+                    this.setLoading(false)
 
-                        if (response.status === 200) {
-                            this.patients = response.data.data
-                            this.pagination.meta = response.data.meta
-                            this.pagination.links = response.data.links
+                    if (response.status === 200) {
+                        this.patients = response.data.data
+                        this.pagination.meta = response.data.meta
+                        this.pagination.links = response.data.links
 
-                            window.scrollTo(0, 0)
+                        window.scrollTo(0, 0)
 
-                            return
-                        }
+                        return
+                    }
 
-                        this.patients = []
-                    })
-                    .catch(error => {
-                        this.setLoading(false)
+                    this.patients = []
+                })
+                .catch(error => {
+                    this.setLoading(false)
 
-                        this.response.message = error.response.data.message
-                        this.response.status = false
-                    })
-            },
+                    this.response.message = error.response.data.message
+                    this.response.status = false
+                })
+        },
 
-            /**
+        /**
              * Clear the search text and get the bookmarks
              */
-            clearSearch() {
-                this.search = null
-                this.getPatients(null);
-            },
+        clearSearch () {
+            this.search = null
+            this.getPatients(null)
+        },
 
-            /**
+        /**
              *  Create ne patient
              *  */
-            newPatient() {
-                this.$router.push({name: 'patient', params: {id: 0}})
-            }
+        newPatient () {
+            this.$router.push({ name: 'patient', params: { id: 0 } })
         }
-
     }
+
+}
 </script>

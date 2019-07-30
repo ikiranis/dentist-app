@@ -106,16 +106,16 @@ let api = {
 	 */
     async getPatients (page, search) {
         if (page !== null) {
-            page = '?' + page.toString().split('?')[1];
+            page = '?' + page.toString().split('?')[1]
         } else {
-            page = '';
+            page = ''
         }
 
-        if(search) {
-            return await axios.get(ROOT_API + '/patients/search/' + search + page)
+        if (search) {
+            return axios.get(ROOT_API + '/patients/search/' + search + page)
         }
 
-        return await axios.get(ROOT_API + '/patients' + page)
+        return axios.get(ROOT_API + '/patients' + page)
     },
 
     /**
@@ -123,7 +123,7 @@ let api = {
      * @returns {Promise<AxiosResponse<T>>}
      */
     async getPatient (patientId) {
-        return await axios.get(ROOT_API + '/patient/' + patientId)
+        return axios.get(ROOT_API + '/patient/' + patientId)
     }
 }
 
