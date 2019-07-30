@@ -1,9 +1,12 @@
 <template>
     <div class="container-fluid my-3">
-        <div class="row justify-content-center">
+
+        <Loading :loading="loading"/>
+
+        <div class="row justify-content-center" v-if="!loading">
 
             <div class="col-12">
-                <h1>#{{ patient.id }} {{ patient.fname }} {{ patient.lname }}</h1>
+                <h1>#{{ patientId }} {{ patient.fname }} {{ patient.lname }}</h1>
             </div>
 
             <menu-bar brand="Ασθενής" :brandRoute="{ name: 'patient', params: { id: patientId } }"
@@ -97,7 +100,7 @@
                     <div class="col-lg-6 col-12">
 
                         <!-- Σημειώσεις -->
-                        <div class="card">
+                        <div class="card" v-if="patient.icons">
 
                             <div class="card-header">
                                 Σημειώσεις
@@ -149,6 +152,8 @@
 
             </div>
 
+            <display-error v-if="response.message" :response="response"/>
+
         </div>
 
     </div>
@@ -157,9 +162,13 @@
 <script>
 import FormError from '@/components/basic/FormError'
 import MenuBar from '@/components/basic/MenuBar'
+import api from '@/api'
+import DisplayError from '@/components/basic/DisplayError'
+import Loading from '@/components/basic/Loading'
+import {mapState, mapMutations} from 'vuex'
 
 export default {
-    components: { FormError, MenuBar },
+    components: { FormError, MenuBar, Loading, DisplayError },
 
     data () {
         return {
@@ -169,22 +178,24 @@ export default {
                 errors: []
             },
 
-            patient: {
-                id: 0,
-                fname: 'Rosana',
-                lname: 'Lundquist',
-                fatherName: 'Luann',
-                icons: [
-                    { id: 1, label: 'Ασθένεια', name: '' },
-                    { id: 2, label: 'Εκρεμείς θεραπείες', name: '' },
-                    { id: 3, label: 'Χρέος', name: '' }
-                ],
-                birthday: '1974-11-12',
-                phoneMobile: '697056325',
-                phoneLandline: '2463056325',
-                address: '25ης Μαρτίου 1345',
-                dateCreated: '2019-01-15'
-            },
+            patient: {},
+
+            // patient: {
+            //     id: 0,
+            //     fname: 'Rosana',
+            //     lname: 'Lundquist',
+            //     fatherName: 'Luann',
+            //     icons: [
+            //         { id: 1, label: 'Ασθένεια', name: '' },
+            //         { id: 2, label: 'Εκρεμείς θεραπείες', name: '' },
+            //         { id: 3, label: 'Χρέος', name: '' }
+            //     ],
+            //     birthday: '1974-11-12',
+            //     phoneMobile: '697056325',
+            //     phoneLandline: '2463056325',
+            //     address: '25ης Μαρτίου 1345',
+            //     dateCreated: '2019-01-15'
+            // },
 
             menuItems: [
                 {
@@ -227,9 +238,15 @@ export default {
     },
 
     computed: {
+        ...mapState(['loading']),
+
         patientId: function () {
             return this.$route.params.id
         }
+    },
+
+    created: function() {
+        this.getPatient()
     },
 
     props: {
@@ -237,6 +254,34 @@ export default {
     },
 
     methods: {
+        ...mapMutations(['setLoading']),
+
+        getPatient ()
+        {
+            api.getPatient(this.patientId)
+                .then(response => {
+                    this.setLoading(false)
+
+                    if (response.status === 200) {
+                        console.log(response)
+                        this.patient = response.data
+                        this.pagination.meta = response.meta
+                        this.pagination.links = response.links
+
+                        window.scrollTo(0, 0)
+
+                        return
+                    }
+
+                    this.patients = []
+                })
+                .catch(error => {
+                    this.setLoading(false)
+
+                    this.response.message = error.response.data.message
+                    this.response.status = false
+                })
+        },
 
         saveInfo () {
             alert('Saving...')

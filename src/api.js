@@ -116,6 +116,14 @@ let api = {
         }
 
         return await axios.get(ROOT_API + '/patients' + page)
+    },
+
+    /**
+     * Get a patient
+     * @returns {Promise<AxiosResponse<T>>}
+     */
+    async getPatient (patientId) {
+        return await axios.get(ROOT_API + '/patient/' + patientId)
     }
 }
 
