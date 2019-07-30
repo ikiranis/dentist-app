@@ -249,13 +249,12 @@ export default {
         this.getPatient()
     },
 
-    props: {
-        // patientId: Number
-    },
-
     methods: {
         ...mapMutations(['setLoading']),
 
+        /**
+         * Get the patient
+         */
         getPatient ()
         {
             api.getPatient(this.patientId)
@@ -263,17 +262,10 @@ export default {
                     this.setLoading(false)
 
                     if (response.status === 200) {
-                        console.log(response)
                         this.patient = response.data
                         this.pagination.meta = response.meta
                         this.pagination.links = response.links
-
-                        window.scrollTo(0, 0)
-
-                        return
                     }
-
-                    this.patients = []
                 })
                 .catch(error => {
                     this.setLoading(false)
