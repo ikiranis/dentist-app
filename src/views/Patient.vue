@@ -263,8 +263,6 @@ export default {
 
                     if (response.status === 200) {
                         this.patient = response.data
-                        this.pagination.meta = response.meta
-                        this.pagination.links = response.links
                     }
                 })
                 .catch(error => {
