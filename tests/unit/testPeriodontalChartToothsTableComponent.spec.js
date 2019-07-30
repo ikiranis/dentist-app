@@ -1,9 +1,5 @@
-import Vuex from 'vuex'
-import {createLocalVue, shallowMount} from '@vue/test-utils'
+import {shallowMount} from '@vue/test-utils'
 import PeriodontalChartToothsTable from '@/components/patients/PeriodontalChartToothsTable.vue'
-
-const localVue = createLocalVue()
-localVue.use(Vuex)
 
 describe('PeriodontalChartToothsTable.vue', () => {
 	let tooths = [
@@ -1322,8 +1318,6 @@ describe('PeriodontalChartToothsTable.vue', () => {
 	]
 
 	const propsData = { tooths }
-
-
 
 	it('Test PeriodontalChartToothsTable component', () => {
 		const mock = jest.fn();

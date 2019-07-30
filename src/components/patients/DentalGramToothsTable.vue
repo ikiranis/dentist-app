@@ -5,7 +5,7 @@
         <thead>
         <tr>
             <th v-for="tooth in props.tooths" :key="tooth.id"
-                class="text-center">{{ tooth.id }}</th>
+                class="text-center tooth-label">{{ tooth.id }}</th>
         </tr>
         </thead>
 
