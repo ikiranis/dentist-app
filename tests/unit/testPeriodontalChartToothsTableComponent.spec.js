@@ -1,5 +1,9 @@
-import { shallowMount } from '@vue/test-utils'
+import Vuex from 'vuex'
+import {createLocalVue, shallowMount} from '@vue/test-utils'
 import PeriodontalChartToothsTable from '@/components/patients/PeriodontalChartToothsTable.vue'
+
+const localVue = createLocalVue()
+localVue.use(Vuex)
 
 describe('PeriodontalChartToothsTable.vue', () => {
 	let tooths = [
@@ -1319,9 +1323,19 @@ describe('PeriodontalChartToothsTable.vue', () => {
 
 	const propsData = { tooths }
 
+
+
 	it('Test PeriodontalChartToothsTable component', () => {
+		const mock = jest.fn();
+
 		const wrapper = shallowMount(PeriodontalChartToothsTable, {
-			propsData
+			propsData,
+			stubs: ['plus-circle-outline'],
+			listeners: {
+				'click': mock,
+				'mouseleave': mock,
+			},
+
 		})
 
 		const toothsItems = wrapper.findAll('.tooth-label')
