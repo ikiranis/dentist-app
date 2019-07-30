@@ -87,11 +87,10 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="dateCreated" class="col-md-6 col-form-label text-md-right">Ημ. Εγγραφής</label>
+                            <label for="created_at" class="col-md-6 col-form-label text-md-right">Ημ. Εγγραφής</label>
                             <div class="col-md-6">
-                                <input id="dateCreated" type="date" class="form-control"
-                                       v-model="patient.dateCreated" disabled>
-                                <form-error v-if="response.errors.dateCreated" :error="response.errors.dateCreated[0]"/>
+                                <input id="created_at" type="date" class="form-control"
+                                       v-model="patient.created_at" disabled>
                             </div>
                         </div>
 
@@ -166,6 +165,7 @@ import api from '@/api'
 import DisplayError from '@/components/basic/DisplayError'
 import Loading from '@/components/basic/Loading'
 import {mapState, mapMutations} from 'vuex'
+import moment from 'moment'
 
 export default {
     components: { FormError, MenuBar, Loading, DisplayError },
@@ -194,7 +194,7 @@ export default {
             //     phoneMobile: '697056325',
             //     phoneLandline: '2463056325',
             //     address: '25ης Μαρτίου 1345',
-            //     dateCreated: '2019-01-15'
+            //     created_at: '2019-01-15'
             // },
 
             menuItems: [
@@ -252,6 +252,8 @@ export default {
     methods: {
         ...mapMutations(['setLoading']),
 
+		moment,
+
         /**
          * Get the patient
          */
@@ -263,6 +265,8 @@ export default {
 
                     if (response.status === 200) {
                         this.patient = response.data
+
+						this.patient.created_at = moment(this.patient.created_at).format('YYYY-MM-DD')
                     }
                 })
                 .catch(error => {
