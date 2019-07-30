@@ -113,7 +113,24 @@ let api = {
 
         let { data } = await axios.get(ROOT_API + '/patients' + page)
 
-        return data
+        return data;
+    },
+
+    /**
+     * Search for patients
+     *
+     * @param search
+     * @param page
+     * @returns {Promise<T>}
+     */
+    async searchPatients (search, page) {
+        if (page !== null) {
+            page = '?' + page.toString().split('?')[1];
+        } else {
+            page = '';
+        }
+
+        return await axios.get(ROOT_API + '/patients/search/' + search + page)
     }
 }
 
