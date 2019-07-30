@@ -151,6 +151,8 @@ export default {
                         this.pagination.meta = response.data.meta
                         this.pagination.links = response.data.links
 
+						console.log(this.pagination)
+
                         window.scrollTo(0, 0)
 
                         return
