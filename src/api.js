@@ -148,6 +148,16 @@ let api = {
         return axios.patch(ROOT_API + '/patient/' + patientId, args);
     },
 
+	/**
+	 * Delete a patient
+	 *
+	 * @param patientId
+	 * @returns {Promise<Promise<AxiosResponse<T>>>}
+	 */
+	async deletePatient(patientId) {
+		return axios.delete(ROOT_API + '/patient/' + patientId);
+	},
+
 }
 
 export default api

@@ -34,6 +34,7 @@
                     <table class="table">
                         <thead>
                         <tr>
+                            <th scope="col"></th>
                             <th scope="col">#</th>
                             <th scope="col">Όνομα</th>
                             <th scope="col">Επώνυμο</th>
@@ -42,6 +43,7 @@
                         </thead>
                         <tbody v-for="patient in patients" :key="patient.id">
                         <tr>
+							<td class="text-center btn-icon"><delete @click="deletePatient(patient.id)"/></td>
                             <th scope="row">{{ patient.id }}</th>
                             <td>
                                 <router-link :to="{ name: 'patient', params: { id: patient.id } }" class="patientName">
@@ -135,10 +137,10 @@ export default {
         ...mapMutations(['setLoading']),
 
         /**
-             * Get all the patients
-             *
-             * @param page
-             */
+		 * Get all the patients
+		 *
+		 * @param page
+		 */
         getPatients (page) {
             this.setLoading(true)
 
@@ -166,21 +168,39 @@ export default {
                 })
         },
 
+		/**
+		 * Delete a patient
+		 */
+		deletePatient(patientId)
+		{
+			api.deletePatient(patientId)
+				.then(response => {
+					this.setLoading(false)
+
+					this.getPatients(null)
+				})
+				.catch(error => {
+					this.setLoading(false)
+
+					this.response.message = error.response.data.message
+					this.response.status = false
+				})
+		},
+
         /**
-             * Clear the search text and get the bookmarks
-             */
+		 * Clear the search text and get the bookmarks
+		 */
         clearSearch () {
             this.search = null
             this.getPatients(null)
         },
 
         /**
-             *  Create ne patient
-             *  */
+		 *  Create ne patient
+		 */
         newPatient () {
             this.$router.push({ name: 'patient', params: { id: 0 } })
         }
     }
-
 }
 </script>
