@@ -120,11 +120,22 @@ let api = {
 
     /**
      * Get a patient
+     *
      * @returns {Promise<AxiosResponse<T>>}
      */
     async getPatient (patientId) {
         return axios.get(ROOT_API + '/patient/' + patientId)
-    }
+    },
+
+    /**
+     * Create a patient
+     *
+     * @param args
+     * @returns {Promise<AxiosResponse<T>>}
+     */
+    async createPatient(args) {
+        return await axios.post(ROOT_API + '/patient', args);
+    },
 }
 
 export default api

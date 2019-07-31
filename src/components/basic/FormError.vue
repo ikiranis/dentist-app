@@ -3,7 +3,8 @@
         <b-alert variant="danger"
                  dismissible
                  :show="showDismissibleAlert"
-                 @dismissed="showDismissibleAlert=false">
+                 @dismissed="showDismissibleAlert=false"
+                 fade>
             {{ error }}
         </b-alert>
     </div>

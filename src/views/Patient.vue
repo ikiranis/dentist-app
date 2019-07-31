@@ -3,7 +3,7 @@
 
         <Loading :loading="loading"/>
 
-        <div class="row justify-content-center" v-if="!loading">
+        <div class="row justify-content-center">
 
             <div class="col-12">
                 <h1>#{{ patientId }} {{ patient.fname }} {{ patient.lname }}</h1>
@@ -16,7 +16,7 @@
             <div class="container">
 
                 <!-- Στοιχεία ασθενή -->
-                <form class="row">
+                <form @submit.prevent="saveInfo" class="row">
 
                     <div class="col-lg-6 col-12">
 
@@ -178,7 +178,22 @@ export default {
                 errors: []
             },
 
-            patient: {},
+            patient: {
+                id: 0,
+                fname: '',
+                lname: '',
+                fatherName: '',
+                icons: [
+                    { id: 1, label: 'Ασθένεια', name: '' },
+                    { id: 2, label: 'Εκρεμείς θεραπείες', name: '' },
+                    { id: 3, label: 'Χρέος', name: '' }
+                ],
+                birthday: '',
+                phoneMobile: '',
+                phoneLandline: '',
+                address: '',
+                created_at: ''
+            },
 
             // patient: {
             //     id: 0,
@@ -258,6 +273,8 @@ export default {
          * Get the patient
          */
         getPatient () {
+            this.setLoading(true)
+
             api.getPatient(this.patientId)
                 .then(response => {
                     this.setLoading(false)
@@ -277,7 +294,25 @@ export default {
         },
 
         saveInfo () {
-            alert('Saving...')
+            this.setLoading(true)
+
+            api.createPatient(this.patient)
+                .then(response => {
+                    this.setLoading(false)
+
+                    this.response.message = 'Ο ασθενής αποθηκεύτηκε'
+                    this.response.status = true
+                })
+                .catch(error => {
+                    this.setLoading(false)
+
+                    this.response.message = error.response.data.message
+                    this.response.status = false
+
+                    if (error.response.data.errors) {
+                        this.response.errors = error.response.data.errors;
+                    }
+                })
         }
     }
 }
