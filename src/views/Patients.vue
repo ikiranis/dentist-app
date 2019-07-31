@@ -173,18 +173,22 @@ export default {
 		 */
 		deletePatient(patientId)
 		{
-			api.deletePatient(patientId)
-				.then(response => {
-					this.setLoading(false)
+			let choise = confirm('Θέλεις σίγουρα να σβήσεις τον ασθενή με id: ' + patientId + ';');
 
-					this.getPatients(null)
-				})
-				.catch(error => {
-					this.setLoading(false)
+			if(choise) {
+				api.deletePatient(patientId)
+					.then(response => {
+						this.setLoading(false)
 
-					this.response.message = error.response.data.message
-					this.response.status = false
-				})
+						this.getPatients(null)
+					})
+					.catch(error => {
+						this.setLoading(false)
+
+						this.response.message = error.response.data.message
+						this.response.status = false
+					})
+			}
 		},
 
         /**
