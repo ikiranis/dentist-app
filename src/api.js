@@ -134,8 +134,20 @@ let api = {
      * @returns {Promise<AxiosResponse<T>>}
      */
     async createPatient(args) {
-        return await axios.post(ROOT_API + '/patient', args);
+        return axios.post(ROOT_API + '/patient', args);
     },
+
+    /**
+     * Update a patient
+     *
+     * @param args
+     * @param patientId
+     * @returns {Promise<Promise<AxiosResponse<T>>>}
+     */
+    async updatePatient(args, patientId) {
+        return axios.patch(ROOT_API + '/patient/' + patientId, args);
+    },
+
 }
 
 export default api

@@ -90,7 +90,7 @@
                             <label for="created_at" class="col-md-6 col-form-label text-md-right">Ημ. Εγγραφής</label>
                             <div class="col-md-6">
                                 <input id="created_at" type="date" class="form-control"
-                                       v-model="patient.created_at" disabled>
+                                       :value="patientCreatedAt" disabled>
                             </div>
                         </div>
 
@@ -191,9 +191,10 @@ export default {
                 birthday: '',
                 phoneMobile: '',
                 phoneLandline: '',
-                address: '',
-                created_at: ''
+                address: ''
             },
+
+            patientCreatedAt: '',
 
             // patient: {
             //     id: 0,
@@ -282,7 +283,7 @@ export default {
                     if (response.status === 200) {
                         this.patient = response.data
 
-                        this.patient.created_at = moment(this.patient.created_at).format('YYYY-MM-DD')
+                        this.patientCreatedAt = moment(this.patient.created_at).format('YYYY-MM-DD')
                     }
                 })
                 .catch(error => {
@@ -293,14 +294,55 @@ export default {
                 })
         },
 
+        /**
+         * Run the appropriate save action
+         */
         saveInfo () {
+            if(this.patientId === 0) {
+                this.createPatient()
+                return
+            }
+
+            this.updatePatient()
+        },
+
+        /**
+         * Create a patient
+         */
+        createPatient() {
             this.setLoading(true)
 
             api.createPatient(this.patient)
                 .then(response => {
                     this.setLoading(false)
 
+                    this.patientId = response.id
                     this.response.message = 'Ο ασθενής αποθηκεύτηκε'
+                    this.response.status = true
+                })
+                .catch(error => {
+                    this.setLoading(false)
+
+                    this.response.message = error.response.data.message
+                    this.response.status = false
+
+                    if (error.response.data.errors) {
+                        this.response.errors = error.response.data.errors;
+                    }
+                })
+        },
+
+        /**
+         * Update the patient
+         */
+        updatePatient() {
+            this.setLoading(true)
+
+            api.updatePatient(this.patient, this.patientId)
+                .then(response => {
+                    this.setLoading(false)
+
+                    this.response.message = 'Ο ασθενής ενημερώθηκε'
                     this.response.status = true
                 })
                 .catch(error => {
