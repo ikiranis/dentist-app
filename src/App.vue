@@ -71,7 +71,6 @@ export default {
                 })
                 .catch(error => {
                     this.apiWorks = false
-                    console.log(error)
                 })
         }
 

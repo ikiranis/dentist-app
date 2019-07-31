@@ -316,9 +316,11 @@ export default {
                 .then(response => {
                     this.setLoading(false)
 
-                    this.patientId = response.id
+                    // this.patient.id = response.id
                     this.response.message = 'Ο ασθενής αποθηκεύτηκε'
                     this.response.status = true
+
+                    this.$router.push({ name: 'patients' })
                 })
                 .catch(error => {
                     this.setLoading(false)
