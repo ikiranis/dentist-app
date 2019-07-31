@@ -118,7 +118,7 @@ export default new Router({
             }
         },
         {
-            path: '/denervation',
+            path: '/denervation/:id',
             name: 'denervation',
             component: Denervation,
             meta: {
@@ -126,7 +126,7 @@ export default new Router({
             }
         },
         {
-            path: '/files',
+            path: '/files/:id',
             name: 'files',
             component: Files,
             meta: {
@@ -134,7 +134,7 @@ export default new Router({
             }
         },
         {
-            path: '/dentalGram',
+            path: '/dentalGram/:id',
             name: 'dentalGram',
             component: DentalGram,
             meta: {
@@ -142,7 +142,7 @@ export default new Router({
             }
         },
         {
-            path: '/medicalHistory',
+            path: '/medicalHistory/:id',
             name: 'medicalHistory',
             component: MedicalHistory,
             meta: {
@@ -150,7 +150,7 @@ export default new Router({
             }
         },
         {
-            path: '/periodontalChart',
+            path: '/periodontalChart/:id',
             name: 'periodontalChart',
             component: PeriodontalChart,
             meta: {
@@ -158,7 +158,7 @@ export default new Router({
             }
         },
         {
-            path: '/treatmentHistory',
+            path: '/treatmentHistory/:id',
             name: 'treatmentHistory',
             component: TreatmentHistory,
             meta: {
@@ -166,7 +166,7 @@ export default new Router({
             }
         },
         {
-            path: '/dentalHistory',
+            path: '/dentalHistory/:id',
             name: 'dentalHistory',
             component: DentalHistory,
             meta: {
