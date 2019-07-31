@@ -6,7 +6,7 @@
         <tr>
             <th v-for="tooth in props.tooths" :key="tooth.id"
                 class="text-center tooth-label">
-                <img :src="'images/teeths/' + tooth.id + '.png'" class="toothImage">
+                <img :src="'/images/teeths/' + tooth.id + '.png'" class="toothImage">
                 <h5>{{ tooth.id }}</h5>
             </th>
         </tr>
