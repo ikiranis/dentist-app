@@ -6,7 +6,7 @@
                 <h1>Απονεύρωση</h1>
             </div>
 
-            <menu-bar brand="Ασθενής" :brandRoute="{ name: 'patient', params: { id: 1 } }"
+            <menu-bar brand="Ασθενής" :brandRoute="{ name: 'patient', params: { id: patientId } }"
                       :menuItems="menuItems" userInfo="false" fixed=""
                       variant="" type="light" valign="mx-auto" toggle="lg" />
 
@@ -79,6 +79,14 @@ export default {
                 }
             ]
 
+        }
+    },
+
+    computed: {
+        // ...mapState(['loading']),
+
+        patientId: function () {
+            return this.$route.params.id
         }
     },
 
