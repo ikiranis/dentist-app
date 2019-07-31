@@ -31,40 +31,7 @@
 
                     <paginate :pagination="pagination" @click="getPatients"/>
 
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th scope="col"></th>
-                            <th scope="col">#</th>
-                            <th scope="col">Όνομα</th>
-                            <th scope="col">Επώνυμο</th>
-                            <th scope="col">Σημειώσεις</th>
-                        </tr>
-                        </thead>
-                        <tbody v-for="patient in patients" :key="patient.id">
-                        <tr>
-							<td class="text-center btn-icon"><delete @click="deletePatient(patient.id)"/></td>
-                            <th scope="row">{{ patient.id }}</th>
-                            <td>
-                                <router-link :to="{ name: 'patient', params: { id: patient.id } }" class="patientName">
-                                    {{ patient.fname }}
-                                </router-link>
-                            </td>
-                            <td>
-                                <router-link :to="{ name: 'patient', params: { id: patient.id } }" class="patientName">
-                                    {{ patient.lname }}
-                                </router-link>
-                            </td>
-                            <td class="text-center">
-								<span v-for="icon in patient.icons" :key="icon.id">
-								   <biohazard-icon v-if="icon.id === 1" :title="icon.label"/>
-								   <medical-bag-icon v-if="icon.id === 2" :title="icon.label"/>
-								   <currency-eur-icon v-if="icon.id === 3" :title="icon.label"/>
-								</span>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
+                    <patients-table :patients="patients" @click="deletePatient"/>
 
                     <paginate :pagination="pagination" @click="getPatients"/>
 
@@ -88,10 +55,11 @@ import api from '@/api'
 import DisplayError from '@/components/basic/DisplayError'
 import Loading from '@/components/basic/Loading'
 import Paginate from '@/components/basic/Paginate'
+import PatientsTable from '@/components/patients/PatientsTable'
 import { mapState, mapMutations } from 'vuex'
 
 export default {
-    components: { Loading, DisplayError, Paginate },
+    components: { Loading, DisplayError, Paginate, PatientsTable },
 
     data () {
         return {
