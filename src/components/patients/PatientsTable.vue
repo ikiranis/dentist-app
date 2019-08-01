@@ -27,9 +27,9 @@
 				</td>
 				<td class="text-center">
 					<span v-for="icon in patient.icons" :key="icon.id">
-					   <biohazard-icon v-if="icon.id === 1" :title="icon.label"/>
-					   <medical-bag-icon v-if="icon.id === 2" :title="icon.label"/>
-					   <currency-eur-icon v-if="icon.id === 3" :title="icon.label"/>
+					   <biohazard-icon v-if="icon.label === 'Ασθένεια'" :title="icon.name"/>
+					   <medical-bag-icon v-if="icon.label === 'Εκρεμείς θεραπείες'" :title="icon.name"/>
+					   <currency-eur-icon v-if="icon.label === 'Χρέος'" :title="icon.name"/>
 					</span>
 				</td>
 			</tr>

@@ -78,18 +78,6 @@ export default {
 
             patients: []
 
-            // patients: [
-            // 	{
-            // 		id: 1,
-            // 		lname: 'Lundquist',
-            // 		fname: 'Rosana',
-            // 		icons: [
-            // 			{id: 1, label: 'Ασθένεια'},
-            // 			{id: 2, label: 'Εκρεμείς θεραπείες'},
-            // 			{id: 3, label: 'Χρέος'}
-            // 		]
-            // 	},
-
         }
     },
 
