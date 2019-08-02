@@ -99,7 +99,7 @@
                     <div class="col-lg-6 col-12">
 
                         <!-- Σημειώσεις -->
-                        <div class="card" v-if="patient.icons">
+                        <div class="card" v-if="patient.icons.length">
 
                             <div class="card-header">
                                 Σημειώσεις
@@ -197,23 +197,6 @@ export default {
 
             patientCreatedAt: '',
 
-            // patient: {
-            //     id: 0,
-            //     fname: 'Rosana',
-            //     lname: 'Lundquist',
-            //     fatherName: 'Luann',
-            //     icons: [
-            //         { id: 1, label: 'Ασθένεια', name: '' },
-            //         { id: 2, label: 'Εκρεμείς θεραπείες', name: '' },
-            //         { id: 3, label: 'Χρέος', name: '' }
-            //     ],
-            //     birthday: '1974-11-12',
-            //     phoneMobile: '697056325',
-            //     phoneLandline: '2463056325',
-            //     address: '25ης Μαρτίου 1345',
-            //     created_at: '2019-01-15'
-            // },
-
             menuItems: [
                 {
                     route: '/medicalHistory/' + this.$route.params.id,
@@ -268,9 +251,24 @@ export default {
         moment,
 
         /**
+         * Set the icons if empty
+         */
+        setIcons ()
+        {
+            if(!this.patient.icons.length) {
+                this.patient.icons = [
+                    { id: 1, label: 'Ασθένεια', name: '' },
+                    { id: 2, label: 'Εκρεμείς θεραπείες', name: '' },
+                    { id: 3, label: 'Χρέος', name: '' }
+                ]
+            }
+        },
+
+        /**
          * Get the patient
          */
-        getPatient () {
+        getPatient ()
+        {
             this.loading = true
 
             api.getPatient(this.patientId)
@@ -280,6 +278,7 @@ export default {
                     if (response.status === 200) {
                         this.patient = response.data
 
+                        this.setIcons()
                         this.patientCreatedAt = moment(this.patient.created_at).format('YYYY-MM-DD')
                     }
                 })
@@ -294,7 +293,8 @@ export default {
         /**
          * Run the appropriate save action
          */
-        saveInfo () {
+        saveInfo ()
+        {
             if(this.patientId === 0) {
                 this.createPatient()
                 return
@@ -306,7 +306,8 @@ export default {
         /**
          * Create a patient
          */
-        createPatient() {
+        createPatient()
+        {
             this.loading = true
 
             api.createPatient(this.patient)
@@ -334,7 +335,8 @@ export default {
         /**
          * Update the patient
          */
-        updatePatient() {
+        updatePatient()
+        {
             this.loading = true
 
             api.updatePatient(this.patient, this.patientId)

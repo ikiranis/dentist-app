@@ -27,13 +27,13 @@
 						{{ patient.lname }}
 					</router-link>
 				</td>
-				<td class="text-center">
-					<span v-for="icon in patient.icons" :key="icon.id">
-					   <biohazard-icon v-if="icon.label === 'Ασθένεια'" :title="icon.name"/>
-					   <medical-bag-icon v-if="icon.label === 'Εκρεμείς θεραπείες'" :title="icon.name"/>
-					   <currency-eur-icon v-if="icon.label === 'Χρέος'" :title="icon.name"/>
-					</span>
-				</td>
+<!--				<td class="text-center" v-if="patient.icons.length">-->
+<!--					<span v-for="icon in patient.icons" :key="icon.id">-->
+<!--					   <biohazard-icon v-if="icon.label === 'Ασθένεια'" :title="icon.name"/>-->
+<!--					   <medical-bag-icon v-if="icon.label === 'Εκρεμείς θεραπείες'" :title="icon.name"/>-->
+<!--					   <currency-eur-icon v-if="icon.label === 'Χρέος'" :title="icon.name"/>-->
+<!--					</span>-->
+<!--				</td>-->
 			</tr>
 			</tbody>
 		</table>
