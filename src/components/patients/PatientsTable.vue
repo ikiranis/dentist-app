@@ -13,7 +13,9 @@
 			</thead>
 			<tbody v-for="patient in props.patients" :key="patient.id">
 			<tr>
-				<td class="text-center btn-icon"><delete @click="listeners.click(patient.id)"/></td>
+				<td class="text-center btn-icon">
+					<delete @click="listeners.click(patient.id)" title="Διαγραφή ασθενή"/>
+				</td>
 				<th scope="row">{{ patient.id }}</th>
 				<td>
 					<router-link :to="{ name: 'patient', params: { id: patient.id } }" class="patientName">

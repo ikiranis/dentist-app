@@ -163,10 +163,11 @@ import FormError from '@/components/basic/FormError'
 import MenuBar from '@/components/basic/MenuBar'
 import api from '@/api'
 import DisplayError from '@/components/basic/DisplayError'
+import Loading from '@/components/basic/Loading'
 import moment from 'moment'
 
 export default {
-    components: { FormError, MenuBar, DisplayError },
+    components: { FormError, MenuBar, DisplayError, Loading },
 
     data () {
         return {

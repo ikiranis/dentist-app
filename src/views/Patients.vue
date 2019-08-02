@@ -55,9 +55,10 @@ import api from '@/api'
 import DisplayError from '@/components/basic/DisplayError'
 import Paginate from '@/components/basic/Paginate'
 import PatientsTable from '@/components/patients/PatientsTable'
+import Loading from '@/components/basic/Loading'
 
 export default {
-    components: { DisplayError, Paginate, PatientsTable },
+    components: { DisplayError, Paginate, PatientsTable, Loading },
 
     data () {
         return {
