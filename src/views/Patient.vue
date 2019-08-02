@@ -99,7 +99,7 @@
                     <div class="col-lg-6 col-12">
 
                         <!-- Σημειώσεις -->
-                        <div class="card" v-if="patient.icons.length">
+                        <div class="card">
 
                             <div class="card-header">
                                 Σημειώσεις
@@ -251,20 +251,6 @@ export default {
         moment,
 
         /**
-         * Set the icons if empty
-         */
-        setIcons ()
-        {
-            if(!this.patient.icons.length) {
-                this.patient.icons = [
-                    { id: 1, label: 'Ασθένεια', name: '' },
-                    { id: 2, label: 'Εκρεμείς θεραπείες', name: '' },
-                    { id: 3, label: 'Χρέος', name: '' }
-                ]
-            }
-        },
-
-        /**
          * Get the patient
          */
         getPatient ()
@@ -278,7 +264,6 @@ export default {
                     if (response.status === 200) {
                         this.patient = response.data
 
-                        this.setIcons()
                         this.patientCreatedAt = moment(this.patient.created_at).format('YYYY-MM-DD')
                     }
                 })
