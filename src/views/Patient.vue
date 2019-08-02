@@ -163,12 +163,10 @@ import FormError from '@/components/basic/FormError'
 import MenuBar from '@/components/basic/MenuBar'
 import api from '@/api'
 import DisplayError from '@/components/basic/DisplayError'
-import Loading from '@/components/basic/Loading'
-import { mapState, mapMutations } from 'vuex'
 import moment from 'moment'
 
 export default {
-    components: { FormError, MenuBar, Loading, DisplayError },
+    components: { FormError, MenuBar, DisplayError },
 
     data () {
         return {
@@ -177,6 +175,8 @@ export default {
                 status: '',
                 errors: []
             },
+
+            loading: false,
 
             patient: {
                 id: 0,
@@ -254,8 +254,6 @@ export default {
     },
 
     computed: {
-        ...mapState(['loading']),
-
         patientId: function () {
             return this.$route.params.id
         }
@@ -266,19 +264,17 @@ export default {
     },
 
     methods: {
-        ...mapMutations(['setLoading']),
-
         moment,
 
         /**
          * Get the patient
          */
         getPatient () {
-            this.setLoading(true)
+            this.loading = true
 
             api.getPatient(this.patientId)
                 .then(response => {
-                    this.setLoading(false)
+                    this.loading = false
 
                     if (response.status === 200) {
                         this.patient = response.data
@@ -287,7 +283,7 @@ export default {
                     }
                 })
                 .catch(error => {
-                    this.setLoading(false)
+                    this.loading = false
 
                     this.response.message = error.response.data.message
                     this.response.status = false
@@ -310,11 +306,11 @@ export default {
          * Create a patient
          */
         createPatient() {
-            this.setLoading(true)
+            this.loading = true
 
             api.createPatient(this.patient)
                 .then(response => {
-                    this.setLoading(false)
+                    this.loading = false
 
                     // this.patient.id = response.id
                     this.response.message = 'Ο ασθενής αποθηκεύτηκε'
@@ -323,7 +319,7 @@ export default {
                     this.$router.push({ name: 'patients' })
                 })
                 .catch(error => {
-                    this.setLoading(false)
+                    this.loading = false
 
                     this.response.message = error.response.data.message
                     this.response.status = false
@@ -338,17 +334,17 @@ export default {
          * Update the patient
          */
         updatePatient() {
-            this.setLoading(true)
+            this.loading = true
 
             api.updatePatient(this.patient, this.patientId)
                 .then(response => {
-                    this.setLoading(false)
+                    this.loading = false
 
                     this.response.message = 'Ο ασθενής ενημερώθηκε'
                     this.response.status = true
                 })
                 .catch(error => {
-                    this.setLoading(false)
+                    this.loading = false
 
                     this.response.message = error.response.data.message
                     this.response.status = false

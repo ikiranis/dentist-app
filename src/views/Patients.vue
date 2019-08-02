@@ -53,13 +53,11 @@
 <script>
 import api from '@/api'
 import DisplayError from '@/components/basic/DisplayError'
-import Loading from '@/components/basic/Loading'
 import Paginate from '@/components/basic/Paginate'
 import PatientsTable from '@/components/patients/PatientsTable'
-import { mapState, mapMutations } from 'vuex'
 
 export default {
-    components: { Loading, DisplayError, Paginate, PatientsTable },
+    components: { DisplayError, Paginate, PatientsTable },
 
     data () {
         return {
@@ -68,6 +66,8 @@ export default {
                 status: '',
                 errors: []
             },
+
+            loading: false,
 
             pagination: {
                 meta: {},
@@ -81,28 +81,22 @@ export default {
         }
     },
 
-    computed: {
-        ...mapState(['loading'])
-    },
-
     created: function () {
         this.getPatients(null)
     },
 
     methods: {
-        ...mapMutations(['setLoading']),
-
         /**
 		 * Get all the patients
 		 *
 		 * @param page
 		 */
         getPatients (page) {
-            this.setLoading(true)
+            this.loading = true
 
             api.getPatients(page, this.search)
                 .then(response => {
-                    this.setLoading(false)
+                    this.loading = false
 
                     if (response.status === 200) {
                         this.patients = response.data.data
@@ -117,7 +111,7 @@ export default {
                     this.patients = []
                 })
                 .catch(error => {
-                    this.setLoading(false)
+                    this.loading = false
 
                     this.response.message = error.response.data.message
                     this.response.status = false
@@ -131,15 +125,17 @@ export default {
 		{
 			let choise = confirm('Θέλεις σίγουρα να σβήσεις τον ασθενή με id: ' + patientId + ';');
 
+            this.loading = true
+
 			if(choise) {
 				api.deletePatient(patientId)
 					.then(response => {
-						this.setLoading(false)
+                        this.loading = false
 
 						this.getPatients(null)
 					})
 					.catch(error => {
-						this.setLoading(false)
+                        this.loading = false
 
 						this.response.message = error.response.data.message
 						this.response.status = false
