@@ -4,11 +4,11 @@
 		<table class="table">
 			<thead>
 			<tr>
-				<th scope="col"></th>
-				<th scope="col">#</th>
-				<th scope="col">Όνομα</th>
-				<th scope="col">Επώνυμο</th>
-				<th scope="col">Σημειώσεις</th>
+				<th scope="col" class="patient-label"></th>
+				<th scope="col" class="patient-label">#</th>
+				<th scope="col" class="patient-label">Όνομα</th>
+				<th scope="col" class="patient-label">Επώνυμο</th>
+				<th scope="col" class="patient-label">Σημειώσεις</th>
 			</tr>
 			</thead>
 			<tbody v-for="patient in props.patients" :key="patient.id">
@@ -28,7 +28,7 @@
 					</router-link>
 				</td>
 				<td class="text-right" v-if="patient.icons.length">
-					<span v-for="icon in patient.icons" :key="icon.id">
+					<span v-for="icon in patient.icons" :key="icon.id" class="patient-icon">
 					   <biohazard-icon v-if="icon.label === 'Ασθένεια' && icon.name !== ''" :title="icon.name"/>
 					   <medical-bag-icon v-if="icon.label === 'Εκρεμείς θεραπείες' && icon.name !== ''" :title="icon.name"/>
 					   <currency-eur-icon v-if="icon.label === 'Χρέος' && icon.name !== ''" :title="icon.name"/>
