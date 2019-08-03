@@ -11,7 +11,7 @@ describe('PatientsTable.vue', () => {
             icons: [
                 { id: 1, label: 'Ασθένεια', name: 'something 1' },
                 { id: 2, label: 'Εκρεμείς θεραπείες', name: 'something 2' },
-                { id: 3, label: 'Χρέος', name: 'something 3' }
+                { id: 3, label: 'Χρέος', name: null }
             ],
             birthday: '1974-11-12',
             phoneMobile: '0123456789',
@@ -53,8 +53,6 @@ describe('PatientsTable.vue', () => {
 
         const patientIcons = wrapper.findAll('.patient-icon')
 
-        expect(patientIcons.at(0).exists()).toEqual(true)
-        expect(patientIcons.at(1).exists()).toEqual(true)
-        expect(patientIcons.at(2).exists()).toEqual(true)
+        expect(patientIcons.length).toEqual(2)
     })
 })

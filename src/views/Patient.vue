@@ -185,9 +185,9 @@ export default {
                 lname: '',
                 fatherName: '',
                 icons: [
-                    { id: 1, label: 'Ασθένεια', name: '' },
-                    { id: 2, label: 'Εκρεμείς θεραπείες', name: '' },
-                    { id: 3, label: 'Χρέος', name: '' }
+                    { id: 1, label: 'Ασθένεια', name: null },
+                    { id: 2, label: 'Εκρεμείς θεραπείες', name: null },
+                    { id: 3, label: 'Χρέος', name: null }
                 ],
                 birthday: '',
                 phoneMobile: '',

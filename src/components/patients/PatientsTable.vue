@@ -28,10 +28,16 @@
 					</router-link>
 				</td>
 				<td class="text-right" v-if="patient.icons.length">
-					<span v-for="icon in patient.icons" :key="icon.id" class="patient-icon">
-					   <biohazard-icon v-if="icon.label === 'Ασθένεια' && icon.name !== ''" :title="icon.name"/>
-					   <medical-bag-icon v-if="icon.label === 'Εκρεμείς θεραπείες' && icon.name !== ''" :title="icon.name"/>
-					   <currency-eur-icon v-if="icon.label === 'Χρέος' && icon.name !== ''" :title="icon.name"/>
+					<span v-for="icon in patient.icons" :key="icon.id">
+					   <biohazard-icon v-if="icon.label === 'Ασθένεια' && icon.name"
+									   :title="icon.name"
+									   class="patient-icon"/>
+					   <medical-bag-icon v-if="icon.label === 'Εκρεμείς θεραπείες' && icon.name"
+										 :title="icon.name"
+										 class="patient-icon"/>
+					   <currency-eur-icon v-if="icon.label === 'Χρέος' && icon.name"
+										  :title="icon.name"
+										  class="patient-icon"/>
 					</span>
 				</td>
 			</tr>
