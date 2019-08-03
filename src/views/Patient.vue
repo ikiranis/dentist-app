@@ -253,8 +253,7 @@ export default {
         /**
          * Get the patient
          */
-        getPatient ()
-        {
+        getPatient () {
             this.loading = true
 
             api.getPatient(this.patientId)
@@ -278,9 +277,8 @@ export default {
         /**
          * Run the appropriate save action
          */
-        saveInfo ()
-        {
-            if(this.patientId === 0) {
+        saveInfo () {
+            if (this.patientId === 0) {
                 this.createPatient()
                 return
             }
@@ -291,8 +289,7 @@ export default {
         /**
          * Create a patient
          */
-        createPatient()
-        {
+        createPatient () {
             this.loading = true
 
             api.createPatient(this.patient)
@@ -312,7 +309,7 @@ export default {
                     this.response.status = false
 
                     if (error.response.data.errors) {
-                        this.response.errors = error.response.data.errors;
+                        this.response.errors = error.response.data.errors
                     }
                 })
         },
@@ -320,8 +317,7 @@ export default {
         /**
          * Update the patient
          */
-        updatePatient()
-        {
+        updatePatient () {
             this.loading = true
 
             api.updatePatient(this.patient, this.patientId)
@@ -338,7 +334,7 @@ export default {
                     this.response.status = false
 
                     if (error.response.data.errors) {
-                        this.response.errors = error.response.data.errors;
+                        this.response.errors = error.response.data.errors
                     }
                 })
         }

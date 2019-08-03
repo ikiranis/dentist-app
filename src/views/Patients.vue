@@ -119,30 +119,29 @@ export default {
                 })
         },
 
-		/**
+        /**
 		 * Delete a patient
 		 */
-		deletePatient(patientId)
-		{
-			let choise = confirm('Θέλεις σίγουρα να σβήσεις τον ασθενή με id: ' + patientId + ';');
+        deletePatient (patientId) {
+            let choise = confirm('Θέλεις σίγουρα να σβήσεις τον ασθενή με id: ' + patientId + ';')
 
             this.loading = true
 
-			if(choise) {
-				api.deletePatient(patientId)
-					.then(response => {
+            if (choise) {
+                api.deletePatient(patientId)
+                    .then(response => {
                         this.loading = false
 
-						this.getPatients(null)
-					})
-					.catch(error => {
+                        this.getPatients(null)
+                    })
+                    .catch(error => {
                         this.loading = false
 
-						this.response.message = error.response.data.message
-						this.response.status = false
-					})
-			}
-		},
+                        this.response.message = error.response.data.message
+                        this.response.status = false
+                    })
+            }
+        },
 
         /**
 		 * Clear the search text and get the bookmarks

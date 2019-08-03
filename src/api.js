@@ -133,8 +133,8 @@ let api = {
      * @param args
      * @returns {Promise<AxiosResponse<T>>}
      */
-    async createPatient(args) {
-        return axios.post(ROOT_API + '/patient', args);
+    async createPatient (args) {
+        return axios.post(ROOT_API + '/patient', args)
     },
 
     /**
@@ -144,19 +144,19 @@ let api = {
      * @param patientId
      * @returns {Promise<Promise<AxiosResponse<T>>>}
      */
-    async updatePatient(args, patientId) {
-        return axios.patch(ROOT_API + '/patient/' + patientId, args);
+    async updatePatient (args, patientId) {
+        return axios.patch(ROOT_API + '/patient/' + patientId, args)
     },
 
-	/**
+    /**
 	 * Delete a patient
 	 *
 	 * @param patientId
 	 * @returns {Promise<Promise<AxiosResponse<T>>>}
 	 */
-	async deletePatient(patientId) {
-		return axios.delete(ROOT_API + '/patient/' + patientId);
-	},
+    async deletePatient (patientId) {
+        return axios.delete(ROOT_API + '/patient/' + patientId)
+    }
 
 }
 

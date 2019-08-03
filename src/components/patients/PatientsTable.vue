@@ -42,14 +42,14 @@
 </template>
 
 <script>
-	export default {
-		name: 'PatientsTable',
+export default {
+    name: 'PatientsTable',
 
-		props: {
-			patients: {
-				required: true,
-				type: Array
-			}
-		}
-	}
+    props: {
+        patients: {
+            required: true,
+            type: Array
+        }
+    }
+}
 </script>

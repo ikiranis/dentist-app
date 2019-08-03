@@ -1,4 +1,4 @@
-import {shallowMount} from '@vue/test-utils'
+import { shallowMount } from '@vue/test-utils'
 import DentalGramToothsTable from '@/components/patients/DentalGramToothsTable.vue'
 
 describe('DentalGramToothsTable.vue', () => {
@@ -648,15 +648,15 @@ describe('DentalGramToothsTable.vue', () => {
     const propsData = { tooths }
 
     it('Test DentalGramToothsTable component', () => {
-        const mock = jest.fn();
+        const mock = jest.fn()
 
         const wrapper = shallowMount(DentalGramToothsTable, {
             propsData,
             stubs: ['plus-circle-outline'],
             listeners: {
                 'click': mock,
-                'mouseleave': mock,
-            },
+                'mouseleave': mock
+            }
 
         })
 
