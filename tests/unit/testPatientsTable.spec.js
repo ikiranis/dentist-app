@@ -42,6 +42,10 @@ describe('PatientsTable.vue', () => {
         expect(patientsLabels.at(3).text()).toMatch('Επώνυμο')
         expect(patientsLabels.at(4).text()).toMatch('Σημειώσεις')
 
+        const patientId = wrapper.findAll('.patientId')
+
+        expect(patientId.at(0).text()).toMatch('0')
+
         const patientNames = wrapper.findAll('.patientName')
 
         expect(patientNames.at(0).text()).toMatch('fname')
@@ -52,7 +56,5 @@ describe('PatientsTable.vue', () => {
         expect(patientIcons.at(0).exists()).toEqual(true)
         expect(patientIcons.at(1).exists()).toEqual(true)
         expect(patientIcons.at(2).exists()).toEqual(true)
-
-
     })
 })

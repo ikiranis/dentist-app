@@ -16,7 +16,7 @@
 				<td class="text-center btn-icon">
 					<delete @click="listeners.click(patient.id)" title="Διαγραφή ασθενή"/>
 				</td>
-				<th scope="row">{{ patient.id }}</th>
+				<th scope="row" class="patientId">{{ patient.id }}</th>
 				<td>
 					<router-link :to="{ name: 'patient', params: { id: patient.id } }" class="patientName">
 						{{ patient.fname }}
