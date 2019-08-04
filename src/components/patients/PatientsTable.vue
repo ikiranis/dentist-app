@@ -19,12 +19,12 @@
 				<th scope="row" class="patientId">{{ patient.id }}</th>
 				<td>
 					<router-link :to="{ name: 'patient', params: { id: patient.id } }" class="patientName">
-						{{ patient.fname }}
+						<span>{{ patient.fname }}</span>
 					</router-link>
 				</td>
 				<td>
 					<router-link :to="{ name: 'patient', params: { id: patient.id } }" class="patientName">
-						{{ patient.lname }}
+						<span>{{ patient.lname }}</span>
 					</router-link>
 				</td>
 				<td class="text-right" v-if="patient.icons.length">
