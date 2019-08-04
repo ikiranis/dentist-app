@@ -146,7 +146,8 @@
                 </form>
 
                 <div class="row">
-                    <button class="btn btn-success col-lg-6 col-12 my-3 mx-auto" @click="saveInfo">Αποθήκευση</button>
+                    <button id="saveInfo" class="btn btn-success col-lg-6 col-12 my-3 mx-auto"
+                            @click="saveInfo">Αποθήκευση</button>
                 </div>
 
             </div>
