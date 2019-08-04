@@ -35,4 +35,31 @@ describe('Test patients route', () => {
 
         cy.get('.patientName').eq(1).contains(changelname)
     })
+
+    it('Insert patient', () => {
+        const patient = {
+            fname: 'fname',
+            lname: 'lname',
+            fatherName: 'fatherName',
+            birthday: '1974-11-12',
+            phoneMobile: '0123456789',
+            phoneLandline: '0123456789',
+            address: 'address'
+        }
+
+        cy.get('#insertPatient').click()
+
+        cy.get('input[id="fname"]').type(patient.fname)
+        cy.get('input[id="lname"]').type(patient.lname)
+        cy.get('input[id="fatherName"]').type(patient.fatherName)
+        cy.get('input[id="birthday"]').type(patient.birthday)
+        cy.get('input[id="phoneMobile"]').type(patient.phoneMobile)
+        cy.get('input[id="phoneLandline"]').type(patient.phoneLandline)
+        cy.get('input[id="address"]').type(patient.address)
+
+        cy.get('#saveInfo').click()
+
+        cy.get('.patientName').eq(0).contains(patient.fname)
+        cy.get('.patientName').eq(1).contains(patient.lname)
+    })
 })
