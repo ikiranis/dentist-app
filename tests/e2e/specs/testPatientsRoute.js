@@ -7,6 +7,7 @@ describe('Test patients route', () => {
     it('Login to app', () => {
         cy.get('#login').click()
         cy.contains('h1', 'Επιλογές')
+        cy.wait(2000)
     })
 
     it('Load patients page', () => {
@@ -20,6 +21,7 @@ describe('Test patients route', () => {
             const patient = patients[0]
 
             cy.get(patient).click()
+            cy.wait(2000)
 
             cy.get('input[id="fname"]').should('have.value', patient.text)
         })

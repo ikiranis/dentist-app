@@ -10,6 +10,7 @@ describe('Test browsing the routes', () => {
     it('Login to app', () => {
         cy.get('#login').click()
         cy.contains('h1', 'Επιλογές')
+        cy.wait(2000)
     })
 
     it('Load economy page', () => {
