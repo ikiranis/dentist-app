@@ -1,13 +1,13 @@
 <template>
     <b-navbar :toggleable="toggle" :type="type" :variant="variant" :fixed="fixed">
 
-        <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
+        <b-navbar-toggle :target="navCollapseText"></b-navbar-toggle>
 
         <b-navbar-brand>
             <router-link class="navbar-brand" id="brandTitle" :to="brandRoute">{{ brand }}</router-link>
         </b-navbar-brand>
 
-        <b-collapse is-nav id="nav_collapse">
+        <b-collapse is-nav :id="navCollapseText">
 
             <!--TODO fix cursor pointer after choose a menu-->
             <b-navbar-nav :class="valign">
@@ -54,7 +54,8 @@ export default {
         variant: String,
         type: String,
         valign: String,
-        toggle: String
+        toggle: String,
+        navCollapseText: String
     },
 
     computed: {

@@ -8,7 +8,8 @@
 
             <menu-bar brand="Ασθενής" :brandRoute="{ name: 'patient', params: { id: patientId } }"
                       :menuItems="menuItems" userInfo="false" fixed=""
-                      variant="" type="light" valign="mx-auto" toggle="lg" />
+                      variant="" type="light" valign="mx-auto" toggle="lg"
+                      navCollapseText="patientBar" />
 
             <div class="container">
 

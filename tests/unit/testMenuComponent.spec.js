@@ -38,7 +38,8 @@ describe('MenuBar.vue', () => {
         variant: '',
         type: 'light',
         valign: 'mx-auto',
-        toggle: 'lg'
+        toggle: 'lg',
+        navCollapseText: 'testBar'
     }
     let mocks = {
         $store: {
