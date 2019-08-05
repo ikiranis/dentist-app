@@ -163,6 +163,7 @@
 import FormError from '@/components/basic/FormError'
 import MenuBar from '@/components/basic/MenuBar'
 import api from '@/api'
+import utility from '@/library/utility'
 import DisplayError from '@/components/basic/DisplayError'
 import Loading from '@/components/basic/Loading'
 import moment from 'moment'
@@ -272,6 +273,8 @@ export default {
 
                     this.response.message = error.response.data.message
                     this.response.status = false
+
+                    utility.debug(error.response.data.debug)
                 })
         },
 
@@ -297,7 +300,6 @@ export default {
                 .then(response => {
                     this.loading = false
 
-                    // this.patient.id = response.id
                     this.response.message = 'Ο ασθενής αποθηκεύτηκε'
                     this.response.status = true
 
@@ -312,6 +314,8 @@ export default {
                     if (error.response.data.errors) {
                         this.response.errors = error.response.data.errors
                     }
+
+                    utility.debug(error.response.data.debug)
                 })
         },
 
@@ -337,6 +341,8 @@ export default {
                     if (error.response.data.errors) {
                         this.response.errors = error.response.data.errors
                     }
+
+                    utility.debug(error.response.data.debug)
                 })
         }
     }

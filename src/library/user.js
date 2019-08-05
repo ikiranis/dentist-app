@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-let user = {
+const user = {
 
     /**
      * Set localStorage token data. User logged in
