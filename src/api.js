@@ -100,10 +100,69 @@ let api = {
     },
 
     /**
-	 * Get all patients
+	 * Get all events
 	 *
 	 * @returns {Promise<void>}
 	 */
+    async getEvents (page, search) {
+        if (page !== null) {
+            page = '?' + page.toString().split('?')[1]
+        } else {
+            page = ''
+        }
+
+        if (search) {
+            return axios.get(ROOT_API + '/events/search/' + search + page)
+        }
+
+        return axios.get(ROOT_API + '/events' + page)
+    },
+
+    /**
+     * Get an event
+     *
+     * @returns {Promise<AxiosResponse<T>>}
+     */
+    async getEvent (evetntId) {
+        return axios.get(ROOT_API + '/event/' + eventId)
+    },
+
+    /**
+     * Create an event
+     *
+     * @param args
+     * @returns {Promise<AxiosResponse<T>>}
+     */
+    async createEvent (args) {
+        return axios.post(ROOT_API + '/event', args)
+    },
+
+    /**
+     * Update an event
+     *
+     * @param args
+     * @param eventId
+     * @returns {Promise<Promise<AxiosResponse<T>>>}
+     */
+    async updateEvent (args, eventId) {
+        return axios.patch(ROOT_API + '/event/' + eventId, args)
+    },
+
+    /**
+	 * Delete an event
+	 *
+	 * @param eventId
+	 * @returns {Promise<Promise<AxiosResponse<T>>>}
+	 */
+    async deleteEvent (eventId) {
+        return axios.delete(ROOT_API + '/event/' + eventId)
+    },
+
+    /**
+     * Get all patients
+     *
+     * @returns {Promise<void>}
+     */
     async getPatients (page, search) {
         if (page !== null) {
             page = '?' + page.toString().split('?')[1]
@@ -149,11 +208,11 @@ let api = {
     },
 
     /**
-	 * Delete a patient
-	 *
-	 * @param patientId
-	 * @returns {Promise<Promise<AxiosResponse<T>>>}
-	 */
+     * Delete a patient
+     *
+     * @param patientId
+     * @returns {Promise<Promise<AxiosResponse<T>>>}
+     */
     async deletePatient (patientId) {
         return axios.delete(ROOT_API + '/patient/' + patientId)
     }
