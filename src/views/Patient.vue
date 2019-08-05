@@ -30,7 +30,7 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="lname" class="col-md-6 col-form-label text-md-right">Όνομα</label>
+                            <label for="fname" class="col-md-6 col-form-label text-md-right">Όνομα</label>
                             <div class="col-md-6">
                                 <input id="fname" type="text" class="form-control"
                                        v-model="patient.fname" required maxlength="20">

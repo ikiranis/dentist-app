@@ -32,6 +32,7 @@ describe('Test patients route', () => {
 
         cy.get('input[id="lname"]').clear().type(changelname)
         cy.get('#saveInfo').click()
+        cy.wait(2000)
 
         cy.get('.navbar-nav > li').contains('Ασθενείς').click()
 
@@ -50,6 +51,7 @@ describe('Test patients route', () => {
         }
 
         cy.get('#insertPatient').click()
+        cy.wait(2000)
 
         cy.get('input[id="fname"]').type(patient.fname)
         cy.get('input[id="lname"]').type(patient.lname)
