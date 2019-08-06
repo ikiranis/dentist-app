@@ -14,11 +14,14 @@
                 </div>
 
                 <div class="card-body">
-                    {{ event.description }}
-                </div>
+                    <div>
+                        {{ event.description }}
+                    </div>
 
-                <div class="card-footer">
-                    <span>Ραντεβού με: <strong>{{ event.patient_name }}</strong></span>
+                    <div class="mt-3">
+                        <small v-if="event.patient_name">Ραντεβού με:
+                            <strong>{{ event.patient_name }}</strong></small>
+                    </div>
                 </div>
             </div>
         </div>
