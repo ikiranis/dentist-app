@@ -3,7 +3,7 @@
 
         <b-modal ref="eventModal" size="md" centered hide-footer title="Εισαγωγή ραντεβού">
 
-            <form class="container-fluid">
+            <form @submit.prevent class="container-fluid">
 
                 <div class="form-group row">
                     <label for="date" class="col-md-4 col-form-label text-md-right">Ημ/νία</label>
@@ -77,7 +77,7 @@
             </div>
 
             <div class="row w-100">
-                <input class="btn btn-success col-lg-6 col-12 my-3 mx-auto"
+                <input type="submit" class="btn btn-success col-lg-6 col-12 my-3 mx-auto"
                        @click="newEvent()" value="Εισαγωγή ραντεβού">
             </div>
         </div>
@@ -113,6 +113,7 @@
                 search: '',
 
                 event: {
+                    id: 0,
                     date: '',
                     time: '',
                     description: '',
@@ -134,6 +135,18 @@
         },
 
         methods: {
+
+            /**
+             * Run the appropriate save action
+             */
+            saveEvent() {
+                if (this.event.id === 0) {
+                    this.createEvent()
+                    return
+                }
+
+                this.updateEvent()
+            },
 
             /**
              * Get all the events
@@ -196,14 +209,68 @@
             },
 
             /**
+             * Create an event
+             */
+            createEvent () {
+                this.loading = true
+
+                api.createEvent(this.event)
+                    .then(response => {
+                        this.loading = false
+
+                        this.response.message = 'Το ραντεβού αποθηκεύτηκε'
+                        this.response.status = true
+
+                        this.$refs.eventModal.hide()
+
+                        this.getEvents(null)
+                    })
+                    .catch(error => {
+                        this.loading = false
+
+                        this.response.message = error.response.data.message
+                        this.response.status = false
+
+                        if (error.response.data.errors) {
+                            this.response.errors = error.response.data.errors
+                        }
+
+                        utility.debug(error.response.data.debug)
+                    })
+            },
+
+            /**
+             * Update the event
+             */
+            updateEvent () {
+                this.loading = true
+
+                api.updateEvent(this.event, this.event.id)
+                    .then(response => {
+                        this.loading = false
+
+                        this.response.message = 'Ο ασθενής ενημερώθηκε'
+                        this.response.status = true
+                    })
+                    .catch(error => {
+                        this.loading = false
+
+                        this.response.message = error.response.data.message
+                        this.response.status = false
+
+                        if (error.response.data.errors) {
+                            this.response.errors = error.response.data.errors
+                        }
+
+                        utility.debug(error.response.data.debug)
+                    })
+            },
+
+            /**
              * Display event modal
              */
             newEvent() {
                 this.$refs.eventModal.show()
-            },
-
-            saveEvent() {
-                alert('Saving...')
             }
         }
     }
