@@ -20,12 +20,12 @@
 
             <Loading :loading="loading"/>
 
-            <div v-if="!loading">
+            <div class="alert alert-success text-center w-50 mt-5 mx-auto"
+                 v-if="!patients.length && !loading">
+                Δεν βρέθηκαν ασθενείς
+            </div>
 
-                <div class="alert alert-success text-center w-50 mt-5 mx-auto"
-                     v-if="!patients.length && !loading">
-                    Δεν βρέθηκαν ασθενείς
-                </div>
+            <div v-if="!loading">
 
                 <div class="container mt-4" v-if="patients.length && !loading">
 

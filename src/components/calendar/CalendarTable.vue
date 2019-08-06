@@ -13,7 +13,7 @@
                 </div>
 
                 <div class="card-footer">
-                    {{ event.patient }}
+                    {{ event.patientName }}
                 </div>
             </div>
         </div>

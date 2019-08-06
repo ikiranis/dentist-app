@@ -57,12 +57,12 @@
 
             <Loading :loading="loading"/>
 
-            <div v-if="!loading">
+            <div class="alert alert-success text-center w-50 mt-5 mx-auto"
+                 v-if="!events.length && !loading">
+                Δεν βρέθηκαν ραντεβού
+            </div>
 
-                <div class="alert alert-success text-center w-50 mt-5 mx-auto"
-                     v-if="!events.length && !loading">
-                    Δεν βρέθηκαν ραντεβού
-                </div>
+            <div v-if="!loading">
 
                 <div class="container" v-if="events.length && !loading">
 
@@ -116,7 +116,8 @@
                     date: '',
                     time: '',
                     description: '',
-                    patient: 0
+                    patientId: 0,
+                    patientName: ''
                 },
 
                 pagination: {
