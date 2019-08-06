@@ -54,7 +54,7 @@
 
         </b-modal>
 
-        <div class="row justify-content-center">
+        <div class="justify-content-center">
 
             <div class="col-12">
                 <h1>Ημερολόγιο</h1>
@@ -67,9 +67,9 @@
                 Δεν βρέθηκαν ραντεβού
             </div>
 
-            <div v-if="!loading">
+            <div>
 
-                <div class="container" v-if="events.length && !loading">
+                <div class="container" v-if="events.length">
 
                     <paginate :pagination="pagination" @click="getEvents"/>
 
