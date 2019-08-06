@@ -10,7 +10,8 @@
                     <div class="col-md-8">
                         <input id="date" type="date" class="form-control"
                                v-model="event.date" required>
-                        <form-error v-if="response.errors.date" :error="response.errors.date[0]"/>
+                        <form-error v-if="response.errors.date"
+                                    :error="response.errors.date[0]"/>
                     </div>
                 </div>
 
@@ -19,7 +20,8 @@
                     <div class="col-md-8">
                         <input id="time" type="datetime-local" class="form-control"
                                v-model="event.time" required>
-                        <form-error v-if="response.errors.time" :error="response.errors.time[0]"/>
+                        <form-error v-if="response.errors.time"
+                                    :error="response.errors.time[0]"/>
                     </div>
                 </div>
 
@@ -28,7 +30,8 @@
                     <div class="col-md-8">
                         <input id="description" type="text" class="form-control"
                                v-model="event.description" required>
-                        <form-error v-if="response.errors.description" :error="response.errors.description[0]"/>
+                        <form-error v-if="response.errors.description"
+                                    :error="response.errors.description[0]"/>
                     </div>
                 </div>
 
@@ -36,8 +39,10 @@
                     <label for="patient" class="col-md-4 col-form-label text-md-right">Ασθενής</label>
                     <div class="col-md-8">
                         <input id="patient" type="text" class="form-control"
-                               v-model="event.patient" required>
-                        <form-error v-if="response.errors.patient" :error="response.errors.patient[0]"/>
+                               v-model="event.patient_id"
+                               required> {{event.patient_name}}
+                        <form-error v-if="response.errors.patient_id"
+                                    :error="response.errors.patient_id[0]"/>
                     </div>
                 </div>
 
@@ -68,7 +73,9 @@
 
                     <paginate :pagination="pagination" @click="getEvents"/>
 
-                    <calendar-table :events="events" @click="deleteEvent" />
+                    <calendar-table :events="events"
+                                    @clickDelete="deleteEvent"
+                                    @clickUpdate="getEvent"/>
 
                     <paginate :pagination="pagination" @click="getEvents"/>
 
@@ -139,7 +146,8 @@
             /**
              * Run the appropriate save action
              */
-            saveEvent() {
+            saveEvent()
+            {
                 if (this.event.id === 0) {
                     this.createEvent()
                     return
@@ -149,11 +157,33 @@
             },
 
             /**
+             * Display event for edit
+             */
+            getEvent(eventId)
+            {
+                api.getEvent(eventId)
+                    .then(response => {
+                        if (response.status === 200) {
+                            this.event = response.data
+
+                            this.$refs.eventModal.show()
+                        }
+                    })
+                    .catch(error => {
+                        this.response.message = error.response.data.message
+                        this.response.status = false
+
+                        utility.debug(error.response.data.debug)
+                    })
+            },
+
+            /**
              * Get all the events
              *
              * @param page
              */
-            getEvents(page) {
+            getEvents(page)
+            {
                 this.loading = true
 
                 api.getEvents(page, this.search)
@@ -185,12 +215,13 @@
             /**
              * Delete an event
              */
-            deleteEvent(eventId) {
+            deleteEvent(eventId)
+            {
                 let choise = confirm('Θέλεις σίγουρα να σβήσεις το ραντεβού με id: ' + eventId + ';')
 
-                this.loading = true
-
                 if (choise) {
+                    this.loading = true
+
                     api.deleteEvent(eventId)
                         .then(response => {
                             this.loading = false
@@ -211,7 +242,8 @@
             /**
              * Create an event
              */
-            createEvent () {
+            createEvent ()
+            {
                 this.loading = true
 
                 api.createEvent(this.event)
@@ -242,7 +274,8 @@
             /**
              * Update the event
              */
-            updateEvent () {
+            updateEvent ()
+            {
                 this.loading = true
 
                 api.updateEvent(this.event, this.event.id)
@@ -251,6 +284,10 @@
 
                         this.response.message = 'Ο ασθενής ενημερώθηκε'
                         this.response.status = true
+
+                        this.$refs.eventModal.hide()
+
+                        this.getEvents(null)
                     })
                     .catch(error => {
                         this.loading = false
@@ -269,7 +306,8 @@
             /**
              * Display event modal
              */
-            newEvent() {
+            newEvent()
+            {
                 this.$refs.eventModal.show()
             }
         }

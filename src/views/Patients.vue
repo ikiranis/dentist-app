@@ -128,9 +128,9 @@ export default {
         deletePatient (patientId) {
             let choise = confirm('Θέλεις σίγουρα να σβήσεις τον ασθενή με id: ' + patientId + ';')
 
-            this.loading = true
-
             if (choise) {
+                this.loading = true
+
                 api.deletePatient(patientId)
                     .then(response => {
                         this.loading = false

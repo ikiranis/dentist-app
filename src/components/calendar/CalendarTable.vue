@@ -4,10 +4,10 @@
             <div class="card">
                 <div class="card-header">
                     <div class="row">
-                        <span class="px-2">{{ event.date }} {{ event.time }}</span>
+                        <a href="#" class="px-2" @click="listeners.clickUpdate(event.id)">{{ event.date }} {{ event.time }}</a>
                         <span class="col text-right">
                             <delete class="btn-icon"
-                                    @click="listeners.click(event.id)"
+                                    @click="listeners.clickDelete(event.id)"
                                     title="Διαγραφή ραντεβού"/>
                         </span>
                     </div>

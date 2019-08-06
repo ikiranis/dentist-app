@@ -123,7 +123,7 @@ let api = {
      *
      * @returns {Promise<AxiosResponse<T>>}
      */
-    async getEvent (evetntId) {
+    async getEvent (eventId) {
         return axios.get(ROOT_API + '/event/' + eventId)
     },
 
