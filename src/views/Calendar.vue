@@ -125,6 +125,7 @@
                 event: {
                     id: 0,
                     date: '',
+					formated_date: '',
                     time: '',
                     description: '',
                     patient_id: 0,

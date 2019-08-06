@@ -4,7 +4,7 @@
             <div class="card">
                 <div class="card-header">
                     <div class="row">
-                        <a href="#" class="px-2" @click="listeners.clickUpdate(event.id)">{{ event.date }} {{ event.time }}</a>
+                        <a href="#" class="px-2" @click="listeners.clickUpdate(event.id)">{{ event.formated_date }} {{ event.time }}</a>
                         <span class="col text-right">
                             <delete class="btn-icon"
                                     @click="listeners.clickDelete(event.id)"
