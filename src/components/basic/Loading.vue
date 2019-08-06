@@ -1,6 +1,6 @@
 <template>
-    <div class="row my-2" v-if="loading">
-        <img src="@/assets/loader.gif" class="mx-auto">
+    <div v-if="loading">
+        <img src="@/assets/loader.gif">
     </div>
 </template>
 

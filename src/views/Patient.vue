@@ -1,13 +1,16 @@
 <template>
     <div class="container-fluid my-3">
 
-        <Loading :loading="loading"/>
-
         <div class="row justify-content-center">
 
-            <div class="col-12">
-                <h1>#{{ patientId }} {{ patient.fname }} {{ patient.lname }}</h1>
-            </div>
+			<div class="row col-12">
+				<div class="col-lg col-12 my-auto">
+					<h1>#{{ patientId }} {{ patient.fname }} {{ patient.lname }}</h1>
+				</div>
+				<div class="col-lg col-12 row my-auto">
+					<Loading class="ml-auto" :loading="loading"/>
+				</div>
+			</div>
 
             <menu-bar brand="Ασθενής" :brandRoute="{ name: 'patient', params: { id: patientId } }"
                       :menuItems="menuItems" userInfo="false" fixed=""

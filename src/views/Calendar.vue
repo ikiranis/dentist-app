@@ -56,11 +56,14 @@
 
         <div class="justify-content-center">
 
-            <div class="col-12">
-                <h1>Ημερολόγιο</h1>
+            <div class="row col-12">
+                <div class="col-lg col-12 my-auto">
+					<h1>Ημερολόγιο</h1>
+				</div>
+				<div class="col-lg col-12 row my-auto">
+					<Loading class="ml-auto" :loading="loading"/>
+				</div>
             </div>
-
-            <Loading :loading="loading"/>
 
             <div class="alert alert-success text-center w-50 mt-5 mx-auto"
                  v-if="!events.length && !loading">
