@@ -93,7 +93,7 @@
                             <label for="created_at" class="col-md-6 col-form-label text-md-right">Ημ. Εγγραφής</label>
                             <div class="col-md-6">
                                 <input id="created_at" type="date" class="form-control"
-                                       :value="patientCreatedAt" disabled>
+                                       :value="patient.created_at" disabled>
                             </div>
                         </div>
 
@@ -197,10 +197,9 @@ export default {
                 birthday: '',
                 phoneMobile: '',
                 phoneLandline: '',
-                address: ''
+                address: '',
+				created_at: ''
             },
-
-            patientCreatedAt: '',
 
             menuItems: [
                 {
@@ -267,8 +266,6 @@ export default {
 
                     if (response.status === 200) {
                         this.patient = response.data
-
-                        this.patientCreatedAt = moment(this.patient.created_at).format('YYYY-MM-DD')
                     }
                 })
                 .catch(error => {
