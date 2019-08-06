@@ -3,9 +3,14 @@
         <div v-for="event in props.events" :key="event.id" class="col-4 mb-3">
             <div class="card">
                 <div class="card-header">
-                    <span>{{ event.date }} {{ event.time }}</span>
-
-                    <delete @click="listeners.click(event.id)" title="Διαγραφή ραντεβού"/>
+                    <div class="row">
+                        <span class="px-2">{{ event.date }} {{ event.time }}</span>
+                        <span class="col text-right">
+                            <delete class="btn-icon"
+                                    @click="listeners.click(event.id)"
+                                    title="Διαγραφή ραντεβού"/>
+                        </span>
+                    </div>
                 </div>
 
                 <div class="card-body">
@@ -13,7 +18,7 @@
                 </div>
 
                 <div class="card-footer">
-                    {{ event.patientName }}
+                    <span>Ραντεβού με: <strong>{{ event.patient_name }}</strong></span>
                 </div>
             </div>
         </div>

@@ -116,23 +116,14 @@
                     date: '',
                     time: '',
                     description: '',
-                    patientId: 0,
-                    patientName: ''
+                    patient_id: 0,
+                    patient_name: ''
                 },
 
                 pagination: {
                     meta: {},
                     links: {}
                 },
-
-                // events: [
-                //     {
-                //         id: 0,
-                //         date: '12/01/2019',
-                //         time: '12:00',
-                //         description: 'Θεραπεία',
-                //         patient: 1
-                //     },
 
                 events: []
             }
