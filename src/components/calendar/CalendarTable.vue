@@ -20,7 +20,10 @@
 
                     <div class="mt-3">
                         <small v-if="event.patient_name">Ραντεβού με:
-                            <strong>{{ event.patient_name }}</strong></small>
+							<router-link :to="{ name: 'patient', params: { id: event.patient_id } }" class="patientName">
+								<strong>{{ event.patient_name }}</strong>
+							</router-link>
+						</small>
                     </div>
                 </div>
             </div>
