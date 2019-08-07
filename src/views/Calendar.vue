@@ -68,11 +68,35 @@
 				</div>
             </div>
 
+            <!-- Αναζήτηση -->
+            <div class="row col-12 mx-auto">
+                <div class="form-group row col-md-4 col-12">
+                    <label for="dateFrom" class="col-md-4 col-form-label text-md-right">Από</label>
+                    <div class="col-md-8">
+                        <input id="dateFrom" type="date" class="form-control"
+                               v-model="dateFrom">
+                    </div>
+                </div>
+
+                <div class="form-group row col-md-4 col-12">
+                    <label for="dateTo" class="col-md-4 col-form-label text-md-right">Μέχρι</label>
+                    <div class="col-md-8">
+                        <input id="dateTo" type="date" class="form-control"
+                               v-model="dateTo">
+                    </div>
+                </div>
+
+                <div class="col-md-4 col-12 ">
+                    <input type="submit" class="btn btn-small btn-success w-100" value="Αναζήτηση">
+                </div>
+            </div>
+
             <div class="alert alert-success text-center w-50 mt-5 mx-auto"
                  v-if="!events.length && !loading">
                 Δεν βρέθηκαν ραντεβού
             </div>
 
+            <!-- Περιεχόμενα -->
             <div>
 
                 <div class="container" v-if="events.length">
@@ -123,7 +147,8 @@
 
                 loading: false,
 
-                search: '',
+                dateFrom: '',
+                dateTo: '',
 
                 event: {
                     id: 0,
