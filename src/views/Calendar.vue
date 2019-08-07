@@ -38,7 +38,7 @@
                 <div class="form-group row">
                     <label for="patient" class="col-md-4 col-form-label text-md-right">Ασθενής</label>
                     <div class="col-md-8">
-                        <select class="form-control selectDropDown" id="patient" v-model="event.patient_id">
+                        <select class="form-control" id="patient" v-model="event.patient_id">
                             <option v-for="patient in patients"
                                     :key="patient.id"
                                     :value="patient.id"

@@ -22,7 +22,9 @@
 							@click="listeners.clickDelete(transaction.id)"
 							title="Διαγραφή κίνησης"/>
 				</td>
-                <th scope="row">{{ transaction.created_at }}</th>
+                <th scope="row">
+					<a href="#" class="px-2" @click="listeners.clickUpdate(transaction.id)">{{ transaction.created_at }}</a>
+				</th>
                 <td>
                     {{ transaction.description }}
                 </td>
