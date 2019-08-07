@@ -5,8 +5,8 @@ const utility = {
      *
      * @param text
      */
-    debug(text) {
-        if(process.env.NODE_ENV === 'development') {
+    debug (text) {
+        if (process.env.NODE_ENV === 'development') {
             console.log(text)
         }
     }

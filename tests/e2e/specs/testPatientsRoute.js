@@ -28,7 +28,7 @@ describe('Test patients route', () => {
     })
 
     it('Update patient', () => {
-        const changelname = 'Change' + Math.floor(Math.random() * 100);
+        const changelname = 'Change' + Math.floor(Math.random() * 100)
 
         cy.get('input[id="lname"]').clear().type(changelname)
         cy.get('#saveInfo').click()

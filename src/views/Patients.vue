@@ -62,7 +62,7 @@ import DisplayError from '@/components/basic/DisplayError'
 import Paginate from '@/components/basic/Paginate'
 import PatientsTable from '@/components/patients/PatientsTable'
 import Loading from '@/components/basic/Loading'
-import utility from "../library/utility";
+import utility from '../library/utility'
 
 export default {
     components: { DisplayError, Paginate, PatientsTable, Loading },

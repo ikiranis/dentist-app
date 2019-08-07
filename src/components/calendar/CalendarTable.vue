@@ -32,14 +32,14 @@
 </template>
 
 <script>
-    export default {
-        name: 'CalendarTable',
+export default {
+    name: 'CalendarTable',
 
-        props: {
-            events: {
-                required: true,
-                type: Array
-            }
+    props: {
+        events: {
+            required: true,
+            type: Array
         }
     }
+}
 </script>

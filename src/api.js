@@ -99,7 +99,7 @@ let api = {
         return ROOT_API
     },
 
-	// ************** Calendar api calls **************
+    // ************** Calendar api calls **************
 
     /**
 	 * Get all events
@@ -160,7 +160,7 @@ let api = {
         return axios.delete(ROOT_API + '/event/' + eventId)
     },
 
-	// ************** Patient api calls **************
+    // ************** Patient api calls **************
 
     /**
      * Get all patients
@@ -230,66 +230,66 @@ let api = {
         return axios.delete(ROOT_API + '/patient/' + patientId)
     },
 
-	// ************** Transaction api calls **************
+    // ************** Transaction api calls **************
 
-	/**
+    /**
 	 * Get all transactions
 	 *
 	 * @returns {Promise<void>}
 	 */
-	async getTransactions (page, search) {
-		if (page !== null) {
-			page = '?' + page.toString().split('?')[1]
-		} else {
-			page = ''
-		}
+    async getTransactions (page, search) {
+        if (page !== null) {
+            page = '?' + page.toString().split('?')[1]
+        } else {
+            page = ''
+        }
 
-		if (search) {
-			return axios.get(ROOT_API + '/transactions/search/' + search + page)
-		}
+        if (search) {
+            return axios.get(ROOT_API + '/transactions/search/' + search + page)
+        }
 
-		return axios.get(ROOT_API + '/transactions' + page)
-	},
+        return axios.get(ROOT_API + '/transactions' + page)
+    },
 
-	/**
+    /**
 	 * Get a transaction
 	 *
 	 * @returns {Promise<AxiosResponse<T>>}
 	 */
-	async getTransaction (transactionId) {
-		return axios.get(ROOT_API + '/transaction/' + transactionId)
-	},
+    async getTransaction (transactionId) {
+        return axios.get(ROOT_API + '/transaction/' + transactionId)
+    },
 
-	/**
+    /**
 	 * Create a transaction
 	 *
 	 * @param args
 	 * @returns {Promise<AxiosResponse<T>>}
 	 */
-	async createTransaction (args) {
-		return axios.post(ROOT_API + '/transaction', args)
-	},
+    async createTransaction (args) {
+        return axios.post(ROOT_API + '/transaction', args)
+    },
 
-	/**
+    /**
 	 * Update a transaction
 	 *
 	 * @param args
 	 * @param transactionId
 	 * @returns {Promise<Promise<AxiosResponse<T>>>}
 	 */
-	async updateTransaction (args, transactionId) {
-		return axios.patch(ROOT_API + '/transaction/' + transactionId, args)
-	},
+    async updateTransaction (args, transactionId) {
+        return axios.patch(ROOT_API + '/transaction/' + transactionId, args)
+    },
 
-	/**
+    /**
 	 * Delete a transaction
 	 *
 	 * @param transactionId
 	 * @returns {Promise<Promise<AxiosResponse<T>>>}
 	 */
-	async deleteTransaction (transactionId) {
-		return axios.delete(ROOT_API + '/transaction/' + transactionId)
-	}
+    async deleteTransaction (transactionId) {
+        return axios.delete(ROOT_API + '/transaction/' + transactionId)
+    }
 
 }
 

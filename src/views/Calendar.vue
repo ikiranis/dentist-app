@@ -125,249 +125,235 @@
 </template>
 
 <script>
-    import api from '@/api'
-    import FormError from '@/components/basic/FormError'
-    import DisplayError from '@/components/basic/DisplayError'
-    import Loading from '@/components/basic/Loading'
-    import utility from "../library/utility";
-    import Paginate from '@/components/basic/Paginate'
-    import CalendarTable from '@/components/calendar/CalendarTable'
+import api from '@/api'
+import FormError from '@/components/basic/FormError'
+import DisplayError from '@/components/basic/DisplayError'
+import Loading from '@/components/basic/Loading'
+import utility from '../library/utility'
+import Paginate from '@/components/basic/Paginate'
+import CalendarTable from '@/components/calendar/CalendarTable'
 
-    export default {
-        components: { FormError, Loading, DisplayError, Paginate, CalendarTable },
+export default {
+    components: { FormError, Loading, DisplayError, Paginate, CalendarTable },
 
-        data() {
-            return {
+    data () {
+        return {
 
-                response: {
-                    message: '',
-                    status: '',
-                    errors: []
-                },
+            response: {
+                message: '',
+                status: '',
+                errors: []
+            },
 
-                loading: false,
+            loading: false,
 
-                dateFrom: '',
-                dateTo: '',
+            dateFrom: '',
+            dateTo: '',
 
-                event: {
-                    id: 0,
-                    date: '',
-					formated_date: '',
-                    time: '',
-                    description: '',
-                    patient_id: 0,
-                    patient_name: ''
-                },
+            event: {
+                id: 0,
+                date: '',
+                formated_date: '',
+                time: '',
+                description: '',
+                patient_id: 0,
+                patient_name: ''
+            },
 
-                pagination: {
-                    meta: {},
-                    links: {}
-                },
+            pagination: {
+                meta: {},
+                links: {}
+            },
 
-                events: [],
+            events: [],
 
-                patients: []
-            }
-        },
+            patients: []
+        }
+    },
 
-        created: function () {
-            this.getEvents(null)
-            this.getSimplePatients()
-        },
+    created: function () {
+        this.getEvents(null)
+        this.getSimplePatients()
+    },
 
-        methods: {
+    methods: {
 
-            /**
+        /**
              * Run the appropriate save action
              */
-            saveEvent()
-            {
-                if (this.event.id === 0) {
-                    this.createEvent()
-                    return
-                }
+        saveEvent () {
+            if (this.event.id === 0) {
+                this.createEvent()
+                return
+            }
 
-                this.updateEvent()
-            },
+            this.updateEvent()
+        },
 
-            /**
+        /**
              * Display event for edit
              */
-            getEvent(eventId)
-            {
-                this.event = this.events.find((event) => {
-                    return event.id === eventId
-                })
+        getEvent (eventId) {
+            this.event = this.events.find((event) => {
+                return event.id === eventId
+            })
 
-                this.$refs.eventModal.show()
-            },
+            this.$refs.eventModal.show()
+        },
 
-            /**
+        /**
              * Get all the events
              *
              * @param page
              */
-            getEvents(page)
-            {
-                this.loading = true
+        getEvents (page) {
+            this.loading = true
 
-                api.getEvents(page, this.search)
-                    .then(response => {
-                        this.loading = false
+            api.getEvents(page, this.search)
+                .then(response => {
+                    this.loading = false
 
-                        if (response.status === 200) {
-                            this.events = response.data.data
-                            this.pagination.meta = response.data.meta
-                            this.pagination.links = response.data.links
+                    if (response.status === 200) {
+                        this.events = response.data.data
+                        this.pagination.meta = response.data.meta
+                        this.pagination.links = response.data.links
 
-                            window.scrollTo(0, 0)
+                        window.scrollTo(0, 0)
 
-                            return
-                        }
+                        return
+                    }
 
-                        this.events = []
-                    })
-                    .catch(error => {
-                        this.loading = false
+                    this.events = []
+                })
+                .catch(error => {
+                    this.loading = false
 
-                        this.response.message = error.response.data.message
-                        this.response.status = false
+                    this.response.message = error.response.data.message
+                    this.response.status = false
 
-                        utility.debug(error.response.data.debug)
-                    })
-            },
+                    utility.debug(error.response.data.debug)
+                })
+        },
 
-            /**
+        /**
              * Delete an event
              */
-            deleteEvent(eventId)
-            {
-                let choise = confirm('Θέλεις σίγουρα να σβήσεις το ραντεβού με id: ' + eventId + ';')
+        deleteEvent (eventId) {
+            let choise = confirm('Θέλεις σίγουρα να σβήσεις το ραντεβού με id: ' + eventId + ';')
 
-                if (choise) {
-                    this.loading = true
+            if (choise) {
+                this.loading = true
 
-                    api.deleteEvent(eventId)
-                        .then(response => {
-                            this.loading = false
+                api.deleteEvent(eventId)
+                    .then(response => {
+                        this.loading = false
 
-                            this.getEvents(null)
-                        })
-                        .catch(error => {
-                            this.loading = false
+                        this.getEvents(null)
+                    })
+                    .catch(error => {
+                        this.loading = false
 
-                            this.response.message = error.response.data.message
-                            this.response.status = false
+                        this.response.message = error.response.data.message
+                        this.response.status = false
 
-                            utility.debug(error.response.data.debug)
-                        })
-                }
-            },
+                        utility.debug(error.response.data.debug)
+                    })
+            }
+        },
 
-            /**
+        /**
              * Create an event
              */
-            createEvent ()
-            {
-                this.loading = true
+        createEvent () {
+            this.loading = true
 
-                api.createEvent(this.event)
-                    .then(response => {
-                        this.loading = false
+            api.createEvent(this.event)
+                .then(response => {
+                    this.loading = false
 
-                        this.response.message = 'Το ραντεβού αποθηκεύτηκε'
-                        this.response.status = true
+                    this.response.message = 'Το ραντεβού αποθηκεύτηκε'
+                    this.response.status = true
 
-                        this.$refs.eventModal.hide()
+                    this.$refs.eventModal.hide()
 
-                        this.getEvents(null)
-                    })
-                    .catch(error => {
-                        this.loading = false
+                    this.getEvents(null)
+                })
+                .catch(error => {
+                    this.loading = false
 
-                        this.response.message = error.response.data.message
-                        this.response.status = false
+                    this.response.message = error.response.data.message
+                    this.response.status = false
 
-                        if (error.response.data.errors) {
-                            this.response.errors = error.response.data.errors
-                        }
+                    if (error.response.data.errors) {
+                        this.response.errors = error.response.data.errors
+                    }
 
-                        utility.debug(error.response.data.debug)
-                    })
-            },
+                    utility.debug(error.response.data.debug)
+                })
+        },
 
-            /**
+        /**
              * Update the event
              */
-            updateEvent ()
-            {
-                this.loading = true
+        updateEvent () {
+            this.loading = true
 
-                api.updateEvent(this.event, this.event.id)
-                    .then(response => {
-                        this.loading = false
+            api.updateEvent(this.event, this.event.id)
+                .then(response => {
+                    this.loading = false
 
-                        this.response.message = 'Ο ασθενής ενημερώθηκε'
-                        this.response.status = true
+                    this.response.message = 'Ο ασθενής ενημερώθηκε'
+                    this.response.status = true
 
-                        this.$refs.eventModal.hide()
+                    this.$refs.eventModal.hide()
 
-                        this.getEvents(null)
-                    })
-                    .catch(error => {
-                        this.loading = false
+                    this.getEvents(null)
+                })
+                .catch(error => {
+                    this.loading = false
 
-                        this.response.message = error.response.data.message
-                        this.response.status = false
+                    this.response.message = error.response.data.message
+                    this.response.status = false
 
-                        if (error.response.data.errors) {
-                            this.response.errors = error.response.data.errors
-                        }
+                    if (error.response.data.errors) {
+                        this.response.errors = error.response.data.errors
+                    }
 
-                        utility.debug(error.response.data.debug)
-                    })
-            },
+                    utility.debug(error.response.data.debug)
+                })
+        },
 
-            /**
+        /**
              * Get the simple list of patients
              */
-            getSimplePatients ()
-            {
-                api.getSimplePatients()
-                    .then(response => {
-                        if (response.status === 200) {
-                            this.patients = response.data
+        getSimplePatients () {
+            api.getSimplePatients()
+                .then(response => {
+                    if (response.status === 200) {
+                        this.patients = response.data
 
-                            return
-                        }
+                        return
+                    }
 
-                        this.patients = []
-                    })
-                    .catch(error => {
-                        this.loading = false
+                    this.patients = []
+                })
+                .catch(error => {
+                    this.loading = false
 
-                        this.response.message = error.response.data.message
-                        this.response.status = false
+                    this.response.message = error.response.data.message
+                    this.response.status = false
 
-                        utility.debug(error.response.data.debug)
-                    })
-            },
+                    utility.debug(error.response.data.debug)
+                })
+        },
 
-            /**
+        /**
              * Display event modal
              */
-            newEvent ()
-            {
-                this.event = { id: 0 },
-                this.$refs.eventModal.show()
-            }
+        newEvent () {
+            this.event = { id: 0 }
+            this.$refs.eventModal.show()
         }
     }
+}
 </script>
-
-<style scoped>
-    /*.selectDropDown {*/
-    /*    height:5em;*/
-    /*}*/
-</style>

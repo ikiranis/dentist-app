@@ -21,6 +21,7 @@
 <script>
 import api from '@/api'
 import MenuBar from '@/components/basic/MenuBar'
+import utility from './library/utility'
 
 export default {
     components: { MenuBar },
@@ -71,6 +72,8 @@ export default {
                 })
                 .catch(error => {
                     this.apiWorks = false
+
+                    utility.debug(error)
                 })
         }
 
