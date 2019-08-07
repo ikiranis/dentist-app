@@ -38,11 +38,14 @@
                 <div class="form-group row">
                     <label for="patient" class="col-md-4 col-form-label text-md-right">Ασθενής</label>
                     <div class="col-md-8">
-                        <input id="patient" type="text" class="form-control"
-                               v-model="event.patient_id"
-                               required> {{event.patient_name}}
-                        <form-error v-if="response.errors.patient_id"
-                                    :error="response.errors.patient_id[0]"/>
+                        <select class="form-control selectDropDown" id="patient" v-model="event.patient_id">
+                            <option v-for="patient in patients"
+                                    :key="patient.id"
+                                    :value="patient.id"
+                                    :selected="(event.patient_id === patient.id) ? 'selected' : ''">
+                                        {{ patient.fullName }}
+                            </option>
+                        </select>
                     </div>
                 </div>
 
@@ -137,12 +140,15 @@
                     links: {}
                 },
 
-                events: []
+                events: [],
+
+                patients: []
             }
         },
 
         created: function () {
             this.getEvents(null)
+            this.getSimplePatients()
         },
 
         methods: {
@@ -308,12 +314,43 @@
             },
 
             /**
+             * Get the simple list of patients
+             */
+            getSimplePatients ()
+            {
+                api.getSimplePatients()
+                    .then(response => {
+                        if (response.status === 200) {
+                            this.patients = response.data
+
+                            return
+                        }
+
+                        this.patients = []
+                    })
+                    .catch(error => {
+                        this.loading = false
+
+                        this.response.message = error.response.data.message
+                        this.response.status = false
+
+                        utility.debug(error.response.data.debug)
+                    })
+            },
+
+            /**
              * Display event modal
              */
-            newEvent()
+            newEvent ()
             {
                 this.$refs.eventModal.show()
             }
         }
     }
 </script>
+
+<style scoped>
+    /*.selectDropDown {*/
+    /*    height:5em;*/
+    /*}*/
+</style>
