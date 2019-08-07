@@ -137,6 +137,7 @@
 <script>
 import FormError from '@/components/basic/FormError'
 import FinancialList from '@/components/economy/FinancialList.vue'
+import api from "../api";
 
 export default {
     components: { FormError, FinancialList },
@@ -159,115 +160,10 @@ export default {
                 description: '',
                 patient: 0,
                 value: 0,
-                kind: ''
+                kind: 0
             },
 
-            transactions: [
-                {
-                    id: 1,
-                    date: '12/01/2019',
-                    description: 'Θεραπεία',
-                    patient: 1,
-                    value: 50,
-                    kind: 'income'
-                },
-                {
-                    id: 2,
-                    date: '15/01/2019',
-                    description: 'Εξοπλισμός',
-                    patient: 0,
-                    value: 150,
-                    kind: 'expense'
-                },
-                {
-                    id: 3,
-                    date: '12/02/2019',
-                    description: 'Θεραπεία',
-                    patient: 2,
-                    value: 250,
-                    kind: 'income'
-                },
-                {
-                    id: 4,
-                    date: '14/01/2019',
-                    description: 'Θεραπεία',
-                    patient: 4,
-                    value: 30,
-                    kind: 'income'
-                },
-                {
-                    id: 5,
-                    date: '18/01/2019',
-                    description: 'Θεραπεία',
-                    patient: 3,
-                    value: 80,
-                    kind: 'income'
-                },
-                {
-                    id: 6,
-                    date: '14/02/2019',
-                    description: 'Εξοπλισμός',
-                    patient: 0,
-                    value: 350,
-                    kind: 'expense'
-                },
-                {
-                    id: 7,
-                    date: '12/01/2019',
-                    description: 'Θεραπεία',
-                    patient: 0,
-                    value: 400,
-                    kind: 'expense'
-                },
-                {
-                    id: 8,
-                    date: '14/02/2019',
-                    description: 'Θεραπεία',
-                    patient: 1,
-                    value: 50,
-                    kind: 'income'
-                },
-                {
-                    id: 9,
-                    date: '12/03/2019',
-                    description: 'Εξοπλισμός',
-                    patient: 0,
-                    value: 500,
-                    kind: 'expense'
-                },
-                {
-                    id: 10,
-                    date: '27/03/2019',
-                    description: 'Θεραπεία',
-                    patient: 5,
-                    value: 75,
-                    kind: 'income'
-                },
-                {
-                    id: 11,
-                    date: '12/05/2019',
-                    description: 'Θεραπεία',
-                    patient: 6,
-                    value: 50,
-                    kind: 'income'
-                },
-                {
-                    id: 12,
-                    date: '13/01/2019',
-                    description: 'Εξοπλισμός',
-                    patient: 0,
-                    value: 100,
-                    kind: 'expense'
-                },
-                {
-                    id: 13,
-                    date: '22/01/2019',
-                    description: 'Θεραπεία',
-                    patient: 0,
-                    value: 150,
-                    kind: 'expense'
-                }
-            ],
+            transactions: [],
 
             transactionTitle: ''
         }
@@ -276,18 +172,56 @@ export default {
     computed: {
         income () {
             return this.transactions.filter((transaction) => {
-                return transaction.kind === 'income'
+                return transaction.kind === 0
             })
         },
 
         expenses () {
             return this.transactions.filter((transaction) => {
-                return transaction.kind === 'expense'
+                return transaction.kind === 1
             })
         }
     },
 
+	created: function () {
+		this.getTransactions(null)
+	},
+
     methods: {
+
+		/**
+		 * Get all the transactions
+		 *
+		 * @param page
+		 */
+		getTransactions (page) {
+			this.loading = true
+
+			api.getTransactions(page, this.search)
+				.then(response => {
+					this.loading = false
+
+					if (response.status === 200) {
+						this.transactions = response.data.data
+						this.pagination.meta = response.data.meta
+						this.pagination.links = response.data.links
+
+						window.scrollTo(0, 0)
+
+						return
+					}
+
+					this.transactions = []
+				})
+				.catch(error => {
+					this.loading = false
+
+					this.response.message = error.response.data.message
+					this.response.status = false
+
+					utility.debug(error.response.data.debug)
+				})
+		},
 
         /**
          * Display transaction modal

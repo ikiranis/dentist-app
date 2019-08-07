@@ -1,4 +1,4 @@
-<template>
+<template functional>
     <div>
 
         <div class="alert alert-success text-center w-50 mt-5 mx-auto" v-if="!transactions.length">
@@ -14,7 +14,7 @@
             </tr>
             </thead>
 
-            <tbody v-for="transaction in transactions" :key="transaction.id">
+            <tbody v-for="transaction in props.transactions" :key="transaction.id">
             <tr>
                 <th scope="row">{{ transaction.date }}</th>
                 <td>
@@ -39,5 +39,4 @@ export default {
         }
     }
 }
-
 </script>
