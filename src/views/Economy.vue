@@ -93,7 +93,7 @@
 					<div class="col-12 text-center">
 						<h3>Έσοδα</h3>
 
-						<financial-list :transactions="income"/>
+						<financial-list :transactions="income" @clickDelete="deleteTransaction"/>
 
 					</div>
 
@@ -104,7 +104,7 @@
 					<div class="col-12 text-center">
 						<h3>Έξοδα</h3>
 
-						<financial-list :transactions="expenses"/>
+						<financial-list :transactions="expenses" @clickDelete="deleteTransaction"/>
 
 					</div>
 
@@ -242,7 +242,33 @@
 
 			saveTransaction() {
 				//
-			}
+			},
+
+			/**
+			 * Delete a transaction
+			 */
+			deleteTransaction (transactionId) {
+				let choise = confirm('Θέλεις σίγουρα να σβήσεις την κίνηση με id: ' + transactionId + ';')
+
+				if (choise) {
+					this.loading = true
+
+					api.deleteTransaction(transactionId)
+						.then(response => {
+							this.loading = false
+
+							this.getTransactions(null)
+						})
+						.catch(error => {
+							this.loading = false
+
+							this.response.message = error.response.data.message
+							this.response.status = false
+
+							utility.debug(error.response.data.debug)
+						})
+				}
+			},
 		}
 	}
 </script>

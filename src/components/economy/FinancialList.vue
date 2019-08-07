@@ -8,6 +8,7 @@
         <table class="table" v-if="props.transactions.length">
             <thead>
             <tr>
+                <th scope="col"></th>
                 <th scope="col">Ημ/νία</th>
                 <th scope="col">Περιγραφή</th>
                 <th scope="col">Ποσό</th>
@@ -16,6 +17,11 @@
 
             <tbody v-for="transaction in props.transactions" :key="transaction.id">
             <tr>
+				<td>
+					<delete class="btn-icon"
+							@click="listeners.clickDelete(transaction.id)"
+							title="Διαγραφή κίνησης"/>
+				</td>
                 <th scope="row">{{ transaction.created_at }}</th>
                 <td>
                     {{ transaction.description }}
