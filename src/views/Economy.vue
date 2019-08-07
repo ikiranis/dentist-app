@@ -171,9 +171,10 @@
 
 				transaction: {
 					id: 0,
-					description: '',
 					patient_id: 0,
 					patient_name: '',
+					date: '',
+					description: '',
 					value: 0,
 					kind: 0
 				},

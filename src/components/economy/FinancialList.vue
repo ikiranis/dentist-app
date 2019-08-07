@@ -23,7 +23,7 @@
 							title="Διαγραφή κίνησης"/>
 				</td>
                 <th scope="row">
-					<a href="#" class="px-2" @click="listeners.clickUpdate(transaction.id)">{{ transaction.created_at }}</a>
+					<a href="#" class="px-2" @click="listeners.clickUpdate(transaction.id)">{{ transaction.formated_date }}</a>
 				</th>
                 <td>
                     {{ transaction.description }}
