@@ -108,10 +108,9 @@
     import utility from "../library/utility";
     import Paginate from '@/components/basic/Paginate'
     import CalendarTable from '@/components/calendar/CalendarTable'
-    import Timeselector from 'vue-timeselector'
 
     export default {
-        components: { FormError, Loading, DisplayError, Paginate, CalendarTable, Timeselector },
+        components: { FormError, Loading, DisplayError, Paginate, CalendarTable },
 
         data() {
             return {
@@ -172,20 +171,11 @@
              */
             getEvent(eventId)
             {
-                api.getEvent(eventId)
-                    .then(response => {
-                        if (response.status === 200) {
-                            this.event = response.data
+                this.event = this.events.find((event) => {
+                    return event.id === eventId
+                })
 
-                            this.$refs.eventModal.show()
-                        }
-                    })
-                    .catch(error => {
-                        this.response.message = error.response.data.message
-                        this.response.status = false
-
-                        utility.debug(error.response.data.debug)
-                    })
+                this.$refs.eventModal.show()
             },
 
             /**
