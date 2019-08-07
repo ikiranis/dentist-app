@@ -1,11 +1,11 @@
 <template functional>
     <div>
 
-        <div class="alert alert-success text-center w-50 mt-5 mx-auto" v-if="!transactions.length">
+        <div class="alert alert-success text-center w-50 mt-5 mx-auto" v-if="!props.transactions.length">
             Δεν βρέθηκαν οικονομικές κινήσεις
         </div>
 
-        <table class="table" v-if="transactions.length">
+        <table class="table" v-if="props.transactions.length">
             <thead>
             <tr>
                 <th scope="col">Ημ/νία</th>
@@ -16,7 +16,7 @@
 
             <tbody v-for="transaction in props.transactions" :key="transaction.id">
             <tr>
-                <th scope="row">{{ transaction.date }}</th>
+                <th scope="row">{{ transaction.created_at }}</th>
                 <td>
                     {{ transaction.description }}
                 </td>
