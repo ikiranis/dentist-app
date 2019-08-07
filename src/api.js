@@ -178,6 +178,15 @@ let api = {
     },
 
     /**
+     * Get the list of patients, only with id and fullname
+     *
+     * @returns {Promise<Promise<AxiosResponse<T>>>}
+     */
+    async getSimplePatients () {
+        return axios.get(ROOT_API + '/simplePatients')
+    },
+
+    /**
      * Get a patient
      *
      * @returns {Promise<AxiosResponse<T>>}
