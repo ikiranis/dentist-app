@@ -18,7 +18,7 @@
                 <div class="form-group row">
                     <label for="time" class="col-md-4 col-form-label text-md-right">Ώρα</label>
                     <div class="col-md-8">
-                        <input id="time" type="datetime-local" class="form-control"
+                        <input id="time" type="time" class="form-control"
                                v-model="event.time" required>
                         <form-error v-if="response.errors.time"
                                     :error="response.errors.time[0]"/>
@@ -108,9 +108,10 @@
     import utility from "../library/utility";
     import Paginate from '@/components/basic/Paginate'
     import CalendarTable from '@/components/calendar/CalendarTable'
+    import Timeselector from 'vue-timeselector'
 
     export default {
-        components: { FormError, Loading, DisplayError, Paginate, CalendarTable },
+        components: { FormError, Loading, DisplayError, Paginate, CalendarTable, Timeselector },
 
         data() {
             return {
@@ -343,6 +344,7 @@
              */
             newEvent ()
             {
+                this.event = { id: 0 },
                 this.$refs.eventModal.show()
             }
         }
