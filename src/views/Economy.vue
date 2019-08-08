@@ -91,11 +91,9 @@
 				</div>
 			</div>
 
-			<div class="alert alert-success text-center w-50 mt-5 mx-auto" v-if="!transactions.length">
+			<div class="alert alert-success text-center w-50 mt-5 mx-auto" v-if="!transactions.length && !loading">
 				Δεν βρέθηκαν οικονομικές κινήσεις
 			</div>
-
-
 
 			<!-- Λίστες εσόδων/εξόδων -->
 			<div class="container row" v-if="transactions.length">
@@ -137,7 +135,7 @@
 			</div>
 
 			<!-- Κουμπιά εισαγωγής -->
-			<div class="container row">
+			<div class="container row" v-if="!loading">
 
 				<div class="col-lg-6 col-12">
 					<div class="row">
@@ -155,7 +153,9 @@
 
 			</div>
 
-			<display-error v-if="response.message" :response="response"/>
+			<div class="row">
+				<display-error v-if="response.message" :response="response"/>
+			</div>
 
 		</div>
 	</div>
