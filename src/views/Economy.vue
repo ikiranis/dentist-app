@@ -153,11 +153,14 @@
 
 			</div>
 
-			<div class="row">
-				<display-error v-if="response.message" :response="response"/>
-			</div>
-
 		</div>
+
+		<div class="row">
+			<display-error class="mx-auto"
+						   v-if="response.message"
+						   :response="response"/>
+		</div>
+
 	</div>
 </template>
 
