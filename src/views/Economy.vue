@@ -90,6 +90,10 @@
 				Δεν βρέθηκαν οικονομικές κινήσεις
 			</div>
 
+			<div class="w-100">
+				<paginate :pagination="pagination" @click="getTransactions"/>
+			</div>
+
 			<!-- Λίστες εσόδων/εξόδων -->
 			<div class="container row" v-if="transactions.length">
 
@@ -140,6 +144,10 @@
 
 			</div>
 
+			<div class="w-100">
+				<paginate :pagination="pagination" @click="getTransactions"/>
+			</div>
+
 		</div>
 	</div>
 </template>
@@ -148,9 +156,11 @@
 	import api from "../api";
 	import FormError from '@/components/basic/FormError'
 	import FinancialList from '@/components/economy/FinancialList.vue'
+	import Paginate from '@/components/basic/Paginate'
+
 
 	export default {
-		components: {FormError, FinancialList},
+		components: { FormError, FinancialList, Paginate },
 
 		data() {
 			return {

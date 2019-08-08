@@ -7,7 +7,9 @@
                           @click="listeners.click(props.pagination.links.prev)">Προηγούμενη</span>
                 </li>
                 <li class="page-item disabled">
-                    <span class="page-link">Σελίδα {{ props.pagination.meta.current_page }} από {{ props.pagination.meta.last_page }}</span>
+                    <span class="page-link">
+                        {{ props.pagination.meta.current_page }} από {{ props.pagination.meta.last_page }}
+                    </span>
                 </li>
                 <li class="page-item" :class="props.pagination.links.next ? '' : 'disabled' ">
                     <span class="page-link btn-icon"
