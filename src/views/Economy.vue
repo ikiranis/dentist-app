@@ -3,7 +3,7 @@
 
 		<b-modal ref="transactionModal" size="md" centered hide-footer :title="transactionTitle">
 
-			<form class="container-fluid">
+			<form @submit.prevent class="container-fluid">
 
 				<div class="form-group row">
 					<label for="date" class="col-md-4 col-form-label text-md-right">Ημ/νία</label>
