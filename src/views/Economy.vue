@@ -292,8 +292,78 @@
 				this.$refs.transactionModal.show()
 			},
 
+			/**
+			 * Run the appropriate save action
+			 */
 			saveTransaction() {
-				//
+				if (this.transaction.id === 0) {
+					this.createTransaction()
+					return
+				}
+
+				this.updateTransaction()
+			},
+
+			/**
+			 * Create a transaction
+			 */
+			createTransaction () {
+				this.loading = true
+
+				api.createTransaction(this.transaction)
+						.then(response => {
+							this.loading = false
+
+							this.response.message = 'Η κίνηση αποθηκεύτηκε'
+							this.response.status = true
+
+							this.$refs.transactionModal.hide()
+
+							this.getTransactions(null)
+						})
+						.catch(error => {
+							this.loading = false
+
+							this.response.message = error.response.data.message
+							this.response.status = false
+
+							if (error.response.data.errors) {
+								this.response.errors = error.response.data.errors
+							}
+
+							utility.debug(error.response.data.debug)
+						})
+			},
+
+			/**
+			 * Update the transaction
+			 */
+			updateTransaction () {
+				this.loading = true
+
+				api.updateTransaction(this.transaction, this.transaction.id)
+						.then(response => {
+							this.loading = false
+
+							this.response.message = 'Η κίνηση ενημερώθηκε'
+							this.response.status = true
+
+							this.$refs.transactionModal.hide()
+
+							this.getTransactions(null)
+						})
+						.catch(error => {
+							this.loading = false
+
+							this.response.message = error.response.data.message
+							this.response.status = false
+
+							if (error.response.data.errors) {
+								this.response.errors = error.response.data.errors
+							}
+
+							utility.debug(error.response.data.debug)
+						})
 			},
 
 			/**
