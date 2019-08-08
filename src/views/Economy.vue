@@ -57,8 +57,13 @@
 
 		<div class="row justify-content-center">
 
-			<div class="col-12">
-				<h1>Οικονομικά</h1>
+			<div class="row col-12">
+				<div class="col-lg col-12 my-auto">
+					<h1>Οικονομικά</h1>
+				</div>
+				<div class="col-lg col-12 row my-auto">
+					<Loading class="ml-auto" :loading="loading"/>
+				</div>
 			</div>
 
 			<!-- Αναζήτηση -->
@@ -90,12 +95,14 @@
 				Δεν βρέθηκαν οικονομικές κινήσεις
 			</div>
 
-			<div class="w-100">
-				<paginate :pagination="pagination" @click="getTransactions"/>
-			</div>
+
 
 			<!-- Λίστες εσόδων/εξόδων -->
 			<div class="container row" v-if="transactions.length">
+
+				<div class="w-100">
+					<paginate :pagination="pagination" @click="getTransactions"/>
+				</div>
 
 				<div class="col-lg-6 col-12">
 
@@ -123,6 +130,10 @@
 
 				</div>
 
+				<div class="w-100">
+					<paginate :pagination="pagination" @click="getTransactions"/>
+				</div>
+
 			</div>
 
 			<!-- Κουμπιά εισαγωγής -->
@@ -144,9 +155,7 @@
 
 			</div>
 
-			<div class="w-100">
-				<paginate :pagination="pagination" @click="getTransactions"/>
-			</div>
+			<display-error v-if="response.message" :response="response"/>
 
 		</div>
 	</div>
@@ -157,16 +166,18 @@
 	import FormError from '@/components/basic/FormError'
 	import FinancialList from '@/components/economy/FinancialList.vue'
 	import Paginate from '@/components/basic/Paginate'
-
+	import DisplayError from '@/components/basic/DisplayError'
+	import Loading from '@/components/basic/Loading'
 
 	export default {
-		components: { FormError, FinancialList, Paginate },
+		components: { FormError, FinancialList, Paginate, DisplayError, Loading },
 
 		data() {
 			return {
 
 				dateFrom: '',
 				dateTo: '',
+				loading: false,
 
 				response: {
 					message: '',
