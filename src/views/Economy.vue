@@ -47,8 +47,9 @@
 				</div>
 
 				<div class="row">
-					<button class="btn btn-success col-lg-6 col-12 my-3 mx-auto" @click="saveTransaction">Εισαγωγή
-					</button>
+					<input type="submit"
+						   class="btn btn-success col-lg-6 col-12 my-3 mx-auto"
+						   @click="saveTransaction" value="Αποθήκευση">
 				</div>
 
 			</form>
@@ -276,6 +277,7 @@
 					return transaction.id === transactionId
 				})
 
+				this.transactionTitle = (this.transaction.kind === 0) ? 'Ενημέρωση εσόδου' : 'Ενημέρωση εξόδου'
 				this.$refs.transactionModal.show()
 			},
 

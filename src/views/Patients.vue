@@ -43,7 +43,8 @@
                 </div>
 
                 <div class="row" v-if="!loading">
-                    <input type="submit" id="insertPatient" class="btn btn-success col-lg-6 col-12 my-3 mx-auto"
+                    <input type="submit" id="insertPatient"
+                           class="btn btn-success col-lg-6 col-12 my-3 mx-auto"
                            @click="newPatient" value="Εισαγωγή νέου ασθενή">
                 </div>
 
