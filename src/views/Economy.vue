@@ -168,6 +168,7 @@
 	import Paginate from '@/components/basic/Paginate'
 	import DisplayError from '@/components/basic/DisplayError'
 	import Loading from '@/components/basic/Loading'
+	import moment from 'moment'
 
 	export default {
 		components: { FormError, FinancialList, Paginate, DisplayError, Loading },
@@ -228,6 +229,7 @@
 		},
 
 		methods: {
+			moment,
 
 			/**
 			 * Get all the transactions
@@ -256,7 +258,6 @@
 					.catch(error => {
 						this.loading = false
 
-						console.log(error)
 						this.response.message = error.response.data.message
 						this.response.status = false
 
@@ -281,7 +282,12 @@
 			 * @param kind
 			 */
 			newTransaction(kind) {
-				this.transaction = { id: 0, kind: kind }
+				this.transaction = {
+					id: 0,
+					kind: kind,
+					date: moment(new Date()).format('YYYY-MM-DD')
+				}
+
 				this.transactionTitle = (kind === 0) ? 'Εισαγωγή εσόδου' : 'Εισαγωγή εξόδου'
 				this.$refs.transactionModal.show()
 			},
