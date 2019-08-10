@@ -169,263 +169,264 @@
 </template>
 
 <script>
-	import api from "../api";
-	import FormError from '@/components/basic/FormError'
-	import FinancialList from '@/components/economy/FinancialList.vue'
-	import Paginate from '@/components/basic/Paginate'
-	import DisplayError from '@/components/basic/DisplayError'
-	import Loading from '@/components/basic/Loading'
-	import moment from 'moment'
+import api from '../api'
+import FormError from '@/components/basic/FormError'
+import FinancialList from '@/components/economy/FinancialList.vue'
+import Paginate from '@/components/basic/Paginate'
+import DisplayError from '@/components/basic/DisplayError'
+import Loading from '@/components/basic/Loading'
+import moment from 'moment'
+import utility from '../library/utility'
 
-	export default {
-		components: { FormError, FinancialList, Paginate, DisplayError, Loading },
+export default {
+    components: { FormError, FinancialList, Paginate, DisplayError, Loading },
 
-		data() {
-			return {
+    data () {
+        return {
 
-				loading: false,
+            loading: false,
 
-				response: {
-					message: '',
-					status: '',
-					errors: []
-				},
+            response: {
+                message: '',
+                status: '',
+                errors: []
+            },
 
-				pagination: {
-					meta: {},
-					links: {}
-				},
+            pagination: {
+                meta: {},
+                links: {}
+            },
 
-				search: {
-					dateFrom: '',
-					dateTo: '',
-				},
+            search: {
+                dateFrom: '',
+                dateTo: ''
+            },
 
-				transaction: {
-					id: 0,
-					patient_id: 0,
-					patient_name: '',
-					date: '',
-					description: '',
-					value: 0,
-					kind: 0
-				},
+            transaction: {
+                id: 0,
+                patient_id: 0,
+                patient_name: '',
+                date: '',
+                description: '',
+                value: 0,
+                kind: 0
+            },
 
-				transactions: [],
+            transactions: [],
 
-				patients: [],
+            patients: [],
 
-				transactionTitle: ''
-			}
-		},
+            transactionTitle: ''
+        }
+    },
 
-		computed: {
-			income() {
-				return this.transactions.filter((transaction) => {
-					return transaction.kind === 0
-				})
-			},
+    computed: {
+        income () {
+            return this.transactions.filter((transaction) => {
+                return transaction.kind === 0
+            })
+        },
 
-			expenses() {
-				return this.transactions.filter((transaction) => {
-					return transaction.kind === 1
-				})
-			}
-		},
+        expenses () {
+            return this.transactions.filter((transaction) => {
+                return transaction.kind === 1
+            })
+        }
+    },
 
-		created: function () {
-			this.getTransactions(null)
-			this.getSimplePatients()
-		},
+    created: function () {
+        this.getTransactions(null)
+        this.getSimplePatients()
+    },
 
-		methods: {
-			moment,
+    methods: {
+        moment,
 
-			/**
+        /**
 			 * Get all the transactions
 			 *
 			 * @param page
 			 */
-			getTransactions(page) {
-				this.loading = true
+        getTransactions (page) {
+            this.loading = true
 
-				api.getTransactions(page, this.search)
-					.then(response => {
-						this.loading = false
+            api.getTransactions(page, this.search)
+                .then(response => {
+                    this.loading = false
 
-						if (response.status === 200) {
-							this.transactions = response.data.data
-							this.pagination.meta = response.data.meta
-							this.pagination.links = response.data.links
+                    if (response.status === 200) {
+                        this.transactions = response.data.data
+                        this.pagination.meta = response.data.meta
+                        this.pagination.links = response.data.links
 
-							window.scrollTo(0, 0)
+                        window.scrollTo(0, 0)
 
-							return
-						}
+                        return
+                    }
 
-						this.transactions = []
-					})
-					.catch(error => {
-						this.loading = false
+                    this.transactions = []
+                })
+                .catch(error => {
+                    this.loading = false
 
-						this.response.message = error.response.data.message
-						this.response.status = false
+                    this.response.message = error.response.data.message
+                    this.response.status = false
 
-						utility.debug(error.response.data.debug)
-					})
-			},
+                    utility.debug(error.response.data.debug)
+                })
+        },
 
-			/**
+        /**
 			 * Display transaction for edit
 			 */
-			getTransaction (transactionId) {
-				this.transaction = this.transactions.find((transaction) => {
-					return transaction.id === transactionId
-				})
+        getTransaction (transactionId) {
+            this.transaction = this.transactions.find((transaction) => {
+                return transaction.id === transactionId
+            })
 
-				this.transactionTitle = (this.transaction.kind === 0) ? 'Ενημέρωση εσόδου' : 'Ενημέρωση εξόδου'
-				this.$refs.transactionModal.show()
-			},
+            this.transactionTitle = (this.transaction.kind === 0) ? 'Ενημέρωση εσόδου' : 'Ενημέρωση εξόδου'
+            this.$refs.transactionModal.show()
+        },
 
-			/**
+        /**
 			 * Display transaction modal
 			 *
 			 * @param kind
 			 */
-			newTransaction(kind) {
-				this.transaction = {
-					id: 0,
-					kind: kind,
-					date: moment(new Date()).format('YYYY-MM-DD')
-				}
+        newTransaction (kind) {
+            this.transaction = {
+                id: 0,
+                kind: kind,
+                date: moment(new Date()).format('YYYY-MM-DD')
+            }
 
-				this.transactionTitle = (kind === 0) ? 'Εισαγωγή εσόδου' : 'Εισαγωγή εξόδου'
-				this.$refs.transactionModal.show()
-			},
+            this.transactionTitle = (kind === 0) ? 'Εισαγωγή εσόδου' : 'Εισαγωγή εξόδου'
+            this.$refs.transactionModal.show()
+        },
 
-			/**
+        /**
 			 * Run the appropriate save action
 			 */
-			saveTransaction() {
-				if (this.transaction.id === 0) {
-					this.createTransaction()
-					return
-				}
+        saveTransaction () {
+            if (this.transaction.id === 0) {
+                this.createTransaction()
+                return
+            }
 
-				this.updateTransaction()
-			},
+            this.updateTransaction()
+        },
 
-			/**
+        /**
 			 * Create a transaction
 			 */
-			createTransaction () {
-				this.loading = true
+        createTransaction () {
+            this.loading = true
 
-				api.createTransaction(this.transaction)
-						.then(response => {
-							this.loading = false
+            api.createTransaction(this.transaction)
+                .then(response => {
+                    this.loading = false
 
-							this.response.message = 'Η κίνηση αποθηκεύτηκε'
-							this.response.status = true
+                    this.response.message = 'Η κίνηση αποθηκεύτηκε'
+                    this.response.status = true
 
-							this.$refs.transactionModal.hide()
+                    this.$refs.transactionModal.hide()
 
-							this.getTransactions(null)
-						})
-						.catch(error => {
-							this.loading = false
+                    this.getTransactions(null)
+                })
+                .catch(error => {
+                    this.loading = false
 
-							this.response.message = error.response.data.message
-							this.response.status = false
+                    this.response.message = error.response.data.message
+                    this.response.status = false
 
-							if (error.response.data.errors) {
-								this.response.errors = error.response.data.errors
-							}
+                    if (error.response.data.errors) {
+                        this.response.errors = error.response.data.errors
+                    }
 
-							utility.debug(error.response.data.debug)
-						})
-			},
+                    utility.debug(error.response.data.debug)
+                })
+        },
 
-			/**
+        /**
 			 * Update the transaction
 			 */
-			updateTransaction () {
-				this.loading = true
+        updateTransaction () {
+            this.loading = true
 
-				api.updateTransaction(this.transaction, this.transaction.id)
-						.then(response => {
-							this.loading = false
+            api.updateTransaction(this.transaction, this.transaction.id)
+                .then(response => {
+                    this.loading = false
 
-							this.response.message = 'Η κίνηση ενημερώθηκε'
-							this.response.status = true
+                    this.response.message = 'Η κίνηση ενημερώθηκε'
+                    this.response.status = true
 
-							this.$refs.transactionModal.hide()
+                    this.$refs.transactionModal.hide()
 
-							this.getTransactions(null)
-						})
-						.catch(error => {
-							this.loading = false
+                    this.getTransactions(null)
+                })
+                .catch(error => {
+                    this.loading = false
 
-							this.response.message = error.response.data.message
-							this.response.status = false
+                    this.response.message = error.response.data.message
+                    this.response.status = false
 
-							if (error.response.data.errors) {
-								this.response.errors = error.response.data.errors
-							}
+                    if (error.response.data.errors) {
+                        this.response.errors = error.response.data.errors
+                    }
 
-							utility.debug(error.response.data.debug)
-						})
-			},
+                    utility.debug(error.response.data.debug)
+                })
+        },
 
-			/**
+        /**
 			 * Delete a transaction
 			 */
-			deleteTransaction (transactionId) {
-				let choise = confirm('Θέλεις σίγουρα να σβήσεις την κίνηση με id: ' + transactionId + ';')
+        deleteTransaction (transactionId) {
+            let choise = confirm('Θέλεις σίγουρα να σβήσεις την κίνηση με id: ' + transactionId + ';')
 
-				if (choise) {
-					this.loading = true
+            if (choise) {
+                this.loading = true
 
-					api.deleteTransaction(transactionId)
-						.then(response => {
-							this.loading = false
+                api.deleteTransaction(transactionId)
+                    .then(response => {
+                        this.loading = false
 
-							this.getTransactions(null)
-						})
-						.catch(error => {
-							this.loading = false
+                        this.getTransactions(null)
+                    })
+                    .catch(error => {
+                        this.loading = false
 
-							this.response.message = error.response.data.message
-							this.response.status = false
+                        this.response.message = error.response.data.message
+                        this.response.status = false
 
-							utility.debug(error.response.data.debug)
-						})
-				}
-			},
+                        utility.debug(error.response.data.debug)
+                    })
+            }
+        },
 
-			/**
+        /**
 			 * Get the simple list of patients
 			 */
-			getSimplePatients () {
-				api.getSimplePatients()
-					.then(response => {
-						if (response.status === 200) {
-							this.patients = response.data
+        getSimplePatients () {
+            api.getSimplePatients()
+                .then(response => {
+                    if (response.status === 200) {
+                        this.patients = response.data
 
-							return
-						}
+                        return
+                    }
 
-						this.patients = []
-					})
-					.catch(error => {
-						this.loading = false
+                    this.patients = []
+                })
+                .catch(error => {
+                    this.loading = false
 
-						this.response.message = error.response.data.message
-						this.response.status = false
+                    this.response.message = error.response.data.message
+                    this.response.status = false
 
-						utility.debug(error.response.data.debug)
-					})
-			},
-		}
-	}
+                    utility.debug(error.response.data.debug)
+                })
+        }
+    }
+}
 </script>

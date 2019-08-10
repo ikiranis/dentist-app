@@ -66,4 +66,21 @@ describe('Test patients route', () => {
         cy.get('.patientName').eq(0).contains(patient.fname)
         cy.get('.patientName').eq(1).contains(patient.lname)
     })
+
+	it('Delete patient', () => {
+		cy.get('.deletePatient').then((patients) => {
+			// Get first patient
+			const patient = patients[0]
+
+			cy.get('.patientName').eq(0).invoke('text').then((patientName) => {
+				cy.get(patient).click()
+				cy.wait(2000)
+
+				cy.get('.patientName').eq(0).should('not.contain', patientName)
+			})
+
+
+
+		})
+	})
 })

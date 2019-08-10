@@ -14,7 +14,9 @@
 			<tbody v-for="patient in props.patients" :key="patient.id">
 			<tr>
 				<td class="text-center btn-icon">
-					<delete @click="listeners.click(patient.id)" title="Διαγραφή ασθενή"/>
+					<delete class="deletePatient"
+							@click="listeners.click(patient.id)"
+							title="Διαγραφή ασθενή"/>
 				</td>
 				<th scope="row" class="patientId">{{ patient.id }}</th>
 				<td>

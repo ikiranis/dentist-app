@@ -1,5 +1,5 @@
 import axios from 'axios'
-import moment from "moment";
+import moment from 'moment'
 
 const API_HOST = process.env.VUE_APP_API_HOST
 const ROOT_API = API_HOST + process.env.VUE_APP_API_SUFFIX
