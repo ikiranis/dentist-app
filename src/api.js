@@ -1,4 +1,5 @@
 import axios from 'axios'
+import moment from "moment";
 
 const API_HOST = process.env.VUE_APP_API_HOST
 const ROOT_API = API_HOST + process.env.VUE_APP_API_SUFFIX
@@ -113,8 +114,12 @@ let api = {
             page = ''
         }
 
-        if (search) {
-            return axios.get(ROOT_API + '/events/search/' + search + page)
+        if (search.dateFrom && search.dateTo) {
+            search.dateFrom = moment(search.dateFrom).format('YYYYMMDD')
+            search.dateTo = moment(search.dateTo).format('YYYYMMDD')
+            // console.log(search.dateFrom)
+
+            return axios.get(ROOT_API + '/events/search/' + search.dateFrom + '/' + search.dateTo + page)
         }
 
         return axios.get(ROOT_API + '/events' + page)

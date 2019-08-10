@@ -74,7 +74,7 @@
                     <label for="dateFrom" class="col-md-4 col-form-label text-md-right">Από</label>
                     <div class="col-md-8">
                         <input id="dateFrom" type="date" class="form-control"
-                               v-model="dateFrom">
+                               v-model="search.dateFrom">
                     </div>
                 </div>
 
@@ -82,12 +82,15 @@
                     <label for="dateTo" class="col-md-4 col-form-label text-md-right">Μέχρι</label>
                     <div class="col-md-8">
                         <input id="dateTo" type="date" class="form-control"
-                               v-model="dateTo">
+                               v-model="search.dateTo">
                     </div>
                 </div>
 
                 <div class="col-md-4 col-12 ">
-                    <input type="submit" class="btn btn-small btn-success w-100" value="Αναζήτηση">
+                    <input type="submit"
+                           class="btn btn-small btn-success w-100"
+                           value="Αναζήτηση"
+                           @click="getEvents(null)">
                 </div>
             </div>
 
@@ -113,13 +116,17 @@
 
             </div>
 
-            <div class="row w-100" v-if="!loading">
+            <div class="row" v-if="!loading">
                 <input type="submit" class="btn btn-success col-lg-6 col-12 my-3 mx-auto"
                        @click="newEvent()" value="Εισαγωγή ραντεβού">
             </div>
         </div>
 
-        <display-error v-if="response.message" :response="response"/>
+        <div class="row">
+            <display-error class="mx-auto"
+                           v-if="response.message"
+                           :response="response"/>
+        </div>
 
     </div>
 </template>
@@ -147,8 +154,10 @@ export default {
 
             loading: false,
 
-            dateFrom: '',
-            dateTo: '',
+            search: {
+                dateFrom: '',
+                dateTo: '',
+            },
 
             event: {
                 id: 0,
@@ -230,6 +239,8 @@ export default {
 
                     this.response.message = error.response.data.message
                     this.response.status = false
+
+                    console.log(error.response)
 
                     utility.debug(error.response.data.debug)
                 })
