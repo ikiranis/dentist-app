@@ -52,7 +52,9 @@
 
                 <display-error v-if="response.message" :response="response"/>
 
-                <loading :loading="loading" />
+                <div class="w-100 text-center">
+                    <loading :loading="loading"/>
+                </div>
 
             </div>
         </div>
