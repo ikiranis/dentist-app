@@ -248,8 +248,11 @@ let api = {
             page = ''
         }
 
-        if (search) {
-            return axios.get(ROOT_API + '/transactions/search/' + search + page)
+        if (search.dateFrom && search.dateTo) {
+            let dateFrom = moment(search.dateFrom).format('YYYYMMDD')
+            let dateTo = moment(search.dateTo).format('YYYYMMDD')
+
+            return axios.get(ROOT_API + '/transactions/search/' + dateFrom + '/' + dateTo + page)
         }
 
         return axios.get(ROOT_API + '/transactions' + page)

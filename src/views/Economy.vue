@@ -73,7 +73,7 @@
 					<label for="dateFrom" class="col-md-4 col-form-label text-md-right">Από</label>
 					<div class="col-md-8">
 						<input id="dateFrom" type="date" class="form-control"
-							   v-model="dateFrom">
+							   v-model="search.dateFrom">
 						<form-error v-if="response.errors.dateFrom" :error="response.errors.dateFrom[0]"/>
 					</div>
 				</div>
@@ -82,13 +82,16 @@
 					<label for="dateTo" class="col-md-4 col-form-label text-md-right">Μέχρι</label>
 					<div class="col-md-8">
 						<input id="dateTo" type="date" class="form-control"
-							   v-model="dateTo">
+							   v-model="search.dateTo">
 						<form-error v-if="response.errors.dateTo" :error="response.errors.dateTo[0]"/>
 					</div>
 				</div>
 
 				<div class="col-md-4 col-12 ">
-					<input type="submit" class="btn btn-small btn-success w-100" value="Αναζήτηση">
+					<input type="submit"
+						   class="btn btn-small btn-success w-100"
+						   value="Αναζήτηση"
+						   @click="getTransactions(null)">
 				</div>
 			</div>
 
@@ -180,8 +183,6 @@
 		data() {
 			return {
 
-				dateFrom: '',
-				dateTo: '',
 				loading: false,
 
 				response: {
@@ -193,6 +194,11 @@
 				pagination: {
 					meta: {},
 					links: {}
+				},
+
+				search: {
+					dateFrom: '',
+					dateTo: '',
 				},
 
 				transaction: {
