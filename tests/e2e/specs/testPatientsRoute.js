@@ -78,9 +78,6 @@ describe('Test patients route', () => {
 
 				cy.get('.patientName').eq(0).should('not.contain', patientName)
 			})
-
-
-
 		})
 	})
 })
