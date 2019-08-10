@@ -240,8 +240,6 @@ export default {
                     this.response.message = error.response.data.message
                     this.response.status = false
 
-                    console.log(error.response)
-
                     utility.debug(error.response.data.debug)
                 })
         },

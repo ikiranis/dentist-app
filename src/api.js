@@ -115,11 +115,10 @@ let api = {
         }
 
         if (search.dateFrom && search.dateTo) {
-            search.dateFrom = moment(search.dateFrom).format('YYYYMMDD')
-            search.dateTo = moment(search.dateTo).format('YYYYMMDD')
-            // console.log(search.dateFrom)
+            let dateFrom = moment(search.dateFrom).format('YYYYMMDD')
+            let dateTo = moment(search.dateTo).format('YYYYMMDD')
 
-            return axios.get(ROOT_API + '/events/search/' + search.dateFrom + '/' + search.dateTo + page)
+            return axios.get(ROOT_API + '/events/search/' + dateFrom + '/' + dateTo + page)
         }
 
         return axios.get(ROOT_API + '/events' + page)
