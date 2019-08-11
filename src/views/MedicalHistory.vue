@@ -2,8 +2,13 @@
     <div class="container-fluid my-3">
         <div class="row justify-content-center">
 
-            <div class="col-12">
-                <h1>Ιατρικό ιστορικό</h1>
+            <div class="row col-12">
+                <div class="col-lg col-12 my-auto">
+                    <h1>Ιατρικό ιστορικό</h1>
+                </div>
+                <div class="col-lg col-12 row my-auto">
+                    <Loading class="ml-auto" :loading="loading"/>
+                </div>
             </div>
 
             <menu-bar brand="Ασθενής" :brandRoute="{ name: 'patient', params: { id: patientId } }"
@@ -312,6 +317,8 @@
 
             </div>
 
+            <display-error v-if="response.message" :response="response"/>
+
         </div>
     </div>
 </template>
@@ -320,12 +327,17 @@
 import MenuBar from '@/components/basic/MenuBar'
 import FormError from '@/components/basic/FormError'
 import FieldsList from '@/components/patients/FieldsList'
+import api from "../api";
+import utility from "../library/utility";
+import DisplayError from '@/components/basic/DisplayError'
+import Loading from '@/components/basic/Loading'
 
 export default {
-    components: { MenuBar, FormError, FieldsList },
+    components: { MenuBar, FormError, FieldsList, DisplayError, Loading },
 
     data () {
         return {
+            loading: false,
 
             response: {
                 message: '',
@@ -504,7 +516,38 @@ export default {
         }
     },
 
+    created: function () {
+        this.getMedicalHistory()
+    },
+
     methods: {
+
+        /**
+         * Get Medical History info
+         */
+        getMedicalHistory () {
+            this.loading = true
+
+            console.log(this.loading)
+
+            api.getMedicalHistory(this.patientId)
+                .then(response => {
+                    this.loading = false
+
+                    if (response.status === 200) {
+                        this.medicalHistory = response.data
+                    }
+                })
+                .catch(error => {
+                    this.loading = false
+
+                    this.response.message = error.response.data.message
+                    this.response.status = false
+
+                    utility.debug(error.response.data.debug)
+                })
+        },
+
         save () {
             alert('Saving...')
         },

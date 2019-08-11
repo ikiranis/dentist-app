@@ -305,7 +305,7 @@ let api = {
      *
      * @returns {Promise<AxiosResponse<T>>}
      */
-    async getMedicalHistory (patiendId) {
+    async getMedicalHistory (patientId) {
         return axios.get(ROOT_API + '/medicalHistory/' + patientId)
     },
 
