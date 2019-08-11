@@ -296,8 +296,29 @@ let api = {
 	 */
     async deleteTransaction (transactionId) {
         return axios.delete(ROOT_API + '/transaction/' + transactionId)
-    }
+    },
 
+    // ************** Medical History api calls **************
+
+    /**
+     * Get Medical History info
+     *
+     * @returns {Promise<AxiosResponse<T>>}
+     */
+    async getMedicalHistory (patiendId) {
+        return axios.get(ROOT_API + '/medicalHistory/' + patientId)
+    },
+
+    /**
+     * Update Medical History
+     *
+     * @param args
+     * @param patientId
+     * @returns {Promise<Promise<AxiosResponse<T>>>}
+     */
+    async updateMedicalHistory (args, patientId) {
+        return axios.patch(ROOT_API + '/medicalHistory/' + patientId, args)
+    }
 }
 
 export default api
