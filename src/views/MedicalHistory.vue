@@ -18,7 +18,7 @@
 
             <div class="container">
 
-                <FieldsList :fields="fields"/>
+                <FieldsList v-if="!loading" :fields="fields"/>
 
                 <div class="alert alert-success text-center w-50 mt-5 mx-auto" v-if="!fieldSelected">
                     Επιλογή πεδίων
@@ -559,7 +559,7 @@ export default {
         checkFields ()
         {
             Object.keys(this.medicalHistory).forEach(key => {
-                if (this.medicalHistory[key] === '') {
+                if (this.medicalHistory[key] === null) {
                     return
                 }
 
