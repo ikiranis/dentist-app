@@ -535,6 +535,8 @@ export default {
 
                     if (response.status === 200) {
                         this.medicalHistory = response.data
+
+                        this.checkFields()
                     }
                 })
                 .catch(error => {
@@ -549,6 +551,24 @@ export default {
 
         save () {
             alert('Saving...')
+        },
+
+        /**
+         * Check for fields. If not empty, display it
+         */
+        checkFields ()
+        {
+            Object.keys(this.medicalHistory).forEach(key => {
+                if (this.medicalHistory[key] === '') {
+                    return
+                }
+
+                if (this.fields[key] === undefined) {
+                    return
+                }
+
+                this.fields[key].display = true
+            })
         },
 
         /**
