@@ -330,7 +330,7 @@
 
                 <div class="row" v-if="fieldSelected">
                     <input type="submit" class="btn btn-success col-lg-6 col-12 my-3 mx-auto"
-                           @click="save()" value="Αποθήκευση">
+                           @click="updateMedicalHistory" value="Αποθήκευση">
                 </div>
 
             </div>
@@ -549,8 +549,31 @@ export default {
                 })
         },
 
-        save () {
-            alert('Saving...')
+        /**
+         * Update the Medical History info
+         */
+        updateMedicalHistory () {
+            this.loading = true
+
+            api.updateMedicalHistory(this.medicalHistory, this.patientId)
+                .then(response => {
+                    this.loading = false
+
+                    this.response.message = 'Τα δεδομένα αποθηκεύτηκαν'
+                    this.response.status = true
+                })
+                .catch(error => {
+                    this.loading = false
+
+                    this.response.message = error.response.data.message
+                    this.response.status = false
+
+                    if (error.response.data.errors) {
+                        this.response.errors = error.response.data.errors
+                    }
+
+                    utility.debug(error.response.data.debug)
+                })
         },
 
         /**
