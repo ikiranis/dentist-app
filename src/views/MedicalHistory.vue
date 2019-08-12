@@ -478,26 +478,26 @@ export default {
 
             medicalHistory: {
                 id: 0,
-                respiratoryDiseases: '',
-                cardiovascularDiseases: '',
-                hematopoieticSystemDiseases: '',
-                infectiousDiseases: '',
-                endocrineDisorders: '',
-                diabetes: '',
-                allergy: '',
-                degenerativeArthropathy: '',
-                rheumatoidArthritis: '',
-                epilepsy: '',
-                ulcer: '',
-                neuropsychiatricDisorders: '',
-                sleepApnea: '',
-                others: '',
-                pregnancy: '',
+                respiratoryDiseases: null,
+                cardiovascularDiseases: null,
+                hematopoieticSystemDiseases: null,
+                infectiousDiseases: null,
+                endocrineDisorders: null,
+                diabetes: null,
+                allergy: null,
+                degenerativeArthropathy: null,
+                rheumatoidArthritis: null,
+                epilepsy: null,
+                ulcer: null,
+                neuropsychiatricDisorders: null,
+                sleepApnea: null,
+                others: null,
+                pregnancy: null,
                 pregnacyCheck: false,
-                smoking: '',
+                smoking: null,
                 smokingCheck: false,
                 medicines: [],
-                familyHistory: ''
+                familyHistory: null
             },
 
             medicine: ''
@@ -559,7 +559,7 @@ export default {
         checkFields ()
         {
             Object.keys(this.medicalHistory).forEach(key => {
-                if (this.medicalHistory[key] === null) {
+                if (this.medicalHistory[key] === null || this.medicalHistory[key].length<2) {
                     return
                 }
 
