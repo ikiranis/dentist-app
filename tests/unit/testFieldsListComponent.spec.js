@@ -2,28 +2,24 @@ import { shallowMount } from '@vue/test-utils'
 import FieldsList from '@/components/patients/FieldsList.vue'
 
 describe('FieldsList.vue', () => {
-    let fields = [
-        {
-            id: 1,
+    let fields = {
+        field1: {
             label: 'Field 1',
             display: false
         },
-        {
-            id: 2,
+        field2: {
             label: 'Field 2',
             display: false
         },
-        {
-            id: 3,
+        field3: {
             label: 'Field 3',
             display: true
         },
-        {
-            id: 4,
+        field4: {
             label: 'Field 4',
             display: false
         }
-    ]
+    }
     const propsData = { fields }
 
     it('Test FieldsList component', () => {
