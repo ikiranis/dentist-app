@@ -20,13 +20,15 @@
                         <label for="frequentStrokes" class="my-1">Συχνές οδονταλγίες</label>
                     </div>
 
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου" @click="removeField(0)"/>
+                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+										  @click="removeField(dentalHistory.frequentStrokes)"/>
                 </div>
 
                 <div class="input-group row mb-2" v-if="fields.sensitivityToStimuli.display">
                     <div class="input-group-prepend">
                         <div class="input-group-text">
-                            <input type="checkbox" id="sensitivityToStimuliCheck" v-model="dentalHistory.sensitivityToStimuliCheck">
+                            <input type="checkbox" id="sensitivityToStimuliCheck"
+								   v-model="dentalHistory.sensitivityToStimuliCheck">
                         </div>
 
                         <div class="input-group-text">
@@ -37,7 +39,8 @@
                     <input id="sensitivityToStimuli" type="text" class="form-control"
                            v-model="dentalHistory.sensitivityToStimuli" maxlength="20"
                            :disabled="dentalHistory.sensitivityToStimuliCheck ? disabled : ''">
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου" @click="removeField(1)"/>
+                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+										  @click="removeField(fields.sensitivityToStimuli)"/>
                     <form-error v-if="response.errors.sensitivityToStimuli"
                                 :error="response.errors.sensitivityToStimuli[0]"/>
                 </div>
@@ -45,7 +48,8 @@
                 <div class="input-group row mb-2" v-if="fields.painWhenChewing.display">
                     <div class="input-group-prepend">
                         <div class="input-group-text">
-                            <input type="checkbox" id="painWhenChewingCheck" v-model="dentalHistory.painWhenChewingCheck">
+                            <input type="checkbox" id="painWhenChewingCheck"
+								   v-model="dentalHistory.painWhenChewingCheck">
                         </div>
 
                         <div class="input-group-text">
@@ -58,7 +62,8 @@
                     <input id="painWhenChewing" type="text" class="form-control"
                            v-model="dentalHistory.painWhenChewing" maxlength="20"
                            :disabled="dentalHistory.painWhenChewingCheck ? disabled : ''">
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου" @click="removeField(2)"/>
+                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+										  @click="removeField(fields.painWhenChewing)"/>
                     <form-error v-if="response.errors.painWhenChewing"
                                 :error="response.errors.painWhenChewing[0]"/>
                 </div>
@@ -66,7 +71,8 @@
                 <div class="input-group row mb-2" v-if="fields.gingivalBleeding.display">
                     <div class="input-group-prepend">
                         <div class="input-group-text">
-                            <input type="checkbox" id="gingivalBleedingCheck" v-model="dentalHistory.gingivalBleedingCheck">
+                            <input type="checkbox" id="gingivalBleedingCheck"
+								   v-model="dentalHistory.gingivalBleedingCheck">
                         </div>
 
                         <div class="input-group-text">
@@ -78,7 +84,8 @@
                     <input id="gingivalBleeding" type="text" class="form-control"
                            v-model="dentalHistory.gingivalBleeding" maxlength="20"
                            :disabled="dentalHistory.gingivalBleedingCheck ? disabled : ''">
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου" @click="removeField(3)"/>
+                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+										  @click="removeField(fields.gingivalBleeding)"/>
                     <form-error v-if="response.errors.gingivalBleeding"
                                 :error="response.errors.gingivalBleeding[0]"/>
                 </div>
@@ -93,7 +100,8 @@
                             γεύσης</label>
                     </div>
 
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου" @click="removeField(4)"/>
+                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+										  @click="removeField(fields.tasteAbnormality)"/>
                 </div>
 
                 <div class="input-group row mb-2" v-if="fields.dryMouth.display">
@@ -105,7 +113,8 @@
                         <label for="dryMouth" class="my-1">Ξηροστομία</label>
                     </div>
 
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου" @click="removeField(5)"/>
+                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+										  @click="removeField(fields.dryMouth)"/>
                 </div>
 
                 <div class="input-group row mb-2" v-if="fields.badSmell.display">
@@ -117,7 +126,8 @@
                         <label for="badSmell" class="my-1">Κακοσμία</label>
                     </div>
 
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου" @click="removeField(6)"/>
+                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+										  @click="removeField(fields.badSmell)"/>
                 </div>
 
                 <div class="input-group row mb-2" v-if="fields.burningMouth.display">
@@ -129,12 +139,14 @@
                         <label for="burningMouth" class="my-1">Καυσαλγία</label>
                     </div>
 
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου" @click="removeField(7)"/>
+                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+										  @click="removeField(fields.burningMouth)"/>
                 </div>
 
                 <div class="input-group row mb-2" v-if="fields.painFromCrownFibrousStructure.display">
                     <div class="input-group-text">
-                        <input type="checkbox" id="painFromCrownFibrousStructure" v-model="dentalHistory.painFromCrownFibrousStructure">
+                        <input type="checkbox" id="painFromCrownFibrousStructure"
+							   v-model="dentalHistory.painFromCrownFibrousStructure">
                     </div>
 
                     <div class="input-group-text col">
@@ -142,12 +154,14 @@
                             από ΚΓΔ</label>
                     </div>
 
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου" @click="removeField(8)"/>
+                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+										  @click="removeField(fields.painFromCrownFibrousStructure)"/>
                 </div>
 
                 <div class="input-group row mb-2" v-if="fields.soundFromCrownFibrousStructure.display">
                     <div class="input-group-text">
-                        <input type="checkbox" id="soundFromCrownFibrousStructure" v-model="dentalHistory.soundFromCrownFibrousStructure">
+                        <input type="checkbox" id="soundFromCrownFibrousStructure"
+							   v-model="dentalHistory.soundFromCrownFibrousStructure">
                     </div>
 
                     <div class="input-group-text col">
@@ -155,7 +169,8 @@
                             από ΚΓΔ</label>
                     </div>
 
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου" @click="removeField(9)"/>
+                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+										  @click="removeField(fields.soundFromCrownFibrousStructure)"/>
                 </div>
 
                 <div class="input-group row mb-2" v-if="fields.prosopalgia.display">
@@ -167,7 +182,8 @@
                         <label for="prosopalgia" class="my-1">Προσωπαλγία</label>
                     </div>
 
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου" @click="removeField(10)"/>
+                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+										  @click="removeField(fields.prosopalgia)"/>
                 </div>
 
             </div>
@@ -184,7 +200,8 @@
 
                     <input id="surgicalProcedures" type="text" class="form-control"
                            v-model="dentalHistory.surgicalProcedures" maxlength="60">
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου" @click="removeField(11)"/>
+                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+										  @click="removeField(fields.surgicalProcedures)"/>
                     <form-error v-if="response.errors.surgicalProcedures"
                                 :error="response.errors.surgicalProcedures[0]"/>
                 </div>
@@ -199,14 +216,16 @@
 
                     <input id="traumaticLesions" type="text" class="form-control"
                            v-model="dentalHistory.traumaticLesions" maxlength="60">
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου" @click="removeField(12)"/>
+                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+										  @click="removeField(fields.traumaticLesions)"/>
                     <form-error v-if="response.errors.traumaticLesions"
                                 :error="response.errors.traumaticLesions[0]"/>
                 </div>
 
                 <div class="input-group row mb-2" v-if="fields.problemsWithLocalAnesthesia.display">
                     <div class="input-group-text">
-                        <input type="checkbox" id="problemsWithLocalAnesthesia" v-model="dentalHistory.problemsWithLocalAnesthesia">
+                        <input type="checkbox" id="problemsWithLocalAnesthesia"
+							   v-model="dentalHistory.problemsWithLocalAnesthesia">
                     </div>
 
                     <div class="input-group-text col">
@@ -214,7 +233,8 @@
                             με τοπική αναισθησία</label>
                     </div>
 
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου" @click="removeField(13)"/>
+                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+										  @click="removeField(fields.problemsWithLocalAnesthesia)"/>
                 </div>
 
                 <div class="input-group row mb-2" v-if="fields.radiotherapy.display">
@@ -226,7 +246,8 @@
 
                     <input id="radiotherapy" type="text" class="form-control"
                            v-model="dentalHistory.radiotherapy" maxlength="60">
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου" @click="removeField(14)"/>
+                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+										  @click="removeField(fields.radiotherapy)"/>
                     <form-error v-if="response.errors.radiotherapy"
                                 :error="response.errors.radiotherapy[0]"/>
                 </div>
@@ -241,7 +262,8 @@
 
                     <input id="oralSprains" type="text" class="form-control"
                            v-model="dentalHistory.oralSprains" maxlength="60">
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου" @click="removeField(15)"/>
+                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+										  @click="removeField(fields.oralSprains)"/>
                     <form-error v-if="response.errors.oralSprains"
                                 :error="response.errors.oralSprains[0]"/>
                 </div>
@@ -256,7 +278,8 @@
 
                     <input id="oralHygiene" type="text" class="form-control"
                            v-model="dentalHistory.oralHygiene" maxlength="60">
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου" @click="removeField(16)"/>
+                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+										  @click="removeField(fields.oralHygiene)"/>
                     <form-error v-if="response.errors.oralHygiene"
                                 :error="response.errors.oralHygiene[0]"/>
                 </div>
@@ -386,14 +409,37 @@ export default {
     },
 
     computed: {
-        fieldSelected () {
-            return this.fields.find((field) => {
-                return field.display
-            })
-        }
+		// Find if any field is selected. True if any
+		fieldSelected () {
+			return Object.values(this.fields).find((field) => {
+				return field.display
+			})
+		},
     },
 
+	created: function () {
+		// this.getDentalHistory()
+	},
+
     methods: {
+
+		/**
+		 * Check for fields. If not empty, display it
+		 */
+		checkFields ()
+		{
+			Object.keys(this.medicalHistory).forEach(key => {
+				if (this.medicalHistory[key] === null || this.medicalHistory[key].length<1) {
+					return
+				}
+
+				if (this.fields[key] === undefined) {
+					return
+				}
+
+				this.fields[key].display = true
+			})
+		},
 
         /**
          * Εξαφάνιση του πεδίου
@@ -401,7 +447,7 @@ export default {
          * @param field
          */
         removeField (field) {
-            this.fields[field].display = false
+			field.display = false
         }
     }
 }
