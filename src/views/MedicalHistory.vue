@@ -255,7 +255,7 @@
 
                             <input id="pregnancy" type="text" class="form-control"
                                    v-model="medicalHistory.pregnancy" maxlength="20"
-                                   :disabled="medicalHistory.pregnacyCheck ? disabled : ''">
+                                   :disabled="medicalHistory.pregnacyCheck ? 'disabled' : ''">
                             <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                                   @click="removeField(fields.pregnancy)"/>
                             <form-error v-if="response.errors.pregnancy"
@@ -275,7 +275,7 @@
 
                             <input id="smoking" type="text" class="form-control"
                                    v-model="medicalHistory.smoking" maxlength="20"
-                                   :disabled="medicalHistory.smokingCheck ? disabled : ''">
+                                   :disabled="medicalHistory.smokingCheck ? 'disabled' : ''">
                             <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                                   @click="removeField(fields.smoking)"/>
                             <form-error v-if="response.errors.smoking"
@@ -298,8 +298,10 @@
 
                             <div class="col-12">
                                 <select multiple class="form-control mt-2" id="medicines"
-                                        @keyup.delete="deleteMedicine($event)" v-if="medicalHistory.medicines.length">
-                                    <option v-for="medicine in medicalHistory.medicines" :key="medicine.id" :value="medicine.id">
+                                        @keyup.delete="deleteMedicine($event)"
+                                        v-if="medicalHistory.medicines.length">
+                                    <option v-for="medicine in medicalHistory.medicines"
+                                            :key="medicine.id" :value="medicine.id">
                                         {{ medicine.name }}
                                     </option>
                                 </select>
