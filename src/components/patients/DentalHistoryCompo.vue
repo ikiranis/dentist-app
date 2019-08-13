@@ -288,93 +288,76 @@ export default {
                 errors: []
             },
 
-            fields: [
-                {
-                    id: 0,
+            fields: {
+				frequentStrokes: {
                     label: 'Συχνές οδονταλγίες',
                     display: false
                 },
-                {
-                    id: 1,
+				sensitivityToStimuli: {
                     label: 'Ευαισθησία σε ερεθίσματα',
                     display: false
                 },
-                {
-                    id: 2,
+				painWhenChewing: {
                     label: 'Πόνος κατά τη μάσηση',
                     display: false
                 },
-                {
-                    id: 3,
+				gingivalBleeding: {
                     label: 'Αιμοραγία ούλων',
                     display: false
                 },
-                {
-                    id: 4,
+				tasteAbnormality: {
                     label: 'Ανωμαλία γεύσης',
                     display: false
                 },
-                {
-                    id: 5,
+				dryMouth: {
                     label: 'Ξηροστομία',
                     display: false
                 },
-                {
-                    id: 6,
+				badSmell: {
                     label: 'Κακοσμία',
                     display: false
                 },
-                {
-                    id: 7,
+				burningMouth: {
                     label: 'Καυσαλγία',
                     display: false
                 },
-                {
-                    id: 8,
+				painFromCrownFibrousStructure: {
                     label: 'Πόνος από ΚΓΔ',
                     display: false
                 },
-                {
-                    id: 9,
+				soundFromCrownFibrousStructure: {
                     label: 'Ήχος από ΚΓΔ',
                     display: false
                 },
-                {
-                    id: 10,
+				prosopalgia: {
                     label: 'Προσωπαλγία',
                     display: false
                 },
-                {
-                    id: 11,
+				surgicalProcedures: {
                     label: 'Χειρουργικές επεμβάσεις',
                     display: false
                 },
-                {
-                    id: 12,
+				traumaticLesions: {
                     label: 'Τραυματικές βλάβες',
                     display: false
                 },
-                {
-                    id: 13,
+				problemsWithLocalAnesthesia: {
                     label: 'Προβλήματα με τοπική αναισθησία',
                     display: false
                 },
-                {
-                    id: 14,
+				radiotherapy: {
                     label: 'Ακτινοθεραπεία',
                     display: false
                 },
-                {
-                    id: 15,
+				oralSprains: {
                     label: 'Στοματικές έξεις',
                     display: false
                 },
-                {
-                    id: 16,
+				oralHygiene: {
                     label: 'Στοματική υγιεινή',
                     display: false
                 }
-            ],
+            },
 
             dentalHistory: {
                 frequentStrokes: false,
