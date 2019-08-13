@@ -612,8 +612,12 @@ export default {
             if (this.medicine === '') { return }
 
             this.medicalHistory.medicines.push({
-                id: this.medicalHistory.medicines.length,
-                name: this.medicine })
+                id: (this.medicalHistory.medicines.length === 0)
+                    ? 0
+                    : this.medicalHistory.medicines[this.medicalHistory.medicines.length-1].id +1,
+                name: this.medicine
+            })
+
             this.medicine = ''
         },
 
@@ -623,8 +627,9 @@ export default {
          * @param event
          */
         deleteMedicine (event) {
-            let index = this.medicalHistory.medicines.find((medicine) => medicine.id === event.target.value)
-            this.medicalHistory.medicines.splice(index, 1)
+            this.medicalHistory.medicines = this.medicalHistory.medicines.filter((medicine) => {
+                    return (medicine.id !== parseInt(event.target.value))
+            })
         }
     }
 }
