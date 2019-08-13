@@ -11,7 +11,7 @@
 
             <div class="col-lg-6 col-12">
 
-                <div class="input-group row mb-2" v-if="fields[0].display">
+                <div class="input-group row mb-2" v-if="fields.frequentStrokes.display">
                     <div class="input-group-text">
                         <input type="checkbox" id="frequentStrokes" v-model="dentalHistory.frequentStrokes">
                     </div>
@@ -23,7 +23,7 @@
                     <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου" @click="removeField(0)"/>
                 </div>
 
-                <div class="input-group row mb-2" v-if="fields[1].display">
+                <div class="input-group row mb-2" v-if="fields.sensitivityToStimuli.display">
                     <div class="input-group-prepend">
                         <div class="input-group-text">
                             <input type="checkbox" id="sensitivityToStimuliCheck" v-model="dentalHistory.sensitivityToStimuliCheck">
@@ -42,7 +42,7 @@
                                 :error="response.errors.sensitivityToStimuli[0]"/>
                 </div>
 
-                <div class="input-group row mb-2" v-if="fields[2].display">
+                <div class="input-group row mb-2" v-if="fields.painWhenChewing.display">
                     <div class="input-group-prepend">
                         <div class="input-group-text">
                             <input type="checkbox" id="painWhenChewingCheck" v-model="dentalHistory.painWhenChewingCheck">
@@ -63,14 +63,14 @@
                                 :error="response.errors.painWhenChewing[0]"/>
                 </div>
 
-                <div class="input-group row mb-2" v-if="fields[3].display">
+                <div class="input-group row mb-2" v-if="fields.gingivalBleeding.display">
                     <div class="input-group-prepend">
                         <div class="input-group-text">
                             <input type="checkbox" id="gingivalBleedingCheck" v-model="dentalHistory.gingivalBleedingCheck">
                         </div>
 
                         <div class="input-group-text">
-                            <label for="painWhenChewing" class="my-auto">Αιμοραγία
+                            <label for="gingivalBleeding" class="my-auto">Αιμοραγία
                                 ούλων</label>
                         </div>
                     </div>
@@ -83,7 +83,7 @@
                                 :error="response.errors.gingivalBleeding[0]"/>
                 </div>
 
-                <div class="input-group row mb-2" v-if="fields[4].display">
+                <div class="input-group row mb-2" v-if="fields.tasteAbnormality.display">
                     <div class="input-group-text">
                         <input type="checkbox" id="tasteAbnormality" v-model="dentalHistory.tasteAbnormality">
                     </div>
@@ -96,7 +96,7 @@
                     <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου" @click="removeField(4)"/>
                 </div>
 
-                <div class="input-group row mb-2" v-if="fields[5].display">
+                <div class="input-group row mb-2" v-if="fields.dryMouth.display">
                     <div class="input-group-text">
                         <input type="checkbox" id="dryMouth" v-model="dentalHistory.dryMouth">
                     </div>
@@ -108,7 +108,7 @@
                     <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου" @click="removeField(5)"/>
                 </div>
 
-                <div class="input-group row mb-2" v-if="fields[6].display">
+                <div class="input-group row mb-2" v-if="fields.badSmell.display">
                     <div class="input-group-text">
                         <input type="checkbox" id="badSmell" v-model="dentalHistory.badSmell">
                     </div>
@@ -120,7 +120,7 @@
                     <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου" @click="removeField(6)"/>
                 </div>
 
-                <div class="input-group row mb-2" v-if="fields[7].display">
+                <div class="input-group row mb-2" v-if="fields.burningMouth.display">
                     <div class="input-group-text">
                         <input type="checkbox" id="burningMouth" v-model="dentalHistory.burningMouth">
                     </div>
@@ -132,7 +132,7 @@
                     <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου" @click="removeField(7)"/>
                 </div>
 
-                <div class="input-group row mb-2" v-if="fields[8].display">
+                <div class="input-group row mb-2" v-if="fields.painFromCrownFibrousStructure.display">
                     <div class="input-group-text">
                         <input type="checkbox" id="painFromCrownFibrousStructure" v-model="dentalHistory.painFromCrownFibrousStructure">
                     </div>
@@ -145,7 +145,7 @@
                     <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου" @click="removeField(8)"/>
                 </div>
 
-                <div class="input-group row mb-2" v-if="fields[9].display">
+                <div class="input-group row mb-2" v-if="fields.soundFromCrownFibrousStructure.display">
                     <div class="input-group-text">
                         <input type="checkbox" id="soundFromCrownFibrousStructure" v-model="dentalHistory.soundFromCrownFibrousStructure">
                     </div>
@@ -158,7 +158,7 @@
                     <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου" @click="removeField(9)"/>
                 </div>
 
-                <div class="input-group row mb-2" v-if="fields[10].display">
+                <div class="input-group row mb-2" v-if="fields.prosopalgia.display">
                     <div class="input-group-text">
                         <input type="checkbox" id="prosopalgia" v-model="dentalHistory.prosopalgia">
                     </div>
@@ -174,7 +174,7 @@
 
             <div class="col-lg-6 col-12">
 
-                <div class="input-group row mb-2" v-if="fields[11].display">
+                <div class="input-group row mb-2" v-if="fields.surgicalProcedures.display">
                     <div class="input-group-prepend">
                         <div class="input-group-text">
                             <label for="surgicalProcedures" class="my-auto">Χειρουργικές
@@ -189,7 +189,7 @@
                                 :error="response.errors.surgicalProcedures[0]"/>
                 </div>
 
-                <div class="input-group row mb-2" v-if="fields[12].display">
+                <div class="input-group row mb-2" v-if="fields.traumaticLesions.display">
                     <div class="input-group-prepend">
                         <div class="input-group-text">
                             <label for="traumaticLesions" class="my-auto">Τραυματικές
@@ -204,7 +204,7 @@
                                 :error="response.errors.traumaticLesions[0]"/>
                 </div>
 
-                <div class="input-group row mb-2" v-if="fields[13].display">
+                <div class="input-group row mb-2" v-if="fields.problemsWithLocalAnesthesia.display">
                     <div class="input-group-text">
                         <input type="checkbox" id="problemsWithLocalAnesthesia" v-model="dentalHistory.problemsWithLocalAnesthesia">
                     </div>
@@ -217,7 +217,7 @@
                     <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου" @click="removeField(13)"/>
                 </div>
 
-                <div class="input-group row mb-2" v-if="fields[14].display">
+                <div class="input-group row mb-2" v-if="fields.radiotherapy.display">
                     <div class="input-group-prepend">
                         <div class="input-group-text">
                             <label for="radiotherapy" class="my-auto">Ακτινοθεραπεία</label>
@@ -231,7 +231,7 @@
                                 :error="response.errors.radiotherapy[0]"/>
                 </div>
 
-                <div class="input-group row mb-2" v-if="fields[15].display">
+                <div class="input-group row mb-2" v-if="fields.oralSprains.display">
                     <div class="input-group-prepend">
                         <div class="input-group-text">
                             <label for="oralSprains" class="my-auto">Στοματικές
@@ -246,7 +246,7 @@
                                 :error="response.errors.oralSprains[0]"/>
                 </div>
 
-                <div class="input-group row mb-2" v-if="fields[16].display">
+                <div class="input-group row mb-2" v-if="fields.oralHygiene.display">
                     <div class="input-group-prepend">
                         <div class="input-group-text">
                             <label for="oralHygiene" class="my-auto">Στοματική
