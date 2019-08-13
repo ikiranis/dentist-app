@@ -318,7 +318,29 @@ let api = {
      */
     async updateMedicalHistory (args, patientId) {
         return axios.patch(ROOT_API + '/medicalHistory/' + patientId, args)
-    }
+    },
+
+	// ************** Dental History api calls **************
+
+	/**
+	 * Get Dental History info
+	 *
+	 * @returns {Promise<AxiosResponse<T>>}
+	 */
+	async getDentalHistory (patientId) {
+		return axios.get(ROOT_API + '/dentalHistory/' + patientId)
+	},
+
+	/**
+	 * Update Dental History
+	 *
+	 * @param args
+	 * @param patientId
+	 * @returns {Promise<Promise<AxiosResponse<T>>>}
+	 */
+	async updateDentalHistory (args, patientId) {
+		return axios.patch(ROOT_API + '/dentalHistory/' + patientId, args)
+	}
 }
 
 export default api
