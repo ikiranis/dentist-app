@@ -299,6 +299,8 @@
 <script>
 import FormError from '@/components/basic/FormError'
 import FieldsList from '@/components/patients/FieldsList'
+import utility from "../../library/utility";
+import api from "../../api";
 
 export default {
     components: { FormError, FieldsList },
@@ -415,6 +417,10 @@ export default {
 				return field.display
 			})
 		},
+
+		patientId: function () {
+			return this.$route.params.id
+		}
     },
 
 	created: function () {
@@ -422,14 +428,66 @@ export default {
 	},
 
     methods: {
+		/**
+		 * Get Dental History info
+		 */
+		getDentalHistory () {
+			this.loading = true
+
+			api.getDentalHistory(this.patientId)
+				.then(response => {
+					this.loading = false
+
+					if (response.status === 200) {
+						this.dentalHistory = response.data
+
+						this.checkFields()
+					}
+				})
+				.catch(error => {
+					this.loading = false
+
+					this.response.message = error.response.data.message
+					this.response.status = false
+
+					utility.debug(error.response.data.debug)
+				})
+		},
+
+		/**
+		 * Update the Dental History info
+		 */
+		updateDentalHistory () {
+			this.loading = true
+
+			api.updateDentalHistory(this.dentalHistory, this.patientId)
+				.then(response => {
+					this.loading = false
+
+					this.response.message = 'Τα δεδομένα αποθηκεύτηκαν'
+					this.response.status = true
+				})
+				.catch(error => {
+					this.loading = false
+
+					this.response.message = error.response.data.message
+					this.response.status = false
+
+					if (error.response.data.errors) {
+						this.response.errors = error.response.data.errors
+					}
+
+					utility.debug(error.response.data.debug)
+				})
+		},
 
 		/**
 		 * Check for fields. If not empty, display it
 		 */
 		checkFields ()
 		{
-			Object.keys(this.medicalHistory).forEach(key => {
-				if (this.medicalHistory[key] === null || this.medicalHistory[key].length<1) {
+			Object.keys(this.dentalHistory).forEach(key => {
+				if (this.dentalHistory[key] === null || this.dentalHistory[key].length<1) {
 					return
 				}
 
