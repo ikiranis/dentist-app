@@ -424,7 +424,7 @@ export default {
     },
 
 	created: function () {
-		// this.getDentalHistory()
+		this.getDentalHistory()
 	},
 
     methods: {
