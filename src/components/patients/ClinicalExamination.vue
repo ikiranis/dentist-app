@@ -475,178 +475,150 @@ export default {
                 errors: []
             },
 
-            fields: [
-                {
-                    id: 0,
+            fields: {
+                edema: {
                     label: 'Οίδημα',
                     display: false
                 },
-                {
-                    id: 1,
+                asymmetry: {
                     label: 'Ασυμμετρία',
                     display: false
                 },
-                {
-                    id: 2,
+                swelling: {
                     label: 'Διόγκωση',
                     display: false
                 },
-                {
-                    id: 3,
+                damages: {
                     label: 'Βλάβες',
                     display: false
                 },
-                {
-                    id: 4,
+                complexion: {
                     label: 'Χροιά',
                     display: false
                 },
-                {
-                    id: 5,
+                convulsion: {
                     label: 'Συγχειλίτιδα',
                     display: false
                 },
-                {
-                    id: 6,
+                neckEdema: {
                     label: 'Τράχηλος : Οίδημα',
                     display: false
                 },
-                {
-                    id: 7,
+                neckSwelling: {
                     label: 'Τράχηλος : Διόγκωση',
                     display: false
                 },
-                {
-                    id: 8,
+                hypotensionLymphNodes: {
                     label: 'Υπογενείδιοι λεμφαδένες',
                     display: false
                 },
-                {
-                    id: 9,
+                submandibularLymphNodes: {
                     label: 'Υπογνάθιοι λεμφαδένες',
                     display: false
                 },
-                {
-                    id: 10,
+                superficialCervicalLymphNodes: {
                     label: 'Επιπολής τραχηλικοί λεμφαδένες',
                     display: false
                 },
-                {
-                    id: 11,
+                InsideTheCervicalLymphNodes: {
                     label: 'Εν τω βαθεί τραχηλικοί λεμφαδένες',
                     display: false
                 },
-                {
-                    id: 12,
+                clicking: {
                     label: 'Clicking',
                     display: false
                 },
-                {
-                    id: 13,
+                cry: {
                     label: 'Κριγμός',
                     display: false
                 },
-                {
-                    id: 14,
+                painfulPalpationOfMuscles: {
                     label: 'Επώδυνη ψηλάφηση μυών',
                     display: false
                 },
-                {
-                    id: 15,
+                reducedMobility: {
                     label: 'Μειωμένη κινητικότητα',
                     display: false
                 },
-                {
-                    id: 16,
+                deratingWhenOpening: {
                     label: 'Παρέκκλιση κατά τη διάνοιξη',
                     display: false
                 },
-                {
-                    id: 17,
+                impairedOpening: {
                     label: 'Ελαττωμένη διάνοιξη',
                     display: false
                 },
-                {
-                    id: 18,
+                tonsil: {
                     label: 'Παρωτίδα',
                     display: false
                 },
-                {
-                    id: 19,
+                underTheJaw: {
                     label: 'Υπογνάθιος',
                     display: false
                 },
-                {
-                    id: 20,
+                lips: {
                     label: 'Χείλη',
                     display: false
                 },
-                {
-                    id: 21,
+                jowl: {
                     label: 'Παρεία',
                     display: false
                 },
-                {
-                    id: 22,
+                palate: {
                     label: 'Υπερώα',
                     display: false
                 },
-                {
-                    id: 23,
+                oralGround: {
                     label: 'Έδαφος στόματος',
                     display: false
                 },
-                {
-                    id: 24,
+                tongue: {
                     label: 'Γλώσσα',
                     display: false
                 },
-                {
-                    id: 25,
+                oralPharynx: {
                     label: 'Στοματοφάρρυγας',
                     display: false
                 },
-                {
-                    id: 26,
+                hawks: {
                     label: 'Χαλινοί',
                     display: false
                 },
-                {
-                    id: 27,
+                alveolarProcess: {
                     label: 'Φατνιακή απόφυση',
                     display: false
                 }
-            ],
+            },
 
             clinicalExamination: {
-                edema: '',
-                asymmetry: '',
-                swelling: '',
-                damages: '',
-                complexion: '',
-                convulsion: '',
-                neckEdema: '',
-                neckSwelling: '',
-                hypotensionLymphNodes: '',
-                submandibularLymphNodes: '',
-                superficialCervicalLymphNodes: '',
-                InsideTheCervicalLymphNodes: '',
-                clicking: '',
-                cry: '',
-                painfulPalpationOfMuscles: '',
-                reducedMobility: '',
-                deratingWhenOpening: '',
-                impairedOpening: '',
-                tonsil: '',
-                underTheJaw: '',
-                lips: '',
-                jowl: '',
-                palate: '',
-                oralGround: '',
-                tongue: '',
-                oralPharynx: '',
-                hawks: '',
-                alveolarProcess: ''
+                edema: null,
+                asymmetry: null,
+                swelling: null,
+                damages: null,
+                complexion: null,
+                convulsion: null,
+                neckEdema: null,
+                neckSwelling: null,
+                hypotensionLymphNodes: null,
+                submandibularLymphNodes: null,
+                superficialCervicalLymphNodes: null,
+                InsideTheCervicalLymphNodes: null,
+                clicking: null,
+                cry: null,
+                painfulPalpationOfMuscles: null,
+                reducedMobility: null,
+                deratingWhenOpening: null,
+                impairedOpening: null,
+                tonsil: null,
+                underTheJaw: null,
+                lips: null,
+                jowl: null,
+                palate: null,
+                oralGround: null,
+                tongue: null,
+                oralPharynx: null,
+                hawks: null,
+                alveolarProcess: null
             }
 
         }

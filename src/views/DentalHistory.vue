@@ -20,7 +20,7 @@
 
                 <dental-history @loading="getLoading"/>
 
-                <clinical-examination/>
+                <clinical-examination @loading="getLoading"/>
 
             </div>
 
