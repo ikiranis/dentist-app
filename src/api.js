@@ -340,7 +340,29 @@ let api = {
 	 */
 	async updateDentalHistory (args, patientId) {
 		return axios.patch(ROOT_API + '/dentalHistory/' + patientId, args)
-	}
+	},
+
+    // ************** Clinical Examination api calls **************
+
+    /**
+     * Get Clinical Examination info
+     *
+     * @returns {Promise<AxiosResponse<T>>}
+     */
+    async getClinicalExamination (patientId) {
+        return axios.get(ROOT_API + '/clinicalExamination/' + patientId)
+    },
+
+    /**
+     * Update Clinical Examination
+     *
+     * @param args
+     * @param patientId
+     * @returns {Promise<Promise<AxiosResponse<T>>>}
+     */
+    async updateClinicalExamination (args, patientId) {
+        return axios.patch(ROOT_API + '/clinicalExamination/' + patientId, args)
+    }
 }
 
 export default api
