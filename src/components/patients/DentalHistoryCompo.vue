@@ -386,11 +386,11 @@ export default {
 
             dentalHistory: {
                 frequentStrokes: false,
-                sensitivityToStimuli: '',
+                sensitivityToStimuli: null,
                 sensitivityToStimuliCheck: false,
-                painWhenChewing: '',
+                painWhenChewing: null,
                 painWhenChewingCheck: false,
-                gingivalBleeding: '',
+                gingivalBleeding: null,
                 gingivalBleedingCheck: false,
                 tasteAbnormality: false,
                 dryMouth: false,
@@ -399,12 +399,12 @@ export default {
                 painFromCrownFibrousStructure: false,
                 soundFromCrownFibrousStructure: false,
                 prosopalgia: false,
-                surgicalProcedures: '',
-                traumaticLesions: '',
+                surgicalProcedures: null,
+                traumaticLesions: null,
                 problemsWithLocalAnesthesia: false,
-                radiotherapy: '',
-                oralSprains: '',
-                oralHygiene: ''
+                radiotherapy: null,
+                oralSprains: null,
+                oralHygiene: null
             }
 
         }
