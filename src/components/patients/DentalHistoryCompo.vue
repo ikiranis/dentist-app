@@ -7,7 +7,7 @@
             Επιλογή πεδίων
         </div>
 
-        <form class="row col-12 mt-3">
+        <form @submit.prevent class="row col-12 mt-3">
 
             <div class="col-lg-6 col-12">
 
@@ -293,6 +293,8 @@
                    @click="updateDentalHistory" value="Αποθήκευση">
         </div>
 
+        <display-error v-if="response.message" :response="response"/>
+
     </div>
 </template>
 
@@ -301,9 +303,10 @@ import FormError from '@/components/basic/FormError'
 import FieldsList from '@/components/patients/FieldsList'
 import utility from "../../library/utility";
 import api from "../../api";
+import DisplayError from '@/components/basic/DisplayError'
 
 export default {
-    components: { FormError, FieldsList },
+    components: { FormError, FieldsList, DisplayError },
 
     data () {
         return {
@@ -312,6 +315,8 @@ export default {
                 status: '',
                 errors: []
             },
+
+            loading: false,
 
             fields: {
 				frequentStrokes: {
@@ -423,11 +428,18 @@ export default {
 		}
     },
 
+    watch: {
+        loading() {
+            this.$emit('loading', this.loading)
+        }
+    },
+
 	created: function () {
 		this.getDentalHistory()
 	},
 
     methods: {
+
 		/**
 		 * Get Dental History info
 		 */

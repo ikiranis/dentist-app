@@ -2,8 +2,13 @@
     <div class="container-fluid my-3">
         <div class="row justify-content-center">
 
-            <div class="col-12">
-                <h1>Οδοντιατρικό ιστορικό</h1>
+            <div class="row col-12">
+                <div class="col-lg col-12 my-auto">
+                    <h1>Οδοντιατρικό ιστορικό</h1>
+                </div>
+                <div class="col-lg col-12 row my-auto">
+                    <Loading class="ml-auto" :loading="loading"/>
+                </div>
             </div>
 
             <menu-bar brand="Ασθενής" :brandRoute="{ name: 'patient', params: { id: patientId } }"
@@ -13,7 +18,7 @@
 
             <div class="container">
 
-                <dental-history/>
+                <dental-history @loading="getLoading"/>
 
                 <clinical-examination/>
 
@@ -22,14 +27,19 @@
         </div>
     </div>
 </template>
+        returnLoading ()
+        {
+            this.$emit('loading', this.loading)
+        },
 
 <script>
 import MenuBar from '@/components/basic/MenuBar'
 import ClinicalExamination from '@/components/patients/ClinicalExamination'
 import DentalHistory from '@/components/patients/DentalHistoryCompo'
+import Loading from '@/components/basic/Loading'
 
 export default {
-    components: { MenuBar, ClinicalExamination, DentalHistory },
+    components: { MenuBar, ClinicalExamination, DentalHistory, Loading },
 
     data () {
         return {
@@ -38,6 +48,8 @@ export default {
                 status: '',
                 errors: []
             },
+
+            loading: false,
 
             menuItems: [
                 {
@@ -89,7 +101,9 @@ export default {
     },
 
     methods: {
-    //
+        getLoading (loading) {
+            this.loading = loading
+        }
     }
 }
 </script>
