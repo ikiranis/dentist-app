@@ -38,7 +38,7 @@
 
                     <input id="sensitivityToStimuli" type="text" class="form-control"
                            v-model="dentalHistory.sensitivityToStimuli" maxlength="20"
-                           :disabled="dentalHistory.sensitivityToStimuliCheck ? disabled : ''">
+                           :disabled="dentalHistory.sensitivityToStimuliCheck ? 'disabled' : ''">
                     <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
 										  @click="removeField(fields.sensitivityToStimuli)"/>
                     <form-error v-if="response.errors.sensitivityToStimuli"
@@ -61,7 +61,7 @@
 
                     <input id="painWhenChewing" type="text" class="form-control"
                            v-model="dentalHistory.painWhenChewing" maxlength="20"
-                           :disabled="dentalHistory.painWhenChewingCheck ? disabled : ''">
+                           :disabled="dentalHistory.painWhenChewingCheck ? 'disabled' : ''">
                     <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
 										  @click="removeField(fields.painWhenChewing)"/>
                     <form-error v-if="response.errors.painWhenChewing"
@@ -83,7 +83,7 @@
 
                     <input id="gingivalBleeding" type="text" class="form-control"
                            v-model="dentalHistory.gingivalBleeding" maxlength="20"
-                           :disabled="dentalHistory.gingivalBleedingCheck ? disabled : ''">
+                           :disabled="dentalHistory.gingivalBleedingCheck ? 'disabled' : ''">
                     <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
 										  @click="removeField(fields.gingivalBleeding)"/>
                     <form-error v-if="response.errors.gingivalBleeding"
@@ -290,7 +290,7 @@
 
         <div class="row" v-if="fieldSelected">
             <input type="submit" class="btn btn-success col-lg-6 col-12 my-3 mx-auto"
-                   @click="save()" value="Αποθήκευση">
+                   @click="updateDentalHistory" value="Αποθήκευση">
         </div>
 
     </div>
