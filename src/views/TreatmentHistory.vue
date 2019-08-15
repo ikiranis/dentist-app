@@ -42,8 +42,13 @@
 
         <div class="row justify-content-center">
 
-            <div class="col-12">
-                <h1>Ιστορικό θεραπειών</h1>
+            <div class="row col-12">
+                <div class="col-lg col-12 my-auto">
+                    <h1>Ιστορικό θεραπειών</h1>
+                </div>
+                <div class="col-lg col-12 row my-auto">
+                    <Loading class="ml-auto" :loading="loading"/>
+                </div>
             </div>
 
             <menu-bar brand="Ασθενής" :brandRoute="{ name: 'patient', params: { id: patientId } }"
@@ -56,6 +61,10 @@
             </div>
 
             <div class="container" v-if="treatments.length">
+
+                <div class="w-100">
+                    <paginate :pagination="pagination" @click="getTreatments"/>
+                </div>
 
                 <table class="table">
                     <thead>
@@ -79,6 +88,10 @@
                     </tbody>
                 </table>
 
+                <div class="w-100">
+                    <paginate :pagination="pagination" @click="getTreatments"/>
+                </div>
+
             </div>
 
             <div class="row w-100">
@@ -87,15 +100,28 @@
             </div>
 
         </div>
+
+        <div class="row">
+            <display-error class="mx-auto"
+                           v-if="response.message"
+                           :response="response"/>
+        </div>
+
     </div>
 </template>
 
 <script>
 import FormError from '@/components/basic/FormError'
 import MenuBar from '@/components/basic/MenuBar'
+import Paginate from '@/components/basic/Paginate'
+import DisplayError from '@/components/basic/DisplayError'
+import Loading from '@/components/basic/Loading'
+import moment from 'moment'
+import utility from '../library/utility'
+import api from "../api";
 
 export default {
-    components: { MenuBar, FormError },
+    components: { MenuBar, FormError, Paginate, DisplayError, Loading },
 
     data () {
         return {
@@ -103,6 +129,13 @@ export default {
                 message: '',
                 status: '',
                 errors: []
+            },
+
+            loading: false,
+
+            pagination: {
+                meta: {},
+                links: {}
             },
 
             menuItems: [
@@ -145,65 +178,176 @@ export default {
 
             treatment: {
                 id: 0,
+                patient_id: 0,
                 date: '',
                 description: '',
                 value: 0
             },
 
-            treatments: [
-                {
-                    id: 1,
-                    date: '12/01/2019',
-                    description: 'Θεραπεία',
-                    value: 50
-                },
-                {
-                    id: 2,
-                    date: '12/02/2019',
-                    description: 'Θεραπεία 2',
-                    value: 150
-                },
-                {
-                    id: 3,
-                    date: '12/03/2019',
-                    description: 'Θεραπεία 3',
-                    value: 75
-                },
-                {
-                    id: 4,
-                    date: '12/04/2019',
-                    description: 'Θεραπεία 4',
-                    value: 30
-                },
-                {
-                    id: 5,
-                    date: '12/05/2019',
-                    description: 'Θεραπεία 5',
-                    value: 250
-                }
-            ]
+            treatments: []
         }
     },
 
     computed: {
-        // ...mapState(['loading']),
-
         patientId: function () {
             return this.$route.params.id
         }
     },
 
+    created: function () {
+        this.getTreatments(null)
+    },
+
     methods: {
+        moment,
 
         /**
-             * Display treatment modal
-             */
-        newTreatment () {
+         * Get all the treatments
+         *
+         * @param page
+         */
+        getTreatments (page)
+        {
+            this.loading = true
+
+            api.getTreatments(page)
+                .then(response => {
+                    this.loading = false
+
+                    if (response.status === 200) {
+                        this.treatments = response.data.data
+                        this.pagination.meta = response.data.meta
+                        this.pagination.links = response.data.links
+
+                        window.scrollTo(0, 0)
+
+                        return
+                    }
+
+                    this.treatments = []
+                })
+                .catch(error => {
+                    this.loading = false
+
+                    this.response.message = error.response.data.message
+                    this.response.status = false
+
+                    utility.debug(error.response.data.debug)
+                })
+        },
+
+        /**
+         * Display treatment modal
+         */
+        newTreatment ()
+        {
+            this.treatment = {
+                id: 0,
+                date: moment(new Date()).format('YYYY-MM-DD')
+            }
+
             this.$refs.treatmentModal.show()
         },
 
-        saveTreatment () {
-            //
+        /**
+         * Run the appropriate save action
+         */
+        saveTreatment ()
+        {
+            if (this.treatment.id === 0) {
+                this.createTreatment()
+                return
+            }
+
+            this.updateTreatment()
+        },
+
+        /**
+         * Create a treatment
+         */
+        createTreatment () {
+            this.loading = true
+
+            api.createTreatment(this.treatment)
+                .then(response => {
+                    this.loading = false
+
+                    this.response.message = 'Η θεραπεία αποθηκεύτηκε'
+                    this.response.status = true
+
+                    this.$refs.treatmentModal.hide()
+
+                    this.getTreatments(null)
+                })
+                .catch(error => {
+                    this.loading = false
+
+                    this.response.message = error.response.data.message
+                    this.response.status = false
+
+                    if (error.response.data.errors) {
+                        this.response.errors = error.response.data.errors
+                    }
+
+                    utility.debug(error.response.data.debug)
+                })
+        },
+
+        /**
+         * Update the treatment
+         */
+        updateTreatment () {
+            this.loading = true
+
+            api.updateTreatment(this.treatment, this.treatment.id)
+                .then(response => {
+                    this.loading = false
+
+                    this.response.message = 'Η θεραπεία ενημερώθηκε'
+                    this.response.status = true
+
+                    this.$refs.treatmentModal.hide()
+
+                    this.getTreatments(null)
+                })
+                .catch(error => {
+                    this.loading = false
+
+                    this.response.message = error.response.data.message
+                    this.response.status = false
+
+                    if (error.response.data.errors) {
+                        this.response.errors = error.response.data.errors
+                    }
+
+                    utility.debug(error.response.data.debug)
+                })
+        },
+
+        /**
+         * Delete a treatment
+         */
+        deleteTreatment (treatmentId) {
+            let choise = confirm('Θέλεις σίγουρα να σβήσεις την θεραπεία με id: ' + treatmentId + ';')
+
+            if (choise) {
+                this.loading = true
+
+                api.deleteTreatment(treatmentId)
+                    .then(response => {
+                        this.loading = false
+
+                        this.getTreatments(null)
+                    })
+                    .catch(error => {
+                        this.loading = false
+
+                        this.response.message = error.response.data.message
+                        this.response.status = false
+
+                        utility.debug(error.response.data.debug)
+                    })
+            }
         }
     }
 }
