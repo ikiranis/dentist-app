@@ -210,7 +210,7 @@ export default {
         {
             this.loading = true
 
-            api.getTreatments(page)
+            api.getTreatments(page, this.patientId)
                 .then(response => {
                     this.loading = false
 
