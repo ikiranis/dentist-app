@@ -371,14 +371,14 @@ let api = {
      *
      * @returns {Promise<void>}
      */
-    async getTreatments (page) {
+    async getTreatments (page, patientId) {
         if (page !== null) {
             page = '?' + page.toString().split('?')[1]
         } else {
             page = ''
         }
 
-        return axios.get(ROOT_API + '/treatments' + page)
+        return axios.get(ROOT_API + '/treatments/' + patientId + page)
     },
 
     /**
