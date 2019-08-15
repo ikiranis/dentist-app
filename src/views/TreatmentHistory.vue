@@ -3,7 +3,7 @@
 
         <b-modal ref="treatmentModal" size="md" centered hide-footer title="Εισαγωγή θεραπείας">
 
-            <form class="container-fluid">
+            <form @submit.prevent class="container-fluid">
 
                 <div class="form-group row">
                     <label for="date" class="col-md-4 col-form-label text-md-right">Ημ/νία</label>
@@ -56,7 +56,8 @@
                       variant="" type="light" valign="mx-auto" toggle="lg"
                       navCollapseText="patientBar" />
 
-            <div class="alert alert-success text-center w-50 mt-5 mx-auto" v-if="!treatments.length">
+            <div class="alert alert-success text-center w-50 mt-5 mx-auto"
+                 v-if="!treatments.length && !loading">
                 Δεν βρέθηκαν θεραπείες
             </div>
 
@@ -66,27 +67,9 @@
                     <paginate :pagination="pagination" @click="getTreatments"/>
                 </div>
 
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th scope="col" class="text-center">Ημ/νία</th>
-                        <th scope="col" class="text-center">θεραπεία</th>
-                        <th scope="col" class="text-center">Κόστος</th>
-                    </tr>
-                    </thead>
-
-                    <tbody v-for="treatment in treatments" :key="treatment.id">
-                    <tr>
-                        <th scope="row">{{ treatment.date }}</th>
-                        <td>
-                            {{ treatment.description }}
-                        </td>
-                        <td class="text-center">
-                            {{ treatment.value }}
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+                <treatments-list :treatments="treatments"
+                            @clickDelete="deleteTreatment"
+                            @clickUpdate="getTreatment"/>
 
                 <div class="w-100">
                     <paginate :pagination="pagination" @click="getTreatments"/>
@@ -116,12 +99,13 @@ import MenuBar from '@/components/basic/MenuBar'
 import Paginate from '@/components/basic/Paginate'
 import DisplayError from '@/components/basic/DisplayError'
 import Loading from '@/components/basic/Loading'
+import TreatmentsList from '@/components/patients/TreatmentsList'
 import moment from 'moment'
 import utility from '../library/utility'
 import api from "../api";
 
 export default {
-    components: { MenuBar, FormError, Paginate, DisplayError, Loading },
+    components: { MenuBar, FormError, Paginate, DisplayError, Loading, TreatmentsList },
 
     data () {
         return {
@@ -237,12 +221,24 @@ export default {
         },
 
         /**
+         * Display treatment for edit
+         */
+        getTreatment (treatmentId) {
+            this.treatment = this.treatments.find((treatment) => {
+                return treatment.id === treatmentId
+            })
+
+            this.$refs.treatmentModal.show()
+        },
+
+        /**
          * Display treatment modal
          */
         newTreatment ()
         {
             this.treatment = {
                 id: 0,
+                patient_id: this.patientId,
                 date: moment(new Date()).format('YYYY-MM-DD')
             }
 
