@@ -362,6 +362,63 @@ let api = {
      */
     async updateClinicalExamination (args, patientId) {
         return axios.patch(ROOT_API + '/clinicalExamination/' + patientId, args)
+    },
+
+    // ************** Treatments api calls **************
+
+    /**
+     * Get all treatments
+     *
+     * @returns {Promise<void>}
+     */
+    async getTreatments (page) {
+        if (page !== null) {
+            page = '?' + page.toString().split('?')[1]
+        } else {
+            page = ''
+        }
+
+        return axios.get(ROOT_API + '/treatments' + page)
+    },
+
+    /**
+     * Get a treatment
+     *
+     * @returns {Promise<AxiosResponse<T>>}
+     */
+    async getTreatment (treatmentId) {
+        return axios.get(ROOT_API + '/treatment/' + treatmentId)
+    },
+
+    /**
+     * Create a treatment
+     *
+     * @param args
+     * @returns {Promise<AxiosResponse<T>>}
+     */
+    async createTreatment (args) {
+        return axios.post(ROOT_API + '/treatment', args)
+    },
+
+    /**
+     * Update a treatment
+     *
+     * @param args
+     * @param treatmentId
+     * @returns {Promise<Promise<AxiosResponse<T>>>}
+     */
+    async updateTreatment (args, treatmentId) {
+        return axios.patch(ROOT_API + '/treatment/' + treatmentId, args)
+    },
+
+    /**
+     * Delete a treatment
+     *
+     * @param treatmentId
+     * @returns {Promise<Promise<AxiosResponse<T>>>}
+     */
+    async deleteTreatment (treatmentId) {
+        return axios.delete(ROOT_API + '/treatment/' + treatmentId)
     }
 }
 
