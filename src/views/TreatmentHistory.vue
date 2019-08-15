@@ -1,7 +1,7 @@
 <template>
     <div class="container-fluid my-3">
 
-        <b-modal ref="treatmentModal" size="md" centered hide-footer title="Εισαγωγή θεραπείας">
+        <b-modal ref="treatmentModal" size="md" centered hide-footer :title="treatmentTitle">
 
             <form @submit.prevent class="container-fluid">
 
@@ -33,7 +33,8 @@
                 </div>
 
                 <div class="row">
-                    <button class="btn btn-success col-lg-6 col-12 my-3 mx-auto" @click="saveTreatment">Εισαγωγή</button>
+                    <button class="btn btn-success col-lg-6 col-12 my-3 mx-auto"
+                            @click="saveTreatment">Αποθήκευση</button>
                 </div>
 
             </form>
@@ -168,7 +169,9 @@ export default {
                 value: 0
             },
 
-            treatments: []
+            treatments: [],
+
+            treatmentTitle: ''
         }
     },
 
@@ -228,6 +231,7 @@ export default {
                 return treatment.id === treatmentId
             })
 
+            this.treatmentTitle = 'Ενημέρωση θεραπείας'
             this.$refs.treatmentModal.show()
         },
 
@@ -242,6 +246,7 @@ export default {
                 date: moment(new Date()).format('YYYY-MM-DD')
             }
 
+            this.treatmentTitle = 'Εισαγωγή θεραπείας'
             this.$refs.treatmentModal.show()
         },
 
