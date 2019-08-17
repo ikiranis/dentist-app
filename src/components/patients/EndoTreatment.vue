@@ -222,52 +222,45 @@ export default {
                 errors: []
             },
 
-            fields: [
-                {
-                    id: 0,
+            fields: {
+                counter: {
                     label: 'Μήκος εργαλείου',
                     display: false
                 },
-                {
-                    id: 1,
+                workingLength: {
                     label: 'Μήκος εργασίας',
                     display: false
                 },
-                {
-                    id: 2,
+                benchmark: {
                     label: 'Σημείο αναφοράς',
                     display: false
                 },
-                {
-                    id: 3,
+                MAF: {
                     label: 'MAF',
                     display: false
                 },
-                {
-                    id: 4,
+                chemicalMechanicalTreatment: {
                     label: 'Χημικομηχανική επεξεργασία',
                     display: false
                 },
-                {
-                    id: 5,
+                blockingTechnique: {
                     label: 'Τεχνική έμφραξης',
                     display: false
                 },
-                {
-                    id: 6,
+                notes: {
                     label: 'Σημειώσεις',
                     display: false
                 }
-            ],
+            },
 
             endoTreatment: {
-                counter: '',
-                radiography: '',
-                workingLength: '',
-                benchmark: '',
+                counter: null,
+                radiography: null,
+                workingLength: null,
+                benchmark: null,
                 chozenBenchmark: 0,
-                MAF: '',
-                chemicalMechanicalTreatment: '',
+                MAF: null,
+                chemicalMechanicalTreatment: null,
                 chozenBlockingTechnique: 0,
                 chozenRoot: 0
             },
