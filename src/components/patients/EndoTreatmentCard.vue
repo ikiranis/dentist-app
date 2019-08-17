@@ -11,7 +11,7 @@
             Επιλογή πεδίων
         </div>
 
-        <form class="row col-12 mt-3" v-if="fieldSelected">
+        <form @submit.prevent class="row col-12 mt-3" v-if="fieldSelected">
 
             <div class="col-lg-6 col-12">
 
@@ -352,8 +352,10 @@
 
         <div class="row" v-if="fieldSelected">
             <input type="submit" class="btn btn-success col-lg-6 col-12 my-3 mx-auto"
-                   @click="save()" value="Αποθήκευση">
+                   @click="updateEndoTreatmentCard" value="Αποθήκευση">
         </div>
+
+        <display-error v-if="response.message" :response="response"/>
 
     </div>
 
@@ -362,9 +364,12 @@
 <script>
 import FormError from '@/components/basic/FormError'
 import FieldsList from '@/components/patients/FieldsList'
+import utility from "../../library/utility";
+import api from "../../api";
+import DisplayError from '@/components/basic/DisplayError'
 
 export default {
-    components: { FormError, FieldsList },
+    components: { FormError, FieldsList, DisplayError },
 
     data () {
         return {
@@ -495,30 +500,113 @@ export default {
     },
 
     computed: {
+        // Find if any field is selected. True if any
         fieldSelected () {
-            return this.fields.find((field) => {
+            return Object.values(this.fields).find((field) => {
                 return field.display
             })
         },
 
         painFields () {
-            return (this.fields[0].display ||
-                this.fields[1].display ||
-                this.fields[2].display ||
-                this.fields[3].display ||
-                this.fields[4].display)
+            return (this.fields.automatic.display ||
+                this.fields.challenged.display ||
+                this.fields.reason.display ||
+                this.fields.duration.display ||
+                this.fields.reduceToTheCold.display)
         }
     },
 
+    watch: {
+        loading() {
+            this.$emit('loading', this.loading)
+        }
+    },
+
+    created: function () {
+        this.getEndoTreatmentCard()
+    },
+
     methods: {
+        /**
+         * Get Endo Treatment Card info
+         */
+        getEndoTreatmentCard ()
+        {
+            this.loading = true
+
+            api.getEndoTreatmentCard(this.patientId)
+                .then(response => {
+                    this.loading = false
+
+                    if (response.status === 200) {
+                        this.endoTreatment = response.data
+
+                        this.checkFields()
+                    }
+                })
+                .catch(error => {
+                    this.loading = false
+
+                    this.response.message = error.response.data.message
+                    this.response.status = false
+
+                    utility.debug(error.response.data.debug)
+                })
+        },
 
         /**
-             * Εξαφάνιση του πεδίου
-             *
-             * @param field
-             */
+         * Update the Endo Treatment Card info
+         */
+        updateEndoTreatmentCard ()
+        {
+            this.loading = true
+
+            api.updateEndoTreatmentCard(this.endoTreatment, this.patientId)
+                .then(response => {
+                    this.loading = false
+
+                    this.response.message = 'Τα δεδομένα αποθηκεύτηκαν'
+                    this.response.status = true
+                })
+                .catch(error => {
+                    this.loading = false
+
+                    this.response.message = error.response.data.message
+                    this.response.status = false
+
+                    if (error.response.data.errors) {
+                        this.response.errors = error.response.data.errors
+                    }
+
+                    utility.debug(error.response.data.debug)
+                })
+        },
+
+        /**
+         * Check for fields. If not empty, display it
+         */
+        checkFields ()
+        {
+            Object.keys(this.endoTreatment).forEach(key => {
+                if (this.endoTreatment[key] === null || this.endoTreatment[key].length<1) {
+                    return
+                }
+
+                if (this.fields[key] === undefined) {
+                    return
+                }
+
+                this.fields[key].display = true
+            })
+        },
+
+        /**
+         * Εξαφάνιση του πεδίου
+         *
+         * @param field
+         */
         removeField (field) {
-            this.fields[field].display = false
+            field.display = false
         }
     }
 }
