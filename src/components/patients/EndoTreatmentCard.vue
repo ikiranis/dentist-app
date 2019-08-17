@@ -374,118 +374,96 @@ export default {
                 errors: []
             },
 
-            fields: [
-                {
-                    id: 0,
+            fields: {
+                automatic: {
                     label: 'Αυτόματος',
                     display: false
                 },
-                {
-                    id: 1,
+                challenged: {
                     label: 'Προκλητός',
                     display: false
                 },
-                {
-                    id: 2,
+                reason: {
                     label: 'Αιτία',
                     display: false
                 },
-                {
-                    id: 3,
+                duration: {
                     label: 'Διάρκεια',
                     display: false
                 },
-                {
-                    id: 4,
+                reduceToTheCold: {
                     label: 'Μείωση στο ψυχρό',
                     display: false
                 },
-                {
-                    id: 5,
+                historyEdema: {
                     label: 'Ιστορικό : Οίδημα',
                     display: false
                 },
-                {
-                    id: 6,
+                feelingOfToothElongation: {
                     label: 'Αίσθηση επιμήκυνησης δοντιού',
                     display: false
                 },
-                {
-                    id: 7,
+                fever: {
                     label: 'Πυρετός',
                     display: false
                 },
-                {
-                    id: 8,
+                lymphadenitis: {
                     label: 'Λεμφαδενίτιδα',
                     display: false
                 },
-                {
-                    id: 9,
+                others: {
                     label: 'Άλλα',
                     display: false
                 },
-                {
-                    id: 10,
+                previousAction: {
                     label: 'Προηγούμενη αγωγή',
                     display: false
                 },
-                {
-                    id: 11,
+                treatEdema: {
                     label: 'Κλινική εξέταση : Οίδημα',
                     display: false
                 },
-                {
-                    id: 12,
+                fistula: {
                     label: 'Συρίγγιο',
                     display: false
                 },
-                {
-                    id: 13,
+                tintOfAMill: {
                     label: 'Απόχρωση μύλης',
                     display: false
                 },
-                {
-                    id: 14,
+                revelationOfPulp: {
                     label: 'Αποκάλυψη πολφού',
                     display: false
                 },
-                {
-                    id: 15,
+                sensitivityToPalpationAtTheTip: {
                     label: 'Ευαισθησία στη ψηλάφηση ακρορριζικά',
                     display: false
                 },
-                {
-                    id: 16,
+                painInTheAttack: {
                     label: 'Πόνος στην επίκρουση',
                     display: false
                 },
-                {
-                    id: 17,
+                elation: {
                     label: 'Ευσειστότητα',
                     display: false
                 },
-                {
-                    id: 18,
+                vitality: {
                     label: 'Ζωτικότητα',
                     display: false
                 },
-                {
-                    id: 19,
+                periodontalTissues: {
                     label: 'Περιοδοντικοί ιστοί',
                     display: false
                 },
-                {
-                    id: 20,
+                radiographicExamination: {
                     label: 'Ακτινογραφική εξέταση',
                     display: false
                 },
-                {
-                    id: 21,
+                toothChoise: {
                     label: 'Επιλογή δοντιού',
                     display: false
                 }
-            ],
+            },
 
             endoTreatment: {
                 automatic: false,
