@@ -2,8 +2,13 @@
     <div class="container-fluid my-3">
         <div class="row justify-content-center">
 
-            <div class="col-12">
-                <h1>Απονεύρωση</h1>
+            <div class="row col-12">
+                <div class="col-lg col-12 my-auto">
+                    <h1>Απονεύρωση</h1>
+                </div>
+                <div class="col-lg col-12 row my-auto">
+                    <Loading class="ml-auto" :loading="loading"/>
+                </div>
             </div>
 
             <menu-bar brand="Ασθενής" :brandRoute="{ name: 'patient', params: { id: patientId } }"
@@ -13,11 +18,11 @@
 
             <div class="container">
 
-                <endo-treatment-card/>
+                <endo-treatment-card @loading="getLoading"/>
 
-                <diagnosis/>
+                <diagnosis @loading="getLoading"/>
 
-                <endo-treatment/>
+                <endo-treatment @loading="getLoading"/>
 
             </div>
 
@@ -30,9 +35,10 @@ import MenuBar from '@/components/basic/MenuBar'
 import EndoTreatmentCard from '@/components/patients/EndoTreatmentCard'
 import Diagnosis from '@/components/patients/Diagnosis'
 import EndoTreatment from '@/components/patients/EndoTreatment'
+import Loading from '@/components/basic/Loading'
 
 export default {
-    components: { MenuBar, EndoTreatmentCard, Diagnosis, EndoTreatment },
+    components: { MenuBar, EndoTreatmentCard, Diagnosis, EndoTreatment, Loading },
 
     data () {
         return {
@@ -41,6 +47,8 @@ export default {
                 status: '',
                 errors: []
             },
+
+            loading: false,
 
             menuItems: [
                 {
@@ -84,15 +92,20 @@ export default {
     },
 
     computed: {
-        // ...mapState(['loading']),
-
         patientId: function () {
             return this.$route.params.id
         }
     },
 
     methods: {
-    //
+        /**
+         * Get loading value from components
+         *
+         * @param loading
+         */
+        getLoading (loading) {
+            this.loading = loading
+        }
     }
 }
 </script>

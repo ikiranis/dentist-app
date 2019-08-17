@@ -27,10 +27,6 @@
         </div>
     </div>
 </template>
-        returnLoading ()
-        {
-            this.$emit('loading', this.loading)
-        },
 
 <script>
 import MenuBar from '@/components/basic/MenuBar'
@@ -93,14 +89,17 @@ export default {
     },
 
     computed: {
-        // ...mapState(['loading']),
-
         patientId: function () {
             return this.$route.params.id
         }
     },
 
     methods: {
+        /**
+         * Get loading value from components
+         *
+         * @param loading
+         */
         getLoading (loading) {
             this.loading = loading
         }
