@@ -20,9 +20,9 @@
 
                 <endo-treatment-card @loading="getLoading"/>
 
-                <diagnosis @loading="getLoading"/>
+<!--                <diagnosis @loading="getLoading"/>-->
 
-                <endo-treatment @loading="getLoading"/>
+<!--                <endo-treatment @loading="getLoading"/>-->
 
             </div>
 

@@ -255,7 +255,7 @@
 
                     <input id="revelationOfPulp" type="text" class="form-control"
                            v-model="endoTreatment.revelationOfPulp" maxlength="20"
-                           :disabled="endoTreatment.revelationOfPulpCheck ? disabled : ''">
+                           :disabled="endoTreatment.revelationOfPulpCheck ? 'disabled' : ''">
                     <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                           @click="removeField(fields.revelationOfPulp)"/>
                     <form-error v-if="response.errors.revelationOfPulp"
@@ -513,6 +513,10 @@ export default {
                 this.fields.reason.display ||
                 this.fields.duration.display ||
                 this.fields.reduceToTheCold.display)
+        },
+
+        patientId: function () {
+            return this.$route.params.id
         }
     },
 
