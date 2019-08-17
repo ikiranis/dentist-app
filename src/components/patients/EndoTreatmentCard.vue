@@ -25,7 +25,7 @@
                     </div>
 
                     <div class="card-body">
-                        <div class="input-group row mb-2" v-if="fields[0].display">
+                        <div class="input-group row mb-2" v-if="fields.automatic.display">
                             <div class="input-group-text">
                                 <input type="checkbox" id="automatic" v-model="endoTreatment.automatic">
                             </div>
@@ -35,10 +35,10 @@
                             </div>
 
                             <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
-                                                  @click="removeField(0)"/>
+                                                  @click="removeField(fields.automatic)"/>
                         </div>
 
-                        <div class="input-group row mb-2" v-if="fields[1].display">
+                        <div class="input-group row mb-2" v-if="fields.challenged.display">
                             <div class="input-group-text">
                                 <input type="checkbox" id="challenged" v-model="endoTreatment.challenged">
                             </div>
@@ -48,10 +48,10 @@
                             </div>
 
                             <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
-                                                  @click="removeField(1)"/>
+                                                  @click="removeField(fields.challenged)"/>
                         </div>
 
-                        <div class="input-group row mb-2" v-if="fields[2].display">
+                        <div class="input-group row mb-2" v-if="fields.reason.display">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
                                     <label for="reason" class="my-auto">Αιτία</label>
@@ -61,12 +61,12 @@
                             <input id="reason" type="text" class="form-control"
                                    v-model="endoTreatment.reason" maxlength="20">
                             <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
-                                                  @click="removeField(2)"/>
+                                                  @click="removeField(fields.reason)"/>
                             <form-error v-if="response.errors.reason"
                                         :error="response.errors.reason[0]"/>
                         </div>
 
-                        <div class="input-group row mb-2" v-if="fields[3].display">
+                        <div class="input-group row mb-2" v-if="fields.duration.display">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
                                     <label for="duration" class="my-auto">Διάρκεια</label>
@@ -76,12 +76,12 @@
                             <input id="duration" type="text" class="form-control"
                                    v-model="endoTreatment.duration" maxlength="20">
                             <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
-                                                  @click="removeField(3)"/>
+                                                  @click="removeField(fields.duration)"/>
                             <form-error v-if="response.errors.duration"
                                         :error="response.errors.duration[0]"/>
                         </div>
 
-                        <div class="input-group row mb-2" v-if="fields[4].display">
+                        <div class="input-group row mb-2" v-if="fields.reduceToTheCold.display">
                             <div class="input-group-text">
                                 <input type="checkbox" id="reduceToTheCold" v-model="endoTreatment.reduceToTheCold">
                             </div>
@@ -91,12 +91,12 @@
                             </div>
 
                             <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
-                                                  @click="removeField(4)"/>
+                                                  @click="removeField(fields.reduceToTheCold)"/>
                         </div>
                     </div>
                 </div>
 
-                <div class="input-group row mb-2" v-if="fields[5].display">
+                <div class="input-group row mb-2" v-if="fields.historyEdema.display">
                     <div class="input-group-text">
                         <input type="checkbox" id="historyEdema" v-model="endoTreatment.historyEdema">
                     </div>
@@ -106,10 +106,10 @@
                     </div>
 
                     <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
-                                          @click="removeField(5)"/>
+                                          @click="removeField(fields.historyEdema)"/>
                 </div>
 
-                <div class="input-group row mb-2" v-if="fields[6].display">
+                <div class="input-group row mb-2" v-if="fields.feelingOfToothElongation.display">
                     <div class="input-group-text">
                         <input type="checkbox" id="feelingOfToothElongation"
                                v-model="endoTreatment.feelingOfToothElongation">
@@ -120,10 +120,10 @@
                     </div>
 
                     <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
-                                          @click="removeField(6)"/>
+                                          @click="removeField(fields.feelingOfToothElongation)"/>
                 </div>
 
-                <div class="input-group row mb-2" v-if="fields[7].display">
+                <div class="input-group row mb-2" v-if="fields.fever.display">
                     <div class="input-group-text">
                         <input type="checkbox" id="fever" v-model="endoTreatment.fever">
                     </div>
@@ -133,10 +133,10 @@
                     </div>
 
                     <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
-                                          @click="removeField(7)"/>
+                                          @click="removeField(fields.fever)"/>
                 </div>
 
-                <div class="input-group row mb-2" v-if="fields[8].display">
+                <div class="input-group row mb-2" v-if="fields.lymphadenitis.display">
                     <div class="input-group-text">
                         <input type="checkbox" id="lymphadenitis" v-model="endoTreatment.lymphadenitis">
                     </div>
@@ -146,10 +146,10 @@
                     </div>
 
                     <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
-                                          @click="removeField(8)"/>
+                                          @click="removeField(fields.lymphadenitis)"/>
                 </div>
 
-                <div class="input-group row mb-2" v-if="fields[9].display">
+                <div class="input-group row mb-2" v-if="fields.others.display">
                     <div class="input-group-prepend">
                         <div class="input-group-text">
                             <label for="others" class="my-auto">Άλλα</label>
@@ -159,12 +159,12 @@
                     <input id="others" type="text" class="form-control"
                            v-model="endoTreatment.others" maxlength="20">
                     <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
-                                          @click="removeField(9)"/>
+                                          @click="removeField(fields.others)"/>
                     <form-error v-if="response.errors.others"
                                 :error="response.errors.others[0]"/>
                 </div>
 
-                <div class="input-group row mb-2" v-if="fields[10].display">
+                <div class="input-group row mb-2" v-if="fields.previousAction.display">
                     <div class="input-group-prepend">
                         <div class="input-group-text">
                             <label for="previousAction" class="my-auto">Προηγούμενη αγωγή</label>
@@ -174,7 +174,7 @@
                     <input id="previousAction" type="text" class="form-control"
                            v-model="endoTreatment.previousAction" maxlength="20">
                     <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
-                                          @click="removeField(10)"/>
+                                          @click="removeField(fields.previousAction)"/>
                     <form-error v-if="response.errors.previousAction"
                                 :error="response.errors.previousAction[0]"/>
                 </div>
@@ -187,7 +187,7 @@
                     <h3>Κλινική εξέταση</h3>
                 </div>
 
-                <div class="input-group row mb-2" v-if="fields[21].display">
+                <div class="input-group row mb-2" v-if="fields.toothChoise.display">
                     <div class="input-group-prepend">
                         <div class="input-group-text">
                             <label for="toothChoise" class="my-auto">Επιλογή δοντιού</label>
@@ -197,12 +197,12 @@
                     <input id="toothChoise" type="text" class="form-control"
                            v-model="endoTreatment.toothChoise" maxlength="20">
                     <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
-                                          @click="removeField(21)"/>
+                                          @click="removeField(fields.toothChoise)"/>
                     <form-error v-if="response.errors.toothChoise"
                                 :error="response.errors.toothChoise[0]"/>
                 </div>
 
-                <div class="input-group row mb-2" v-if="fields[11].display">
+                <div class="input-group row mb-2" v-if="fields.treatEdema.display">
                     <div class="input-group-text">
                         <input type="checkbox" id="treatEdema" v-model="endoTreatment.treatEdema">
                     </div>
@@ -212,10 +212,10 @@
                     </div>
 
                     <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
-                                          @click="removeField(11)"/>
+                                          @click="removeField(fields.treatEdema)"/>
                 </div>
 
-                <div class="input-group row mb-2" v-if="fields[12].display">
+                <div class="input-group row mb-2" v-if="fields.fistula.display">
                     <div class="input-group-text">
                         <input type="checkbox" id="fistula" v-model="endoTreatment.fistula">
                     </div>
@@ -225,10 +225,10 @@
                     </div>
 
                     <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
-                                          @click="removeField(12)"/>
+                                          @click="removeField(fields.fistula)"/>
                 </div>
 
-                <div class="input-group row mb-2" v-if="fields[13].display">
+                <div class="input-group row mb-2" v-if="fields.tintOfAMill.display">
                     <div class="input-group-text">
                         <input type="checkbox" id="tintOfAMill" v-model="endoTreatment.tintOfAMill">
                     </div>
@@ -238,10 +238,10 @@
                     </div>
 
                     <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
-                                          @click="removeField(13)"/>
+                                          @click="removeField(fields.tintOfAMill)"/>
                 </div>
 
-                <div class="input-group row mb-2" v-if="fields[14].display">
+                <div class="input-group row mb-2" v-if="fields.revelationOfPulp.display">
                     <div class="input-group-prepend">
                         <div class="input-group-text">
                             <input type="checkbox" id="revelationOfPulpCheck"
@@ -257,12 +257,12 @@
                            v-model="endoTreatment.revelationOfPulp" maxlength="20"
                            :disabled="endoTreatment.revelationOfPulpCheck ? disabled : ''">
                     <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
-                                          @click="removeField(14)"/>
+                                          @click="removeField(fields.revelationOfPulp)"/>
                     <form-error v-if="response.errors.revelationOfPulp"
                                 :error="response.errors.revelationOfPulp[0]"/>
                 </div>
 
-                <div class="input-group row mb-2" v-if="fields[15].display">
+                <div class="input-group row mb-2" v-if="fields.sensitivityToPalpationAtTheTip.display">
                     <div class="input-group-text">
                         <input type="checkbox" id="sensitivityToPalpationAtTheTip"
                                v-model="endoTreatment.sensitivityToPalpationAtTheTip">
@@ -274,10 +274,10 @@
                     </div>
 
                     <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
-                                          @click="removeField(15)"/>
+                                          @click="removeField(fields.sensitivityToPalpationAtTheTip)"/>
                 </div>
 
-                <div class="input-group row mb-2" v-if="fields[16].display">
+                <div class="input-group row mb-2" v-if="fields.painInTheAttack.display">
                     <div class="input-group-text">
                         <input type="checkbox" id="painInTheAttack" v-model="endoTreatment.painInTheAttack">
                     </div>
@@ -287,10 +287,10 @@
                     </div>
 
                     <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
-                                          @click="removeField(16)"/>
+                                          @click="removeField(fields.painInTheAttack)"/>
                 </div>
 
-                <div class="input-group row mb-2" v-if="fields[17].display">
+                <div class="input-group row mb-2" v-if="fields.elation.display">
                     <div class="input-group-text">
                         <input type="checkbox" id="elation" v-model="endoTreatment.elation">
                     </div>
@@ -300,10 +300,10 @@
                     </div>
 
                     <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
-                                          @click="removeField(17)"/>
+                                          @click="removeField(fields.elation)"/>
                 </div>
 
-                <div class="input-group row mb-2" v-if="fields[18].display">
+                <div class="input-group row mb-2" v-if="fields.vitality.display">
                     <div class="input-group-text">
                         <input type="checkbox" id="vitality" v-model="endoTreatment.vitality">
                     </div>
@@ -313,10 +313,10 @@
                     </div>
 
                     <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
-                                          @click="removeField(18)"/>
+                                          @click="removeField(fields.vitality)"/>
                 </div>
 
-                <div class="input-group row mb-2" v-if="fields[19].display">
+                <div class="input-group row mb-2" v-if="fields.periodontalTissues.display">
                     <div class="input-group-prepend">
                         <div class="input-group-text">
                             <label for="periodontalTissues" class="my-auto">Περιοδοντικοί ιστοί</label>
@@ -326,12 +326,12 @@
                     <input id="periodontalTissues" type="text" class="form-control"
                            v-model="endoTreatment.periodontalTissues" maxlength="20">
                     <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
-                                          @click="removeField(19)"/>
+                                          @click="removeField(fields.periodontalTissues)"/>
                     <form-error v-if="response.errors.periodontalTissues"
                                 :error="response.errors.periodontalTissues[0]"/>
                 </div>
 
-                <div class="input-group row mb-2" v-if="fields[20].display">
+                <div class="input-group row mb-2" v-if="fields.radiographicExamination.display">
                     <div class="input-group-prepend">
                         <div class="input-group-text">
                             <label for="radiographicExamination" class="my-auto">Ακτινογραφική εξέταση</label>
@@ -341,7 +341,7 @@
                     <input id="radiographicExamination" type="text" class="form-control"
                            v-model="endoTreatment.radiographicExamination" maxlength="20">
                     <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
-                                          @click="removeField(20)"/>
+                                          @click="removeField(fields.radiographicExamination)"/>
                     <form-error v-if="response.errors.radiographicExamination"
                                 :error="response.errors.radiographicExamination[0]"/>
                 </div>
