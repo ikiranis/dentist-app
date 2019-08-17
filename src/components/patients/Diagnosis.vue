@@ -275,71 +275,59 @@ export default {
                 errors: []
             },
 
-            fields: [
-                {
-                    id: 0,
+            fields: {
+                revelation: {
                     label: 'Αποκάλυψη',
                     display: false
                 },
-                {
-                    id: 1,
+                hyperemia: {
                     label: 'Υπεραιμία',
                     display: false
                 },
-                {
-                    id: 2,
+                acutePulpitis: {
                     label: 'Οξεία Πολφίτιδα',
                     display: false
                 },
-                {
-                    id: 3,
+                chronicPulpitis: {
                     label: 'Χρονία Πολφίτιδα',
                     display: false
                 },
-                {
-                    id: 4,
+                necrosis: {
                     label: 'Νέκρωση',
                     display: false
                 },
-                {
-                    id: 5,
+                abscess: {
                     label: 'Απόστημα',
                     display: false
                 },
-                {
-                    id: 6,
+                granulation: {
                     label: 'Κοκκίωμα',
                     display: false
                 },
-                {
-                    id: 7,
+                cyst: {
                     label: 'Κύστη',
                     display: false
                 },
-                {
-                    id: 8,
+                reactiveOsteoconduction: {
                     label: 'Αντιδραστική οστεοπύκνωση',
                     display: false
                 },
-                {
-                    id: 9,
+                endoPeriodontalDamage: {
                     label: 'Ενδοπεριοδοντική βλάβη',
                     display: false
                 },
-                {
-                    id: 10,
+                absorption: {
                     label: 'Απορρόφηση',
                     display: false
                 },
-                {
-                    id: 11,
+                fracture: {
                     label: 'Κάταγμα',
                     display: false
                 }
-            ],
+            },
 
             diagnosis: {
-                revelation: '',
+                revelation: null,
                 revelationCheck: false,
                 hyperemia: false,
                 acutePulpitis: false,
