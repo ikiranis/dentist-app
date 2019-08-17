@@ -341,12 +341,12 @@ export default {
                 granulation: false,
                 cyst: false,
                 reactiveOsteoconduction: false,
-                endoPeriodontalDamage: '',
+                endoPeriodontalDamage: null,
                 endoPeriodontalDamageCheck: false,
                 absorption: false,
                 innerAbsorption: false,
                 outerAbsorption: false,
-                fracture: '',
+                fracture: null,
                 fractureCheck: false
             }
         }
