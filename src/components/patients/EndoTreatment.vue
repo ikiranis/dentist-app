@@ -21,10 +21,11 @@
                     </div>
                 </div>
 
-                <select class="form-control" id="chozenRoot">
-                    <option v-for="root in roots"
+                <select class="form-control" id="chozenRoot" v-model="endoTreatment.root_id">
+                    <option v-for="root in endoTreatment.roots"
                             :key="root.id"
-                            :value="root.id">{{ root.name }}</option>
+                            :value="root.id"
+							v-if="root.id === endoTreatment.root_id">{{ root.name }}</option>
                 </select>
             </div>
 
@@ -92,10 +93,11 @@
                 <input id="benchmark" type="text" class="form-control"
                        v-model="endoTreatment.benchmark" maxlength="20">
 
-                <select class="form-control" id="chozenBenchmark">
-                    <option v-for="benchmark in benchmarks"
+                <select class="form-control" id="chozenBenchmark" v-model="endoTreatment.benchmark_id">
+                    <option v-for="benchmark in endoTreatment.benchmarks"
                             :key="benchmark.id"
-                            :value="benchmark.id">{{ benchmark.name }}
+                            :value="benchmark.id"
+							v-if="benchmark.id === endoTreatment.benchmark_id">{{ benchmark.name }}
                     </option>
                 </select>
 
@@ -142,9 +144,12 @@
                     </div>
                 </div>
 
-                <select class="form-control" id="chozenBlockingTechnique">
-                    <option value="0">Πλάγια</option>
-                    <option value="1">Θερμοπλαστική</option>
+                <select class="form-control" id="chozenBlockingTechnique" v-model="endoTreatment.blockingTechnique_id">
+					<option v-for="blockingTechnique in endoTreatment.blockingTechniques"
+							:key="blockingTechnique.id"
+							:value="blockingTechnique.id"
+							v-if="blockingTechnique.id === endoTreatment.blockingTechnique_id">{{ blockingTechnique.name }}
+					</option>
                 </select>
 
                 <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
@@ -264,98 +269,19 @@ export default {
             },
 
             endoTreatment: {
+            	root_id: 0,
+				roots: [],
                 counter: null,
                 radiography: null,
                 workingLength: null,
                 benchmark: null,
-                chozenBenchmark: 0,
+				benchmark_id: 0,
+				benchmarks: [],
                 MAF: null,
                 chemicalMechanicalTreatment: null,
-                chozenBlockingTechnique: 0,
-                chozenRoot: 0
+				blockingTechnique_id: 0,
+				blockingTechniques: []
             },
-
-            roots: [
-                {
-                    id: 0,
-                    name: 'Απερώια'
-                },
-                {
-                    id: 1,
-                    name: 'Προστομιακή'
-                },
-                {
-                    id: 2,
-                    name: 'Προστομιακή εγγύς'
-                },
-                {
-                    id: 3,
-                    name: 'Προστομιακή άπω'
-                },
-                {
-                    id: 4,
-                    name: '2η προσ. εγγύς'
-                },
-                {
-                    id: 5,
-                    name: 'Υπερώια'
-                },
-                {
-                    id: 6,
-                    name: 'Άπο γλωσσική'
-                },
-                {
-                    id: 7,
-                    name: 'Εγγύς γλωσσική'
-                },
-                {
-                    id: 8,
-                    name: 'Άπω προστομιακή'
-                },
-                {
-                    id: 9,
-                    name: 'Εγγύς προστομιακή'
-                }
-            ],
-
-            benchmarks: [
-                {
-                    id: 0,
-                    name: 'Κοπτικό χείλος'
-                },
-                {
-                    id: 1,
-                    name: 'Παρειακό φύμα'
-                },
-                {
-                    id: 2,
-                    name: 'Υπερώιο φύμα'
-                },
-                {
-                    id: 3,
-                    name: 'Εγγύς παρειακό'
-                },
-                {
-                    id: 4,
-                    name: 'Άπω παρειακό'
-                },
-                {
-                    id: 5,
-                    name: 'Εγγύς γλωσσικό'
-                },
-                {
-                    id: 6,
-                    name: 'Άπω γλωσσικό'
-                },
-                {
-                    id: 7,
-                    name: 'Εγγύς υπερώιο'
-                },
-                {
-                    id: 8,
-                    name: 'Άπω υπερώιο'
-                }
-            ],
 
             notes: [
                 {
