@@ -93,7 +93,6 @@
                 <input id="benchmark" type="text" class="form-control"
                        v-model="endoTreatment.benchmark" maxlength="20">
 
-				{{endoTreatment.benchmark_id}}
                 <select class="form-control" id="chozenBenchmark" v-model="endoTreatment.benchmark_id">
                     <option v-for="benchmark in endoTreatment.benchmarks"
                             :key="benchmark.id"
@@ -149,7 +148,7 @@
 					<option v-for="blockingTechnique in endoTreatment.blockingTechniques"
 							:key="blockingTechnique.id"
 							:value="blockingTechnique.id"
-							:selected="(blockingTechnique.id === endoTreatment.blockingTechnique_id) ? 'selected' : ''">{{ blockingTechnique.name }}
+							:selected="(blockingTechnique.id === endoTreatment.blocking_technique_id) ? 'selected' : ''">{{ blockingTechnique.name }}
 					</option>
                 </select>
 
