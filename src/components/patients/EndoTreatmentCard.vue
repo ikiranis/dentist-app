@@ -364,8 +364,8 @@
 <script>
 import FormError from '@/components/basic/FormError'
 import FieldsList from '@/components/patients/FieldsList'
-import utility from "../../library/utility";
-import api from "../../api";
+import utility from "../../library/utility"
+import api from "../../api"
 import DisplayError from '@/components/basic/DisplayError'
 
 export default {
