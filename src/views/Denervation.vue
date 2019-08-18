@@ -22,7 +22,7 @@
 
                 <diagnosis @loading="getLoading"/>
 
-<!--                <endo-treatment @loading="getLoading"/>-->
+                <endo-treatment @loading="getLoading"/>
 
             </div>
 

@@ -12,7 +12,7 @@
             Επιλογή πεδίων
         </div>
 
-        <form class="container col-lg-7 col-12 mt-3">
+        <form @submit.prevent class="container col-lg-7 col-12 mt-3">
 
             <div class="input-group row mb-2 mx-auto">
                 <div class="input-group-prepend">
@@ -22,16 +22,18 @@
                 </div>
 
                 <select class="form-control" id="chozenRoot">
-                    <option v-for="root in roots" :key="root.id" :value="root.id">{{ root.name }}</option>
+                    <option v-for="root in roots"
+                            :key="root.id"
+                            :value="root.id">{{ root.name }}</option>
                 </select>
             </div>
 
-            <div class="card mb-2 w-100 mx-auto" v-if="fields[0].display">
+            <div class="card mb-2 w-100 mx-auto" v-if="fields.counter.display">
                 <div class="card-header">
                     <span>Μήκος εργαλείου</span>
 
                     <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
-                                          @click="removeField(0)"/>
+                                          @click="removeField(fields.counter)"/>
                 </div>
 
                 <div class="card-body">
@@ -65,7 +67,7 @@
 
             </div>
 
-            <div class="input-group row mb-2 mx-auto" v-if="fields[1].display">
+            <div class="input-group row mb-2 mx-auto" v-if="fields.workingLength.display">
                 <div class="input-group-prepend">
                     <div class="input-group-text">
                         <label for="workingLength" class="my-auto">Μήκος εργασίας</label>
@@ -75,12 +77,12 @@
                 <input id="workingLength" type="text" class="form-control"
                        v-model="endoTreatment.workingLength" maxlength="10">
                 <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
-                                      @click="removeField(1)"/>
+                                      @click="removeField(fields.workingLength)"/>
                 <form-error v-if="response.errors.workingLength"
                             :error="response.errors.workingLength[0]"/>
             </div>
 
-            <div class="input-group row mb-2 mx-auto" v-if="fields[2].display">
+            <div class="input-group row mb-2 mx-auto" v-if="fields.benchmark.display">
                 <div class="input-group-prepend">
                     <div class="input-group-text">
                         <label for="benchmark" class="my-auto">Σημείο αναφοράς</label>
@@ -91,18 +93,19 @@
                        v-model="endoTreatment.benchmark" maxlength="20">
 
                 <select class="form-control" id="chozenBenchmark">
-                    <option v-for="benchmark in benchmarks" :key="benchmark.id" :value="benchmark.id">{{ benchmark.name
-                        }}
+                    <option v-for="benchmark in benchmarks"
+                            :key="benchmark.id"
+                            :value="benchmark.id">{{ benchmark.name }}
                     </option>
                 </select>
 
                 <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
-                                      @click="removeField(2)"/>
+                                      @click="removeField(fields.benchmark)"/>
                 <form-error v-if="response.errors.benchmark"
                             :error="response.errors.benchmark[0]"/>
             </div>
 
-            <div class="input-group row mb-2 mx-auto" v-if="fields[3].display">
+            <div class="input-group row mb-2 mx-auto" v-if="fields.MAF.display">
                 <div class="input-group-prepend">
                     <div class="input-group-text">
                         <label for="MAF" class="my-auto">MAF</label>
@@ -112,12 +115,12 @@
                 <input id="MAF" type="text" class="form-control"
                        v-model="endoTreatment.MAF" maxlength="10">
                 <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
-                                      @click="removeField(3)"/>
+                                      @click="removeField(fields.MAF)"/>
                 <form-error v-if="response.errors.MAF"
                             :error="response.errors.MAF[0]"/>
             </div>
 
-            <div class="input-group row mb-2 mx-auto" v-if="fields[4].display">
+            <div class="input-group row mb-2 mx-auto" v-if="fields.chemicalMechanicalTreatment.display">
                 <div class="input-group-prepend">
                     <div class="input-group-text">
                         <label for="chemicalMechanicalTreatment" class="my-auto">Χημικομηχανική επεξεργασία</label>
@@ -127,12 +130,12 @@
                 <input id="chemicalMechanicalTreatment" type="text" class="form-control"
                        v-model="endoTreatment.chemicalMechanicalTreatment" maxlength="10">
                 <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
-                                      @click="removeField(4)"/>
+                                      @click="removeField(fields.chemicalMechanicalTreatment)"/>
                 <form-error v-if="response.errors.chemicalMechanicalTreatment"
                             :error="response.errors.chemicalMechanicalTreatment[0]"/>
             </div>
 
-            <div class="input-group row mb-2 mx-auto" v-if="fields[5].display">
+            <div class="input-group row mb-2 mx-auto" v-if="fields.blockingTechnique.display">
                 <div class="input-group-prepend">
                     <div class="input-group-text">
                         <label for="chozenBlockingTechnique" class="my-auto">Τεχνική έφραξης</label>
@@ -145,10 +148,10 @@
                 </select>
 
                 <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
-                                      @click="removeField(5)"/>
+                                      @click="removeField(fields.blockingTechnique)"/>
             </div>
 
-            <div v-if="fields[6].display">
+            <div v-if="fields.notes.display">
                 <table class="table">
                     <thead>
                     <tr>
@@ -167,7 +170,7 @@
                     </tbody>
                 </table>
 
-                <form class="container-fluid">
+                <form @submit.prevent class="container-fluid">
 
                     <div class="form-group row">
                         <label for="date" class="col-md-4 col-form-label text-md-right">Ημ/νία</label>
@@ -200,8 +203,10 @@
 
         <div class="row" v-if="fieldSelected">
             <input type="submit" class="btn btn-success col-lg-6 col-12 my-3 mx-auto"
-                   @click="save()" value="Αποθήκευση">
+                   @click="updateEndoTreatment" value="Αποθήκευση">
         </div>
+
+        <display-error v-if="response.message" :response="response"/>
 
     </div>
 
@@ -210,9 +215,12 @@
 <script>
 import FormError from '@/components/basic/FormError'
 import FieldsList from '@/components/patients/FieldsList'
+import utility from "../../library/utility";
+import api from "../../api";
+import DisplayError from '@/components/basic/DisplayError'
 
 export default {
-    components: { FormError, FieldsList },
+    components: { FormError, FieldsList, DisplayError },
 
     data () {
         return {
@@ -221,6 +229,8 @@ export default {
                 status: '',
                 errors: []
             },
+
+            loading: false,
 
             fields: {
                 counter: {
@@ -380,26 +390,109 @@ export default {
     },
 
     computed: {
+        // Find if any field is selected. True if any
         fieldSelected () {
-            return this.fields.find((field) => {
+            return Object.values(this.fields).find((field) => {
                 return field.display
             })
+        },
+
+        patientId: function () {
+            return this.$route.params.id
         }
     },
 
-    methods: {
+    watch: {
+        loading() {
+            this.$emit('loading', this.loading)
+        }
+    },
 
+    created: function () {
+        this.getEndoTreatment()
+    },
+
+    methods: {
         /**
-             * Εξαφάνιση του πεδίου
-             *
-             * @param field
-             */
-        removeField (field) {
-            this.fields[field].display = false
+         * Get Endo Treatment info
+         */
+        getEndoTreatment ()
+        {
+            this.loading = true
+
+            api.getEndoTreatment(this.patientId)
+                .then(response => {
+                    this.loading = false
+
+                    if (response.status === 200) {
+                        this.endoTreatment = response.data
+
+                        this.checkFields()
+                    }
+                })
+                .catch(error => {
+                    this.loading = false
+
+                    this.response.message = error.response.data.message
+                    this.response.status = false
+
+                    utility.debug(error.response.data.debug)
+                })
         },
 
-        saveNote () {
-            alert('Saving...')
+        /**
+         * Update the Endo Treatment info
+         */
+        updateEndoTreatment ()
+        {
+            this.loading = true
+
+            api.updateEndoTreatment(this.endoTreatment, this.patientId)
+                .then(response => {
+                    this.loading = false
+
+                    this.response.message = 'Τα δεδομένα αποθηκεύτηκαν'
+                    this.response.status = true
+                })
+                .catch(error => {
+                    this.loading = false
+
+                    this.response.message = error.response.data.message
+                    this.response.status = false
+
+                    if (error.response.data.errors) {
+                        this.response.errors = error.response.data.errors
+                    }
+
+                    utility.debug(error.response.data.debug)
+                })
+        },
+
+        /**
+         * Check for fields. If not empty, display it
+         */
+        checkFields ()
+        {
+            Object.keys(this.endoTreatment).forEach(key => {
+                if (this.endoTreatment[key] === null || this.endoTreatment[key].length<1) {
+                    return
+                }
+
+                if (this.fields[key] === undefined) {
+                    return
+                }
+
+                this.fields[key].display = true
+            })
+        },
+
+        /**
+         * Εξαφάνιση του πεδίου
+         *
+         * @param field
+         */
+        removeField (field) {
+            field.display = false
         }
     }
 }

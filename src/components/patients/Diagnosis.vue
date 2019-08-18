@@ -192,7 +192,7 @@
 
                 <input id="endoPeriodontalDamage" type="text" class="form-control"
                        v-model="diagnosis.endoPeriodontalDamage" maxlength="20"
-                       :disabled="diagnosis.endoPeriodontalDamageCheck ? disabled : ''">
+                       :disabled="diagnosis.endoPeriodontalDamageCheck ? 'disabled' : ''">
                 <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                       @click="removeField(fields.endoPeriodontalDamage)"/>
                 <form-error v-if="response.errors.endoPeriodontalDamage"
