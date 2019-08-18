@@ -379,6 +379,8 @@ export default {
                 errors: []
             },
 
+            loading: false,
+
             fields: {
                 automatic: {
                     label: 'Αυτόματος',

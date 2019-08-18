@@ -11,9 +11,9 @@
             Επιλογή πεδίων
         </div>
 
-        <form class="row col-lg-7 col-12 mt-3 mx-auto">
+        <form @submit.prevent class="row col-lg-7 col-12 mt-3 mx-auto">
 
-            <div class="input-group row mb-2" v-if="fields[0].display">
+            <div class="input-group row mb-2" v-if="fields.revelation.display">
                 <div class="input-group-prepend">
                     <div class="input-group-text">
                         <input type="checkbox" id="revelationCheck" v-model="diagnosis.revelationCheck">
@@ -26,14 +26,14 @@
 
                 <input id="revelation" type="text" class="form-control"
                        v-model="diagnosis.revelation" maxlength="20"
-                       :disabled="diagnosis.revelationCheck ? disabled : ''">
+                       :disabled="diagnosis.revelationCheck ? 'disabled' : ''">
                 <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
-                                      @click="removeField(0)"/>
+                                      @click="removeField(fields.revelation)"/>
                 <form-error v-if="response.errors.revelation"
                             :error="response.errors.revelation[0]"/>
             </div>
 
-            <div class="input-group row mb-2" v-if="fields[1].display">
+            <div class="input-group row mb-2" v-if="fields.hyperemia.display">
                 <div class="input-group-text">
                     <input type="checkbox" id="hyperemia" v-model="diagnosis.hyperemia">
                 </div>
@@ -43,10 +43,10 @@
                 </div>
 
                 <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
-                                      @click="removeField(1)"/>
+                                      @click="removeField(fields.hyperemia)"/>
             </div>
 
-            <div class="input-group row mb-2" v-if="fields[2].display">
+            <div class="input-group row mb-2" v-if="fields.acutePulpitis.display">
                 <div class="input-group-text">
                     <input type="checkbox" id="acutePulpitis" v-model="diagnosis.acutePulpitis">
                 </div>
@@ -58,7 +58,7 @@
                 <div class="input-group-text">
                     <input type="radio" id="partialAcutePulpitis" name="acutePulpitisChecked"
                            value="partialAcutePulpitis"
-                           :disabled="diagnosis.acutePulpitis ? disabled : ''">
+                           :disabled="diagnosis.acutePulpitis ? 'disabled' : ''">
                 </div>
 
                 <div class="input-group-text">
@@ -68,7 +68,7 @@
                 <div class="input-group-text">
                     <input type="radio" id="universalAcutePulpitis" name="acutePulpitisChecked"
                            value="universalAcutePulpitis"
-                           :disabled="diagnosis.acutePulpitis ? disabled : ''">
+                           :disabled="diagnosis.acutePulpitis ? 'disabled' : ''">
                 </div>
 
                 <div class="input-group-text">
@@ -76,10 +76,10 @@
                 </div>
 
                 <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
-                                      @click="removeField(2)"/>
+                                      @click="removeField(fields.acutePulpitis)"/>
             </div>
 
-            <div class="input-group row mb-2" v-if="fields[3].display">
+            <div class="input-group row mb-2" v-if="fields.chronicPulpitis.display">
                 <div class="input-group-text">
                     <input type="checkbox" id="chronicPulpitis" v-model="diagnosis.chronicPulpitis">
                 </div>
@@ -91,7 +91,7 @@
                 <div class="input-group-text">
                     <input type="radio" id="ulceratingChronicPulpitis" name="chronicPulpitisChecked"
                            value="ulceratingChronicPulpitis"
-                           :disabled="diagnosis.chronicPulpitis ? disabled : ''">
+                           :disabled="diagnosis.chronicPulpitis ? 'disabled' : ''">
                 </div>
 
                 <div class="input-group-text">
@@ -101,7 +101,7 @@
                 <div class="input-group-text">
                     <input type="radio" id="superplasticChronicPulpitis" name="chronicPulpitisChecked"
                            value="superplasticChronicPulpitis"
-                           :disabled="diagnosis.chronicPulpitis ? disabled : ''">
+                           :disabled="diagnosis.chronicPulpitis ? 'disabled' : ''">
                 </div>
 
                 <div class="input-group-text">
@@ -109,10 +109,10 @@
                 </div>
 
                 <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
-                                      @click="removeField(3)"/>
+                                      @click="removeField(fields.chronicPulpitis)"/>
             </div>
 
-            <div class="input-group row mb-2" v-if="fields[4].display">
+            <div class="input-group row mb-2" v-if="fields.necrosis.display">
                 <div class="input-group-text">
                     <input type="checkbox" id="necrosis" v-model="diagnosis.necrosis">
                 </div>
@@ -122,10 +122,10 @@
                 </div>
 
                 <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
-                                      @click="removeField(4)"/>
+                                      @click="removeField(fields.necrosis)"/>
             </div>
 
-            <div class="input-group row mb-2" v-if="fields[5].display">
+            <div class="input-group row mb-2" v-if="fields.abscess.display">
                 <div class="input-group-text">
                     <input type="checkbox" id="abscess" v-model="diagnosis.abscess">
                 </div>
@@ -135,10 +135,10 @@
                 </div>
 
                 <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
-                                      @click="removeField(5)"/>
+                                      @click="removeField(fields.abscess)"/>
             </div>
 
-            <div class="input-group row mb-2" v-if="fields[6].display">
+            <div class="input-group row mb-2" v-if="fields.granulation.display">
                 <div class="input-group-text">
                     <input type="checkbox" id="granulation" v-model="diagnosis.granulation">
                 </div>
@@ -148,10 +148,10 @@
                 </div>
 
                 <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
-                                      @click="removeField(6)"/>
+                                      @click="removeField(fields.granulation)"/>
             </div>
 
-            <div class="input-group row mb-2" v-if="fields[7].display">
+            <div class="input-group row mb-2" v-if="fields.cyst.display">
                 <div class="input-group-text">
                     <input type="checkbox" id="cyst" v-model="diagnosis.cyst">
                 </div>
@@ -161,12 +161,13 @@
                 </div>
 
                 <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
-                                      @click="removeField(7)"/>
+                                      @click="removeField(fields.cyst)"/>
             </div>
 
-            <div class="input-group row mb-2" v-if="fields[8].display">
+            <div class="input-group row mb-2" v-if="fields.reactiveOsteoconduction.display">
                 <div class="input-group-text">
-                    <input type="checkbox" id="reactiveOsteoconduction" v-model="diagnosis.reactiveOsteoconduction">
+                    <input type="checkbox" id="reactiveOsteoconduction"
+                           v-model="diagnosis.reactiveOsteoconduction">
                 </div>
 
                 <div class="input-group-text col">
@@ -174,10 +175,10 @@
                 </div>
 
                 <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
-                                      @click="removeField(8)"/>
+                                      @click="removeField(fields.reactiveOsteoconduction)"/>
             </div>
 
-            <div class="input-group row mb-2" v-if="fields[9].display">
+            <div class="input-group row mb-2" v-if="fields.endoPeriodontalDamage.display">
                 <div class="input-group-prepend">
                     <div class="input-group-text">
                         <input type="checkbox" id="endoPeriodontalDamageCheck"
@@ -193,12 +194,12 @@
                        v-model="diagnosis.endoPeriodontalDamage" maxlength="20"
                        :disabled="diagnosis.endoPeriodontalDamageCheck ? disabled : ''">
                 <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
-                                      @click="removeField(9)"/>
+                                      @click="removeField(fields.endoPeriodontalDamage)"/>
                 <form-error v-if="response.errors.endoPeriodontalDamage"
                             :error="response.errors.endoPeriodontalDamage[0]"/>
             </div>
 
-            <div class="input-group row mb-2" v-if="fields[10].display">
+            <div class="input-group row mb-2" v-if="fields.absorption.display">
                 <div class="input-group-text">
                     <input type="checkbox" id="absorption" v-model="diagnosis.absorption">
                 </div>
@@ -210,7 +211,7 @@
                 <div class="input-group-text">
                     <input type="radio" id="innerAbsorption" name="absorptionChecked"
                            value="innerAbsorption"
-                           :disabled="diagnosis.absorption ? disabled : ''">
+                           :disabled="diagnosis.absorption ? 'disabled' : ''">
                 </div>
 
                 <div class="input-group-text">
@@ -220,7 +221,7 @@
                 <div class="input-group-text">
                     <input type="radio" id="outerAbsorption" name="absorptionChecked"
                            value="outerAbsorption"
-                           :disabled="diagnosis.absorption ? disabled : ''">
+                           :disabled="diagnosis.absorption ? 'disabled' : ''">
                 </div>
 
                 <div class="input-group-text">
@@ -228,10 +229,10 @@
                 </div>
 
                 <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
-                                      @click="removeField(10)"/>
+                                      @click="removeField(fields.absorption)"/>
             </div>
 
-            <div class="input-group row mb-2" v-if="fields[11].display">
+            <div class="input-group row mb-2" v-if="fields.fracture.display">
                 <div class="input-group-prepend">
                     <div class="input-group-text">
                         <input type="checkbox" id="fractureCheck" v-model="diagnosis.fractureCheck">
@@ -245,7 +246,7 @@
                 <input id="fracture" type="text" class="form-control"
                        v-model="diagnosis.fracture" maxlength="20">
                 <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
-                                      @click="removeField(11)"/>
+                                      @click="removeField(fields.fracture)"/>
                 <form-error v-if="response.errors.fracture"
                             :error="response.errors.fracture[0]"/>
             </div>
@@ -254,8 +255,10 @@
 
         <div class="row" v-if="fieldSelected">
             <input type="submit" class="btn btn-success col-lg-6 col-12 my-3 mx-auto"
-                   @click="save()" value="Αποθήκευση">
+                   @click="updateDiagnosis" value="Αποθήκευση">
         </div>
+
+        <display-error v-if="response.message" :response="response"/>
 
     </div>
 </template>
@@ -263,9 +266,12 @@
 <script>
 import FormError from '@/components/basic/FormError'
 import FieldsList from '@/components/patients/FieldsList'
+import utility from "../../library/utility";
+import api from "../../api";
+import DisplayError from '@/components/basic/DisplayError'
 
 export default {
-    components: { FormError, FieldsList },
+    components: { FormError, FieldsList, DisplayError },
 
     data () {
         return {
@@ -274,6 +280,8 @@ export default {
                 status: '',
                 errors: []
             },
+
+            loading: false,
 
             fields: {
                 revelation: {
@@ -353,22 +361,110 @@ export default {
     },
 
     computed: {
+        // Find if any field is selected. True if any
         fieldSelected () {
-            return this.fields.find((field) => {
+            return Object.values(this.fields).find((field) => {
                 return field.display
             })
+        },
+
+        patientId: function () {
+            return this.$route.params.id
         }
+    },
+
+    watch: {
+        loading() {
+            this.$emit('loading', this.loading)
+        }
+    },
+
+    created: function () {
+        this.getDiagnosis()
     },
 
     methods: {
 
         /**
-             * Εξαφάνιση του πεδίου
-             *
-             * @param field
-             */
+         * Get Diagnosis info
+         */
+        getDiagnosis ()
+        {
+            this.loading = true
+
+            api.getDiagnosis(this.patientId)
+                .then(response => {
+                    this.loading = false
+
+                    if (response.status === 200) {
+                        this.diagnosis = response.data
+
+                        this.checkFields()
+                    }
+                })
+                .catch(error => {
+                    this.loading = false
+
+                    this.response.message = error.response.data.message
+                    this.response.status = false
+
+                    utility.debug(error.response.data.debug)
+                })
+        },
+
+        /**
+         * Update the Diagnosis info
+         */
+        updateDiagnosis ()
+        {
+            this.loading = true
+
+            api.updateDiagnosis(this.diagnosis, this.patientId)
+                .then(response => {
+                    this.loading = false
+
+                    this.response.message = 'Τα δεδομένα αποθηκεύτηκαν'
+                    this.response.status = true
+                })
+                .catch(error => {
+                    this.loading = false
+
+                    this.response.message = error.response.data.message
+                    this.response.status = false
+
+                    if (error.response.data.errors) {
+                        this.response.errors = error.response.data.errors
+                    }
+
+                    utility.debug(error.response.data.debug)
+                })
+        },
+
+        /**
+         * Check for fields. If not empty, display it
+         */
+        checkFields ()
+        {
+            Object.keys(this.diagnosis).forEach(key => {
+                if (this.diagnosis[key] === null || this.diagnosis[key].length<1) {
+                    return
+                }
+
+                if (this.fields[key] === undefined) {
+                    return
+                }
+
+                this.fields[key].display = true
+            })
+        },
+
+        /**
+         * Εξαφάνιση του πεδίου
+         *
+         * @param field
+         */
         removeField (field) {
-            this.fields[field].display = false
+            field.display = false
         }
     }
 }
