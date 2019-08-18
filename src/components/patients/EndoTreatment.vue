@@ -25,7 +25,7 @@
                     <option v-for="root in endoTreatment.roots"
                             :key="root.id"
                             :value="root.id"
-							v-if="root.id === endoTreatment.root_id">{{ root.name }}</option>
+							:selected="(root.id === endoTreatment.root_id) ? 'selected' : ''">{{ root.name }}</option>
                 </select>
             </div>
 
@@ -93,11 +93,12 @@
                 <input id="benchmark" type="text" class="form-control"
                        v-model="endoTreatment.benchmark" maxlength="20">
 
+				{{endoTreatment.benchmark_id}}
                 <select class="form-control" id="chozenBenchmark" v-model="endoTreatment.benchmark_id">
                     <option v-for="benchmark in endoTreatment.benchmarks"
                             :key="benchmark.id"
                             :value="benchmark.id"
-							v-if="benchmark.id === endoTreatment.benchmark_id">{{ benchmark.name }}
+							:selected="(benchmark.id === endoTreatment.benchmark_id) ? 'selected' : ''">{{ benchmark.name }}
                     </option>
                 </select>
 
@@ -144,11 +145,11 @@
                     </div>
                 </div>
 
-                <select class="form-control" id="chozenBlockingTechnique" v-model="endoTreatment.blockingTechnique_id">
+                <select class="form-control" id="chozenBlockingTechnique" v-model="endoTreatment.blocking_technique_id">
 					<option v-for="blockingTechnique in endoTreatment.blockingTechniques"
 							:key="blockingTechnique.id"
 							:value="blockingTechnique.id"
-							v-if="blockingTechnique.id === endoTreatment.blockingTechnique_id">{{ blockingTechnique.name }}
+							:selected="(blockingTechnique.id === endoTreatment.blockingTechnique_id) ? 'selected' : ''">{{ blockingTechnique.name }}
 					</option>
                 </select>
 
@@ -279,7 +280,7 @@ export default {
 				benchmarks: [],
                 MAF: null,
                 chemicalMechanicalTreatment: null,
-				blockingTechnique_id: 0,
+				blocking_technique_id: 0,
 				blockingTechniques: []
             },
 
