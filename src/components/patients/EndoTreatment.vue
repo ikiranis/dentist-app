@@ -384,9 +384,33 @@ export default {
             field.display = false
         },
 
+        /**
+         * Get all treatment notes for patientId
+         */
         getTreatmentNotes()
         {
-        //
+            this.loading = true
+
+            api.getTreatmentNotes(this.patientId)
+                .then(response => {
+                    this.loading = false
+
+                    if (response.status === 200) {
+                        this.endoTreatment.notes = response.data
+
+                        return
+                    }
+
+                    this.endoTreatment.notes = []
+                })
+                .catch(error => {
+                    this.loading = false
+
+                    this.response.message = error.response.data.message
+                    this.response.status = false
+
+                    utility.debug(error.response.data.debug)
+                })
         },
 
         /**
