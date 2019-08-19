@@ -157,24 +157,8 @@
             </div>
 
             <div v-if="fields.notes.display">
-                <table class="table">
-                    <thead>
-                    <tr>
-                        <th scope="col">Ημ/νία</th>
-                        <th scope="col">Περιγραφή</th>
-                    </tr>
-                    </thead>
 
-                    <tbody v-for="note in endoTreatment.notes" :key="note.id">
-                    <tr>
-                        <th scope="row">{{ note.date }}</th>
-                        <td>
-                            {{ note.description }}
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-
+                <notes-list :notes="endoTreatment.notes"/>
 
                 <div class="input-group">
 
@@ -211,12 +195,13 @@
 <script>
 import FormError from '@/components/basic/FormError'
 import FieldsList from '@/components/patients/FieldsList'
+import NotesList from '@/components/patients/NotesList'
 import utility from "../../library/utility";
 import api from "../../api";
 import DisplayError from '@/components/basic/DisplayError'
 
 export default {
-    components: { FormError, FieldsList, DisplayError },
+    components: { FormError, FieldsList, DisplayError, NotesList },
 
     data () {
         return {
@@ -277,8 +262,8 @@ export default {
 
             note: {
                 id: 0,
-                date: '',
-                description: ''
+                date: null,
+                description: null
             }
 
         }
