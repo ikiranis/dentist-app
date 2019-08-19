@@ -2,6 +2,24 @@
 
     <div>
 
+        <b-modal ref="noteModal" size="md" centered hide-footer title="Εισαγωγή σημείωσης">
+            <div class="form-group row">
+                <label for="description" class="col-md-4 col-form-label text-md-right">Περιγραφή</label>
+                <div class="col-md-8">
+                    <input id="description" type="text" class="form-control"
+                           v-model="note.description" required>
+                    <form-error v-if="response.errors.description"
+                                :error="response.errors.description[0]"/>
+                </div>
+            </div>
+
+            <div class="row">
+                <input type="submit"
+                       class="btn btn-success col-lg-6 col-12 my-3 mx-auto"
+                       @click="saveNote" value="Αποθήκευση">
+            </div>
+        </b-modal>
+
         <div class="col-12 text-center">
             <h1>Ενδοδοντική θεραπεία</h1>
         </div>
@@ -160,21 +178,9 @@
 
                 <notes-list :notes="endoTreatment.notes"/>
 
-                <div class="input-group">
-
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">
-                            <label for="description" class="my-auto">Περιγραφή</label>
-                        </div>
-                    </div>
-
-                    <input id="description" type="text" class="form-control"
-                           v-model="note.description" required maxlength="100">
-                    <form-error v-if="response.errors.description" :error="response.errors.description[0]"/>
-
-                    <input type="submit"
-                           class="form-control btn btn-success"
-                           @click="saveNote" value="Εισαγωγή Σημείωσης">
+                <div class="row" v-if="!loading">
+                    <input type="submit" class="btn btn-success col-lg-6 col-12 my-3 mx-auto"
+                           @click="newNote" value="Εισαγωγή σημείωσης">
                 </div>
 
             </div>
@@ -379,6 +385,15 @@ export default {
         saveNote ()
         {
         //
+        },
+
+        /**
+         * Display event modal
+         */
+        newNote ()
+        {
+            this.note = { id: 0 }
+            this.$refs.noteModal.show()
         }
     }
 }
