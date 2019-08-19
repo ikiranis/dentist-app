@@ -485,6 +485,39 @@ let api = {
      */
     async updateEndoTreatment (args, patientId) {
         return axios.patch(ROOT_API + '/endoTreatment/' + patientId, args)
+    },
+
+    // ************** Treatment Notes api calls **************
+
+    /**
+     * Create a note
+     *
+     * @param args
+     * @returns {Promise<AxiosResponse<T>>}
+     */
+    async createTreatmentNote (args) {
+        return axios.post(ROOT_API + '/treatmentNote', args)
+    },
+
+    /**
+     * Update a note
+     *
+     * @param args
+     * @param treatmentNoteId
+     * @returns {Promise<Promise<AxiosResponse<T>>>}
+     */
+    async updateTreatmentNote (args, treatmentNoteId) {
+        return axios.patch(ROOT_API + '/treatmentNote/' + treatmentNoteId, args)
+    },
+
+    /**
+     * Delete a note
+     *
+     * @param treatmentNoteId
+     * @returns {Promise<Promise<AxiosResponse<T>>>}
+     */
+    async deleteTreatmentNote (treatmentNoteId) {
+        return axios.delete(ROOT_API + '/treatmentNote/' + treatmentNoteId)
     }
 }
 
