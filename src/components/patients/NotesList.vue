@@ -7,6 +7,7 @@
         <table class="table">
             <thead>
             <tr>
+				<th scope="col"></th>
                 <th scope="col">Ημ/νία</th>
                 <th scope="col">Περιγραφή</th>
             </tr>
@@ -14,7 +15,13 @@
 
             <tbody v-for="note in props.notes" :key="note.id">
             <tr>
-                <th scope="row">{{ note.date }}</th>
+				<td>
+					<delete class="btn-icon"
+							@click="listeners.clickDelete(note.id)"
+							title="Διαγραφή σημείωσης"/>
+				</td>
+                <th scope="row">
+					<a href="#" class="px-2" @click="listeners.clickUpdate(note.id)">{{ note.date }}</a></th>
                 <td>
                     {{ note.description }}
                 </td>

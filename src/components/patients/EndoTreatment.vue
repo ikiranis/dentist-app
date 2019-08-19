@@ -2,7 +2,7 @@
 
     <div>
 
-        <b-modal ref="noteModal" size="md" centered hide-footer title="Εισαγωγή σημείωσης">
+        <b-modal ref="noteModal" size="md" centered hide-footer :title="noteTitle">
             <div class="form-group row">
                 <label for="description" class="col-md-4 col-form-label text-md-right">Περιγραφή</label>
                 <div class="col-md-8">
@@ -176,7 +176,9 @@
 
             <div v-if="fields.notes.display">
 
-                <notes-list :notes="endoTreatment.notes"/>
+                <notes-list :notes="endoTreatment.notes"
+							@clickDelete="deleteTreatmentNote"
+							@clickUpdate="getTreatmentNote" />
 
                 <div class="row" v-if="!loading">
                     <input type="submit" class="btn btn-success col-lg-6 col-12 my-3 mx-auto"
@@ -272,7 +274,9 @@ export default {
                 patient_id: 0,
                 date: null,
                 description: null
-            }
+            },
+
+			noteTitle: ''
 
         }
     },
@@ -413,6 +417,18 @@ export default {
                 })
         },
 
+		/**
+		 * Display note for edit
+		 */
+		getTreatmentNote (treatmentNoteId) {
+			this.note = this.endoTreatment.notes.find((note) => {
+				return note.id === treatmentNoteId
+			})
+
+			this.noteTitle = 'Ενημέρωση σημείωσης'
+			this.$refs.noteModal.show()
+		},
+
         /**
          * Create a note
          */
@@ -527,6 +543,7 @@ export default {
                 date: moment(new Date()).format('YYYY-MM-DD')
             }
 
+			this.noteTitle = 'Εισαγωγή σημείωσης'
             this.$refs.noteModal.show()
         }
     }
