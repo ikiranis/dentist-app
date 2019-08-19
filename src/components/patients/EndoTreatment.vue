@@ -382,17 +382,39 @@ export default {
             field.display = false
         },
 
-        saveNote ()
+        createNote ()
         {
         //
         },
 
+        updateNote ()
+        {
+
+        },
+
         /**
-         * Display event modal
+         * Run the appropriate save action
+         */
+        saveNote ()
+        {
+            if (this.note.id === 0) {
+                this.createNote()
+                return
+            }
+
+            this.updateNote()
+        },
+
+        /**
+         * Display note modal
          */
         newNote ()
         {
-            this.note = { id: 0 }
+            this.note = {
+                id: 0,
+                date: moment(new Date()).format('YYYY-MM-DD')
+            }
+
             this.$refs.noteModal.show()
         }
     }
