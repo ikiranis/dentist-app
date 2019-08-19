@@ -382,14 +382,99 @@ export default {
             field.display = false
         },
 
-        createNote ()
+        getTreatmentNotes()
         {
         //
         },
 
-        updateNote ()
+        /**
+         * Create a note
+         */
+        createTreatmentNote ()
         {
+            this.loading = true
 
+            api.createTreatmentNote(this.note)
+                .then(response => {
+                    this.loading = false
+
+                    this.response.message = 'Η σημείωση αποθηκεύτηκε'
+                    this.response.status = true
+
+                    this.$refs.transactionModal.hide()
+
+                    this.getTreatmentNotes()
+                })
+                .catch(error => {
+                    this.loading = false
+
+                    this.response.message = error.response.data.message
+                    this.response.status = false
+
+                    if (error.response.data.errors) {
+                        this.response.errors = error.response.data.errors
+                    }
+
+                    utility.debug(error.response.data.debug)
+                })
+        },
+
+        /**
+         * Update a note
+         */
+        updateTreatmentNote ()
+        {
+            this.loading = true
+
+            api.updateTreatmentNote(this.note, this.note.id)
+                .then(response => {
+                    this.loading = false
+
+                    this.response.message = 'Η σημείωση ενημερώθηκε'
+                    this.response.status = true
+
+                    this.$refs.transactionModal.hide()
+
+                    this.getTreatmentNotes()
+                })
+                .catch(error => {
+                    this.loading = false
+
+                    this.response.message = error.response.data.message
+                    this.response.status = false
+
+                    if (error.response.data.errors) {
+                        this.response.errors = error.response.data.errors
+                    }
+
+                    utility.debug(error.response.data.debug)
+                })
+        },
+
+        /**
+         * Delete a transaction
+         */
+        deleteTreatmentNote (treatmentNoteId) {
+            let choise = confirm('Θέλεις σίγουρα να σβήσεις την σημείωση με id: ' + treatmentNoteId + ';')
+
+            if (choise) {
+                this.loading = true
+
+                api.deleteTreatmentNote(treatmentNoteId)
+                    .then(response => {
+                        this.loading = false
+
+                        this.getTreatmentNotes()
+                    })
+                    .catch(error => {
+                        this.loading = false
+
+                        this.response.message = error.response.data.message
+                        this.response.status = false
+
+                        utility.debug(error.response.data.debug)
+                    })
+            }
         },
 
         /**
@@ -398,11 +483,11 @@ export default {
         saveNote ()
         {
             if (this.note.id === 0) {
-                this.createNote()
+                this.createTreatmentNote()
                 return
             }
 
-            this.updateNote()
+            this.updateTreatmentNote()
         },
 
         /**
