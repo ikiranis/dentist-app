@@ -490,6 +490,15 @@ let api = {
     // ************** Treatment Notes api calls **************
 
     /**
+     * Get all notes
+     *
+     * @returns {Promise<void>}
+     */
+    async getTreatmentNotes (patientId) {
+        return axios.get(ROOT_API + '/treatmentNotes/' + patientId)
+    },
+
+    /**
      * Create a note
      *
      * @param args

@@ -205,6 +205,7 @@ import NotesList from '@/components/patients/NotesList'
 import utility from "../../library/utility";
 import api from "../../api";
 import DisplayError from '@/components/basic/DisplayError'
+import moment from 'moment'
 
 export default {
     components: { FormError, FieldsList, DisplayError, NotesList },
@@ -268,6 +269,7 @@ export default {
 
             note: {
                 id: 0,
+                patient_id: 0,
                 date: null,
                 description: null
             }
@@ -401,7 +403,7 @@ export default {
                     this.response.message = 'Η σημείωση αποθηκεύτηκε'
                     this.response.status = true
 
-                    this.$refs.transactionModal.hide()
+                    this.$refs.noteModal.hide()
 
                     this.getTreatmentNotes()
                 })
@@ -433,7 +435,7 @@ export default {
                     this.response.message = 'Η σημείωση ενημερώθηκε'
                     this.response.status = true
 
-                    this.$refs.transactionModal.hide()
+                    this.$refs.noteModal.hide()
 
                     this.getTreatmentNotes()
                 })
@@ -497,6 +499,7 @@ export default {
         {
             this.note = {
                 id: 0,
+                patient_id: this.patientId,
                 date: moment(new Date()).format('YYYY-MM-DD')
             }
 
