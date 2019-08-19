@@ -165,7 +165,7 @@
                     </tr>
                     </thead>
 
-                    <tbody v-for="note in notes" :key="note.id">
+                    <tbody v-for="note in endoTreatment.notes" :key="note.id">
                     <tr>
                         <th scope="row">{{ note.date }}</th>
                         <td>
@@ -175,33 +175,24 @@
                     </tbody>
                 </table>
 
-                <form @submit.prevent class="container-fluid">
 
-                    <div class="form-group row">
-                        <label for="date" class="col-md-4 col-form-label text-md-right">Ημ/νία</label>
-                        <div class="col-md-8">
-                            <input id="date" type="date" class="form-control"
-                                   v-model="note.date">
-                            <form-error v-if="response.errors.date" :error="response.errors.date[0]"/>
+                <div class="input-group">
+
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <label for="description" class="my-auto">Περιγραφή</label>
                         </div>
                     </div>
 
-                    <div class="form-group row">
-                        <label for="description" class="col-md-4 col-form-label text-md-right">Περιγραφή</label>
-                        <div class="col-md-8">
-                            <input id="description" type="text" class="form-control"
-                                   v-model="note.description" required>
-                            <form-error v-if="response.errors.description" :error="response.errors.description[0]"/>
-                        </div>
-                    </div>
+                    <input id="description" type="text" class="form-control"
+                           v-model="note.description" required maxlength="100">
+                    <form-error v-if="response.errors.description" :error="response.errors.description[0]"/>
 
-                    <div class="row">
-                        <button class="btn btn-success col-lg-6 col-12 my-3 mx-auto" @click="saveNote">Εισαγωγή
-                            Σημείωσης
-                        </button>
-                    </div>
+                    <input type="submit"
+                           class="form-control btn btn-success"
+                           @click="saveNote" value="Εισαγωγή Σημείωσης">
+                </div>
 
-                </form>
             </div>
 
         </form>
@@ -280,31 +271,9 @@ export default {
                 MAF: null,
                 chemicalMechanicalTreatment: null,
 				blocking_technique_id: 0,
-				blockingTechniques: []
+				blockingTechniques: [],
+                notes: []
             },
-
-            notes: [
-                {
-                    id: 0,
-                    date: '12/01/2019',
-                    description: 'something'
-                },
-                {
-                    id: 1,
-                    date: '22/01/2019',
-                    description: 'something about something'
-                },
-                {
-                    id: 2,
-                    date: '13/02/2019',
-                    description: 'something for something'
-                },
-                {
-                    id: 3,
-                    date: '25/03/2019',
-                    description: 'somethings about somethings'
-                }
-            ],
 
             note: {
                 id: 0,
@@ -417,8 +386,14 @@ export default {
          *
          * @param field
          */
-        removeField (field) {
+        removeField (field)
+        {
             field.display = false
+        },
+
+        saveNote ()
+        {
+        //
         }
     }
 }
