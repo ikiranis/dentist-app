@@ -3,6 +3,7 @@
         <table class="table table-hover">
             <thead>
             <tr>
+                <th scope="col"></th>
                 <th scope="col">Μικρογραφία</th>
                 <th scope="col">Αρχείο</th>
                 <th scope="col">Περιγραφή</th>
@@ -13,11 +14,16 @@
 
             <tbody v-for="file in props.files" :key="file.id">
             <tr>
+                <td>
+                    <delete class="btn-icon"
+                            @click="listeners.clickDelete(file.id)"
+                            title="Διαγραφή αρχείου"/>
+                </td>
                 <th scope="row" class="text-center">
                     <img :src="file.thumbnail">
                 </th>
                 <td class="align-middle">
-                    {{ file.filename }}
+                    <a href="#" class="px-2" @click="listeners.clickUpdate(file.id)">{{ file.filename }}</a>
                 </td>
                 <td class="align-middle">
                     {{ file.description }}
