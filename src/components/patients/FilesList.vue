@@ -14,7 +14,7 @@
 
             <tbody v-for="file in props.files" :key="file.id">
             <tr>
-                <td>
+                <td class="align-middle">
                     <delete class="btn-icon"
                             @click="listeners.clickDelete(file.id)"
                             title="Διαγραφή αρχείου"/>
