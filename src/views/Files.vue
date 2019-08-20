@@ -1,7 +1,7 @@
 <template>
     <div class="container-fluid my-3">
 
-        <b-modal ref="fileModal" size="md" centered hide-footer title="Εισαγωγή αρχείου">
+        <b-modal ref="fileModal" size="md" centered hide-footer :title="fileTitle">
 
             <form class="container-fluid">
 
@@ -30,8 +30,13 @@
 
         <div class="row justify-content-center">
 
-            <div class="col-12">
-                <h1>Αρχεία</h1>
+            <div class="row col-12">
+                <div class="col-lg col-12 my-auto">
+                    <h1>Αρχεία</h1>
+                </div>
+                <div class="col-lg col-12 row my-auto">
+                    <Loading class="ml-auto" :loading="loading"/>
+                </div>
             </div>
 
             <menu-bar brand="Ασθενής" :brandRoute="{ name: 'patient', params: { id: patientId } }"
@@ -50,66 +55,52 @@
 
             </form>
 
-            <div class="alert alert-success text-center w-50 mt-5 mx-auto" v-if="!files.length">
+            <div class="alert alert-success text-center w-50 mt-5 mx-auto" v-if="!files.length && !loading">
                 Δεν βρέθηκαν αρχεία
             </div>
 
             <div class="container mt-4" v-if="files.length">
 
-                <table class="table table-hover">
-                    <thead>
-                    <tr>
-                        <th scope="col">Μικρογραφία</th>
-                        <th scope="col">Αρχείο</th>
-                        <th scope="col">Περιγραφή</th>
-                        <th scope="col">Ημ/νία</th>
-                        <th scope="col">Μέγεθος</th>
-                    </tr>
-                    </thead>
-
-                    <tbody v-for="file in files" :key="file.id">
-                    <tr>
-                        <th scope="row" class="text-center">
-                            <img :src="file.thumbnail">
-                        </th>
-                        <td class="align-middle">
-                            {{ file.filename }}
-                        </td>
-                        <td class="align-middle">
-                            {{ file.description }}
-                        </td>
-                        <td class="align-middle">
-                            {{ file.date }}
-                        </td>
-                        <td class="align-middle">
-                            {{ file.size }} kb
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+                <files-list :files="files"
+                        @clickDelete="deleteFile"
+                        @clickUpdate="getFile" />
 
             </div>
 
             <div class="row w-100">
                 <input type="button" class="btn btn-success col-lg-6 col-12 my-3 mx-auto"
-                       @click="newFile()" value="Εισαγωγή αρχείου">
+                       @click="newFile" value="Εισαγωγή αρχείου">
             </div>
 
         </div>
+
+        <div class="row">
+            <display-error class="mx-auto"
+                           v-if="response.message"
+                           :response="response"/>
+        </div>
+
     </div>
 </template>
 
 <script>
 import MenuBar from '@/components/basic/MenuBar'
 import FormError from '@/components/basic/FormError'
+import DisplayError from '@/components/basic/DisplayError'
+import Loading from '@/components/basic/Loading'
+import FilesList from '@/components/patients/FilesList'
+import utility from '../library/utility'
+import api from "../api";
 
 export default {
-    components: { MenuBar, FormError },
+    components: { MenuBar, FormError, DisplayError, Loading, FilesList },
 
     data () {
         return {
 
             search: '',
+
+            loading: false,
 
             response: {
                 message: '',
@@ -119,11 +110,11 @@ export default {
 
             file: {
                 id: 0,
-                thumbnail: '',
-                filename: '',
-                description: '',
-                date: '',
-                size: ''
+                patient_id: 0,
+                thumbnail: null,
+                filename: null,
+                description: null,
+                size: 0
             },
 
             menuItems: [
@@ -164,72 +155,183 @@ export default {
                 }
             ],
 
-            files: [
-                {
-                    id: 0,
-                    thumbnail: 'https://picsum.photos/50',
-                    filename: 'something',
-                    description: 'something about something else',
-                    date: '01/10/2018',
-                    size: '156'
-                },
-                {
-                    id: 1,
-                    thumbnail: 'https://picsum.photos/50',
-                    filename: 'something',
-                    description: 'something about something else',
-                    date: '01/10/2018',
-                    size: '156'
-                },
-                {
-                    id: 2,
-                    thumbnail: 'https://picsum.photos/50',
-                    filename: 'something',
-                    description: 'something about something else',
-                    date: '01/10/2018',
-                    size: '156'
-                },
-                {
-                    id: 3,
-                    thumbnail: 'https://picsum.photos/50',
-                    filename: 'something',
-                    description: 'something about something else',
-                    date: '01/10/2018',
-                    size: '156'
-                }
-            ]
+            files: [],
+
+            fileTitle: ''
 
         }
     },
 
     computed: {
-        // ...mapState(['loading']),
-
         patientId: function () {
             return this.$route.params.id
         }
     },
 
+    created: function () {
+        this.getFiles(null)
+    },
+
     methods: {
 
-        newFile () {
+        /**
+         * Get all the files
+         *
+         * @param page
+         */
+        getFiles (page)
+        {
+            this.loading = true
+
+            api.getFiles(this.patientId)
+                .then(response => {
+                    this.loading = false
+
+                    if (response.status === 200) {
+                        this.files = response.data
+
+                        window.scrollTo(0, 0)
+
+                        return
+                    }
+
+                    this.files = []
+                })
+                .catch(error => {
+                    this.loading = false
+
+                    this.response.message = error.response.data.message
+                    this.response.status = false
+
+                    utility.debug(error.response.data.debug)
+                })
+        },
+
+        /**
+         * Display file for edit
+         */
+        getFile (fileId) {
+            this.file = this.files.find((file) => {
+                return file.id === fileId
+            })
+
+            this.filetTitle = 'Ενημέρωση αρχείου'
             this.$refs.fileModal.show()
         },
 
-        uploadFile () {
-            //
+        /**
+         * Display file modal
+         */
+        newFile ()
+        {
+            this.file = {
+                id: 0,
+                patient_id: this.patientId
+            }
+
+            this.fileTitle = 'Εισαγωγή αρχείου'
+            this.$refs.fileModal.show()
         },
 
-        saveFile () {
-            //
+        /**
+         * Run the appropriate save action
+         */
+        saveFile ()
+        {
+            if (this.file.id === 0) {
+                this.createFile()
+                return
+            }
+
+            this.updateFile()
         },
 
-        searchText () {
+        /**
+         * Create a file
+         */
+        createFile () {
+            this.loading = true
 
+            api.createFile(this.file)
+                .then(response => {
+                    this.loading = false
+
+                    this.response.message = 'Το αρχείο αποθηκεύτηκε'
+                    this.response.status = true
+
+                    this.$refs.fileModal.hide()
+
+                    this.getFiles(null)
+                })
+                .catch(error => {
+                    this.loading = false
+
+                    this.response.message = error.response.data.message
+                    this.response.status = false
+
+                    if (error.response.data.errors) {
+                        this.response.errors = error.response.data.errors
+                    }
+
+                    utility.debug(error.response.data.debug)
+                })
         },
 
-        clearSearch () {
+        /**
+         * Update the file
+         */
+        updateTreatment () {
+            this.loading = true
 
+            api.updateFile(this.file, this.file.id)
+                .then(response => {
+                    this.loading = false
+
+                    this.response.message = 'Το αρχείο ενημερώθηκε'
+                    this.response.status = true
+
+                    this.$refs.fileModal.hide()
+
+                    this.getFiles(null)
+                })
+                .catch(error => {
+                    this.loading = false
+
+                    this.response.message = error.response.data.message
+                    this.response.status = false
+
+                    if (error.response.data.errors) {
+                        this.response.errors = error.response.data.errors
+                    }
+
+                    utility.debug(error.response.data.debug)
+                })
+        },
+
+        /**
+         * Delete a file
+         */
+        deleteFile (fileId) {
+            let choise = confirm('Θέλεις σίγουρα να σβήσεις το αρχείο με id: ' + fileId + ';')
+
+            if (choise) {
+                this.loading = true
+
+                api.deleteFile(fileId)
+                    .then(response => {
+                        this.loading = false
+
+                        this.getFiles(null)
+                    })
+                    .catch(error => {
+                        this.loading = false
+
+                        this.response.message = error.response.data.message
+                        this.response.status = false
+
+                        utility.debug(error.response.data.debug)
+                    })
+            }
         }
     }
 }
