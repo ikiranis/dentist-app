@@ -527,6 +527,57 @@ let api = {
      */
     async deleteTreatmentNote (treatmentNoteId) {
         return axios.delete(ROOT_API + '/treatmentNote/' + treatmentNoteId)
+    },
+
+    // ************** Files api calls **************
+
+    /**
+     * Get all files
+     *
+     * @returns {Promise<void>}
+     */
+    async getFiles (fileId) {
+        return axios.get(ROOT_API + '/files/' + fileId)
+    },
+
+    /**
+     * Get a file
+     *
+     * @returns {Promise<AxiosResponse<T>>}
+     */
+    async getFile (fileId) {
+        return axios.get(ROOT_API + '/file/' + fileId)
+    },
+
+    /**
+     * Create a file
+     *
+     * @param args
+     * @returns {Promise<AxiosResponse<T>>}
+     */
+    async createFile (args) {
+        return axios.post(ROOT_API + '/file', args)
+    },
+
+    /**
+     * Update a file
+     *
+     * @param args
+     * @param fileId
+     * @returns {Promise<Promise<AxiosResponse<T>>>}
+     */
+    async updateFile (args, fileId) {
+        return axios.patch(ROOT_API + '/file/' + fileId, args)
+    },
+
+    /**
+     * Delete a file
+     *
+     * @param fileId
+     * @returns {Promise<Promise<AxiosResponse<T>>>}
+     */
+    async deleteFile (fileId) {
+        return axios.delete(ROOT_API + '/file/' + fileId)
     }
 }
 
