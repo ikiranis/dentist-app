@@ -1,6 +1,6 @@
 <template>
     <div>
-        <FieldsList :fields="fields"/>
+        <FieldsList :fields="fields" v-if="!loading" />
 
         <div class="alert alert-success text-center w-50 mt-5 mx-auto" v-if="!fieldSelected">
             Επιλογή πεδίων
