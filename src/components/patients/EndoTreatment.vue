@@ -39,11 +39,13 @@
                     </div>
                 </div>
 
-                <select class="form-control" id="chozenRoot" v-model="endoTreatment.root_id">
+                <select class="form-control" id="chozenRoot"
+                        v-model="chozenRoot"
+                        @change="getEndoTreatment">
                     <option v-for="root in roots"
                             :key="root.id"
                             :value="root.id"
-							:selected="(root.id === endoTreatment.root_id) ? 'selected' : ''">{{ root.name }}</option>
+							:selected="(root.id === chozenRoot) ? 'selected' : ''">{{ root.name }}</option>
                 </select>
             </div>
 
@@ -278,7 +280,9 @@ export default {
                 description: null
             },
 
-			noteTitle: ''
+			noteTitle: '',
+
+            chozenRoot: 1
 
         }
     },
@@ -315,7 +319,7 @@ export default {
         {
             this.loading = true
 
-            api.getEndoTreatment(this.patientId)
+            api.getEndoTreatment(this.patientId, this.chozenRoot)
                 .then(response => {
                     this.loading = false
 
@@ -328,6 +332,7 @@ export default {
                 .catch(error => {
                     this.loading = false
 
+                    console.log(error)
                     this.response.message = error.response.data.message
                     this.response.status = false
 

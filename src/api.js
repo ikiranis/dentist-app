@@ -470,10 +470,12 @@ let api = {
     /**
      * Get Endo Treatment info
      *
-     * @returns {Promise<AxiosResponse<T>>}
+     * @param patientId
+     * @param rootId
+     * @returns {Promise<Promise<AxiosResponse<T>>>}
      */
-    async getEndoTreatment (patientId) {
-        return axios.get(ROOT_API + '/endoTreatment/' + patientId)
+    async getEndoTreatment (patientId, rootId) {
+        return axios.get(ROOT_API + '/endoTreatment/' + patientId + '/' + rootId)
     },
 
     /**
@@ -588,7 +590,7 @@ let api = {
      * @returns {Promise<void>}
      */
     async getRoots () {
-        return axios.get(ROOT_API + '/roots/')
+        return axios.get(ROOT_API + '/roots')
     },
 }
 
