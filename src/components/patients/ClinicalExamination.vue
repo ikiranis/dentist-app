@@ -624,7 +624,9 @@ export default {
                 oralPharynx: null,
                 hawks: null,
                 alveolarProcess: null
-            }
+            },
+
+			loading: false
 
         }
     },
