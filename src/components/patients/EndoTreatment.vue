@@ -328,7 +328,6 @@ export default {
                 .catch(error => {
                     this.loading = false
 
-                    console.log(error)
                     this.response.message = error.response.data.message
                     this.response.status = false
 
