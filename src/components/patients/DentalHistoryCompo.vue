@@ -1,11 +1,6 @@
 <template>
     <div>
-
-		<div class="col-12 text-center">
-			<h1>Οδοντιατρικό ιστορικό</h1>
-		</div>
-
-        <FieldsList :fields="fields"/>
+		<FieldsList :fields="fields"/>
 
         <div class="alert alert-success text-center w-50 mt-5 mx-auto" v-if="!fieldSelected">
             Επιλογή πεδίων

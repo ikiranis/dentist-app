@@ -1,7 +1,8 @@
 <template>
 	<div>
 		<span v-for="(value, index) in tabs" :key="index">
-            <span class="tab badge badge-secondary mx-1"
+            <span class="tab badge mx-1"
+				  :class="value.display ? 'badge-primary' : 'badge-secondary'"
 				  @click="chooseTab(value)">{{ value.label }}</span>
         </span>
 	</div>
@@ -17,6 +18,11 @@
 		},
 
 		methods: {
+			/**
+			 * Change tabs display values
+			 *
+			 * @param tab
+			 */
 			chooseTab (tab)
 			{
 				Object.keys(this.tabs).forEach(key => {
@@ -35,6 +41,7 @@
 
 <style scoped>
 	.tab {
+		font-size: 1.1em;
 		cursor: pointer;
 	}
 </style>
