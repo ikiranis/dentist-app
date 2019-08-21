@@ -566,8 +566,6 @@ export default {
                     this.roots = []
                 })
                 .catch(error => {
-                    this.loading = false
-
                     this.response.message = error.response.data.message
                     this.response.status = false
 
