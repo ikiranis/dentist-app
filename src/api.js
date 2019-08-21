@@ -578,7 +578,18 @@ let api = {
      */
     async deleteFile (fileId) {
         return axios.delete(ROOT_API + '/file/' + fileId)
-    }
+    },
+
+    // ************** Roots api calls **************
+
+    /**
+     * Get all roots
+     *
+     * @returns {Promise<void>}
+     */
+    async getRoots () {
+        return axios.get(ROOT_API + '/roots/')
+    },
 }
 
 export default api

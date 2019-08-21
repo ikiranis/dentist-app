@@ -40,7 +40,7 @@
                 </div>
 
                 <select class="form-control" id="chozenRoot" v-model="endoTreatment.root_id">
-                    <option v-for="root in endoTreatment.roots"
+                    <option v-for="root in roots"
                             :key="root.id"
                             :value="root.id"
 							:selected="(root.id === endoTreatment.root_id) ? 'selected' : ''">{{ root.name }}</option>
@@ -253,6 +253,8 @@ export default {
                 }
             },
 
+            roots: [],
+
             endoTreatment: {
             	root_id: 0,
 				roots: [],
@@ -301,6 +303,7 @@ export default {
     },
 
     created: function () {
+        this.getRoots()
         this.getEndoTreatment()
     },
 
@@ -545,6 +548,31 @@ export default {
 
 			this.noteTitle = 'Εισαγωγή σημείωσης'
             this.$refs.noteModal.show()
+        },
+
+        /**
+         * Get all roots
+         */
+        getRoots ()
+        {
+            api.getRoots()
+                .then(response => {
+                    if (response.status === 200) {
+                        this.roots = response.data
+
+                        return
+                    }
+
+                    this.roots = []
+                })
+                .catch(error => {
+                    this.loading = false
+
+                    this.response.message = error.response.data.message
+                    this.response.status = false
+
+                    utility.debug(error.response.data.debug)
+                })
         }
     }
 }
