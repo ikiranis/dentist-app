@@ -3,7 +3,7 @@
 
         <b-modal ref="fileModal" size="md" centered hide-footer :title="fileTitle">
 
-            <form class="container-fluid">
+            <form @submit.prevent class="container-fluid">
 
                 <div class="custom-file col-12 mb-3">
                     <label class="custom-file-label" for="file">Επιλογή αρχείου</label>
@@ -21,7 +21,8 @@
                 </div>
 
                 <div class="row">
-                    <button class="btn btn-success col-lg-6 col-12 my-3 mx-auto" @click="saveFile">Αποθήκευση</button>
+                    <input type="submit" class="btn btn-success col-lg-6 col-12 my-3 mx-auto"
+                            @click="saveFile" value="Αποθήκευση">
                 </div>
 
             </form>
@@ -280,7 +281,7 @@ export default {
         /**
          * Update the file
          */
-        updateTreatment () {
+        updateFile () {
             this.loading = true
 
             api.updateFile(this.file, this.file.id)
@@ -332,6 +333,11 @@ export default {
                         utility.debug(error.response.data.debug)
                     })
             }
+        },
+
+        uploadFile ()
+        {
+            //
         }
     }
 }
