@@ -279,7 +279,6 @@ export default {
 			noteTitle: '',
 
             chozenRoot: 1
-
         }
     },
 
@@ -304,7 +303,7 @@ export default {
 
     created: function () {
         this.getRoots()
-        this.getEndoTreatment()
+		this.getEndoTreatment()
     },
 
     methods: {
@@ -342,7 +341,7 @@ export default {
         {
             this.loading = true
 
-            api.updateEndoTreatment(this.endoTreatment, this.patientId)
+            api.updateEndoTreatment(this.endoTreatment, this.endoTreatment.id)
                 .then(response => {
                     this.loading = false
 

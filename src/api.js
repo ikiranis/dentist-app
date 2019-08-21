@@ -482,11 +482,11 @@ let api = {
      * Update Endo Treatment
      *
      * @param args
-     * @param patientId
+     * @param id
      * @returns {Promise<Promise<AxiosResponse<T>>>}
      */
-    async updateEndoTreatment (args, patientId) {
-        return axios.patch(ROOT_API + '/endoTreatment/' + patientId, args)
+    async updateEndoTreatment (args, id) {
+        return axios.patch(ROOT_API + '/endoTreatment/' + id, args)
     },
 
     // ************** Treatment Notes api calls **************
