@@ -16,11 +16,13 @@
                       variant="" type="light" valign="mx-auto" toggle="lg"
                       navCollapseText="patientBar" />
 
+			<tabs :tabs="tabs"/>
+
             <div class="container">
 
-                <dental-history @loading="getLoading"/>
+                <dental-history @loading="getLoading" v-if="tabs.dentalHistory.display"/>
 
-                <clinical-examination @loading="getLoading"/>
+                <clinical-examination @loading="getLoading" v-if="tabs.clinicalExamination.display"/>
 
             </div>
 
@@ -30,12 +32,13 @@
 
 <script>
 import MenuBar from '@/components/basic/MenuBar'
+import Tabs from '@/components/basic/Tabs'
 import ClinicalExamination from '@/components/patients/ClinicalExamination'
 import DentalHistory from '@/components/patients/DentalHistoryCompo'
 import Loading from '@/components/basic/Loading'
 
 export default {
-    components: { MenuBar, ClinicalExamination, DentalHistory, Loading },
+    components: { MenuBar, ClinicalExamination, DentalHistory, Loading, Tabs },
 
     data () {
         return {
@@ -83,7 +86,18 @@ export default {
                     name: 'Αρχεία',
                     loggedIn: true
                 }
-            ]
+            ],
+
+			tabs: {
+            	dentalHistory: {
+            		display: true,
+					label: 'Οδοντιατρικό Ιστορικό'
+				},
+				clinicalExamination: {
+            		display: false,
+					label: 'Κλινική εξέταση'
+				}
+			}
 
         }
     },
