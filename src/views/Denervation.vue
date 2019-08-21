@@ -16,13 +16,15 @@
                       variant="" type="light" valign="mx-auto" toggle="lg"
                       navCollapseText="patientBar" />
 
+			<tabs :tabs="tabs" class="mb-3" />
+
             <div class="container">
 
-                <endo-treatment-card @loading="getLoading"/>
+                <endo-treatment-card @loading="getLoading" v-if="tabs.endoTreatmentCard.display" />
 
-                <diagnosis @loading="getLoading"/>
+                <diagnosis @loading="getLoading" v-if="tabs.diagnosis.display" />
 
-                <endo-treatment @loading="getLoading"/>
+                <endo-treatment @loading="getLoading" v-if="tabs.endoTreatment.display" />
 
             </div>
 
@@ -32,13 +34,14 @@
 
 <script>
 import MenuBar from '@/components/basic/MenuBar'
+import Tabs from '@/components/basic/Tabs'
 import EndoTreatmentCard from '@/components/patients/EndoTreatmentCard'
 import Diagnosis from '@/components/patients/Diagnosis'
 import EndoTreatment from '@/components/patients/EndoTreatment'
 import Loading from '@/components/basic/Loading'
 
 export default {
-    components: { MenuBar, EndoTreatmentCard, Diagnosis, EndoTreatment, Loading },
+    components: { MenuBar, EndoTreatmentCard, Diagnosis, EndoTreatment, Loading, Tabs },
 
     data () {
         return {
@@ -86,7 +89,22 @@ export default {
                     name: 'Αρχεία',
                     loggedIn: true
                 }
-            ]
+            ],
+
+			tabs: {
+				endoTreatmentCard: {
+					display: true,
+					label: 'Δελτίο ενδοδοντικής θεραπείας'
+				},
+				diagnosis: {
+					display: false,
+					label: 'Διάγνωση'
+				},
+				endoTreatment: {
+					display: false,
+					label: 'Ενδοδοντική θεραπεία'
+				}
+			}
 
         }
     },

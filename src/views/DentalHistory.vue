@@ -16,13 +16,13 @@
                       variant="" type="light" valign="mx-auto" toggle="lg"
                       navCollapseText="patientBar" />
 
-			<tabs :tabs="tabs"/>
+			<tabs :tabs="tabs" class="mb-3" />
 
             <div class="container">
 
-                <dental-history @loading="getLoading" v-if="tabs.dentalHistory.display"/>
+                <dental-history @loading="getLoading" v-if="tabs.dentalHistory.display" />
 
-                <clinical-examination @loading="getLoading" v-if="tabs.clinicalExamination.display"/>
+                <clinical-examination @loading="getLoading" v-if="tabs.clinicalExamination.display" />
 
             </div>
 
