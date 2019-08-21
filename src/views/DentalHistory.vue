@@ -91,7 +91,7 @@ export default {
 			tabs: {
             	dentalHistory: {
             		display: true,
-					label: 'Οδοντιατρικό Ιστορικό'
+					label: 'Οδοντιατρικό ιστορικό'
 				},
 				clinicalExamination: {
             		display: false,
