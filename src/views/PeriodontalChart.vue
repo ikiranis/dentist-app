@@ -62,25 +62,28 @@
                       variant="" type="light" valign="mx-auto" toggle="lg"
                       navCollapseText="patientBar" />
 
-            <div class="container row no-gutters">
 
-                <div class="alert alert-warning w-100 mx-auto fixed-top" role="alert"
-                     v-if="chozenNote.measurements">
-                    <div class="row col-lg-3 col-12 mx-auto">
-                        <span v-for="measurement in chozenNote.measurements" :key="measurement.id"
-                              class="col-4 text-center">
-                            {{ measurement.number }}
-                        </span>
-                    </div>
-                </div>
+			<div>
+				<div class="alert alert-warning w-100 mx-auto fixed-top" role="alert"
+					 v-if="chozenNote.measurements">
+					<div class="row col-lg-3 col-12 mx-auto">
+						<span v-for="measurement in chozenNote.measurements" :key="measurement.id"
+							  class="col-4 text-center">
+							{{ measurement.number }}
+						</span>
+					</div>
+				</div>
 
-                <periodontal-chart-tooths-table :teeth="upperTooths"
-                                                @click="newNote" @mouseover="displayNote" @mouseleave="hideNote"/>
+				<periodontal-chart-tooths-table :teeth="upperTeeth"
+												@click="newNote"
+												@mouseover="displayNote"
+												@mouseleave="hideNote" />
 
-                <periodontal-chart-tooths-table :teeth="downTooths"
-                                                @click="newNote" @mouseover="displayNote" @mouseleave="hideNote"/>
-
-            </div>
+				<periodontal-chart-tooths-table :teeth="downTeeth"
+												@click="newNote"
+												@mouseover="displayNote"
+												@mouseleave="hideNote" />
+			</div>
 
         </div>
     </div>

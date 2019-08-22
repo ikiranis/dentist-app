@@ -35,7 +35,7 @@
                       variant="" type="light" valign="mx-auto" toggle="lg"
                       navCollapseText="patientBar" />
 
-            <div class="container row no-gutters mx-auto">
+            <div>
 
                 {{ note.description }}
 
@@ -45,10 +45,14 @@
                 </div>
 
                 <dental-gram-tooths-table :teeth="upperTeeth"
-                                          @click="newNote" @mouseover="displayNote" @mouseleave="hideNote"/>
+                                          @click="newNote"
+										  @mouseover="displayNote"
+										  @mouseleave="hideNote"/>
 
                 <dental-gram-tooths-table :teeth="downTeeth"
-                                          @click="newNote" @mouseover="displayNote" @mouseleave="hideNote"/>
+                                          @click="newNote"
+										  @mouseover="displayNote"
+										  @mouseleave="hideNote"/>
 
             </div>
 
