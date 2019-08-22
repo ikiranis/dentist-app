@@ -74,12 +74,12 @@
 					</div>
 				</div>
 
-				<periodontal-chart-tooths-table :teeth="upperTeeth"
+				<periodontal-chart-tooths-table :teeth="upperTeeth" :notes="notes"
 												@click="newNote"
 												@mouseover="displayNote"
 												@mouseleave="hideNote" />
 
-				<periodontal-chart-tooths-table :teeth="downTeeth"
+				<periodontal-chart-tooths-table :teeth="downTeeth" :notes="notes"
 												@click="newNote"
 												@mouseover="displayNote"
 												@mouseleave="hideNote" />
@@ -159,1320 +159,584 @@ export default {
                 ]
             },
 
-            tooths: [
-                {
-                    id: 18,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    id: 17,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    id: 16,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    id: 15,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    id: 14,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    id: 13,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    id: 12,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    id: 11,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    id: 21,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    id: 22,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    id: 23,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    id: 24,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    id: 25,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    id: 26,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    id: 27,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    id: 28,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    id: 48,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    id: 47,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    id: 46,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    id: 45,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    id: 44,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    id: 43,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    id: 42,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    id: 41,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    id: 31,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    id: 32,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    id: 33,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    id: 34,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    id: 35,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    id: 36,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    id: 37,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    id: 38,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            measurements: [
-                                { id: 0, number: 0 },
-                                { id: 1, number: 0 },
-                                { id: 2, number: 0 },
-                                { id: 3, number: 0 },
-                                { id: 4, number: 0 },
-                                { id: 5, number: 0 }
-                            ]
-                        }
-                    ]
-                }
-            ],
+			notes: [
+				{
+					id: 1,
+					tooth_number: 18,
+					patient_id: 1,
+					measure1: 0,
+					measure2: 0,
+					measure3: 0,
+					measure4: 0,
+					measure5: 0,
+					measure6: 0,
+					created_at: '21/01/2019'
+				},
+				{
+					id: 2,
+					tooth_number: 18,
+					patient_id: 1,
+					measure1: 1,
+					measure2: 0,
+					measure3: 0,
+					measure4: 2,
+					measure5: 3,
+					measure6: 0,
+					created_at: '21/01/2019'
+				},
+				{
+					id: 3,
+					tooth_number: 18,
+					patient_id: 1,
+					measure1: 0,
+					measure2: 3,
+					measure3: 0,
+					measure4: 3,
+					measure5: 0,
+					measure6: 0,
+					created_at: '21/01/2019'
+				},
+				{
+					id: 4,
+					tooth_number: 17,
+					patient_id: 1,
+					measure1: 0,
+					measure2: 0,
+					measure3: 0,
+					measure4: 0,
+					measure5: 0,
+					measure6: 0,
+					created_at: '21/01/2019'
+				},
+				{
+					id: 5,
+					tooth_number: 17,
+					patient_id: 1,
+					measure1: 0,
+					measure2: 0,
+					measure3: 0,
+					measure4: 0,
+					measure5: 0,
+					measure6: 0,
+					created_at: '21/01/2019'
+				},
+				{
+					id: 6,
+					tooth_number: 17,
+					patient_id: 1,
+					measure1: 0,
+					measure2: 0,
+					measure3: 0,
+					measure4: 0,
+					measure5: 0,
+					measure6: 0,
+					created_at: '21/01/2019'
+				},
+				{
+					id: 7,
+					tooth_number: 16,
+					patient_id: 1,
+					measure1: 0,
+					measure2: 0,
+					measure3: 0,
+					measure4: 0,
+					measure5: 0,
+					measure6: 0,
+					created_at: '21/01/2019'
+				},
+				{
+					id: 8,
+					tooth_number: 16,
+					patient_id: 1,
+					measure1: 0,
+					measure2: 0,
+					measure3: 0,
+					measure4: 0,
+					measure5: 0,
+					measure6: 0,
+					created_at: '21/01/2019'
+				},
+				{
+					id: 9,
+					tooth_number: 16,
+					patient_id: 1,
+					measure1: 0,
+					measure2: 0,
+					measure3: 0,
+					measure4: 0,
+					measure5: 0,
+					measure6: 0,
+					created_at: '21/01/2019'
+				},
+				{
+					id: 10,
+					tooth_number: 15,
+					patient_id: 1,
+					measure1: 0,
+					measure2: 0,
+					measure3: 0,
+					measure4: 0,
+					measure5: 0,
+					measure6: 0,
+					created_at: '21/01/2019'
+				},
+				{
+					id: 11,
+					tooth_number: 15,
+					patient_id: 1,
+					measure1: 0,
+					measure2: 0,
+					measure3: 0,
+					measure4: 0,
+					measure5: 0,
+					measure6: 0,
+					created_at: '21/01/2019'
+				},
+				{
+					id: 12,
+					tooth_number: 14,
+					patient_id: 1,
+					measure1: 0,
+					measure2: 0,
+					measure3: 0,
+					measure4: 0,
+					measure5: 0,
+					measure6: 0,
+					created_at: '21/01/2019'
+				},
+				{
+					id: 13,
+					tooth_number: 14,
+					patient_id: 1,
+					measure1: 0,
+					measure2: 0,
+					measure3: 0,
+					measure4: 0,
+					measure5: 0,
+					measure6: 0,
+					created_at: '21/01/2019'
+				},
+				{
+					id: 14,
+					tooth_number: 13,
+					patient_id: 1,
+					measure1: 0,
+					measure2: 0,
+					measure3: 0,
+					measure4: 0,
+					measure5: 0,
+					measure6: 0,
+					created_at: '21/01/2019'
+				},
+				{
+					id: 15,
+					tooth_number: 12,
+					patient_id: 1,
+					measure1: 0,
+					measure2: 0,
+					measure3: 0,
+					measure4: 0,
+					measure5: 0,
+					measure6: 0,
+					created_at: '21/01/2019'
+				},
+				{
+					id: 16,
+					tooth_number: 11,
+					patient_id: 1,
+					measure1: 0,
+					measure2: 0,
+					measure3: 0,
+					measure4: 0,
+					measure5: 0,
+					measure6: 0,
+					created_at: '21/01/2019'
+				},
+				{
+					id: 17,
+					tooth_number: 21,
+					patient_id: 1,
+					measure1: 0,
+					measure2: 0,
+					measure3: 0,
+					measure4: 0,
+					measure5: 0,
+					measure6: 0,
+					created_at: '21/01/2019'
+				},
+				{
+					id: 18,
+					tooth_number: 21,
+					patient_id: 1,
+					measure1: 0,
+					measure2: 0,
+					measure3: 0,
+					measure4: 0,
+					measure5: 0,
+					measure6: 0,
+					created_at: '21/01/2019'
+				},
+				{
+					id: 19,
+					tooth_number: 22,
+					patient_id: 1,
+					measure1: 0,
+					measure2: 0,
+					measure3: 0,
+					measure4: 0,
+					measure5: 0,
+					measure6: 0,
+					created_at: '21/01/2019'
+				},
+				{
+					id: 20,
+					tooth_number: 23,
+					patient_id: 1,
+					measure1: 0,
+					measure2: 0,
+					measure3: 0,
+					measure4: 0,
+					measure5: 0,
+					measure6: 0,
+					created_at: '21/01/2019'
+				},
+				{
+					id: 21,
+					tooth_number: 24,
+					patient_id: 1,
+					measure1: 0,
+					measure2: 0,
+					measure3: 0,
+					measure4: 0,
+					measure5: 0,
+					measure6: 0,
+					created_at: '21/01/2019'
+				},
+				{
+					id: 22,
+					tooth_number: 25,
+					patient_id: 1,
+					measure1: 0,
+					measure2: 0,
+					measure3: 0,
+					measure4: 0,
+					measure5: 0,
+					measure6: 0,
+					created_at: '21/01/2019'
+				},
+				{
+					id: 23,
+					tooth_number: 26,
+					patient_id: 1,
+					measure1: 0,
+					measure2: 0,
+					measure3: 0,
+					measure4: 0,
+					measure5: 0,
+					measure6: 0,
+					created_at: '21/01/2019'
+				},
+				{
+					id: 24,
+					tooth_number: 26,
+					patient_id: 1,
+					measure1: 0,
+					measure2: 0,
+					measure3: 0,
+					measure4: 0,
+					measure5: 0,
+					measure6: 0,
+					created_at: '21/01/2019'
+				},
+				{
+					id: 25,
+					tooth_number: 27,
+					patient_id: 1,
+					measure1: 0,
+					measure2: 0,
+					measure3: 0,
+					measure4: 0,
+					measure5: 0,
+					measure6: 0,
+					created_at: '21/01/2019'
+				},
+				{
+					id: 26,
+					tooth_number: 28,
+					patient_id: 1,
+					measure1: 0,
+					measure2: 0,
+					measure3: 0,
+					measure4: 0,
+					measure5: 0,
+					measure6: 0,
+					created_at: '21/01/2019'
+				},
+				{
+					id: 27,
+					tooth_number: 48,
+					patient_id: 1,
+					measure1: 0,
+					measure2: 0,
+					measure3: 0,
+					measure4: 0,
+					measure5: 0,
+					measure6: 0,
+					created_at: '21/01/2019'
+				},
+				{
+					id: 28,
+					tooth_number: 47,
+					patient_id: 1,
+					measure1: 0,
+					measure2: 0,
+					measure3: 0,
+					measure4: 0,
+					measure5: 0,
+					measure6: 0,
+					created_at: '21/01/2019'
+				},
+				{
+					id: 29,
+					tooth_number: 47,
+					patient_id: 1,
+					measure1: 0,
+					measure2: 0,
+					measure3: 0,
+					measure4: 0,
+					measure5: 0,
+					measure6: 0,
+					created_at: '21/01/2019'
+				},
+				{
+					id: 30,
+					tooth_number: 46,
+					patient_id: 1,
+					measure1: 0,
+					measure2: 0,
+					measure3: 0,
+					measure4: 0,
+					measure5: 0,
+					measure6: 0,
+					created_at: '21/01/2019'
+				},
+				{
+					id: 31,
+					tooth_number: 45,
+					patient_id: 1,
+					measure1: 0,
+					measure2: 0,
+					measure3: 0,
+					measure4: 0,
+					measure5: 0,
+					measure6: 0,
+					created_at: '21/01/2019'
+				},
+				{
+					id: 32,
+					tooth_number: 44,
+					patient_id: 1,
+					measure1: 0,
+					measure2: 0,
+					measure3: 0,
+					measure4: 0,
+					measure5: 0,
+					measure6: 0,
+					created_at: '21/01/2019'
+				},
+				{
+					id: 33,
+					tooth_number: 43,
+					patient_id: 1,
+					measure1: 0,
+					measure2: 0,
+					measure3: 0,
+					measure4: 0,
+					measure5: 0,
+					measure6: 0,
+					created_at: '21/01/2019'
+				},
+				{
+					id: 34,
+					tooth_number: 42,
+					patient_id: 1,
+					measure1: 0,
+					measure2: 0,
+					measure3: 0,
+					measure4: 0,
+					measure5: 0,
+					measure6: 0,
+					created_at: '21/01/2019'
+				},
+				{
+					id: 35,
+					tooth_number: 41,
+					patient_id: 1,
+					measure1: 0,
+					measure2: 0,
+					measure3: 0,
+					measure4: 0,
+					measure5: 0,
+					measure6: 0,
+					created_at: '21/01/2019'
+				},
+				{
+					id: 36,
+					tooth_number: 41,
+					patient_id: 1,
+					measure1: 0,
+					measure2: 0,
+					measure3: 0,
+					measure4: 0,
+					measure5: 0,
+					measure6: 0,
+					created_at: '21/01/2019'
+				},
+				{
+					id: 37,
+					tooth_number: 31,
+					patient_id: 1,
+					measure1: 0,
+					measure2: 0,
+					measure3: 0,
+					measure4: 0,
+					measure5: 0,
+					measure6: 0,
+					created_at: '21/01/2019'
+				},
+				{
+					id: 38,
+					tooth_number: 32,
+					patient_id: 1,
+					measure1: 0,
+					measure2: 0,
+					measure3: 0,
+					measure4: 0,
+					measure5: 0,
+					measure6: 0,
+					created_at: '21/01/2019'
+				},
+				{
+					id: 39,
+					tooth_number: 32,
+					patient_id: 1,
+					measure1: 0,
+					measure2: 0,
+					measure3: 0,
+					measure4: 0,
+					measure5: 0,
+					measure6: 0,
+					created_at: '21/01/2019'
+				},
+				{
+					id: 40,
+					tooth_number: 33,
+					patient_id: 1,
+					measure1: 0,
+					measure2: 0,
+					measure3: 0,
+					measure4: 0,
+					measure5: 0,
+					measure6: 0,
+					created_at: '21/01/2019'
+				},
+				{
+					id: 41,
+					tooth_number: 34,
+					patient_id: 1,
+					measure1: 0,
+					measure2: 0,
+					measure3: 0,
+					measure4: 0,
+					measure5: 0,
+					measure6: 0,
+					created_at: '21/01/2019'
+				},
+				{
+					id: 42,
+					tooth_number: 35,
+					patient_id: 1,
+					measure1: 0,
+					measure2: 0,
+					measure3: 0,
+					measure4: 0,
+					measure5: 0,
+					measure6: 0,
+					created_at: '21/01/2019'
+				},
+				{
+					id: 43,
+					tooth_number: 36,
+					patient_id: 1,
+					measure1: 0,
+					measure2: 0,
+					measure3: 0,
+					measure4: 0,
+					measure5: 0,
+					measure6: 0,
+					created_at: '21/01/2019'
+				},
+				{
+					id: 44,
+					tooth_number: 36,
+					patient_id: 1,
+					measure1: 0,
+					measure2: 0,
+					measure3: 0,
+					measure4: 0,
+					measure5: 0,
+					measure6: 0,
+					created_at: '21/01/2019'
+				},
+				{
+					id: 45,
+					tooth_number: 36,
+					patient_id: 1,
+					measure1: 0,
+					measure2: 0,
+					measure3: 0,
+					measure4: 0,
+					measure5: 0,
+					measure6: 0,
+					created_at: '21/01/2019'
+				},
+				{
+					id: 46,
+					tooth_number: 37,
+					patient_id: 1,
+					measure1: 0,
+					measure2: 0,
+					measure3: 0,
+					measure4: 0,
+					measure5: 0,
+					measure6: 0,
+					created_at: '21/01/2019'
+				},
+				{
+					id: 47,
+					tooth_number: 38,
+					patient_id: 1,
+					measure1: 0,
+					measure2: 0,
+					measure3: 0,
+					measure4: 0,
+					measure5: 0,
+					measure6: 0,
+					created_at: '21/01/2019'
+				},
+				{
+					id: 48,
+					tooth_number: 38,
+					patient_id: 1,
+					measure1: 0,
+					measure2: 0,
+					measure3: 0,
+					measure4: 0,
+					measure5: 0,
+					measure6: 0,
+					created_at: '21/01/2019'
+				}
+			],
 
             teeth: []
         }

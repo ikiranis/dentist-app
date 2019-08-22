@@ -1,10 +1,10 @@
-<template functional>
+<template>
 
     <table class="table table-responsive">
 
         <thead>
         <tr>
-            <th v-for="tooth in props.teeth" :key="tooth.id"
+            <th v-for="tooth in teeth" :key="tooth.id"
                 class="text-center tooth-label">
                 <img :src="'/images/teeth/' + tooth.number + '.png'" class="toothImage">
                 <h5>{{ tooth.number }}</h5>
@@ -13,19 +13,20 @@
         </thead>
 
         <tbody>
-        <td v-for="tooth in props.teeth" :key="tooth.id">
-<!--            <tr v-for="note in tooth.notes" :key="note.id" class="mb-2">-->
-<!--                <span class="toothNotes" @mouseover="listeners.mouseover({toothId: tooth.id, noteId: note.id})"-->
-<!--                    @mouseout="listeners.mouseleave">-->
-<!--                    <span class="date-icon">{{ note.date }}</span>-->
-<!--                </span>-->
-<!--            </tr>-->
+        <td v-for="tooth in teeth" :key="tooth.id">
+            <tr v-for="note in getNotesForTooth(tooth.number)" :key="note.id" class="mb-2">
+                <span class="toothNotes"
+					  	@mouseover="mouseover({toothId: tooth.id, noteId: note.id})"
+                    	@mouseout="mouseleave">
+                    <span class="date-icon">{{ note.created_at }}</span>
+                </span>
+            </tr>
 
-<!--            <div class="row">-->
-<!--                <plus-circle-outline @click="listeners.click"-->
-<!--                                     fillColor="green" :size="15"-->
-<!--                                     class="btn-icon mx-auto" title="Εισαγωγή μετρήσεων"/>-->
-<!--            </div>-->
+            <div class="row">
+                <plus-circle-outline @click="click"
+                                     fillColor="green" :size="15"
+                                     class="btn-icon mx-auto" title="Εισαγωγή μετρήσεων"/>
+            </div>
         </td>
         </tbody>
 
@@ -41,8 +42,20 @@ export default {
         teeth: {
             required: true,
             type: Array
-        }
-    }
+        },
+		notes: {
+			required: true,
+			type: Array
+		}
+    },
+
+	methods: {
+    	getNotesForTooth (toothNumber) {
+    		return this.notes.filter(note => {
+    			return note.tooth_number === toothNumber
+			})
+		}
+	}
 }
 </script>
 
