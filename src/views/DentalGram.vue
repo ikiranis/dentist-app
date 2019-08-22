@@ -8,7 +8,7 @@
                 <div class="form-group row">
                     <label for="description" class="col-md-4 col-form-label text-md-right">Περιγραφή</label>
                     <div class="col-md-8">
-                        <input id="description" type="text" class="form-control" maxlength="60"
+                        <input id="description" type="text" class="form-control" maxlength="10"
                                v-model="note.description" required>
 
                         <form-error v-if="response.errors.description"

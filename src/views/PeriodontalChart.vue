@@ -74,15 +74,13 @@
 					</div>
 				</div>
 
-				<periodontal-chart-tooths-table :teeth="upperTeeth" :notes="notes"
-												@click="newNote"
-												@mouseover="displayNote"
-												@mouseleave="hideNote" />
+				<periodontal-chart-tooths-table :teeth="upperTeeth"
+												:notes="notes"
+												:newNoteFunction="newNote" />
 
-				<periodontal-chart-tooths-table :teeth="downTeeth" :notes="notes"
-												@click="newNote"
-												@mouseover="displayNote"
-												@mouseleave="hideNote" />
+				<periodontal-chart-tooths-table :teeth="downTeeth"
+												:notes="notes"
+												:newNoteFunction="newNote" />
 			</div>
 
         </div>
@@ -769,7 +767,8 @@ export default {
         /**
          * Display note modal
          */
-        newNote () {
+        newNote (data) {
+        	console.log(data)
             this.$refs.noteModal.show()
         },
 

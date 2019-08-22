@@ -14,21 +14,20 @@
 
         <tbody>
         <td v-for="tooth in teeth" :key="tooth.id">
-            <tr v-for="note in getNotesForTooth(tooth.number)" :key="note.id" class="mb-2">
-				<span class="toothNotes">
-<!--                <span class="toothNotes"-->
-<!--					  	@mouseover="displayNote({toothId: tooth.id, noteId: note.id})"-->
-<!--                    	@mouseout="mouseleave">-->
-                    <span class="date-icon">{{ note.created_at }}</span>
-                </span>
+            <tr v-for="note in getNotesForTooth(tooth.number)"
+				:key="note.id"
+				class="row">
+				<div class="toothNotes mb-3 mx-auto">
+					<div>{{ note.measure1 }} {{ note.measure2 }} {{ note.measure3 }}</div>
+					<div>{{ note.measure4 }} {{ note.measure5 }} {{ note.measure6 }}</div>
+                </div>
             </tr>
 
             <div class="row">
 				<plus-circle-outline fillColor="green" :size="15"
-									 class="btn-icon mx-auto" title="Εισαγωγή μετρήσεων"/>
-<!--                <plus-circle-outline @click="click"-->
-<!--                                     fillColor="green" :size="15"-->
-<!--                                     class="btn-icon mx-auto" title="Εισαγωγή μετρήσεων"/>-->
+									 @click="newNote('paok')"
+									 class="btn-icon mx-auto"
+									 title="Εισαγωγή μετρήσεων"/>
             </div>
         </td>
         </tbody>
@@ -49,6 +48,10 @@ export default {
 		notes: {
 			required: true,
 			type: Array
+		},
+		newNoteFunction: {
+        	required: true,
+			type: Function
 		}
     },
 
@@ -64,12 +67,6 @@ export default {
     		return this.notes.filter(note => {
     			return note.tooth_number === toothNumber
 			})
-		},
-
-		displayNote (data)
-		{
-			this.$emit('displayNote', data)
-
 		}
 	}
 }
