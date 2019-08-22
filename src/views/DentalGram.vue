@@ -44,10 +44,10 @@
                     {{ textDisplayed }}
                 </div>
 
-                <dental-gram-tooths-table :tooths="upperTooths"
+                <dental-gram-tooths-table :teeth="upperTeeth"
                                           @click="newNote" @mouseover="displayNote" @mouseleave="hideNote"/>
 
-                <dental-gram-tooths-table :tooths="downTooths"
+                <dental-gram-tooths-table :teeth="downTeeth"
                                           @click="newNote" @mouseover="displayNote" @mouseleave="hideNote"/>
 
             </div>
@@ -60,6 +60,8 @@
 import MenuBar from '@/components/basic/MenuBar'
 import FormError from '@/components/basic/FormError'
 import DentalGramToothsTable from '@/components/patients/DentalGramToothsTable'
+import api from "../api";
+import utility from "../library/utility";
 
 export default {
     components: { MenuBar, FormError, DentalGramToothsTable },
@@ -117,6 +119,8 @@ export default {
                 date: '',
                 description: ''
             },
+
+            teeth: [],
 
             tooths: [
                 {
@@ -764,21 +768,25 @@ export default {
     },
 
     computed: {
-        upperTooths () {
-            return this.tooths.filter((tooth) => {
-                return tooth.id <= 28
+        upperTeeth () {
+            return this.teeth.filter((tooth) => {
+                return tooth.number <= 28
             })
         },
 
-        downTooths () {
-            return this.tooths.filter((tooth) => {
-                return tooth.id > 28
+        downTeeth () {
+            return this.teeth.filter((tooth) => {
+                return tooth.number > 28
             })
         },
 
         patientId: function () {
             return this.$route.params.id
         }
+    },
+
+    created: function () {
+        this.getTeeth()
     },
 
     methods: {
@@ -813,6 +821,29 @@ export default {
          */
         hideNote () {
             this.textDisplayed = ''
+        },
+
+        /**
+         * Get all teeth
+         */
+        getTeeth ()
+        {
+            api.getTeeth()
+                .then(response => {
+                    if (response.status === 200) {
+                        this.teeth = response.data
+
+                        return
+                    }
+
+                    this.teeth = []
+                })
+                .catch(error => {
+                    this.response.message = error.response.data.message
+                    this.response.status = false
+
+                    utility.debug(error.response.data.debug)
+                })
         }
     }
 }

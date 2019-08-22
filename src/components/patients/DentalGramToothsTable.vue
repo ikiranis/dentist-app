@@ -4,25 +4,25 @@
 
         <thead>
         <tr>
-            <th v-for="tooth in props.tooths" :key="tooth.id"
-                class="text-center tooth-label">{{ tooth.id }}</th>
+            <th v-for="tooth in props.teeth" :key="tooth.id"
+                class="text-center tooth-label">{{ tooth.number }}</th>
         </tr>
         </thead>
 
         <tbody>
-        <td v-for="tooth in props.tooths" :key="tooth.id">
-            <tr v-for="note in tooth.notes" :key="note.id" class="mb-2">
-                <span class="toothNotes" @mouseover="listeners.mouseover({toothId: tooth.id, noteId: note.id})"
-                    @mouseleave="listeners.mouseleave">
-                    <span class="date-icon">{{ note.date }}</span>
-                </span>
-            </tr>
+        <td v-for="tooth in props.teeth" :key="tooth.id">
+<!--            <tr v-for="note in tooth.notes" :key="note.id" class="mb-2">-->
+<!--                <span class="toothNotes" @mouseover="listeners.mouseover({toothId: tooth.id, noteId: note.id})"-->
+<!--                    @mouseleave="listeners.mouseleave">-->
+<!--                    <span class="date-icon">{{ note.date }}</span>-->
+<!--                </span>-->
+<!--            </tr>-->
 
-            <div class="row">
-                <plus-circle-outline @click="listeners.click"
-                                     fillColor="green" :size="15"
-                                     class="btn-icon mx-auto" title="Εισαγωγή σημείωσης"/>
-            </div>
+<!--            <div class="row">-->
+<!--                <plus-circle-outline @click="listeners.click"-->
+<!--                                     fillColor="green" :size="15"-->
+<!--                                     class="btn-icon mx-auto" title="Εισαγωγή σημείωσης"/>-->
+<!--            </div>-->
         </td>
         </tbody>
 
@@ -35,7 +35,7 @@ export default {
     name: 'DentalGramToothsTable',
 
     props: {
-        tooths: {
+        teeth: {
             required: true,
             type: Array
         }

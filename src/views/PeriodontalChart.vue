@@ -74,10 +74,10 @@
                     </div>
                 </div>
 
-                <periodontal-chart-tooths-table :tooths="upperTooths"
+                <periodontal-chart-tooths-table :teeth="upperTooths"
                                                 @click="newNote" @mouseover="displayNote" @mouseleave="hideNote"/>
 
-                <periodontal-chart-tooths-table :tooths="downTooths"
+                <periodontal-chart-tooths-table :teeth="downTooths"
                                                 @click="newNote" @mouseover="displayNote" @mouseleave="hideNote"/>
 
             </div>
@@ -89,6 +89,8 @@
 <script>
 import MenuBar from '@/components/basic/MenuBar'
 import PeriodontalChartToothsTable from '@/components/patients/PeriodontalChartToothsTable'
+import api from "../api";
+import utility from "../library/utility";
 
 export default {
     components: { MenuBar, PeriodontalChartToothsTable },
@@ -1467,26 +1469,32 @@ export default {
                         }
                     ]
                 }
-            ]
+            ],
+
+            teeth: []
         }
     },
 
     computed: {
-        upperTooths () {
-            return this.tooths.filter((tooth) => {
-                return tooth.id <= 28
+        upperTeeth () {
+            return this.teeth.filter((tooth) => {
+                return tooth.number <= 28
             })
         },
 
-        downTooths () {
-            return this.tooths.filter((tooth) => {
-                return tooth.id > 28
+        downTeeth () {
+            return this.teeth.filter((tooth) => {
+                return tooth.number > 28
             })
         },
 
         patientId: function () {
             return this.$route.params.id
         }
+    },
+
+    created: function () {
+        this.getTeeth()
     },
 
     methods: {
@@ -1516,6 +1524,29 @@ export default {
          */
         hideNote () {
             this.chozenNote = {}
+        },
+
+        /**
+         * Get all teeth
+         */
+        getTeeth ()
+        {
+            api.getTeeth()
+                .then(response => {
+                    if (response.status === 200) {
+                        this.teeth = response.data
+
+                        return
+                    }
+
+                    this.teeth = []
+                })
+                .catch(error => {
+                    this.response.message = error.response.data.message
+                    this.response.status = false
+
+                    utility.debug(error.response.data.debug)
+                })
         }
     }
 }

@@ -592,6 +592,17 @@ let api = {
     async getRoots () {
         return axios.get(ROOT_API + '/roots')
     },
+
+    // ************** Teeth api calls **************
+
+    /**
+     * Get all teeth
+     *
+     * @returns {Promise<void>}
+     */
+    async getTeeth () {
+        return axios.get(ROOT_API + '/teeth')
+    },
 }
 
 export default api
