@@ -4,6 +4,7 @@
 
         <thead>
         <tr>
+			<th></th>
             <th v-for="tooth in teeth" :key="tooth.id"
                 class="text-center tooth-label">
                 <img :src="'/images/teeth/' + tooth.number + '.png'" class="toothImage">
@@ -13,6 +14,13 @@
         </thead>
 
         <tbody>
+		<td>
+			<tr v-for="date in getDates()"
+				class="row">
+				<div class="toothNotes mb-3 mx-auto">{{ date }}</div>
+			</tr>
+		</td>
+
         <td v-for="tooth in teeth" :key="tooth.id">
             <tr v-for="note in getNotesForTooth(tooth.number)"
 				:key="note.id"
@@ -67,6 +75,26 @@ export default {
     		return this.notes.filter(note => {
     			return note.tooth_number === toothNumber
 			})
+		},
+
+		/**
+		 * Get all the dates, without duplicates
+		 *
+		 * @returns {*[]}
+		 */
+		getDates ()
+		{
+			// Get only the dates from array
+			let dates = [];
+
+			this.notes.forEach(value => {
+				dates.push(value.created_at)
+			})
+
+			// Filter duplicates
+			return dates.filter((item, index) =>
+				dates.indexOf(item) === index
+			)
 		}
 	}
 }
