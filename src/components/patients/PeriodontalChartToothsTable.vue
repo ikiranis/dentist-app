@@ -15,17 +15,20 @@
         <tbody>
         <td v-for="tooth in teeth" :key="tooth.id">
             <tr v-for="note in getNotesForTooth(tooth.number)" :key="note.id" class="mb-2">
-                <span class="toothNotes"
-					  	@mouseover="mouseover({toothId: tooth.id, noteId: note.id})"
-                    	@mouseout="mouseleave">
+				<span class="toothNotes">
+<!--                <span class="toothNotes"-->
+<!--					  	@mouseover="displayNote({toothId: tooth.id, noteId: note.id})"-->
+<!--                    	@mouseout="mouseleave">-->
                     <span class="date-icon">{{ note.created_at }}</span>
                 </span>
             </tr>
 
             <div class="row">
-                <plus-circle-outline @click="click"
-                                     fillColor="green" :size="15"
-                                     class="btn-icon mx-auto" title="Εισαγωγή μετρήσεων"/>
+				<plus-circle-outline fillColor="green" :size="15"
+									 class="btn-icon mx-auto" title="Εισαγωγή μετρήσεων"/>
+<!--                <plus-circle-outline @click="click"-->
+<!--                                     fillColor="green" :size="15"-->
+<!--                                     class="btn-icon mx-auto" title="Εισαγωγή μετρήσεων"/>-->
             </div>
         </td>
         </tbody>
@@ -50,10 +53,23 @@ export default {
     },
 
 	methods: {
-    	getNotesForTooth (toothNumber) {
+		/**
+		 * Filter notes for every tooth
+		 *
+		 * @param toothNumber
+		 * @returns {*}
+		 */
+    	getNotesForTooth (toothNumber)
+		{
     		return this.notes.filter(note => {
     			return note.tooth_number === toothNumber
 			})
+		},
+
+		displayNote (data)
+		{
+			this.$emit('displayNote', data)
+
 		}
 	}
 }
