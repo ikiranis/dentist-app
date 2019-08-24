@@ -21,7 +21,8 @@
 							title="Διαγραφή σημείωσης"/>
 				</td>
                 <th scope="row">
-					<a href="#" class="px-2" @click="listeners.clickUpdate(note.id)">{{ note.date }}</a></th>
+					<a href="#" class="px-2"
+                       @click="listeners.clickUpdate(note.id)">{{ note.date }}</a></th>
                 <td>
                     {{ note.description }}
                 </td>

@@ -4,40 +4,25 @@
 
         <thead>
         <tr>
-			<th></th>
+            <th></th>
             <th v-for="tooth in teeth" :key="tooth.id"
                 class="text-center tooth-label">
-                <img :src="'/images/teeth/' + tooth.number + '.png'" class="toothImage">
+                <img :src="imageUrl(tooth.number)" class="toothImage">
                 <h5>{{ tooth.number }}</h5>
             </th>
         </tr>
         </thead>
 
         <tbody>
-		<td>
-			<tr v-for="date in getDates()"
-				class="row">
-				<div class="toothNotes mb-3 mx-auto">{{ date }}</div>
-			</tr>
-		</td>
+        <tr v-for="date in getDates()">
+            <td class="toothNotes mb-3 align-middle text-center">
+                <span>{{ date }}</span>
+            </td>
 
-        <td v-for="tooth in teeth" :key="tooth.id">
-            <tr v-for="note in getNotesForTooth(tooth.number)"
-				:key="note.id"
-				class="row">
-				<div class="toothNotes mb-3 mx-auto">
-					<div>{{ note.measure1 }} {{ note.measure2 }} {{ note.measure3 }}</div>
-					<div>{{ note.measure4 }} {{ note.measure5 }} {{ note.measure6 }}</div>
-                </div>
-            </tr>
-
-            <div class="row">
-				<plus-circle-outline fillColor="green" :size="15"
-									 @click="newNote('paok')"
-									 class="btn-icon mx-auto"
-									 title="Εισαγωγή μετρήσεων"/>
-            </div>
-        </td>
+            <td v-for="tooth in teeth" :key="tooth.id" class="align-middle text-center">
+                <note-measurements :note="getNote(date, tooth.number)"/>
+            </td>
+        </tr>
         </tbody>
 
     </table>
@@ -45,59 +30,77 @@
 </template>
 
 <script>
-export default {
-    name: 'PeriodontalChartToothsTable',
+    import NoteMeasurements from "./NoteMeasurements";
 
-    props: {
-        teeth: {
-            required: true,
-            type: Array
+    export default {
+        components: {NoteMeasurements},
+
+        props: {
+            teeth: {
+                required: true,
+                type: Array
+            },
+            notes: {
+                required: true,
+                type: Array
+            },
+            newNoteFunction: {
+                required: true,
+                type: Function
+            }
         },
-		notes: {
-			required: true,
-			type: Array
-		},
-		newNoteFunction: {
-        	required: true,
-			type: Function
-		}
-    },
 
-	methods: {
-		/**
-		 * Filter notes for every tooth
-		 *
-		 * @param toothNumber
-		 * @returns {*}
-		 */
-    	getNotesForTooth (toothNumber)
-		{
-    		return this.notes.filter(note => {
-    			return note.tooth_number === toothNumber
-			})
-		},
+        methods: {
+            /**
+             * Filter notes for every tooth
+             *
+             * @param toothNumber
+             * @returns {*}
+             */
+            getNotesForTooth(toothNumber) {
+                return this.notes.filter(note => {
+                    return note.tooth_number === toothNumber
+                })
+            },
 
-		/**
-		 * Get all the dates, without duplicates
-		 *
-		 * @returns {*[]}
-		 */
-		getDates ()
-		{
-			// Get only the dates from array
-			let dates = [];
+            /**
+             * Get all the dates, without duplicates
+             *
+             * @returns {*[]}
+             */
+            getDates() {
+                // Get only the dates from array
+                let dates = [];
 
-			this.notes.forEach(value => {
-				dates.push(value.created_at)
-			})
+                this.notes.forEach(value => {
+                    dates.push(value.created_at)
+                })
 
-			// Filter duplicates
-			return dates.filter((item, index) =>
-				dates.indexOf(item) === index
-			)
-		}
-	}
-}
+                // Filter duplicates
+                return dates.filter((item, index) =>
+                    dates.indexOf(item) === index
+                )
+            },
+
+            /**
+             * Get the note with date and  toothNumber
+             *
+             * @param date
+             * @param toothNumber
+             * @returns {*}
+             */
+            getNote(date, toothNumber) {
+                return this.notes.find(note =>
+                    note.created_at === date && note.tooth_number === toothNumber
+                )
+            },
+
+            imageUrl (toothNumber)
+            {
+                return '/images/teeth/' + toothNumber + '.png'
+            }
+        }
+    }
 </script>
 
 <style scoped>
