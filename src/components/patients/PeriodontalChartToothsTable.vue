@@ -23,6 +23,15 @@
                     <note-measurements :note="getNote(date, tooth.number)"/>
                 </td>
             </tr>
+
+            <tr>
+                <td></td>
+                <td v-for="tooth in teeth" :key="tooth.id" class="align-middle text-center">
+                    <plus-circle-outline fillColor="green" :size="15"
+                                         class="btn-icon" title="Εισαγωγή μετρήσεων"
+                                         @click="newNoteFunction(tooth)" />
+                </td>
+            </tr>
         </tbody>
 
     </table>
@@ -79,7 +88,7 @@
              */
             getNote(date, toothNumber) {
                 return this.notes.find(note =>
-                    (note.created_at === date && note.tooth_number === toothNumber)
+                    note.created_at === date && note.tooth_number === toothNumber
                 )
             },
 
