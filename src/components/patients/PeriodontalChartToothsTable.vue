@@ -3,26 +3,26 @@
     <table class="table table-responsive">
 
         <thead>
-        <tr>
-            <th></th>
-            <th v-for="tooth in teeth" :key="tooth.id"
-                class="text-center tooth-label">
-                <img :src="imageUrl(tooth.number)" class="toothImage">
-                <h5>{{ tooth.number }}</h5>
-            </th>
-        </tr>
+            <tr>
+                <th></th>
+                <th v-for="tooth in teeth" :key="tooth.id"
+                    class="text-center tooth-label">
+                    <img :src="imagePath(tooth.number)" class="toothImage">
+                    <h5>{{ tooth.number }}</h5>
+                </th>
+            </tr>
         </thead>
 
         <tbody>
-        <tr v-for="date in getDates()">
-            <td class="toothNotes mb-3 align-middle text-center">
-                <span>{{ date }}</span>
-            </td>
+            <tr v-for="date in getDates()">
+                <td class="toothNotes mb-3 align-middle text-center">
+                    <span>{{ date }}</span>
+                </td>
 
-            <td v-for="tooth in teeth" :key="tooth.id" class="align-middle text-center">
-                <note-measurements :note="getNote(date, tooth.number)"/>
-            </td>
-        </tr>
+                <td v-for="tooth in teeth" :key="tooth.id" class="align-middle text-center">
+                    <note-measurements :note="getNote(date, tooth.number)"/>
+                </td>
+            </tr>
         </tbody>
 
     </table>
@@ -33,7 +33,7 @@
     import NoteMeasurements from "./NoteMeasurements";
 
     export default {
-        components: {NoteMeasurements},
+        components: { NoteMeasurements },
 
         props: {
             teeth: {
@@ -51,18 +51,6 @@
         },
 
         methods: {
-            /**
-             * Filter notes for every tooth
-             *
-             * @param toothNumber
-             * @returns {*}
-             */
-            getNotesForTooth(toothNumber) {
-                return this.notes.filter(note => {
-                    return note.tooth_number === toothNumber
-                })
-            },
-
             /**
              * Get all the dates, without duplicates
              *
@@ -91,11 +79,17 @@
              */
             getNote(date, toothNumber) {
                 return this.notes.find(note =>
-                    note.created_at === date && note.tooth_number === toothNumber
+                    (note.created_at === date && note.tooth_number === toothNumber)
                 )
             },
 
-            imageUrl (toothNumber)
+            /**
+             * Get the image path
+             *
+             * @param toothNumber
+             * @returns {string}
+             */
+            imagePath (toothNumber)
             {
                 return '/images/teeth/' + toothNumber + '.png'
             }
