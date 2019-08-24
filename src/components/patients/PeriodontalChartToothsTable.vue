@@ -111,10 +111,6 @@
         font-size: 0.5em;
     }
 
-    .date-icon {
-        cursor: crosshair;
-    }
-
     .toothImage {
         height: 3em;
     }
