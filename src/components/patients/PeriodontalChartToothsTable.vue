@@ -15,18 +15,18 @@
 
         <tbody>
             <tr v-for="date in getDates()">
-                <td class="toothNotes mb-3 align-middle text-center">
-                    <span>{{ date }}</span>
+                <td class="text-center">
+                    <span class="toothNotes">{{ date }}</span>
                 </td>
 
-                <td v-for="tooth in teeth" :key="tooth.id" class="align-middle text-center">
+                <td v-for="tooth in teeth" :key="tooth.id" class="text-center">
                     <note-measurements :note="getNote(date, tooth.number)"/>
                 </td>
             </tr>
 
             <tr>
                 <td></td>
-                <td v-for="tooth in teeth" :key="tooth.id" class="align-middle text-center">
+                <td v-for="tooth in teeth" :key="tooth.id" class="text-center">
                     <plus-circle-outline fillColor="green" :size="15"
                                          class="btn-icon" title="Εισαγωγή μετρήσεων"
                                          @click="newNoteFunction(tooth)" />
