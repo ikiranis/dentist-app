@@ -613,7 +613,7 @@ let api = {
      * @returns {Promise<void>}
      */
     async getPeriodontalChartNotes (patientId) {
-        return axios.get(ROOT_API + '/periodontalChartNotes' + patientId)
+        return axios.get(ROOT_API + '/periodontalChartNotes/' + patientId)
     }
 }
 
