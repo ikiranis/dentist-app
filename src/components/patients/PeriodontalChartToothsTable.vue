@@ -1,6 +1,6 @@
 <template>
 
-    <table class="table table-responsive table-striped table-hover table-sm table-bordered">
+    <table class="table table-responsive table-hover table-sm table-bordered">
 
         <thead class="table-borderless">
             <tr>
