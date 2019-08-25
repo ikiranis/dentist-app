@@ -1,8 +1,8 @@
 <template>
 
-    <table class="table table-responsive table-striped table-hover table-sm">
+    <table class="table table-responsive table-striped table-hover table-sm table-bordered">
 
-        <thead>
+        <thead class="table-borderless">
             <tr>
                 <th></th>
                 <th v-for="tooth in teeth" :key="tooth.id"
