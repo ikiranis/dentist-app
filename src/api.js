@@ -603,6 +603,18 @@ let api = {
     async getTeeth () {
         return axios.get(ROOT_API + '/teeth')
     },
+
+    // ************** Periodontal chart notes api calls **************
+
+    /**
+     * Get all Periodontal Chart Notes
+     *
+     * @param patientId
+     * @returns {Promise<void>}
+     */
+    async getPeriodontalChartNotes (patientId) {
+        return axios.get(ROOT_API + '/periodontalChartNotes' + patientId)
+    }
 }
 
 export default api
