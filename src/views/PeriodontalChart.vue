@@ -66,11 +66,11 @@
 
 			<div>
 				<periodontal-chart-tooths-table :teeth="upperTeeth"
-												:notes="notes"
+												:notes="upperNotes"
 												:newNoteFunction="newNote" />
 
 				<periodontal-chart-tooths-table :teeth="downTeeth"
-												:notes="notes"
+												:notes="downNotes"
 												:newNoteFunction="newNote" />
 			</div>
 
@@ -155,15 +155,41 @@ export default {
     },
 
     computed: {
+        /**
+         * Filter upper teeth
+         */
         upperTeeth () {
             return this.teeth.filter((tooth) => {
                 return tooth.number <= 28
             })
         },
 
+        /**
+         * Filter down teeth
+         */
         downTeeth () {
             return this.teeth.filter((tooth) => {
                 return tooth.number > 28
+            })
+        },
+
+        /**
+         * Filter upper notes
+         */
+        upperNotes ()
+        {
+            return this.notes.filter((note) => {
+                return note.tooth_number <= 28
+            })
+        },
+
+        /**
+         * Filter down notes
+         */
+        downNotes ()
+        {
+            return this.notes.filter((note) => {
+                return note.tooth_number > 28
             })
         },
 
@@ -222,8 +248,6 @@ export default {
                 .then(response => {
                     if (response.status === 200) {
                         this.notes = response.data
-
-                        console.log(this.notes)
 
                         return
                     }
