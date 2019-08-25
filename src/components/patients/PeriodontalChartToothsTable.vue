@@ -1,21 +1,21 @@
 <template>
 
-    <table class="table table-responsive">
+    <table class="table table-responsive table-striped table-hover table-sm">
 
         <thead>
             <tr>
                 <th></th>
                 <th v-for="tooth in teeth" :key="tooth.id"
-                    class="text-center tooth-label">
+                    class="text-center px-2">
                     <img :src="imagePath(tooth.number)" class="toothImage">
-                    <h5>{{ tooth.number }}</h5>
+                    <div class="toothNumbers text-secondary">{{ tooth.number }}</div>
                 </th>
             </tr>
         </thead>
 
         <tbody>
             <tr v-for="date in getDates()">
-                <td class="text-center">
+                <td class="text-center align-middle">
                     <span class="toothNotes">{{ date }}</span>
                 </td>
 
@@ -108,10 +108,14 @@
 
 <style scoped>
     .toothNotes {
-        font-size: 0.5em;
+        font-size: 0.8em;
+    }
+
+    .toothNumbers {
+        font-size: 1.5em;
     }
 
     .toothImage {
-        height: 3em;
+        height: 2.5em;
     }
 </style>
