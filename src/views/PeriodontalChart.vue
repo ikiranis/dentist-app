@@ -45,7 +45,7 @@
 
                 <div class="row">
                     <input type="button" class="btn btn-success col-lg-6 col-12 my-3 mx-auto"
-                            @click="saveNote" value="Εισαγωγή">
+                            @click="saveNote" value="Αποθήκευση">
                 </div>
 
             </form>
@@ -72,11 +72,15 @@
 			<div>
 				<periodontal-chart-tooths-table :teeth="upperTeeth"
 												:notes="upperNotes"
-												:newNoteFunction="newNote" />
+												:newNote="newNote"
+												:updateNote="getNote"
+												:deleteNote="deletePeriodontalChartNote" />
 
 				<periodontal-chart-tooths-table :teeth="downTeeth"
 												:notes="downNotes"
-												:newNoteFunction="newNote" />
+												:newNote="newNote"
+												:updateNote="getNote"
+												:deleteNote="deletePeriodontalChartNote" />
 			</div>
 
         </div>
@@ -244,7 +248,7 @@ export default {
 		/**
 		 * Save note
 		 */
-        saveNote () {
+        saveNote (note) {
 			if (this.note.id === 0) {
 				this.createPeriodontalChartNote()
 				return
@@ -275,6 +279,18 @@ export default {
                     utility.debug(error.response.data.debug)
                 })
         },
+
+		/**
+		 * Display note for edit
+		 */
+		getNote (note) {
+			this.note = note
+
+			// this.note.formated_date = null
+
+			this.noteTitle = 'Ενημέρωση μετρήσεων'
+			this.$refs.noteModal.show()
+		},
 
         /**
          * Get all Periodontal Chart Notes
@@ -370,7 +386,7 @@ export default {
 		/**
 		 * Delete a Periodontal Chart Note
 		 */
-		deleteTransaction (noteId) {
+		deletePeriodontalChartNote (noteId) {
 			let choise = confirm('Θέλεις σίγουρα να σβήσεις τις μετρήσεις;')
 
 			if (choise) {

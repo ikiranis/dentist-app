@@ -20,7 +20,9 @@
                 </td>
 
                 <td v-for="tooth in teeth" :key="tooth.id" class="text-center">
-                    <note-measurements :note="getNote(date, tooth.number)"/>
+					<a href="#" @click="updateNote(getNote(date, tooth.number))">
+                    	<note-measurements :note="getNote(date, tooth.number)" />
+					</a>
                 </td>
             </tr>
 
@@ -29,7 +31,7 @@
                 <td v-for="tooth in teeth" :key="tooth.id" class="text-center">
                     <plus-circle-outline fillColor="green" :size="15"
                                          class="btn-icon" title="Εισαγωγή μετρήσεων"
-                                         @click="newNoteFunction(tooth)" />
+                                         @click="newNote(tooth)" />
                 </td>
             </tr>
         </tbody>
@@ -53,10 +55,18 @@
                 required: true,
                 type: Array
             },
-            newNoteFunction: {
+            newNote: {
                 required: true,
                 type: Function
-            }
+            },
+			updateNote: {
+				required: true,
+				type: Function
+			},
+			deleteNote: {
+				required: true,
+				type: Function
+			}
         },
 
         methods: {
