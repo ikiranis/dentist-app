@@ -3,7 +3,7 @@
 
         <b-modal ref="noteModal" size="md" centered hide-footer :title="noteTitle">
 
-            <form class="container-fluid">
+            <form @submit.prevent class="container-fluid">
 
                 <div class="form-group row">
                     <label for="description" class="col-md-4 col-form-label text-md-right">Περιγραφή</label>

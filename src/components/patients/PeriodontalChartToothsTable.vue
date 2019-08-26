@@ -1,6 +1,6 @@
 <template>
 
-    <table class="table table-responsive table-hover table-sm table-bordered">
+    <table class="table table-responsive table-hover table-sm">
 
         <thead class="table-borderless">
             <tr>
@@ -13,7 +13,7 @@
             </tr>
         </thead>
 
-        <tbody>
+        <tbody class="table-bordered">
             <tr v-for="date in getDates()">
                 <td class="text-center align-middle">
                     <span class="toothNotes">{{ date }}</span>

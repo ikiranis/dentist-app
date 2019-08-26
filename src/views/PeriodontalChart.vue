@@ -3,7 +3,7 @@
 
         <b-modal ref="noteModal" size="md" centered hide-footer :title="noteTitle">
 
-            <form class="container-fluid">
+            <form @submit.prevent class="container-fluid">
 
                 <div class="form-group row">
                     <label for="number1" class="sr-only">Number</label>
