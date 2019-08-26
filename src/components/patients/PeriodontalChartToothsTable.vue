@@ -128,4 +128,24 @@
     .toothImage {
         height: 2.5em;
     }
+
+	/* unvisited link */
+	a:link {
+		color: black;
+	}
+
+	/* visited link */
+	a:visited {
+		color: black;
+	}
+
+	/* mouse over link */
+	a:hover {
+		color: black;
+	}
+
+	/* selected link */
+	a:active {
+		color: black;
+	}
 </style>
