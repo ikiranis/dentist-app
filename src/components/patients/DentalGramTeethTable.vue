@@ -105,7 +105,7 @@
 
 <style scoped>
 	.toothNotes {
-		font-size: 0.8em;
+		font-size: 0.6em;
 	}
 
 	.toothNumbers {
