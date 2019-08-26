@@ -13,20 +13,28 @@
             <b-navbar-nav :class="valign">
 
                 <!-- User LoggedIn items -->
-                <b-nav-item href="#" v-for="item in menuItems" :key="item.name" v-if="userId !== 0 && item.loggedIn">
+                <b-nav-item href="#"
+							class="my-auto"
+							v-for="item in menuItems" :key="item.name" v-if="userId !== 0 && item.loggedIn">
                     <router-link :to="item.route" class="nav-link">{{ item.name }}</router-link>
                 </b-nav-item>
 
                 <!-- All users items -->
-                <b-nav-item href="#" v-for="item in menuItems" :key="item.name" v-if="!item.loggedIn">
+                <b-nav-item href="#"
+							class="my-auto"
+							v-for="item in menuItems" :key="item.name" v-if="!item.loggedIn">
                     <router-link :to="item.route" class="nav-link">{{ item.name }}</router-link>
                 </b-nav-item>
 
-                <b-nav-item href="#" v-if="userInfo === 'true'">
+                <b-nav-item href="#"
+							class="my-auto"
+							v-if="userInfo === 'true'">
                     <CurrentUser/>
                 </b-nav-item>
 
-                <b-nav-item href="#" v-if="username && userInfo === 'true'">
+                <b-nav-item href="#"
+							class="my-auto"
+							v-if="username && userInfo === 'true'">
                     <a class="nav-link" id="logout" @click="logout()">Αποσύνδεση</a>
                 </b-nav-item>
 
