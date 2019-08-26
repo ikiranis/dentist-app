@@ -614,7 +614,38 @@ let api = {
      */
     async getPeriodontalChartNotes (patientId) {
         return axios.get(ROOT_API + '/periodontalChartNotes/' + patientId)
-    }
+    },
+
+	/**
+	 * Create a note
+	 *
+	 * @param args
+	 * @returns {Promise<AxiosResponse<T>>}
+	 */
+	async createPeriodontalChartNote (args) {
+		return axios.post(ROOT_API + '/periodontalChartNote', args)
+	},
+
+	/**
+	 * Update a note
+	 *
+	 * @param args
+	 * @param noteId
+	 * @returns {Promise<Promise<AxiosResponse<T>>>}
+	 */
+	async updatePeriodontalChartNote (args, noteId) {
+		return axios.patch(ROOT_API + '/periodontalChartNote/' + noteId, args)
+	},
+
+	/**
+	 * Delete a note
+	 *
+	 * @param noteId
+	 * @returns {Promise<Promise<AxiosResponse<T>>>}
+	 */
+	async deletePeriodontalChartNote (noteId) {
+		return axios.delete(ROOT_API + '/periodontalChartNote/' + noteId)
+	}
 }
 
 export default api
