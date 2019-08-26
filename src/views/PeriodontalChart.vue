@@ -240,6 +240,12 @@ export default {
 				id: 0,
 				tooth_number: tooth.number,
 				patient_id: this.patientId,
+				measure1: 0,
+				measure2: 0,
+				measure3: 0,
+				measure4: 0,
+				measure5: 0,
+				measure6: 0,
 				created_at: moment(new Date()).format('YYYY-MM-DD')
 			}
 
