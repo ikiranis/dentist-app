@@ -54,9 +54,14 @@
 
         <div class="row justify-content-center">
 
-            <div class="col-12">
-                <h1>Περιοδοντόγραμμα</h1>
-            </div>
+			<div class="row col-12">
+				<div class="col-lg col-12 my-auto">
+					<h1>Περιοδοντόγραμμα</h1>
+				</div>
+				<div class="col-lg col-12 row my-auto">
+					<Loading class="ml-auto" :loading="loading"/>
+				</div>
+			</div>
 
             <menu-bar brand="Ασθενής" :brandRoute="{ name: 'patient', params: { id: patientId } }"
                       :menuItems="menuItems" userInfo="false" fixed=""
@@ -75,17 +80,27 @@
 			</div>
 
         </div>
+
+		<div class="row">
+			<display-error class="mx-auto"
+						   v-if="response.message"
+						   :response="response"/>
+		</div>
+
     </div>
 </template>
 
 <script>
 import MenuBar from '@/components/basic/MenuBar'
 import PeriodontalChartToothsTable from '@/components/patients/PeriodontalChartToothsTable'
-import api from "../api";
-import utility from "../library/utility";
+import api from "../api"
+import utility from "../library/utility"
+import moment from 'moment'
+import DisplayError from '@/components/basic/DisplayError'
+import Loading from '@/components/basic/Loading'
 
 export default {
-    components: { MenuBar, PeriodontalChartToothsTable },
+    components: { MenuBar, PeriodontalChartToothsTable, DisplayError, Loading },
 
     data () {
         return {
@@ -96,6 +111,8 @@ export default {
                 status: '',
                 errors: []
             },
+
+			loading: false,
 
             menuItems: [
                 {
@@ -206,14 +223,16 @@ export default {
     },
 
     methods: {
+    	moment,
 
         /**
          * Display note modal
          */
-        newNote (data) {
+        newNote (tooth) {
 			this.note = {
 				id: 0,
-				patient_id: this.patientId(),
+				tooth_number: tooth.number,
+				patient_id: this.patientId,
 				created_at: moment(new Date()).format('YYYY-MM-DD')
 			}
 
@@ -226,8 +245,8 @@ export default {
 		 * Save note
 		 */
         saveNote () {
-			if (this.transaction.id === 0) {
-				this.createPeridontalChartNote()
+			if (this.note.id === 0) {
+				this.createPeriodontalChartNote()
 				return
 			}
 
@@ -262,8 +281,12 @@ export default {
          */
         getPeriodontalChartNotes ()
         {
+			this.loading = true
+
             api.getPeriodontalChartNotes(this.patientId)
                 .then(response => {
+					this.loading = false
+
                     if (response.status === 200) {
                         this.notes = response.data
 
@@ -273,6 +296,8 @@ export default {
                     this.notes = []
                 })
                 .catch(error => {
+					this.loading = false
+
                     this.response.message = error.response.data.message
                     this.response.status = false
 
@@ -283,7 +308,7 @@ export default {
 		/**
 		 * Create a periodontal chart note
 		 */
-		createTransaction () {
+		createPeriodontalChartNote () {
 			this.loading = true
 
 			api.createPeriodontalChartNote(this.note)
