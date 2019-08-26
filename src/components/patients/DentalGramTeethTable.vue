@@ -1,36 +1,37 @@
 <template>
 
-	<table class="table table-responsive">
+	<table class="table table-responsive table-hover table-sm table-bordered">
 
-		<thead>
-		<tr>
-			<th v-for="tooth in teeth" :key="tooth.id"
-				class="text-center tooth-label">{{ tooth.number }}
-			</th>
-		</tr>
+		<thead class="table-borderless">
+			<tr>
+				<th></th>
+				<th v-for="tooth in teeth" :key="tooth.id"
+					class="text-center px-3 toothNumbers text-secondary">{{ tooth.number }}
+				</th>
+			</tr>
 		</thead>
 
 		<tbody>
-		<tr v-for="date in getDates()">
-			<td class="text-center align-middle">
-				<span class="toothNotes">{{ date }}</span>
-			</td>
+			<tr v-for="date in getDates()">
+				<td class="text-center align-middle">
+					<span class="toothNotes">{{ date }}</span>
+				</td>
 
-			<td v-for="tooth in teeth" :key="tooth.id" class="text-center">
-				<a href="#" @click="updateNote(getNote(date, tooth.number))">
-					<note-description :note="getNote(date, tooth.number)"/>
-				</a>
-			</td>
-		</tr>
+				<td v-for="tooth in teeth" :key="tooth.id" class="text-center">
+					<a href="#" @click="updateNote(getNote(date, tooth.number))">
+						<note-description :note="getNote(date, tooth.number)"/>
+					</a>
+				</td>
+			</tr>
 
-		<tr>
-			<td></td>
-			<td v-for="tooth in teeth" :key="tooth.id" class="text-center">
-				<plus-circle-outline fillColor="green" :size="15"
-									 class="btn-icon" title="Εισαγωγή σημείωσης"
-									 @click="newNote(tooth)"/>
-			</td>
-		</tr>
+			<tr>
+				<td></td>
+				<td v-for="tooth in teeth" :key="tooth.id" class="text-center">
+					<plus-circle-outline fillColor="green" :size="15"
+										 class="btn-icon" title="Εισαγωγή σημείωσης"
+										 @click="newNote(tooth)"/>
+				</td>
+			</tr>
 		</tbody>
 
 	</table>
@@ -109,10 +110,6 @@
 
 	.toothNumbers {
 		font-size: 1.5em;
-	}
-
-	.toothImage {
-		height: 2.5em;
 	}
 
 	/* unvisited link */
