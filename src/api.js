@@ -645,6 +645,49 @@ let api = {
 	 */
 	async deletePeriodontalChartNote (noteId) {
 		return axios.delete(ROOT_API + '/periodontalChartNote/' + noteId)
+	},
+
+	// ************** Dental gram notes api calls **************
+
+	/**
+	 * Get all Dental Gram Notes
+	 *
+	 * @param patientId
+	 * @returns {Promise<void>}
+	 */
+	async getDentalGramNotes (patientId) {
+		return axios.get(ROOT_API + '/dentalGramNotes/' + patientId)
+	},
+
+	/**
+	 * Create a note
+	 *
+	 * @param args
+	 * @returns {Promise<AxiosResponse<T>>}
+	 */
+	async createDentalGramNote (args) {
+		return axios.post(ROOT_API + '/dentalGramNote', args)
+	},
+
+	/**
+	 * Update a note
+	 *
+	 * @param args
+	 * @param noteId
+	 * @returns {Promise<Promise<AxiosResponse<T>>>}
+	 */
+	async updateDentalGramNote (args, noteId) {
+		return axios.patch(ROOT_API + '/dentalGramNote/' + noteId, args)
+	},
+
+	/**
+	 * Delete a note
+	 *
+	 * @param noteId
+	 * @returns {Promise<Promise<AxiosResponse<T>>>}
+	 */
+	async deleteDentalGramNote (noteId) {
+		return axios.delete(ROOT_API + '/dentalGramNote/' + noteId)
 	}
 }
 

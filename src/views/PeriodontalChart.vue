@@ -111,8 +111,6 @@ export default {
 
     data () {
         return {
-            chozenNote: {},
-
             response: {
                 message: '',
                 status: '',

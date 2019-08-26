@@ -1,7 +1,7 @@
 <template>
     <div class="container-fluid my-3">
 
-        <b-modal ref="noteModal" size="md" centered hide-footer title="Εισαγωγή σημείωσης">
+        <b-modal ref="noteModal" size="md" centered hide-footer :title="noteTitle">
 
             <form class="container-fluid">
 
@@ -17,7 +17,11 @@
                 </div>
 
                 <div class="row">
-                    <button class="btn btn-success col-lg-6 col-12 my-3 mx-auto" @click="saveNote">Εισαγωγή</button>
+                    <input type="button" class="btn btn-success col-lg-6 col-12 my-3 mx-auto"
+						   @click="saveNote" value="Αποθήκευση">
+
+					<input v-if="note.id !== 0" type="button" class="btn btn-danger col-lg-5 col-12 my-3 mx-auto"
+						   @click="deleteDentalGramNote" value="Διαγραφή">
                 </div>
 
             </form>
@@ -26,9 +30,14 @@
 
         <div class="row justify-content-center">
 
-            <div class="col-12">
-                <h1>Οδοντόγραμμα</h1>
-            </div>
+			<div class="row col-12">
+				<div class="col-lg col-12 my-auto">
+					<h1>Οδοντόγραμμα</h1>
+				</div>
+				<div class="col-lg col-12 row my-auto">
+					<Loading class="ml-auto" :loading="loading"/>
+				</div>
+			</div>
 
             <menu-bar brand="Ασθενής" :brandRoute="{ name: 'patient', params: { id: patientId } }"
                       :menuItems="menuItems" userInfo="false" fixed=""
@@ -37,24 +46,25 @@
 
             <div>
 
-                {{ note.description }}
+                <dental-gram-teeth-table :teeth="upperTeeth"
+										 :notes="upperNotes"
+										 :newNote="newNote"
+										 :updateNote="getNote"
+										 :deleteNote="deleteDentalGramNote" />
 
-                <div class="alert alert-warning w-100 mx-auto text-center fixed-top"
-                     role="alert" v-if="textDisplayed !== ''">
-                    {{ textDisplayed }}
-                </div>
-
-                <dental-gram-tooths-table :teeth="upperTeeth"
-                                          @click="newNote"
-										  @mouseover="displayNote"
-										  @mouseleave="hideNote"/>
-
-                <dental-gram-tooths-table :teeth="downTeeth"
-                                          @click="newNote"
-										  @mouseover="displayNote"
-										  @mouseleave="hideNote"/>
+                <dental-gram-teeth-table :teeth="downTeeth"
+										 :notes="upperNotes"
+										 :newNote="newNote"
+										 :updateNote="getNote"
+										 :deleteNote="deleteDentalGramNote" />
 
             </div>
+
+			<div class="row">
+				<display-error class="mx-auto"
+							   v-if="response.message"
+							   :response="response"/>
+			</div>
 
         </div>
     </div>
@@ -63,22 +73,25 @@
 <script>
 import MenuBar from '@/components/basic/MenuBar'
 import FormError from '@/components/basic/FormError'
-import DentalGramToothsTable from '@/components/patients/DentalGramToothsTable'
-import api from "../api";
-import utility from "../library/utility";
+import DentalGramTeethTable from '@/components/patients/DentalGramTeethTable'
+import api from "../api"
+import utility from "../library/utility"
+import moment from 'moment'
+import DisplayError from '@/components/basic/DisplayError'
+import Loading from '@/components/basic/Loading'
 
 export default {
-    components: { MenuBar, FormError, DentalGramToothsTable },
+    components: { MenuBar, FormError, DentalGramTeethTable, DisplayError, Loading },
 
     data () {
         return {
-            textDisplayed: '',
-
             response: {
                 message: '',
                 status: '',
                 errors: []
             },
+
+			loading: false,
 
             menuItems: [
                 {
@@ -126,663 +139,48 @@ export default {
 
             teeth: [],
 
-            tooths: [
-                {
-                    id: 18,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something 1'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something 2'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something 3'
-                        }
-                    ]
-                },
-                {
-                    id: 17,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something 1'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something 2'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something 3'
-                        }
-                    ]
-                },
-                {
-                    id: 16,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something 1'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something 2'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something 3'
-                        }
-                    ]
-                },
-                {
-                    id: 15,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something 1'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something 2'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something 3'
-                        }
-                    ]
-                },
-                {
-                    id: 14,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something 1'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something 2'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something 3'
-                        }
-                    ]
-                },
-                {
-                    id: 13,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something 1'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something 2'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something 3'
-                        }
-                    ]
-                },
-                {
-                    id: 12,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something 1'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something 2'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something 3'
-                        }
-                    ]
-                },
-                {
-                    id: 11,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something 1'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something 2'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something 3'
-                        }
-                    ]
-                },
-                {
-                    id: 21,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something 1'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something 2'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something 3'
-                        }
-                    ]
-                },
-                {
-                    id: 22,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something 1'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something 2'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something 3'
-                        }
-                    ]
-                },
-                {
-                    id: 23,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something 1'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something 2'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something 3'
-                        }
-                    ]
-                },
-                {
-                    id: 24,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something 1'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something 2'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something 3'
-                        }
-                    ]
-                },
-                {
-                    id: 25,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something 1'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something 2'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something 3'
-                        }
-                    ]
-                },
-                {
-                    id: 26,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something 1'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something 2'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something 3'
-                        }
-                    ]
-                },
-                {
-                    id: 27,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something 1'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something 2'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something 3'
-                        }
-                    ]
-                },
-                {
-                    id: 28,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something 1'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something 2'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something 3'
-                        }
-                    ]
-                },
-                {
-                    id: 48,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something 1'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something 2'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something 3'
-                        }
-                    ]
-                },
-                {
-                    id: 47,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something 1'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something 2'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something 3'
-                        }
-                    ]
-                },
-                {
-                    id: 46,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something 1'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something 2'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something 3'
-                        }
-                    ]
-                },
-                {
-                    id: 45,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something 1'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something 2'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something 3'
-                        }
-                    ]
-                },
-                {
-                    id: 44,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something 1'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something 2'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something 3'
-                        }
-                    ]
-                },
-                {
-                    id: 43,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something 1'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something 2'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something 3'
-                        }
-                    ]
-                },
-                {
-                    id: 42,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something 1'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something 2'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something 3'
-                        }
-                    ]
-                },
-                {
-                    id: 41,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something 1'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something 2'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something 3'
-                        }
-                    ]
-                },
-                {
-                    id: 31,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something 1'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something 2'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something 3'
-                        }
-                    ]
-                },
-                {
-                    id: 32,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something 1'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something 2'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something 3'
-                        }
-                    ]
-                },
-                {
-                    id: 33,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something 1'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something 2'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something 3'
-                        }
-                    ]
-                },
-                {
-                    id: 34,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something 1'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something 2'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something 3'
-                        }
-                    ]
-                },
-                {
-                    id: 35,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something 1'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something 2'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something 3'
-                        }
-                    ]
-                },
-                {
-                    id: 36,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something 1'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something 2'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something 3'
-                        }
-                    ]
-                },
-                {
-                    id: 37,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something 1'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something 2'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something 3'
-                        }
-                    ]
-                },
-                {
-                    id: 38,
-                    notes: [
-                        {
-                            id: 0,
-                            date: '21/01/2019',
-                            description: 'something 1'
-                        },
-                        {
-                            id: 1,
-                            date: '21/01/2019',
-                            description: 'something 2'
-                        },
-                        {
-                            id: 2,
-                            date: '21/01/2019',
-                            description: 'something 3'
-                        }
-                    ]
-                }
-            ]
+            noteTitle: ''
         }
     },
 
     computed: {
-        upperTeeth () {
-            return this.teeth.filter((tooth) => {
-                return tooth.number <= 28
-            })
-        },
+		/**
+		 * Filter upper teeth
+		 */
+		upperTeeth () {
+			return this.teeth.filter((tooth) => {
+				return tooth.number <= 28
+			})
+		},
 
-        downTeeth () {
-            return this.teeth.filter((tooth) => {
-                return tooth.number > 28
-            })
-        },
+		/**
+		 * Filter down teeth
+		 */
+		downTeeth () {
+			return this.teeth.filter((tooth) => {
+				return tooth.number > 28
+			})
+		},
+
+		/**
+		 * Filter upper notes
+		 */
+		upperNotes ()
+		{
+			return this.notes.filter((note) => {
+				return note.tooth_number <= 28
+			})
+		},
+
+		/**
+		 * Filter down notes
+		 */
+		downNotes ()
+		{
+			return this.notes.filter((note) => {
+				return note.tooth_number > 28
+			})
+		},
 
         patientId: function () {
             return this.$route.params.id
@@ -791,41 +189,40 @@ export default {
 
     created: function () {
         this.getTeeth()
+		this.getDentalGramNotes()
     },
 
     methods: {
-        /**
-         * Display note modal
-         */
-        newNote () {
-            this.$refs.noteModal.show()
-        },
+    	moment,
 
-        /**
-         * Save the note
-         */
-        saveNote (note) {
-            this.$refs.noteModal.hide()
-            this.note = note
-        },
+		/**
+		 * Display note modal
+		 */
+		newNote (tooth) {
+			this.note = {
+				id: 0,
+				tooth_number: tooth.number,
+				patient_id: this.patientId,
+				description: '',
+				created_at: moment(new Date()).format('YYYY-MM-DD')
+			}
 
-        /**
-         * Display note's description on alert box
-         * @param obj
-         */
-        displayNote (obj) {
-            let tooth = this.tooths.find((tooth) => tooth.id === obj.toothId)
-            let note = tooth.notes.find((note) => note.id === obj.noteId)
+			this.noteTitle = 'Εισαγωγή σημείωσης'
 
-            this.textDisplayed = note.description
-        },
+			this.$refs.noteModal.show()
+		},
 
-        /**
-         * Hide the note's alert box
-         */
-        hideNote () {
-            this.textDisplayed = ''
-        },
+		/**
+		 * Save note
+		 */
+		saveNote (note) {
+			if (this.note.id === 0) {
+				this.createDentalGramNote()
+				return
+			}
+
+			this.updateDentalGramNote()
+		},
 
         /**
          * Get all teeth
@@ -848,7 +245,137 @@ export default {
 
                     utility.debug(error.response.data.debug)
                 })
-        }
+        },
+
+		/**
+		 * Display note for edit
+		 */
+		getNote (note) {
+			this.note = note
+			delete this.note.created_at // Remove created_at, because it trigger error
+
+			this.noteTitle = 'Ενημέρωση σημείωσης'
+			this.$refs.noteModal.show()
+		},
+
+		/**
+		 * Get all Dental Gram Notes
+		 */
+		getDentalGramNotes ()
+		{
+			this.loading = true
+
+			api.getDentalGramNotes(this.patientId)
+				.then(response => {
+					this.loading = false
+
+					if (response.status === 200) {
+						this.notes = response.data
+
+						return
+					}
+
+					this.notes = []
+				})
+				.catch(error => {
+					this.loading = false
+
+					this.response.message = error.response.data.message
+					this.response.status = false
+
+					utility.debug(error.response.data.debug)
+				})
+		},
+
+		/**
+		 * Create a Dental Gram note
+		 */
+		createDentalGramNote () {
+			this.loading = true
+
+			api.createDentalGramNote(this.note)
+				.then(response => {
+					this.loading = false
+
+					this.response.message = 'Η σημείωση αποθηκεύτηκε'
+					this.response.status = true
+
+					this.$refs.noteModal.hide()
+
+					this.getDentalGramNotes()
+				})
+				.catch(error => {
+					this.loading = false
+
+					this.response.message = error.response.data.message
+					this.response.status = false
+
+					if (error.response.data.errors) {
+						this.response.errors = error.response.data.errors
+					}
+
+					utility.debug(error.response.data.debug)
+				})
+		},
+
+		/**
+		 * Update the Dental Gram Note
+		 */
+		updateDentalGramNote () {
+			this.loading = true
+
+			api.updateDentalGramNote(this.note, this.note.id)
+				.then(response => {
+					this.loading = false
+
+					this.response.message = 'Η σημείωση ενημερώθηκε'
+					this.response.status = true
+
+					this.$refs.noteModal.hide()
+
+					this.getDentalGramNotes()
+				})
+				.catch(error => {
+					this.loading = false
+
+					this.response.message = error.response.data.message
+					this.response.status = false
+
+					if (error.response.data.errors) {
+						this.response.errors = error.response.data.errors
+					}
+
+					utility.debug(error.response.data.debug)
+				})
+		},
+
+		/**
+		 * Delete a Dental Gram Note
+		 */
+		deleteDentalGramNote () {
+			let choise = confirm('Θέλεις σίγουρα να σβήσεις σημείωση;')
+
+			if (choise) {
+				this.loading = true
+
+				api.deleteDentalGramNote(this.note.id)
+					.then(response => {
+						this.loading = false
+
+						this.$refs.noteModal.hide()
+
+						this.getDentalGramNotes()
+					})
+					.catch(error => {
+						this.loading = false
+
+						this.response.message = error.response.data.message
+						this.response.status = false
+
+						utility.debug(error.response.data.debug)
+					})
+			}
+		}
     }
 }
 </script>
