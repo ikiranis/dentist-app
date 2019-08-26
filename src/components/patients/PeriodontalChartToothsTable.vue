@@ -70,7 +70,7 @@
                 let dates = [];
 
                 this.notes.forEach(value => {
-                    dates.push(value.created_at)
+                    dates.push(value.formated_date)
                 })
 
                 // Filter duplicates
@@ -88,7 +88,7 @@
              */
             getNote(date, toothNumber) {
                 return this.notes.find(note =>
-                    note.created_at === date && note.tooth_number === toothNumber
+                    note.formated_date === date && note.tooth_number === toothNumber
                 )
             },
 
