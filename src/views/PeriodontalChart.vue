@@ -44,8 +44,11 @@
                 </div>
 
                 <div class="row">
-                    <input type="button" class="btn btn-success col-lg-6 col-12 my-3 mx-auto"
+                    <input type="button" class="btn btn-success col-lg-5 col-12 my-3 mx-auto"
                             @click="saveNote" value="Αποθήκευση">
+
+					<input v-if="note.id !== 0" type="button" class="btn btn-danger col-lg-5 col-12 my-3 mx-auto"
+						   @click="deletePeriodontalChartNote" value="Διαγραφή">
                 </div>
 
             </form>
@@ -385,15 +388,17 @@ export default {
 		/**
 		 * Delete a Periodontal Chart Note
 		 */
-		deletePeriodontalChartNote (noteId) {
+		deletePeriodontalChartNote () {
 			let choise = confirm('Θέλεις σίγουρα να σβήσεις τις μετρήσεις;')
 
 			if (choise) {
 				this.loading = true
 
-				api.deletePeriodontalChartNote(noteId)
+				api.deletePeriodontalChartNote(this.note.id)
 					.then(response => {
 						this.loading = false
+
+						this.$refs.noteModal.hide()
 
 						this.getPeriodontalChartNotes()
 					})
