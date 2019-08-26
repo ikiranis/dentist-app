@@ -285,8 +285,7 @@ export default {
 		 */
 		getNote (note) {
 			this.note = note
-
-			// this.note.formated_date = null
+			delete this.note.created_at // Remove created_at, because it trigger error
 
 			this.noteTitle = 'Ενημέρωση μετρήσεων'
 			this.$refs.noteModal.show()
