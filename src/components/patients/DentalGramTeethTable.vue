@@ -1,54 +1,137 @@
-<template functional>
+<template>
 
-    <table class="table table-responsive">
+	<table class="table table-responsive">
 
-        <thead>
-        <tr>
-            <th v-for="tooth in props.teeth" :key="tooth.id"
-                class="text-center tooth-label">{{ tooth.number }}</th>
-        </tr>
-        </thead>
+		<thead>
+		<tr>
+			<th v-for="tooth in teeth" :key="tooth.id"
+				class="text-center tooth-label">{{ tooth.number }}
+			</th>
+		</tr>
+		</thead>
 
-        <tbody>
-        <td v-for="tooth in props.teeth" :key="tooth.id">
-<!--            <tr v-for="note in tooth.notes" :key="note.id" class="mb-2">-->
-<!--                <span class="toothNotes" @mouseover="listeners.mouseover({toothId: tooth.id, noteId: note.id})"-->
-<!--                    @mouseleave="listeners.mouseleave">-->
-<!--                    <span class="date-icon">{{ note.date }}</span>-->
-<!--                </span>-->
-<!--            </tr>-->
+		<tbody>
+		<tr v-for="date in getDates()">
+			<td class="text-center align-middle">
+				<span class="toothNotes">{{ date }}</span>
+			</td>
 
-<!--            <div class="row">-->
-<!--                <plus-circle-outline @click="listeners.click"-->
-<!--                                     fillColor="green" :size="15"-->
-<!--                                     class="btn-icon mx-auto" title="Εισαγωγή σημείωσης"/>-->
-<!--            </div>-->
-        </td>
-        </tbody>
+			<td v-for="tooth in teeth" :key="tooth.id" class="text-center">
+				<a href="#" @click="updateNote(getNote(date, tooth.number))">
+					<note-description :note="getNote(date, tooth.number)"/>
+				</a>
+			</td>
+		</tr>
 
-    </table>
+		<tr>
+			<td></td>
+			<td v-for="tooth in teeth" :key="tooth.id" class="text-center">
+				<plus-circle-outline fillColor="green" :size="15"
+									 class="btn-icon" title="Εισαγωγή σημείωσης"
+									 @click="newNote(tooth)"/>
+			</td>
+		</tr>
+		</tbody>
+
+	</table>
 
 </template>
 
 <script>
-export default {
-    name: 'DentalGramToothsTable',
+	import NoteDescription from "./NoteDescription"
 
-    props: {
-        teeth: {
-            required: true,
-            type: Array
-        }
-    }
-}
+	export default {
+		components: { NoteDescription },
+
+		props: {
+			teeth: {
+				required: true,
+				type: Array
+			},
+			notes: {
+				required: true,
+				type: Array
+			},
+			newNote: {
+				required: true,
+				type: Function
+			},
+			updateNote: {
+				required: true,
+				type: Function
+			},
+			deleteNote: {
+				required: true,
+				type: Function
+			}
+		},
+
+		methods: {
+			/**
+			 * Get all the dates, without duplicates
+			 *
+			 * @returns {*[]}
+			 */
+			getDates() {
+				// Get only the dates from array
+				let dates = [];
+
+				this.notes.forEach(value => {
+					dates.push(value.formated_date)
+				})
+
+				// Filter duplicates
+				return dates.filter((item, index) =>
+					dates.indexOf(item) === index
+				)
+			},
+
+			/**
+			 * Get the note with date and  toothNumber
+			 *
+			 * @param date
+			 * @param toothNumber
+			 * @returns {*}
+			 */
+			getNote(date, toothNumber) {
+				return this.notes.find(note =>
+					note.formated_date === date && note.tooth_number === toothNumber
+				)
+			}
+		}
+	}
 </script>
 
 <style scoped>
-    .toothNotes {
-        font-size: 0.5em;
-    }
+	.toothNotes {
+		font-size: 0.8em;
+	}
 
-    .date-icon {
-        cursor: crosshair;
-    }
+	.toothNumbers {
+		font-size: 1.5em;
+	}
+
+	.toothImage {
+		height: 2.5em;
+	}
+
+	/* unvisited link */
+	a:link {
+		color: black;
+	}
+
+	/* visited link */
+	a:visited {
+		color: black;
+	}
+
+	/* mouse over link */
+	a:hover {
+		color: black;
+	}
+
+	/* selected link */
+	a:active {
+		color: black;
+	}
 </style>

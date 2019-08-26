@@ -41,7 +41,7 @@
 </template>
 
 <script>
-    import NoteMeasurements from "./NoteMeasurements";
+    import NoteMeasurements from "./NoteMeasurements"
 
     export default {
         components: { NoteMeasurements },
