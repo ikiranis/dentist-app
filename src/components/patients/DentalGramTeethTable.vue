@@ -87,7 +87,7 @@
 			},
 
 			/**
-			 * Get the note with date and  toothNumber
+			 * Get the note with date and toothNumber
 			 *
 			 * @param date
 			 * @param toothNumber

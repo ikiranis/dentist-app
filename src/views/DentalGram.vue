@@ -53,20 +53,20 @@
 										 :deleteNote="deleteDentalGramNote" />
 
                 <dental-gram-teeth-table :teeth="downTeeth"
-										 :notes="upperNotes"
+										 :notes="downNotes"
 										 :newNote="newNote"
 										 :updateNote="getNote"
 										 :deleteNote="deleteDentalGramNote" />
 
             </div>
 
-			<div class="row">
-				<display-error class="mx-auto"
-							   v-if="response.message"
-							   :response="response"/>
-			</div>
-
         </div>
+
+		<div class="row">
+			<display-error class="mx-auto"
+						   v-if="response.message"
+						   :response="response"/>
+		</div>
     </div>
 </template>
 
@@ -138,6 +138,8 @@ export default {
             },
 
             teeth: [],
+
+			notes: [],
 
             noteTitle: ''
         }
