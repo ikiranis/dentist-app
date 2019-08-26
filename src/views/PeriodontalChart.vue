@@ -1,7 +1,7 @@
 <template>
     <div class="container-fluid my-3">
 
-        <b-modal ref="noteModal" size="md" centered hide-footer title="Εισαγωγή μετρήσεων">
+        <b-modal ref="noteModal" size="md" centered hide-footer :title="noteTitle">
 
             <form class="container-fluid">
 
@@ -150,7 +150,9 @@ export default {
 
 			notes: [],
 
-            teeth: []
+            teeth: [],
+
+			noteTitle: ''
         }
     },
 
@@ -209,11 +211,27 @@ export default {
          * Display note modal
          */
         newNote (data) {
+			this.note = {
+				id: 0,
+				patient_id: this.patientId(),
+				created_at: moment(new Date()).format('YYYY-MM-DD')
+			}
+
+			this.noteTitle = 'Εισαγωγή μετρήσεων'
+
             this.$refs.noteModal.show()
         },
 
+		/**
+		 * Save note
+		 */
         saveNote () {
-            alert('Saving measurements...')
+			if (this.transaction.id === 0) {
+				this.createPeridontalChartNote()
+				return
+			}
+
+			this.updatePeriodontalChartNote()
         },
 
         /**
@@ -260,7 +278,95 @@ export default {
 
                     utility.debug(error.response.data.debug)
                 })
-        }
+        },
+
+		/**
+		 * Create a periodontal chart note
+		 */
+		createTransaction () {
+			this.loading = true
+
+			api.createPeriodontalChartNote(this.note)
+				.then(response => {
+					this.loading = false
+
+					this.response.message = 'Οι μετρήσεις αποθηκεύτηκαν'
+					this.response.status = true
+
+					this.$refs.noteModal.hide()
+
+					this.getPeriodontalChartNotes()
+				})
+				.catch(error => {
+					this.loading = false
+
+					this.response.message = error.response.data.message
+					this.response.status = false
+
+					if (error.response.data.errors) {
+						this.response.errors = error.response.data.errors
+					}
+
+					utility.debug(error.response.data.debug)
+				})
+		},
+
+		/**
+		 * Update the Periodontal Chart Note
+		 */
+		updatePeriodontalChartNote () {
+			this.loading = true
+
+			api.updatePeriodontalChartNote(this.note, this.note.id)
+				.then(response => {
+					this.loading = false
+
+					this.response.message = 'Οι μετρήσεις ενημερώθηκαν'
+					this.response.status = true
+
+					this.$refs.noteModal.hide()
+
+					this.getPeriodontalChartNotes()
+				})
+				.catch(error => {
+					this.loading = false
+
+					this.response.message = error.response.data.message
+					this.response.status = false
+
+					if (error.response.data.errors) {
+						this.response.errors = error.response.data.errors
+					}
+
+					utility.debug(error.response.data.debug)
+				})
+		},
+
+		/**
+		 * Delete a Periodontal Chart Note
+		 */
+		deleteTransaction (noteId) {
+			let choise = confirm('Θέλεις σίγουρα να σβήσεις τις μετρήσεις;')
+
+			if (choise) {
+				this.loading = true
+
+				api.deletePeriodontalChartNote(noteId)
+					.then(response => {
+						this.loading = false
+
+						this.getPeriodontalChartNotes()
+					})
+					.catch(error => {
+						this.loading = false
+
+						this.response.message = error.response.data.message
+						this.response.status = false
+
+						utility.debug(error.response.data.debug)
+					})
+			}
+		}
     }
 }
 </script>
