@@ -12,7 +12,7 @@
 		</thead>
 
 		<tbody class="table-bordered">
-			<tr>
+			<tr class="table-active">
 				<td class="text-center align-middle">
 					<span class="toothNotes">Ιστορικό</span>
 				</td>
@@ -24,7 +24,7 @@
 					</a>
 
 					<plus-circle-outline v-if="!getOriginNote(tooth.number)"
-										 fillColor="blue" :size="15"
+										 fillColor="black" :size="15"
 										 class="btn-icon" title="Εισαγωγή σημείωσης"
 										 @click="newOriginNote(tooth)"/>
 				</td>
