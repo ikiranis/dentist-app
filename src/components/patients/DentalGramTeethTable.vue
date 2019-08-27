@@ -14,24 +14,21 @@
 		<tbody class="table-bordered">
 			<tr>
 				<td class="text-center align-middle">
-					<span class="toothNotes">Origin</span>
+					<span class="toothNotes">Ιστορικό</span>
 				</td>
 
 				<td v-for="tooth in teeth" :key="tooth.id" class="text-center">
-					<a href="#" @click="updateOriginNote(getOriginNote(tooth.number))">
+					<a href="#" v-if="getOriginNote(tooth.number)"
+					   	@click="updateOriginNote(getOriginNote(tooth.number))">
 						<note-description :note="getOriginNote(tooth.number)"/>
 					</a>
+
+					<plus-circle-outline v-if="!getOriginNote(tooth.number)"
+										 fillColor="blue" :size="15"
+										 class="btn-icon" title="Εισαγωγή σημείωσης"
+										 @click="newOriginNote(tooth)"/>
 				</td>
 			</tr>
-
-<!--			<tr>-->
-<!--				<td></td>-->
-<!--				<td v-for="tooth in teeth" :key="tooth.id" class="text-center">-->
-<!--					<plus-circle-outline fillColor="green" :size="15"-->
-<!--										 class="btn-icon" title="Εισαγωγή σημείωσης"-->
-<!--										 @click="newNote(tooth)"/>-->
-<!--				</td>-->
-<!--			</tr>-->
 
 			<tr v-for="date in getDates()">
 				<td class="text-center align-middle">

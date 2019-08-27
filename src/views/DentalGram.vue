@@ -311,7 +311,7 @@ export default {
 		 * Save origin note
 		 */
 		saveOriginNote () {
-			if (this.note.id === 0) {
+			if (this.originNote.id === 0) {
 				this.createOriginDentalNote()
 				return
 			}
@@ -518,7 +518,7 @@ export default {
 		createOriginDentalNote () {
 			this.loading = true
 
-			api.createOriginDentalNote(this.note)
+			api.createOriginDentalNote(this.originNote)
 				.then(response => {
 					this.loading = false
 
@@ -549,7 +549,7 @@ export default {
 		updateOriginDentalNote () {
 			this.loading = true
 
-			api.updateDentalGramNote(this.note, this.note.id)
+			api.updateOriginDentalNote(this.originNote, this.originNote.id)
 				.then(response => {
 					this.loading = false
 
@@ -583,7 +583,7 @@ export default {
 			if (choise) {
 				this.loading = true
 
-				api.deleteOriginDentalNote(this.note.id)
+				api.deleteOriginDentalNote(this.originNote.id)
 					.then(response => {
 						this.loading = false
 
