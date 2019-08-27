@@ -37,7 +37,7 @@
 
 				<td v-for="tooth in teeth" :key="tooth.id" class="text-center">
 					<a href="#" v-if="note = getNote(date, tooth.number)"
-					   	@click = "updateNote(note)">
+					   	@click="updateNote(note)">
 						<note-description :note="note" />
 					</a>
 				</td>
@@ -46,7 +46,8 @@
 			<tr>
 				<td></td>
 				<td v-for="tooth in teeth" :key="tooth.id" class="text-center">
-					<plus-circle-outline fillColor="green" :size="15"
+					<plus-circle-outline v-if="!findDateInNote(tooth)"
+										 fillColor="green" :size="15"
 										 class="btn-icon" title="Εισαγωγή σημείωσης"
 										 @click="newNote(tooth)"/>
 				</td>
@@ -59,6 +60,7 @@
 
 <script>
 	import NoteDescription from "./NoteDescription"
+	import moment from 'moment'
 
 	export default {
 		components: { NoteDescription },
@@ -102,7 +104,19 @@
 			}
 		},
 
+		data () {
+			return {
+				currentDate: null
+			}
+		},
+
+		created: function () {
+			this.currentDate = moment(new Date()).format('DD/MM/YYYY')
+		},
+
 		methods: {
+			moment,
+
 			/**
 			 * Get all the dates, without duplicates
 			 *
@@ -112,14 +126,26 @@
 				// Get only the dates from array
 				let dates = [];
 
-				this.notes.forEach(value => {
-					dates.push(value.formated_date)
+				this.notes.forEach(note => {
+					dates.push(note.formated_date)
 				})
 
 				// Filter duplicates
 				return dates.filter((item, index) =>
 					dates.indexOf(item) === index
 				)
+			},
+
+			/**
+			 * Find if there is a note in current date already
+			 * Returns true when find any
+			 */
+			findDateInNote (tooth)
+			{
+				return this.notes.find(note => {
+					return note.tooth_number === tooth.number
+							&& note.formated_date === this.currentDate
+				})
 			},
 
 			/**
