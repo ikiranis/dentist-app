@@ -111,10 +111,10 @@
 			 */
 			findDateInNote (tooth)
 			{
-				return this.notes.find(note => {
-					return note.tooth_number === tooth.number
-						&& note.formated_date === this.currentDate
-				})
+				return this.notes.find(note =>
+					note.tooth_number === tooth.number
+					&& note.formated_date === this.currentDate
+				)
 			},
 
             /**

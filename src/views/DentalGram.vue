@@ -286,8 +286,7 @@ export default {
 				id: 0,
 				tooth_number: tooth.number,
 				patient_id: this.patientId,
-				description: '',
-				created_at: moment(new Date()).format('YYYY-MM-DD')
+				description: ''
 			}
 
 			this.noteTitle = 'Εισαγωγή σημείωσης'
