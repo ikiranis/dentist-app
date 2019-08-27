@@ -18,10 +18,11 @@
 				</td>
 
 				<td v-for="tooth in teeth" :key="tooth.id" class="text-center">
-					<a href="#" v-if="note = getOriginNote(tooth.number)"
-					   	@click="updateOriginNote(note)">
-						<note-description :note="note" />
-					</a>
+					<div v-if="note = getOriginNote(tooth.number)">
+						<a href="#" @click="updateOriginNote(getOriginNote(tooth.number))">
+							<note-description :note="note" />
+						</a>
+					</div>
 
 					<plus-circle-outline v-else
 										 fillColor="black" :size="15"
@@ -36,10 +37,11 @@
 				</td>
 
 				<td v-for="tooth in teeth" :key="tooth.id" class="text-center">
-					<a href="#" v-if="note = getNote(date, tooth.number)"
-					   	@click="updateNote(note)">
-						<note-description :note="note" />
-					</a>
+					<div v-if="note = getNote(date, tooth.number)">
+						<a href="#" @click="updateNote(getNote(date, tooth.number))">
+							<note-description :note="note" />
+						</a>
+					</div>
 				</td>
 			</tr>
 

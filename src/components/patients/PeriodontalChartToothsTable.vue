@@ -20,16 +20,19 @@
                 </td>
 
                 <td v-for="tooth in teeth" :key="tooth.id" class="text-center">
-					<a href="#" @click="updateNote(getNote(date, tooth.number))">
-                    	<note-measurements :note="getNote(date, tooth.number)" />
-					</a>
+					<div v-if="note = getNote(date, tooth.number)">
+						<a href="#" @click="updateNote(getNote(date, tooth.number))">
+                    		<note-measurements :note="note" />
+						</a>
+					</div>
                 </td>
             </tr>
 
             <tr>
                 <td></td>
                 <td v-for="tooth in teeth" :key="tooth.id" class="text-center">
-                    <plus-circle-outline fillColor="green" :size="15"
+                    <plus-circle-outline v-if="!findDateInNote(tooth)"
+										 fillColor="green" :size="15"
                                          class="btn-icon" title="Εισαγωγή μετρήσεων"
                                          @click="newNote(tooth)" />
                 </td>
@@ -42,6 +45,7 @@
 
 <script>
     import NoteMeasurements from "./NoteMeasurements"
+	import moment from 'moment'
 
     export default {
         components: { NoteMeasurements },
@@ -69,7 +73,19 @@
 			}
         },
 
+		data () {
+			return {
+				currentDate: null
+			}
+		},
+
+		created: function () {
+			this.currentDate = moment(new Date()).format('DD/MM/YYYY')
+		},
+
         methods: {
+        	moment,
+
             /**
              * Get all the dates, without duplicates
              *
@@ -88,6 +104,18 @@
                     dates.indexOf(item) === index
                 )
             },
+
+			/**
+			 * Find if there is a note in current date already
+			 * Returns true when find any
+			 */
+			findDateInNote (tooth)
+			{
+				return this.notes.find(note => {
+					return note.tooth_number === tooth.number
+						&& note.formated_date === this.currentDate
+				})
+			},
 
             /**
              * Get the note with date and  toothNumber
