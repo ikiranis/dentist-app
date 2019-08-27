@@ -18,12 +18,12 @@
 				</td>
 
 				<td v-for="tooth in teeth" :key="tooth.id" class="text-center">
-					<a href="#" v-if="getOriginNote(tooth.number)"
-					   	@click="updateOriginNote(getOriginNote(tooth.number))">
-						<note-description :note="getOriginNote(tooth.number)"/>
+					<a href="#" v-if="note = getOriginNote(tooth.number)"
+					   	@click="updateOriginNote(note)">
+						<note-description :note="note" />
 					</a>
 
-					<plus-circle-outline v-if="!getOriginNote(tooth.number)"
+					<plus-circle-outline v-else
 										 fillColor="black" :size="15"
 										 class="btn-icon" title="Εισαγωγή σημείωσης"
 										 @click="newOriginNote(tooth)"/>
@@ -36,8 +36,9 @@
 				</td>
 
 				<td v-for="tooth in teeth" :key="tooth.id" class="text-center">
-					<a href="#" @click="updateNote(getNote(date, tooth.number))">
-						<note-description :note="getNote(date, tooth.number)"/>
+					<a href="#" v-if="note = getNote(date, tooth.number)"
+					   	@click = "updateNote(note)">
+						<note-description :note="note" />
 					</a>
 				</td>
 			</tr>

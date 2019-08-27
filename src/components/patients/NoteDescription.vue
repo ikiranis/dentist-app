@@ -1,5 +1,5 @@
 <template functional>
-    <span v-if="props.note" class="toothNotes">
+    <span class="toothNotes">
         <span>{{ props.note.description }}</span>
     </span>
 </template>
@@ -8,7 +8,7 @@
 	export default {
 		props: {
 			note: {
-				required: false,
+				required: true,
 				type: Object
 			}
 		}
