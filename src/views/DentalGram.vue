@@ -28,6 +28,33 @@
 
         </b-modal>
 
+		<b-modal ref="originNoteModal" size="md" centered hide-footer :title="noteTitle">
+
+			<form @submit.prevent class="container-fluid">
+
+				<div class="form-group row">
+					<label for="description" class="col-md-4 col-form-label text-md-right">Περιγραφή</label>
+					<div class="col-md-8">
+						<input id="originDescription" type="text" class="form-control" maxlength="10"
+							   v-model="originNote.description" required>
+
+						<form-error v-if="response.errors.description"
+									:error="response.errors.description[0]" />
+					</div>
+				</div>
+
+				<div class="row">
+					<input type="button" class="btn btn-success col-lg-6 col-12 my-3 mx-auto"
+						   @click="saveOriginNote" value="Αποθήκευση">
+
+					<input v-if="note.id !== 0" type="button" class="btn btn-danger col-lg-5 col-12 my-3 mx-auto"
+						   @click="deleteOriginDentalNote" value="Διαγραφή">
+				</div>
+
+			</form>
+
+		</b-modal>
+
         <div class="row justify-content-center">
 
 			<div class="row col-12">
@@ -48,15 +75,23 @@
 
                 <dental-gram-teeth-table :teeth="upperTeeth"
 										 :notes="upperNotes"
+										 :originNotes="upperOriginNotes"
 										 :newNote="newNote"
 										 :updateNote="getNote"
-										 :deleteNote="deleteDentalGramNote" />
+										 :deleteNote="deleteDentalGramNote"
+										 :newOriginNote="newOriginNote"
+										 :updateOriginNote="getOriginNote"
+										 :deleteOriginNote="deleteOriginDentalNote" />
 
                 <dental-gram-teeth-table :teeth="downTeeth"
 										 :notes="downNotes"
+										 :originNotes="downOriginNotes"
 										 :newNote="newNote"
 										 :updateNote="getNote"
-										 :deleteNote="deleteDentalGramNote" />
+										 :deleteNote="deleteDentalGramNote"
+										 :newOriginNote="newOriginNote"
+										 :updateOriginNote="getOriginNote"
+										 :deleteOriginNote="deleteOriginDentalNote" />
 
             </div>
 
@@ -137,9 +172,17 @@ export default {
                 description: ''
             },
 
+			originNote: {
+				toothId: 0,
+				date: '',
+				description: ''
+			},
+
             teeth: [],
 
 			notes: [],
+
+			originDentalNotes: [],
 
             noteTitle: ''
         }
@@ -184,6 +227,26 @@ export default {
 			})
 		},
 
+		/**
+		 * Filter upper origin notes
+		 */
+		upperOriginNotes ()
+		{
+			return this.originDentalNotes.filter((note) => {
+				return note.tooth_number <= 28
+			})
+		},
+
+		/**
+		 * Filter down origin notes
+		 */
+		downOriginNotes ()
+		{
+			return this.originDentalNotes.filter((note) => {
+				return note.tooth_number > 28
+			})
+		},
+
         patientId: function () {
             return this.$route.params.id
         }
@@ -192,6 +255,7 @@ export default {
     created: function () {
         this.getTeeth()
 		this.getDentalGramNotes()
+		this.getOriginDentalNotes()
     },
 
     methods: {
@@ -215,15 +279,44 @@ export default {
 		},
 
 		/**
+		 * Display Origin note modal
+		 */
+		newOriginNote (tooth) {
+			this.originNote = {
+				id: 0,
+				tooth_number: tooth.number,
+				patient_id: this.patientId,
+				description: '',
+				created_at: moment(new Date()).format('YYYY-MM-DD')
+			}
+
+			this.noteTitle = 'Εισαγωγή σημείωσης'
+
+			this.$refs.originNoteModal.show()
+		},
+
+		/**
 		 * Save note
 		 */
-		saveNote (note) {
+		saveNote () {
 			if (this.note.id === 0) {
 				this.createDentalGramNote()
 				return
 			}
 
 			this.updateDentalGramNote()
+		},
+
+		/**
+		 * Save origin note
+		 */
+		saveOriginNote () {
+			if (this.note.id === 0) {
+				this.createOriginDentalNote()
+				return
+			}
+
+			this.updateOriginDentalNote()
 		},
 
         /**
@@ -258,6 +351,17 @@ export default {
 
 			this.noteTitle = 'Ενημέρωση σημείωσης'
 			this.$refs.noteModal.show()
+		},
+
+		/**
+		 * Display origin note for edit
+		 */
+		getOriginNote (note) {
+			this.originNote = note
+			delete this.originNote.created_at // Remove created_at, because it trigger error
+
+			this.noteTitle = 'Ενημέρωση σημείωσης'
+			this.$refs.originNoteModal.show()
 		},
 
 		/**
@@ -367,6 +471,125 @@ export default {
 						this.$refs.noteModal.hide()
 
 						this.getDentalGramNotes()
+					})
+					.catch(error => {
+						this.loading = false
+
+						this.response.message = error.response.data.message
+						this.response.status = false
+
+						utility.debug(error.response.data.debug)
+					})
+			}
+		},
+
+		/**
+		 * Get all Origin Dental Notes
+		 */
+		getOriginDentalNotes ()
+		{
+			this.loading = true
+
+			api.getOriginDentalNotes(this.patientId)
+				.then(response => {
+					this.loading = false
+
+					if (response.status === 200) {
+						this.originDentalNotes = response.data
+
+						return
+					}
+
+					this.originDentalNotes = []
+				})
+				.catch(error => {
+					this.loading = false
+
+					this.response.message = error.response.data.message
+					this.response.status = false
+
+					utility.debug(error.response.data.debug)
+				})
+		},
+
+		/**
+		 * Create a Origin Dental note
+		 */
+		createOriginDentalNote () {
+			this.loading = true
+
+			api.createOriginDentalNote(this.note)
+				.then(response => {
+					this.loading = false
+
+					this.response.message = 'Η σημείωση αποθηκεύτηκε'
+					this.response.status = true
+
+					this.$refs.originNoteModal.hide()
+
+					this.getOriginDentalNotes()
+				})
+				.catch(error => {
+					this.loading = false
+
+					this.response.message = error.response.data.message
+					this.response.status = false
+
+					if (error.response.data.errors) {
+						this.response.errors = error.response.data.errors
+					}
+
+					utility.debug(error.response.data.debug)
+				})
+		},
+
+		/**
+		 * Update the Origin Dental Note
+		 */
+		updateOriginDentalNote () {
+			this.loading = true
+
+			api.updateDentalGramNote(this.note, this.note.id)
+				.then(response => {
+					this.loading = false
+
+					this.response.message = 'Η σημείωση ενημερώθηκε'
+					this.response.status = true
+
+					this.$refs.originNoteModal.hide()
+
+					this.getOriginDentalNotes()
+				})
+				.catch(error => {
+					this.loading = false
+
+					this.response.message = error.response.data.message
+					this.response.status = false
+
+					if (error.response.data.errors) {
+						this.response.errors = error.response.data.errors
+					}
+
+					utility.debug(error.response.data.debug)
+				})
+		},
+
+		/**
+		 * Delete an Origin Dental Note
+		 */
+		deleteOriginDentalNote () {
+			let choise = confirm('Θέλεις σίγουρα να σβήσεις σημείωση;')
+
+			if (choise) {
+				this.loading = true
+
+				api.deleteOriginDentalNote(this.note.id)
+					.then(response => {
+						this.loading = false
+
+						this.$refs.originNoteModal.hide()
+
+						this.getOriginDentalNotes()
 					})
 					.catch(error => {
 						this.loading = false

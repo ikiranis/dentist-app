@@ -12,6 +12,27 @@
 		</thead>
 
 		<tbody class="table-bordered">
+			<tr>
+				<td class="text-center align-middle">
+					<span class="toothNotes">Origin</span>
+				</td>
+
+				<td v-for="tooth in teeth" :key="tooth.id" class="text-center">
+					<a href="#" @click="updateOriginNote(getOriginNote(tooth.number))">
+						<note-description :note="getOriginNote(tooth.number)"/>
+					</a>
+				</td>
+			</tr>
+
+<!--			<tr>-->
+<!--				<td></td>-->
+<!--				<td v-for="tooth in teeth" :key="tooth.id" class="text-center">-->
+<!--					<plus-circle-outline fillColor="green" :size="15"-->
+<!--										 class="btn-icon" title="Εισαγωγή σημείωσης"-->
+<!--										 @click="newNote(tooth)"/>-->
+<!--				</td>-->
+<!--			</tr>-->
+
 			<tr v-for="date in getDates()">
 				<td class="text-center align-middle">
 					<span class="toothNotes">{{ date }}</span>
@@ -64,6 +85,22 @@
 			deleteNote: {
 				required: true,
 				type: Function
+			},
+			originNotes: {
+				required: true,
+				type: Array
+			},
+			newOriginNote: {
+				required: true,
+				type: Function
+			},
+			updateOriginNote: {
+				required: true,
+				type: Function
+			},
+			deleteOriginNote: {
+				required: true,
+				type: Function
 			}
 		},
 
@@ -97,6 +134,18 @@
 			getNote(date, toothNumber) {
 				return this.notes.find(note =>
 					note.formated_date === date && note.tooth_number === toothNumber
+				)
+			},
+
+			/**
+			 * Get the origin note with date and toothNumber
+			 *
+			 * @param toothNumber
+			 * @returns {*}
+			 */
+			getOriginNote(toothNumber) {
+				return this.originNotes.find(note =>
+					note.tooth_number === toothNumber
 				)
 			}
 		}
