@@ -43,10 +43,8 @@
 
         <div class="row justify-content-center">
 
-            <div class="row col-12">
-                <div class="col-lg col-12 row my-auto">
-                    <Loading class="ml-auto" :loading="loading"/>
-                </div>
+            <div class="col-lg col-12 row fixed-bottom mb-5">
+                <Loading class="mx-auto" :loading="loading"/>
             </div>
 
             <menu-bar brand="Ασθενής" :brandRoute="{ name: 'patient', params: { id: patientId } }"
