@@ -52,7 +52,11 @@
 
         </div>
 
-        <display-error v-if="response.message" :response="response"/>
+        <div class="row fixed-bottom mb-2">
+            <display-error class="mx-auto"
+                           v-if="response.message"
+                           :response="response"/>
+        </div>
 
     </div>
 </template>
@@ -71,7 +75,7 @@ export default {
     data () {
         return {
             response: {
-                message: '',
+                message: ' ',
                 status: '',
                 errors: []
             },
