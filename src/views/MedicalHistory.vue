@@ -359,7 +359,7 @@ export default {
             loading: false,
 
             response: {
-                message: '',
+                message: ' ',
                 status: '',
                 errors: []
             },

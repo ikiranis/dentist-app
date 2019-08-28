@@ -25,7 +25,7 @@ export default {
         return {
             dismissSecs: 10,
             dismissCountDown: 0,
-            showDismissibleAlert: false
+            showDismissibleAlert: true
         }
     },
 
@@ -49,6 +49,7 @@ export default {
         countDownChanged(dismissCountDown) {
             this.dismissCountDown = dismissCountDown
         },
+
         showAlert() {
             this.dismissCountDown = this.dismissSecs
         }

@@ -474,7 +474,7 @@ export default {
     data () {
         return {
             response: {
-                message: '',
+                message: ' ',
                 status: '',
                 errors: []
             },

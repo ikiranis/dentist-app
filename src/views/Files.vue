@@ -99,7 +99,7 @@ export default {
             loading: false,
 
             response: {
-                message: '',
+                message: ' ',
                 status: '',
                 errors: []
             },
@@ -217,7 +217,7 @@ export default {
                 return file.id === fileId
             })
 
-            this.filetTitle = 'Ενημέρωση αρχείου'
+            this.fileTitle = 'Ενημέρωση αρχείου'
             this.$refs.fileModal.show()
         },
 
