@@ -465,6 +465,9 @@ export default {
 
                         this.$refs.noteModal.hide()
 
+						this.response.message = 'Η σημείωση διαγράφηκε'
+						this.response.status = true
+
                         this.getDentalGramNotes()
                     })
                     .catch(error => {
@@ -582,6 +585,9 @@ export default {
                         this.loading = false
 
                         this.$refs.originNoteModal.hide()
+
+						this.response.message = 'Η σημείωση διαγράφηκε'
+						this.response.status = true
 
                         this.getOriginDentalNotes()
                     })
