@@ -58,9 +58,6 @@
         <div class="row justify-content-center">
 
 			<div class="row col-12">
-				<div class="col-lg col-12 my-auto">
-					<h1>Περιοδοντόγραμμα</h1>
-				</div>
 				<div class="col-lg col-12 row my-auto">
 					<Loading class="ml-auto" :loading="loading"/>
 				</div>
