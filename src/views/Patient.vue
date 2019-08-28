@@ -85,6 +85,24 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="email" class="col-md-6 col-form-label text-md-right">email</label>
+                            <div class="col-md-6">
+                                <input id="email" type="email" class="form-control"
+                                       v-model="patient.email">
+                                <form-error v-if="response.errors.email" :error="response.errors.email[0]"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="amka" class="col-md-6 col-form-label text-md-right">ΑΜΚΑ</label>
+                            <div class="col-md-6">
+                                <input id="amka" type="text" class="form-control"
+                                       v-model="patient.amka" maxlength="11">
+                                <form-error v-if="response.errors.amka" :error="response.errors.amka[0]"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="created_at" class="col-md-6 col-form-label text-md-right">Ημ. Εγγραφής</label>
                             <div class="col-md-6">
                                 <input id="created_at" type="date" class="form-control"
@@ -197,6 +215,8 @@ export default {
                 phoneMobile: '',
                 phoneLandline: '',
                 address: '',
+                email: '',
+                amka: '',
                 created_at: ''
             },
 
