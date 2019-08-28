@@ -80,7 +80,7 @@
 
         </div>
 
-        <div class="row">
+        <div class="row fixed-bottom mb-2">
             <display-error class="mx-auto"
                            v-if="response.message"
                            :response="response"/>

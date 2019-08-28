@@ -1,23 +1,31 @@
 <template>
     <div class="text-center">
-        <b-alert class="my-3"
-                 :variant="response.status ? 'success' : 'danger'"
-                 dismissible
-                 :show="showDismissibleAlert"
-                 @dismissed="showDismissibleAlert=false">
-            {{ response.message }}
+        <b-alert
+                :show="dismissCountDown"
+                dismissible
+                :variant="response.status ? 'success' : 'danger'"
+                @dismissed="dismissCountDown=0"
+                @dismiss-count-down="countDownChanged">
+            <span>{{ response.message }}</span>
+            <b-progress
+                    :variant="response.status ? 'success' : 'danger'"
+                    :max="dismissSecs"
+                    :value="dismissCountDown"
+                    height="4px"
+            ></b-progress>
         </b-alert>
     </div>
 </template>
 
 <script>
 
-// TODO make it dismissible with counter if it has a specific flag
 export default {
 
     data () {
         return {
-            showDismissibleAlert: true
+            dismissSecs: 10,
+            dismissCountDown: 0,
+            showDismissibleAlert: false
         }
     },
 
@@ -33,7 +41,16 @@ export default {
 
     watch: {
         message () {
-            this.showDismissibleAlert = true
+            this.showAlert()
+        }
+    },
+
+    methods: {
+        countDownChanged(dismissCountDown) {
+            this.dismissCountDown = dismissCountDown
+        },
+        showAlert() {
+            this.dismissCountDown = this.dismissSecs
         }
     }
 }
