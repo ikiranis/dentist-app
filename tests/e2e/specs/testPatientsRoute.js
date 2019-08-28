@@ -47,7 +47,9 @@ describe('Test patients route', () => {
             birthday: '1974-11-12',
             phoneMobile: '0123456789',
             phoneLandline: '0123456789',
-            address: 'address'
+            address: 'address',
+            email: 'email@email.gr',
+            amka: '01234567890',
         }
 
         cy.get('#insertPatient').click()
@@ -60,6 +62,8 @@ describe('Test patients route', () => {
         cy.get('input[id="phoneMobile"]').type(patient.phoneMobile)
         cy.get('input[id="phoneLandline"]').type(patient.phoneLandline)
         cy.get('input[id="address"]').type(patient.address)
+        cy.get('input[id="email"]').type(patient.email)
+        cy.get('input[id="amka"]').type(patient.amka)
 
         cy.get('#saveInfo').click()
 
