@@ -460,8 +460,8 @@
 <script>
 import FormError from '@/components/basic/FormError'
 import FieldsList from '@/components/patients/FieldsList'
-import utility from "../../library/utility";
-import api from "../../api";
+import utility from '../../library/utility'
+import api from '../../api'
 import DisplayError from '@/components/basic/DisplayError'
 
 export default {
@@ -621,7 +621,7 @@ export default {
                 alveolarProcess: null
             },
 
-			loading: false
+            loading: false
 
         }
     },
@@ -640,7 +640,7 @@ export default {
     },
 
     watch: {
-        loading() {
+        loading () {
             this.$emit('loading', this.loading)
         }
     },
@@ -706,10 +706,9 @@ export default {
         /**
          * Check for fields. If not empty, display it
          */
-        checkFields ()
-        {
+        checkFields () {
             Object.keys(this.clinicalExamination).forEach(key => {
-                if (this.clinicalExamination[key] === null || this.clinicalExamination[key].length<1) {
+                if (this.clinicalExamination[key] === null || this.clinicalExamination[key].length < 1) {
                     return
                 }
 

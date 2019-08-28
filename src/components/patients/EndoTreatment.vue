@@ -202,8 +202,8 @@
 import FormError from '@/components/basic/FormError'
 import FieldsList from '@/components/patients/FieldsList'
 import NotesList from '@/components/patients/NotesList'
-import utility from "../../library/utility";
-import api from "../../api";
+import utility from '../../library/utility'
+import api from '../../api'
 import DisplayError from '@/components/basic/DisplayError'
 import moment from 'moment'
 
@@ -254,18 +254,18 @@ export default {
             roots: [],
 
             endoTreatment: {
-            	root_id: 0,
-				roots: [],
+                root_id: 0,
+                roots: [],
                 counter: null,
                 radiography: null,
                 workingLength: null,
                 benchmark: null,
-				benchmark_id: 0,
-				benchmarks: [],
+                benchmark_id: 0,
+                benchmarks: [],
                 MAF: null,
                 chemicalMechanicalTreatment: null,
-				blocking_technique_id: 0,
-				blockingTechniques: [],
+                blocking_technique_id: 0,
+                blockingTechniques: [],
                 notes: []
             },
 
@@ -276,7 +276,7 @@ export default {
                 description: null
             },
 
-			noteTitle: '',
+            noteTitle: '',
 
             chozenRoot: 1
         }
@@ -296,22 +296,21 @@ export default {
     },
 
     watch: {
-        loading() {
+        loading () {
             this.$emit('loading', this.loading)
         }
     },
 
     created: function () {
         this.getRoots()
-		this.getEndoTreatment()
+        this.getEndoTreatment()
     },
 
     methods: {
         /**
          * Get Endo Treatment info
          */
-        getEndoTreatment ()
-        {
+        getEndoTreatment () {
             this.loading = true
 
             api.getEndoTreatment(this.patientId, this.chozenRoot)
@@ -337,8 +336,7 @@ export default {
         /**
          * Update the Endo Treatment info
          */
-        updateEndoTreatment ()
-        {
+        updateEndoTreatment () {
             this.loading = true
 
             api.updateEndoTreatment(this.endoTreatment, this.endoTreatment.id)
@@ -365,10 +363,9 @@ export default {
         /**
          * Check for fields. If not empty, display it
          */
-        checkFields ()
-        {
+        checkFields () {
             Object.keys(this.endoTreatment).forEach(key => {
-                if (this.endoTreatment[key] === null || this.endoTreatment[key].length<1) {
+                if (this.endoTreatment[key] === null || this.endoTreatment[key].length < 1) {
                     return
                 }
 
@@ -385,16 +382,14 @@ export default {
          *
          * @param field
          */
-        removeField (field)
-        {
+        removeField (field) {
             field.display = false
         },
 
         /**
          * Get all treatment notes for patientId
          */
-        getTreatmentNotes()
-        {
+        getTreatmentNotes () {
             this.loading = true
 
             api.getTreatmentNotes(this.patientId)
@@ -419,23 +414,22 @@ export default {
                 })
         },
 
-		/**
+        /**
 		 * Display note for edit
 		 */
-		getTreatmentNote (treatmentNoteId) {
-			this.note = this.endoTreatment.notes.find((note) => {
-				return note.id === treatmentNoteId
-			})
+        getTreatmentNote (treatmentNoteId) {
+            this.note = this.endoTreatment.notes.find((note) => {
+                return note.id === treatmentNoteId
+            })
 
-			this.noteTitle = 'Ενημέρωση σημείωσης'
-			this.$refs.noteModal.show()
-		},
+            this.noteTitle = 'Ενημέρωση σημείωσης'
+            this.$refs.noteModal.show()
+        },
 
         /**
          * Create a note
          */
-        createTreatmentNote ()
-        {
+        createTreatmentNote () {
             this.loading = true
 
             api.createTreatmentNote(this.note)
@@ -466,8 +460,7 @@ export default {
         /**
          * Update a note
          */
-        updateTreatmentNote ()
-        {
+        updateTreatmentNote () {
             this.loading = true
 
             api.updateTreatmentNote(this.note, this.note.id)
@@ -524,8 +517,7 @@ export default {
         /**
          * Run the appropriate save action
          */
-        saveNote ()
-        {
+        saveNote () {
             if (this.note.id === 0) {
                 this.createTreatmentNote()
                 return
@@ -537,23 +529,21 @@ export default {
         /**
          * Display note modal
          */
-        newNote ()
-        {
+        newNote () {
             this.note = {
                 id: 0,
                 patient_id: this.patientId,
                 date: moment(new Date()).format('YYYY-MM-DD')
             }
 
-			this.noteTitle = 'Εισαγωγή σημείωσης'
+            this.noteTitle = 'Εισαγωγή σημείωσης'
             this.$refs.noteModal.show()
         },
 
         /**
          * Get all roots
          */
-        getRoots ()
-        {
+        getRoots () {
             api.getRoots()
                 .then(response => {
                     if (response.status === 200) {

@@ -71,7 +71,6 @@
                       variant="" type="light" valign="mx-auto" toggle="lg"
                       navCollapseText="patientBar" />
 
-
 			<div>
 				<periodontal-chart-tooths-table :teeth="upperTeeth"
 												:notes="upperNotes"
@@ -100,8 +99,8 @@
 <script>
 import MenuBar from '@/components/basic/MenuBar'
 import PeriodontalChartToothsTable from '@/components/patients/PeriodontalChartToothsTable'
-import api from "../api"
-import utility from "../library/utility"
+import api from '../api'
+import utility from '../library/utility'
 import moment from 'moment'
 import DisplayError from '@/components/basic/DisplayError'
 import Loading from '@/components/basic/Loading'
@@ -117,7 +116,7 @@ export default {
                 errors: []
             },
 
-			loading: false,
+            loading: false,
 
             menuItems: [
                 {
@@ -170,11 +169,11 @@ export default {
                 created_at: null
             },
 
-			notes: [],
+            notes: [],
 
             teeth: [],
 
-			noteTitle: ''
+            noteTitle: ''
         }
     },
 
@@ -200,8 +199,7 @@ export default {
         /**
          * Filter upper notes
          */
-        upperNotes ()
-        {
+        upperNotes () {
             return this.notes.filter((note) => {
                 return note.tooth_number <= 28
             })
@@ -210,8 +208,7 @@ export default {
         /**
          * Filter down notes
          */
-        downNotes ()
-        {
+        downNotes () {
             return this.notes.filter((note) => {
                 return note.tooth_number > 28
             })
@@ -228,47 +225,46 @@ export default {
     },
 
     methods: {
-    	moment,
+        moment,
 
         /**
          * Display note modal
          */
         newNote (tooth) {
-			this.note = {
-				id: 0,
-				tooth_number: tooth.number,
-				patient_id: this.patientId,
-				measure1: 0,
-				measure2: 0,
-				measure3: 0,
-				measure4: 0,
-				measure5: 0,
-				measure6: 0,
-				created_at: moment(new Date()).format('YYYY-MM-DD')
-			}
+            this.note = {
+                id: 0,
+                tooth_number: tooth.number,
+                patient_id: this.patientId,
+                measure1: 0,
+                measure2: 0,
+                measure3: 0,
+                measure4: 0,
+                measure5: 0,
+                measure6: 0,
+                created_at: moment(new Date()).format('YYYY-MM-DD')
+            }
 
-			this.noteTitle = 'Εισαγωγή μετρήσεων'
+            this.noteTitle = 'Εισαγωγή μετρήσεων'
 
             this.$refs.noteModal.show()
         },
 
-		/**
+        /**
 		 * Save note
 		 */
         saveNote (note) {
-			if (this.note.id === 0) {
-				this.createPeriodontalChartNote()
-				return
-			}
+            if (this.note.id === 0) {
+                this.createPeriodontalChartNote()
+                return
+            }
 
-			this.updatePeriodontalChartNote()
+            this.updatePeriodontalChartNote()
         },
 
         /**
          * Get all teeth
          */
-        getTeeth ()
-        {
+        getTeeth () {
             api.getTeeth()
                 .then(response => {
                     if (response.status === 200) {
@@ -287,27 +283,26 @@ export default {
                 })
         },
 
-		/**
+        /**
 		 * Display note for edit
 		 */
-		getNote (note) {
-			this.note = note
-			delete this.note.created_at // Remove created_at, because it trigger error
+        getNote (note) {
+            this.note = note
+            delete this.note.created_at // Remove created_at, because it trigger error
 
-			this.noteTitle = 'Ενημέρωση μετρήσεων'
-			this.$refs.noteModal.show()
-		},
+            this.noteTitle = 'Ενημέρωση μετρήσεων'
+            this.$refs.noteModal.show()
+        },
 
         /**
          * Get all Periodontal Chart Notes
          */
-        getPeriodontalChartNotes ()
-        {
-			this.loading = true
+        getPeriodontalChartNotes () {
+            this.loading = true
 
             api.getPeriodontalChartNotes(this.patientId)
                 .then(response => {
-					this.loading = false
+                    this.loading = false
 
                     if (response.status === 200) {
                         this.notes = response.data
@@ -318,7 +313,7 @@ export default {
                     this.notes = []
                 })
                 .catch(error => {
-					this.loading = false
+                    this.loading = false
 
                     this.response.message = error.response.data.message
                     this.response.status = false
@@ -327,95 +322,95 @@ export default {
                 })
         },
 
-		/**
+        /**
 		 * Create a periodontal chart note
 		 */
-		createPeriodontalChartNote () {
-			this.loading = true
+        createPeriodontalChartNote () {
+            this.loading = true
 
-			api.createPeriodontalChartNote(this.note)
-				.then(response => {
-					this.loading = false
+            api.createPeriodontalChartNote(this.note)
+                .then(response => {
+                    this.loading = false
 
-					this.response.message = 'Οι μετρήσεις αποθηκεύτηκαν'
-					this.response.status = true
+                    this.response.message = 'Οι μετρήσεις αποθηκεύτηκαν'
+                    this.response.status = true
 
-					this.$refs.noteModal.hide()
+                    this.$refs.noteModal.hide()
 
-					this.getPeriodontalChartNotes()
-				})
-				.catch(error => {
-					this.loading = false
+                    this.getPeriodontalChartNotes()
+                })
+                .catch(error => {
+                    this.loading = false
 
-					this.response.message = error.response.data.message
-					this.response.status = false
+                    this.response.message = error.response.data.message
+                    this.response.status = false
 
-					if (error.response.data.errors) {
-						this.response.errors = error.response.data.errors
-					}
+                    if (error.response.data.errors) {
+                        this.response.errors = error.response.data.errors
+                    }
 
-					utility.debug(error.response.data.debug)
-				})
-		},
+                    utility.debug(error.response.data.debug)
+                })
+        },
 
-		/**
+        /**
 		 * Update the Periodontal Chart Note
 		 */
-		updatePeriodontalChartNote () {
-			this.loading = true
+        updatePeriodontalChartNote () {
+            this.loading = true
 
-			api.updatePeriodontalChartNote(this.note, this.note.id)
-				.then(response => {
-					this.loading = false
+            api.updatePeriodontalChartNote(this.note, this.note.id)
+                .then(response => {
+                    this.loading = false
 
-					this.response.message = 'Οι μετρήσεις ενημερώθηκαν'
-					this.response.status = true
+                    this.response.message = 'Οι μετρήσεις ενημερώθηκαν'
+                    this.response.status = true
 
-					this.$refs.noteModal.hide()
+                    this.$refs.noteModal.hide()
 
-					this.getPeriodontalChartNotes()
-				})
-				.catch(error => {
-					this.loading = false
+                    this.getPeriodontalChartNotes()
+                })
+                .catch(error => {
+                    this.loading = false
 
-					this.response.message = error.response.data.message
-					this.response.status = false
+                    this.response.message = error.response.data.message
+                    this.response.status = false
 
-					if (error.response.data.errors) {
-						this.response.errors = error.response.data.errors
-					}
+                    if (error.response.data.errors) {
+                        this.response.errors = error.response.data.errors
+                    }
 
-					utility.debug(error.response.data.debug)
-				})
-		},
+                    utility.debug(error.response.data.debug)
+                })
+        },
 
-		/**
+        /**
 		 * Delete a Periodontal Chart Note
 		 */
-		deletePeriodontalChartNote () {
-			let choise = confirm('Θέλεις σίγουρα να σβήσεις τις μετρήσεις;')
+        deletePeriodontalChartNote () {
+            let choise = confirm('Θέλεις σίγουρα να σβήσεις τις μετρήσεις;')
 
-			if (choise) {
-				this.loading = true
+            if (choise) {
+                this.loading = true
 
-				api.deletePeriodontalChartNote(this.note.id)
-					.then(response => {
-						this.loading = false
+                api.deletePeriodontalChartNote(this.note.id)
+                    .then(response => {
+                        this.loading = false
 
-						this.$refs.noteModal.hide()
+                        this.$refs.noteModal.hide()
 
-						this.getPeriodontalChartNotes()
-					})
-					.catch(error => {
-						this.loading = false
+                        this.getPeriodontalChartNotes()
+                    })
+                    .catch(error => {
+                        this.loading = false
 
-						this.response.message = error.response.data.message
-						this.response.status = false
+                        this.response.message = error.response.data.message
+                        this.response.status = false
 
-						utility.debug(error.response.data.debug)
-					})
-			}
-		}
+                        utility.debug(error.response.data.debug)
+                    })
+            }
+        }
     }
 }
 </script>

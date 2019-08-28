@@ -91,20 +91,20 @@ export default {
                 }
             ],
 
-			tabs: {
-				endoTreatmentCard: {
-					display: true,
-					label: 'Δελτίο ενδοδοντικής θεραπείας'
-				},
-				diagnosis: {
-					display: false,
-					label: 'Διάγνωση'
-				},
-				endoTreatment: {
-					display: false,
-					label: 'Ενδοδοντική θεραπεία'
-				}
-			}
+            tabs: {
+                endoTreatmentCard: {
+                    display: true,
+                    label: 'Δελτίο ενδοδοντικής θεραπείας'
+                },
+                diagnosis: {
+                    display: false,
+                    label: 'Διάγνωση'
+                },
+                endoTreatment: {
+                    display: false,
+                    label: 'Ενδοδοντική θεραπεία'
+                }
+            }
 
         }
     },

@@ -91,7 +91,7 @@ import DisplayError from '@/components/basic/DisplayError'
 import Loading from '@/components/basic/Loading'
 import FilesList from '@/components/patients/FilesList'
 import utility from '../library/utility'
-import api from "../api";
+import api from '../api'
 
 export default {
     components: { MenuBar, FormError, DisplayError, Loading, FilesList },
@@ -180,8 +180,7 @@ export default {
          *
          * @param page
          */
-        getFiles (page)
-        {
+        getFiles (page) {
             this.loading = true
 
             api.getFiles(this.patientId)
@@ -223,8 +222,7 @@ export default {
         /**
          * Display file modal
          */
-        newFile ()
-        {
+        newFile () {
             this.file = {
                 id: 0,
                 patient_id: this.patientId
@@ -237,8 +235,7 @@ export default {
         /**
          * Run the appropriate save action
          */
-        saveFile ()
-        {
+        saveFile () {
             if (this.file.id === 0) {
                 this.createFile()
                 return
@@ -335,8 +332,7 @@ export default {
             }
         },
 
-        uploadFile ()
-        {
+        uploadFile () {
             //
         }
     }

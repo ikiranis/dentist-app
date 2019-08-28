@@ -320,27 +320,27 @@ let api = {
         return axios.patch(ROOT_API + '/medicalHistory/' + patientId, args)
     },
 
-	// ************** Dental History api calls **************
+    // ************** Dental History api calls **************
 
-	/**
+    /**
 	 * Get Dental History info
 	 *
 	 * @returns {Promise<AxiosResponse<T>>}
 	 */
-	async getDentalHistory (patientId) {
-		return axios.get(ROOT_API + '/dentalHistory/' + patientId)
-	},
+    async getDentalHistory (patientId) {
+        return axios.get(ROOT_API + '/dentalHistory/' + patientId)
+    },
 
-	/**
+    /**
 	 * Update Dental History
 	 *
 	 * @param args
 	 * @param patientId
 	 * @returns {Promise<Promise<AxiosResponse<T>>>}
 	 */
-	async updateDentalHistory (args, patientId) {
-		return axios.patch(ROOT_API + '/dentalHistory/' + patientId, args)
-	},
+    async updateDentalHistory (args, patientId) {
+        return axios.patch(ROOT_API + '/dentalHistory/' + patientId, args)
+    },
 
     // ************** Clinical Examination api calls **************
 
@@ -616,122 +616,122 @@ let api = {
         return axios.get(ROOT_API + '/periodontalChartNotes/' + patientId)
     },
 
-	/**
+    /**
 	 * Create a note
 	 *
 	 * @param args
 	 * @returns {Promise<AxiosResponse<T>>}
 	 */
-	async createPeriodontalChartNote (args) {
-		return axios.post(ROOT_API + '/periodontalChartNote', args)
-	},
+    async createPeriodontalChartNote (args) {
+        return axios.post(ROOT_API + '/periodontalChartNote', args)
+    },
 
-	/**
+    /**
 	 * Update a note
 	 *
 	 * @param args
 	 * @param noteId
 	 * @returns {Promise<Promise<AxiosResponse<T>>>}
 	 */
-	async updatePeriodontalChartNote (args, noteId) {
-		return axios.patch(ROOT_API + '/periodontalChartNote/' + noteId, args)
-	},
+    async updatePeriodontalChartNote (args, noteId) {
+        return axios.patch(ROOT_API + '/periodontalChartNote/' + noteId, args)
+    },
 
-	/**
+    /**
 	 * Delete a note
 	 *
 	 * @param noteId
 	 * @returns {Promise<Promise<AxiosResponse<T>>>}
 	 */
-	async deletePeriodontalChartNote (noteId) {
-		return axios.delete(ROOT_API + '/periodontalChartNote/' + noteId)
-	},
+    async deletePeriodontalChartNote (noteId) {
+        return axios.delete(ROOT_API + '/periodontalChartNote/' + noteId)
+    },
 
-	// ************** Dental gram notes api calls **************
+    // ************** Dental gram notes api calls **************
 
-	/**
+    /**
 	 * Get all Dental Gram Notes
 	 *
 	 * @param patientId
 	 * @returns {Promise<void>}
 	 */
-	async getDentalGramNotes (patientId) {
-		return axios.get(ROOT_API + '/dentalGramNotes/' + patientId)
-	},
+    async getDentalGramNotes (patientId) {
+        return axios.get(ROOT_API + '/dentalGramNotes/' + patientId)
+    },
 
-	/**
+    /**
 	 * Create a note
 	 *
 	 * @param args
 	 * @returns {Promise<AxiosResponse<T>>}
 	 */
-	async createDentalGramNote (args) {
-		return axios.post(ROOT_API + '/dentalGramNote', args)
-	},
+    async createDentalGramNote (args) {
+        return axios.post(ROOT_API + '/dentalGramNote', args)
+    },
 
-	/**
+    /**
 	 * Update a note
 	 *
 	 * @param args
 	 * @param noteId
 	 * @returns {Promise<Promise<AxiosResponse<T>>>}
 	 */
-	async updateDentalGramNote (args, noteId) {
-		return axios.patch(ROOT_API + '/dentalGramNote/' + noteId, args)
-	},
+    async updateDentalGramNote (args, noteId) {
+        return axios.patch(ROOT_API + '/dentalGramNote/' + noteId, args)
+    },
 
-	/**
+    /**
 	 * Delete a note
 	 *
 	 * @param noteId
 	 * @returns {Promise<Promise<AxiosResponse<T>>>}
 	 */
-	async deleteDentalGramNote (noteId) {
-		return axios.delete(ROOT_API + '/dentalGramNote/' + noteId)
-	},
+    async deleteDentalGramNote (noteId) {
+        return axios.delete(ROOT_API + '/dentalGramNote/' + noteId)
+    },
 
-	// ************** Origin dental notes api calls **************
+    // ************** Origin dental notes api calls **************
 
-	/**
+    /**
 	 * Get all Origin Dental Notes
 	 *
 	 * @param patientId
 	 * @returns {Promise<void>}
 	 */
-	async getOriginDentalNotes (patientId) {
-		return axios.get(ROOT_API + '/originDentalNotes/' + patientId)
-	},
+    async getOriginDentalNotes (patientId) {
+        return axios.get(ROOT_API + '/originDentalNotes/' + patientId)
+    },
 
-	/**
+    /**
 	 * Create a note
 	 *
 	 * @param args
 	 * @returns {Promise<AxiosResponse<T>>}
 	 */
-	async createOriginDentalNote (args) {
-		return axios.post(ROOT_API + '/originDentalNote', args)
-	},
+    async createOriginDentalNote (args) {
+        return axios.post(ROOT_API + '/originDentalNote', args)
+    },
 
-	/**
+    /**
 	 * Update a note
 	 *
 	 * @param args
 	 * @param noteId
 	 * @returns {Promise<Promise<AxiosResponse<T>>>}
 	 */
-	async updateOriginDentalNote (args, noteId) {
-		return axios.patch(ROOT_API + '/originDentalNote/' + noteId, args)
-	},
+    async updateOriginDentalNote (args, noteId) {
+        return axios.patch(ROOT_API + '/originDentalNote/' + noteId, args)
+    },
 
-	/**
+    /**
 	 * Delete a note
 	 *
 	 * @param noteId
 	 * @returns {Promise<Promise<AxiosResponse<T>>>}
 	 */
-	async deleteOriginDentalNote (noteId) {
-		return axios.delete(ROOT_API + '/originDentalNote/' + noteId)
-	}
+    async deleteOriginDentalNote (noteId) {
+        return axios.delete(ROOT_API + '/originDentalNote/' + noteId)
+    }
 }
 
 export default api

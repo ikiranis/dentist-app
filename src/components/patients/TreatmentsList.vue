@@ -35,12 +35,12 @@
 </template>
 
 <script>
-    export default {
-        props: {
-            treatments: {
-                required: true,
-                type: Array
-            }
+export default {
+    props: {
+        treatments: {
+            required: true,
+            type: Array
         }
     }
+}
 </script>

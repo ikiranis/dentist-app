@@ -347,8 +347,8 @@
 import MenuBar from '@/components/basic/MenuBar'
 import FormError from '@/components/basic/FormError'
 import FieldsList from '@/components/patients/FieldsList'
-import api from "../api";
-import utility from "../library/utility";
+import api from '../api'
+import utility from '../library/utility'
 import DisplayError from '@/components/basic/DisplayError'
 import Loading from '@/components/basic/Loading'
 
@@ -581,10 +581,9 @@ export default {
         /**
          * Check for fields. If not empty, display it
          */
-        checkFields ()
-        {
+        checkFields () {
             Object.keys(this.medicalHistory).forEach(key => {
-                if (this.medicalHistory[key] === null || this.medicalHistory[key].length<1) {
+                if (this.medicalHistory[key] === null || this.medicalHistory[key].length < 1) {
                     return
                 }
 
@@ -614,7 +613,7 @@ export default {
             this.medicalHistory.medicines.push({
                 id: (this.medicalHistory.medicines.length === 0)
                     ? 0
-                    : this.medicalHistory.medicines[this.medicalHistory.medicines.length-1].id +1,
+                    : this.medicalHistory.medicines[this.medicalHistory.medicines.length - 1].id + 1,
                 name: this.medicine
             })
 
@@ -628,7 +627,7 @@ export default {
          */
         deleteMedicine (event) {
             this.medicalHistory.medicines = this.medicalHistory.medicines.filter((medicine) => {
-                    return (medicine.id !== parseInt(event.target.value))
+                return (medicine.id !== parseInt(event.target.value))
             })
         }
     }

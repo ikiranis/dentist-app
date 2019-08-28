@@ -103,7 +103,7 @@ import Loading from '@/components/basic/Loading'
 import TreatmentsList from '@/components/patients/TreatmentsList'
 import moment from 'moment'
 import utility from '../library/utility'
-import api from "../api";
+import api from '../api'
 
 export default {
     components: { MenuBar, FormError, Paginate, DisplayError, Loading, TreatmentsList },
@@ -193,8 +193,7 @@ export default {
          *
          * @param page
          */
-        getTreatments (page)
-        {
+        getTreatments (page) {
             this.loading = true
 
             api.getTreatments(page, this.patientId)
@@ -238,8 +237,7 @@ export default {
         /**
          * Display treatment modal
          */
-        newTreatment ()
-        {
+        newTreatment () {
             this.treatment = {
                 id: 0,
                 patient_id: this.patientId,
@@ -253,8 +251,7 @@ export default {
         /**
          * Run the appropriate save action
          */
-        saveTreatment ()
-        {
+        saveTreatment () {
             if (this.treatment.id === 0) {
                 this.createTreatment()
                 return

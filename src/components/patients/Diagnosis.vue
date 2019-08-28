@@ -261,8 +261,8 @@
 <script>
 import FormError from '@/components/basic/FormError'
 import FieldsList from '@/components/patients/FieldsList'
-import utility from "../../library/utility";
-import api from "../../api";
+import utility from '../../library/utility'
+import api from '../../api'
 import DisplayError from '@/components/basic/DisplayError'
 
 export default {
@@ -369,7 +369,7 @@ export default {
     },
 
     watch: {
-        loading() {
+        loading () {
             this.$emit('loading', this.loading)
         }
     },
@@ -383,8 +383,7 @@ export default {
         /**
          * Get Diagnosis info
          */
-        getDiagnosis ()
-        {
+        getDiagnosis () {
             this.loading = true
 
             api.getDiagnosis(this.patientId)
@@ -410,8 +409,7 @@ export default {
         /**
          * Update the Diagnosis info
          */
-        updateDiagnosis ()
-        {
+        updateDiagnosis () {
             this.loading = true
 
             api.updateDiagnosis(this.diagnosis, this.patientId)
@@ -438,10 +436,9 @@ export default {
         /**
          * Check for fields. If not empty, display it
          */
-        checkFields ()
-        {
+        checkFields () {
             Object.keys(this.diagnosis).forEach(key => {
-                if (this.diagnosis[key] === null || this.diagnosis[key].length<1) {
+                if (this.diagnosis[key] === null || this.diagnosis[key].length < 1) {
                     return
                 }
 

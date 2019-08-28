@@ -9,34 +9,33 @@
 </template>
 
 <script>
-	export default {
-		props: {
-			tabs: {
-				required: true,
-				type: Object
-			}
-		},
+export default {
+    props: {
+        tabs: {
+            required: true,
+            type: Object
+        }
+    },
 
-		methods: {
-			/**
+    methods: {
+        /**
 			 * Change tabs display values
 			 *
 			 * @param tab
 			 */
-			chooseTab (tab)
-			{
-				Object.keys(this.tabs).forEach(key => {
-					if (this.tabs[key] === tab) {
-						this.tabs[key].display = true
+        chooseTab (tab) {
+            Object.keys(this.tabs).forEach(key => {
+                if (this.tabs[key] === tab) {
+                    this.tabs[key].display = true
 
-						return
-					}
+                    return
+                }
 
-					this.tabs[key].display = false
-				})
-			}
-		}
-	}
+                this.tabs[key].display = false
+            })
+        }
+    }
+}
 </script>
 
 <style scoped>

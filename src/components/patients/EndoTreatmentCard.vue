@@ -359,8 +359,8 @@
 <script>
 import FormError from '@/components/basic/FormError'
 import FieldsList from '@/components/patients/FieldsList'
-import utility from "../../library/utility"
-import api from "../../api"
+import utility from '../../library/utility'
+import api from '../../api'
 import DisplayError from '@/components/basic/DisplayError'
 
 export default {
@@ -518,7 +518,7 @@ export default {
     },
 
     watch: {
-        loading() {
+        loading () {
             this.$emit('loading', this.loading)
         }
     },
@@ -531,8 +531,7 @@ export default {
         /**
          * Get Endo Treatment Card info
          */
-        getEndoTreatmentCard ()
-        {
+        getEndoTreatmentCard () {
             this.loading = true
 
             api.getEndoTreatmentCard(this.patientId)
@@ -558,8 +557,7 @@ export default {
         /**
          * Update the Endo Treatment Card info
          */
-        updateEndoTreatmentCard ()
-        {
+        updateEndoTreatmentCard () {
             this.loading = true
 
             api.updateEndoTreatmentCard(this.endoTreatment, this.patientId)
@@ -586,10 +584,9 @@ export default {
         /**
          * Check for fields. If not empty, display it
          */
-        checkFields ()
-        {
+        checkFields () {
             Object.keys(this.endoTreatment).forEach(key => {
-                if (this.endoTreatment[key] === null || this.endoTreatment[key].length<1) {
+                if (this.endoTreatment[key] === null || this.endoTreatment[key].length < 1) {
                     return
                 }
 

@@ -300,8 +300,8 @@
 <script>
 import FormError from '@/components/basic/FormError'
 import FieldsList from '@/components/patients/FieldsList'
-import utility from "../../library/utility";
-import api from "../../api";
+import utility from '../../library/utility'
+import api from '../../api'
 import DisplayError from '@/components/basic/DisplayError'
 
 export default {
@@ -318,71 +318,71 @@ export default {
             loading: false,
 
             fields: {
-				frequentStrokes: {
+                frequentStrokes: {
                     label: 'Συχνές οδονταλγίες',
                     display: false
                 },
-				sensitivityToStimuli: {
+                sensitivityToStimuli: {
                     label: 'Ευαισθησία σε ερεθίσματα',
                     display: false
                 },
-				painWhenChewing: {
+                painWhenChewing: {
                     label: 'Πόνος κατά τη μάσηση',
                     display: false
                 },
-				gingivalBleeding: {
+                gingivalBleeding: {
                     label: 'Αιμοραγία ούλων',
                     display: false
                 },
-				tasteAbnormality: {
+                tasteAbnormality: {
                     label: 'Ανωμαλία γεύσης',
                     display: false
                 },
-				dryMouth: {
+                dryMouth: {
                     label: 'Ξηροστομία',
                     display: false
                 },
-				badSmell: {
+                badSmell: {
                     label: 'Κακοσμία',
                     display: false
                 },
-				burningMouth: {
+                burningMouth: {
                     label: 'Καυσαλγία',
                     display: false
                 },
-				painFromCrownFibrousStructure: {
+                painFromCrownFibrousStructure: {
                     label: 'Πόνος από ΚΓΔ',
                     display: false
                 },
-				soundFromCrownFibrousStructure: {
+                soundFromCrownFibrousStructure: {
                     label: 'Ήχος από ΚΓΔ',
                     display: false
                 },
-				prosopalgia: {
+                prosopalgia: {
                     label: 'Προσωπαλγία',
                     display: false
                 },
-				surgicalProcedures: {
+                surgicalProcedures: {
                     label: 'Χειρουργικές επεμβάσεις',
                     display: false
                 },
-				traumaticLesions: {
+                traumaticLesions: {
                     label: 'Τραυματικές βλάβες',
                     display: false
                 },
-				problemsWithLocalAnesthesia: {
+                problemsWithLocalAnesthesia: {
                     label: 'Προβλήματα με τοπική αναισθησία',
                     display: false
                 },
-				radiotherapy: {
+                radiotherapy: {
                     label: 'Ακτινοθεραπεία',
                     display: false
                 },
-				oralSprains: {
+                oralSprains: {
                     label: 'Στοματικές έξεις',
                     display: false
                 },
-				oralHygiene: {
+                oralHygiene: {
                     label: 'Στοματική υγιεινή',
                     display: false
                 }
@@ -415,100 +415,99 @@ export default {
     },
 
     computed: {
-		// Find if any field is selected. True if any
-		fieldSelected () {
-			return Object.values(this.fields).find((field) => {
-				return field.display
-			})
-		},
+        // Find if any field is selected. True if any
+        fieldSelected () {
+            return Object.values(this.fields).find((field) => {
+                return field.display
+            })
+        },
 
-		patientId: function () {
-			return this.$route.params.id
-		}
+        patientId: function () {
+            return this.$route.params.id
+        }
     },
 
     watch: {
-        loading() {
+        loading () {
             this.$emit('loading', this.loading)
         }
     },
 
-	created: function () {
-		this.getDentalHistory()
-	},
+    created: function () {
+        this.getDentalHistory()
+    },
 
     methods: {
 
-		/**
+        /**
 		 * Get Dental History info
 		 */
-		getDentalHistory () {
-			this.loading = true
+        getDentalHistory () {
+            this.loading = true
 
-			api.getDentalHistory(this.patientId)
-				.then(response => {
-					this.loading = false
+            api.getDentalHistory(this.patientId)
+                .then(response => {
+                    this.loading = false
 
-					if (response.status === 200) {
-						this.dentalHistory = response.data
+                    if (response.status === 200) {
+                        this.dentalHistory = response.data
 
-						this.checkFields()
-					}
-				})
-				.catch(error => {
-					this.loading = false
+                        this.checkFields()
+                    }
+                })
+                .catch(error => {
+                    this.loading = false
 
-					this.response.message = error.response.data.message
-					this.response.status = false
+                    this.response.message = error.response.data.message
+                    this.response.status = false
 
-					utility.debug(error.response.data.debug)
-				})
-		},
+                    utility.debug(error.response.data.debug)
+                })
+        },
 
-		/**
+        /**
 		 * Update the Dental History info
 		 */
-		updateDentalHistory () {
-			this.loading = true
+        updateDentalHistory () {
+            this.loading = true
 
-			api.updateDentalHistory(this.dentalHistory, this.patientId)
-				.then(response => {
-					this.loading = false
+            api.updateDentalHistory(this.dentalHistory, this.patientId)
+                .then(response => {
+                    this.loading = false
 
-					this.response.message = 'Τα δεδομένα αποθηκεύτηκαν'
-					this.response.status = true
-				})
-				.catch(error => {
-					this.loading = false
+                    this.response.message = 'Τα δεδομένα αποθηκεύτηκαν'
+                    this.response.status = true
+                })
+                .catch(error => {
+                    this.loading = false
 
-					this.response.message = error.response.data.message
-					this.response.status = false
+                    this.response.message = error.response.data.message
+                    this.response.status = false
 
-					if (error.response.data.errors) {
-						this.response.errors = error.response.data.errors
-					}
+                    if (error.response.data.errors) {
+                        this.response.errors = error.response.data.errors
+                    }
 
-					utility.debug(error.response.data.debug)
-				})
-		},
+                    utility.debug(error.response.data.debug)
+                })
+        },
 
-		/**
+        /**
 		 * Check for fields. If not empty, display it
 		 */
-		checkFields ()
-		{
-			Object.keys(this.dentalHistory).forEach(key => {
-				if (this.dentalHistory[key] === null || this.dentalHistory[key].length<1) {
-					return
-				}
+        checkFields () {
+            Object.keys(this.dentalHistory).forEach(key => {
+                if (this.dentalHistory[key] === null || this.dentalHistory[key].length < 1) {
+                    return
+                }
 
-				if (this.fields[key] === undefined) {
-					return
-				}
+                if (this.fields[key] === undefined) {
+                    return
+                }
 
-				this.fields[key].display = true
-			})
-		},
+                this.fields[key].display = true
+            })
+        },
 
         /**
          * Εξαφάνιση του πεδίου
@@ -516,7 +515,7 @@ export default {
          * @param field
          */
         removeField (field) {
-			field.display = false
+            field.display = false
         }
     }
 }

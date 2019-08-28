@@ -88,16 +88,16 @@ export default {
                 }
             ],
 
-			tabs: {
-            	dentalHistory: {
-            		display: true,
-					label: 'Οδοντιατρικό ιστορικό'
-				},
-				clinicalExamination: {
-            		display: false,
-					label: 'Κλινική εξέταση'
-				}
-			}
+            tabs: {
+                dentalHistory: {
+                    display: true,
+                    label: 'Οδοντιατρικό ιστορικό'
+                },
+                clinicalExamination: {
+                    display: false,
+                    label: 'Κλινική εξέταση'
+                }
+            }
 
         }
     },

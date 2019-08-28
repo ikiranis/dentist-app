@@ -6,12 +6,12 @@
 </template>
 
 <script>
-    export default {
-        props: {
-            note: {
-                required: false,
-                type: Object
-            }
+export default {
+    props: {
+        note: {
+            required: false,
+            type: Object
         }
     }
+}
 </script>

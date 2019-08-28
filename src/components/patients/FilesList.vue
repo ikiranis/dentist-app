@@ -41,12 +41,12 @@
 </template>
 
 <script>
-    export default {
-        props: {
-            files: {
-                required: true,
-                type: Array
-            }
+export default {
+    props: {
+        files: {
+            required: true,
+            type: Array
         }
     }
+}
 </script>
