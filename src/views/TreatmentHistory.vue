@@ -127,37 +127,44 @@ export default {
                 {
                     route: '/medicalHistory/' + this.$route.params.id,
                     name: 'Ιατρικό ιστορικό',
-                    loggedIn: true
+                    loggedIn: true,
+                    active: false
                 },
                 {
                     route: '/dentalHistory/' + this.$route.params.id,
                     name: 'Οδοντιατρικό ιστορικό',
-                    loggedIn: true
+                    loggedIn: true,
+                    active: false
                 },
                 {
                     route: '/dentalGram/' + this.$route.params.id,
                     name: 'Οδοντόγραμμα',
-                    loggedIn: true
+                    loggedIn: true,
+                    active: false
                 },
                 {
                     route: '/periodontalChart/' + this.$route.params.id,
                     name: 'Περιοδοντόγραμμα',
-                    loggedIn: true
+                    loggedIn: true,
+                    active: false
                 },
                 {
                     route: '/treatmentHistory/' + this.$route.params.id,
                     name: 'Ιστορικό θεραπειών',
-                    loggedIn: true
+                    loggedIn: true,
+                    active: true
                 },
                 {
                     route: '/denervation/' + this.$route.params.id,
                     name: 'Απονεύρωση',
-                    loggedIn: true
+                    loggedIn: true,
+                    active: false
                 },
                 {
                     route: '/files/' + this.$route.params.id,
                     name: 'Αρχεία',
-                    loggedIn: true
+                    loggedIn: true,
+                    active: false
                 }
             ],
 

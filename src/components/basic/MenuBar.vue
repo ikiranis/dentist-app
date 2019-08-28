@@ -16,7 +16,11 @@
                 <b-nav-item href="#"
 							class="my-auto"
 							v-for="item in menuItems" :key="item.name" v-if="userId !== 0 && item.loggedIn">
-                    <router-link :to="item.route" class="nav-link">{{ item.name }}</router-link>
+                    <router-link :to="item.route"
+                                 class="nav-link"
+                                 :class="item.active ? 'badge badge-secondary text-light' : ''">
+                        {{ item.name }}
+                    </router-link>
                 </b-nav-item>
 
                 <!-- All users items -->
