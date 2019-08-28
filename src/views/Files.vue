@@ -321,6 +321,9 @@ export default {
                     .then(response => {
                         this.loading = false
 
+                        this.response.message = 'Το αρχείο διαγράφηκε'
+                        this.response.status = true
+
                         this.getFiles(null)
                     })
                     .catch(error => {

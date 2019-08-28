@@ -123,7 +123,7 @@
             </div>
         </div>
 
-        <div class="row">
+        <div class="row fixed-bottom mb-2">
             <display-error class="mx-auto"
                            v-if="response.message"
                            :response="response"/>
@@ -148,7 +148,7 @@ export default {
         return {
 
             response: {
-                message: '',
+                message: ' ',
                 status: '',
                 errors: []
             },
@@ -257,6 +257,9 @@ export default {
                 api.deleteEvent(eventId)
                     .then(response => {
                         this.loading = false
+
+                        this.response.message = 'Το ραντεβού διαγράφηκε'
+                        this.response.status = true
 
                         this.getEvents(null)
                     })

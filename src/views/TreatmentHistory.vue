@@ -337,6 +337,9 @@ export default {
                     .then(response => {
                         this.loading = false
 
+                        this.response.message = 'Η θεραπεία διαγράφηκε'
+                        this.response.status = true
+
                         this.getTreatments(null)
                     })
                     .catch(error => {

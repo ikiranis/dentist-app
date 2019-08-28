@@ -505,6 +505,9 @@ export default {
                     .then(response => {
                         this.loading = false
 
+                        this.response.message = 'Η σημείωση διαγράφηκε'
+                        this.response.status = true
+
                         this.getTreatmentNotes()
                     })
                     .catch(error => {

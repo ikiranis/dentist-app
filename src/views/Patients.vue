@@ -142,6 +142,9 @@ export default {
                     .then(response => {
                         this.loading = false
 
+                        this.response.message = 'Ο ασθενής διαγράφηκε'
+                        this.response.status = true
+
                         this.getPatients(null)
                     })
                     .catch(error => {

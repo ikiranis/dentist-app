@@ -159,7 +159,7 @@
 
 		</div>
 
-		<div class="row">
+		<div class="row fixed-bottom mb-2">
 			<display-error class="mx-auto"
 						   v-if="response.message"
 						   :response="response"/>
@@ -187,7 +187,7 @@ export default {
             loading: false,
 
             response: {
-                message: '',
+                message: ' ',
                 status: '',
                 errors: []
             },
@@ -390,6 +390,9 @@ export default {
                 api.deleteTransaction(transactionId)
                     .then(response => {
                         this.loading = false
+
+						this.response.message = 'Η κίνηση διαγράφηκε'
+						this.response.status = true
 
                         this.getTransactions(null)
                     })

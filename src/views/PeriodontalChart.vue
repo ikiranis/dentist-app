@@ -401,6 +401,9 @@ export default {
 
                         this.$refs.noteModal.hide()
 
+                        this.response.message = 'Οι μετρήσεις διαγράφηκαν'
+                        this.response.status = true
+
                         this.getPeriodontalChartNotes()
                     })
                     .catch(error => {
