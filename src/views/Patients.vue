@@ -31,7 +31,9 @@
 
                     <paginate :pagination="pagination" @click="getPatients"/>
 
-                    <div v-if="iconText">{{ iconText }}</div>
+                    <div class="row fixed-bottom mb-2">
+                        <display-icon-text class="mx-auto" :text="iconText" />
+                    </div>
 
                     <patients-table :patients="patients"
                                     @deletePatient="deletePatient"
@@ -65,11 +67,12 @@ import api from '@/api'
 import DisplayError from '@/components/basic/DisplayError'
 import Paginate from '@/components/basic/Paginate'
 import PatientsTable from '@/components/patients/PatientsTable'
+import DisplayIconText from '@/components/patients/DisplayIconText'
 import Loading from '@/components/basic/Loading'
 import utility from '../library/utility'
 
 export default {
-    components: { DisplayError, Paginate, PatientsTable, Loading },
+    components: { DisplayError, Paginate, PatientsTable, Loading, DisplayIconText },
 
     data () {
         return {
@@ -90,7 +93,7 @@ export default {
 
             patients: [],
 
-            iconText: ''
+            iconText: ' '
 
         }
     },
