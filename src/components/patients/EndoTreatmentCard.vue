@@ -14,13 +14,23 @@
                     <h3>Ιστορικό</h3>
                 </div>
 
-                <div class="card mb-2" v-if="painFields">
+                <div class="card mb-2" v-if="fields.pain.display">
                     <div class="card-header">
-                        Πόνος
+						<div class="row">
+							<span>Πόνος</span>
+							<minus-circle-outline v-if="!endoTreatment.automatic
+														&& !endoTreatment.challenged
+														&& !endoTreatment.reason
+														&& !endoTreatment.duration
+														&& !endoTreatment.reduceToTheCold"
+												  class="removeItem my-auto ml-auto" title="Αφαίρεση πεδίου"
+												  @click="removeField(fields.pain)"/>
+						</div>
+
                     </div>
 
                     <div class="card-body">
-                        <div class="input-group row mb-2" v-if="fields.automatic.display">
+                        <div class="input-group row mb-2" >
                             <div class="input-group-text">
                                 <input type="checkbox" id="automatic" v-model="endoTreatment.automatic">
                             </div>
@@ -28,12 +38,9 @@
                             <div class="input-group-text col">
                                 <label for="automatic" class="my-1">Αυτόματος</label>
                             </div>
-
-                            <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
-                                                  @click="removeField(fields.automatic)"/>
                         </div>
 
-                        <div class="input-group row mb-2" v-if="fields.challenged.display">
+                        <div class="input-group row mb-2">
                             <div class="input-group-text">
                                 <input type="checkbox" id="challenged" v-model="endoTreatment.challenged">
                             </div>
@@ -41,12 +48,9 @@
                             <div class="input-group-text col">
                                 <label for="challenged" class="my-1">Προκλητός</label>
                             </div>
-
-                            <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
-                                                  @click="removeField(fields.challenged)"/>
                         </div>
 
-                        <div class="input-group row mb-2" v-if="fields.reason.display">
+                        <div class="input-group row mb-2">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
                                     <label for="reason" class="my-auto">Αιτία</label>
@@ -55,13 +59,11 @@
 
                             <input id="reason" type="text" class="form-control"
                                    v-model="endoTreatment.reason" maxlength="20">
-                            <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
-                                                  @click="removeField(fields.reason)"/>
                             <form-error v-if="response.errors.reason"
                                         :error="response.errors.reason[0]"/>
                         </div>
 
-                        <div class="input-group row mb-2" v-if="fields.duration.display">
+                        <div class="input-group row mb-2">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
                                     <label for="duration" class="my-auto">Διάρκεια</label>
@@ -70,13 +72,11 @@
 
                             <input id="duration" type="text" class="form-control"
                                    v-model="endoTreatment.duration" maxlength="20">
-                            <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
-                                                  @click="removeField(fields.duration)"/>
                             <form-error v-if="response.errors.duration"
                                         :error="response.errors.duration[0]"/>
                         </div>
 
-                        <div class="input-group row mb-2" v-if="fields.reduceToTheCold.display">
+                        <div class="input-group row mb-2">
                             <div class="input-group-text">
                                 <input type="checkbox" id="reduceToTheCold" v-model="endoTreatment.reduceToTheCold">
                             </div>
@@ -84,9 +84,6 @@
                             <div class="input-group-text col">
                                 <label for="reduceToTheCold" class="my-1">Μείωση στο ψυχρό</label>
                             </div>
-
-                            <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
-                                                  @click="removeField(fields.reduceToTheCold)"/>
                         </div>
                     </div>
                 </div>
@@ -100,7 +97,8 @@
                         <label for="historyEdema" class="my-1">Οίδημα</label>
                     </div>
 
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!endoTreatment.historyEdema"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                           @click="removeField(fields.historyEdema)"/>
                 </div>
 
@@ -114,7 +112,8 @@
                         <label for="feelingOfToothElongation" class="my-1">Αίσθηση επιμήκυνσης δοντιού</label>
                     </div>
 
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!endoTreatment.feelingOfToothElongation"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                           @click="removeField(fields.feelingOfToothElongation)"/>
                 </div>
 
@@ -127,7 +126,8 @@
                         <label for="fever" class="my-1">Πυρετός</label>
                     </div>
 
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!endoTreatment.fever"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                           @click="removeField(fields.fever)"/>
                 </div>
 
@@ -140,7 +140,8 @@
                         <label for="lymphadenitis" class="my-1">Λεμφαδενίτιδα</label>
                     </div>
 
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!endoTreatment.lymphadenitis"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                           @click="removeField(fields.lymphadenitis)"/>
                 </div>
 
@@ -153,7 +154,8 @@
 
                     <input id="others" type="text" class="form-control"
                            v-model="endoTreatment.others" maxlength="20">
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!endoTreatment.others"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                           @click="removeField(fields.others)"/>
                     <form-error v-if="response.errors.others"
                                 :error="response.errors.others[0]"/>
@@ -168,7 +170,8 @@
 
                     <input id="previousAction" type="text" class="form-control"
                            v-model="endoTreatment.previousAction" maxlength="20">
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!endoTreatment.previousAction"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                           @click="removeField(fields.previousAction)"/>
                     <form-error v-if="response.errors.previousAction"
                                 :error="response.errors.previousAction[0]"/>
@@ -191,7 +194,8 @@
 
                     <input id="toothChoise" type="text" class="form-control"
                            v-model="endoTreatment.toothChoise" maxlength="20">
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!endoTreatment.toothChoise"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                           @click="removeField(fields.toothChoise)"/>
                     <form-error v-if="response.errors.toothChoise"
                                 :error="response.errors.toothChoise[0]"/>
@@ -206,7 +210,8 @@
                         <label for="treatEdema" class="my-1">Οίδημα</label>
                     </div>
 
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!endoTreatment.treatEdema"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                           @click="removeField(fields.treatEdema)"/>
                 </div>
 
@@ -219,7 +224,8 @@
                         <label for="fistula" class="my-1">Συρίγγιο</label>
                     </div>
 
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!endoTreatment.fistula"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                           @click="removeField(fields.fistula)"/>
                 </div>
 
@@ -232,7 +238,8 @@
                         <label for="tintOfAMill" class="my-1">Απόχρωση μύλης</label>
                     </div>
 
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!endoTreatment.tintOfAMill"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                           @click="removeField(fields.tintOfAMill)"/>
                 </div>
 
@@ -251,7 +258,8 @@
                     <input id="revelationOfPulp" type="text" class="form-control"
                            v-model="endoTreatment.revelationOfPulp" maxlength="20"
                            :disabled="endoTreatment.revelationOfPulpCheck ? 'disabled' : ''">
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!endoTreatment.revelationOfPulpCheck"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                           @click="removeField(fields.revelationOfPulp)"/>
                     <form-error v-if="response.errors.revelationOfPulp"
                                 :error="response.errors.revelationOfPulp[0]"/>
@@ -268,7 +276,8 @@
                             ακρορριζικά</label>
                     </div>
 
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!endoTreatment.sensitivityToPalpationAtTheTip"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                           @click="removeField(fields.sensitivityToPalpationAtTheTip)"/>
                 </div>
 
@@ -281,7 +290,8 @@
                         <label for="painInTheAttack" class="my-1">Πόνος στην επίκρουση</label>
                     </div>
 
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!endoTreatment.painInTheAttack"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                           @click="removeField(fields.painInTheAttack)"/>
                 </div>
 
@@ -294,7 +304,8 @@
                         <label for="elation" class="my-1">Ευσειστότητα</label>
                     </div>
 
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!endoTreatment.elation"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                           @click="removeField(fields.elation)"/>
                 </div>
 
@@ -307,7 +318,8 @@
                         <label for="vitality" class="my-1">Ζωτικότητα</label>
                     </div>
 
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!endoTreatment.vitality"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                           @click="removeField(fields.vitality)"/>
                 </div>
 
@@ -320,7 +332,8 @@
 
                     <input id="periodontalTissues" type="text" class="form-control"
                            v-model="endoTreatment.periodontalTissues" maxlength="20">
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!endoTreatment.periodontalTissues"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                           @click="removeField(fields.periodontalTissues)"/>
                     <form-error v-if="response.errors.periodontalTissues"
                                 :error="response.errors.periodontalTissues[0]"/>
@@ -335,7 +348,8 @@
 
                     <input id="radiographicExamination" type="text" class="form-control"
                            v-model="endoTreatment.radiographicExamination" maxlength="20">
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!endoTreatment.radiographicExamination"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                           @click="removeField(fields.radiographicExamination)"/>
                     <form-error v-if="response.errors.radiographicExamination"
                                 :error="response.errors.radiographicExamination[0]"/>
@@ -381,26 +395,10 @@ export default {
             loading: false,
 
             fields: {
-                automatic: {
-                    label: 'Αυτόματος',
-                    display: false
-                },
-                challenged: {
-                    label: 'Προκλητός',
-                    display: false
-                },
-                reason: {
-                    label: 'Αιτία',
-                    display: false
-                },
-                duration: {
-                    label: 'Διάρκεια',
-                    display: false
-                },
-                reduceToTheCold: {
-                    label: 'Μείωση στο ψυχρό',
-                    display: false
-                },
+				pain: {
+					label: 'Πόνος',
+					display: false
+				},
                 historyEdema: {
                     label: 'Ιστορικό : Οίδημα',
                     display: false
@@ -508,13 +506,13 @@ export default {
             })
         },
 
-        painFields () {
-            return (this.fields.automatic.display ||
-                this.fields.challenged.display ||
-                this.fields.reason.display ||
-                this.fields.duration.display ||
-                this.fields.reduceToTheCold.display)
-        },
+        // painFields () {
+        //     return (this.fields.automatic.display ||
+        //         this.fields.challenged.display ||
+        //         this.fields.reason.display ||
+        //         this.fields.duration.display ||
+        //         this.fields.reduceToTheCold.display)
+        // },
 
         patientId: function () {
             return this.$route.params.id
