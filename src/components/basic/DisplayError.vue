@@ -42,7 +42,18 @@ export default {
     watch: {
         message () {
             this.showAlert()
-        }
+        },
+
+		/**
+		 * On countdown = 0, reset message
+		 *
+		 * @param value
+		 */
+		dismissCountDown (value) {
+        	if(value === 0) {
+        		this.response.message = ' '
+			}
+		}
     },
 
     methods: {
