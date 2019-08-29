@@ -19,7 +19,8 @@
                         <label for="frequentStrokes" class="my-1">Συχνές οδονταλγίες</label>
                     </div>
 
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!dentalHistory.frequentStrokes"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
 										  @click="removeField(dentalHistory.frequentStrokes)"/>
                 </div>
 
@@ -38,7 +39,8 @@
                     <input id="sensitivityToStimuli" type="text" class="form-control"
                            v-model="dentalHistory.sensitivityToStimuli" maxlength="20"
                            :disabled="dentalHistory.sensitivityToStimuliCheck ? 'disabled' : ''">
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!dentalHistory.sensitivityToStimuliCheck"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
 										  @click="removeField(fields.sensitivityToStimuli)"/>
                     <form-error v-if="response.errors.sensitivityToStimuli"
                                 :error="response.errors.sensitivityToStimuli[0]"/>
@@ -61,7 +63,8 @@
                     <input id="painWhenChewing" type="text" class="form-control"
                            v-model="dentalHistory.painWhenChewing" maxlength="20"
                            :disabled="dentalHistory.painWhenChewingCheck ? 'disabled' : ''">
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!dentalHistory.painWhenChewingCheck"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
 										  @click="removeField(fields.painWhenChewing)"/>
                     <form-error v-if="response.errors.painWhenChewing"
                                 :error="response.errors.painWhenChewing[0]"/>
@@ -83,7 +86,8 @@
                     <input id="gingivalBleeding" type="text" class="form-control"
                            v-model="dentalHistory.gingivalBleeding" maxlength="20"
                            :disabled="dentalHistory.gingivalBleedingCheck ? 'disabled' : ''">
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!dentalHistory.gingivalBleedingCheck"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
 										  @click="removeField(fields.gingivalBleeding)"/>
                     <form-error v-if="response.errors.gingivalBleeding"
                                 :error="response.errors.gingivalBleeding[0]"/>
@@ -99,7 +103,8 @@
                             γεύσης</label>
                     </div>
 
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!dentalHistory.tasteAbnormality"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
 										  @click="removeField(fields.tasteAbnormality)"/>
                 </div>
 
@@ -112,7 +117,8 @@
                         <label for="dryMouth" class="my-1">Ξηροστομία</label>
                     </div>
 
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!dentalHistory.dryMouth"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
 										  @click="removeField(fields.dryMouth)"/>
                 </div>
 
@@ -125,7 +131,8 @@
                         <label for="badSmell" class="my-1">Κακοσμία</label>
                     </div>
 
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!dentalHistory.badSmell"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
 										  @click="removeField(fields.badSmell)"/>
                 </div>
 
@@ -138,7 +145,8 @@
                         <label for="burningMouth" class="my-1">Καυσαλγία</label>
                     </div>
 
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!dentalHistory.burningMouth"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
 										  @click="removeField(fields.burningMouth)"/>
                 </div>
 
@@ -153,7 +161,8 @@
                             από ΚΓΔ</label>
                     </div>
 
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!dentalHistory.painFromCrownFibrousStructure"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
 										  @click="removeField(fields.painFromCrownFibrousStructure)"/>
                 </div>
 
@@ -168,7 +177,8 @@
                             από ΚΓΔ</label>
                     </div>
 
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!dentalHistory.soundFromCrownFibrousStructure"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
 										  @click="removeField(fields.soundFromCrownFibrousStructure)"/>
                 </div>
 
@@ -181,7 +191,8 @@
                         <label for="prosopalgia" class="my-1">Προσωπαλγία</label>
                     </div>
 
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!dentalHistory.prosopalgia"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
 										  @click="removeField(fields.prosopalgia)"/>
                 </div>
 
@@ -199,7 +210,8 @@
 
                     <input id="surgicalProcedures" type="text" class="form-control"
                            v-model="dentalHistory.surgicalProcedures" maxlength="60">
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!dentalHistory.surgicalProcedures"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
 										  @click="removeField(fields.surgicalProcedures)"/>
                     <form-error v-if="response.errors.surgicalProcedures"
                                 :error="response.errors.surgicalProcedures[0]"/>
@@ -215,7 +227,8 @@
 
                     <input id="traumaticLesions" type="text" class="form-control"
                            v-model="dentalHistory.traumaticLesions" maxlength="60">
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!dentalHistory.traumaticLesions"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
 										  @click="removeField(fields.traumaticLesions)"/>
                     <form-error v-if="response.errors.traumaticLesions"
                                 :error="response.errors.traumaticLesions[0]"/>
@@ -232,7 +245,8 @@
                             με τοπική αναισθησία</label>
                     </div>
 
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!dentalHistory.problemsWithLocalAnesthesia"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
 										  @click="removeField(fields.problemsWithLocalAnesthesia)"/>
                 </div>
 
@@ -245,7 +259,8 @@
 
                     <input id="radiotherapy" type="text" class="form-control"
                            v-model="dentalHistory.radiotherapy" maxlength="60">
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!dentalHistory.radiotherapy"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
 										  @click="removeField(fields.radiotherapy)"/>
                     <form-error v-if="response.errors.radiotherapy"
                                 :error="response.errors.radiotherapy[0]"/>
@@ -261,7 +276,8 @@
 
                     <input id="oralSprains" type="text" class="form-control"
                            v-model="dentalHistory.oralSprains" maxlength="60">
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!dentalHistory.oralSprains"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
 										  @click="removeField(fields.oralSprains)"/>
                     <form-error v-if="response.errors.oralSprains"
                                 :error="response.errors.oralSprains[0]"/>
@@ -277,7 +293,8 @@
 
                     <input id="oralHygiene" type="text" class="form-control"
                            v-model="dentalHistory.oralHygiene" maxlength="60">
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!dentalHistory.oralHygiene"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
 										  @click="removeField(fields.oralHygiene)"/>
                     <form-error v-if="response.errors.oralHygiene"
                                 :error="response.errors.oralHygiene[0]"/>
