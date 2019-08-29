@@ -9,40 +9,32 @@
 
         <b-collapse is-nav :id="navCollapseText">
 
-            <!--TODO fix cursor pointer after choose a menu-->
             <b-navbar-nav :class="valign">
 
                 <!-- User LoggedIn items -->
-                <b-nav-item href="#"
-							class="my-auto"
+                <b-nav-item class="my-auto"
 							v-for="item in menuItems" :key="item.name"
-                            v-if="userId !== 0 && item.loggedIn">
-
-                    <router-link v-if="!item.disabled"
-                                 :to="item.route"
+                            v-if="userId !== 0 && item.loggedIn"
+                            :disabled="!!item.disabled">
+                    <router-link :to="item.route"
                                  class="nav-link"
                                  :class="item.active ? 'bg-secondary text-light' : ''">
-                        {{ item.name }}
+                        <span :class="item.disabled ? 'disabled' : ''">{{ item.name }}</span>
                     </router-link>
-
-                    <span v-else class="disabled">{{ item.name }}</span>
                 </b-nav-item>
 
                 <!-- All users items -->
-                <b-nav-item href="#"
-							class="my-auto"
+                <b-nav-item class="my-auto"
 							v-for="item in menuItems" :key="item.name" v-if="!item.loggedIn">
                     <router-link :to="item.route" class="nav-link">{{ item.name }}</router-link>
                 </b-nav-item>
 
-                <b-nav-item href="#"
-							class="my-auto"
+                <b-nav-item class="my-auto"
 							v-if="userInfo === 'true'">
                     <CurrentUser/>
                 </b-nav-item>
 
-                <b-nav-item href="#"
-							class="my-auto"
+                <b-nav-item class="my-auto"
 							v-if="username && userInfo === 'true'">
                     <a class="nav-link" id="logout" @click="logout()">Αποσύνδεση</a>
                 </b-nav-item>
@@ -100,7 +92,6 @@ export default {
 
 <style scoped>
     .disabled {
-        color: grey;
-        cursor: default;
+        color: lightgray;
     }
 </style>
