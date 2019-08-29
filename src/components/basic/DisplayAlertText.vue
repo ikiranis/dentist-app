@@ -3,12 +3,12 @@
         <b-alert
                 :show="dismissCountDown"
                 dismissible
-                variant="info"
+                :variant="variant"
                 @dismissed="dismissCountDown=0"
                 @dismiss-count-down="countDownChanged">
             <span>{{ text }}</span>
             <b-progress
-                    variant="info"
+                    :variant="variant"
                     :max="dismissSecs"
                     :value="dismissCountDown"
                     height="4px"
@@ -18,7 +18,6 @@
 </template>
 
 <script>
-
     export default {
 
         data () {
@@ -30,7 +29,8 @@
         },
 
         props: {
-            text: String
+            text: String,
+            variant: String
         },
 
         watch: {

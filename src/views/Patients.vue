@@ -31,10 +31,6 @@
 
                     <paginate :pagination="pagination" @click="getPatients"/>
 
-                    <div class="row fixed-bottom mb-2">
-                        <display-icon-text class="mx-auto" :text="iconText" />
-                    </div>
-
                     <patients-table :patients="patients"
                                     @deletePatient="deletePatient"
                                     @displayIconText="displayIconText" />
@@ -53,6 +49,10 @@
 
         </div>
 
+        <display-alert-text class="mx-auto fixed-bottom w-50 mb-2"
+                            variant="info"
+                            :text="iconText" />
+
         <div class="row fixed-bottom mb-2">
             <display-error class="mx-auto"
                            v-if="response.message"
@@ -67,12 +67,12 @@ import api from '@/api'
 import DisplayError from '@/components/basic/DisplayError'
 import Paginate from '@/components/basic/Paginate'
 import PatientsTable from '@/components/patients/PatientsTable'
-import DisplayIconText from '@/components/patients/DisplayIconText'
+import DisplayAlertText from '@/components/basic/DisplayAlertText'
 import Loading from '@/components/basic/Loading'
 import utility from '../library/utility'
 
 export default {
-    components: { DisplayError, Paginate, PatientsTable, Loading, DisplayIconText },
+    components: { DisplayError, Paginate, PatientsTable, Loading, DisplayAlertText },
 
     data () {
         return {
