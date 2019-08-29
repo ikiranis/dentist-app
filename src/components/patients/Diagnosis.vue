@@ -21,8 +21,9 @@
 
                 <input id="revelation" type="text" class="form-control"
                        v-model="diagnosis.revelation" maxlength="20"
-                       :disabled="diagnosis.revelationCheck ? 'disabled' : ''">
-                <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                       :disabled="!diagnosis.revelationCheck">
+                <minus-circle-outline v-if="!diagnosis.revelationCheck"
+									  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                       @click="removeField(fields.revelation)"/>
                 <form-error v-if="response.errors.revelation"
                             :error="response.errors.revelation[0]"/>
@@ -37,7 +38,8 @@
                     <label for="hyperemia" class="my-1">Υπεραιμία</label>
                 </div>
 
-                <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                <minus-circle-outline v-if="!diagnosis.hyperemia"
+									  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                       @click="removeField(fields.hyperemia)"/>
             </div>
 
@@ -53,7 +55,7 @@
                 <div class="input-group-text">
                     <input type="radio" id="partialAcutePulpitis" name="acutePulpitisChecked"
                            value="partialAcutePulpitis"
-                           :disabled="diagnosis.acutePulpitis ? 'disabled' : ''">
+                           :disabled="!diagnosis.acutePulpitis">
                 </div>
 
                 <div class="input-group-text">
@@ -63,14 +65,15 @@
                 <div class="input-group-text">
                     <input type="radio" id="universalAcutePulpitis" name="acutePulpitisChecked"
                            value="universalAcutePulpitis"
-                           :disabled="diagnosis.acutePulpitis ? 'disabled' : ''">
+                           :disabled="!diagnosis.acutePulpitis">
                 </div>
 
                 <div class="input-group-text">
                     <label for="universalAcutePulpitis" class="my-auto">Καθολική</label>
                 </div>
 
-                <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                <minus-circle-outline v-if="!diagnosis.acutePulpitis"
+									  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                       @click="removeField(fields.acutePulpitis)"/>
             </div>
 
@@ -86,7 +89,7 @@
                 <div class="input-group-text">
                     <input type="radio" id="ulceratingChronicPulpitis" name="chronicPulpitisChecked"
                            value="ulceratingChronicPulpitis"
-                           :disabled="diagnosis.chronicPulpitis ? 'disabled' : ''">
+                           :disabled="!diagnosis.chronicPulpitis">
                 </div>
 
                 <div class="input-group-text">
@@ -96,14 +99,15 @@
                 <div class="input-group-text">
                     <input type="radio" id="superplasticChronicPulpitis" name="chronicPulpitisChecked"
                            value="superplasticChronicPulpitis"
-                           :disabled="diagnosis.chronicPulpitis ? 'disabled' : ''">
+                           :disabled="!diagnosis.chronicPulpitis">
                 </div>
 
                 <div class="input-group-text">
                     <label for="superplasticChronicPulpitis" class="my-auto">Υπερπλαστική</label>
                 </div>
 
-                <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                <minus-circle-outline v-if="!diagnosis.chronicPulpitis"
+									  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                       @click="removeField(fields.chronicPulpitis)"/>
             </div>
 
@@ -116,7 +120,8 @@
                     <label for="necrosis" class="my-1">Νέκρωση</label>
                 </div>
 
-                <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                <minus-circle-outline v-if="!diagnosis.necrosis"
+									  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                       @click="removeField(fields.necrosis)"/>
             </div>
 
@@ -129,7 +134,8 @@
                     <label for="abscess" class="my-1">Απόστημα</label>
                 </div>
 
-                <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                <minus-circle-outline v-if="!diagnosis.abscess"
+									  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                       @click="removeField(fields.abscess)"/>
             </div>
 
@@ -142,7 +148,8 @@
                     <label for="granulation" class="my-1">Κοκκίωμα</label>
                 </div>
 
-                <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                <minus-circle-outline v-if="!diagnosis.granulation"
+									  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                       @click="removeField(fields.granulation)"/>
             </div>
 
@@ -155,7 +162,8 @@
                     <label for="cyst" class="my-1">Κύστη</label>
                 </div>
 
-                <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                <minus-circle-outline v-if="!diagnosis.cyst"
+									  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                       @click="removeField(fields.cyst)"/>
             </div>
 
@@ -169,7 +177,8 @@
                     <label for="reactiveOsteoconduction" class="my-1">Αντιδραστική οστεροπύκνωση</label>
                 </div>
 
-                <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                <minus-circle-outline v-if="!diagnosis.reactiveOsteoconduction"
+									  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                       @click="removeField(fields.reactiveOsteoconduction)"/>
             </div>
 
@@ -187,8 +196,9 @@
 
                 <input id="endoPeriodontalDamage" type="text" class="form-control"
                        v-model="diagnosis.endoPeriodontalDamage" maxlength="20"
-                       :disabled="diagnosis.endoPeriodontalDamageCheck ? 'disabled' : ''">
-                <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                       :disabled="!diagnosis.endoPeriodontalDamageCheck">
+                <minus-circle-outline v-if="!diagnosis.endoPeriodontalDamageCheck"
+									  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                       @click="removeField(fields.endoPeriodontalDamage)"/>
                 <form-error v-if="response.errors.endoPeriodontalDamage"
                             :error="response.errors.endoPeriodontalDamage[0]"/>
@@ -206,7 +216,7 @@
                 <div class="input-group-text">
                     <input type="radio" id="innerAbsorption" name="absorptionChecked"
                            value="innerAbsorption"
-                           :disabled="diagnosis.absorption ? 'disabled' : ''">
+                           :disabled="!diagnosis.absorption">
                 </div>
 
                 <div class="input-group-text">
@@ -216,14 +226,15 @@
                 <div class="input-group-text">
                     <input type="radio" id="outerAbsorption" name="absorptionChecked"
                            value="outerAbsorption"
-                           :disabled="diagnosis.absorption ? 'disabled' : ''">
+                           :disabled="!diagnosis.absorption">
                 </div>
 
                 <div class="input-group-text">
                     <label for="outerAbsorption" class="my-auto">Εξωτερική</label>
                 </div>
 
-                <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                <minus-circle-outline v-if="!diagnosis.absorption"
+									  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                       @click="removeField(fields.absorption)"/>
             </div>
 
@@ -240,7 +251,8 @@
 
                 <input id="fracture" type="text" class="form-control"
                        v-model="diagnosis.fracture" maxlength="20">
-                <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                <minus-circle-outline v-if="!diagnosis.fractureCheck"
+									  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                       @click="removeField(fields.fracture)"/>
                 <form-error v-if="response.errors.fracture"
                             :error="response.errors.fracture[0]"/>
