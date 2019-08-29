@@ -100,6 +100,7 @@ export default {
         @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
         color: #2c3e50;
         font-family: 'Roboto', sans-serif;
+        font-size: 15px;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
     }

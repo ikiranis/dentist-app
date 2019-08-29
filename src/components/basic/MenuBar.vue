@@ -17,7 +17,7 @@
                             v-if="userId !== 0 && item.loggedIn"
                             :disabled="!!item.disabled">
                     <router-link :to="item.route"
-                                 class="nav-link"
+                                 class="nav-link px-1"
                                  :class="item.active ? 'bg-secondary text-light' : ''">
                         <span :class="item.disabled ? 'disabled' : ''">{{ item.name }}</span>
                     </router-link>
