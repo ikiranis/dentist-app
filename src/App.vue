@@ -92,6 +92,10 @@ export default {
 </script>
 
 <style lang="scss">
+	body {
+		overflow-y: scroll;
+	}
+
     #app {
         @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
         color: #2c3e50;
