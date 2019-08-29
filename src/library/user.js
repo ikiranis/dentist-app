@@ -28,7 +28,7 @@ const user = {
     setUserTokenHeader () {
     // axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
-        if (typeof localStorage.accessToken !== "undefined") {
+        if (localStorage.accessToken !== '') {
             axios.defaults.headers.common['Accept'] = 'application/json'
             axios.defaults.headers.common['Authorization'] = localStorage.tokenType + ' ' + localStorage.accessToken
         }
