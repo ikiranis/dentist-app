@@ -11,7 +11,7 @@
         </div>
 
         <div v-else>
-            Api not works
+            Api OFFLINE
         </div>
 
     </div>
