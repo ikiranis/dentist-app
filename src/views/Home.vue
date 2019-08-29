@@ -72,10 +72,6 @@ export default {
                 }
             })
             .catch(error => console.log(error.response))
-    },
-
-    methods: {
-    //
     }
 }
 </script>

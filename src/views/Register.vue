@@ -50,11 +50,15 @@
                     </div>
                 </div>
 
-                <display-error v-if="response.message" :response="response"/>
+				<div class="row fixed-bottom mb-2">
+					<display-error class="mx-auto"
+								   v-if="response.message"
+								   :response="response"/>
+				</div>
 
-                <div class="w-100 text-center">
-                    <loading :loading="loading"/>
-                </div>
+				<div class="col-lg col-12 row fixed-bottom mb-5">
+					<Loading class="mx-auto" :loading="loading"/>
+				</div>
 
             </div>
         </div>
@@ -63,7 +67,6 @@
 
 <script>
 import api from '@/api'
-import { mapState, mapMutations } from 'vuex'
 import DisplayError from '@/components/basic/DisplayError'
 import FormError from '@/components/basic/FormError'
 import Loading from '@/components/basic/Loading'
@@ -73,7 +76,7 @@ export default {
 
     data: () => ({
         response: {
-            message: '',
+            message: ' ',
             status: '',
             errors: []
         },
@@ -83,41 +86,42 @@ export default {
             password: '',
             role_id: 2
         },
-        password_confirmation: ''
+        password_confirmation: '',
+
+		loading: false
     }),
 
-    computed: {
-        ...mapState(['loading'])
-    },
-
     methods: {
-        ...mapMutations(['setLoading']),
-
         /**
              * Register new user
              */
         register () {
-            this.setLoading(true)
+            this.loading = true
+
             if (this.userInfo.password === this.password_confirmation) {
                 api.register(this.userInfo)
                     .then(response => {
                         this.response.message = response.statusText
                         this.response.status = true
-                        this.setLoading(false)
+
+						this.loading = false
                         this.$router.push({ name: 'login' })
                     })
                     .catch(error => {
                         this.response.message = error.response.data.message
                         this.response.status = false
+
                         if (error.response.data.errors) {
                             this.response.errors = error.response.data.errors
                         }
-                        this.setLoading(false)
+
+						this.loading = false
                     })
             } else {
                 this.response.message = 'Passwords not validated'
                 this.response.status = false
-                this.setLoading(false)
+
+				this.loading = false
             }
         }
     }

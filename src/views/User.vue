@@ -1,6 +1,10 @@
 <template>
     <div class="my-3 mx-3">
 
+		<div class="col-lg col-12 row fixed-bottom mb-5">
+			<Loading class="mx-auto" :loading="loading"/>
+		</div>
+
         <div class="card">
             <div class="card-header">
                 <span id="username">{{ userInfo.name }}</span>
@@ -43,9 +47,11 @@
                     </div>
                 </div>
 
-                <display-error v-if="response.message" :response="response"/>
-
-                <loading :loading="loading" />
+				<div class="row fixed-bottom mb-2">
+					<display-error class="mx-auto"
+								   v-if="response.message"
+								   :response="response"/>
+				</div>
 
             </div>
 
@@ -57,7 +63,6 @@
 
 <script>
 import api from '@/api'
-import { mapState, mapMutations } from 'vuex'
 import DisplayError from '@/components/basic/DisplayError'
 import FormError from '@/components/basic/FormError'
 import Loading from '@/components/basic/Loading'
@@ -68,7 +73,7 @@ export default {
 
     data: () => ({
         response: {
-            message: '',
+            message: ' ',
             status: '',
             errors: []
         },
@@ -81,12 +86,11 @@ export default {
             api_key: null
         },
         password_confirmation: '',
-        progressMax: 100
+        progressMax: 100,
+		loading: false
     }),
 
     computed: {
-        ...mapState(['loading']),
-
         userToken: function () {
             return localStorage.accessToken ? localStorage.accessToken : null
         }
@@ -97,23 +101,21 @@ export default {
     },
 
     methods: {
-        ...mapMutations(['setLoading']),
-
         /**
              * Get current user info
              */
         getCurrentUser () {
-            this.setLoading(true)
+            this.loading = true
 
             api.getCurrentUser()
                 .then(response => {
                     this.userInfo = response
-                    this.setLoading(false)
+					this.loading = false
                 })
                 .catch(error => {
                     this.response.message = error.respone.message
                     this.response.status = false
-                    this.setLoading(false)
+					this.loading = false
                 })
         },
 
@@ -127,12 +129,15 @@ export default {
                     email: this.userInfo.email,
                     password: this.userInfo.password
                 }
-                this.setLoading(true)
+
+				this.loading = true
+
                 api.updateUser(args)
                     .then(response => {
                         this.response.message = `User ${response.name} updated`
                         this.response.status = true
-                        this.setLoading(false)
+
+						this.loading = false
                     })
                     .catch(error => {
                         this.response.message = error.response.data.message
@@ -140,21 +145,15 @@ export default {
                         if (error.response.data.errors) {
                             this.response.errors = error.response.data.errors
                         }
-                        this.setLoading(false)
+
+						this.loading = false
                     })
             } else {
                 this.response.message = 'Passwords not validated'
                 this.response.status = false
-                this.setLoading(false)
-            }
-        },
 
-        /**
-             * Display the error on every error
-             */
-        handleError (error) {
-            this.response.message = error
-            this.response.status = false
+				this.loading = false
+            }
         }
 
     }

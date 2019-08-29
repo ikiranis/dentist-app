@@ -1,6 +1,10 @@
 <template>
     <div class="container">
 
+		<div class="col-lg col-12 row fixed-bottom mb-5">
+			<Loading class="mx-auto" :loading="loading"/>
+		</div>
+
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card card-default">
@@ -39,11 +43,11 @@
                     </div>
                 </div>
 
-                <display-error v-if="response.message" :response="response"/>
-
-                <div class="w-100 text-center">
-                    <loading :loading="loading"/>
-                </div>
+				<div class="row fixed-bottom mb-2">
+					<display-error class="mx-auto"
+								   v-if="response.message"
+								   :response="response"/>
+				</div>
 
             </div>
         </div>
@@ -52,7 +56,6 @@
 
 <script>
 import api from '@/api'
-import { mapState, mapMutations } from 'vuex'
 import user from '@/library/user'
 import DisplayError from '@/components/basic/DisplayError'
 import Loading from '@/components/basic/Loading'
@@ -62,22 +65,18 @@ export default {
 
     data: () => ({
         response: {
-            message: '',
-            status: ''
+            message: ' ',
+            status: '',
+			errors: []
         },
         credentials: {
             username: 'rocean@error.gr',
             password: '123456'
-        }
+        },
+		loading: false
     }),
 
-    computed: {
-        ...mapState(['loading'])
-    },
-
     methods: {
-        ...mapMutations(['setLoading']),
-
         displayRegister () {
             this.$router.push({ name: 'register' })
         },
@@ -86,7 +85,7 @@ export default {
              * Do the login
              */
         login () {
-            this.setLoading(true)
+            this.loading = true
 
             api.login(this.credentials.username, this.credentials.password)
                 .then(response => {
@@ -96,13 +95,13 @@ export default {
                     user.setUserTokenHeader()
                     // Get the current username and store it
                     this.$store.dispatch('getCurrentUser')
-                    this.setLoading(false)
+					this.loading = false
                     this.$router.push({ name: 'home' }) // Force to load Home page
                 })
                 .catch(error => {
                     this.response.message = error.response.data.message
                     this.response.status = false
-                    this.setLoading(false)
+					this.loading = false
                 })
         }
     }
