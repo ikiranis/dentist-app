@@ -16,7 +16,7 @@
 
                 <FieldsList v-if="!loading" :fields="fields"/>
 
-                <div class="alert alert-success text-center w-50 mt-5 mx-auto" v-if="!fieldSelected">
+                <div class="alert alert-success text-center w-50 mt-5 mx-auto" v-if="!fieldSelected && !loading">
                     Επιλογή πεδίων
                 </div>
 
