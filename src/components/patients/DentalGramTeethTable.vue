@@ -1,62 +1,64 @@
 <template>
 
-	<table class="table table-responsive table-hover table-sm">
+	<div>
+		<table class="table table-responsive table-hover table-sm">
 
-		<thead class="table-borderless">
-			<tr>
-				<th></th>
-				<th v-for="tooth in teeth" :key="tooth.id"
-					class="text-center px-3 toothNumbers text-secondary">{{ tooth.number }}
-				</th>
-			</tr>
-		</thead>
+			<thead class="table-borderless">
+				<tr>
+					<th></th>
+					<th v-for="tooth in teeth" :key="tooth.id"
+						class="text-center px-3 toothNumbers text-secondary">{{ tooth.number }}
+					</th>
+				</tr>
+			</thead>
 
-		<tbody class="table-bordered">
-			<tr class="table-active">
-				<td class="text-center align-middle">
-					<span class="toothNotes">Ιστορικό</span>
-				</td>
+			<tbody class="table-bordered">
+				<tr class="table-active">
+					<td class="text-center align-middle">
+						<span class="toothNotes">Ιστορικό</span>
+					</td>
 
-				<td v-for="tooth in teeth" :key="tooth.id" class="text-center">
-					<div v-if="note = getOriginNote(tooth.number)">
-						<a href="#" @click="updateOriginNote(getOriginNote(tooth.number))">
-							<note-description :note="note" />
-						</a>
-					</div>
+					<td v-for="tooth in teeth" :key="tooth.id" class="text-center">
+						<div v-if="note = getOriginNote(tooth.number)">
+							<a href="#" @click="updateOriginNote(getOriginNote(tooth.number))">
+								<note-description :note="note" />
+							</a>
+						</div>
 
-					<plus-circle-outline v-else
-										 fillColor="black" :size="15"
-										 class="btn-icon" title="Εισαγωγή σημείωσης"
-										 @click="newOriginNote(tooth)"/>
-				</td>
-			</tr>
+						<plus-circle-outline v-else
+											 fillColor="black" :size="15"
+											 class="btn-icon" title="Εισαγωγή σημείωσης"
+											 @click="newOriginNote(tooth)"/>
+					</td>
+				</tr>
 
-			<tr v-for="date in getDates()" :key="date">
-				<td class="text-center align-middle">
-					<span class="toothNotes">{{ date }}</span>
-				</td>
+				<tr v-for="date in getDates()" :key="date">
+					<td class="text-center align-middle">
+						<span class="toothNotes">{{ date }}</span>
+					</td>
 
-				<td v-for="tooth in teeth" :key="tooth.id" class="text-center">
-					<div v-if="note = getNote(date, tooth.number)">
-						<a href="#" @click="updateNote(getNote(date, tooth.number))">
-							<note-description :note="note" />
-						</a>
-					</div>
-				</td>
-			</tr>
+					<td v-for="tooth in teeth" :key="tooth.id" class="text-center">
+						<div v-if="note = getNote(date, tooth.number)">
+							<a href="#" @click="updateNote(getNote(date, tooth.number))">
+								<note-description :note="note" />
+							</a>
+						</div>
+					</td>
+				</tr>
 
-			<tr>
-				<td></td>
-				<td v-for="tooth in teeth" :key="tooth.id" class="text-center">
-					<plus-circle-outline v-if="!findDateInNote(tooth)"
-										 fillColor="green" :size="15"
-										 class="btn-icon" title="Εισαγωγή σημείωσης"
-										 @click="newNote(tooth)"/>
-				</td>
-			</tr>
-		</tbody>
+				<tr>
+					<td></td>
+					<td v-for="tooth in teeth" :key="tooth.id" class="text-center">
+						<plus-circle-outline v-if="!findDateInNote(tooth)"
+											 fillColor="green" :size="15"
+											 class="btn-icon" title="Εισαγωγή σημείωσης"
+											 @click="newNote(tooth)"/>
+					</td>
+				</tr>
+			</tbody>
 
-	</table>
+		</table>
+	</div>
 
 </template>
 

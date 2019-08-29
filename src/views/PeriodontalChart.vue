@@ -55,29 +55,31 @@
 
         </b-modal>
 
+		<menu-bar brand="Ασθενής" :brandRoute="{ name: 'patient', params: { id: patientId } }"
+				  :menuItems="menuItems" userInfo="false" fixed=""
+				  variant="" type="light" valign="mx-auto" toggle="lg"
+				  navCollapseText="patientBar" />
+
         <div class="row justify-content-center">
 
             <div class="col-lg col-12 row fixed-bottom mb-5">
                 <Loading class="mx-auto" :loading="loading"/>
             </div>
 
-            <menu-bar brand="Ασθενής" :brandRoute="{ name: 'patient', params: { id: patientId } }"
-                      :menuItems="menuItems" userInfo="false" fixed=""
-                      variant="" type="light" valign="mx-auto" toggle="lg"
-                      navCollapseText="patientBar" />
+			<div class="row">
+					<periodontal-chart-tooths-table class="mx-auto"
+													:teeth="upperTeeth"
+													:notes="upperNotes"
+													:newNote="newNote"
+													:updateNote="getNote"
+													:deleteNote="deletePeriodontalChartNote" />
 
-			<div>
-				<periodontal-chart-tooths-table :teeth="upperTeeth"
-												:notes="upperNotes"
-												:newNote="newNote"
-												:updateNote="getNote"
-												:deleteNote="deletePeriodontalChartNote" />
-
-				<periodontal-chart-tooths-table :teeth="downTeeth"
-												:notes="downNotes"
-												:newNote="newNote"
-												:updateNote="getNote"
-												:deleteNote="deletePeriodontalChartNote" />
+					<periodontal-chart-tooths-table class="mx-auto"
+													:teeth="downTeeth"
+													:notes="downNotes"
+													:newNote="newNote"
+													:updateNote="getNote"
+													:deleteNote="deletePeriodontalChartNote" />
 			</div>
 
         </div>

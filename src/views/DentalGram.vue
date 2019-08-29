@@ -55,20 +55,21 @@
 
 		</b-modal>
 
+		<menu-bar brand="Ασθενής" :brandRoute="{ name: 'patient', params: { id: patientId } }"
+				  :menuItems="menuItems" userInfo="false" fixed=""
+				  variant="" type="light" valign="mx-auto" toggle="lg"
+				  navCollapseText="patientBar" />
+
         <div class="row justify-content-center">
 
 			<div class="col-lg col-12 row fixed-bottom mb-5">
 				<Loading class="mx-auto" :loading="loading"/>
 			</div>
 
-            <menu-bar brand="Ασθενής" :brandRoute="{ name: 'patient', params: { id: patientId } }"
-                      :menuItems="menuItems" userInfo="false" fixed=""
-                      variant="" type="light" valign="mx-auto" toggle="lg"
-                      navCollapseText="patientBar" />
+            <div class="row">
 
-            <div>
-
-                <dental-gram-teeth-table :teeth="upperTeeth"
+                <dental-gram-teeth-table class="mx-auto"
+										 :teeth="upperTeeth"
 										 :notes="upperNotes"
 										 :originNotes="upperOriginNotes"
 										 :newNote="newNote"
@@ -78,7 +79,8 @@
 										 :updateOriginNote="getOriginNote"
 										 :deleteOriginNote="deleteOriginDentalNote" />
 
-                <dental-gram-teeth-table :teeth="downTeeth"
+                <dental-gram-teeth-table class="mx-auto"
+										 :teeth="downTeeth"
 										 :notes="downNotes"
 										 :originNotes="downOriginNotes"
 										 :newNote="newNote"
