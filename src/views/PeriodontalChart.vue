@@ -67,14 +67,16 @@
             </div>
 
 			<div class="row">
-					<periodontal-chart-tooths-table class="mx-auto"
+					<periodontal-chart-tooths-table v-if="upperNotes.length"
+													class="mx-auto"
 													:teeth="upperTeeth"
 													:notes="upperNotes"
 													:newNote="newNote"
 													:updateNote="getNote"
 													:deleteNote="deletePeriodontalChartNote" />
 
-					<periodontal-chart-tooths-table class="mx-auto"
+					<periodontal-chart-tooths-table v-if="upperNotes.length"
+													class="mx-auto"
 													:teeth="downTeeth"
 													:notes="downNotes"
 													:newNote="newNote"
