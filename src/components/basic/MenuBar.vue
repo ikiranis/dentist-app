@@ -15,12 +15,17 @@
                 <!-- User LoggedIn items -->
                 <b-nav-item href="#"
 							class="my-auto"
-							v-for="item in menuItems" :key="item.name" v-if="userId !== 0 && item.loggedIn">
-                    <router-link :to="item.route"
+							v-for="item in menuItems" :key="item.name"
+                            v-if="userId !== 0 && item.loggedIn">
+
+                    <router-link v-if="!item.disabled"
+                                 :to="item.route"
                                  class="nav-link"
                                  :class="item.active ? 'bg-secondary text-light' : ''">
                         {{ item.name }}
                     </router-link>
+
+                    <span v-else class="disabled">{{ item.name }}</span>
                 </b-nav-item>
 
                 <!-- All users items -->
@@ -92,3 +97,10 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+    .disabled {
+        color: grey;
+        cursor: default;
+    }
+</style>

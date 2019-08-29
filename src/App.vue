@@ -33,27 +33,37 @@ export default {
             {
                 route: '/patients',
                 name: 'Ασθενείς',
-                loggedIn: true
+                loggedIn: true,
+                active: false,
+                disabled: false
             },
             {
                 route: '/economy',
                 name: 'Οικονομικά',
-                loggedIn: true
+                loggedIn: true,
+                active: false,
+                disabled: false
             },
             {
                 route: '/calendar',
                 name: 'Ημερολόγιο',
-                loggedIn: true
+                loggedIn: true,
+                active: false,
+                disabled: false
             },
             {
                 route: '/tools',
                 name: 'Εργαλεία',
-                loggedIn: true
+                loggedIn: true,
+                active: false,
+                disabled: false
             },
             {
                 route: '/about',
                 name: 'About',
-                loggedIn: false
+                loggedIn: false,
+                active: false,
+                disabled: false
             }
         ]
 

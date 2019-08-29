@@ -162,8 +162,9 @@
                 </form>
 
                 <div class="row">
-                    <button id="saveInfo" class="btn btn-success col-lg-6 col-12 my-3 mx-auto"
-                            @click="saveInfo">Αποθήκευση</button>
+                    <input type="button" id="saveInfo"
+                           class="btn btn-success col-lg-6 col-12 my-3 mx-auto"
+                           @click="saveInfo" value="Αποθήκευση">
                 </div>
 
             </div>
@@ -224,37 +225,51 @@ export default {
                 {
                     route: '/medicalHistory/' + this.$route.params.id,
                     name: 'Ιατρικό ιστορικό',
-                    loggedIn: true
+                    loggedIn: true,
+                    active: false,
+                    disabled: false
                 },
                 {
                     route: '/dentalHistory/' + this.$route.params.id,
                     name: 'Οδοντιατρικό ιστορικό',
-                    loggedIn: true
+                    loggedIn: true,
+                    active: false,
+                    disabled: false
                 },
                 {
                     route: '/dentalGram/' + this.$route.params.id,
                     name: 'Οδοντόγραμμα',
-                    loggedIn: true
+                    loggedIn: true,
+                    active: false,
+                    disabled: false
                 },
                 {
                     route: '/periodontalChart/' + this.$route.params.id,
                     name: 'Περιοδοντόγραμμα',
-                    loggedIn: true
+                    loggedIn: true,
+                    active: false,
+                    disabled: false
                 },
                 {
                     route: '/treatmentHistory/' + this.$route.params.id,
                     name: 'Ιστορικό θεραπειών',
-                    loggedIn: true
+                    loggedIn: true,
+                    active: false,
+                    disabled: false
                 },
                 {
                     route: '/denervation/' + this.$route.params.id,
                     name: 'Απονεύρωση',
-                    loggedIn: true
+                    loggedIn: true,
+                    active: false,
+                    disabled: false
                 },
                 {
                     route: '/files/' + this.$route.params.id,
                     name: 'Αρχεία',
-                    loggedIn: true
+                    loggedIn: true,
+                    active: false,
+                    disabled: false
                 }
             ]
         }
@@ -267,11 +282,24 @@ export default {
     },
 
     created: function () {
+        this.checkForNullPatient()
         this.getPatient()
     },
 
     methods: {
         moment,
+
+        /**
+         * Check if patient is 0 and make all menu items disabled
+         */
+        checkForNullPatient ()
+        {
+            if (this.patientId === 0) {
+                this.menuItems.forEach(item => {
+                    item.disabled = true
+                })
+            }
+        },
 
         /**
          * Get the patient
