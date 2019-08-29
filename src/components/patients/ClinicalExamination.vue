@@ -23,7 +23,8 @@
 
                     <input id="edema" type="text" class="form-control"
                            v-model="clinicalExamination.edema" maxlength="20">
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!clinicalExamination.edema"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                           @click="removeField(fields.edema)"/>
                     <form-error v-if="response.errors.edema"
                                 :error="response.errors.edema[0]"/>
@@ -38,7 +39,8 @@
 
                     <input id="asymmetry" type="text" class="form-control"
                            v-model="clinicalExamination.asymmetry" maxlength="20">
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!clinicalExamination.asymmetry"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                           @click="removeField(fields.asymmetry)"/>
                     <form-error v-if="response.errors.asymmetry"
                                 :error="response.errors.asymmetry[0]"/>
@@ -53,7 +55,8 @@
 
                     <input id="swelling" type="text" class="form-control"
                            v-model="clinicalExamination.swelling" maxlength="20">
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!clinicalExamination.swelling"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                           @click="removeField(fields.swelling)"/>
                     <form-error v-if="response.errors.swelling"
                                 :error="response.errors.swelling[0]"/>
@@ -68,7 +71,8 @@
 
                     <input id="damages" type="text" class="form-control"
                            v-model="clinicalExamination.damages" maxlength="20">
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!clinicalExamination.damages"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                           @click="removeField(fields.damages)"/>
                     <form-error v-if="response.errors.damages"
                                 :error="response.errors.damages[0]"/>
@@ -83,7 +87,8 @@
 
                     <input id="complexion" type="text" class="form-control"
                            v-model="clinicalExamination.complexion" maxlength="20">
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!clinicalExamination.complexion"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                           @click="removeField(fields.complexion)"/>
                     <form-error v-if="response.errors.complexion"
                                 :error="response.errors.complexion[0]"/>
@@ -98,7 +103,8 @@
 
                     <input id="convulsion" type="text" class="form-control"
                            v-model="clinicalExamination.convulsion" maxlength="20">
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!clinicalExamination.convulsion"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                           @click="removeField(fields.convulsion)"/>
                     <form-error v-if="response.errors.convulsion"
                                 :error="response.errors.convulsion[0]"/>
@@ -113,7 +119,8 @@
 
                     <input id="neckEdema" type="text" class="form-control"
                            v-model="clinicalExamination.neckEdema" maxlength="20">
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!clinicalExamination.neckEdema"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                           @click="removeField(fields.neckEdema)"/>
                     <form-error v-if="response.errors.neckEdema"
                                 :error="response.errors.neckEdema[0]"/>
@@ -128,7 +135,8 @@
 
                     <input id="neckSwelling" type="text" class="form-control"
                            v-model="clinicalExamination.neckSwelling" maxlength="20">
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!clinicalExamination.neckSwelling"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                           @click="removeField(fields.neckSwelling)"/>
                     <form-error v-if="response.errors.neckSwelling"
                                 :error="response.errors.neckSwelling[0]"/>
@@ -143,7 +151,8 @@
 
                     <input id="hypotensionLymphNodes" type="text" class="form-control"
                            v-model="clinicalExamination.hypotensionLymphNodes" maxlength="20">
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!clinicalExamination.hypotensionLymphNodes"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                           @click="removeField(fields.hypotensionLymphNodes)"/>
                     <form-error v-if="response.errors.hypotensionLymphNodes"
                                 :error="response.errors.hypotensionLymphNodes[0]"/>
@@ -158,7 +167,8 @@
 
                     <input id="submandibularLymphNodes" type="text" class="form-control"
                            v-model="clinicalExamination.submandibularLymphNodes" maxlength="20">
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!clinicalExamination.submandibularLymphNodes"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                           @click="removeField(fields.submandibularLymphNodes)"/>
                     <form-error v-if="response.errors.submandibularLymphNodes"
                                 :error="response.errors.submandibularLymphNodes[0]"/>
@@ -167,13 +177,15 @@
                 <div class="input-group row mb-2" v-if="fields.superficialCervicalLymphNodes.display">
                     <div class="input-group-prepend">
                         <div class="input-group-text">
-                            <label for="superficialCervicalLymphNodes" class="my-auto">Επιπολής τραχηλικοί λεμφαδένες</label>
+                            <label for="superficialCervicalLymphNodes"
+								   class="my-auto">Επιπολής τραχηλικοί λεμφαδένες</label>
                         </div>
                     </div>
 
                     <input id="superficialCervicalLymphNodes" type="text" class="form-control"
                            v-model="clinicalExamination.superficialCervicalLymphNodes" maxlength="20">
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!clinicalExamination.superficialCervicalLymphNodes"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                           @click="removeField(fields.superficialCervicalLymphNodes)"/>
                     <form-error v-if="response.errors.superficialCervicalLymphNodes"
                                 :error="response.errors.superficialCervicalLymphNodes[0]"/>
@@ -188,7 +200,8 @@
 
                     <input id="InsideTheCervicalLymphNodes" type="text" class="form-control"
                            v-model="clinicalExamination.InsideTheCervicalLymphNodes" maxlength="20">
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!clinicalExamination.InsideTheCervicalLymphNodes"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                           @click="removeField(fields.InsideTheCervicalLymphNodes)"/>
                     <form-error v-if="response.errors.InsideTheCervicalLymphNodes"
                                 :error="response.errors.InsideTheCervicalLymphNodes[0]"/>
@@ -203,7 +216,8 @@
 
                     <input id="clicking" type="text" class="form-control"
                            v-model="clinicalExamination.clicking" maxlength="20">
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!clinicalExamination.clicking"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                           @click="removeField(fields.clicking)"/>
                     <form-error v-if="response.errors.clicking"
                                 :error="response.errors.clicking[0]"/>
@@ -218,7 +232,8 @@
 
                     <input id="cry" type="text" class="form-control"
                            v-model="clinicalExamination.cry" maxlength="20">
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!clinicalExamination.cry"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                           @click="removeField(fields.cry)"/>
                     <form-error v-if="response.errors.cry"
                                 :error="response.errors.cry[0]"/>
@@ -233,7 +248,8 @@
 
                     <input id="painfulPalpationOfMuscles" type="text" class="form-control"
                            v-model="clinicalExamination.painfulPalpationOfMuscles" maxlength="20">
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!clinicalExamination.painfulPalpationOfMuscles"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                           @click="removeField(fields.painfulPalpationOfMuscles)"/>
                     <form-error v-if="response.errors.painfulPalpationOfMuscles"
                                 :error="response.errors.painfulPalpationOfMuscles[0]"/>
@@ -248,7 +264,8 @@
 
                     <input id="reducedMobility" type="text" class="form-control"
                            v-model="clinicalExamination.reducedMobility" maxlength="20">
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!clinicalExamination.reducedMobility"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                           @click="removeField(fields.reducedMobility)"/>
                     <form-error v-if="response.errors.reducedMobility"
                                 :error="response.errors.reducedMobility[0]"/>
@@ -263,7 +280,8 @@
 
                     <input id="deratingWhenOpening" type="text" class="form-control"
                            v-model="clinicalExamination.deratingWhenOpening" maxlength="20">
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!clinicalExamination.deratingWhenOpening"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                           @click="removeField(fields.deratingWhenOpening)"/>
                     <form-error v-if="response.errors.deratingWhenOpening"
                                 :error="response.errors.deratingWhenOpening[0]"/>
@@ -278,7 +296,8 @@
 
                     <input id="impairedOpening" type="text" class="form-control"
                            v-model="clinicalExamination.impairedOpening" maxlength="20">
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!clinicalExamination.impairedOpening"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                           @click="removeField(fields.impairedOpening)"/>
                     <form-error v-if="response.errors.impairedOpening"
                                 :error="response.errors.impairedOpening[0]"/>
@@ -293,7 +312,8 @@
 
                     <input id="tonsil" type="text" class="form-control"
                            v-model="clinicalExamination.tonsil" maxlength="20">
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!clinicalExamination.tonsil"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                           @click="removeField(fields.tonsil)"/>
                     <form-error v-if="response.errors.tonsil"
                                 :error="response.errors.tonsil[0]"/>
@@ -308,7 +328,8 @@
 
                     <input id="underTheJaw" type="text" class="form-control"
                            v-model="clinicalExamination.underTheJaw" maxlength="20">
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!clinicalExamination.underTheJaw"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                           @click="removeField(fields.underTheJaw)"/>
                     <form-error v-if="response.errors.underTheJaw"
                                 :error="response.errors.underTheJaw[0]"/>
@@ -331,7 +352,8 @@
 
                     <input id="lips" type="text" class="form-control"
                            v-model="clinicalExamination.lips" maxlength="20">
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!clinicalExamination.lips"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                           @click="removeField(fields.lips)"/>
                     <form-error v-if="response.errors.lips"
                                 :error="response.errors.lips[0]"/>
@@ -346,7 +368,8 @@
 
                     <input id="jowl" type="text" class="form-control"
                            v-model="clinicalExamination.jowl" maxlength="20">
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!clinicalExamination.jowl"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                           @click="removeField(fields.jowl)"/>
                     <form-error v-if="response.errors.jowl"
                                 :error="response.errors.jowl[0]"/>
@@ -361,7 +384,8 @@
 
                     <input id="palate" type="text" class="form-control"
                            v-model="clinicalExamination.palate" maxlength="20">
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!clinicalExamination.palate"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                           @click="removeField(fields.palate)"/>
                     <form-error v-if="response.errors.palate"
                                 :error="response.errors.palate[0]"/>
@@ -376,7 +400,8 @@
 
                     <input id="oralGround" type="text" class="form-control"
                            v-model="clinicalExamination.oralGround" maxlength="20">
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!clinicalExamination.oralGround"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                           @click="removeField(fields.oralGround)"/>
                     <form-error v-if="response.errors.oralGround"
                                 :error="response.errors.oralGround[0]"/>
@@ -391,7 +416,8 @@
 
                     <input id="tongue" type="text" class="form-control"
                            v-model="clinicalExamination.tongue" maxlength="20">
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!clinicalExamination.tongue"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                           @click="removeField(fields.tongue)"/>
                     <form-error v-if="response.errors.tongue"
                                 :error="response.errors.tongue[0]"/>
@@ -406,7 +432,8 @@
 
                     <input id="oralPharynx" type="text" class="form-control"
                            v-model="clinicalExamination.oralPharynx" maxlength="20">
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!clinicalExamination.oralPharynx"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                           @click="removeField(fields.oralPharynx)"/>
                     <form-error v-if="response.errors.oralPharynx"
                                 :error="response.errors.oralPharynx[0]"/>
@@ -421,7 +448,8 @@
 
                     <input id="hawks" type="text" class="form-control"
                            v-model="clinicalExamination.hawks" maxlength="20">
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!clinicalExamination.hawks"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                           @click="removeField(fields.hawks)"/>
                     <form-error v-if="response.errors.hawks"
                                 :error="response.errors.hawks[0]"/>
@@ -436,7 +464,8 @@
 
                     <input id="alveolarProcess" type="text" class="form-control"
                            v-model="clinicalExamination.alveolarProcess" maxlength="20">
-                    <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                    <minus-circle-outline v-if="!clinicalExamination.alveolarProcess"
+										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                           @click="removeField(fields.alveolarProcess)"/>
                     <form-error v-if="response.errors.alveolarProcess"
                                 :error="response.errors.alveolarProcess[0]"/>
