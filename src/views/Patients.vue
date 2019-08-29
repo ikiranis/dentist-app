@@ -31,7 +31,11 @@
 
                     <paginate :pagination="pagination" @click="getPatients"/>
 
-                    <patients-table :patients="patients" @click="deletePatient"/>
+                    <div v-if="iconText">{{ iconText }}</div>
+
+                    <patients-table :patients="patients"
+                                    @deletePatient="deletePatient"
+                                    @displayIconText="displayIconText" />
 
                     <paginate :pagination="pagination" @click="getPatients"/>
 
@@ -84,7 +88,9 @@ export default {
 
             search: null,
 
-            patients: []
+            patients: [],
+
+            iconText: ''
 
         }
     },
@@ -170,6 +176,10 @@ export default {
 		 */
         newPatient () {
             this.$router.push({ name: 'patient', params: { id: 0 } })
+        },
+
+        displayIconText (text) {
+            this.iconText = text
         }
     }
 }

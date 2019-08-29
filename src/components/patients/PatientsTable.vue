@@ -15,7 +15,7 @@
 			<tr>
 				<td class="text-center btn-icon">
 					<delete class="deletePatient"
-							@click="listeners.click(patient.id)"
+							@click="listeners.deletePatient(patient.id)"
 							title="Διαγραφή ασθενή"/>
 				</td>
 				<th scope="row" class="patientId">{{ patient.id }}</th>
@@ -33,13 +33,16 @@
 					<span v-for="icon in patient.icons" :key="icon.id">
 					   <biohazard-icon v-if="icon.label === 'Ασθένεια' && icon.name"
 									   :title="icon.name"
-									   class="patient-icon"/>
+									   class="patient-icon btn-icon"
+									   @click="listeners.displayIconText(icon.name)" />
 					   <medical-bag-icon v-if="icon.label === 'Εκρεμείς θεραπείες' && icon.name"
 										 :title="icon.name"
-										 class="patient-icon"/>
+										 class="patient-icon btn-icon"
+										 @click="listeners.displayIconText(icon.name)" />
 					   <currency-eur-icon v-if="icon.label === 'Χρέος' && icon.name"
 										  :title="icon.name"
-										  class="patient-icon"/>
+										  class="patient-icon btn-icon"
+										  @click="listeners.displayIconText(icon.name)" />
 					</span>
 				</td>
 			</tr>
