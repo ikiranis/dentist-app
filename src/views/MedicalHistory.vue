@@ -33,7 +33,8 @@
 
                             <input id="respiratoryDiseases" type="text" class="form-control"
                                    v-model="medicalHistory.respiratoryDiseases" maxlength="60">
-                            <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                            <minus-circle-outline v-if="!medicalHistory.respiratoryDiseases"
+												  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                                   @click="removeField(fields.respiratoryDiseases)"/>
                             <form-error v-if="response.errors.respiratoryDiseases"
                                         :error="response.errors.respiratoryDiseases[0]"/>
@@ -48,7 +49,8 @@
 
                             <input id="cardiovascularDiseases" type="text" class="form-control"
                                    v-model="medicalHistory.cardiovascularDiseases" maxlength="60">
-                            <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                            <minus-circle-outline v-if="!medicalHistory.cardiovascularDiseases"
+												  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                                   @click="removeField(fields.cardiovascularDiseases)"/>
                             <form-error v-if="response.errors.cardiovascularDiseases"
                                         :error="response.errors.cardiovascularDiseases[0]"/>
@@ -63,7 +65,8 @@
 
                             <input id="hematopoieticSystemDiseases" type="text" class="form-control"
                                    v-model="medicalHistory.hematopoieticSystemDiseases" maxlength="60">
-                            <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                            <minus-circle-outline v-if="!medicalHistory.hematopoieticSystemDiseases"
+												  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                                   @click="removeField(fields.hematopoieticSystemDiseases)"/>
                             <form-error v-if="response.errors.hematopoieticSystemDiseases"
                                         :error="response.errors.hematopoieticSystemDiseases[0]"/>
@@ -78,7 +81,8 @@
 
                             <input id="infectiousDiseases" type="text" class="form-control"
                                    v-model="medicalHistory.infectiousDiseases" maxlength="60">
-                            <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                            <minus-circle-outline v-if="!medicalHistory.infectiousDiseases"
+												  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                                   @click="removeField(fields.infectiousDiseases)"/>
                             <form-error v-if="response.errors.infectiousDiseases"
                                         :error="response.errors.infectiousDiseases[0]"/>
@@ -93,7 +97,8 @@
 
                             <input id="endocrineDisorders" type="text" class="form-control"
                                    v-model="medicalHistory.endocrineDisorders" maxlength="60">
-                            <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                            <minus-circle-outline v-if="!medicalHistory.endocrineDisorders"
+												  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                                   @click="removeField(fields.endocrineDisorders)"/>
                             <form-error v-if="response.errors.endocrineDisorders"
                                         :error="response.errors.endocrineDisorders[0]"/>
@@ -108,7 +113,8 @@
 
                             <input id="diabetes" type="text" class="form-control"
                                    v-model="medicalHistory.diabetes" maxlength="60">
-                            <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                            <minus-circle-outline v-if="!medicalHistory.diabetes"
+												  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                                   @click="removeField(fields.diabetes)"/>
                             <form-error v-if="response.errors.diabetes"
                                         :error="response.errors.diabetes[0]"/>
@@ -123,7 +129,8 @@
 
                             <input id="allergy" type="text" class="form-control"
                                    v-model="medicalHistory.allergy" maxlength="60">
-                            <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                            <minus-circle-outline v-if="!medicalHistory.allergy"
+												  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                                   @click="removeField(fields.allergy)"/>
                             <form-error v-if="response.errors.allergy"
                                         :error="response.errors.allergy[0]"/>
@@ -138,7 +145,8 @@
 
                             <input id="degenerativeArthropathy" type="text" class="form-control"
                                    v-model="medicalHistory.degenerativeArthropathy" maxlength="60">
-                            <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                            <minus-circle-outline v-if="!medicalHistory.degenerativeArthropathy"
+												  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                                   @click="removeField(fields.degenerativeArthropathy)"/>
                             <form-error v-if="response.errors.degenerativeArthropathy"
                                         :error="response.errors.degenerativeArthropathy[0]"/>
@@ -153,7 +161,8 @@
 
                             <input id="rheumatoidArthritis" type="text" class="form-control"
                                    v-model="medicalHistory.rheumatoidArthritis" maxlength="60">
-                            <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                            <minus-circle-outline v-if="!medicalHistory.rheumatoidArthritis"
+												  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                                   @click="removeField(fields.rheumatoidArthritis)"/>
                             <form-error v-if="response.errors.rheumatoidArthritis"
                                         :error="response.errors.rheumatoidArthritis[0]"/>
@@ -168,7 +177,8 @@
 
                             <input id="epilepsy" type="text" class="form-control"
                                    v-model="medicalHistory.epilepsy" maxlength="60">
-                            <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                            <minus-circle-outline v-if="!medicalHistory.epilepsy"
+												  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                                   @click="removeField(fields.epilepsy)"/>
                             <form-error v-if="response.errors.epilepsy"
                                         :error="response.errors.epilepsy[0]"/>
@@ -183,7 +193,8 @@
 
                             <input id="ulcer" type="text" class="form-control"
                                    v-model="medicalHistory.ulcer" maxlength="60">
-                            <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                            <minus-circle-outline v-if="!medicalHistory.ulcer"
+												  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                                   @click="removeField(fields.ulcer)"/>
                             <form-error v-if="response.errors.ulcer"
                                         :error="response.errors.ulcer[0]"/>
@@ -198,7 +209,8 @@
 
                             <input id="neuropsychiatricDisorders" type="text" class="form-control"
                                    v-model="medicalHistory.neuropsychiatricDisorders" maxlength="60">
-                            <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                            <minus-circle-outline v-if="!medicalHistory.neuropsychiatricDisorders"
+												  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                                   @click="removeField(fields.neuropsychiatricDisorders)"/>
                             <form-error v-if="response.errors.neuropsychiatricDisorders"
                                         :error="response.errors.neuropsychiatricDisorders[0]"/>
@@ -213,7 +225,8 @@
 
                             <input id="sleepApnea" type="text" class="form-control"
                                    v-model="medicalHistory.sleepApnea" maxlength="60">
-                            <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                            <minus-circle-outline v-if="!medicalHistory.sleepApnea"
+												  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                                   @click="removeField(fields.sleepApnea)"/>
                             <form-error v-if="response.errors.sleepApnea"
                                         :error="response.errors.sleepApnea[0]"/>
@@ -228,7 +241,8 @@
 
                             <input id="others" type="text" class="form-control"
                                    v-model="medicalHistory.others" maxlength="60">
-                            <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                            <minus-circle-outline v-if="!medicalHistory.others"
+												  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                                   @click="removeField(fields.others)"/>
                             <form-error v-if="response.errors.others"
                                         :error="response.errors.others[0]"/>
@@ -251,8 +265,9 @@
 
                             <input id="pregnancy" type="text" class="form-control"
                                    v-model="medicalHistory.pregnancy" maxlength="20"
-                                   :disabled="medicalHistory.pregnacyCheck ? 'disabled' : ''">
-                            <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                                   :disabled="!medicalHistory.pregnacyCheck">
+                            <minus-circle-outline v-if="!medicalHistory.pregnacyCheck"
+												  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                                   @click="removeField(fields.pregnancy)"/>
                             <form-error v-if="response.errors.pregnancy"
                                         :error="response.errors.pregnancy[0]"/>
@@ -271,8 +286,9 @@
 
                             <input id="smoking" type="text" class="form-control"
                                    v-model="medicalHistory.smoking" maxlength="20"
-                                   :disabled="medicalHistory.smokingCheck ? 'disabled' : ''">
-                            <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                                   :disabled="!medicalHistory.smokingCheck">
+                            <minus-circle-outline v-if="!medicalHistory.smokingCheck"
+												  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                                   @click="removeField(fields.smoking)"/>
                             <form-error v-if="response.errors.smoking"
                                         :error="response.errors.smoking[0]"/>
@@ -289,7 +305,8 @@
                                    v-model="medicine" maxlength="60" placeholder="Πάτα enter για εισαγωγή"
                                    @keyup.enter="addMedicine">
 
-                            <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                            <minus-circle-outline v-if="!medicalHistory.medicines.length"
+												  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                                   @click="removeField(fields.medicines)"/>
 
                             <div class="col-12">
@@ -316,7 +333,8 @@
 
                             <input id="familyHistory" type="text" class="form-control"
                                    v-model="medicalHistory.familyHistory" maxlength="60">
-                            <minus-circle-outline class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
+                            <minus-circle-outline v-if="!medicalHistory.familyHistory"
+												  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                                   @click="removeField(fields.familyHistory)"/>
                             <form-error v-if="response.errors.familyHistory"
                                         :error="response.errors.familyHistory[0]"/>
