@@ -243,7 +243,7 @@
                                           @click="removeField(fields.tintOfAMill)"/>
                 </div>
 
-                <div class="input-group row mb-2" v-if="fields.revelationOfPulp.display">
+                <div class="input-group row mb-2" v-if="fields.revelationOfPulpCheck.display">
                     <div class="input-group-prepend">
                         <div class="input-group-text">
                             <input type="checkbox" id="revelationOfPulpCheck"
@@ -257,7 +257,7 @@
 
                     <input id="revelationOfPulp" type="text" class="form-control"
                            v-model="endoTreatment.revelationOfPulp" maxlength="20"
-                           :disabled="endoTreatment.revelationOfPulpCheck ? 'disabled' : ''">
+                           :disabled="!endoTreatment.revelationOfPulpCheck">
                     <minus-circle-outline v-if="!endoTreatment.revelationOfPulpCheck"
 										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                           @click="removeField(fields.revelationOfPulp)"/>
@@ -435,7 +435,7 @@ export default {
                     label: 'Απόχρωση μύλης',
                     display: false
                 },
-                revelationOfPulp: {
+				revelationOfPulpCheck: {
                     label: 'Αποκάλυψη πολφού',
                     display: false
                 },
