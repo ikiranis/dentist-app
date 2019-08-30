@@ -24,7 +24,7 @@
 										  @click="removeField(dentalHistory.frequentStrokes)"/>
                 </div>
 
-                <div class="input-group row mb-2" v-if="fields.sensitivityToStimuli.display">
+                <div class="input-group row mb-2" v-if="fields.sensitivityToStimuliCheck.display">
                     <div class="input-group-prepend">
                         <div class="input-group-text">
                             <input type="checkbox" id="sensitivityToStimuliCheck"
@@ -38,7 +38,7 @@
 
                     <input id="sensitivityToStimuli" type="text" class="form-control"
                            v-model="dentalHistory.sensitivityToStimuli" maxlength="20"
-                           :disabled="dentalHistory.sensitivityToStimuliCheck ? 'disabled' : ''">
+                           :disabled="!dentalHistory.sensitivityToStimuliCheck">
                     <minus-circle-outline v-if="!dentalHistory.sensitivityToStimuliCheck"
 										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
 										  @click="removeField(fields.sensitivityToStimuli)"/>
@@ -46,7 +46,7 @@
                                 :error="response.errors.sensitivityToStimuli[0]"/>
                 </div>
 
-                <div class="input-group row mb-2" v-if="fields.painWhenChewing.display">
+                <div class="input-group row mb-2" v-if="fields.painWhenChewingCheck.display">
                     <div class="input-group-prepend">
                         <div class="input-group-text">
                             <input type="checkbox" id="painWhenChewingCheck"
@@ -62,7 +62,7 @@
 
                     <input id="painWhenChewing" type="text" class="form-control"
                            v-model="dentalHistory.painWhenChewing" maxlength="20"
-                           :disabled="dentalHistory.painWhenChewingCheck ? 'disabled' : ''">
+                           :disabled="!dentalHistory.painWhenChewingCheck">
                     <minus-circle-outline v-if="!dentalHistory.painWhenChewingCheck"
 										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
 										  @click="removeField(fields.painWhenChewing)"/>
@@ -70,7 +70,7 @@
                                 :error="response.errors.painWhenChewing[0]"/>
                 </div>
 
-                <div class="input-group row mb-2" v-if="fields.gingivalBleeding.display">
+                <div class="input-group row mb-2" v-if="fields.gingivalBleedingCheck.display">
                     <div class="input-group-prepend">
                         <div class="input-group-text">
                             <input type="checkbox" id="gingivalBleedingCheck"
@@ -85,7 +85,7 @@
 
                     <input id="gingivalBleeding" type="text" class="form-control"
                            v-model="dentalHistory.gingivalBleeding" maxlength="20"
-                           :disabled="dentalHistory.gingivalBleedingCheck ? 'disabled' : ''">
+                           :disabled="!dentalHistory.gingivalBleedingCheck">
                     <minus-circle-outline v-if="!dentalHistory.gingivalBleedingCheck"
 										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
 										  @click="removeField(fields.gingivalBleeding)"/>
@@ -343,15 +343,15 @@ export default {
                     label: 'Συχνές οδονταλγίες',
                     display: false
                 },
-                sensitivityToStimuli: {
+				sensitivityToStimuliCheck: {
                     label: 'Ευαισθησία σε ερεθίσματα',
                     display: false
                 },
-                painWhenChewing: {
+				painWhenChewingCheck: {
                     label: 'Πόνος κατά τη μάσηση',
                     display: false
                 },
-                gingivalBleeding: {
+				gingivalBleedingCheck: {
                     label: 'Αιμοραγία ούλων',
                     display: false
                 },
