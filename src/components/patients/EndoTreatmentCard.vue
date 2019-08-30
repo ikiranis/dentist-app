@@ -506,14 +506,6 @@ export default {
             })
         },
 
-        // painFields () {
-        //     return (this.fields.automatic.display ||
-        //         this.fields.challenged.display ||
-        //         this.fields.reason.display ||
-        //         this.fields.duration.display ||
-        //         this.fields.reduceToTheCold.display)
-        // },
-
         patientId: function () {
             return this.$route.params.id
         }

@@ -635,12 +635,38 @@ export default {
         addMedicine () {
             if (this.medicine === '') { return }
 
-            this.medicalHistory.medicines.push({
-                id: (this.medicalHistory.medicines.length === 0)
-                    ? 0
-                    : this.medicalHistory.medicines[this.medicalHistory.medicines.length - 1].id + 1,
+            this.loading = true
+
+            let medicine = {
+                medical_history_id: this.medicalHistory.id,
                 name: this.medicine
-            })
+            }
+
+            api.createMedicine(medicine)
+                .then(response => {
+                    this.loading = false
+
+                    this.response.message = 'Το φάρμακο αποθηκεύτηκε'
+                    this.response.status = true
+
+                    this.medicalHistory.medicines.push({
+                        id: response.data.id,
+                        name: response.data.name
+                    })
+
+                })
+                .catch(error => {
+                    this.loading = false
+
+                    this.response.message = error.response.data.message
+                    this.response.status = false
+
+                    if (error.response.data.errors) {
+                        this.response.errors = error.response.data.errors
+                    }
+
+                    utility.debug(error.response.data.debug)
+                })
 
             this.medicine = ''
         },
