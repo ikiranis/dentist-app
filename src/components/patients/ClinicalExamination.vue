@@ -14,13 +14,11 @@
 					<h3>Εξωστοματική</h3>
 				</div>
 
-				<div class="card mb-2">
+				<div class="card mb-2" v-if="haveFaceFields">
+
 					<div class="card-header">
 						<div class="row">
 							<span>Πρόσωπο</span>
-							<minus-circle-outline
-								class="removeItem my-auto ml-auto" title="Αφαίρεση πεδίου"
-								@click="removeField(fields.pain)"/>
 						</div>
 
 					</div>
@@ -125,13 +123,10 @@
 					</div>
 				</div>
 
-				<div class="card mb-2">
+				<div class="card mb-2" v-if="haveNeckFields">
 					<div class="card-header">
 						<div class="row">
 							<span>Τράχηλος</span>
-							<minus-circle-outline
-								class="removeItem my-auto ml-auto" title="Αφαίρεση πεδίου"
-								@click="removeField(fields.pain)"/>
 						</div>
 
 					</div>
@@ -238,13 +233,10 @@
 					</div>
 				</div>
 
-				<div class="card mb-2">
+				<div class="card mb-2" v-if="haveKGDFields">
 					<div class="card-header">
 						<div class="row">
 							<span>ΚΓΔ</span>
-							<minus-circle-outline
-								class="removeItem my-auto ml-auto" title="Αφαίρεση πεδίου"
-								@click="removeField(fields.pain)"/>
 						</div>
 
 					</div>
@@ -350,13 +342,10 @@
 					</div>
 				</div>
 
-				<div class="card mb-2">
+				<div class="card mb-2" v-if="haveSalivaryGlands">
 					<div class="card-header">
 						<div class="row">
-							<span>Σιαλογόνοι Αδένες</span>
-							<minus-circle-outline
-								class="removeItem my-auto ml-auto" title="Αφαίρεση πεδίου"
-								@click="removeField(fields.pain)"/>
+							<span>Σιελογόνοι Αδένες</span>
 						</div>
 
 					</div>
@@ -728,6 +717,50 @@
 				return Object.values(this.fields).find((field) => {
 					return field.display
 				})
+			},
+
+			// Check if any of face fields are enabled
+			haveFaceFields () {
+				return (
+					this.fields.edema.display ||
+					this.fields.asymmetry.display ||
+					this.fields.swelling.display ||
+					this.fields.damages.display ||
+					this.fields.complexion.display ||
+					this.fields.convulsion.display
+				)
+			},
+
+			// Check if any of neck fields are enabled
+			haveNeckFields () {
+				return (
+					this.fields.neckEdema.display ||
+					this.fields.neckSwelling.display ||
+					this.fields.hypotensionLymphNodes.display ||
+					this.fields.submandibularLymphNodes.display ||
+					this.fields.superficialCervicalLymphNodes.display ||
+					this.fields.InsideTheCervicalLymphNodes.display
+				)
+			},
+
+			// Check if any of KGD fields are enabled
+			haveKGDFields () {
+				return (
+					this.fields.clicking.display ||
+					this.fields.cry.display ||
+					this.fields.painfulPalpationOfMuscles.display ||
+					this.fields.reducedMobility.display ||
+					this.fields.deratingWhenOpening.display ||
+					this.fields.impairedOpening.display
+				)
+			},
+
+			// Check if any of KGD fields are enabled
+			haveSalivaryGlands () {
+				return (
+					this.fields.tonsil.display ||
+					this.fields.underTheJaw.display
+				)
 			},
 
 			patientId: function () {
