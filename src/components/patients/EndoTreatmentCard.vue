@@ -18,11 +18,7 @@
                     <div class="card-header">
 						<div class="row">
 							<span>Πόνος</span>
-							<minus-circle-outline v-if="!endoTreatment.automatic
-														&& !endoTreatment.challenged
-														&& !endoTreatment.reason
-														&& !endoTreatment.duration
-														&& !endoTreatment.reduceToTheCold"
+							<minus-circle-outline v-if="haveNoPain"
 												  class="removeItem my-auto ml-auto" title="Αφαίρεση πεδίου"
 												  @click="removeField(fields.pain)"/>
 						</div>
@@ -506,13 +502,15 @@ export default {
             })
         },
 
-		// Check if any of these fields have value. Return true if any
-		painFields () {
-		    return (this.endoTreatment.automatic ||
-		        this.endoTreatment.challenged ||
-		        this.endoTreatment.reason ||
-		        this.endoTreatment.duration ||
-		        this.endoTreatment.reduceToTheCold)
+		// Return true if all fields have no value
+		haveNoPain () {
+        	return (
+				!this.endoTreatment.automatic &&
+				!this.endoTreatment.challenged &&
+				!this.endoTreatment.reason &&
+				!this.endoTreatment.duration &&
+				!this.endoTreatment.reduceToTheCold
+			)
 		},
 
         patientId: function () {
@@ -524,12 +522,7 @@ export default {
     	// Send back to parent component
         loading () {
             this.$emit('loading', this.loading)
-        },
-
-		// Watch if painFields change and take the value
-		painFields () {
-        	this.fields.pain.display = this.painFields
-		}
+        }
     },
 
     created: function () {
@@ -537,6 +530,17 @@ export default {
     },
 
     methods: {
+		// Check if any of these fields have value. Return true if any
+		painFields () {
+			return (
+				this.endoTreatment.automatic ||
+				this.endoTreatment.challenged ||
+				this.endoTreatment.reason ||
+				this.endoTreatment.duration ||
+				this.endoTreatment.reduceToTheCold
+			)
+		},
+
         /**
          * Get Endo Treatment Card info
          */
@@ -607,6 +611,8 @@ export default {
 
                 this.fields[key].display = true
             })
+
+			this.fields.pain.display = this.painFields()
         },
 
         /**
