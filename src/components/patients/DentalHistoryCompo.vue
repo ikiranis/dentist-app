@@ -41,7 +41,7 @@
                            :disabled="!dentalHistory.sensitivityToStimuliCheck">
                     <minus-circle-outline v-if="!dentalHistory.sensitivityToStimuliCheck"
 										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
-										  @click="removeField(fields.sensitivityToStimuli)"/>
+										  @click="removeField(fields.sensitivityToStimuliCheck)"/>
                     <form-error v-if="response.errors.sensitivityToStimuli"
                                 :error="response.errors.sensitivityToStimuli[0]"/>
                 </div>
@@ -65,7 +65,7 @@
                            :disabled="!dentalHistory.painWhenChewingCheck">
                     <minus-circle-outline v-if="!dentalHistory.painWhenChewingCheck"
 										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
-										  @click="removeField(fields.painWhenChewing)"/>
+										  @click="removeField(fields.painWhenChewingCheck)"/>
                     <form-error v-if="response.errors.painWhenChewing"
                                 :error="response.errors.painWhenChewing[0]"/>
                 </div>
@@ -88,7 +88,7 @@
                            :disabled="!dentalHistory.gingivalBleedingCheck">
                     <minus-circle-outline v-if="!dentalHistory.gingivalBleedingCheck"
 										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
-										  @click="removeField(fields.gingivalBleeding)"/>
+										  @click="removeField(fields.gingivalBleedingCheck)"/>
                     <form-error v-if="response.errors.gingivalBleeding"
                                 :error="response.errors.gingivalBleeding[0]"/>
                 </div>
@@ -518,7 +518,9 @@ export default {
 		 */
         checkFields () {
             Object.keys(this.dentalHistory).forEach(key => {
-                if (this.dentalHistory[key] === null || this.dentalHistory[key].length < 1) {
+                if (this.dentalHistory[key] === null
+					|| this.dentalHistory[key] === 0
+					|| this.dentalHistory[key].length < 1) {
                     return
                 }
 

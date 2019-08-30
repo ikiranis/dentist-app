@@ -8,7 +8,7 @@
 
         <form @submit.prevent class="row col-lg-7 col-12 mt-3 mx-auto">
 
-            <div class="input-group row mb-2" v-if="fields.revelation.display">
+            <div class="input-group row mb-2" v-if="fields.revelationCheck.display">
                 <div class="input-group-prepend">
                     <div class="input-group-text">
                         <input type="checkbox" id="revelationCheck" v-model="diagnosis.revelationCheck">
@@ -24,7 +24,7 @@
                        :disabled="!diagnosis.revelationCheck">
                 <minus-circle-outline v-if="!diagnosis.revelationCheck"
 									  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
-                                      @click="removeField(fields.revelation)"/>
+                                      @click="removeField(fields.revelationCheck)"/>
                 <form-error v-if="response.errors.revelation"
                             :error="response.errors.revelation[0]"/>
             </div>
@@ -182,7 +182,7 @@
                                       @click="removeField(fields.reactiveOsteoconduction)"/>
             </div>
 
-            <div class="input-group row mb-2" v-if="fields.endoPeriodontalDamage.display">
+            <div class="input-group row mb-2" v-if="fields.endoPeriodontalDamageCheck.display">
                 <div class="input-group-prepend">
                     <div class="input-group-text">
                         <input type="checkbox" id="endoPeriodontalDamageCheck"
@@ -199,7 +199,7 @@
                        :disabled="!diagnosis.endoPeriodontalDamageCheck">
                 <minus-circle-outline v-if="!diagnosis.endoPeriodontalDamageCheck"
 									  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
-                                      @click="removeField(fields.endoPeriodontalDamage)"/>
+                                      @click="removeField(fields.endoPeriodontalDamageCheck)"/>
                 <form-error v-if="response.errors.endoPeriodontalDamage"
                             :error="response.errors.endoPeriodontalDamage[0]"/>
             </div>
@@ -295,7 +295,7 @@ export default {
             loading: false,
 
             fields: {
-                revelation: {
+				revelationCheck: {
                     label: 'Αποκάλυψη',
                     display: false
                 },
@@ -331,7 +331,7 @@ export default {
                     label: 'Αντιδραστική οστεοπύκνωση',
                     display: false
                 },
-                endoPeriodontalDamage: {
+				endoPeriodontalDamageCheck: {
                     label: 'Ενδοπεριοδοντική βλάβη',
                     display: false
                 },
@@ -454,7 +454,9 @@ export default {
          */
         checkFields () {
             Object.keys(this.diagnosis).forEach(key => {
-                if (this.diagnosis[key] === null || this.diagnosis[key].length < 1) {
+                if (this.diagnosis[key] === null
+					|| this.diagnosis[key] === 0
+					|| this.diagnosis[key].length < 1) {
                     return
                 }
 

@@ -252,7 +252,7 @@
 
                     <div class="col-lg-6 col-12">
 
-                        <div class="input-group row mb-2" v-if="fields.pregnancy.display">
+                        <div class="input-group row mb-2" v-if="fields.pregnacyCheck.display">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
                                     <input type="checkbox" id="pregnacyCheck" v-model="medicalHistory.pregnacyCheck">
@@ -268,12 +268,12 @@
                                    :disabled="!medicalHistory.pregnacyCheck">
                             <minus-circle-outline v-if="!medicalHistory.pregnacyCheck"
 												  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
-                                                  @click="removeField(fields.pregnancy)"/>
+                                                  @click="removeField(fields.pregnancyCheck)"/>
                             <form-error v-if="response.errors.pregnancy"
                                         :error="response.errors.pregnancy[0]"/>
                         </div>
 
-                        <div class="input-group row mb-2" v-if="fields.smoking.display">
+                        <div class="input-group row mb-2" v-if="fields.smokingCheck.display">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
                                     <input type="checkbox" id="smokingCheck" v-model="medicalHistory.smokingCheck">
@@ -289,7 +289,7 @@
                                    :disabled="!medicalHistory.smokingCheck">
                             <minus-circle-outline v-if="!medicalHistory.smokingCheck"
 												  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
-                                                  @click="removeField(fields.smoking)"/>
+                                                  @click="removeField(fields.smokingCheck)"/>
                             <form-error v-if="response.errors.smoking"
                                         :error="response.errors.smoking[0]"/>
                         </div>
@@ -485,11 +485,11 @@ export default {
                     label: 'Άλλα',
                     display: false
                 },
-                pregnancy: {
+                pregnacyCheck: {
                     label: 'Εγκυμοσύνη',
                     display: false
                 },
-                smoking: {
+                smokingCheck: {
                     label: 'Κάπνισμα',
                     display: false
                 },
@@ -608,7 +608,9 @@ export default {
          */
         checkFields () {
             Object.keys(this.medicalHistory).forEach(key => {
-                if (this.medicalHistory[key] === null || this.medicalHistory[key].length < 1) {
+                if (this.medicalHistory[key] === null
+					|| this.medicalHistory[key] === 0
+					|| this.medicalHistory[key].length < 1) {
                     return
                 }
 

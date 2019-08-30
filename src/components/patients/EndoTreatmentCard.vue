@@ -260,7 +260,7 @@
                            :disabled="!endoTreatment.revelationOfPulpCheck">
                     <minus-circle-outline v-if="!endoTreatment.revelationOfPulpCheck"
 										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
-                                          @click="removeField(fields.revelationOfPulp)"/>
+                                          @click="removeField(fields.revelationOfPulpCheck)"/>
                     <form-error v-if="response.errors.revelationOfPulp"
                                 :error="response.errors.revelationOfPulp[0]"/>
                 </div>
@@ -595,7 +595,9 @@ export default {
          */
         checkFields () {
             Object.keys(this.endoTreatment).forEach(key => {
-                if (this.endoTreatment[key] === null || this.endoTreatment[key].length < 1) {
+                if (this.endoTreatment[key] === null
+					|| this.endoTreatment[key] === 0
+					|| this.endoTreatment[key].length < 1) {
                     return
                 }
 
