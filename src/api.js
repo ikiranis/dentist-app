@@ -731,6 +731,39 @@ let api = {
 	 */
     async deleteOriginDentalNote (noteId) {
         return axios.delete(ROOT_API + '/originDentalNote/' + noteId)
+    },
+
+    // ************** Medicines api calls **************
+
+    /**
+     * Create a medicine
+     *
+     * @param args
+     * @returns {Promise<AxiosResponse<T>>}
+     */
+    async createMedicine (args) {
+        return axios.post(ROOT_API + '/medicine', args)
+    },
+
+    /**
+     * Update a medicine
+     *
+     * @param args
+     * @param medicineId
+     * @returns {Promise<Promise<AxiosResponse<T>>>}
+     */
+    async updateMedicine (args, medicineId) {
+        return axios.patch(ROOT_API + '/medicine/' + medicineId, args)
+    },
+
+    /**
+     * Delete a medicine
+     *
+     * @param medicineId
+     * @returns {Promise<Promise<AxiosResponse<T>>>}
+     */
+    async deleteMedicine (medicineId) {
+        return axios.delete(ROOT_API + '/treatmentNote/' + medicineId)
     }
 }
 
