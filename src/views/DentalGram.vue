@@ -68,7 +68,7 @@
 
             <div class="row">
 
-                <dental-gram-teeth-table v-if="upperNotes.length"
+                <dental-gram-teeth-table v-if="!loading"
 										 class="mx-auto"
 										 :teeth="upperTeeth"
 										 :notes="upperNotes"
@@ -80,7 +80,7 @@
 										 :updateOriginNote="getOriginNote"
 										 :deleteOriginNote="deleteOriginDentalNote" />
 
-                <dental-gram-teeth-table v-if="downNotes.length"
+                <dental-gram-teeth-table v-if="!loading"
 										 class="mx-auto"
 										 :teeth="downTeeth"
 										 :notes="downNotes"
