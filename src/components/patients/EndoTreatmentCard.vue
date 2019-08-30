@@ -506,15 +506,30 @@ export default {
             })
         },
 
+		// Check if any of these fields have value. Return true if any
+		painFields () {
+		    return (this.endoTreatment.automatic ||
+		        this.endoTreatment.challenged ||
+		        this.endoTreatment.reason ||
+		        this.endoTreatment.duration ||
+		        this.endoTreatment.reduceToTheCold)
+		},
+
         patientId: function () {
             return this.$route.params.id
         }
     },
 
     watch: {
+    	// Send back to parent component
         loading () {
             this.$emit('loading', this.loading)
-        }
+        },
+
+		// Watch if painFields change and take the value
+		painFields () {
+        	this.fields.pain.display = this.painFields
+		}
     },
 
     created: function () {
