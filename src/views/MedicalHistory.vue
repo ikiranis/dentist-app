@@ -677,9 +677,27 @@ export default {
          * @param event
          */
         deleteMedicine (event) {
-            this.medicalHistory.medicines = this.medicalHistory.medicines.filter((medicine) => {
-                return (medicine.id !== parseInt(event.target.value))
-            })
+            this.loading = true
+
+            api.deleteMedicine(event.target.value)
+                .then(response => {
+                    this.loading = false
+
+                    this.response.message = 'Το φάρμακο διαγράφηκε'
+                    this.response.status = true
+
+                    this.medicalHistory.medicines = this.medicalHistory.medicines.filter((medicine) => {
+                        return (medicine.id !== response.data.id)
+                    })
+                })
+                .catch(error => {
+                    this.loading = false
+
+                    this.response.message = error.response.data.message
+                    this.response.status = false
+
+                    utility.debug(error.response.data.debug)
+                })
         }
     }
 }

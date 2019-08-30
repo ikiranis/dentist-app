@@ -746,24 +746,13 @@ let api = {
     },
 
     /**
-     * Update a medicine
-     *
-     * @param args
-     * @param medicineId
-     * @returns {Promise<Promise<AxiosResponse<T>>>}
-     */
-    async updateMedicine (args, medicineId) {
-        return axios.patch(ROOT_API + '/medicine/' + medicineId, args)
-    },
-
-    /**
      * Delete a medicine
      *
      * @param medicineId
      * @returns {Promise<Promise<AxiosResponse<T>>>}
      */
     async deleteMedicine (medicineId) {
-        return axios.delete(ROOT_API + '/treatmentNote/' + medicineId)
+        return axios.delete(ROOT_API + '/medicine/' + medicineId)
     }
 }
 
