@@ -29,8 +29,14 @@
         },
 
         props: {
-            text: String,
+            alert: Object,
             variant: String
+        },
+
+        computed: {
+            text: function () {
+                return this.alert.text
+            }
         },
 
         watch: {
@@ -45,7 +51,7 @@
              */
             dismissCountDown (value) {
                 if(value === 0) {
-                    this.text = ' '
+                    this.alert.text = ' '
                 }
             }
         },

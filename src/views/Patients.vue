@@ -51,7 +51,7 @@
 
         <display-alert-text class="mx-auto fixed-bottom w-50 mb-2"
                             variant="info"
-                            :text="iconText" />
+                            :alert="alert" />
 
         <div class="row fixed-bottom mb-2">
             <display-error class="mx-auto"
@@ -93,7 +93,9 @@ export default {
 
             patients: [],
 
-            iconText: ' '
+            alert: {
+                text: ' '
+            }
 
         }
     },
@@ -182,7 +184,7 @@ export default {
         },
 
         displayIconText (text) {
-            this.iconText = text
+            this.alert.text = text
         }
     }
 }
