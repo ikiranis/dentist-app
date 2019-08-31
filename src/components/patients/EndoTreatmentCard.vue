@@ -6,26 +6,24 @@
             Επιλογή πεδίων
         </div>
 
-        <form @submit.prevent class="row col-12 mt-3" v-if="fieldSelected">
+        <form @submit.prevent class="row col-12 mt-3 no-gutters" v-if="fieldSelected">
 
-            <div class="col-lg-6 col-12">
+            <div class="col-lg-6 col-12 px-1">
 
                 <div class="col-12 text-center">
                     <h3>Ιστορικό</h3>
                 </div>
 
-                <div class="card mb-2" v-if="fields.pain.display">
-                    <div class="card-header">
-						<div class="row">
-							<span>Πόνος</span>
-							<minus-circle-outline v-if="haveNoPain"
-												  class="removeItem my-auto ml-auto" title="Αφαίρεση πεδίου"
-												  @click="removeField(fields.pain)"/>
-						</div>
+                <div class="card mb-2 col-12 row" v-if="fields.pain.display">
 
+                    <div class="card-header row">
+                        <span>Πόνος</span>
+                        <minus-circle-outline v-if="haveNoPain"
+                                              class="removeItem my-auto ml-auto" title="Αφαίρεση πεδίου"
+                                              @click="removeField(fields.pain)"/>
                     </div>
 
-                    <div class="card-body">
+                    <div class="card-body row px-0 ml-1">
                         <div class="input-group row mb-2" >
                             <div class="input-group-text">
                                 <input type="checkbox" id="automatic" v-model="endoTreatment.automatic">
@@ -175,7 +173,7 @@
 
             </div>
 
-            <div class="col-lg-6 col-12">
+            <div class="col-lg-6 col-12 px-1">
 
                 <div class="col-12 text-center">
                     <h3>Κλινική εξέταση</h3>
@@ -355,13 +353,13 @@
                     <h3>Διάγνωση</h3>
                 </div>
 
-                <div class="card mb-2 col-12" v-if="havePulseFields">
+                <div class="card mb-2 col-12 row" v-if="havePulseFields">
 
                     <div class="card-header row">
                         <span>Πολφός</span>
                     </div>
 
-                    <div class="card-body">
+                    <div class="card-body row px-0 ml-1">
 
                         <div class="input-group row mb-2" v-if="fields.revelationCheck.display">
                             <div class="input-group-prepend">
@@ -438,7 +436,7 @@
                             </div>
 
                             <div class="input-group-text col">
-                                <label for="chronicPulpitis" class="my-auto">Χρονία πολφίτιδα</label>
+                                <label for="chronicPulpitis" class="my-auto">Χρον. πολφίτιδα</label>
                             </div>
 
                             <div class="input-group-text">
@@ -483,13 +481,13 @@
                     </div>
                 </div>
 
-                <div class="card mb-2 col-12" v-if="haveTissuesFields">
+                <div class="card mb-2 col-12 row" v-if="haveTissuesFields">
 
                     <div class="card-header row">
                         <span>Περιακροριζικοί ιστοί</span>
                     </div>
 
-                    <div class="card-body">
+                    <div class="card-body row px-0 ml-1">
 
                         <div class="input-group row mb-2" v-if="fields.abscess.display">
                             <div class="input-group-text">
