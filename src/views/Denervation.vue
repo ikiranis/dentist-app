@@ -18,8 +18,6 @@
 
                 <endo-treatment-card @loading="getLoading" v-if="tabs.endoTreatmentCard.display" />
 
-                <diagnosis @loading="getLoading" v-if="tabs.diagnosis.display" />
-
                 <endo-treatment @loading="getLoading" v-if="tabs.endoTreatment.display" />
 
             </div>
@@ -98,10 +96,6 @@ export default {
                 endoTreatmentCard: {
                     display: true,
                     label: 'Δελτίο ενδοδοντικής θεραπείας'
-                },
-                diagnosis: {
-                    display: false,
-                    label: 'Διάγνωση'
                 },
                 endoTreatment: {
                     display: false,

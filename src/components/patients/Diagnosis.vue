@@ -6,7 +6,7 @@
             Επιλογή πεδίων
         </div>
 
-        <form @submit.prevent class="row col-lg-7 col-12 mt-3 mx-auto">
+        <form @submit.prevent class="row col-12 mt-3">
 
             <div class="card mb-2 col-12" v-if="havePulseFields">
 
