@@ -14,13 +14,10 @@
 					<h3>Εξωστοματική</h3>
 				</div>
 
-				<div class="card mb-2" v-if="haveFaceFields">
+				<div class="card mb-2 col-12" v-if="haveFaceFields">
 
-					<div class="card-header">
-						<div class="row">
-							<span>Πρόσωπο</span>
-						</div>
-
+					<div class="card-header row">
+						<span>Πρόσωπο</span>
 					</div>
 
 					<div class="card-body">
@@ -123,12 +120,10 @@
 					</div>
 				</div>
 
-				<div class="card mb-2" v-if="haveNeckFields">
-					<div class="card-header">
-						<div class="row">
-							<span>Τράχηλος</span>
-						</div>
+				<div class="card mb-2 col-12" v-if="haveNeckFields">
 
+					<div class="card-header row">
+						<span>Τράχηλος</span>
 					</div>
 
 					<div class="card-body">
@@ -233,12 +228,9 @@
 					</div>
 				</div>
 
-				<div class="card mb-2" v-if="haveKGDFields">
-					<div class="card-header">
-						<div class="row">
-							<span>ΚΓΔ</span>
-						</div>
-
+				<div class="card mb-2 col-12" v-if="haveKGDFields">
+					<div class="card-header row">
+						<span>ΚΓΔ</span>
 					</div>
 
 					<div class="card-body">
@@ -342,12 +334,9 @@
 					</div>
 				</div>
 
-				<div class="card mb-2" v-if="haveSalivaryGlands">
-					<div class="card-header">
-						<div class="row">
-							<span>Σιελογόνοι Αδένες</span>
-						</div>
-
+				<div class="card mb-2 col-12" v-if="haveSalivaryGlands">
+					<div class="card-header row">
+						<span>Σιελογόνοι Αδένες</span>
 					</div>
 
 					<div class="card-body">
@@ -755,7 +744,7 @@
 				)
 			},
 
-			// Check if any of KGD fields are enabled
+			// Check if any of Salivary fields are enabled
 			haveSalivaryGlands () {
 				return (
 					this.fields.tonsil.display ||
