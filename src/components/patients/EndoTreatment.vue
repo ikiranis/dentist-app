@@ -30,6 +30,7 @@
                 </div>
 
                 <select class="form-control" id="chozenRoot"
+                        multiple
                         v-model="chozenRoot"
                         @change="getEndoTreatment">
                     <option v-for="root in roots"
