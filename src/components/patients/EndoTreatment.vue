@@ -19,6 +19,10 @@
 					{{ root.name }}
 				</option>
 			</select>
+
+			<div class="col-12 text-center">
+				<small class="text-info mx-auto">Με πατημένο το ctrl, κάνουμε πολλαπλή επιλογή</small>
+			</div>
 		</div>
 
 		<div class="container col-lg-7 col-12 mt-3"
