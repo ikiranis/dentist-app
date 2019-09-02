@@ -254,30 +254,6 @@
 						})
 				})
 
-				// await this.chozenRoots.map(async chozenRoot => {
-				//
-				//     await api.getEndoTreatment(this.patientId, chozenRoot)
-				//         .then(response => {
-				//             if (response.status === 200) {
-				//                 this.endoTreatments[chozenRoot] = response.data
-				//             }
-				//         })
-				//         .catch(error => {
-				//             this.loading = false
-				//
-				//             this.response.message = error.response.data.message
-				//             this.response.status = false
-				//
-				//             utility.debug(error.response.data.debug)
-				//         })
-				//
-				// })
-
-
-				// console.log(this.roots)
-				console.log(this.endoTreatments)
-
-
 				this.loading = false
 			},
 
@@ -287,7 +263,7 @@
 			updateEndoTreatment(chozenRoot) {
 				this.loading = true
 
-				api.updateEndoTreatment(this.endoTreatment, this.endoTreatment.id)
+				api.updateEndoTreatment(this.endoTreatments[chozenRoot], this.endoTreatments[chozenRoot].id)
 					.then(response => {
 						this.loading = false
 
