@@ -18,6 +18,8 @@
 
                 <endo-treatment-card @loading="getLoading" v-if="tabs.endoTreatmentCard.display" />
 
+                <endo-treatment-notes @loading="getLoading" v-if="tabs.endoTreatmentNotes.display" />
+
                 <endo-treatment @loading="getLoading" v-if="tabs.endoTreatment.display" />
 
             </div>
@@ -31,10 +33,11 @@ import MenuBar from '@/components/basic/MenuBar'
 import Tabs from '@/components/basic/Tabs'
 import EndoTreatmentCard from '@/components/patients/EndoTreatmentCard'
 import EndoTreatment from '@/components/patients/EndoTreatment'
+import EndoTreatmentNotes from '@/components/patients/EndoTreatmentNotes'
 import Loading from '@/components/basic/Loading'
 
 export default {
-    components: { MenuBar, EndoTreatmentCard, EndoTreatment, Loading, Tabs },
+    components: { MenuBar, EndoTreatmentCard, EndoTreatment, EndoTreatmentNotes, Loading, Tabs },
 
     data () {
         return {
@@ -99,6 +102,10 @@ export default {
                 endoTreatment: {
                     display: false,
                     label: 'Ενδοδοντική θεραπεία'
+                },
+                endoTreatmentNotes: {
+                    display: false,
+                    label: 'Σημειώσεις'
                 }
             }
 
