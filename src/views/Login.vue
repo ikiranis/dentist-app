@@ -67,13 +67,13 @@ export default {
         response: {
             message: ' ',
             status: '',
-			errors: []
+            errors: []
         },
         credentials: {
             username: 'rocean@error.gr',
             password: '123456'
         },
-		loading: false
+        loading: false
     }),
 
     methods: {
@@ -95,13 +95,13 @@ export default {
                     user.setUserTokenHeader()
                     // Get the current username and store it
                     this.$store.dispatch('getCurrentUser')
-					this.loading = false
+                    this.loading = false
                     this.$router.push({ name: 'home' }) // Force to load Home page
                 })
                 .catch(error => {
                     this.response.message = error.response.data.message
                     this.response.status = false
-					this.loading = false
+                    this.loading = false
                 })
         }
     }

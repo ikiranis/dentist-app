@@ -386,8 +386,8 @@ export default {
                     .then(response => {
                         this.loading = false
 
-						this.response.message = 'Η κίνηση διαγράφηκε'
-						this.response.status = true
+                        this.response.message = 'Η κίνηση διαγράφηκε'
+                        this.response.status = true
 
                         this.getTransactions(null)
                     })

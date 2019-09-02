@@ -44,24 +44,24 @@ export default {
             this.showAlert()
         },
 
-		/**
+        /**
 		 * On countdown = 0, reset message
 		 *
 		 * @param value
 		 */
-		dismissCountDown (value) {
-        	if(value === 0) {
-        		this.response.message = ' '
-			}
-		}
+        dismissCountDown (value) {
+            if (value === 0) {
+                this.response.message = ' '
+            }
+        }
     },
 
     methods: {
-        countDownChanged(dismissCountDown) {
+        countDownChanged (dismissCountDown) {
             this.dismissCountDown = dismissCountDown
         },
 
-        showAlert() {
+        showAlert () {
             this.dismissCountDown = this.dismissSecs
         }
     }

@@ -132,43 +132,43 @@ export default {
                     route: '/medicalHistory/' + this.$route.params.id,
                     name: 'Ιατρικό ιστορικό',
                     loggedIn: true,
-					active: false
+                    active: false
                 },
                 {
                     route: '/dentalHistory/' + this.$route.params.id,
                     name: 'Οδοντιατρικό ιστορικό',
                     loggedIn: true,
-					active: false
+                    active: false
                 },
                 {
                     route: '/dentalGram/' + this.$route.params.id,
                     name: 'Οδοντόγραμμα',
                     loggedIn: true,
-					active: true
+                    active: true
                 },
                 {
                     route: '/periodontalChart/' + this.$route.params.id,
                     name: 'Περιοδοντόγραμμα',
                     loggedIn: true,
-					active: false
+                    active: false
                 },
                 {
                     route: '/treatmentHistory/' + this.$route.params.id,
                     name: 'Ιστορικό θεραπειών',
                     loggedIn: true,
-					active: false
+                    active: false
                 },
                 {
                     route: '/denervation/' + this.$route.params.id,
                     name: 'Απονεύρωση',
                     loggedIn: true,
-					active: false
+                    active: false
                 },
                 {
                     route: '/files/' + this.$route.params.id,
                     name: 'Αρχεία',
                     loggedIn: true,
-					active: false
+                    active: false
                 }
             ],
 
@@ -469,8 +469,8 @@ export default {
 
                         this.$refs.noteModal.hide()
 
-						this.response.message = 'Η σημείωση διαγράφηκε'
-						this.response.status = true
+                        this.response.message = 'Η σημείωση διαγράφηκε'
+                        this.response.status = true
 
                         this.getDentalGramNotes()
                     })
@@ -590,8 +590,8 @@ export default {
 
                         this.$refs.originNoteModal.hide()
 
-						this.response.message = 'Η σημείωση διαγράφηκε'
-						this.response.status = true
+                        this.response.message = 'Η σημείωση διαγράφηκε'
+                        this.response.status = true
 
                         this.getOriginDentalNotes()
                     })

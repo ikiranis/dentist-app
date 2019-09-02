@@ -49,7 +49,7 @@ describe('Test patients route', () => {
             phoneLandline: '0123456789',
             address: 'address',
             email: 'email@email.gr',
-            amka: '01234567890',
+            amka: '01234567890'
         }
 
         cy.get('#insertPatient').click()

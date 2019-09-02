@@ -23,7 +23,7 @@
 		</div>
 
 		<div class="container col-lg-7 col-12 mt-3"
-			 v-for="chozenRoot in chozenRoots">
+			 v-for="chozenRoot in chozenRoots" :key="chozenRoot">
 
 			<div class="card mb-2 w-100 mx-auto" v-if="endoTreatments[chozenRoot]">
 				<div class="card-header text-center">
@@ -170,143 +170,143 @@
 </template>
 
 <script>
-	import FormError from '@/components/basic/FormError'
-	import utility from '../../library/utility'
-	import api from '../../api'
-	import DisplayError from '@/components/basic/DisplayError'
+import FormError from '@/components/basic/FormError'
+import utility from '../../library/utility'
+import api from '../../api'
+import DisplayError from '@/components/basic/DisplayError'
 
-	export default {
-		components: {FormError, DisplayError},
+export default {
+    components: { FormError, DisplayError },
 
-		data() {
-			return {
-				response: {
-					message: ' ',
-					status: '',
-					errors: []
-				},
+    data () {
+        return {
+            response: {
+                message: ' ',
+                status: '',
+                errors: []
+            },
 
-				loading: false,
+            loading: false,
 
-				roots: [],
+            roots: [],
 
-				endoTreatment: {
-					root_id: 0,
-					roots: [],
-					counter: null,
-					radiography: null,
-					workingLength: null,
-					benchmark: null,
-					benchmark_id: 0,
-					benchmarks: [],
-					MAF: null,
-					chemicalMechanicalTreatment: null,
-					blocking_technique_id: 0,
-					blockingTechniques: []
-				},
+            endoTreatment: {
+                root_id: 0,
+                roots: [],
+                counter: null,
+                radiography: null,
+                workingLength: null,
+                benchmark: null,
+                benchmark_id: 0,
+                benchmarks: [],
+                MAF: null,
+                chemicalMechanicalTreatment: null,
+                blocking_technique_id: 0,
+                blockingTechniques: []
+            },
 
-				endoTreatments: {},
+            endoTreatments: {},
 
-				chozenRoots: []
-			}
-		},
+            chozenRoots: []
+        }
+    },
 
-		computed: {
-			patientId: function () {
-				return this.$route.params.id
-			}
-		},
+    computed: {
+        patientId: function () {
+            return this.$route.params.id
+        }
+    },
 
-		watch: {
-			loading() {
-				this.$emit('loading', this.loading)
-			}
-		},
+    watch: {
+        loading () {
+            this.$emit('loading', this.loading)
+        }
+    },
 
-		created: function () {
-			this.getRoots()
-			this.getEndoTreatment()
-		},
+    created: function () {
+        this.getRoots()
+        this.getEndoTreatment()
+    },
 
-		methods: {
-			/**
+    methods: {
+        /**
 			 * Get Endo Treatment info
 			 */
-			getEndoTreatment() {
-				this.loading = true
+        getEndoTreatment () {
+            this.loading = true
 
-				this.endoTreatments = {}
+            this.endoTreatments = {}
 
-				this.chozenRoots.forEach(async chozenRoot => {
-					await api.getEndoTreatment(this.patientId, chozenRoot)
-						.then(response => {
-							if (response.status === 200) {
-								this.$set(this.endoTreatments, chozenRoot, response.data)
-							}
-						})
-						.catch(error => {
-							this.loading = false
+            this.chozenRoots.forEach(async chozenRoot => {
+                await api.getEndoTreatment(this.patientId, chozenRoot)
+                    .then(response => {
+                        if (response.status === 200) {
+                            this.$set(this.endoTreatments, chozenRoot, response.data)
+                        }
+                    })
+                    .catch(error => {
+                        this.loading = false
 
-							this.response.message = error.response.data.message
-							this.response.status = false
+                        this.response.message = error.response.data.message
+                        this.response.status = false
 
-							utility.debug(error.response.data.debug)
-						})
-				})
+                        utility.debug(error.response.data.debug)
+                    })
+            })
 
-				this.loading = false
-			},
+            this.loading = false
+        },
 
-			/**
+        /**
 			 * Update the Endo Treatment info
 			 */
-			updateEndoTreatment(chozenRoot) {
-				this.loading = true
+        updateEndoTreatment (chozenRoot) {
+            this.loading = true
 
-				api.updateEndoTreatment(this.endoTreatments[chozenRoot], this.endoTreatments[chozenRoot].id)
-					.then(response => {
-						this.loading = false
+            api.updateEndoTreatment(this.endoTreatments[chozenRoot], this.endoTreatments[chozenRoot].id)
+                .then(response => {
+                    this.loading = false
 
-						this.response.message = 'Τα δεδομένα αποθηκεύτηκαν'
-						this.response.status = true
-					})
-					.catch(error => {
-						this.loading = false
+                    this.response.message = 'Τα δεδομένα αποθηκεύτηκαν'
+                    this.response.status = true
+                })
+                .catch(error => {
+                    this.loading = false
 
-						this.response.message = error.response.data.message
-						this.response.status = false
+                    this.response.message = error.response.data.message
+                    this.response.status = false
 
-						if (error.response.data.errors) {
-							this.response.errors = error.response.data.errors
-						}
+                    if (error.response.data.errors) {
+                        this.response.errors = error.response.data.errors
+                    }
 
-						utility.debug(error.response.data.debug)
-					})
-			},
+                    utility.debug(error.response.data.debug)
+                })
+        },
 
-			/**
+        /**
 			 * Get all roots
 			 */
-			getRoots() {
-				api.getRoots()
-					.then(response => {
-						if (response.status === 200) {
-							this.roots = response.data
+        getRoots () {
+            api.getRoots()
+                .then(response => {
+                    if (response.status === 200) {
+                        this.roots = response.data
 
-							return
-						}
+                        return
+                    }
 
-						this.roots = []
-					})
-					.catch(error => {
-						this.response.message = error.response.data.message
-						this.response.status = false
+                    this.roots = []
+                })
+                .catch(error => {
+                    this.response.message = error.response.data.message
+                    this.response.status = false
 
-						utility.debug(error.response.data.debug)
-					})
-			}
-		}
-	}
+                    utility.debug(error.response.data.debug)
+                })
+        }
+    }
+}
 </script>
 
 <style lang="scss" scoped>

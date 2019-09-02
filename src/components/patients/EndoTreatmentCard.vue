@@ -665,10 +665,10 @@ export default {
             loading: false,
 
             fields: {
-				pain: {
-					label: 'Πόνος',
-					display: false
-				},
+                pain: {
+                    label: 'Πόνος',
+                    display: false
+                },
                 historyEdema: {
                     label: 'Ιστορικό : Οίδημα',
                     display: false
@@ -705,7 +705,7 @@ export default {
                     label: 'Απόχρωση μύλης',
                     display: false
                 },
-				revelationOfPulpCheck: {
+                revelationOfPulpCheck: {
                     label: 'Αποκάλυψη πολφού',
                     display: false
                 },
@@ -848,19 +848,19 @@ export default {
             })
         },
 
-		// Return true if all fields have no value
-		haveNoPain () {
-        	return (
-				!this.endoTreatment.automatic &&
-				!this.endoTreatment.challenged &&
-				!this.endoTreatment.reason &&
-				!this.endoTreatment.duration &&
-				!this.endoTreatment.reduceToTheCold
-			)
-		},
+        // Return true if all fields have no value
+        haveNoPain () {
+            return (
+                !this.endoTreatment.automatic &&
+                !this.endoTreatment.challenged &&
+                !this.endoTreatment.reason &&
+                !this.endoTreatment.duration &&
+                !this.endoTreatment.reduceToTheCold
+            )
+        },
 
         // Check if any of pulse fields are enabled
-        havePulseFields() {
+        havePulseFields () {
             return (
                 this.fields.revelationCheck.display ||
                 this.fields.hyperemia.display ||
@@ -871,7 +871,7 @@ export default {
         },
 
         // Check if any of tissues fields are enabled
-        haveTissuesFields() {
+        haveTissuesFields () {
             return (
                 this.fields.abscess.display ||
                 this.fields.granulation.display ||
@@ -886,7 +886,7 @@ export default {
     },
 
     watch: {
-    	// Send back to parent component
+        // Send back to parent component
         loading () {
             this.$emit('loading', this.loading)
         }
@@ -898,19 +898,19 @@ export default {
     },
 
     methods: {
-		// Check if any of these fields have value. Return true if any
-		painFields () {
-			return (
-				this.endoTreatment.automatic ||
-				this.endoTreatment.challenged ||
-				this.endoTreatment.reason ||
-				this.endoTreatment.duration ||
-				this.endoTreatment.reduceToTheCold
-			)
-		},
+        // Check if any of these fields have value. Return true if any
+        painFields () {
+            return (
+                this.endoTreatment.automatic ||
+                this.endoTreatment.challenged ||
+                this.endoTreatment.reason ||
+                this.endoTreatment.duration ||
+                this.endoTreatment.reduceToTheCold
+            )
+        },
 
         saveData () {
-		    this.updateEndoTreatmentCard()
+            this.updateEndoTreatmentCard()
             this.updateDiagnosis()
         },
 
@@ -970,7 +970,7 @@ export default {
         /**
          * Get Diagnosis info
          */
-        getDiagnosis() {
+        getDiagnosis () {
             this.loading = true
 
             api.getDiagnosis(this.patientId)
@@ -996,7 +996,7 @@ export default {
         /**
          * Update the Diagnosis info
          */
-        updateDiagnosis() {
+        updateDiagnosis () {
             this.loading = true
 
             api.updateDiagnosis(this.diagnosis, this.patientId)
@@ -1025,9 +1025,9 @@ export default {
          */
         checkEndoTreatmentFields () {
             Object.keys(this.endoTreatment).forEach(key => {
-                if (this.endoTreatment[key] === null
-					|| this.endoTreatment[key] === 0
-					|| this.endoTreatment[key].length < 1) {
+                if (this.endoTreatment[key] === null ||
+                    this.endoTreatment[key] === 0 ||
+                    this.endoTreatment[key].length < 1) {
                     return
                 }
 
@@ -1038,17 +1038,17 @@ export default {
                 this.fields[key].display = true
             })
 
-			this.fields.pain.display = this.painFields()
+            this.fields.pain.display = this.painFields()
         },
 
         /**
          * Check for fields. If not empty, display it
          */
-        checkDiagnosisFields() {
+        checkDiagnosisFields () {
             Object.keys(this.diagnosis).forEach(key => {
-                if (this.diagnosis[key] === null
-                    || this.diagnosis[key] === 0
-                    || this.diagnosis[key].length < 1) {
+                if (this.diagnosis[key] === null ||
+                    this.diagnosis[key] === 0 ||
+                    this.diagnosis[key].length < 1) {
                     return
                 }
 

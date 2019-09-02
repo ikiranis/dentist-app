@@ -88,7 +88,7 @@ export default {
         },
         password_confirmation: '',
 
-		loading: false
+        loading: false
     }),
 
     methods: {
@@ -104,7 +104,7 @@ export default {
                         this.response.message = response.statusText
                         this.response.status = true
 
-						this.loading = false
+                        this.loading = false
                         this.$router.push({ name: 'login' })
                     })
                     .catch(error => {
@@ -115,13 +115,13 @@ export default {
                             this.response.errors = error.response.data.errors
                         }
 
-						this.loading = false
+                        this.loading = false
                     })
             } else {
                 this.response.message = 'Passwords not validated'
                 this.response.status = false
 
-				this.loading = false
+                this.loading = false
             }
         }
     }

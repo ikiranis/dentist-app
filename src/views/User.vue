@@ -87,7 +87,7 @@ export default {
         },
         password_confirmation: '',
         progressMax: 100,
-		loading: false
+        loading: false
     }),
 
     computed: {
@@ -110,12 +110,12 @@ export default {
             api.getCurrentUser()
                 .then(response => {
                     this.userInfo = response
-					this.loading = false
+                    this.loading = false
                 })
                 .catch(error => {
                     this.response.message = error.respone.message
                     this.response.status = false
-					this.loading = false
+                    this.loading = false
                 })
         },
 
@@ -130,14 +130,14 @@ export default {
                     password: this.userInfo.password
                 }
 
-				this.loading = true
+                this.loading = true
 
                 api.updateUser(args)
                     .then(response => {
                         this.response.message = `User ${response.name} updated`
                         this.response.status = true
 
-						this.loading = false
+                        this.loading = false
                     })
                     .catch(error => {
                         this.response.message = error.response.data.message
@@ -146,13 +146,13 @@ export default {
                             this.response.errors = error.response.data.errors
                         }
 
-						this.loading = false
+                        this.loading = false
                     })
             } else {
                 this.response.message = 'Passwords not validated'
                 this.response.status = false
 
-				this.loading = false
+                this.loading = false
             }
         }
 

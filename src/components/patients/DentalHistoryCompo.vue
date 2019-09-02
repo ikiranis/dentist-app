@@ -343,15 +343,15 @@ export default {
                     label: 'Συχνές οδονταλγίες',
                     display: false
                 },
-				sensitivityToStimuliCheck: {
+                sensitivityToStimuliCheck: {
                     label: 'Ευαισθησία σε ερεθίσματα',
                     display: false
                 },
-				painWhenChewingCheck: {
+                painWhenChewingCheck: {
                     label: 'Πόνος κατά τη μάσηση',
                     display: false
                 },
-				gingivalBleedingCheck: {
+                gingivalBleedingCheck: {
                     label: 'Αιμοραγία ούλων',
                     display: false
                 },
@@ -518,9 +518,9 @@ export default {
 		 */
         checkFields () {
             Object.keys(this.dentalHistory).forEach(key => {
-                if (this.dentalHistory[key] === null
-					|| this.dentalHistory[key] === 0
-					|| this.dentalHistory[key].length < 1) {
+                if (this.dentalHistory[key] === null ||
+                    this.dentalHistory[key] === 0 ||
+                    this.dentalHistory[key].length < 1) {
                     return
                 }
 

@@ -292,8 +292,7 @@ export default {
         /**
          * Check if patient is 0 and make all menu items disabled
          */
-        checkForNullPatient ()
-        {
+        checkForNullPatient () {
             if (this.patientId === 0) {
                 this.menuItems.forEach(item => {
                     item.disabled = true

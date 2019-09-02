@@ -532,322 +532,322 @@
 </template>
 
 <script>
-	import FormError from '@/components/basic/FormError'
-	import FieldsList from '@/components/patients/FieldsList'
-	import utility from '../../library/utility'
-	import api from '../../api'
-	import DisplayError from '@/components/basic/DisplayError'
+import FormError from '@/components/basic/FormError'
+import FieldsList from '@/components/patients/FieldsList'
+import utility from '../../library/utility'
+import api from '../../api'
+import DisplayError from '@/components/basic/DisplayError'
 
-	export default {
-		components: {FormError, FieldsList, DisplayError},
+export default {
+    components: { FormError, FieldsList, DisplayError },
 
-		data() {
-			return {
-				response: {
-					message: ' ',
-					status: '',
-					errors: []
-				},
+    data () {
+        return {
+            response: {
+                message: ' ',
+                status: '',
+                errors: []
+            },
 
-				fields: {
-					edema: {
-						label: 'Οίδημα',
-						display: false
-					},
-					asymmetry: {
-						label: 'Ασυμμετρία',
-						display: false
-					},
-					swelling: {
-						label: 'Διόγκωση',
-						display: false
-					},
-					damages: {
-						label: 'Βλάβες',
-						display: false
-					},
-					complexion: {
-						label: 'Χροιά',
-						display: false
-					},
-					convulsion: {
-						label: 'Συγχειλίτιδα',
-						display: false
-					},
-					neckEdema: {
-						label: 'Τράχηλος : Οίδημα',
-						display: false
-					},
-					neckSwelling: {
-						label: 'Τράχηλος : Διόγκωση',
-						display: false
-					},
-					hypotensionLymphNodes: {
-						label: 'Υπογενείδιοι λεμφαδένες',
-						display: false
-					},
-					submandibularLymphNodes: {
-						label: 'Υπογνάθιοι λεμφαδένες',
-						display: false
-					},
-					superficialCervicalLymphNodes: {
-						label: 'Επιπολής τραχηλικοί λεμφαδένες',
-						display: false
-					},
-					InsideTheCervicalLymphNodes: {
-						label: 'Εν τω βαθεί τραχηλικοί λεμφαδένες',
-						display: false
-					},
-					clicking: {
-						label: 'Clicking',
-						display: false
-					},
-					cry: {
-						label: 'Κριγμός',
-						display: false
-					},
-					painfulPalpationOfMuscles: {
-						label: 'Επώδυνη ψηλάφηση μυών',
-						display: false
-					},
-					reducedMobility: {
-						label: 'Μειωμένη κινητικότητα',
-						display: false
-					},
-					deratingWhenOpening: {
-						label: 'Παρέκκλιση κατά τη διάνοιξη',
-						display: false
-					},
-					impairedOpening: {
-						label: 'Ελαττωμένη διάνοιξη',
-						display: false
-					},
-					tonsil: {
-						label: 'Παρωτίδα',
-						display: false
-					},
-					underTheJaw: {
-						label: 'Υπογνάθιος',
-						display: false
-					},
-					lips: {
-						label: 'Χείλη',
-						display: false
-					},
-					jowl: {
-						label: 'Παρεία',
-						display: false
-					},
-					palate: {
-						label: 'Υπερώα',
-						display: false
-					},
-					oralGround: {
-						label: 'Έδαφος στόματος',
-						display: false
-					},
-					tongue: {
-						label: 'Γλώσσα',
-						display: false
-					},
-					oralPharynx: {
-						label: 'Στοματοφάρρυγας',
-						display: false
-					},
-					hawks: {
-						label: 'Χαλινοί',
-						display: false
-					},
-					alveolarProcess: {
-						label: 'Φατνιακή απόφυση',
-						display: false
-					}
-				},
+            fields: {
+                edema: {
+                    label: 'Οίδημα',
+                    display: false
+                },
+                asymmetry: {
+                    label: 'Ασυμμετρία',
+                    display: false
+                },
+                swelling: {
+                    label: 'Διόγκωση',
+                    display: false
+                },
+                damages: {
+                    label: 'Βλάβες',
+                    display: false
+                },
+                complexion: {
+                    label: 'Χροιά',
+                    display: false
+                },
+                convulsion: {
+                    label: 'Συγχειλίτιδα',
+                    display: false
+                },
+                neckEdema: {
+                    label: 'Τράχηλος : Οίδημα',
+                    display: false
+                },
+                neckSwelling: {
+                    label: 'Τράχηλος : Διόγκωση',
+                    display: false
+                },
+                hypotensionLymphNodes: {
+                    label: 'Υπογενείδιοι λεμφαδένες',
+                    display: false
+                },
+                submandibularLymphNodes: {
+                    label: 'Υπογνάθιοι λεμφαδένες',
+                    display: false
+                },
+                superficialCervicalLymphNodes: {
+                    label: 'Επιπολής τραχηλικοί λεμφαδένες',
+                    display: false
+                },
+                InsideTheCervicalLymphNodes: {
+                    label: 'Εν τω βαθεί τραχηλικοί λεμφαδένες',
+                    display: false
+                },
+                clicking: {
+                    label: 'Clicking',
+                    display: false
+                },
+                cry: {
+                    label: 'Κριγμός',
+                    display: false
+                },
+                painfulPalpationOfMuscles: {
+                    label: 'Επώδυνη ψηλάφηση μυών',
+                    display: false
+                },
+                reducedMobility: {
+                    label: 'Μειωμένη κινητικότητα',
+                    display: false
+                },
+                deratingWhenOpening: {
+                    label: 'Παρέκκλιση κατά τη διάνοιξη',
+                    display: false
+                },
+                impairedOpening: {
+                    label: 'Ελαττωμένη διάνοιξη',
+                    display: false
+                },
+                tonsil: {
+                    label: 'Παρωτίδα',
+                    display: false
+                },
+                underTheJaw: {
+                    label: 'Υπογνάθιος',
+                    display: false
+                },
+                lips: {
+                    label: 'Χείλη',
+                    display: false
+                },
+                jowl: {
+                    label: 'Παρεία',
+                    display: false
+                },
+                palate: {
+                    label: 'Υπερώα',
+                    display: false
+                },
+                oralGround: {
+                    label: 'Έδαφος στόματος',
+                    display: false
+                },
+                tongue: {
+                    label: 'Γλώσσα',
+                    display: false
+                },
+                oralPharynx: {
+                    label: 'Στοματοφάρρυγας',
+                    display: false
+                },
+                hawks: {
+                    label: 'Χαλινοί',
+                    display: false
+                },
+                alveolarProcess: {
+                    label: 'Φατνιακή απόφυση',
+                    display: false
+                }
+            },
 
-				clinicalExamination: {
-					edema: null,
-					asymmetry: null,
-					swelling: null,
-					damages: null,
-					complexion: null,
-					convulsion: null,
-					neckEdema: null,
-					neckSwelling: null,
-					hypotensionLymphNodes: null,
-					submandibularLymphNodes: null,
-					superficialCervicalLymphNodes: null,
-					InsideTheCervicalLymphNodes: null,
-					clicking: null,
-					cry: null,
-					painfulPalpationOfMuscles: null,
-					reducedMobility: null,
-					deratingWhenOpening: null,
-					impairedOpening: null,
-					tonsil: null,
-					underTheJaw: null,
-					lips: null,
-					jowl: null,
-					palate: null,
-					oralGround: null,
-					tongue: null,
-					oralPharynx: null,
-					hawks: null,
-					alveolarProcess: null
-				},
+            clinicalExamination: {
+                edema: null,
+                asymmetry: null,
+                swelling: null,
+                damages: null,
+                complexion: null,
+                convulsion: null,
+                neckEdema: null,
+                neckSwelling: null,
+                hypotensionLymphNodes: null,
+                submandibularLymphNodes: null,
+                superficialCervicalLymphNodes: null,
+                InsideTheCervicalLymphNodes: null,
+                clicking: null,
+                cry: null,
+                painfulPalpationOfMuscles: null,
+                reducedMobility: null,
+                deratingWhenOpening: null,
+                impairedOpening: null,
+                tonsil: null,
+                underTheJaw: null,
+                lips: null,
+                jowl: null,
+                palate: null,
+                oralGround: null,
+                tongue: null,
+                oralPharynx: null,
+                hawks: null,
+                alveolarProcess: null
+            },
 
-				loading: false
+            loading: false
 
-			}
-		},
+        }
+    },
 
-		computed: {
-			// Find if any field is selected. True if any
-			fieldSelected() {
-				return Object.values(this.fields).find((field) => {
-					return field.display
-				})
-			},
+    computed: {
+        // Find if any field is selected. True if any
+        fieldSelected () {
+            return Object.values(this.fields).find((field) => {
+                return field.display
+            })
+        },
 
-			// Check if any of face fields are enabled
-			haveFaceFields () {
-				return (
-					this.fields.edema.display ||
-					this.fields.asymmetry.display ||
-					this.fields.swelling.display ||
-					this.fields.damages.display ||
-					this.fields.complexion.display ||
-					this.fields.convulsion.display
-				)
-			},
+        // Check if any of face fields are enabled
+        haveFaceFields () {
+            return (
+                this.fields.edema.display ||
+                this.fields.asymmetry.display ||
+                this.fields.swelling.display ||
+                this.fields.damages.display ||
+                this.fields.complexion.display ||
+                this.fields.convulsion.display
+            )
+        },
 
-			// Check if any of neck fields are enabled
-			haveNeckFields () {
-				return (
-					this.fields.neckEdema.display ||
-					this.fields.neckSwelling.display ||
-					this.fields.hypotensionLymphNodes.display ||
-					this.fields.submandibularLymphNodes.display ||
-					this.fields.superficialCervicalLymphNodes.display ||
-					this.fields.InsideTheCervicalLymphNodes.display
-				)
-			},
+        // Check if any of neck fields are enabled
+        haveNeckFields () {
+            return (
+                this.fields.neckEdema.display ||
+                this.fields.neckSwelling.display ||
+                this.fields.hypotensionLymphNodes.display ||
+                this.fields.submandibularLymphNodes.display ||
+                this.fields.superficialCervicalLymphNodes.display ||
+                this.fields.InsideTheCervicalLymphNodes.display
+            )
+        },
 
-			// Check if any of KGD fields are enabled
-			haveKGDFields () {
-				return (
-					this.fields.clicking.display ||
-					this.fields.cry.display ||
-					this.fields.painfulPalpationOfMuscles.display ||
-					this.fields.reducedMobility.display ||
-					this.fields.deratingWhenOpening.display ||
-					this.fields.impairedOpening.display
-				)
-			},
+        // Check if any of KGD fields are enabled
+        haveKGDFields () {
+            return (
+                this.fields.clicking.display ||
+                this.fields.cry.display ||
+                this.fields.painfulPalpationOfMuscles.display ||
+                this.fields.reducedMobility.display ||
+                this.fields.deratingWhenOpening.display ||
+                this.fields.impairedOpening.display
+            )
+        },
 
-			// Check if any of Salivary fields are enabled
-			haveSalivaryGlands () {
-				return (
-					this.fields.tonsil.display ||
-					this.fields.underTheJaw.display
-				)
-			},
+        // Check if any of Salivary fields are enabled
+        haveSalivaryGlands () {
+            return (
+                this.fields.tonsil.display ||
+                this.fields.underTheJaw.display
+            )
+        },
 
-			patientId: function () {
-				return this.$route.params.id
-			}
-		},
+        patientId: function () {
+            return this.$route.params.id
+        }
+    },
 
-		watch: {
-			loading() {
-				this.$emit('loading', this.loading)
-			}
-		},
+    watch: {
+        loading () {
+            this.$emit('loading', this.loading)
+        }
+    },
 
-		created: function () {
-			this.getClinicalExamination()
-		},
+    created: function () {
+        this.getClinicalExamination()
+    },
 
-		methods: {
-			/**
+    methods: {
+        /**
 			 * Get Clinical Examination info
 			 */
-			getClinicalExamination() {
-				this.loading = true
+        getClinicalExamination () {
+            this.loading = true
 
-				api.getClinicalExamination(this.patientId)
-					.then(response => {
-						this.loading = false
+            api.getClinicalExamination(this.patientId)
+                .then(response => {
+                    this.loading = false
 
-						if (response.status === 200) {
-							this.clinicalExamination = response.data
+                    if (response.status === 200) {
+                        this.clinicalExamination = response.data
 
-							this.checkFields()
-						}
-					})
-					.catch(error => {
-						this.loading = false
+                        this.checkFields()
+                    }
+                })
+                .catch(error => {
+                    this.loading = false
 
-						this.response.message = error.response.data.message
-						this.response.status = false
+                    this.response.message = error.response.data.message
+                    this.response.status = false
 
-						utility.debug(error.response.data.debug)
-					})
-			},
+                    utility.debug(error.response.data.debug)
+                })
+        },
 
-			/**
+        /**
 			 * Update the Clinical Examination info
 			 */
-			updateClinicalExamination() {
-				this.loading = true
+        updateClinicalExamination () {
+            this.loading = true
 
-				api.updateClinicalExamination(this.clinicalExamination, this.patientId)
-					.then(response => {
-						this.loading = false
+            api.updateClinicalExamination(this.clinicalExamination, this.patientId)
+                .then(response => {
+                    this.loading = false
 
-						this.response.message = 'Τα δεδομένα αποθηκεύτηκαν'
-						this.response.status = true
-					})
-					.catch(error => {
-						this.loading = false
+                    this.response.message = 'Τα δεδομένα αποθηκεύτηκαν'
+                    this.response.status = true
+                })
+                .catch(error => {
+                    this.loading = false
 
-						this.response.message = error.response.data.message
-						this.response.status = false
+                    this.response.message = error.response.data.message
+                    this.response.status = false
 
-						if (error.response.data.errors) {
-							this.response.errors = error.response.data.errors
-						}
+                    if (error.response.data.errors) {
+                        this.response.errors = error.response.data.errors
+                    }
 
-						utility.debug(error.response.data.debug)
-					})
-			},
+                    utility.debug(error.response.data.debug)
+                })
+        },
 
-			/**
+        /**
 			 * Check for fields. If not empty, display it
 			 */
-			checkFields() {
-				Object.keys(this.clinicalExamination).forEach(key => {
-					if (this.clinicalExamination[key] === null || this.clinicalExamination[key].length < 1) {
-						return
-					}
+        checkFields () {
+            Object.keys(this.clinicalExamination).forEach(key => {
+                if (this.clinicalExamination[key] === null || this.clinicalExamination[key].length < 1) {
+                    return
+                }
 
-					if (this.fields[key] === undefined) {
-						return
-					}
+                if (this.fields[key] === undefined) {
+                    return
+                }
 
-					this.fields[key].display = true
-				})
-			},
+                this.fields[key].display = true
+            })
+        },
 
-			/**
+        /**
 			 * Εξαφάνιση του πεδίου
 			 *
 			 * @param field
 			 */
-			removeField(field) {
-				field.display = false
-			}
-		}
-	}
+        removeField (field) {
+            field.display = false
+        }
+    }
+}
 </script>
 
 <style lang="scss" scoped>

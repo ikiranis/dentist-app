@@ -18,52 +18,52 @@
 </template>
 
 <script>
-    export default {
+export default {
 
-        data () {
-            return {
-                dismissSecs: 10,
-                dismissCountDown: 0,
-                showDismissibleAlert: true
-            }
+    data () {
+        return {
+            dismissSecs: 10,
+            dismissCountDown: 0,
+            showDismissibleAlert: true
+        }
+    },
+
+    props: {
+        alert: Object,
+        variant: String
+    },
+
+    computed: {
+        text: function () {
+            return this.alert.text
+        }
+    },
+
+    watch: {
+        text () {
+            this.showAlert()
         },
 
-        props: {
-            alert: Object,
-            variant: String
-        },
-
-        computed: {
-            text: function () {
-                return this.alert.text
-            }
-        },
-
-        watch: {
-            text () {
-                this.showAlert()
-            },
-
-            /**
+        /**
              * On countdown = 0, reset message
              *
              * @param value
              */
-            dismissCountDown (value) {
-                if(value === 0) {
-                    this.alert.text = ' '
-                }
-            }
-        },
-
-        methods: {
-            countDownChanged(dismissCountDown) {
-                this.dismissCountDown = dismissCountDown
-            },
-
-            showAlert() {
-                this.dismissCountDown = this.dismissSecs
+        dismissCountDown (value) {
+            if (value === 0) {
+                this.alert.text = ' '
             }
         }
+    },
+
+    methods: {
+        countDownChanged (dismissCountDown) {
+            this.dismissCountDown = dismissCountDown
+        },
+
+        showAlert () {
+            this.dismissCountDown = this.dismissSecs
+        }
     }
+}
 </script>

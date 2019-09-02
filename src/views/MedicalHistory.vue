@@ -608,9 +608,9 @@ export default {
          */
         checkFields () {
             Object.keys(this.medicalHistory).forEach(key => {
-                if (this.medicalHistory[key] === null
-					|| this.medicalHistory[key] === 0
-					|| this.medicalHistory[key].length < 1) {
+                if (this.medicalHistory[key] === null ||
+                    this.medicalHistory[key] === 0 ||
+                    this.medicalHistory[key].length < 1) {
                     return
                 }
 
@@ -655,7 +655,6 @@ export default {
                         id: response.data.id,
                         name: response.data.name
                     })
-
                 })
                 .catch(error => {
                     this.loading = false

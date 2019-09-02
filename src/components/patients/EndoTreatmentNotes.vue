@@ -33,7 +33,6 @@
 
         </div>
 
-
         <div class="row fixed-bottom mb-2">
             <display-error class="mx-auto"
                            v-if="response.message"
@@ -45,142 +44,174 @@
 </template>
 
 <script>
-    import FormError from '@/components/basic/FormError'
-    import NotesList from '@/components/patients/NotesList'
-    import utility from '../../library/utility'
-    import api from '../../api'
-    import DisplayError from '@/components/basic/DisplayError'
-    import moment from 'moment'
+import FormError from '@/components/basic/FormError'
+import NotesList from '@/components/patients/NotesList'
+import utility from '../../library/utility'
+import api from '../../api'
+import DisplayError from '@/components/basic/DisplayError'
+import moment from 'moment'
 
-    export default {
-        components: { FormError, DisplayError, NotesList },
+export default {
+    components: { FormError, DisplayError, NotesList },
 
-        data () {
-            return {
-                response: {
-                    message: ' ',
-                    status: '',
-                    errors: []
-                },
+    data () {
+        return {
+            response: {
+                message: ' ',
+                status: '',
+                errors: []
+            },
 
-                loading: false,
+            loading: false,
 
-                note: {
-                    id: 0,
-                    patient_id: 0,
-                    date: null,
-                    description: null
-                },
+            note: {
+                id: 0,
+                patient_id: 0,
+                date: null,
+                description: null
+            },
 
-                notes: [],
+            notes: [],
 
-                noteTitle: ''
-            }
-        },
+            noteTitle: ''
+        }
+    },
 
-        computed: {
-            patientId: function () {
-                return this.$route.params.id
-            }
-        },
+    computed: {
+        patientId: function () {
+            return this.$route.params.id
+        }
+    },
 
-        watch: {
-            loading () {
-                this.$emit('loading', this.loading)
-            }
-        },
+    watch: {
+        loading () {
+            this.$emit('loading', this.loading)
+        }
+    },
 
-        created: function () {
-            this.getTreatmentNotes()
-        },
+    created: function () {
+        this.getTreatmentNotes()
+    },
 
-        methods: {
+    methods: {
 
-            /**
+        /**
              * Get all treatment notes for patientId
              */
-            getTreatmentNotes () {
-                this.loading = true
+        getTreatmentNotes () {
+            this.loading = true
 
-                api.getTreatmentNotes(this.patientId)
-                    .then(response => {
-                        this.loading = false
+            api.getTreatmentNotes(this.patientId)
+                .then(response => {
+                    this.loading = false
 
-                        if (response.status === 200) {
-                            this.notes = response.data
+                    if (response.status === 200) {
+                        this.notes = response.data
 
-                            return
-                        }
+                        return
+                    }
 
-                        this.notes = []
-                    })
-                    .catch(error => {
-                        this.loading = false
+                    this.notes = []
+                })
+                .catch(error => {
+                    this.loading = false
 
-                        this.response.message = error.response.data.message
-                        this.response.status = false
+                    this.response.message = error.response.data.message
+                    this.response.status = false
 
-                        utility.debug(error.response.data.debug)
-                    })
-            },
+                    utility.debug(error.response.data.debug)
+                })
+        },
 
-            /**
+        /**
              * Display note for edit
              */
-            getTreatmentNote (treatmentNoteId) {
-                this.note = this.notes.find((note) => {
-                    return note.id === treatmentNoteId
-                })
+        getTreatmentNote (treatmentNoteId) {
+            this.note = this.notes.find((note) => {
+                return note.id === treatmentNoteId
+            })
 
-                this.noteTitle = 'Ενημέρωση σημείωσης'
-                this.$refs.noteModal.show()
-            },
+            this.noteTitle = 'Ενημέρωση σημείωσης'
+            this.$refs.noteModal.show()
+        },
 
-            /**
+        /**
              * Create a note
              */
-            createTreatmentNote () {
-                this.loading = true
+        createTreatmentNote () {
+            this.loading = true
 
-                api.createTreatmentNote(this.note)
-                    .then(response => {
-                        this.loading = false
+            api.createTreatmentNote(this.note)
+                .then(response => {
+                    this.loading = false
 
-                        this.response.message = 'Η σημείωση αποθηκεύτηκε'
-                        this.response.status = true
+                    this.response.message = 'Η σημείωση αποθηκεύτηκε'
+                    this.response.status = true
 
-                        this.$refs.noteModal.hide()
+                    this.$refs.noteModal.hide()
 
-                        this.getTreatmentNotes()
-                    })
-                    .catch(error => {
-                        this.loading = false
+                    this.getTreatmentNotes()
+                })
+                .catch(error => {
+                    this.loading = false
 
-                        this.response.message = error.response.data.message
-                        this.response.status = false
+                    this.response.message = error.response.data.message
+                    this.response.status = false
 
-                        if (error.response.data.errors) {
-                            this.response.errors = error.response.data.errors
-                        }
+                    if (error.response.data.errors) {
+                        this.response.errors = error.response.data.errors
+                    }
 
-                        utility.debug(error.response.data.debug)
-                    })
-            },
+                    utility.debug(error.response.data.debug)
+                })
+        },
 
-            /**
+        /**
              * Update a note
              */
-            updateTreatmentNote () {
+        updateTreatmentNote () {
+            this.loading = true
+
+            api.updateTreatmentNote(this.note, this.note.id)
+                .then(response => {
+                    this.loading = false
+
+                    this.response.message = 'Η σημείωση ενημερώθηκε'
+                    this.response.status = true
+
+                    this.$refs.noteModal.hide()
+
+                    this.getTreatmentNotes()
+                })
+                .catch(error => {
+                    this.loading = false
+
+                    this.response.message = error.response.data.message
+                    this.response.status = false
+
+                    if (error.response.data.errors) {
+                        this.response.errors = error.response.data.errors
+                    }
+
+                    utility.debug(error.response.data.debug)
+                })
+        },
+
+        /**
+             * Delete a transaction
+             */
+        deleteTreatmentNote (treatmentNoteId) {
+            let choise = confirm('Θέλεις σίγουρα να σβήσεις την σημείωση με id: ' + treatmentNoteId + ';')
+
+            if (choise) {
                 this.loading = true
 
-                api.updateTreatmentNote(this.note, this.note.id)
+                api.deleteTreatmentNote(treatmentNoteId)
                     .then(response => {
                         this.loading = false
 
-                        this.response.message = 'Η σημείωση ενημερώθηκε'
+                        this.response.message = 'Η σημείωση διαγράφηκε'
                         this.response.status = true
-
-                        this.$refs.noteModal.hide()
 
                         this.getTreatmentNotes()
                     })
@@ -190,70 +221,38 @@
                         this.response.message = error.response.data.message
                         this.response.status = false
 
-                        if (error.response.data.errors) {
-                            this.response.errors = error.response.data.errors
-                        }
-
                         utility.debug(error.response.data.debug)
                     })
-            },
+            }
+        },
 
-            /**
-             * Delete a transaction
-             */
-            deleteTreatmentNote (treatmentNoteId) {
-                let choise = confirm('Θέλεις σίγουρα να σβήσεις την σημείωση με id: ' + treatmentNoteId + ';')
-
-                if (choise) {
-                    this.loading = true
-
-                    api.deleteTreatmentNote(treatmentNoteId)
-                        .then(response => {
-                            this.loading = false
-
-                            this.response.message = 'Η σημείωση διαγράφηκε'
-                            this.response.status = true
-
-                            this.getTreatmentNotes()
-                        })
-                        .catch(error => {
-                            this.loading = false
-
-                            this.response.message = error.response.data.message
-                            this.response.status = false
-
-                            utility.debug(error.response.data.debug)
-                        })
-                }
-            },
-
-            /**
+        /**
              * Run the appropriate save action
              */
-            saveNote () {
-                if (this.note.id === 0) {
-                    this.createTreatmentNote()
-                    return
-                }
+        saveNote () {
+            if (this.note.id === 0) {
+                this.createTreatmentNote()
+                return
+            }
 
-                this.updateTreatmentNote()
-            },
+            this.updateTreatmentNote()
+        },
 
-            /**
+        /**
              * Display note modal
              */
-            newNote () {
-                this.note = {
-                    id: 0,
-                    patient_id: this.patientId,
-                    date: moment(new Date()).format('YYYY-MM-DD')
-                }
-
-                this.noteTitle = 'Εισαγωγή σημείωσης'
-                this.$refs.noteModal.show()
+        newNote () {
+            this.note = {
+                id: 0,
+                patient_id: this.patientId,
+                date: moment(new Date()).format('YYYY-MM-DD')
             }
+
+            this.noteTitle = 'Εισαγωγή σημείωσης'
+            this.$refs.noteModal.show()
         }
     }
+}
 </script>
 
 <style lang="scss" scoped>
