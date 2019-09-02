@@ -15,8 +15,7 @@
 					@change="getEndoTreatment">
 				<option v-for="root in roots"
 						:key="root.id"
-						:value="root.id"
-						:selected="(root.id === chozenRoots) ? 'selected' : ''">
+						:value="root.id">
 					{{ root.name }}
 				</option>
 			</select>
