@@ -650,10 +650,9 @@ import FieldsList from '@/components/patients/FieldsList'
 import utility from '../../library/utility'
 import api from '../../api'
 import DisplayError from '@/components/basic/DisplayError'
-import Diagnosis from '@/components/patients/Diagnosis'
 
 export default {
-    components: { FormError, FieldsList, DisplayError, Diagnosis },
+    components: { FormError, FieldsList, DisplayError },
 
     data () {
         return {

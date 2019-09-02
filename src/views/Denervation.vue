@@ -30,12 +30,11 @@
 import MenuBar from '@/components/basic/MenuBar'
 import Tabs from '@/components/basic/Tabs'
 import EndoTreatmentCard from '@/components/patients/EndoTreatmentCard'
-import Diagnosis from '@/components/patients/Diagnosis'
 import EndoTreatment from '@/components/patients/EndoTreatment'
 import Loading from '@/components/basic/Loading'
 
 export default {
-    components: { MenuBar, EndoTreatmentCard, Diagnosis, EndoTreatment, Loading, Tabs },
+    components: { MenuBar, EndoTreatmentCard, EndoTreatment, Loading, Tabs },
 
     data () {
         return {
