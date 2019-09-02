@@ -20,13 +20,13 @@
             </div>
         </b-modal>
 
-        <div>
+        <div v-if="!loading">
 
             <notes-list :notes="notes"
                         @clickDelete="deleteTreatmentNote"
                         @clickUpdate="getTreatmentNote" />
 
-            <div class="row" v-if="!loading">
+            <div class="row">
                 <input type="submit" class="btn btn-success col-lg-6 col-12 my-3 mx-auto"
                        @click="newNote" value="Εισαγωγή σημείωσης">
             </div>
