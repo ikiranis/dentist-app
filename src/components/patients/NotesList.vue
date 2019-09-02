@@ -1,10 +1,6 @@
 <template functional>
     <div>
-        <div class="col-12 text-center">
-            <h3>Σημειώσεις</h3>
-        </div>
-
-        <table class="table">
+		<table class="table">
             <thead>
             <tr>
 				<th scope="col"></th>
