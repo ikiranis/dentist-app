@@ -218,28 +218,30 @@ export default {
 			 * Get Endo Treatment info
 			 */
         getEndoTreatment () {
-            this.loading = true
+            if(this.chozenRoots.length) {
+				this.loading = true
 
-            this.endoTreatments = {}
+				this.endoTreatments = {}
 
-            this.chozenRoots.forEach(async chozenRoot => {
-                await api.getEndoTreatment(this.patientId, chozenRoot)
-                    .then(response => {
-                        if (response.status === 200) {
-                            this.$set(this.endoTreatments, chozenRoot, response.data)
-                        }
-                    })
-                    .catch(error => {
-                        this.loading = false
+				this.chozenRoots.forEach(async chozenRoot => {
+					await api.getEndoTreatment(this.patientId, chozenRoot)
+						.then(response => {
+							if (response.status === 200) {
+								this.loading = false
 
-                        this.response.message = error.response.data.message
-                        this.response.status = false
+								this.$set(this.endoTreatments, chozenRoot, response.data)
+							}
+						})
+						.catch(error => {
+							this.loading = false
 
-                        utility.debug(error.response.data.debug)
-                    })
-            })
+							this.response.message = error.response.data.message
+							this.response.status = false
 
-            this.loading = false
+							utility.debug(error.response.data.debug)
+						})
+				})
+			}
         },
 
         /**
