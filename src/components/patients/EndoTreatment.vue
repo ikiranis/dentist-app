@@ -210,7 +210,6 @@ export default {
 
     created: function () {
         this.getRoots()
-        this.getEndoTreatment()
     },
 
     methods: {
@@ -218,30 +217,28 @@ export default {
 			 * Get Endo Treatment info
 			 */
         getEndoTreatment () {
-            if(this.chozenRoots.length) {
-				this.loading = true
+			this.loading = true
 
-				this.endoTreatments = {}
+			this.endoTreatments = {}
 
-				this.chozenRoots.forEach(async chozenRoot => {
-					await api.getEndoTreatment(this.patientId, chozenRoot)
-						.then(response => {
-							if (response.status === 200) {
-								this.loading = false
-
-								this.$set(this.endoTreatments, chozenRoot, response.data)
-							}
-						})
-						.catch(error => {
+			this.chozenRoots.forEach(async chozenRoot => {
+				await api.getEndoTreatment(this.patientId, chozenRoot)
+					.then(response => {
+						if (response.status === 200) {
 							this.loading = false
 
-							this.response.message = error.response.data.message
-							this.response.status = false
+							this.$set(this.endoTreatments, chozenRoot, response.data)
+						}
+					})
+					.catch(error => {
+						this.loading = false
 
-							utility.debug(error.response.data.debug)
-						})
-				})
-			}
+						this.response.message = error.response.data.message
+						this.response.status = false
+
+						utility.debug(error.response.data.debug)
+					})
+			})
         },
 
         /**
@@ -275,9 +272,13 @@ export default {
 			 * Get all roots
 			 */
         getRoots () {
+        	this.loading = true
+
             api.getRoots()
                 .then(response => {
                     if (response.status === 200) {
+						this.loading = false
+
                         this.roots = response.data
 
                         return
@@ -286,6 +287,8 @@ export default {
                     this.roots = []
                 })
                 .catch(error => {
+					this.loading = false
+
                     this.response.message = error.response.data.message
                     this.response.status = false
 
