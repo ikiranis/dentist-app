@@ -21,7 +21,7 @@
 			</select>
 
 			<div class="col-12 text-center">
-				<small class="text-info mx-auto">Με πατημένο το ctrl, κάνουμε πολλαπλή επιλογή</small>
+				<small class="text-info mx-auto">Με πατημένο το ctrl, γίνεται πολλαπλή επιλογή</small>
 			</div>
 		</div>
 
