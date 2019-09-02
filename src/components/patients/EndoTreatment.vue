@@ -112,7 +112,7 @@
 						</div>
 
 						<input id="MAF" type="text" class="form-control"
-							   v-model="endoTreatment.MAF" maxlength="10">
+							   v-model="endoTreatments[chozenRoot].MAF" maxlength="10">
 						<form-error v-if="response.errors.MAF"
 									:error="response.errors.MAF[0]"/>
 					</div>
@@ -189,21 +189,6 @@ export default {
             loading: false,
 
             roots: [],
-
-            endoTreatment: {
-                root_id: 0,
-                roots: [],
-                counter: null,
-                radiography: null,
-                workingLength: null,
-                benchmark: null,
-                benchmark_id: 0,
-                benchmarks: [],
-                MAF: null,
-                chemicalMechanicalTreatment: null,
-                blocking_technique_id: 0,
-                blockingTechniques: []
-            },
 
             endoTreatments: {},
 
