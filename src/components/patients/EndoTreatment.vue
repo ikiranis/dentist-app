@@ -2,14 +2,14 @@
 
     <div>
 
-        <div class="input-group row mb-2 mx-auto">
-            <div class="input-group-prepend">
-                <div class="input-group-text">
+        <div class="input-group row mb-2 mx-auto col-lg-7 col-12">
+            <div class="col-12">
+                <div class="input-group-text row">
                     <label for="chozenRoot" class="my-auto">Ρίζες</label>
                 </div>
             </div>
 
-            <select class="form-control" id="chozenRoot"
+            <select class="form-control col-12" id="chozenRoot"
                     multiple
                     v-model="chozenRoots"
                     @change="getEndoTreatment">
@@ -17,7 +17,7 @@
                         :key="root.id"
                         :value="root.id"
                         :selected="(root.id === chozenRoots) ? 'selected' : ''">
-                    {{root.id}} {{ root.name }}
+                    {{ root.name }}
                 </option>
             </select>
         </div>
