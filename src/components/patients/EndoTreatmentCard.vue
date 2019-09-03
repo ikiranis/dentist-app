@@ -615,7 +615,7 @@
 
         <div class="row" v-if="fieldSelected">
             <input type="submit" class="btn btn-success col-lg-6 col-12 my-3 mx-auto"
-                   @click="updateEndoTreatmentCard" value="Αποθήκευση">
+                   @click="saveData" value="Αποθήκευση">
         </div>
 
         <div class="row fixed-bottom mb-2">
@@ -651,6 +651,8 @@ export default {
             },
 
             loading: false,
+
+			endoTreatmentCardEmpty: true,
 
             fields: {
                 pain: {
@@ -884,6 +886,16 @@ export default {
     },
 
     methods: {
+    	saveData () {
+    		if (this.endoTreatmentCardEmpty) {
+    			this.createEndoTreatmentCard()
+
+				return
+			}
+
+    		this.updateEndoTreatmentCard()
+		},
+
         // Check if any of these fields have value. Return true if any
         painFields () {
             return (
@@ -907,12 +919,14 @@ export default {
 
                     if (response.status === 200) {
                         this.endoTreatment = response.data
+						this.endoTreatmentCardEmpty = false
 
                         this.checkEndoTreatmentFields()
                     }
 
                     if (response.status === 204) {
                         this.resetEndotreatment()
+						this.endoTreatmentCardEmpty = true
 
 						this.setAllFieldsFalse()
                     }
