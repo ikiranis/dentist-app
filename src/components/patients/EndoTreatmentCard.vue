@@ -927,6 +927,33 @@ export default {
                 })
         },
 
+		/**
+		 * Create an endo treatment card
+		 */
+		createEndoTreatmentCard () {
+			this.loading = true
+
+			api.createEndoTreatmentCard(this.endoTreatment)
+				.then(response => {
+					this.loading = false
+
+					this.response.message = 'Τα δεδομένα αποθηκεύτηκαν'
+					this.response.status = true
+				})
+				.catch(error => {
+					this.loading = false
+
+					this.response.message = error.response.data.message
+					this.response.status = false
+
+					if (error.response.data.errors) {
+						this.response.errors = error.response.data.errors
+					}
+
+					utility.debug(error.response.data.debug)
+				})
+		},
+
         /**
          * Update the Endo Treatment Card info
          */
@@ -953,6 +980,33 @@ export default {
                     utility.debug(error.response.data.debug)
                 })
         },
+
+		/**
+		 * Delete an endo treatment card
+		 */
+		deleteFile (id) {
+			let choise = confirm('Θέλεις σίγουρα να σβήσεις τα δεδομένα;')
+
+			if (choise) {
+				this.loading = true
+
+				api.deleteEndoTreatmentCard(ιδ)
+					.then(response => {
+						this.loading = false
+
+						this.response.message = 'Τα δεδομένα διαγράφηκαν'
+						this.response.status = true
+					})
+					.catch(error => {
+						this.loading = false
+
+						this.response.message = error.response.data.message
+						this.response.status = false
+
+						utility.debug(error.response.data.debug)
+					})
+			}
+		},
 
         /**
          * Check for fields. If not empty, display it
