@@ -1,10 +1,10 @@
 <template>
     <div class="container-fluid my-3">
 
-		<menu-bar brand="Ασθενής" :brandRoute="{ name: 'patient', params: { id: patientId } }"
-				  :menuItems="menuItems" userInfo="false" fixed=""
-				  variant="" type="light" valign="mx-auto" toggle="lg"
-				  navCollapseText="patientBar" />
+        <menu-bar brand="Ασθενής" :brandRoute="{ name: 'patient', params: { id: patientId } }"
+                  :menuItems="menuItems" userInfo="false" fixed=""
+                  variant="" type="light" valign="mx-auto" toggle="lg"
+                  navCollapseText="patientBar"/>
 
         <div class="row justify-content-center">
 
@@ -12,15 +12,34 @@
                 <Loading class="mx-auto" :loading="loading"/>
             </div>
 
-			<tabs :tabs="tabs" class="mb-3" />
+            <div class="container">
+                <div class="input-group row mb-2 mx-auto col-lg-4 col-12">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text ">
+                            <label for="chozenTooth" class="my-auto">Επιλογή δοντιού</label>
+                        </div>
+                    </div>
+
+                    <select class="form-control" id="chozenTooth"
+                            v-model="chozenTooth">
+                        <option v-for="tooth in teeth"
+                                :key="tooth.id"
+                                :value="tooth.id">
+                            {{ tooth.number }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+
+            <tabs :tabs="tabs" class="mb-3"/>
 
             <div class="container">
 
-                <endo-treatment-card @loading="getLoading" v-if="tabs.endoTreatmentCard.display" />
+                <endo-treatment-card @loading="getLoading" v-if="tabs.endoTreatmentCard.display"/>
 
-                <endo-treatment-notes @loading="getLoading" v-if="tabs.endoTreatmentNotes.display" />
+                <endo-treatment-notes @loading="getLoading" v-if="tabs.endoTreatmentNotes.display"/>
 
-                <endo-treatment @loading="getLoading" v-if="tabs.endoTreatment.display" />
+                <endo-treatment @loading="getLoading" v-if="tabs.endoTreatment.display"/>
 
             </div>
 
@@ -29,104 +48,136 @@
 </template>
 
 <script>
-import MenuBar from '@/components/basic/MenuBar'
-import Tabs from '@/components/basic/Tabs'
-import EndoTreatmentCard from '@/components/patients/EndoTreatmentCard'
-import EndoTreatment from '@/components/patients/EndoTreatment'
-import EndoTreatmentNotes from '@/components/patients/EndoTreatmentNotes'
-import Loading from '@/components/basic/Loading'
+    import MenuBar from '@/components/basic/MenuBar'
+    import Tabs from '@/components/basic/Tabs'
+    import EndoTreatmentCard from '@/components/patients/EndoTreatmentCard'
+    import EndoTreatment from '@/components/patients/EndoTreatment'
+    import EndoTreatmentNotes from '@/components/patients/EndoTreatmentNotes'
+    import Loading from '@/components/basic/Loading'
+    import api from "../api";
+    import utility from "../library/utility";
 
-export default {
-    components: { MenuBar, EndoTreatmentCard, EndoTreatment, EndoTreatmentNotes, Loading, Tabs },
+    export default {
+        components: {MenuBar, EndoTreatmentCard, EndoTreatment, EndoTreatmentNotes, Loading, Tabs},
 
-    data () {
-        return {
-            response: {
-                message: '',
-                status: '',
-                errors: []
+        data() {
+            return {
+                response: {
+                    message: '',
+                    status: '',
+                    errors: []
+                },
+
+                loading: false,
+
+                teeth: [],
+
+                menuItems: [
+                    {
+                        route: '/medicalHistory/' + this.$route.params.id,
+                        name: 'Ιατρικό ιστορικό',
+                        loggedIn: true,
+                        active: false
+                    },
+                    {
+                        route: '/dentalHistory/' + this.$route.params.id,
+                        name: 'Οδοντιατρικό ιστορικό',
+                        loggedIn: true,
+                        active: false
+                    },
+                    {
+                        route: '/dentalGram/' + this.$route.params.id,
+                        name: 'Οδοντόγραμμα',
+                        loggedIn: true,
+                        active: false
+                    },
+                    {
+                        route: '/periodontalChart/' + this.$route.params.id,
+                        name: 'Περιοδοντόγραμμα',
+                        loggedIn: true,
+                        active: false
+                    },
+                    {
+                        route: '/treatmentHistory/' + this.$route.params.id,
+                        name: 'Ιστορικό θεραπειών',
+                        loggedIn: true,
+                        active: false
+                    },
+                    {
+                        route: '/denervation/' + this.$route.params.id,
+                        name: 'Απονεύρωση',
+                        loggedIn: true,
+                        active: true
+                    },
+                    {
+                        route: '/files/' + this.$route.params.id,
+                        name: 'Αρχεία',
+                        loggedIn: true,
+                        active: false
+                    }
+                ],
+
+                tabs: {
+                    endoTreatmentCard: {
+                        display: true,
+                        label: 'Δελτίο ενδοδοντικής θεραπείας'
+                    },
+                    endoTreatment: {
+                        display: false,
+                        label: 'Ενδοδοντική θεραπεία'
+                    },
+                    endoTreatmentNotes: {
+                        display: false,
+                        label: 'Σημειώσεις'
+                    }
+                },
+
+                chozenTooth: 0
+
+            }
+        },
+
+        computed: {
+            patientId: function () {
+                return this.$route.params.id
+            }
+        },
+
+        created: function () {
+            this.getTeeth()
+        },
+
+        methods: {
+            /**
+             * Get loading value from components
+             *
+             * @param loading
+             */
+            getLoading(loading) {
+                this.loading = loading
             },
 
-            loading: false,
+            /**
+             * Get all teeth
+             */
+            getTeeth () {
+                api.getTeeth()
+                    .then(response => {
+                        if (response.status === 200) {
+                            this.teeth = response.data
 
-            menuItems: [
-                {
-                    route: '/medicalHistory/' + this.$route.params.id,
-                    name: 'Ιατρικό ιστορικό',
-                    loggedIn: true,
-                    active: false
-                },
-                {
-                    route: '/dentalHistory/' + this.$route.params.id,
-                    name: 'Οδοντιατρικό ιστορικό',
-                    loggedIn: true,
-                    active: false
-                },
-                {
-                    route: '/dentalGram/' + this.$route.params.id,
-                    name: 'Οδοντόγραμμα',
-                    loggedIn: true,
-                    active: false
-                },
-                {
-                    route: '/periodontalChart/' + this.$route.params.id,
-                    name: 'Περιοδοντόγραμμα',
-                    loggedIn: true,
-                    active: false
-                },
-                {
-                    route: '/treatmentHistory/' + this.$route.params.id,
-                    name: 'Ιστορικό θεραπειών',
-                    loggedIn: true,
-                    active: false
-                },
-                {
-                    route: '/denervation/' + this.$route.params.id,
-                    name: 'Απονεύρωση',
-                    loggedIn: true,
-                    active: true
-                },
-                {
-                    route: '/files/' + this.$route.params.id,
-                    name: 'Αρχεία',
-                    loggedIn: true,
-                    active: false
-                }
-            ],
+                            return
+                        }
 
-            tabs: {
-                endoTreatmentCard: {
-                    display: true,
-                    label: 'Δελτίο ενδοδοντικής θεραπείας'
-                },
-                endoTreatment: {
-                    display: false,
-                    label: 'Ενδοδοντική θεραπεία'
-                },
-                endoTreatmentNotes: {
-                    display: false,
-                    label: 'Σημειώσεις'
-                }
-            }
+                        this.teeth = []
+                    })
+                    .catch(error => {
+                        this.response.message = error.response.data.message
+                        this.response.status = false
 
-        }
-    },
-
-    computed: {
-        patientId: function () {
-            return this.$route.params.id
-        }
-    },
-
-    methods: {
-        /**
-         * Get loading value from components
-         *
-         * @param loading
-         */
-        getLoading (loading) {
-            this.loading = loading
+                        utility.debug(error.response.data.debug)
+                    })
+            },
         }
     }
-}
 </script>
