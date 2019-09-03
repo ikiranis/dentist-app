@@ -348,7 +348,7 @@
                         <div class="input-group row mb-2" v-if="fields.revelationCheck.display">
                             <div class="input-group-prepend">
                                 <div class="input-group-text">
-                                    <input type="checkbox" id="revelationCheck" v-model="diagnosis.revelationCheck">
+                                    <input type="checkbox" id="revelationCheck" v-model="endoTreatment.revelationCheck">
                                 </div>
 
                                 <div class="input-group-text">
@@ -357,9 +357,9 @@
                             </div>
 
                             <input id="revelation" type="text" class="form-control"
-                                   v-model="diagnosis.revelation" maxlength="20"
-                                   :disabled="!diagnosis.revelationCheck">
-                            <minus-circle-outline v-if="!diagnosis.revelationCheck"
+                                   v-model="endoTreatment.revelation" maxlength="20"
+                                   :disabled="!endoTreatment.revelationCheck">
+                            <minus-circle-outline v-if="!endoTreatment.revelationCheck"
                                                   class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                                   @click="removeField(fields.revelationCheck)"/>
                             <form-error v-if="response.errors.revelation"
@@ -368,21 +368,21 @@
 
                         <div class="input-group row mb-2" v-if="fields.hyperemia.display">
                             <div class="input-group-text">
-                                <input type="checkbox" id="hyperemia" v-model="diagnosis.hyperemia">
+                                <input type="checkbox" id="hyperemia" v-model="endoTreatment.hyperemia">
                             </div>
 
                             <div class="input-group-text col">
                                 <label for="hyperemia" class="my-1">Υπεραιμία</label>
                             </div>
 
-                            <minus-circle-outline v-if="!diagnosis.hyperemia"
+                            <minus-circle-outline v-if="!endoTreatment.hyperemia"
                                                   class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                                   @click="removeField(fields.hyperemia)"/>
                         </div>
 
                         <div class="input-group row mb-2" v-if="fields.acutePulpitis.display">
                             <div class="input-group-text">
-                                <input type="checkbox" id="acutePulpitis" v-model="diagnosis.acutePulpitis">
+                                <input type="checkbox" id="acutePulpitis" v-model="endoTreatment.acutePulpitis">
                             </div>
 
                             <div class="input-group-text col">
@@ -392,7 +392,7 @@
                             <div class="input-group-text">
                                 <input type="radio" id="partialAcutePulpitis" name="acutePulpitisChecked"
                                        value="partialAcutePulpitis"
-                                       :disabled="!diagnosis.acutePulpitis">
+                                       :disabled="!endoTreatment.acutePulpitis">
                             </div>
 
                             <div class="input-group-text">
@@ -402,21 +402,21 @@
                             <div class="input-group-text">
                                 <input type="radio" id="universalAcutePulpitis" name="acutePulpitisChecked"
                                        value="universalAcutePulpitis"
-                                       :disabled="!diagnosis.acutePulpitis">
+                                       :disabled="!endoTreatment.acutePulpitis">
                             </div>
 
                             <div class="input-group-text">
                                 <label for="universalAcutePulpitis" class="my-auto">Καθολική</label>
                             </div>
 
-                            <minus-circle-outline v-if="!diagnosis.acutePulpitis"
+                            <minus-circle-outline v-if="!endoTreatment.acutePulpitis"
                                                   class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                                   @click="removeField(fields.acutePulpitis)"/>
                         </div>
 
                         <div class="input-group row mb-2" v-if="fields.chronicPulpitis.display">
                             <div class="input-group-text">
-                                <input type="checkbox" id="chronicPulpitis" v-model="diagnosis.chronicPulpitis">
+                                <input type="checkbox" id="chronicPulpitis" v-model="endoTreatment.chronicPulpitis">
                             </div>
 
                             <div class="input-group-text col">
@@ -426,7 +426,7 @@
                             <div class="input-group-text">
                                 <input type="radio" id="ulceratingChronicPulpitis" name="chronicPulpitisChecked"
                                        value="ulceratingChronicPulpitis"
-                                       :disabled="!diagnosis.chronicPulpitis">
+                                       :disabled="!endoTreatment.chronicPulpitis">
                             </div>
 
                             <div class="input-group-text">
@@ -436,28 +436,28 @@
                             <div class="input-group-text">
                                 <input type="radio" id="superplasticChronicPulpitis" name="chronicPulpitisChecked"
                                        value="superplasticChronicPulpitis"
-                                       :disabled="!diagnosis.chronicPulpitis">
+                                       :disabled="!endoTreatment.chronicPulpitis">
                             </div>
 
                             <div class="input-group-text">
                                 <label for="superplasticChronicPulpitis" class="my-auto">Υπερπλαστική</label>
                             </div>
 
-                            <minus-circle-outline v-if="!diagnosis.chronicPulpitis"
+                            <minus-circle-outline v-if="!endoTreatment.chronicPulpitis"
                                                   class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                                   @click="removeField(fields.chronicPulpitis)"/>
                         </div>
 
                         <div class="input-group row mb-2" v-if="fields.necrosis.display">
                             <div class="input-group-text">
-                                <input type="checkbox" id="necrosis" v-model="diagnosis.necrosis">
+                                <input type="checkbox" id="necrosis" v-model="endoTreatment.necrosis">
                             </div>
 
                             <div class="input-group-text col">
                                 <label for="necrosis" class="my-1">Νέκρωση</label>
                             </div>
 
-                            <minus-circle-outline v-if="!diagnosis.necrosis"
+                            <minus-circle-outline v-if="!endoTreatment.necrosis"
                                                   class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                                   @click="removeField(fields.necrosis)"/>
                         </div>
@@ -475,42 +475,42 @@
 
                         <div class="input-group row mb-2" v-if="fields.abscess.display">
                             <div class="input-group-text">
-                                <input type="checkbox" id="abscess" v-model="diagnosis.abscess">
+                                <input type="checkbox" id="abscess" v-model="endoTreatment.abscess">
                             </div>
 
                             <div class="input-group-text col">
                                 <label for="abscess" class="my-1">Απόστημα</label>
                             </div>
 
-                            <minus-circle-outline v-if="!diagnosis.abscess"
+                            <minus-circle-outline v-if="!endoTreatment.abscess"
                                                   class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                                   @click="removeField(fields.abscess)"/>
                         </div>
 
                         <div class="input-group row mb-2" v-if="fields.granulation.display">
                             <div class="input-group-text">
-                                <input type="checkbox" id="granulation" v-model="diagnosis.granulation">
+                                <input type="checkbox" id="granulation" v-model="endoTreatment.granulation">
                             </div>
 
                             <div class="input-group-text col">
                                 <label for="granulation" class="my-1">Κοκκίωμα</label>
                             </div>
 
-                            <minus-circle-outline v-if="!diagnosis.granulation"
+                            <minus-circle-outline v-if="!endoTreatment.granulation"
                                                   class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                                   @click="removeField(fields.granulation)"/>
                         </div>
 
                         <div class="input-group row mb-2" v-if="fields.cyst.display">
                             <div class="input-group-text">
-                                <input type="checkbox" id="cyst" v-model="diagnosis.cyst">
+                                <input type="checkbox" id="cyst" v-model="endoTreatment.cyst">
                             </div>
 
                             <div class="input-group-text col">
                                 <label for="cyst" class="my-1">Κύστη</label>
                             </div>
 
-                            <minus-circle-outline v-if="!diagnosis.cyst"
+                            <minus-circle-outline v-if="!endoTreatment.cyst"
                                                   class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                                   @click="removeField(fields.cyst)"/>
                         </div>
@@ -518,14 +518,14 @@
                         <div class="input-group row mb-2" v-if="fields.reactiveOsteoconduction.display">
                             <div class="input-group-text">
                                 <input type="checkbox" id="reactiveOsteoconduction"
-                                       v-model="diagnosis.reactiveOsteoconduction">
+                                       v-model="endoTreatment.reactiveOsteoconduction">
                             </div>
 
                             <div class="input-group-text col">
                                 <label for="reactiveOsteoconduction" class="my-1">Αντιδραστική οστεροπύκνωση</label>
                             </div>
 
-                            <minus-circle-outline v-if="!diagnosis.reactiveOsteoconduction"
+                            <minus-circle-outline v-if="!endoTreatment.reactiveOsteoconduction"
                                                   class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                                   @click="removeField(fields.reactiveOsteoconduction)"/>
                         </div>
@@ -537,7 +537,7 @@
                     <div class="input-group-prepend">
                         <div class="input-group-text">
                             <input type="checkbox" id="endoPeriodontalDamageCheck"
-                                   v-model="diagnosis.endoPeriodontalDamageCheck">
+                                   v-model="endoTreatment.endoPeriodontalDamageCheck">
                         </div>
 
                         <div class="input-group-text">
@@ -546,9 +546,9 @@
                     </div>
 
                     <input id="endoPeriodontalDamage" type="text" class="form-control"
-                           v-model="diagnosis.endoPeriodontalDamage" maxlength="20"
-                           :disabled="!diagnosis.endoPeriodontalDamageCheck">
-                    <minus-circle-outline v-if="!diagnosis.endoPeriodontalDamageCheck"
+                           v-model="endoTreatment.endoPeriodontalDamage" maxlength="20"
+                           :disabled="!endoTreatment.endoPeriodontalDamageCheck">
+                    <minus-circle-outline v-if="!endoTreatment.endoPeriodontalDamageCheck"
                                           class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                           @click="removeField(fields.endoPeriodontalDamageCheck)"/>
                     <form-error v-if="response.errors.endoPeriodontalDamage"
@@ -557,7 +557,7 @@
 
                 <div class="input-group row mb-2" v-if="fields.absorption.display">
                     <div class="input-group-text">
-                        <input type="checkbox" id="absorption" v-model="diagnosis.absorption">
+                        <input type="checkbox" id="absorption" v-model="endoTreatment.absorption">
                     </div>
 
                     <div class="input-group-text col">
@@ -567,7 +567,7 @@
                     <div class="input-group-text">
                         <input type="radio" id="innerAbsorption" name="absorptionChecked"
                                value="innerAbsorption"
-                               :disabled="!diagnosis.absorption">
+                               :disabled="!endoTreatment.absorption">
                     </div>
 
                     <div class="input-group-text">
@@ -577,14 +577,14 @@
                     <div class="input-group-text">
                         <input type="radio" id="outerAbsorption" name="absorptionChecked"
                                value="outerAbsorption"
-                               :disabled="!diagnosis.absorption">
+                               :disabled="!endoTreatment.absorption">
                     </div>
 
                     <div class="input-group-text">
                         <label for="outerAbsorption" class="my-auto">Εξωτερική</label>
                     </div>
 
-                    <minus-circle-outline v-if="!diagnosis.absorption"
+                    <minus-circle-outline v-if="!endoTreatment.absorption"
                                           class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                           @click="removeField(fields.absorption)"/>
                 </div>
@@ -592,7 +592,7 @@
                 <div class="input-group row mb-2" v-if="fields.fracture.display">
                     <div class="input-group-prepend">
                         <div class="input-group-text">
-                            <input type="checkbox" id="fractureCheck" v-model="diagnosis.fractureCheck">
+                            <input type="checkbox" id="fractureCheck" v-model="endoTreatment.fractureCheck">
                         </div>
 
                         <div class="input-group-text">
@@ -601,8 +601,8 @@
                     </div>
 
                     <input id="fracture" type="text" class="form-control"
-                           v-model="diagnosis.fracture" maxlength="20">
-                    <minus-circle-outline v-if="!diagnosis.fractureCheck"
+                           v-model="endoTreatment.fracture" maxlength="20">
+                    <minus-circle-outline v-if="!endoTreatment.fractureCheck"
                                           class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                           @click="removeField(fields.fracture)"/>
                     <form-error v-if="response.errors.fracture"
@@ -615,7 +615,7 @@
 
         <div class="row" v-if="fieldSelected">
             <input type="submit" class="btn btn-success col-lg-6 col-12 my-3 mx-auto"
-                   @click="saveData" value="Αποθήκευση">
+                   @click="updateEndoTreatmentCard" value="Αποθήκευση">
         </div>
 
         <div class="row fixed-bottom mb-2">
@@ -793,31 +793,28 @@ export default {
                 elation: false,
                 vitality: false,
                 periodontalTissues: null,
-                radiographicExamination: null
-            },
-
-            diagnosis: {
-                revelation: null,
-                revelationCheck: false,
-                hyperemia: false,
-                acutePulpitis: false,
-                partialAcutePulpitis: false,
-                universalAcutePulpitis: false,
-                chronicPulpitis: false,
-                ulceratingChronicPulpitis: false,
-                superplasticChronicPulpitis: false,
-                necrosis: false,
-                abscess: false,
-                granulation: false,
-                cyst: false,
-                reactiveOsteoconduction: false,
-                endoPeriodontalDamage: null,
-                endoPeriodontalDamageCheck: false,
-                absorption: false,
-                innerAbsorption: false,
-                outerAbsorption: false,
-                fracture: null,
-                fractureCheck: false
+                radiographicExamination: null,
+				revelation: null,
+				revelationCheck: false,
+				hyperemia: false,
+				acutePulpitis: false,
+				partialAcutePulpitis: false,
+				universalAcutePulpitis: false,
+				chronicPulpitis: false,
+				ulceratingChronicPulpitis: false,
+				superplasticChronicPulpitis: false,
+				necrosis: false,
+				abscess: false,
+				granulation: false,
+				cyst: false,
+				reactiveOsteoconduction: false,
+				endoPeriodontalDamage: null,
+				endoPeriodontalDamageCheck: false,
+				absorption: false,
+				innerAbsorption: false,
+				outerAbsorption: false,
+				fracture: null,
+				fractureCheck: false
             }
         }
     },
@@ -879,13 +876,11 @@ export default {
 
         toothNumber () {
             this.getEndoTreatmentCard()
-            this.getDiagnosis()
         }
     },
 
     created: function () {
         // this.getEndoTreatmentCard()
-        // this.getDiagnosis()
     },
 
     methods: {
@@ -898,11 +893,6 @@ export default {
                 this.endoTreatment.duration ||
                 this.endoTreatment.reduceToTheCold
             )
-        },
-
-        saveData () {
-            this.updateEndoTreatmentCard()
-            this.updateDiagnosis()
         },
 
         /**
@@ -965,65 +955,6 @@ export default {
         },
 
         /**
-         * Get Diagnosis info
-         */
-        getDiagnosis () {
-            this.loading = true
-
-            api.getDiagnosis(this.patientId, this.toothNumber)
-                .then(response => {
-                    this.loading = false
-
-                    if (response.status === 200) {
-                        this.diagnosis = response.data
-
-                        this.checkDiagnosisFields()
-                    }
-
-                    if (response.status === 204) {
-                        this.diagnosis = {}
-
-						this.setAllFieldsFalse()
-                    }
-                })
-                .catch(error => {
-                    this.loading = false
-
-                    this.response.message = error.response.data.message
-                    this.response.status = false
-
-                    utility.debug(error.response.data.debug)
-                })
-        },
-
-        /**
-         * Update the Diagnosis info
-         */
-        updateDiagnosis () {
-            this.loading = true
-
-            api.updateDiagnosis(this.diagnosis, this.patientId)
-                .then(response => {
-                    this.loading = false
-
-                    this.response.message = 'Τα δεδομένα αποθηκεύτηκαν'
-                    this.response.status = true
-                })
-                .catch(error => {
-                    this.loading = false
-
-                    this.response.message = error.response.data.message
-                    this.response.status = false
-
-                    if (error.response.data.errors) {
-                        this.response.errors = error.response.data.errors
-                    }
-
-                    utility.debug(error.response.data.debug)
-                })
-        },
-
-        /**
          * Check for fields. If not empty, display it
          */
         checkEndoTreatmentFields () {
@@ -1042,25 +973,6 @@ export default {
             })
 
             this.fields.pain.display = this.painFields()
-        },
-
-        /**
-         * Check for fields. If not empty, display it
-         */
-        checkDiagnosisFields () {
-            Object.keys(this.diagnosis).forEach(key => {
-                if (this.diagnosis[key] === null ||
-                    this.diagnosis[key] === 0 ||
-                    this.diagnosis[key].length < 1) {
-                    return
-                }
-
-                if (this.fields[key] === undefined) {
-                    return
-                }
-
-                this.fields[key].display = true
-            })
         },
 
 		// Reset fields
@@ -1105,7 +1017,28 @@ export default {
 				elation: false,
 				vitality: false,
 				periodontalTissues: null,
-				radiographicExamination: null
+				radiographicExamination: null,
+				revelation: null,
+				revelationCheck: false,
+				hyperemia: false,
+				acutePulpitis: false,
+				partialAcutePulpitis: false,
+				universalAcutePulpitis: false,
+				chronicPulpitis: false,
+				ulceratingChronicPulpitis: false,
+				superplasticChronicPulpitis: false,
+				necrosis: false,
+				abscess: false,
+				granulation: false,
+				cyst: false,
+				reactiveOsteoconduction: false,
+				endoPeriodontalDamage: null,
+				endoPeriodontalDamageCheck: false,
+				absorption: false,
+				innerAbsorption: false,
+				outerAbsorption: false,
+				fracture: null,
+				fractureCheck: false
 			}
 		}
     }

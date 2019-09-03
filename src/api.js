@@ -445,29 +445,6 @@ let api = {
         return axios.patch(ROOT_API + '/endoTreatmentCard/' + patientId, args)
     },
 
-    // ************** Diagnosis api calls **************
-
-    /**
-     * Get Diagnosis info
-     *
-     * @param patientId
-     * @param toothNumber
-     * @returns {Promise<AxiosResponse<T>>}
-     */
-    async getDiagnosis (patientId, toothNumber) {
-        return axios.get(ROOT_API + '/diagnosis/' + patientId + '/' + toothNumber)
-    },
-
-    /**
-     * Update Diagnosis
-     *
-     * @param args
-     * @param patientId
-     * @returns {Promise<Promise<AxiosResponse<T>>>}
-     */
-    async updateDiagnosis (args, patientId) {
-        return axios.patch(ROOT_API + '/diagnosis/' + patientId, args)
-    },
 
     // ************** Endo Treatment api calls **************
 
