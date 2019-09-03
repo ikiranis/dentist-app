@@ -6,8 +6,6 @@
             Επιλογή πεδίων
         </div>
 
-        {{chozenTooth}}
-
         <form @submit.prevent class="row col-12 mt-3 no-gutters" v-if="fieldSelected">
 
             <div class="col-lg-6 col-12 px-1">
@@ -821,7 +819,6 @@ export default {
                 fracture: null,
                 fractureCheck: false
             }
-
         }
     },
 
@@ -867,6 +864,10 @@ export default {
 
         patientId: function () {
             return this.$route.params.id
+        },
+
+        toothNumber: function () {
+            return this.chozenTooth.number
         }
     },
 
@@ -874,12 +875,17 @@ export default {
         // Send back to parent component
         loading () {
             this.$emit('loading', this.loading)
+        },
+
+        toothNumber () {
+            this.getEndoTreatmentCard()
+            this.getDiagnosis()
         }
     },
 
     created: function () {
-        this.getEndoTreatmentCard()
-        this.getDiagnosis()
+        // this.getEndoTreatmentCard()
+        // this.getDiagnosis()
     },
 
     methods: {
@@ -905,14 +911,23 @@ export default {
         getEndoTreatmentCard () {
             this.loading = true
 
-            api.getEndoTreatmentCard(this.patientId)
+            api.getEndoTreatmentCard(this.patientId, this.toothNumber)
                 .then(response => {
                     this.loading = false
+
+                    console.log(response)
 
                     if (response.status === 200) {
                         this.endoTreatment = response.data
 
                         this.checkEndoTreatmentFields()
+                    }
+
+                    if (response.status === 204) {
+                        console.log('204')
+                        this.endoTreatment = {}
+
+                        this.setAllFieldsFalse()
                     }
                 })
                 .catch(error => {
@@ -958,7 +973,7 @@ export default {
         getDiagnosis () {
             this.loading = true
 
-            api.getDiagnosis(this.patientId)
+            api.getDiagnosis(this.patientId, this.toothNumber)
                 .then(response => {
                     this.loading = false
 
@@ -966,6 +981,12 @@ export default {
                         this.diagnosis = response.data
 
                         this.checkDiagnosisFields()
+                    }
+
+                    if (response.status === 204) {
+                        this.diagnosis = {}
+
+                        // this.setAllFieldsFalse()
                     }
                 })
                 .catch(error => {
@@ -1043,6 +1064,12 @@ export default {
 
                 this.fields[key].display = true
             })
+        },
+
+        setAllFieldsFalse () {
+            Object.keys(this.fields).forEach(key =>
+                this.fields[key].display = false
+            )
         },
 
         /**
