@@ -915,8 +915,6 @@ export default {
                 .then(response => {
                     this.loading = false
 
-                    console.log(response)
-
                     if (response.status === 200) {
                         this.endoTreatment = response.data
 
@@ -924,10 +922,9 @@ export default {
                     }
 
                     if (response.status === 204) {
-                        console.log('204')
-                        this.endoTreatment = {}
+                        this.resetEndotreatment()
 
-                        this.setAllFieldsFalse()
+						this.setAllFieldsFalse()
                     }
                 })
                 .catch(error => {
@@ -986,7 +983,7 @@ export default {
                     if (response.status === 204) {
                         this.diagnosis = {}
 
-                        // this.setAllFieldsFalse()
+						this.setAllFieldsFalse()
                     }
                 })
                 .catch(error => {
@@ -1066,6 +1063,7 @@ export default {
             })
         },
 
+		// Reset fields
         setAllFieldsFalse () {
             Object.keys(this.fields).forEach(key =>
                 this.fields[key].display = false
@@ -1079,7 +1077,37 @@ export default {
          */
         removeField (field) {
             field.display = false
-        }
+        },
+
+		// Reset values of endoTreatment
+		resetEndotreatment () {
+			this.endoTreatment = {
+				patient_id: this.patientId,
+				tooth_number: this.toothNumber,
+				automatic: false,
+				challenged: false,
+				reason: null,
+				duration: null,
+				reduceToTheCold: false,
+				historyEdema: false,
+				feelingOfToothElongation: false,
+				fever: false,
+				lymphadenitis: false,
+				others: null,
+				previousAction: null,
+				treatEdema: false,
+				fistula: false,
+				tintOfAMill: false,
+				revelationOfPulp: null,
+				revelationOfPulpCheck: false,
+				sensitivityToPalpationAtTheTip: false,
+				painInTheAttack: false,
+				elation: false,
+				vitality: false,
+				periodontalTissues: null,
+				radiographicExamination: null
+			}
+		}
     }
 }
 </script>
