@@ -881,11 +881,10 @@ export default {
         }
     },
 
-    created: function () {
-        // this.getEndoTreatmentCard()
-    },
-
     methods: {
+    	/**
+		 * Create or update data
+		 */
     	saveData () {
     		if (this.endoTreatmentCardEmpty) {
     			this.createEndoTreatmentCard()
