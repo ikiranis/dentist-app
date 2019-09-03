@@ -434,16 +434,36 @@ let api = {
         return axios.get(ROOT_API + '/endoTreatmentCard/' + patientId + '/' + toothNumber)
     },
 
+	/**
+	 * Create am endo treatment card
+	 *
+	 * @param args
+	 * @returns {Promise<AxiosResponse<T>>}
+	 */
+	async createEndoTreatmentCard (args) {
+		return axios.post(ROOT_API + '/endoTreatmentCard', args)
+	},
+
     /**
      * Update Endo Treatment Card
      *
      * @param args
-     * @param patientId
+     * @param id
      * @returns {Promise<Promise<AxiosResponse<T>>>}
      */
-    async updateEndoTreatmentCard (args, patientId) {
-        return axios.patch(ROOT_API + '/endoTreatmentCard/' + patientId, args)
+    async updateEndoTreatmentCard (args, id) {
+        return axios.patch(ROOT_API + '/endoTreatmentCard/' + id, args)
     },
+
+	/**
+	 * Delete an endo treatment card
+	 *
+	 * @param id
+	 * @returns {Promise<Promise<AxiosResponse<T>>>}
+	 */
+	async deleteEndoTreatmentCard (id) {
+		return axios.delete(ROOT_API + '/endoTreatmentCard/' + id)
+	},
 
 
     // ************** Endo Treatment api calls **************
