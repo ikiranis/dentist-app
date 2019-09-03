@@ -426,10 +426,12 @@ let api = {
     /**
      * Get Endo Treatment Card info
      *
+     * @param patientId
+     * @param toothNumber
      * @returns {Promise<AxiosResponse<T>>}
      */
-    async getEndoTreatmentCard (patientId) {
-        return axios.get(ROOT_API + '/endoTreatmentCard/' + patientId)
+    async getEndoTreatmentCard (patientId, toothNumber) {
+        return axios.get(ROOT_API + '/endoTreatmentCard/' + patientId + '/' + toothNumber)
     },
 
     /**
@@ -448,10 +450,12 @@ let api = {
     /**
      * Get Diagnosis info
      *
+     * @param patientId
+     * @param toothNumber
      * @returns {Promise<AxiosResponse<T>>}
      */
-    async getDiagnosis (patientId) {
-        return axios.get(ROOT_API + '/diagnosis/' + patientId)
+    async getDiagnosis (patientId, toothNumber) {
+        return axios.get(ROOT_API + '/diagnosis/' + patientId + '/' + toothNumber)
     },
 
     /**
