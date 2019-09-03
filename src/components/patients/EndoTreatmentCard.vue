@@ -179,22 +179,6 @@
                     <h3>Κλινική εξέταση</h3>
                 </div>
 
-                <div class="input-group row mb-2" v-if="fields.toothChoise.display">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">
-                            <label for="toothChoise" class="my-auto">Επιλογή δοντιού</label>
-                        </div>
-                    </div>
-
-                    <input id="toothChoise" type="text" class="form-control"
-                           v-model="endoTreatment.toothChoise" maxlength="20">
-                    <minus-circle-outline v-if="!endoTreatment.toothChoise"
-										  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
-                                          @click="removeField(fields.toothChoise)"/>
-                    <form-error v-if="response.errors.toothChoise"
-                                :error="response.errors.toothChoise[0]"/>
-                </div>
-
                 <div class="input-group row mb-2" v-if="fields.treatEdema.display">
                     <div class="input-group-text">
                         <input type="checkbox" id="treatEdema" v-model="endoTreatment.treatEdema">
@@ -733,10 +717,6 @@ export default {
                     label: 'Ακτινογραφική εξέταση',
                     display: false
                 },
-                toothChoise: {
-                    label: 'Επιλογή δοντιού',
-                    display: false
-                },
                 revelationCheck: {
                     label: 'Αποκάλυψη',
                     display: false
@@ -809,8 +789,7 @@ export default {
                 elation: false,
                 vitality: false,
                 periodontalTissues: null,
-                radiographicExamination: null,
-                toothChoise: 0
+                radiographicExamination: null
             },
 
             diagnosis: {
