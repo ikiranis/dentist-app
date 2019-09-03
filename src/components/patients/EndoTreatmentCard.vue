@@ -6,6 +6,8 @@
             Επιλογή πεδίων
         </div>
 
+        {{chozenTooth}}
+
         <form @submit.prevent class="row col-12 mt-3 no-gutters" v-if="fieldSelected">
 
             <div class="col-lg-6 col-12 px-1">
@@ -637,6 +639,10 @@ import DisplayError from '@/components/basic/DisplayError'
 
 export default {
     components: { FormError, FieldsList, DisplayError },
+
+    props: {
+        chozenTooth: Object
+    },
 
     data () {
         return {

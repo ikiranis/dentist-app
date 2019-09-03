@@ -2,6 +2,8 @@
 
 	<div>
 
+		{{chozenTooth}}
+
 		<div class="input-group row mb-2 mx-auto col-lg-7 col-12">
 			<div class="col-12">
 				<div class="input-group-text row">
@@ -180,6 +182,10 @@ import DisplayError from '@/components/basic/DisplayError'
 
 export default {
     components: { FormError, DisplayError },
+
+	props: {
+		chozenTooth: Object
+	},
 
     data () {
         return {

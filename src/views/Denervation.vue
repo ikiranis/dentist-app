@@ -24,7 +24,7 @@
                             v-model="chozenTooth">
                         <option v-for="tooth in teeth"
                                 :key="tooth.id"
-                                :value="tooth.id">
+                                :value="tooth">
                             {{ tooth.number }}
                         </option>
                     </select>
@@ -35,11 +35,19 @@
 
             <div class="container">
 
-                <endo-treatment-card @loading="getLoading" v-if="tabs.endoTreatmentCard.display"/>
+                <endo-treatment-card
+                        @loading="getLoading"
+                        :chozenTooth="chozenTooth"
+                        v-if="tabs.endoTreatmentCard.display" />
 
-                <endo-treatment-notes @loading="getLoading" v-if="tabs.endoTreatmentNotes.display"/>
+                <endo-treatment-notes
+                        @loading="getLoading"
+                        v-if="tabs.endoTreatmentNotes.display"/>
 
-                <endo-treatment @loading="getLoading" v-if="tabs.endoTreatment.display"/>
+                <endo-treatment
+                        @loading="getLoading"
+                        :chozenTooth="chozenTooth"
+                        v-if="tabs.endoTreatment.display"/>
 
             </div>
 
@@ -132,7 +140,7 @@
                     }
                 },
 
-                chozenTooth: 0
+                chozenTooth: {}
 
             }
         },
