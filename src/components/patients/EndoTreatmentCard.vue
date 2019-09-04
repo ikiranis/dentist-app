@@ -2,6 +2,8 @@
     <div>
         <FieldsList :fields="fields" v-if="!loading" />
 
+		<teeth-list :teeth="teeth" />
+
         <div class="alert alert-success text-center w-50 mt-5 mx-auto" v-if="!fieldSelected && !loading">
             Επιλογή πεδίων
         </div>
@@ -631,12 +633,13 @@
 <script>
 import FormError from '@/components/basic/FormError'
 import FieldsList from '@/components/patients/FieldsList'
+import TeethList from '@/components/patients/TeethList'
 import utility from '../../library/utility'
 import api from '../../api'
 import DisplayError from '@/components/basic/DisplayError'
 
 export default {
-    components: { FormError, FieldsList, DisplayError },
+    components: { FormError, FieldsList, DisplayError, TeethList },
 
     props: {
         chozenTooth: Object
@@ -773,6 +776,8 @@ export default {
                 }
             },
 
+			endoTreatmentCards: [],
+
             endoTreatment: {
                 automatic: false,
                 challenged: false,
@@ -867,7 +872,17 @@ export default {
 
         toothNumber: function () {
             return this.chozenTooth.number
-        }
+        },
+
+		teeth: function () {
+			return this.endoTreatmentCards.map(card => {
+				return card.id{
+					id: card.id,
+					number: card.tooth_number,
+					display: false
+				}
+			})
+		}
     },
 
     watch: {
@@ -880,6 +895,10 @@ export default {
             this.getEndoTreatmentCard()
         }
     },
+
+	created: function () {
+		this.getEndoTreatmentCards()
+	},
 
     methods: {
     	/**
@@ -905,6 +924,34 @@ export default {
                 this.endoTreatment.reduceToTheCold
             )
         },
+
+		/**
+		 * Get all endo treatment cards for patientId
+		 */
+		getEndoTreatmentCards () {
+			this.loading = true
+
+			api.getEndoTreatmentCards(this.patientId)
+				.then(response => {
+					this.loading = false
+
+					if (response.status === 200) {
+						this.endoTreatmentCards = response.data
+
+						return
+					}
+
+					this.notes = []
+				})
+				.catch(error => {
+					this.loading = false
+
+					this.response.message = error.response.data.message
+					this.response.status = false
+
+					utility.debug(error.response.data.debug)
+				})
+		},
 
         /**
          * Get Endo Treatment Card info

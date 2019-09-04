@@ -66,7 +66,7 @@
     import utility from "../library/utility";
 
     export default {
-        components: {MenuBar, EndoTreatmentCard, EndoTreatment, EndoTreatmentNotes, Loading, Tabs},
+        components: { MenuBar, EndoTreatmentCard, EndoTreatment, EndoTreatmentNotes, Loading, Tabs },
 
         data() {
             return {

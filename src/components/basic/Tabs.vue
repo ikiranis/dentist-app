@@ -25,13 +25,7 @@ export default {
 			 */
         chooseTab (tab) {
             Object.keys(this.tabs).forEach(key => {
-                if (this.tabs[key] === tab) {
-                    this.tabs[key].display = true
-
-                    return
-                }
-
-                this.tabs[key].display = false
+				this.tabs[key].display = this.tabs[key] === tab
             })
         }
     }
