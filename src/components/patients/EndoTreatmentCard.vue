@@ -1,8 +1,10 @@
 <template>
     <div>
-        <FieldsList :fields="fields" v-if="!loading" />
+		<div class="row">
+			<teeth-list :teeth="teeth" class="mb-2 mx-auto"/>
+		</div>
 
-		<teeth-list :teeth="teeth" />
+        <FieldsList :fields="fields" v-if="!loading" />
 
         <div class="alert alert-success text-center w-50 mt-5 mx-auto" v-if="!fieldSelected && !loading">
             Επιλογή πεδίων
@@ -822,7 +824,9 @@ export default {
 				outerAbsorption: false,
 				fracture: null,
 				fractureCheck: false
-            }
+            },
+
+			teeth: {}
         }
     },
 
@@ -872,17 +876,7 @@ export default {
 
         toothNumber: function () {
             return this.chozenTooth.number
-        },
-
-		teeth: function () {
-			return this.endoTreatmentCards.map(card => {
-				return card.id{
-					id: card.id,
-					number: card.tooth_number,
-					display: false
-				}
-			})
-		}
+        }
     },
 
     watch: {
@@ -893,7 +887,20 @@ export default {
 
         toothNumber () {
             this.getEndoTreatmentCard()
-        }
+        },
+
+		endoTreatmentCards () {
+        	this.teeth = {}
+
+			this.endoTreatmentCards.forEach(card => {
+				let tooth = {
+					number: card.tooth_number,
+					display: false
+				}
+
+				this.$set(this.teeth, card.id, tooth)
+			})
+		}
     },
 
 	created: function () {
