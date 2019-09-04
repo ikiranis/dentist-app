@@ -643,10 +643,6 @@ import DisplayError from '@/components/basic/DisplayError'
 export default {
     components: { FormError, FieldsList, DisplayError, TeethList },
 
-    props: {
-        chozenTooth: Object
-    },
-
     data () {
         return {
             response: {
@@ -874,10 +870,6 @@ export default {
             return this.$route.params.id
         },
 
-        toothNumber: function () {
-            return this.chozenTooth.number
-        },
-
         // Find the tooth with display (true)
         selectedTooth: function () {
             return Object.values(this.teeth).find((tooth) => {
@@ -890,10 +882,6 @@ export default {
         // Send back to parent component
         loading () {
             this.$emit('loading', this.loading)
-        },
-
-        toothNumber () {
-            this.getEndoTreatmentCard()
         },
 
 		endoTreatmentCards () {

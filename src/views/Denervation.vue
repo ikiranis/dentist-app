@@ -12,24 +12,24 @@
                 <Loading class="mx-auto" :loading="loading"/>
             </div>
 
-            <div class="container">
-                <div class="input-group row mb-2 mx-auto col-lg-4 col-12">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text ">
-                            <label for="chozenTooth" class="my-auto">Επιλογή δοντιού</label>
-                        </div>
-                    </div>
+<!--            <div class="container">-->
+<!--                <div class="input-group row mb-2 mx-auto col-lg-4 col-12">-->
+<!--                    <div class="input-group-prepend">-->
+<!--                        <div class="input-group-text ">-->
+<!--                            <label for="chozenTooth" class="my-auto">Επιλογή δοντιού</label>-->
+<!--                        </div>-->
+<!--                    </div>-->
 
-                    <select class="form-control" id="chozenTooth"
-                            v-model="chozenTooth">
-                        <option v-for="tooth in teeth"
-                                :key="tooth.id"
-                                :value="tooth">
-                            {{ tooth.number }}
-                        </option>
-                    </select>
-                </div>
-            </div>
+<!--                    <select class="form-control" id="chozenTooth"-->
+<!--                            v-model="chozenTooth">-->
+<!--                        <option v-for="tooth in teeth"-->
+<!--                                :key="tooth.id"-->
+<!--                                :value="tooth">-->
+<!--                            {{ tooth.number }}-->
+<!--                        </option>-->
+<!--                    </select>-->
+<!--                </div>-->
+<!--            </div>-->
 
             <tabs :tabs="tabs" class="mb-3"/>
 
@@ -37,7 +37,6 @@
 
                 <endo-treatment-card
                         @loading="getLoading"
-                        :chozenTooth="chozenTooth"
                         v-if="tabs.endoTreatmentCard.display" />
 
                 <endo-treatment-notes
@@ -77,8 +76,6 @@
                 },
 
                 loading: false,
-
-                teeth: [],
 
                 menuItems: [
                     {
@@ -138,10 +135,7 @@
                         display: false,
                         label: 'Σημειώσεις'
                     }
-                },
-
-                chozenTooth: {}
-
+                }
             }
         },
 
@@ -151,9 +145,9 @@
             }
         },
 
-        created: function () {
-            this.getTeeth()
-        },
+        // created: function () {
+        //     this.getTeeth()
+        // },
 
         methods: {
             /**
