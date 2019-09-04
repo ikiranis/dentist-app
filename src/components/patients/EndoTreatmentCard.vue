@@ -876,6 +876,13 @@ export default {
 
         toothNumber: function () {
             return this.chozenTooth.number
+        },
+
+        // Find the tooth with display (true)
+        selectedTooth: function () {
+            return Object.values(this.teeth).find((tooth) => {
+                return tooth.display
+            })
         }
     },
 
@@ -892,15 +899,22 @@ export default {
 		endoTreatmentCards () {
         	this.teeth = {}
 
-			this.endoTreatmentCards.forEach(card => {
+			this.endoTreatmentCards.forEach((card, index) => {
 				let tooth = {
+				    endoTreatmentId: index,
 					number: card.tooth_number,
 					display: false
 				}
 
 				this.$set(this.teeth, card.id, tooth)
 			})
-		}
+		},
+
+        selectedTooth () {
+            this.endoTreatment = this.endoTreatmentCards[this.selectedTooth.endoTreatmentId]
+            this.setAllFieldsFalse()
+            this.checkEndoTreatmentFields()
+        }
     },
 
 	created: function () {
