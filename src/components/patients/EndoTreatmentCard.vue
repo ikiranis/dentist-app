@@ -653,8 +653,6 @@ export default {
 
             loading: false,
 
-			endoTreatmentCardEmpty: true,
-
             fields: {
                 pain: {
                     label: 'Πόνος',
@@ -889,7 +887,7 @@ export default {
 
 			this.endoTreatmentCards.forEach((card, index) => {
 				let tooth = {
-				    endoTreatmentId: index,
+				    endoTreatmentIndex: index,
 					number: card.tooth_number,
 					display: false
 				}
@@ -899,7 +897,7 @@ export default {
 		},
 
         selectedTooth () {
-            this.endoTreatment = this.endoTreatmentCards[this.selectedTooth.endoTreatmentId]
+            this.endoTreatment = this.endoTreatmentCards[this.selectedTooth.endoTreatmentIndex]
             this.setAllFieldsFalse()
             this.checkEndoTreatmentFields()
         }
@@ -914,11 +912,11 @@ export default {
 		 * Create or update data
 		 */
     	saveData () {
-    		if (this.endoTreatmentCardEmpty) {
-    			this.createEndoTreatmentCard()
-
-				return
-			}
+    		// if (this.endoTreatmentCardEmpty) {
+    		// 	this.createEndoTreatmentCard()
+            //
+			// 	return
+			// }
 
     		this.updateEndoTreatmentCard()
 		},
@@ -950,7 +948,7 @@ export default {
 						return
 					}
 
-					this.notes = []
+					this.endoTreatmentCards = []
 				})
 				.catch(error => {
 					this.loading = false
@@ -965,36 +963,28 @@ export default {
         /**
          * Get Endo Treatment Card info
          */
-        getEndoTreatmentCard () {
-            this.loading = true
-
-            api.getEndoTreatmentCard(this.patientId, this.toothNumber)
-                .then(response => {
-                    this.loading = false
-
-                    if (response.status === 200) {
-                        this.endoTreatment = response.data
-						this.endoTreatmentCardEmpty = false
-
-                        this.checkEndoTreatmentFields()
-                    }
-
-                    if (response.status === 204) {
-                        this.resetEndotreatment()
-						this.endoTreatmentCardEmpty = true
-
-						this.setAllFieldsFalse()
-                    }
-                })
-                .catch(error => {
-                    this.loading = false
-
-                    this.response.message = error.response.data.message
-                    this.response.status = false
-
-                    utility.debug(error.response.data.debug)
-                })
-        },
+        // getEndoTreatmentCard () {
+        //     this.loading = true
+        //
+        //     api.getEndoTreatmentCard(this.patientId, this.toothNumber)
+        //         .then(response => {
+        //             this.loading = false
+        //
+        //             if (response.status === 200) {
+        //                 this.endoTreatment = response.data
+        //
+        //                 this.checkEndoTreatmentFields()
+        //             }
+        //         })
+        //         .catch(error => {
+        //             this.loading = false
+        //
+        //             this.response.message = error.response.data.message
+        //             this.response.status = false
+        //
+        //             utility.debug(error.response.data.debug)
+        //         })
+        // },
 
 		/**
 		 * Create an endo treatment card
@@ -1028,8 +1018,8 @@ export default {
          */
         updateEndoTreatmentCard () {
             this.loading = true
-
-            api.updateEndoTreatmentCard(this.endoTreatment, this.patientId)
+console.log(this.endoTreatment.id)
+            api.updateEndoTreatmentCard(this.endoTreatment, this.endoTreatment.id)
                 .then(response => {
                     this.loading = false
 
@@ -1053,7 +1043,7 @@ export default {
 		/**
 		 * Delete an endo treatment card
 		 */
-		deleteFile (id) {
+		deleteEndoTreatmentCard (id) {
 			let choise = confirm('Θέλεις σίγουρα να σβήσεις τα δεδομένα;')
 
 			if (choise) {
@@ -1112,58 +1102,7 @@ export default {
          */
         removeField (field) {
             field.display = false
-        },
-
-		// Reset values of endoTreatment
-		resetEndotreatment () {
-			this.endoTreatment = {
-				patient_id: this.patientId,
-				tooth_number: this.toothNumber,
-				automatic: false,
-				challenged: false,
-				reason: null,
-				duration: null,
-				reduceToTheCold: false,
-				historyEdema: false,
-				feelingOfToothElongation: false,
-				fever: false,
-				lymphadenitis: false,
-				others: null,
-				previousAction: null,
-				treatEdema: false,
-				fistula: false,
-				tintOfAMill: false,
-				revelationOfPulp: null,
-				revelationOfPulpCheck: false,
-				sensitivityToPalpationAtTheTip: false,
-				painInTheAttack: false,
-				elation: false,
-				vitality: false,
-				periodontalTissues: null,
-				radiographicExamination: null,
-				revelation: null,
-				revelationCheck: false,
-				hyperemia: false,
-				acutePulpitis: false,
-				partialAcutePulpitis: false,
-				universalAcutePulpitis: false,
-				chronicPulpitis: false,
-				ulceratingChronicPulpitis: false,
-				superplasticChronicPulpitis: false,
-				necrosis: false,
-				abscess: false,
-				granulation: false,
-				cyst: false,
-				reactiveOsteoconduction: false,
-				endoPeriodontalDamage: null,
-				endoPeriodontalDamageCheck: false,
-				absorption: false,
-				innerAbsorption: false,
-				outerAbsorption: false,
-				fracture: null,
-				fractureCheck: false
-			}
-		}
+        }
     }
 }
 </script>
