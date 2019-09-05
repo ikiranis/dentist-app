@@ -1,10 +1,13 @@
 <template>
 	<div>
+		<span>Επιλογή δοντιού: </span>
 		<span v-for="(value, index) in teeth" :key="index">
             <span class="tooth badge mx-1"
 				  :class="value.display ? 'badge-primary' : 'badge-secondary'"
 				  @click="chooseTooth(value)">{{ value.number }}</span>
         </span>
+		<input type="button" class="btn btn-sm btn-success"
+			   @click="newEndoTreatmentCard" value="Εισαγωγή δοντιού">
 	</div>
 </template>
 
@@ -14,7 +17,11 @@
 			teeth: {
 				required: true,
 				type: Object
-			}
+			},
+			newEndoTreatmentCard: {
+				required: true,
+				type: Function
+			},
 		},
 
 		methods: {

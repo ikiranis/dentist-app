@@ -1,7 +1,9 @@
 <template>
     <div>
 		<div class="row">
-			<teeth-list :teeth="teeth" class="mb-2 mx-auto"/>
+			<teeth-list class="mb-2 mx-auto"
+                        :teeth="teeth"
+                        :newEndoTreatmentCard="newEndoTreatmentCard" />
 		</div>
 
         <FieldsList :fields="fields" v-if="!loading" />
@@ -618,7 +620,7 @@
         </form>
 
         <div class="row" v-if="fieldSelected">
-            <input type="submit" class="btn btn-success col-lg-6 col-12 my-3 mx-auto"
+            <input type="button" class="btn btn-success col-lg-6 col-12 my-3 mx-auto"
                    @click="saveData" value="Αποθήκευση">
         </div>
 
@@ -896,9 +898,9 @@ export default {
 			})
 		},
 
+        // When selected tooth change, load the data
         selectedTooth () {
             this.endoTreatment = this.endoTreatmentCards[this.selectedTooth.endoTreatmentIndex]
-            this.setAllFieldsFalse()
             this.checkEndoTreatmentFields()
         }
     },
@@ -1018,7 +1020,7 @@ export default {
          */
         updateEndoTreatmentCard () {
             this.loading = true
-console.log(this.endoTreatment.id)
+
             api.updateEndoTreatmentCard(this.endoTreatment, this.endoTreatment.id)
                 .then(response => {
                     this.loading = false
@@ -1071,6 +1073,8 @@ console.log(this.endoTreatment.id)
          * Check for fields. If not empty, display it
          */
         checkEndoTreatmentFields () {
+            this.setAllFieldsFalse()
+
             Object.keys(this.endoTreatment).forEach(key => {
                 if (this.endoTreatment[key] === null ||
                     this.endoTreatment[key] === 0 ||
@@ -1102,6 +1106,61 @@ console.log(this.endoTreatment.id)
          */
         removeField (field) {
             field.display = false
+        },
+
+        newEndoTreatmentCard () {
+            this.resetEndotreatment()
+        },
+
+        // Reset values of endoTreatment
+        resetEndotreatment () {
+            this.endoTreatment = {
+                patient_id: this.patientId,
+                tooth_number: 0,
+                automatic: false,
+                challenged: false,
+                reason: null,
+                duration: null,
+                reduceToTheCold: false,
+                historyEdema: false,
+                feelingOfToothElongation: false,
+                fever: false,
+                lymphadenitis: false,
+                others: null,
+                previousAction: null,
+                treatEdema: false,
+                fistula: false,
+                tintOfAMill: false,
+                revelationOfPulp: null,
+                revelationOfPulpCheck: false,
+                sensitivityToPalpationAtTheTip: false,
+                painInTheAttack: false,
+                elation: false,
+                vitality: false,
+                periodontalTissues: null,
+                radiographicExamination: null,
+                revelation: null,
+                revelationCheck: false,
+                hyperemia: false,
+                acutePulpitis: false,
+                partialAcutePulpitis: false,
+                universalAcutePulpitis: false,
+                chronicPulpitis: false,
+                ulceratingChronicPulpitis: false,
+                superplasticChronicPulpitis: false,
+                necrosis: false,
+                abscess: false,
+                granulation: false,
+                cyst: false,
+                reactiveOsteoconduction: false,
+                endoPeriodontalDamage: null,
+                endoPeriodontalDamageCheck: false,
+                absorption: false,
+                innerAbsorption: false,
+                outerAbsorption: false,
+                fracture: null,
+                fractureCheck: false
+            }
         }
     }
 }
