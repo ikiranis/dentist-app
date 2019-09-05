@@ -1130,13 +1130,13 @@ export default {
         },
 
         newEndoTreatmentCard () {
-            this.resetEndotreatment()
+            this.resetEndoTreatment()
+            this.setAllFieldsFalse()
         },
 
         // Reset values of endoTreatment
-        resetEndotreatment () {
+        resetEndoTreatment () {
             this.endoTreatment = {
-                patient_id: this.patientId,
                 tooth_number: 0,
                 automatic: false,
                 challenged: false,
