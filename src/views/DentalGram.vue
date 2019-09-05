@@ -17,7 +17,7 @@
                 </div>
 
                 <div class="row">
-                    <input type="button" class="btn btn-success col-lg-6 col-12 my-3 mx-auto"
+                    <input type="button" class="btn btn-success col-lg-5 col-12 my-3 mx-auto"
 						   @click="saveNote" value="Αποθήκευση">
 
 					<input v-if="note.id !== 0" type="button" class="btn btn-danger col-lg-5 col-12 my-3 mx-auto"

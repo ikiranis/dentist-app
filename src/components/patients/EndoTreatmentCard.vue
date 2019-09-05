@@ -639,9 +639,17 @@
 
         </form>
 
-        <div class="row" v-if="fieldSelected">
-            <input type="button" class="btn btn-success col-lg-6 col-12 my-3 mx-auto"
-                   @click="saveData" value="Αποθήκευση">
+        <div class="row col-lg-6 col-12 mx-auto" v-if="fieldSelected">
+            <input type="button"
+                   class="btn btn-success col-lg-5 col-12 my-3 mx-auto"
+                   @click="saveData"
+                   value="Αποθήκευση">
+
+            <input v-if="endoTreatment.id !== 0"
+                   type="button"
+                   class="btn btn-danger col-lg-5 col-12 my-3 mx-auto"
+                   @click="deleteEndoTreatmentCard"
+                   value="Διαγραφή">
         </div>
 
         <div class="row fixed-bottom mb-2">
@@ -797,6 +805,7 @@ export default {
 			endoTreatmentCards: [],
 
             endoTreatment: {
+                id: 0,
                 tooth_number: 18,
                 automatic: false,
                 challenged: false,
@@ -845,9 +854,7 @@ export default {
 
 			haveTeeth: {},
 
-            teeth: [],
-
-            insertNewCard: true
+            teeth: []
         }
     },
 
@@ -926,7 +933,6 @@ export default {
         // When selected tooth change, load the data
         selectedTooth () {
             if (this.selectedTooth) {
-                this.insertNewCard = false
                 this.endoTreatment = this.endoTreatmentCards[this.selectedTooth.endoTreatmentIndex]
                 this.checkEndoTreatmentFields()
             }
@@ -943,12 +949,8 @@ export default {
 		 * Create or update data
 		 */
     	saveData () {
-
-    	    console.log(this.insertNewCard)
-    		if (this.insertNewCard) {
+    		if (this.endoTreatment.id === 0) {
     			this.createEndoTreatmentCard()
-
-                console.log('insert')
 
 				return
 			}
@@ -1058,18 +1060,21 @@ export default {
 		/**
 		 * Delete an endo treatment card
 		 */
-		deleteEndoTreatmentCard (id) {
+		deleteEndoTreatmentCard () {
 			let choise = confirm('Θέλεις σίγουρα να σβήσεις τα δεδομένα;')
 
 			if (choise) {
 				this.loading = true
 
-				api.deleteEndoTreatmentCard(ιδ)
+				api.deleteEndoTreatmentCard(this.endoTreatment.id)
 					.then(response => {
 						this.loading = false
 
 						this.response.message = 'Τα δεδομένα διαγράφηκαν'
 						this.response.status = true
+
+                        this.getEndoTreatmentCards()
+                        this.newEndoTreatmentCard()
 					})
 					.catch(error => {
 						this.loading = false
@@ -1155,12 +1160,12 @@ export default {
             this.resetEndoTreatment()
             this.setAllFieldsFalse()
             this.setAllTeethFalse()
-            this.insertNewCard = true
         },
 
         // Reset values of endoTreatment
         resetEndoTreatment () {
             this.endoTreatment = {
+                id: 0,
                 tooth_number: 18,
                 automatic: false,
                 challenged: false,
