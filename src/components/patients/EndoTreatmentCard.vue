@@ -797,7 +797,7 @@ export default {
 			endoTreatmentCards: [],
 
             endoTreatment: {
-                tooth_number: 0,
+                tooth_number: 18,
                 automatic: false,
                 challenged: false,
                 reason: null,
@@ -1161,7 +1161,7 @@ export default {
         // Reset values of endoTreatment
         resetEndoTreatment () {
             this.endoTreatment = {
-                tooth_number: 0,
+                tooth_number: 18,
                 automatic: false,
                 challenged: false,
                 reason: null,
