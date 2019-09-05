@@ -12,25 +12,6 @@
                 <Loading class="mx-auto" :loading="loading"/>
             </div>
 
-<!--            <div class="container">-->
-<!--                <div class="input-group row mb-2 mx-auto col-lg-4 col-12">-->
-<!--                    <div class="input-group-prepend">-->
-<!--                        <div class="input-group-text ">-->
-<!--                            <label for="chozenTooth" class="my-auto">Επιλογή δοντιού</label>-->
-<!--                        </div>-->
-<!--                    </div>-->
-
-<!--                    <select class="form-control" id="chozenTooth"-->
-<!--                            v-model="chozenTooth">-->
-<!--                        <option v-for="tooth in teeth"-->
-<!--                                :key="tooth.id"-->
-<!--                                :value="tooth">-->
-<!--                            {{ tooth.number }}-->
-<!--                        </option>-->
-<!--                    </select>-->
-<!--                </div>-->
-<!--            </div>-->
-
             <tabs :tabs="tabs" class="mb-3"/>
 
             <div class="container">
@@ -145,10 +126,6 @@
             }
         },
 
-        // created: function () {
-        //     this.getTeeth()
-        // },
-
         methods: {
             /**
              * Get loading value from components
@@ -157,29 +134,7 @@
              */
             getLoading(loading) {
                 this.loading = loading
-            },
-
-            /**
-             * Get all teeth
-             */
-            getTeeth () {
-                api.getTeeth()
-                    .then(response => {
-                        if (response.status === 200) {
-                            this.teeth = response.data
-
-                            return
-                        }
-
-                        this.teeth = []
-                    })
-                    .catch(error => {
-                        this.response.message = error.response.data.message
-                        this.response.status = false
-
-                        utility.debug(error.response.data.debug)
-                    })
-            },
+            }
         }
     }
 </script>

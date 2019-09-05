@@ -2,7 +2,7 @@
     <div>
 		<div class="row">
 			<teeth-list class="mb-2 mx-auto"
-                        :teeth="teeth"
+                        :teeth="haveTeeth"
                         :newEndoTreatmentCard="newEndoTreatmentCard" />
 		</div>
 
@@ -13,6 +13,26 @@
         </div>
 
         <form @submit.prevent class="row col-12 mt-3 no-gutters" v-if="fieldSelected">
+
+            <div class="container">
+                <div class="input-group row mb-2 mx-auto col-lg-4 col-12">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text ">
+                            <label for="tooth_number" class="my-auto">Επιλογή δοντιού</label>
+                        </div>
+                    </div>
+
+                    <select class="form-control" id="tooth_number"
+                            v-model="endoTreatment.tooth_number">
+                        <option v-for="tooth in teeth"
+                                :key="tooth.id"
+                                :value="tooth.number"
+                                :selected="(tooth.number === endoTreatment.tooth_number) ? 'selected' : ''">
+                            {{ tooth.number }}
+                        </option>
+                    </select>
+                </div>
+            </div>
 
             <div class="col-lg-6 col-12 px-1">
 
@@ -822,7 +842,9 @@ export default {
 				fractureCheck: false
             },
 
-			teeth: {}
+			haveTeeth: {},
+
+            teeth: []
         }
     },
 
@@ -872,7 +894,7 @@ export default {
 
         // Find the tooth with display (true)
         selectedTooth: function () {
-            return Object.values(this.teeth).find((tooth) => {
+            return Object.values(this.haveTeeth).find((tooth) => {
                 return tooth.display
             })
         }
@@ -885,7 +907,7 @@ export default {
         },
 
 		endoTreatmentCards () {
-        	this.teeth = {}
+        	this.haveTeeth = {}
 
 			this.endoTreatmentCards.forEach((card, index) => {
 				let tooth = {
@@ -894,7 +916,7 @@ export default {
 					display: false
 				}
 
-				this.$set(this.teeth, card.id, tooth)
+				this.$set(this.haveTeeth, card.id, tooth)
 			})
 		},
 
@@ -906,6 +928,7 @@ export default {
     },
 
 	created: function () {
+        this.getTeeth()
 		this.getEndoTreatmentCards()
 	},
 
@@ -962,32 +985,6 @@ export default {
 				})
 		},
 
-        /**
-         * Get Endo Treatment Card info
-         */
-        // getEndoTreatmentCard () {
-        //     this.loading = true
-        //
-        //     api.getEndoTreatmentCard(this.patientId, this.toothNumber)
-        //         .then(response => {
-        //             this.loading = false
-        //
-        //             if (response.status === 200) {
-        //                 this.endoTreatment = response.data
-        //
-        //                 this.checkEndoTreatmentFields()
-        //             }
-        //         })
-        //         .catch(error => {
-        //             this.loading = false
-        //
-        //             this.response.message = error.response.data.message
-        //             this.response.status = false
-        //
-        //             utility.debug(error.response.data.debug)
-        //         })
-        // },
-
 		/**
 		 * Create an endo treatment card
 		 */
@@ -1027,6 +1024,8 @@ export default {
 
                     this.response.message = 'Τα δεδομένα αποθηκεύτηκαν'
                     this.response.status = true
+
+                    this.getEndoTreatmentCards()
                 })
                 .catch(error => {
                     this.loading = false
@@ -1068,6 +1067,28 @@ export default {
 					})
 			}
 		},
+
+        /**
+         * Get all teeth
+         */
+        getTeeth () {
+            api.getTeeth()
+                .then(response => {
+                    if (response.status === 200) {
+                        this.teeth = response.data
+
+                        return
+                    }
+
+                    this.teeth = []
+                })
+                .catch(error => {
+                    this.response.message = error.response.data.message
+                    this.response.status = false
+
+                    utility.debug(error.response.data.debug)
+                })
+        },
 
         /**
          * Check for fields. If not empty, display it
