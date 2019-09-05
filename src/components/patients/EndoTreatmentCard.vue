@@ -797,6 +797,7 @@ export default {
 			endoTreatmentCards: [],
 
             endoTreatment: {
+                tooth_number: 0,
                 automatic: false,
                 challenged: false,
                 reason: null,
@@ -844,7 +845,9 @@ export default {
 
 			haveTeeth: {},
 
-            teeth: []
+            teeth: [],
+
+            insertNewCard: true
         }
     },
 
@@ -922,8 +925,11 @@ export default {
 
         // When selected tooth change, load the data
         selectedTooth () {
-            this.endoTreatment = this.endoTreatmentCards[this.selectedTooth.endoTreatmentIndex]
-            this.checkEndoTreatmentFields()
+            if (this.selectedTooth) {
+                this.insertNewCard = false
+                this.endoTreatment = this.endoTreatmentCards[this.selectedTooth.endoTreatmentIndex]
+                this.checkEndoTreatmentFields()
+            }
         }
     },
 
@@ -937,11 +943,15 @@ export default {
 		 * Create or update data
 		 */
     	saveData () {
-    		// if (this.endoTreatmentCardEmpty) {
-    		// 	this.createEndoTreatmentCard()
-            //
-			// 	return
-			// }
+
+    	    console.log(this.insertNewCard)
+    		if (this.insertNewCard) {
+    			this.createEndoTreatmentCard()
+
+                console.log('insert')
+
+				return
+			}
 
     		this.updateEndoTreatmentCard()
 		},
@@ -991,12 +1001,16 @@ export default {
 		createEndoTreatmentCard () {
 			this.loading = true
 
+            this.endoTreatment.patient_id = this.patientId
+
 			api.createEndoTreatmentCard(this.endoTreatment)
 				.then(response => {
 					this.loading = false
 
 					this.response.message = 'Τα δεδομένα αποθηκεύτηκαν'
 					this.response.status = true
+
+                    this.getEndoTreatmentCards()
 				})
 				.catch(error => {
 					this.loading = false
@@ -1120,6 +1134,13 @@ export default {
             )
         },
 
+        // Reset teeth display
+        setAllTeethFalse () {
+            Object.keys(this.haveTeeth).forEach(key =>
+                this.haveTeeth[key].display = false
+            )
+        },
+
         /**
          * Εξαφάνιση του πεδίου
          *
@@ -1129,9 +1150,12 @@ export default {
             field.display = false
         },
 
+        // Reset all values for new card
         newEndoTreatmentCard () {
             this.resetEndoTreatment()
             this.setAllFieldsFalse()
+            this.setAllTeethFalse()
+            this.insertNewCard = true
         },
 
         // Reset values of endoTreatment
