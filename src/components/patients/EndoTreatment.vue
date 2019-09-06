@@ -2,7 +2,11 @@
 
 	<div>
 
-		{{chozenTooth}}
+		<div class="row">
+			<teeth-list class="mb-2 mx-auto"
+						:teeth="haveTeeth"
+						:newEndoTreatmentCard="newEndoTreatment" />
+		</div>
 
 		<div class="input-group row mb-2 mx-auto col-lg-7 col-12">
 			<div class="col-12">
@@ -43,6 +47,26 @@
 						</div>
 
 						<div class="card-body">
+
+							<div class="container">
+								<div class="input-group row mb-2 mx-auto col-lg-4 col-12">
+									<div class="input-group-prepend">
+										<div class="input-group-text ">
+											<label for="tooth_number" class="my-auto">Επιλογή δοντιού</label>
+										</div>
+									</div>
+
+									<select class="form-control" id="tooth_number"
+											v-model="endoTreatments[chozenRoot].tooth_number">
+										<option v-for="tooth in teeth"
+												:key="tooth.id"
+												:value="tooth.number"
+												:selected="(tooth.number === endoTreatments[chozenRoot].tooth_number) ? 'selected' : ''">
+											{{ tooth.number }}
+										</option>
+									</select>
+								</div>
+							</div>
 
 							<div class="input-group mb-2">
 								<div class="input-group-prepend">
@@ -179,9 +203,10 @@ import FormError from '@/components/basic/FormError'
 import utility from '../../library/utility'
 import api from '../../api'
 import DisplayError from '@/components/basic/DisplayError'
+import TeethList from '@/components/patients/TeethList'
 
 export default {
-    components: { FormError, DisplayError },
+    components: { FormError, DisplayError, TeethList },
 
 	props: {
 		chozenTooth: Object
@@ -199,29 +224,122 @@ export default {
 
             roots: [],
 
-            endoTreatments: {},
+            endoTreatments: [],
 
-            chozenRoots: []
+            endoTreatment: {
+            	id: 0,
+				root_id: 0,
+				tooth_number: 18,
+				roots: [],
+				counter: null,
+				radiography: null,
+				workingLength: null,
+				benchmark: null,
+				benchmark_id: 0,
+				benchmarks: [],
+				MAF: null,
+				chemicalMechanicalTreatment: null,
+				blocking_technique_id: 0,
+				blockingTechniques: []
+			},
+
+            chozenRoots: [],
+
+			teeth: [],
+
+			haveTeeth: {}
         }
     },
 
     computed: {
         patientId: function () {
             return this.$route.params.id
-        }
+        },
+
+		// Find the tooth with display (true)
+		selectedTooth: function () {
+			return Object.values(this.haveTeeth).find((tooth) => {
+				return tooth.display
+			})
+		}
     },
 
     watch: {
         loading () {
             this.$emit('loading', this.loading)
-        }
+        },
+
+		endoTreatments () {
+			this.haveTeeth = {}
+
+			this.endoTreatments.forEach((data, index) => {
+				let tooth = {
+					endoTreatmentIndex: index,
+					number: data.tooth_number,
+					display: false
+				}
+
+				this.$set(this.haveTeeth, data.id, tooth)
+			})
+		},
+
+		// When selected tooth change, load the data
+		selectedTooth () {
+			if (this.selectedTooth) {
+				this.endoTreatment = this.endoTreatmentCards[this.selectedTooth.endoTreatmentIndex]
+				this.checkEndoTreatmentFields()
+			}
+		}
     },
 
     created: function () {
+		this.getTeeth()
         this.getRoots()
+		this.getEndoTreatments()
     },
 
     methods: {
+		/**
+		 * Create or update data
+		 */
+		saveData () {
+			if (this.endoTreatment.id === 0) {
+				this.createEndoTreatment()
+
+				return
+			}
+
+			this.updateEndoTreatment()
+		},
+
+		/**
+		 * Get all endo treatments for patientId
+		 */
+		getEndoTreatments () {
+			this.loading = true
+
+			api.getEndoTreatments(this.patientId)
+				.then(response => {
+					this.loading = false
+
+					if (response.status === 200) {
+						this.endoTreatments = response.data
+
+						return
+					}
+
+					this.endoTreatments = []
+				})
+				.catch(error => {
+					this.loading = false
+
+					this.response.message = error.response.data.message
+					this.response.status = false
+
+					utility.debug(error.response.data.debug)
+				})
+		},
+
         /**
 			 * Get Endo Treatment info
 			 */
@@ -250,6 +368,37 @@ export default {
 			})
         },
 
+		/**
+		 * Create an endo treatment
+		 */
+		createEndoTreatment () {
+			this.loading = true
+
+			this.endoTreatment.patient_id = this.patientId
+
+			api.createEndoTreatment(this.endoTreatment)
+				.then(response => {
+					this.loading = false
+
+					this.response.message = 'Τα δεδομένα αποθηκεύτηκαν'
+					this.response.status = true
+
+					this.getEndoTreatments()
+				})
+				.catch(error => {
+					this.loading = false
+
+					this.response.message = error.response.data.message
+					this.response.status = false
+
+					if (error.response.data.errors) {
+						this.response.errors = error.response.data.errors
+					}
+
+					utility.debug(error.response.data.debug)
+				})
+		},
+
         /**
 			 * Update the Endo Treatment info
 			 */
@@ -277,6 +426,36 @@ export default {
                 })
         },
 
+		/**
+		 * Delete an endo treatment
+		 */
+		deleteEndoTreatment () {
+			let choise = confirm('Θέλεις σίγουρα να σβήσεις τα δεδομένα;')
+
+			if (choise) {
+				this.loading = true
+
+				api.deleteEndoTreatment(this.endoTreatment.id)
+					.then(response => {
+						this.loading = false
+
+						this.response.message = 'Τα δεδομένα διαγράφηκαν'
+						this.response.status = true
+
+						this.getEndoTreatments()
+						this.newEndoTreatment()
+					})
+					.catch(error => {
+						this.loading = false
+
+						this.response.message = error.response.data.message
+						this.response.status = false
+
+						utility.debug(error.response.data.debug)
+					})
+			}
+		},
+
         /**
 			 * Get all roots
 			 */
@@ -303,7 +482,54 @@ export default {
 
                     utility.debug(error.response.data.debug)
                 })
-        }
+        },
+
+		/**
+		 * Get all teeth
+		 */
+		getTeeth () {
+			api.getTeeth()
+				.then(response => {
+					if (response.status === 200) {
+						this.teeth = response.data
+
+						return
+					}
+
+					this.teeth = []
+				})
+				.catch(error => {
+					this.response.message = error.response.data.message
+					this.response.status = false
+
+					utility.debug(error.response.data.debug)
+				})
+		},
+
+		// Reset all values for new card
+		newEndoTreatmentCard () {
+			this.resetEndoTreatment()
+		},
+
+		// Reset values of endoTreatment
+		resetEndoTreatment () {
+			this.endoTreatment = {
+				id: 0,
+				root_id: 0,
+				tooth_number: 18,
+				roots: [],
+				counter: null,
+				radiography: null,
+				workingLength: null,
+				benchmark: null,
+				benchmark_id: 0,
+				benchmarks: [],
+				MAF: null,
+				chemicalMechanicalTreatment: null,
+				blocking_technique_id: 0,
+				blockingTechniques: []
+			}
+		}
     }
 }
 </script>
