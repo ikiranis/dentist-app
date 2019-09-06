@@ -266,9 +266,9 @@ export default {
         },
 
 		endoTreatments () {
+			let toothNumbers = []
 			this.haveTeeth = {}
 
-			// TODO clear duplicates
 			this.endoTreatments.forEach((data, index) => {
 				let tooth = {
 					endoTreatmentIndex: index,
@@ -276,7 +276,11 @@ export default {
 					display: false
 				}
 
-				this.$set(this.haveTeeth, data.id, tooth)
+				// Check for duplicate entry
+				if (!toothNumbers.includes(data.tooth_number)) {
+					this.$set(this.haveTeeth, data.id, tooth)
+					toothNumbers.push(data.tooth_number)
+				}
 			})
 		},
 
