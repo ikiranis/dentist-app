@@ -208,10 +208,6 @@ import TeethList from '@/components/patients/TeethList'
 export default {
     components: { FormError, DisplayError, TeethList },
 
-	props: {
-		chozenTooth: Object
-	},
-
     data () {
         return {
             response: {
@@ -272,6 +268,7 @@ export default {
 		endoTreatments () {
 			this.haveTeeth = {}
 
+			// TODO clear duplicates
 			this.endoTreatments.forEach((data, index) => {
 				let tooth = {
 					endoTreatmentIndex: index,
@@ -286,8 +283,8 @@ export default {
 		// When selected tooth change, load the data
 		selectedTooth () {
 			if (this.selectedTooth) {
-				this.endoTreatment = this.endoTreatmentCards[this.selectedTooth.endoTreatmentIndex]
-				this.checkEndoTreatmentFields()
+				// TODO εδώ φορτώνει τα roots για το συγκεκριμένο δόντι
+				this.endoTreatment = this.endoTreatments[this.selectedTooth.endoTreatmentIndex]
 			}
 		}
     },
@@ -507,7 +504,7 @@ export default {
 		},
 
 		// Reset all values for new card
-		newEndoTreatmentCard () {
+		newEndoTreatment () {
 			this.resetEndoTreatment()
 		},
 
