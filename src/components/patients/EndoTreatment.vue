@@ -8,38 +8,56 @@
 						:newEndoTreatmentCard="newEndoTreatment" />
 		</div>
 
-		<div class="input-group row mb-2 mx-auto col-lg-7 col-12">
-			<div class="col-12">
-				<div class="input-group-text row">
-					<label for="chozenRoot" class="my-auto">Ρίζες</label>
-				</div>
-			</div>
+<!--		<div class="input-group row mb-2 mx-auto col-lg-7 col-12">-->
+<!--			<div class="col-12">-->
+<!--				<div class="input-group-text row">-->
+<!--					<label for="chozenRoot" class="my-auto">Ρίζες</label>-->
+<!--				</div>-->
+<!--			</div>-->
 
-			<select class="form-control col-12" id="chozenRoot"
-					multiple
-					v-model="chozenRoots"
-					@change="getEndoTreatment">
-				<option v-for="root in roots"
-						:key="root.id"
-						:value="root.id">
-					{{ root.name }}
-				</option>
-			</select>
+<!--			<select class="form-control col-12" id="chozenRoot"-->
+<!--					multiple-->
+<!--					v-model="chozenRoots"-->
+<!--					@change="getEndoTreatment">-->
+<!--				<option v-for="root in roots"-->
+<!--						:key="root.id"-->
+<!--						:value="root.id">-->
+<!--					{{ root.name }}-->
+<!--				</option>-->
+<!--			</select>-->
 
-			<div class="col-12 text-center">
-				<small class="text-info mx-auto">Με πατημένο το ctrl, γίνεται πολλαπλή επιλογή</small>
-			</div>
-		</div>
+<!--			<div class="col-12 text-center">-->
+<!--				<small class="text-info mx-auto">Με πατημένο το ctrl, γίνεται πολλαπλή επιλογή</small>-->
+<!--			</div>-->
+<!--		</div>-->
 
 		<div class="container col-lg-7 col-12 mt-3"
-			 v-for="chozenRoot in chozenRoots" :key="chozenRoot">
+			 v-for="treatment in selectedEndoTreatments" :key="treatment.id">
 
-			<div class="card mb-2 w-100 mx-auto" v-if="endoTreatments[chozenRoot]">
+			<div class="card mb-2 w-100 mx-auto">
 				<div class="card-header text-center">
-					<h3>{{ roots[chozenRoot-1].name }}</h3>
+					<h3>{{ roots[treatment.root_id-1].name }}</h3>
 				</div>
 
 				<div class="card-body">
+
+						<div class="input-group row mb-3 mx-auto col-lg-8 col-12">
+							<div class="input-group-prepend">
+								<div class="input-group-text ">
+									<label for="tooth_number" class="my-auto">Επιλογή δοντιού</label>
+								</div>
+							</div>
+
+							<select class="form-control" id="tooth_number"
+									v-model="treatment.tooth_number">
+								<option v-for="tooth in teeth"
+										:key="tooth.id"
+										:value="tooth.number"
+										:selected="(tooth.number === treatment.tooth_number) ? 'selected' : ''">
+									{{ tooth.number }}
+								</option>
+							</select>
+						</div>
 
 					<div class="card mb-2 w-100 mx-auto">
 						<div class="card-header">
@@ -48,26 +66,6 @@
 
 						<div class="card-body">
 
-							<div class="container">
-								<div class="input-group row mb-2 mx-auto col-lg-4 col-12">
-									<div class="input-group-prepend">
-										<div class="input-group-text ">
-											<label for="tooth_number" class="my-auto">Επιλογή δοντιού</label>
-										</div>
-									</div>
-
-									<select class="form-control" id="tooth_number"
-											v-model="endoTreatments[chozenRoot].tooth_number">
-										<option v-for="tooth in teeth"
-												:key="tooth.id"
-												:value="tooth.number"
-												:selected="(tooth.number === endoTreatments[chozenRoot].tooth_number) ? 'selected' : ''">
-											{{ tooth.number }}
-										</option>
-									</select>
-								</div>
-							</div>
-
 							<div class="input-group mb-2">
 								<div class="input-group-prepend">
 									<div class="input-group-text">
@@ -75,7 +73,7 @@
 									</div>
 								</div>
 								<input id="counter" type="text" class="form-control"
-									   v-model="endoTreatments[chozenRoot].counter" maxlength="10">
+									   v-model="treatment.counter" maxlength="10">
 								<form-error v-if="response.errors.counter"
 											:error="response.errors.counter[0]"/>
 							</div>
@@ -88,7 +86,7 @@
 								</div>
 
 								<input id="radiography" type="text" class="form-control"
-									   v-model="endoTreatments[chozenRoot].radiography" maxlength="10">
+									   v-model="treatment.radiography" maxlength="10">
 								<form-error v-if="response.errors.radiography"
 											:error="response.errors.radiography[0]"/>
 							</div>
@@ -104,7 +102,7 @@
 						</div>
 
 						<input id="workingLength" type="text" class="form-control"
-							   v-model="endoTreatments[chozenRoot].workingLength" maxlength="10">
+							   v-model="treatment.workingLength" maxlength="10">
 						<form-error v-if="response.errors.workingLength"
 									:error="response.errors.workingLength[0]"/>
 					</div>
@@ -117,14 +115,14 @@
 						</div>
 
 						<input id="benchmark" type="text" class="form-control"
-							   v-model="endoTreatments[chozenRoot].benchmark" maxlength="20">
+							   v-model="treatment.benchmark" maxlength="20">
 
 						<select class="form-control" id="chozenBenchmark"
-								v-model="endoTreatments[chozenRoot].benchmark_id">
-							<option v-for="benchmark in endoTreatments[chozenRoot].benchmarks"
+								v-model="treatment.benchmark_id">
+							<option v-for="benchmark in treatment.benchmarks"
 									:key="benchmark.id"
 									:value="benchmark.id"
-									:selected="(benchmark.id === endoTreatments[chozenRoot].benchmark_id) ? 'selected' : ''">
+									:selected="(benchmark.id === treatment.benchmark_id) ? 'selected' : ''">
 								{{ benchmark.name }}
 							</option>
 						</select>
@@ -141,7 +139,7 @@
 						</div>
 
 						<input id="MAF" type="text" class="form-control"
-							   v-model="endoTreatments[chozenRoot].MAF" maxlength="10">
+							   v-model="treatment.MAF" maxlength="10">
 						<form-error v-if="response.errors.MAF"
 									:error="response.errors.MAF[0]"/>
 					</div>
@@ -155,7 +153,7 @@
 						</div>
 
 						<input id="chemicalMechanicalTreatment" type="text" class="form-control"
-							   v-model="endoTreatments[chozenRoot].chemicalMechanicalTreatment" maxlength="10">
+							   v-model="treatment.chemicalMechanicalTreatment" maxlength="10">
 						<form-error v-if="response.errors.chemicalMechanicalTreatment"
 									:error="response.errors.chemicalMechanicalTreatment[0]"/>
 					</div>
@@ -168,11 +166,11 @@
 						</div>
 
 						<select class="form-control" id="chozenBlockingTechnique"
-								v-model="endoTreatments[chozenRoot].blocking_technique_id">
-							<option v-for="blockingTechnique in endoTreatments[chozenRoot].blockingTechniques"
+								v-model="treatment.blocking_technique_id">
+							<option v-for="blockingTechnique in treatment.blockingTechniques"
 									:key="blockingTechnique.id"
 									:value="blockingTechnique.id"
-									:selected="(blockingTechnique.id === endoTreatments[chozenRoot].blocking_technique_id) ? 'selected' : ''">
+									:selected="(blockingTechnique.id === treatment.blocking_technique_id) ? 'selected' : ''">
 								{{ blockingTechnique.name }}
 							</option>
 						</select>
@@ -180,7 +178,7 @@
 
 					<div class="row">
 						<input type="submit" class="btn btn-success col-lg-6 col-12 my-3 mx-auto"
-							   @click="updateEndoTreatment(chozenRoot)" value="Αποθήκευση">
+							   @click="updateEndoTreatment(treatment.root_id)" value="Αποθήκευση">
 					</div>
 
 				</div>
@@ -221,6 +219,8 @@ export default {
             roots: [],
 
             endoTreatments: [],
+
+			selectedEndoTreatments: [],
 
             endoTreatment: {
             	id: 0,
@@ -287,8 +287,7 @@ export default {
 		// When selected tooth change, load the data
 		selectedTooth () {
 			if (this.selectedTooth) {
-				// TODO εδώ φορτώνει τα roots για το συγκεκριμένο δόντι
-				this.endoTreatment = this.endoTreatments[this.selectedTooth.endoTreatmentIndex]
+				this.getEndoTreatmentsForTooth()
 			}
 		}
     },
@@ -311,6 +310,13 @@ export default {
 			}
 
 			this.updateEndoTreatment()
+		},
+
+		// Filter endo treatments and get only those with chosen tooth number
+		getEndoTreatmentsForTooth() {
+			this.selectedEndoTreatments = this.endoTreatments.filter(item => {
+				return item.tooth_number === this.selectedTooth.number
+			})
 		},
 
 		/**

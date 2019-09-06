@@ -26,7 +26,6 @@
 
                 <endo-treatment
                         @loading="getLoading"
-                        :chozenTooth="chozenTooth"
                         v-if="tabs.endoTreatment.display"/>
 
             </div>
