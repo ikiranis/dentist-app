@@ -178,7 +178,7 @@
 
 					<div class="row">
 						<input type="submit" class="btn btn-success col-lg-6 col-12 my-3 mx-auto"
-							   @click="updateEndoTreatment(treatment.root_id)" value="Αποθήκευση">
+							   @click="updateEndoTreatment(treatment)" value="Αποθήκευση">
 					</div>
 
 				</div>
@@ -407,17 +407,21 @@ export default {
 		},
 
         /**
-			 * Update the Endo Treatment info
-			 */
-        updateEndoTreatment (chozenRoot) {
+		 * Update the Endo Treatment info
+		 *
+		 * @param endoTreatment
+		 */
+        updateEndoTreatment (endoTreatment) {
             this.loading = true
 
-            api.updateEndoTreatment(this.endoTreatments[chozenRoot], this.endoTreatments[chozenRoot].id)
+            api.updateEndoTreatment(endoTreatment, endoTreatment.id)
                 .then(response => {
                     this.loading = false
 
                     this.response.message = 'Τα δεδομένα αποθηκεύτηκαν'
                     this.response.status = true
+
+					this.getEndoTreatments()
                 })
                 .catch(error => {
                     this.loading = false
