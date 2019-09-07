@@ -7,7 +7,7 @@
 				  @click="chooseTooth(value)">{{ value.number }}</span>
         </span>
 		<input type="button" class="btn btn-sm btn-success"
-			   @click="newEndoTreatmentCard" value="Εισαγωγή δοντιού">
+			   @click="newEndoTreatmentCard" value="Εισαγωγή">
 	</div>
 </template>
 
