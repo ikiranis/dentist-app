@@ -1,12 +1,27 @@
 <template>
     <div class="card mb-2 w-100 mx-auto">
         <div class="card-header text-center">
-            <h3>{{ roots[treatment.root_id-1].name }}</h3>
+            <div class="input-group row mb-2 mx-auto">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        <label for="chozenRoot" class="my-auto">Ρίζα</label>
+                    </div>
+                </div>
+
+                <select class="form-control" id="chozenRoot"
+                        v-model="treatment.root_id">
+                    <option v-for="root in roots"
+                            :key="root.id"
+                            :value="root.id">
+                        {{ root.name }}
+                    </option>
+                </select>
+            </div>
         </div>
 
         <div class="card-body">
 
-            <div class="input-group row mb-3 mx-auto col-lg-8 col-12">
+            <div class="input-group mb-3 mx-autο">
                 <div class="input-group-prepend">
                     <div class="input-group-text ">
                         <label for="tooth_number" class="my-auto">Επιλογή δοντιού</label>
@@ -162,6 +177,10 @@
                 type: Object
             },
             roots: {
+                required: true,
+                type: Array
+            },
+            teeth: {
                 required: true,
                 type: Array
             },

@@ -8,35 +8,13 @@
 						:newEndoTreatmentCard="newEndoTreatment" />
 		</div>
 
-<!--		<div class="input-group row mb-2 mx-auto col-lg-7 col-12">-->
-<!--			<div class="col-12">-->
-<!--				<div class="input-group-text row">-->
-<!--					<label for="chozenRoot" class="my-auto">Ρίζες</label>-->
-<!--				</div>-->
-<!--			</div>-->
-
-<!--			<select class="form-control col-12" id="chozenRoot"-->
-<!--					multiple-->
-<!--					v-model="chozenRoots"-->
-<!--					@change="getEndoTreatment">-->
-<!--				<option v-for="root in roots"-->
-<!--						:key="root.id"-->
-<!--						:value="root.id">-->
-<!--					{{ root.name }}-->
-<!--				</option>-->
-<!--			</select>-->
-
-<!--			<div class="col-12 text-center">-->
-<!--				<small class="text-info mx-auto">Με πατημένο το ctrl, γίνεται πολλαπλή επιλογή</small>-->
-<!--			</div>-->
-<!--		</div>-->
-
 		<div class="container col-lg-7 col-12 mt-3"
 			 v-for="treatment in selectedEndoTreatments" :key="treatment.id">
 
 			<endo-treatment-form :treatment="treatment"
 								 :response="response"
 								 :roots="roots"
+								 :teeth="teeth"
 								 :saveData="saveData" />
 
 		</div>
