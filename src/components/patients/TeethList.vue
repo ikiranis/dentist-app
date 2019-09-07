@@ -21,7 +21,7 @@
 			newEndoTreatmentCard: {
 				required: true,
 				type: Function
-			},
+			}
 		},
 
 		methods: {
