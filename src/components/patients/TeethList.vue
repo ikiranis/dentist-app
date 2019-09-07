@@ -12,31 +12,31 @@
 </template>
 
 <script>
-	export default {
-		props: {
-			teeth: {
-				required: true,
-				type: Object
-			},
-			newEndoTreatmentCard: {
-				required: true,
-				type: Function
-			}
-		},
+export default {
+    props: {
+        teeth: {
+            required: true,
+            type: Object
+        },
+        newEndoTreatmentCard: {
+            required: true,
+            type: Function
+        }
+    },
 
-		methods: {
-			/**
+    methods: {
+        /**
 			 * Change teeth display values
 			 *
 			 * @param tooth
 			 */
-			chooseTooth (tooth) {
-				Object.keys(this.teeth).forEach(key => {
-					this.teeth[key].display = this.teeth[key] === tooth
-				})
-			}
-		}
-	}
+        chooseTooth (tooth) {
+            Object.keys(this.teeth).forEach(key => {
+                this.teeth[key].display = this.teeth[key] === tooth
+            })
+        }
+    }
+}
 </script>
 
 <style scoped>

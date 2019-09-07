@@ -35,105 +35,103 @@
 </template>
 
 <script>
-    import MenuBar from '@/components/basic/MenuBar'
-    import Tabs from '@/components/basic/Tabs'
-    import EndoTreatmentCard from '@/components/patients/EndoTreatmentCard'
-    import EndoTreatment from '@/components/patients/EndoTreatment'
-    import EndoTreatmentNotes from '@/components/patients/EndoTreatmentNotes'
-    import Loading from '@/components/basic/Loading'
-    import api from "../api";
-    import utility from "../library/utility";
+import MenuBar from '@/components/basic/MenuBar'
+import Tabs from '@/components/basic/Tabs'
+import EndoTreatmentCard from '@/components/patients/EndoTreatmentCard'
+import EndoTreatment from '@/components/patients/EndoTreatment'
+import EndoTreatmentNotes from '@/components/patients/EndoTreatmentNotes'
+import Loading from '@/components/basic/Loading'
 
-    export default {
-        components: { MenuBar, EndoTreatmentCard, EndoTreatment, EndoTreatmentNotes, Loading, Tabs },
+export default {
+    components: { MenuBar, EndoTreatmentCard, EndoTreatment, EndoTreatmentNotes, Loading, Tabs },
 
-        data() {
-            return {
-                response: {
-                    message: '',
-                    status: '',
-                    errors: []
+    data () {
+        return {
+            response: {
+                message: '',
+                status: '',
+                errors: []
+            },
+
+            loading: false,
+
+            menuItems: [
+                {
+                    route: '/medicalHistory/' + this.$route.params.id,
+                    name: 'Ιατρικό ιστορικό',
+                    loggedIn: true,
+                    active: false
                 },
+                {
+                    route: '/dentalHistory/' + this.$route.params.id,
+                    name: 'Οδοντιατρικό ιστορικό',
+                    loggedIn: true,
+                    active: false
+                },
+                {
+                    route: '/dentalGram/' + this.$route.params.id,
+                    name: 'Οδοντόγραμμα',
+                    loggedIn: true,
+                    active: false
+                },
+                {
+                    route: '/periodontalChart/' + this.$route.params.id,
+                    name: 'Περιοδοντόγραμμα',
+                    loggedIn: true,
+                    active: false
+                },
+                {
+                    route: '/treatmentHistory/' + this.$route.params.id,
+                    name: 'Ιστορικό θεραπειών',
+                    loggedIn: true,
+                    active: false
+                },
+                {
+                    route: '/denervation/' + this.$route.params.id,
+                    name: 'Απονεύρωση',
+                    loggedIn: true,
+                    active: true
+                },
+                {
+                    route: '/files/' + this.$route.params.id,
+                    name: 'Αρχεία',
+                    loggedIn: true,
+                    active: false
+                }
+            ],
 
-                loading: false,
-
-                menuItems: [
-                    {
-                        route: '/medicalHistory/' + this.$route.params.id,
-                        name: 'Ιατρικό ιστορικό',
-                        loggedIn: true,
-                        active: false
-                    },
-                    {
-                        route: '/dentalHistory/' + this.$route.params.id,
-                        name: 'Οδοντιατρικό ιστορικό',
-                        loggedIn: true,
-                        active: false
-                    },
-                    {
-                        route: '/dentalGram/' + this.$route.params.id,
-                        name: 'Οδοντόγραμμα',
-                        loggedIn: true,
-                        active: false
-                    },
-                    {
-                        route: '/periodontalChart/' + this.$route.params.id,
-                        name: 'Περιοδοντόγραμμα',
-                        loggedIn: true,
-                        active: false
-                    },
-                    {
-                        route: '/treatmentHistory/' + this.$route.params.id,
-                        name: 'Ιστορικό θεραπειών',
-                        loggedIn: true,
-                        active: false
-                    },
-                    {
-                        route: '/denervation/' + this.$route.params.id,
-                        name: 'Απονεύρωση',
-                        loggedIn: true,
-                        active: true
-                    },
-                    {
-                        route: '/files/' + this.$route.params.id,
-                        name: 'Αρχεία',
-                        loggedIn: true,
-                        active: false
-                    }
-                ],
-
-                tabs: {
-                    endoTreatmentCard: {
-                        display: true,
-                        label: 'Δελτίο ενδοδοντικής θεραπείας'
-                    },
-                    endoTreatment: {
-                        display: false,
-                        label: 'Ενδοδοντική θεραπεία'
-                    },
-                    endoTreatmentNotes: {
-                        display: false,
-                        label: 'Σημειώσεις'
-                    }
+            tabs: {
+                endoTreatmentCard: {
+                    display: true,
+                    label: 'Δελτίο ενδοδοντικής θεραπείας'
+                },
+                endoTreatment: {
+                    display: false,
+                    label: 'Ενδοδοντική θεραπεία'
+                },
+                endoTreatmentNotes: {
+                    display: false,
+                    label: 'Σημειώσεις'
                 }
             }
-        },
+        }
+    },
 
-        computed: {
-            patientId: function () {
-                return this.$route.params.id
-            }
-        },
+    computed: {
+        patientId: function () {
+            return this.$route.params.id
+        }
+    },
 
-        methods: {
-            /**
+    methods: {
+        /**
              * Get loading value from components
              *
              * @param loading
              */
-            getLoading(loading) {
-                this.loading = loading
-            }
+        getLoading (loading) {
+            this.loading = loading
         }
     }
+}
 </script>

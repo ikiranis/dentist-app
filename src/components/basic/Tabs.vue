@@ -25,7 +25,7 @@ export default {
 			 */
         chooseTab (tab) {
             Object.keys(this.tabs).forEach(key => {
-				this.tabs[key].display = this.tabs[key] === tab
+                this.tabs[key].display = this.tabs[key] === tab
             })
         }
     }

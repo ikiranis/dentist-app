@@ -174,40 +174,40 @@
 </template>
 
 <script>
-    import FormError from '@/components/basic/FormError'
+import FormError from '@/components/basic/FormError'
 
-    export default {
-        components: { FormError },
+export default {
+    components: { FormError },
 
-        props: {
-            treatment: {
-                required: true,
-                type: Object
-            },
-            roots: {
-                required: true,
-                type: Array
-            },
-            teeth: {
-                required: true,
-                type: Array
-            },
-            response: {
-                required: true,
-                type: Object
-            },
-            saveData: {
-                required: true,
-                type: Function
-            },
-            deleteEndoTreatment: {
-                required: true,
-                type: Function
-            }
+    props: {
+        treatment: {
+            required: true,
+            type: Object
         },
-
-        methods: {
-        //
+        roots: {
+            required: true,
+            type: Array
+        },
+        teeth: {
+            required: true,
+            type: Array
+        },
+        response: {
+            required: true,
+            type: Object
+        },
+        saveData: {
+            required: true,
+            type: Function
+        },
+        deleteEndoTreatment: {
+            required: true,
+            type: Function
         }
+    },
+
+    methods: {
+        //
     }
+}
 </script>

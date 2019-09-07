@@ -423,14 +423,14 @@ let api = {
 
     // ************** Endo Treatment Card api calls **************
 
-	/**
+    /**
 	 * Get all endo treatment cards
 	 *
 	 * @returns {Promise<void>}
 	 */
-	async getEndoTreatmentCards (patientId) {
-		return axios.get(ROOT_API + '/endoTreatmentCards/' + patientId)
-	},
+    async getEndoTreatmentCards (patientId) {
+        return axios.get(ROOT_API + '/endoTreatmentCards/' + patientId)
+    },
 
     /**
      * Get Endo Treatment Card info
@@ -443,15 +443,15 @@ let api = {
         return axios.get(ROOT_API + '/endoTreatmentCard/' + patientId + '/' + toothNumber)
     },
 
-	/**
+    /**
 	 * Create am endo treatment card
 	 *
 	 * @param args
 	 * @returns {Promise<AxiosResponse<T>>}
 	 */
-	async createEndoTreatmentCard (args) {
-		return axios.post(ROOT_API + '/endoTreatmentCard', args)
-	},
+    async createEndoTreatmentCard (args) {
+        return axios.post(ROOT_API + '/endoTreatmentCard', args)
+    },
 
     /**
      * Update Endo Treatment Card
@@ -464,29 +464,28 @@ let api = {
         return axios.patch(ROOT_API + '/endoTreatmentCard/' + id, args)
     },
 
-	/**
+    /**
 	 * Delete an endo treatment card
 	 *
 	 * @param id
 	 * @returns {Promise<Promise<AxiosResponse<T>>>}
 	 */
-	async deleteEndoTreatmentCard (id) {
-		return axios.delete(ROOT_API + '/endoTreatmentCard/' + id)
-	},
-
+    async deleteEndoTreatmentCard (id) {
+        return axios.delete(ROOT_API + '/endoTreatmentCard/' + id)
+    },
 
     // ************** Endo Treatment api calls **************
 
-	/**
+    /**
 	 * Get all endo treatments
 	 *
 	 * @returns {Promise<void>}
 	 */
-	async getEndoTreatments (patientId) {
-		return axios.get(ROOT_API + '/endoTreatments/' + patientId)
-	},
+    async getEndoTreatments (patientId) {
+        return axios.get(ROOT_API + '/endoTreatments/' + patientId)
+    },
 
-	/**
+    /**
 	 * Get Endo Treatment info
 	 *
 	 * @param patientId
@@ -498,15 +497,15 @@ let api = {
         return axios.get(ROOT_API + '/endoTreatment/' + patientId + '/' + rootId + '/' + toothNumber)
     },
 
-	/**
+    /**
 	 * Create an endo treatment
 	 *
 	 * @param args
 	 * @returns {Promise<AxiosResponse<T>>}
 	 */
-	async createEndoTreatment (args) {
-		return axios.post(ROOT_API + '/endoTreatment', args)
-	},
+    async createEndoTreatment (args) {
+        return axios.post(ROOT_API + '/endoTreatment', args)
+    },
 
     /**
      * Update Endo Treatment
@@ -519,15 +518,15 @@ let api = {
         return axios.patch(ROOT_API + '/endoTreatment/' + id, args)
     },
 
-	/**
+    /**
 	 * Delete an endo treatment
 	 *
 	 * @param id
 	 * @returns {Promise<Promise<AxiosResponse<T>>>}
 	 */
-	async deleteEndoTreatment (id) {
-		return axios.delete(ROOT_API + '/endoTreatment/' + id)
-	},
+    async deleteEndoTreatment (id) {
+        return axios.delete(ROOT_API + '/endoTreatment/' + id)
+    },
 
     // ************** Treatment Notes api calls **************
 

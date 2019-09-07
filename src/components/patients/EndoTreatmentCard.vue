@@ -802,7 +802,7 @@ export default {
                 }
             },
 
-			endoTreatmentCards: [],
+            endoTreatmentCards: [],
 
             endoTreatment: {
                 id: 0,
@@ -829,30 +829,30 @@ export default {
                 vitality: false,
                 periodontalTissues: null,
                 radiographicExamination: null,
-				revelation: null,
-				revelationCheck: false,
-				hyperemia: false,
-				acutePulpitis: false,
-				partialAcutePulpitis: false,
-				universalAcutePulpitis: false,
-				chronicPulpitis: false,
-				ulceratingChronicPulpitis: false,
-				superplasticChronicPulpitis: false,
-				necrosis: false,
-				abscess: false,
-				granulation: false,
-				cyst: false,
-				reactiveOsteoconduction: false,
-				endoPeriodontalDamage: null,
-				endoPeriodontalDamageCheck: false,
-				absorption: false,
-				innerAbsorption: false,
-				outerAbsorption: false,
-				fracture: null,
-				fractureCheck: false
+                revelation: null,
+                revelationCheck: false,
+                hyperemia: false,
+                acutePulpitis: false,
+                partialAcutePulpitis: false,
+                universalAcutePulpitis: false,
+                chronicPulpitis: false,
+                ulceratingChronicPulpitis: false,
+                superplasticChronicPulpitis: false,
+                necrosis: false,
+                abscess: false,
+                granulation: false,
+                cyst: false,
+                reactiveOsteoconduction: false,
+                endoPeriodontalDamage: null,
+                endoPeriodontalDamageCheck: false,
+                absorption: false,
+                innerAbsorption: false,
+                outerAbsorption: false,
+                fracture: null,
+                fractureCheck: false
             },
 
-			haveTeeth: {},
+            haveTeeth: {},
 
             teeth: []
         }
@@ -916,19 +916,19 @@ export default {
             this.$emit('loading', this.loading)
         },
 
-		endoTreatmentCards () {
-        	this.haveTeeth = {}
+        endoTreatmentCards () {
+            this.haveTeeth = {}
 
-			this.endoTreatmentCards.forEach((card, index) => {
-				let tooth = {
-				    endoTreatmentIndex: index,
-					number: card.tooth_number,
-					display: false
-				}
+            this.endoTreatmentCards.forEach((card, index) => {
+                let tooth = {
+                    endoTreatmentIndex: index,
+                    number: card.tooth_number,
+                    display: false
+                }
 
-				this.$set(this.haveTeeth, card.id, tooth)
-			})
-		},
+                this.$set(this.haveTeeth, card.id, tooth)
+            })
+        },
 
         // When selected tooth change, load the data
         selectedTooth () {
@@ -939,24 +939,24 @@ export default {
         }
     },
 
-	created: function () {
+    created: function () {
         this.getTeeth()
-		this.getEndoTreatmentCards()
-	},
+        this.getEndoTreatmentCards()
+    },
 
     methods: {
-    	/**
-		 * Create or update data
-		 */
-    	saveData () {
-    		if (this.endoTreatment.id === 0) {
-    			this.createEndoTreatmentCard()
+        /**
+         * Create or update data
+         */
+        saveData () {
+            if (this.endoTreatment.id === 0) {
+                this.createEndoTreatmentCard()
 
-				return
-			}
+                return
+            }
 
-    		this.updateEndoTreatmentCard()
-		},
+            this.updateEndoTreatmentCard()
+        },
 
         // Check if any of these fields have value. Return true if any
         painFields () {
@@ -969,64 +969,64 @@ export default {
             )
         },
 
-		/**
+        /**
 		 * Get all endo treatment cards for patientId
 		 */
-		getEndoTreatmentCards () {
-			this.loading = true
+        getEndoTreatmentCards () {
+            this.loading = true
 
-			api.getEndoTreatmentCards(this.patientId)
-				.then(response => {
-					this.loading = false
+            api.getEndoTreatmentCards(this.patientId)
+                .then(response => {
+                    this.loading = false
 
-					if (response.status === 200) {
-						this.endoTreatmentCards = response.data
+                    if (response.status === 200) {
+                        this.endoTreatmentCards = response.data
 
-						return
-					}
+                        return
+                    }
 
-					this.endoTreatmentCards = []
-				})
-				.catch(error => {
-					this.loading = false
+                    this.endoTreatmentCards = []
+                })
+                .catch(error => {
+                    this.loading = false
 
-					this.response.message = error.response.data.message
-					this.response.status = false
+                    this.response.message = error.response.data.message
+                    this.response.status = false
 
-					utility.debug(error.response.data.debug)
-				})
-		},
+                    utility.debug(error.response.data.debug)
+                })
+        },
 
-		/**
+        /**
 		 * Create an endo treatment card
 		 */
-		createEndoTreatmentCard () {
-			this.loading = true
+        createEndoTreatmentCard () {
+            this.loading = true
 
             this.endoTreatment.patient_id = this.patientId
 
-			api.createEndoTreatmentCard(this.endoTreatment)
-				.then(response => {
-					this.loading = false
+            api.createEndoTreatmentCard(this.endoTreatment)
+                .then(response => {
+                    this.loading = false
 
-					this.response.message = 'Τα δεδομένα αποθηκεύτηκαν'
-					this.response.status = true
+                    this.response.message = 'Τα δεδομένα αποθηκεύτηκαν'
+                    this.response.status = true
 
                     this.getEndoTreatmentCards()
-				})
-				.catch(error => {
-					this.loading = false
+                })
+                .catch(error => {
+                    this.loading = false
 
-					this.response.message = error.response.data.message
-					this.response.status = false
+                    this.response.message = error.response.data.message
+                    this.response.status = false
 
-					if (error.response.data.errors) {
-						this.response.errors = error.response.data.errors
-					}
+                    if (error.response.data.errors) {
+                        this.response.errors = error.response.data.errors
+                    }
 
-					utility.debug(error.response.data.debug)
-				})
-		},
+                    utility.debug(error.response.data.debug)
+                })
+        },
 
         /**
          * Update the Endo Treatment Card info
@@ -1057,35 +1057,35 @@ export default {
                 })
         },
 
-		/**
+        /**
 		 * Delete an endo treatment card
 		 */
-		deleteEndoTreatmentCard () {
-			let choise = confirm('Θέλεις σίγουρα να σβήσεις τα δεδομένα;')
+        deleteEndoTreatmentCard () {
+            let choise = confirm('Θέλεις σίγουρα να σβήσεις τα δεδομένα;')
 
-			if (choise) {
-				this.loading = true
+            if (choise) {
+                this.loading = true
 
-				api.deleteEndoTreatmentCard(this.endoTreatment.id)
-					.then(response => {
-						this.loading = false
+                api.deleteEndoTreatmentCard(this.endoTreatment.id)
+                    .then(response => {
+                        this.loading = false
 
-						this.response.message = 'Τα δεδομένα διαγράφηκαν'
-						this.response.status = true
+                        this.response.message = 'Τα δεδομένα διαγράφηκαν'
+                        this.response.status = true
 
                         this.getEndoTreatmentCards()
                         this.newEndoTreatmentCard()
-					})
-					.catch(error => {
-						this.loading = false
+                    })
+                    .catch(error => {
+                        this.loading = false
 
-						this.response.message = error.response.data.message
-						this.response.status = false
+                        this.response.message = error.response.data.message
+                        this.response.status = false
 
-						utility.debug(error.response.data.debug)
-					})
-			}
-		},
+                        utility.debug(error.response.data.debug)
+                    })
+            }
+        },
 
         /**
          * Get all teeth
@@ -1132,18 +1132,18 @@ export default {
             this.fields.pain.display = this.painFields()
         },
 
-		// Reset fields
+        // Reset fields
         setAllFieldsFalse () {
-            Object.keys(this.fields).forEach(key =>
+            Object.keys(this.fields).forEach(key => {
                 this.fields[key].display = false
-            )
+            })
         },
 
         // Reset teeth display
         setAllTeethFalse () {
-            Object.keys(this.haveTeeth).forEach(key =>
+            Object.keys(this.haveTeeth).forEach(key => {
                 this.haveTeeth[key].display = false
-            )
+            })
         },
 
         /**
