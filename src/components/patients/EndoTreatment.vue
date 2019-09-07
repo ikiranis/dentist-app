@@ -9,7 +9,8 @@
 		</div>
 
 		<div class="container col-lg-7 col-12 mt-3"
-			 v-for="treatment in selectedEndoTreatments" :key="treatment.id">
+			 v-for="treatment in selectedEndoTreatments" :key="treatment.id"
+			 v-if="!displayInsertNew">
 
 			<endo-treatment-form :treatment="treatment"
 								 :response="response"
@@ -17,6 +18,16 @@
 								 :teeth="teeth"
 								 :saveData="saveData" />
 
+		</div>
+
+		<div class="container col-lg-7 col-12 mt-3"
+			 v-if="displayInsertNew">
+
+			<endo-treatment-form :treatment="endoTreatment"
+								 :response="response"
+								 :roots="roots"
+								 :teeth="teeth"
+								 :saveData="saveData" />
 		</div>
 
 		<div class="row fixed-bottom mb-2">
@@ -56,28 +67,15 @@ export default {
 
 			selectedEndoTreatments: [],
 
-            endoTreatment: {
-            	id: 0,
-				root_id: 0,
-				tooth_number: 18,
-				roots: [],
-				counter: null,
-				radiography: null,
-				workingLength: null,
-				benchmark: null,
-				benchmark_id: 0,
-				benchmarks: [],
-				MAF: null,
-				chemicalMechanicalTreatment: null,
-				blocking_technique_id: 0,
-				blockingTechniques: []
-			},
+            endoTreatment: {},
 
             chozenRoots: [],
 
 			teeth: [],
 
-			haveTeeth: {}
+			haveTeeth: {},
+
+			displayInsertNew: false
         }
     },
 
@@ -121,6 +119,7 @@ export default {
 		// When selected tooth change, load the data
 		selectedTooth () {
 			if (this.selectedTooth) {
+				this.displayInsertNew = false
 				this.getEndoTreatmentsForTooth()
 			}
 		}
@@ -137,12 +136,14 @@ export default {
 		 * Create or update data
 		 */
 		saveData (endoTreatment) {
+			console.log(endoTreatment)
 			if (endoTreatment.id === 0) {
 				this.createEndoTreatment(endoTreatment)
-
+				console.log('insert')
 				return
 			}
 
+			console.log('update')
 			this.updateEndoTreatment(endoTreatment)
 		},
 
@@ -165,6 +166,7 @@ export default {
 
 					if (response.status === 200) {
 						this.endoTreatments = response.data
+						this.endoTreatment = {}
 
 						return
 					}
@@ -181,34 +183,6 @@ export default {
 				})
 		},
 
-        /**
-			 * Get Endo Treatment info
-			 */
-        getEndoTreatment () {
-			this.loading = true
-
-			this.endoTreatments = {}
-
-			this.chozenRoots.forEach(async chozenRoot => {
-				await api.getEndoTreatment(this.patientId, chozenRoot)
-					.then(response => {
-						if (response.status === 200) {
-							this.loading = false
-
-							this.$set(this.endoTreatments, chozenRoot, response.data)
-						}
-					})
-					.catch(error => {
-						this.loading = false
-
-						this.response.message = error.response.data.message
-						this.response.status = false
-
-						utility.debug(error.response.data.debug)
-					})
-			})
-        },
-
 		/**
 		 * Create an endo treatment
 		 */
@@ -224,6 +198,7 @@ export default {
 					this.response.message = 'Τα δεδομένα αποθηκεύτηκαν'
 					this.response.status = true
 
+					this.endoTreatment = {}
 					this.getEndoTreatments()
 				})
 				.catch(error => {
@@ -354,6 +329,7 @@ export default {
 		// Reset all values for new card
 		newEndoTreatment () {
 			this.resetEndoTreatment()
+			this.displayInsertNew = true
 		},
 
 		// Reset values of endoTreatment
