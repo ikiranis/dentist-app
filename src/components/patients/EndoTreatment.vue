@@ -16,6 +16,7 @@
 								 :response="response"
 								 :roots="roots"
 								 :teeth="teeth"
+								 :deleteEndoTreatment="deleteEndoTreatment"
 								 :saveData="saveData" />
 
 		</div>
@@ -27,6 +28,7 @@
 								 :response="response"
 								 :roots="roots"
 								 :teeth="teeth"
+								 :deleteEndoTreatment="deleteEndoTreatment"
 								 :saveData="saveData" />
 		</div>
 
@@ -136,14 +138,12 @@ export default {
 		 * Create or update data
 		 */
 		saveData (endoTreatment) {
-			console.log(endoTreatment)
 			if (endoTreatment.id === 0) {
 				this.createEndoTreatment(endoTreatment)
-				console.log('insert')
+
 				return
 			}
 
-			console.log('update')
 			this.updateEndoTreatment(endoTreatment)
 		},
 
@@ -166,7 +166,6 @@ export default {
 
 					if (response.status === 200) {
 						this.endoTreatments = response.data
-						this.endoTreatment = {}
 
 						return
 					}
@@ -198,8 +197,8 @@ export default {
 					this.response.message = 'Τα δεδομένα αποθηκεύτηκαν'
 					this.response.status = true
 
-					this.endoTreatment = {}
 					this.getEndoTreatments()
+					this.newEndoTreatment()
 				})
 				.catch(error => {
 					this.loading = false
@@ -249,21 +248,21 @@ export default {
 		/**
 		 * Delete an endo treatment
 		 */
-		deleteEndoTreatment () {
+		deleteEndoTreatment (id) {
 			let choise = confirm('Θέλεις σίγουρα να σβήσεις τα δεδομένα;')
 
 			if (choise) {
 				this.loading = true
 
-				api.deleteEndoTreatment(this.endoTreatment.id)
+				api.deleteEndoTreatment(id)
 					.then(response => {
 						this.loading = false
 
 						this.response.message = 'Τα δεδομένα διαγράφηκαν'
 						this.response.status = true
 
-						this.getEndoTreatments()
 						this.newEndoTreatment()
+						this.getEndoTreatments()
 					})
 					.catch(error => {
 						this.loading = false
