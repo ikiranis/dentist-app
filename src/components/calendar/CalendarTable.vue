@@ -1,6 +1,6 @@
 <template functional>
     <div class="row">
-        <div v-for="event in props.events" :key="event.id" class="col-4 mb-3">
+        <div v-for="event in props.events" :key="event.id" class="col-md-4 col-12 mb-3">
             <div class="card">
                 <div class="card-header">
                     <div class="row">

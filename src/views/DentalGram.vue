@@ -57,7 +57,7 @@
 
 		<menu-bar brand="Ασθενής" :brandRoute="{ name: 'patient', params: { id: patientId } }"
 				  :menuItems="menuItems" userInfo="false" fixed=""
-				  variant="" type="light" valign="mx-auto" toggle="lg"
+				  variant="" type="light" valign="mx-auto" toggle="md"
 				  navCollapseText="patientBar" />
 
         <div class="row justify-content-center">
@@ -66,7 +66,7 @@
 				<Loading class="mx-auto" :loading="loading"/>
 			</div>
 
-            <div class="row">
+            <div class="container row">
 
                 <dental-gram-teeth-table v-if="!loading"
 										 class="mx-auto"

@@ -3,7 +3,7 @@
 
         <menu-bar brand="Ασθενής" :brandRoute="{ name: 'patient', params: { id: patientId } }"
                   :menuItems="menuItems" userInfo="false" fixed=""
-                  variant="" type="light" valign="mx-auto" toggle="lg"
+                  variant="" type="light" valign="mx-auto" toggle="md"
                   navCollapseText="patientBar"/>
 
         <div class="row justify-content-center">
@@ -12,7 +12,9 @@
                 <Loading class="mx-auto" :loading="loading"/>
             </div>
 
-            <tabs :tabs="tabs" class="mb-3"/>
+            <div class="row col-12 mb-3">
+                <tabs :tabs="tabs" class="mx-auto"/>
+            </div>
 
             <div class="container">
 
