@@ -270,7 +270,8 @@ export default {
         newFile () {
             this.file = {
                 id: 0,
-                patient_id: this.patientId
+                patient_id: this.patientId,
+				size: 0
             }
 
             this.fileTitle = 'Εισαγωγή αρχείου'
@@ -398,7 +399,16 @@ export default {
         storeFile(fileAdded) {
             return new Promise(async (resolve, reject) => {
                 try {
-                    let response = await api.storeFile(fileAdded);
+                    let response = {
+                    	file_id: 1
+					};
+
+					this.file.patient_id = fileAdded.user_id
+					this.file.filename = fileAdded.name
+					this.file.path = fileAdded.path
+
+					console.log(this.file)
+
                     resolve(response);
                 } catch (error) {
                     reject(error.response.data.message);
