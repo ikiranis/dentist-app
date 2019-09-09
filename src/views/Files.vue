@@ -11,6 +11,41 @@
                            accept="*" @change="uploadFile">
                 </div>
 
+                <div class="mt-3" v-if="progress > 0">
+                    <b-progress height="2rem"
+                                :value="parseInt(progress)"
+                                :max="progressMax"
+                                show-progress animated
+                                variant="success" />
+                </div>
+
+                <ul class="list-group mt-3">
+                    <li class="list-group-item bg-success my-1"
+                        v-for="file in files"
+                        :key="file.id">
+                        <div class="row">
+                            <span class="col-8 text-white">{{ file.name }}</span>
+                            <span class="col-4 text-right">
+                                <button class="btn btn-sm btn-danger"
+                                        @click="deleteFile(file.id)">Delete</button>
+                            </span>
+                        </div>
+                    </li>
+                </ul>
+
+                <div v-if="rejectedFiles.length > 0" class="mt-3">
+                    <div class="alert alert-warning w-100 text-center">Rejected files for size limit or file error</div>
+                    <ul class="list-group mt-2">
+                        <li class="list-group-item bg-danger text-white my-1"
+                            v-for="file in rejectedFiles"
+                            :key="file.id">
+                            <span v-if="file.size">File Limit: ({{ file.size.toLocaleString() }} bytes) </span>
+                            <span v-else>Uploaded file error: </span>
+                            <span>{{ file.name }}</span>
+                        </li>
+                    </ul>
+                </div>
+
                 <div class="form-group row">
                     <label for="description" class="col-md-4 col-form-label text-md-right">Περιγραφή</label>
                     <div class="col-md-8">
@@ -87,6 +122,8 @@ import Loading from '@/components/basic/Loading'
 import FilesList from '@/components/patients/FilesList'
 import utility from '../library/utility'
 import api from '../api'
+import {mapState, mapMutations} from 'vuex';
+import uploadFiles from "@/library/uploadFiles";
 
 export default {
     components: { MenuBar, FormError, DisplayError, Loading, FilesList },
@@ -112,6 +149,8 @@ export default {
                 description: null,
                 size: 0
             },
+
+            progressMax: 100,
 
             menuItems: [
                 {
@@ -166,6 +205,8 @@ export default {
     },
 
     computed: {
+        ...mapState(['files', 'progress', 'rejectedFiles']),
+
         patientId: function () {
             return this.$route.params.id
         }
@@ -176,6 +217,7 @@ export default {
     },
 
     methods: {
+        ...mapMutations(['setFiles', 'setProgress']),
 
         /**
          * Get all the files
@@ -337,9 +379,46 @@ export default {
             }
         },
 
+        /**
+         * Display the error on every error
+         */
+        handleError(error) {
+            this.response.message = error;
+            this.response.status = false;
+        },
+
         uploadFile () {
-            //
+            uploadFiles.startUpload(this.patientId, '#file', this.storeFile, this.removeFile, this.handleError, 3000000, false);
+        },
+
+        /**
+         * Store file to database
+         */
+        storeFile(fileAdded) {
+            return new Promise(async (resolve, reject) => {
+                try {
+                    let response = await api.storeFile(fileAdded);
+                    resolve(response);
+                } catch (error) {
+                    reject(error.response.data.message);
+                }
+            });
+        },
+
+        /**
+         * Remove file on file error
+         */
+        removeFile(file){
+            return new Promise(async (resolve, reject) => {
+                try {
+                    let response = await api.removeFile(file);
+                    resolve(response);
+                } catch(error) {
+                    reject(error);
+                }
+            });
         }
+
     }
 }
 </script>
