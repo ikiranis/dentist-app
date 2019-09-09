@@ -1,6 +1,6 @@
 <template>
-    <div class="card mb-2 w-100 mx-auto">
-        <div class="card-header text-center">
+    <div class="card">
+        <div class="card-header row text-center">
             <div class="input-group row mb-2 mx-auto">
                 <div class="input-group-prepend">
                     <div class="input-group-text">
@@ -23,7 +23,7 @@
 
             <div class="input-group mb-3 mx-autο">
                 <div class="input-group-prepend">
-                    <div class="input-group-text ">
+                    <div class="input-group-text">
                         <label for="tooth_number" class="my-auto">Επιλογή δοντιού</label>
                     </div>
                 </div>

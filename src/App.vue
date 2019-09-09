@@ -92,15 +92,15 @@ export default {
 </script>
 
 <style lang="scss">
-	body {
+	body, html {
 		overflow-y: scroll;
+        font-size: 12px;
 	}
 
     #app {
         @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
         color: #2c3e50;
         font-family: 'Roboto', sans-serif;
-        font-size: 15px;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
     }
@@ -110,6 +110,19 @@ export default {
     }
 
     .btn-icon {
+        cursor: pointer;
+    }
+
+    input[type=checkbox] {
+        /* Double-sized Checkboxes */
+        -ms-transform: scale(2); /* IE */
+        -moz-transform: scale(2); /* FF */
+        -webkit-transform: scale(2); /* Safari and Chrome */
+        -o-transform: scale(2); /* Opera */
+        padding: 5px;
+    }
+
+    .removeItem {
         cursor: pointer;
     }
 </style>
