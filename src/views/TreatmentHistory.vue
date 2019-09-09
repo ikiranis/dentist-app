@@ -33,7 +33,7 @@
                 </div>
 
                 <div class="row">
-                    <button class="btn btn-success col-lg-6 col-12 my-3 mx-auto"
+                    <button class="btn btn-success col-md-6 col-12 my-3 mx-auto"
                             @click="saveTreatment">Αποθήκευση</button>
                 </div>
 
@@ -74,7 +74,7 @@
             </div>
 
             <div class="row w-100" v-if="!loading">
-                <input type="submit" class="btn btn-success col-lg-6 col-12 my-3 mx-auto"
+                <input type="submit" class="btn btn-success col-md-6 col-12 my-3 mx-auto"
                        @click="newTreatment()" value="Εισαγωγή θεραπείας">
             </div>
 

@@ -15,7 +15,7 @@
 
             <div class="row">
                 <input type="submit"
-                       class="btn btn-success col-lg-6 col-12 my-3 mx-auto"
+                       class="btn btn-success col-md-6 col-12 my-3 mx-auto"
                        @click="saveNote" value="Αποθήκευση">
             </div>
         </b-modal>

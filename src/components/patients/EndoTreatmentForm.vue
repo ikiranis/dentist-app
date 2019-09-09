@@ -158,13 +158,13 @@
 
             <div class="row">
                 <input type="submit"
-                       class="btn btn-success col-lg-6 col-12 my-3 mx-auto"
+                       class="btn btn-success col-md-5 col-12 my-3 mx-auto"
                        @click="saveData(treatment)"
                        value="Αποθήκευση">
 
                 <input v-if="treatment.id !== 0"
                        type="button"
-                       class="btn btn-danger col-lg-5 col-12 my-3 mx-auto"
+                       class="btn btn-danger col-md-5 col-12 my-3 mx-auto"
                        @click="deleteEndoTreatment(treatment.id)"
                        value="Διαγραφή">
             </div>

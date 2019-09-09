@@ -345,7 +345,7 @@
                 </form>
 
                 <div class="row" v-if="fieldSelected">
-                    <input type="submit" class="btn btn-success col-lg-6 col-12 my-3 mx-auto"
+                    <input type="submit" class="btn btn-success col-md-6 col-12 my-3 mx-auto"
                            @click="updateMedicalHistory" value="Αποθήκευση">
                 </div>
 

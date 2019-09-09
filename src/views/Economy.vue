@@ -48,7 +48,7 @@
 
 				<div class="row">
 					<input type="submit"
-						   class="btn btn-success col-lg-6 col-12 my-3 mx-auto"
+						   class="btn btn-success col-md-6 col-12 my-3 mx-auto"
 						   @click="saveTransaction" value="Αποθήκευση">
 				</div>
 
@@ -138,14 +138,14 @@
 
 				<div class="col-lg-6 col-12">
 					<div class="row">
-						<input type="submit" class="btn btn-success col-lg-6 col-12 my-3 mx-auto"
+						<input type="submit" class="btn btn-success col-md-6 col-12 my-3 mx-auto"
 							   @click="newTransaction(0)" value="Εισαγωγή εσόδου">
 					</div>
 				</div>
 
 				<div class="col-lg-6 col-12">
 					<div class="row">
-						<input type="submit" class="btn btn-success col-lg-6 col-12 my-3 mx-auto"
+						<input type="submit" class="btn btn-success col-md-6 col-12 my-3 mx-auto"
 							   @click="newTransaction(1)" value="Εισαγωγή εξόδου">
 					</div>
 				</div>

@@ -163,7 +163,7 @@
 
                 <div class="row">
                     <input type="button" id="saveInfo"
-                           class="btn btn-success col-lg-6 col-12 my-3 mx-auto"
+                           class="btn btn-success col-md-6 col-12 my-3 mx-auto"
                            @click="saveInfo" value="Αποθήκευση">
                 </div>
 
