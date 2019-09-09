@@ -86,13 +86,13 @@
 
             </form>
 
-            <div class="alert alert-success text-center w-50 mt-5 mx-auto" v-if="!files.length && !loading">
+            <div class="alert alert-success text-center w-50 mt-5 mx-auto" v-if="!filesList.length && !loading">
                 Δεν βρέθηκαν αρχεία
             </div>
 
-            <div class="container mt-4" v-if="files.length">
+            <div class="container mt-4" v-if="filesList.length">
 
-                <files-list :files="files"
+                <files-list :files="filesList"
                         @clickDelete="deleteFile"
                         @clickUpdate="getFile" />
 
@@ -146,6 +146,7 @@ export default {
                 patient_id: 0,
                 thumbnail: null,
                 filename: null,
+                path: null,
                 description: null,
                 size: 0
             },
@@ -197,7 +198,7 @@ export default {
                 }
             ],
 
-            files: [],
+            filesList: [],
 
             fileTitle: ''
 
@@ -232,14 +233,14 @@ export default {
                     this.loading = false
 
                     if (response.status === 200) {
-                        this.files = response.data
+                        this.filesList = response.data
 
                         window.scrollTo(0, 0)
 
                         return
                     }
 
-                    this.files = []
+                    this.filesList = []
                 })
                 .catch(error => {
                     this.loading = false
@@ -255,7 +256,7 @@ export default {
          * Display file for edit
          */
         getFile (fileId) {
-            this.file = this.files.find((file) => {
+            this.file = this.filesList.find((file) => {
                 return file.id === fileId
             })
 

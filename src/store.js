@@ -23,7 +23,7 @@ export default new Vuex.Store({
          * @param state
          * @param username
          */
-        setUsername (state, username) {
+        setUsername(state, username) {
             state.username = username
         },
 
@@ -33,7 +33,7 @@ export default new Vuex.Store({
          * @param state
          * @param userId
          */
-        setUserId (state, userId) {
+        setUserId(state, userId) {
             state.userId = userId
         },
 
@@ -43,32 +43,8 @@ export default new Vuex.Store({
          * @param state
          * @param value
          */
-        setLoading (state, value) {
+        setLoading(state, value) {
             state.loading = value
-        }
-
-    },
-
-    actions: {
-
-        /**
-         * Call api to get the current user and set store variables
-         *
-         * @param context
-         * @returns {Promise<T>}
-         */
-        getCurrentUser (context) {
-            api.getCurrentUser()
-                .then(response => {
-                    context.commit('setUsername', response.name)
-                    context.commit('setUserId', response.id)
-                })
-                .catch(error => {
-                    if (error.response.statusText === 'Unauthorized') {
-                        context.commit('setUsername', null)
-                        context.commit('setUserId', 0)
-                    }
-                })
         },
 
         /**
@@ -99,6 +75,29 @@ export default new Vuex.Store({
          */
         setProgress(state, value) {
             state.progress = value;
+        }
+    },
+
+    actions: {
+
+        /**
+         * Call api to get the current user and set store variables
+         *
+         * @param context
+         * @returns {Promise<T>}
+         */
+        getCurrentUser(context) {
+            api.getCurrentUser()
+                .then(response => {
+                    context.commit('setUsername', response.name)
+                    context.commit('setUserId', response.id)
+                })
+                .catch(error => {
+                    if (error.response.statusText === 'Unauthorized') {
+                        context.commit('setUsername', null)
+                        context.commit('setUserId', 0)
+                    }
+                })
         }
 
     }
