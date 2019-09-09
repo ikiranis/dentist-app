@@ -627,10 +627,10 @@ let api = {
      * @param args
      * @returns {Promise<void>}
      */
-    async uploadFile(args) {
-        let {data} = await axios.post(ROOT_API + '/uploadFile', args);
+    async uploadFile (args) {
+        let { data } = await axios.post(ROOT_API + '/uploadFile', args)
 
-        return data;
+        return data
     },
 
     /**
@@ -639,10 +639,10 @@ let api = {
      * @param args
      * @returns {Promise<void>}
      */
-    async storeFile(args) {
-        let {data} = await axios.post(ROOT_API + '/file', args);
+    async storeFile (args) {
+        let { data } = await axios.post(ROOT_API + '/file', args)
 
-        return data;
+        return data
     },
 
     /**
@@ -651,10 +651,10 @@ let api = {
      * @param args
      * @returns {Promise<void>}
      */
-    async removeFile(args) {
-        let {data} = await axios.post(ROOT_API + '/removeFile', args);
+    async removeFile (args) {
+        let { data } = await axios.post(ROOT_API + '/removeFile', args)
 
-        return data;
+        return data
     },
 
     // ************** Roots api calls **************

@@ -23,7 +23,7 @@ export default new Vuex.Store({
          * @param state
          * @param username
          */
-        setUsername(state, username) {
+        setUsername (state, username) {
             state.username = username
         },
 
@@ -33,7 +33,7 @@ export default new Vuex.Store({
          * @param state
          * @param userId
          */
-        setUserId(state, userId) {
+        setUserId (state, userId) {
             state.userId = userId
         },
 
@@ -43,7 +43,7 @@ export default new Vuex.Store({
          * @param state
          * @param value
          */
-        setLoading(state, value) {
+        setLoading (state, value) {
             state.loading = value
         },
 
@@ -53,8 +53,8 @@ export default new Vuex.Store({
          * @param state
          * @param value
          */
-        setFiles(state, value) {
-            state.files = value;
+        setFiles (state, value) {
+            state.files = value
         },
 
         /**
@@ -63,8 +63,8 @@ export default new Vuex.Store({
          * @param state
          * @param value
          */
-        setRejectedFiles(state, value) {
-            state.rejectedFiles = value;
+        setRejectedFiles (state, value) {
+            state.rejectedFiles = value
         },
 
         /**
@@ -73,8 +73,8 @@ export default new Vuex.Store({
          * @param state
          * @param value
          */
-        setProgress(state, value) {
-            state.progress = value;
+        setProgress (state, value) {
+            state.progress = value
         }
     },
 
@@ -86,7 +86,7 @@ export default new Vuex.Store({
          * @param context
          * @returns {Promise<T>}
          */
-        getCurrentUser(context) {
+        getCurrentUser (context) {
             api.getCurrentUser()
                 .then(response => {
                     context.commit('setUsername', response.name)

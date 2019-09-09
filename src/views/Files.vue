@@ -122,8 +122,8 @@ import Loading from '@/components/basic/Loading'
 import FilesList from '@/components/patients/FilesList'
 import utility from '../library/utility'
 import api from '../api'
-import {mapState, mapMutations} from 'vuex';
-import uploadFiles from "@/library/uploadFiles";
+import { mapState, mapMutations } from 'vuex'
+import uploadFiles from '@/library/uploadFiles'
 
 export default {
     components: { MenuBar, FormError, DisplayError, Loading, FilesList },
@@ -271,7 +271,7 @@ export default {
             this.file = {
                 id: 0,
                 patient_id: this.patientId,
-				size: 0
+                size: 0
             }
 
             this.fileTitle = 'Εισαγωγή αρχείου'
@@ -384,50 +384,50 @@ export default {
         /**
          * Display the error on every error
          */
-        handleError(error) {
-            this.response.message = error;
-            this.response.status = false;
+        handleError (error) {
+            this.response.message = error
+            this.response.status = false
         },
 
         uploadFile () {
-            uploadFiles.startUpload(this.patientId, '#file', this.storeFile, this.removeFile, this.handleError, 3000000, false);
+            uploadFiles.startUpload(this.patientId, '#file', this.storeFile, this.removeFile, this.handleError, 3000000, false)
         },
 
         /**
          * Store file to database
          */
-        storeFile(fileAdded) {
+        storeFile (fileAdded) {
             return new Promise(async (resolve, reject) => {
                 try {
                     let response = {
-                    	file_id: 1
-					};
+                        file_id: 1
+                    }
 
-					this.file.patient_id = fileAdded.user_id
-					this.file.filename = fileAdded.name
-					this.file.path = fileAdded.path
+                    this.file.patient_id = fileAdded.user_id
+                    this.file.filename = fileAdded.name
+                    this.file.path = fileAdded.path
 
-					console.log(this.file)
+                    console.log(this.file)
 
-                    resolve(response);
+                    resolve(response)
                 } catch (error) {
-                    reject(error.response.data.message);
+                    reject(error.response.data.message)
                 }
-            });
+            })
         },
 
         /**
          * Remove file on file error
          */
-        removeFile(file){
+        removeFile (file) {
             return new Promise(async (resolve, reject) => {
                 try {
-                    let response = await api.removeFile(file);
-                    resolve(response);
-                } catch(error) {
-                    reject(error);
+                    let response = await api.removeFile(file)
+                    resolve(response)
+                } catch (error) {
+                    reject(error)
                 }
-            });
+            })
         }
 
     }

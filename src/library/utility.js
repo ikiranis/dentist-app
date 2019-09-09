@@ -19,9 +19,9 @@ const utility = {
      * @param value
      * @returns {*}
      */
-    removeObjFromArray(myArray, key, value) {
-        return myArray.filter(obj => (obj[key] !== value) );
-    },
+    removeObjFromArray (myArray, key, value) {
+        return myArray.filter(obj => (obj[key] !== value))
+    }
 
 }
 
