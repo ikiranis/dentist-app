@@ -10,7 +10,10 @@ export default new Vuex.Store({
     state: {
         username: null,
         userId: 0,
-        loading: false
+        loading: false,
+        files: [],
+        rejectedFiles: [],
+        progress: 0
     },
 
     mutations: {
@@ -49,11 +52,11 @@ export default new Vuex.Store({
     actions: {
 
         /**
-     * Call api to get the current user and set store variables
-     *
-     * @param context
-     * @returns {Promise<T>}
-     */
+         * Call api to get the current user and set store variables
+         *
+         * @param context
+         * @returns {Promise<T>}
+         */
         getCurrentUser (context) {
             api.getCurrentUser()
                 .then(response => {
@@ -66,6 +69,36 @@ export default new Vuex.Store({
                         context.commit('setUserId', 0)
                     }
                 })
+        },
+
+        /**
+         * files setter
+         *
+         * @param state
+         * @param value
+         */
+        setFiles(state, value) {
+            state.files = value;
+        },
+
+        /**
+         * rejectedFiles setter
+         *
+         * @param state
+         * @param value
+         */
+        setRejectedFiles(state, value) {
+            state.rejectedFiles = value;
+        },
+
+        /**
+         * progress setter
+         *
+         * @param state
+         * @param value
+         */
+        setProgress(state, value) {
+            state.progress = value;
         }
 
     }

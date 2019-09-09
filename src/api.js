@@ -792,7 +792,34 @@ let api = {
      */
     async deleteMedicine (medicineId) {
         return axios.delete(ROOT_API + '/medicine/' + medicineId)
-    }
+    },
+
+
+    // ************** Upload file api calls **************
+
+    /**
+     * Upload a file
+     *
+     * @param args
+     * @returns {Promise<void>}
+     */
+    async uploadFile(args) {
+        let {data} = await axios.post(ROOT_API + '/uploadFile', args);
+
+        return data;
+    },
+
+    /**
+     * Store file to database
+     *
+     * @param args
+     * @returns {Promise<void>}
+     */
+    async storeFile(args) {
+        let {data} = await axios.post(ROOT_API + '/file', args);
+
+        return data;
+    },
 }
 
 export default api
