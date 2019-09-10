@@ -1,6 +1,10 @@
 <template>
     <div class="container-fluid my-3">
 
+        <b-modal ref="attachmentModal" size="lg" centered hide-footer :title="image.filename">
+            <div v-if="image.src"><img :src="image.src" width="100%"></div>
+        </b-modal>
+
         <b-modal ref="fileModal" size="md" centered hide-footer :title="fileTitle">
 
             <form @submit.prevent class="container-fluid">
@@ -202,7 +206,12 @@ export default {
 
             filesList: [],
 
-            fileTitle: ''
+            fileTitle: '',
+
+            image: {
+                src: null,
+                filename: null
+            },
 
         }
     },
@@ -408,8 +417,6 @@ export default {
                     this.file.filename = fileAdded.name
                     this.file.path = fileAdded.path
 
-                    console.log(this.file)
-
                     resolve(response)
                 } catch (error) {
                     reject(error.response.data.message)
@@ -485,6 +492,7 @@ export default {
          * @returns {boolean}
          */
         checkFileExtension(file) {
+            console.log(file)
             let imageExtensions = ['jpeg', 'jpg', 'tif', 'png', 'gif'];
             let fileExtension = file.substr(file.lastIndexOf('.') + 1);
             return imageExtensions.includes(fileExtension); // Return true if file is image
