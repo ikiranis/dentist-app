@@ -273,9 +273,20 @@
              * Display file for edit
              */
             getFileData(fileId) {
+				this.setFiles([])
+
                 this.file = this.filesList.find((file) => {
                     return file.id === fileId
                 })
+
+				let file = {
+					id: this.file.id,
+					name: this.file.filename,
+					path: this.file.path,
+					user_id: this.file.patient_id
+				}
+
+				this.files.push(file)
 
                 this.fileTitle = 'Ενημέρωση αρχείου'
                 this.$refs.fileModal.show()
@@ -320,11 +331,6 @@
                         this.response.status = true
 
                         this.$refs.fileModal.hide()
-
-						console.log(this.files)
-
-						// let files = utility.removeObjFromArray(this.files, 'id', response.id);
-						// this.setFiles(files);
 
 						this.setFiles([])
 
