@@ -12,7 +12,9 @@
                 <div class="custom-file col-12 mb-3">
                     <label class="custom-file-label" for="file">Επιλογή αρχείου</label>
                     <input type="file" class="custom-file-input" name="file" id="file"
-                           accept="*" @change="uploadFile">
+                           accept="*" required @change="uploadFile">
+
+					<form-error v-if="response.errors.filename" :error="response.errors.filename[0]"/>
                 </div>
 
                 <div class="mt-3" v-if="progress > 0">
@@ -367,6 +369,8 @@
 
                         this.$refs.fileModal.hide()
 
+						this.setFiles([])
+
                         this.getFiles(null)
                     })
                     .catch(error => {
@@ -458,6 +462,8 @@
 							this.response.message = 'Το αρχείο διαγράφηκε'
 							this.response.status = true
 
+							this.file.filename = null
+							this.file.path = null
 							this.setFiles([])
 						})
 						.catch(error => {
