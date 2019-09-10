@@ -130,6 +130,7 @@ import utility from '../library/utility'
 import api from '../api'
 import { mapState, mapMutations } from 'vuex'
 import uploadFiles from '@/library/uploadFiles'
+import { base64StringToBlob } from 'blob-util'
 
 export default {
     components: { MenuBar, FormError, DisplayError, Loading, FilesList },
@@ -456,10 +457,13 @@ export default {
                         const url = window.URL.createObjectURL(new Blob([
                             base64StringToBlob(response.data.content, response.headers["content-type"])
                         ]));
+
                         const link = document.createElement('a');
+
                         link.href = url;
                         link.setAttribute('download', response.data.filename);
                         document.body.appendChild(link);
+
                         link.click();
                     }
                 })
@@ -492,9 +496,9 @@ export default {
          * @returns {boolean}
          */
         checkFileExtension(file) {
-            console.log(file)
             let imageExtensions = ['jpeg', 'jpg', 'tif', 'png', 'gif'];
             let fileExtension = file.substr(file.lastIndexOf('.') + 1);
+
             return imageExtensions.includes(fileExtension); // Return true if file is image
         },
 
