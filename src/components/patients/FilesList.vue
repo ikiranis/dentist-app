@@ -19,18 +19,17 @@
                             @click="clickDelete(file.id)"
                             title="Διαγραφή αρχείου"/>
                 </td>
-                <th scope="row" class="text-center">
-                    <!--                    <img :src="file.thumbnail">-->
-
-                    <span class="col-5 text-right">
+                <th scope="row" class="text-center align-middle">
                         <span v-if="checkFileExtension(file.filename)">
-                            <eye-icon @click.native="getFile(file.id)" class="btn-icon" title="View image"/>
+                            <img class="btn-icon thumbnail"
+                                 :src="file.image"
+                                 alt="Εικόνα αρχείου"
+                                 @click="getFile(file.id)">
                         </span>
                         <span v-else>
                             <download-icon @click.native="getFile(file.id)" class="btn-icon"
                                            title="Download file"/>
                         </span>
-                    </span>
                 </th>
                 <td class="align-middle">
                     <a href="#" class="px-2"
@@ -73,7 +72,17 @@
             getFile: {
                 required: true,
                 type: Function
+            },
+            getImage: {
+                required: true,
+                type: Function
             }
         }
     }
 </script>
+
+<style scoped>
+    .thumbnail {
+        max-width: 10em;
+    }
+</style>

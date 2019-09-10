@@ -20,7 +20,7 @@
                                 :value="parseInt(progress)"
                                 :max="progressMax"
                                 show-progress animated
-                                variant="success" />
+                                variant="success"/>
                 </div>
 
                 <ul class="list-group mt-3">
@@ -61,17 +61,17 @@
 
                 <div class="row">
                     <input type="submit" class="btn btn-success col-md-6 col-12 my-3 mx-auto"
-                            @click="saveFile" value="Αποθήκευση">
+                           @click="saveFile" value="Αποθήκευση">
                 </div>
 
             </form>
 
         </b-modal>
 
-		<menu-bar brand="Ασθενής" :brandRoute="{ name: 'patient', params: { id: patientId } }"
-				  :menuItems="menuItems" userInfo="false" fixed=""
-				  variant="" type="light" valign="mx-auto" toggle="md"
-				  navCollapseText="patientBar" />
+        <menu-bar brand="Ασθενής" :brandRoute="{ name: 'patient', params: { id: patientId } }"
+                  :menuItems="menuItems" userInfo="false" fixed=""
+                  variant="" type="light" valign="mx-auto" toggle="md"
+                  navCollapseText="patientBar"/>
 
         <div class="row justify-content-center">
 
@@ -86,7 +86,8 @@
                        id="search" name="search" v-model="search">
 
                 <input type="submit" class="btn btn-small btn-success col-md-3 col-12 my-1 mx-auto" value="Αναζήτηση">
-                <input type="submit" class="btn btn-small btn-danger col-md-3 col-12 my-1" @click="clearSearch()" value="Καθαρισμός">
+                <input type="submit" class="btn btn-small btn-danger col-md-3 col-12 my-1" @click="clearSearch()"
+                       value="Καθαρισμός">
 
             </form>
 
@@ -97,10 +98,11 @@
             <div class="container mt-4" v-if="filesList.length">
 
                 <files-list :files="filesList"
-                        :clickDelete="deleteFile"
-                        :clickUpdate="getFileData"
-                        :checkFileExtension="checkFileExtension"
-                        :getFile="getFile" />
+                            :clickDelete="deleteFile"
+                            :clickUpdate="getFileData"
+                            :checkFileExtension="checkFileExtension"
+                            :getImage="getImage"
+                            :getFile="getFile"/>
 
             </div>
 
@@ -121,265 +123,140 @@
 </template>
 
 <script>
-import MenuBar from '@/components/basic/MenuBar'
-import FormError from '@/components/basic/FormError'
-import DisplayError from '@/components/basic/DisplayError'
-import Loading from '@/components/basic/Loading'
-import FilesList from '@/components/patients/FilesList'
-import utility from '../library/utility'
-import api from '../api'
-import { mapState, mapMutations } from 'vuex'
-import uploadFiles from '@/library/uploadFiles'
-import { base64StringToBlob } from 'blob-util'
+    import MenuBar from '@/components/basic/MenuBar'
+    import FormError from '@/components/basic/FormError'
+    import DisplayError from '@/components/basic/DisplayError'
+    import Loading from '@/components/basic/Loading'
+    import FilesList from '@/components/patients/FilesList'
+    import utility from '../library/utility'
+    import api from '../api'
+    import {mapState, mapMutations} from 'vuex'
+    import uploadFiles from '@/library/uploadFiles'
+    import {base64StringToBlob} from 'blob-util'
 
-export default {
-    components: { MenuBar, FormError, DisplayError, Loading, FilesList },
+    export default {
+        components: {MenuBar, FormError, DisplayError, Loading, FilesList},
 
-    data () {
-        return {
+        data() {
+            return {
 
-            search: '',
+                search: '',
 
-            loading: false,
+                loading: false,
 
-            response: {
-                message: ' ',
-                status: '',
-                errors: []
-            },
-
-            file: {
-                id: 0,
-                patient_id: 0,
-                thumbnail: null,
-                filename: null,
-                path: null,
-                description: null,
-                size: 0
-            },
-
-            progressMax: 100,
-
-            menuItems: [
-                {
-                    route: '/medicalHistory/' + this.$route.params.id,
-                    name: 'Ιατρικό ιστορικό',
-                    loggedIn: true,
-                    active: false
+                response: {
+                    message: ' ',
+                    status: '',
+                    errors: []
                 },
-                {
-                    route: '/dentalHistory/' + this.$route.params.id,
-                    name: 'Οδοντιατρικό ιστορικό',
-                    loggedIn: true,
-                    active: false
+
+                file: {
+                    id: 0,
+                    patient_id: 0,
+                    thumbnail: null,
+                    filename: null,
+                    path: null,
+                    description: null,
+                    size: 0
                 },
-                {
-                    route: '/dentalGram/' + this.$route.params.id,
-                    name: 'Οδοντόγραμμα',
-                    loggedIn: true,
-                    active: false
-                },
-                {
-                    route: '/periodontalChart/' + this.$route.params.id,
-                    name: 'Περιοδοντόγραμμα',
-                    loggedIn: true,
-                    active: false
-                },
-                {
-                    route: '/treatmentHistory/' + this.$route.params.id,
-                    name: 'Ιστορικό θεραπειών',
-                    loggedIn: true,
-                    active: false
-                },
-                {
-                    route: '/denervation/' + this.$route.params.id,
-                    name: 'Απονεύρωση',
-                    loggedIn: true,
-                    active: false
-                },
-                {
-                    route: '/files/' + this.$route.params.id,
-                    name: 'Αρχεία',
-                    loggedIn: true,
-                    active: true
-                }
-            ],
 
-            filesList: [],
+                progressMax: 100,
 
-            fileTitle: '',
-
-            image: {
-                src: null,
-                filename: null
-            },
-
-        }
-    },
-
-    computed: {
-        ...mapState(['files', 'progress', 'rejectedFiles']),
-
-        patientId: function () {
-            return this.$route.params.id
-        }
-    },
-
-    created: function () {
-        this.getFiles(null)
-    },
-
-    methods: {
-        ...mapMutations(['setFiles', 'setProgress']),
-
-        /**
-         * Get all the files
-         *
-         * @param page
-         */
-        getFiles (page) {
-            this.loading = true
-
-            api.getFiles(this.patientId)
-                .then(response => {
-                    this.loading = false
-
-                    if (response.status === 200) {
-                        this.filesList = response.data
-
-                        window.scrollTo(0, 0)
-
-                        return
+                menuItems: [
+                    {
+                        route: '/medicalHistory/' + this.$route.params.id,
+                        name: 'Ιατρικό ιστορικό',
+                        loggedIn: true,
+                        active: false
+                    },
+                    {
+                        route: '/dentalHistory/' + this.$route.params.id,
+                        name: 'Οδοντιατρικό ιστορικό',
+                        loggedIn: true,
+                        active: false
+                    },
+                    {
+                        route: '/dentalGram/' + this.$route.params.id,
+                        name: 'Οδοντόγραμμα',
+                        loggedIn: true,
+                        active: false
+                    },
+                    {
+                        route: '/periodontalChart/' + this.$route.params.id,
+                        name: 'Περιοδοντόγραμμα',
+                        loggedIn: true,
+                        active: false
+                    },
+                    {
+                        route: '/treatmentHistory/' + this.$route.params.id,
+                        name: 'Ιστορικό θεραπειών',
+                        loggedIn: true,
+                        active: false
+                    },
+                    {
+                        route: '/denervation/' + this.$route.params.id,
+                        name: 'Απονεύρωση',
+                        loggedIn: true,
+                        active: false
+                    },
+                    {
+                        route: '/files/' + this.$route.params.id,
+                        name: 'Αρχεία',
+                        loggedIn: true,
+                        active: true
                     }
+                ],
 
-                    this.filesList = []
-                })
-                .catch(error => {
-                    this.loading = false
+                filesList: [],
 
-                    this.response.message = error.response.data.message
-                    this.response.status = false
+                fileTitle: '',
 
-                    utility.debug(error.response.data.debug)
-                })
-        },
+                image: {
+                    src: null,
+                    filename: null
+                },
 
-        /**
-         * Display file for edit
-         */
-        getFileData (fileId) {
-            this.file = this.filesList.find((file) => {
-                return file.id === fileId
-            })
-
-            this.fileTitle = 'Ενημέρωση αρχείου'
-            this.$refs.fileModal.show()
-        },
-
-        /**
-         * Display file modal
-         */
-        newFile () {
-            this.file = {
-                id: 0,
-                patient_id: this.patientId
             }
-
-            this.fileTitle = 'Εισαγωγή αρχείου'
-            this.$refs.fileModal.show()
         },
 
-        /**
-         * Run the appropriate save action
-         */
-        saveFile () {
-            if (this.file.id === 0) {
-                this.createFile()
-                return
+        computed: {
+            ...mapState(['files', 'progress', 'rejectedFiles']),
+
+            patientId: function () {
+                return this.$route.params.id
             }
-
-            this.updateFile()
         },
 
-        /**
-         * Create a file
-         */
-        createFile () {
-            this.loading = true
-
-            api.createFile(this.file)
-                .then(response => {
-                    this.loading = false
-
-                    this.response.message = 'Το αρχείο αποθηκεύτηκε'
-                    this.response.status = true
-
-                    this.$refs.fileModal.hide()
-
-                    this.getFiles(null)
-                })
-                .catch(error => {
-                    this.loading = false
-
-                    this.response.message = error.response.data.message
-                    this.response.status = false
-
-                    if (error.response.data.errors) {
-                        this.response.errors = error.response.data.errors
-                    }
-
-                    utility.debug(error.response.data.debug)
-                })
+        created: function () {
+            this.getFiles(null)
         },
 
-        /**
-         * Update the file
-         */
-        updateFile () {
-            this.loading = true
+        methods: {
+            ...mapMutations(['setFiles', 'setProgress']),
 
-            api.updateFile(this.file, this.file.id)
-                .then(response => {
-                    this.loading = false
-
-                    this.response.message = 'Το αρχείο ενημερώθηκε'
-                    this.response.status = true
-
-                    this.$refs.fileModal.hide()
-
-                    this.getFiles(null)
-                })
-                .catch(error => {
-                    this.loading = false
-
-                    this.response.message = error.response.data.message
-                    this.response.status = false
-
-                    if (error.response.data.errors) {
-                        this.response.errors = error.response.data.errors
-                    }
-
-                    utility.debug(error.response.data.debug)
-                })
-        },
-
-        /**
-         * Delete a file
-         */
-        deleteFile (fileId) {
-            let choise = confirm('Θέλεις σίγουρα να σβήσεις το αρχείο με id: ' + fileId + ';')
-
-            if (choise) {
+            /**
+             * Get all the files
+             *
+             * @param page
+             */
+            getFiles(page) {
                 this.loading = true
 
-                api.deleteFile(fileId)
+                api.getFiles(this.patientId)
                     .then(response => {
                         this.loading = false
 
-                        this.response.message = 'Το αρχείο διαγράφηκε'
-                        this.response.status = true
+                        if (response.status === 200) {
+                            this.filesList = response.data
 
-                        this.getFiles(null)
+                            this.findImages()
+
+                            window.scrollTo(0, 0)
+
+                            return
+                        }
+
+                        this.filesList = []
                     })
                     .catch(error => {
                         this.loading = false
@@ -389,119 +266,260 @@ export default {
 
                         utility.debug(error.response.data.debug)
                     })
-            }
-        },
+            },
 
-        /**
-         * Display the error on every error
-         */
-        handleError (error) {
-            this.response.message = error
-            this.response.status = false
-        },
+            /**
+             * Display file for edit
+             */
+            getFileData(fileId) {
+                this.file = this.filesList.find((file) => {
+                    return file.id === fileId
+                })
 
-        uploadFile () {
-            uploadFiles.startUpload(this.patientId, '#file', this.storeFile, this.removeFile, this.handleError, 3000000, false)
-        },
+                this.fileTitle = 'Ενημέρωση αρχείου'
+                this.$refs.fileModal.show()
+            },
 
-        /**
-         * Store file to database
-         */
-        storeFile (fileAdded) {
-            return new Promise(async (resolve, reject) => {
-                try {
-                    let response = {
-                        file_id: 1
-                    }
-
-                    this.file.patient_id = fileAdded.user_id
-                    this.file.filename = fileAdded.name
-                    this.file.path = fileAdded.path
-
-                    resolve(response)
-                } catch (error) {
-                    reject(error.response.data.message)
+            /**
+             * Display file modal
+             */
+            newFile() {
+                this.file = {
+                    id: 0,
+                    patient_id: this.patientId
                 }
-            })
-        },
 
-        /**
-         * Remove file on file error
-         */
-        removeFile (file) {
-            return new Promise(async (resolve, reject) => {
-                try {
-                    let response = await api.removeFile(file)
-                    resolve(response)
-                } catch (error) {
-                    reject(error)
+                this.fileTitle = 'Εισαγωγή αρχείου'
+                this.$refs.fileModal.show()
+            },
+
+            /**
+             * Run the appropriate save action
+             */
+            saveFile() {
+                if (this.file.id === 0) {
+                    this.createFile()
+                    return
                 }
-            })
-        },
 
-        /**
-         * Get the file and display images or download other files
-         *
-         * @param id
-         */
-        getFile(id) {
-            api.getFile(id)
-                .then(response => {
-                    if (response.headers["content-type"].includes('image')) { // If file is image
-                        this.image = {
-                            src: 'data: ${response.headers["content-type"]};base64,' + response.data.content,
-                            filename: response.data.filename
-                        };
-                        this.$refs.attachmentModal.show();
-                    } else { // If file is not image
-                        const url = window.URL.createObjectURL(new Blob([
-                            base64StringToBlob(response.data.content, response.headers["content-type"])
-                        ]));
+                this.updateFile()
+            },
 
-                        const link = document.createElement('a');
+            /**
+             * Create a file
+             */
+            createFile() {
+                this.loading = true
 
-                        link.href = url;
-                        link.setAttribute('download', response.data.filename);
-                        document.body.appendChild(link);
+                api.createFile(this.file)
+                    .then(response => {
+                        this.loading = false
 
-                        link.click();
+                        this.response.message = 'Το αρχείο αποθηκεύτηκε'
+                        this.response.status = true
+
+                        this.$refs.fileModal.hide()
+
+                        this.getFiles(null)
+                    })
+                    .catch(error => {
+                        this.loading = false
+
+                        this.response.message = error.response.data.message
+                        this.response.status = false
+
+                        if (error.response.data.errors) {
+                            this.response.errors = error.response.data.errors
+                        }
+
+                        utility.debug(error.response.data.debug)
+                    })
+            },
+
+            /**
+             * Update the file
+             */
+            updateFile() {
+                this.loading = true
+
+                api.updateFile(this.file, this.file.id)
+                    .then(response => {
+                        this.loading = false
+
+                        this.response.message = 'Το αρχείο ενημερώθηκε'
+                        this.response.status = true
+
+                        this.$refs.fileModal.hide()
+
+                        this.getFiles(null)
+                    })
+                    .catch(error => {
+                        this.loading = false
+
+                        this.response.message = error.response.data.message
+                        this.response.status = false
+
+                        if (error.response.data.errors) {
+                            this.response.errors = error.response.data.errors
+                        }
+
+                        utility.debug(error.response.data.debug)
+                    })
+            },
+
+            /**
+             * Delete a file
+             */
+            deleteFile(fileId) {
+                let choise = confirm('Θέλεις σίγουρα να σβήσεις το αρχείο με id: ' + fileId + ';')
+
+                if (choise) {
+                    this.loading = true
+
+                    api.deleteFile(fileId)
+                        .then(response => {
+                            this.loading = false
+
+                            this.response.message = 'Το αρχείο διαγράφηκε'
+                            this.response.status = true
+
+                            this.getFiles(null)
+                        })
+                        .catch(error => {
+                            this.loading = false
+
+                            this.response.message = error.response.data.message
+                            this.response.status = false
+
+                            utility.debug(error.response.data.debug)
+                        })
+                }
+            },
+
+            /**
+             * Display the error on every error
+             */
+            handleError(error) {
+                this.response.message = error
+                this.response.status = false
+            },
+
+            uploadFile() {
+                uploadFiles.startUpload(this.patientId, '#file', this.storeFile, this.removeFile, this.handleError, 3000000, false)
+            },
+
+            /**
+             * Store file to database
+             */
+            storeFile(fileAdded) {
+                return new Promise(async (resolve, reject) => {
+                    try {
+                        let response = {
+                            file_id: 1
+                        }
+
+                        this.file.patient_id = fileAdded.user_id
+                        this.file.filename = fileAdded.name
+                        this.file.path = fileAdded.path
+
+                        resolve(response)
+                    } catch (error) {
+                        reject(error.response.data.message)
                     }
                 })
-                .catch(error => {
-                    this.response.message = error.response.data.message;
-                    this.response.status = false;
-                })
-        },
+            },
 
-        /**
-         * Get the image and set the this.mainImage to display
-         */
-        getImage(id) {
-            api.getFile(id)
-                .then(response => {
-                    if (response.headers["content-type"].includes('image')) {
-                        this.mainImage = 'data: ${response.headers["content-type"]};base64,' + response.data.content;
+            /**
+             * Remove file on file error
+             */
+            removeFile(file) {
+                return new Promise(async (resolve, reject) => {
+                    try {
+                        let response = await api.removeFile(file)
+                        resolve(response)
+                    } catch (error) {
+                        reject(error)
                     }
                 })
-                .catch(error => {
-                    this.response.message = error.response.data.message;
-                    this.response.status = false;
+            },
+
+            /**
+             * Get the file and display images or download other files
+             *
+             * @param id
+             */
+            getFile(id) {
+                api.getFile(id)
+                    .then(response => {
+                        if (response.headers["content-type"].includes('image')) { // If file is image
+                            this.image = {
+                                src: 'data: ${response.headers["content-type"]};base64,' + response.data.content,
+                                filename: response.data.filename
+                            };
+                            this.$refs.attachmentModal.show();
+                        } else { // If file is not image
+                            const url = window.URL.createObjectURL(new Blob([
+                                base64StringToBlob(response.data.content, response.headers["content-type"])
+                            ]));
+
+                            const link = document.createElement('a');
+
+                            link.href = url;
+                            link.setAttribute('download', response.data.filename);
+                            document.body.appendChild(link);
+
+                            link.click();
+                        }
+                    })
+                    .catch(error => {
+                        this.response.message = error.response.data.message;
+                        this.response.status = false;
+                    })
+            },
+
+            /**
+             * Check files for images and read the image data
+             */
+            findImages() {
+                this.filesList.forEach((file, index) => {
+                    if (this.checkFileExtension(file.filename)) {
+                        this.getImage(file.id, index)
+                    }
                 })
-        },
 
-        /**
-         * Check if file is image
-         *
-         * @param file
-         * @returns {boolean}
-         */
-        checkFileExtension(file) {
-            let imageExtensions = ['jpeg', 'jpg', 'tif', 'png', 'gif'];
-            let fileExtension = file.substr(file.lastIndexOf('.') + 1);
+                console.log(this.filesList)
+            },
 
-            return imageExtensions.includes(fileExtension); // Return true if file is image
-        },
+            /**
+             * Get the image and set the this.mainImage to display
+             */
+            getImage(id, index) {
+                api.getFile(id)
+                    .then(response => {
+                        if (response.headers["content-type"].includes('image')) {
+                            let image = `data: ${response.headers["content-type"]};base64,` + response.data.content
+                            this.$set(this.filesList[index], 'image', image)
+                        }
+                    })
+                    .catch(error => {
+                        this.response.message = error.response.data.message;
+                        this.response.status = false;
+                    })
+            },
 
+            /**
+             * Check if file is image
+             *
+             * @param file
+             * @returns {boolean}
+             */
+            checkFileExtension(file) {
+                let imageExtensions = ['jpeg', 'jpg', 'tif', 'png', 'gif'];
+                let fileExtension = file.substr(file.lastIndexOf('.') + 1);
+
+                return imageExtensions.includes(fileExtension); // Return true if file is image
+            },
+
+        }
     }
-}
 </script>
