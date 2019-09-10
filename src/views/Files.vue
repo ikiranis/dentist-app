@@ -404,7 +404,7 @@
             },
 
             uploadFile() {
-                uploadFiles.startUpload(this.patientId, '#file', this.storeFile, this.removeFile, this.handleError, 3000000, false)
+                uploadFiles.startUpload(this.patientId, '#file', this.storeFile, this.removeFile, this.handleError, 30000000, false)
             },
 
             /**
