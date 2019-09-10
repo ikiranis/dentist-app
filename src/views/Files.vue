@@ -93,8 +93,10 @@
             <div class="container mt-4" v-if="filesList.length">
 
                 <files-list :files="filesList"
-                        @clickDelete="deleteFile"
-                        @clickUpdate="getFile" />
+                        :clickDelete="deleteFile"
+                        :clickUpdate="getFileData"
+                        :checkFileExtension="checkFileExtension"
+                        :getFile="getFile" />
 
             </div>
 
@@ -255,7 +257,7 @@ export default {
         /**
          * Display file for edit
          */
-        getFile (fileId) {
+        getFileData (fileId) {
             this.file = this.filesList.find((file) => {
                 return file.id === fileId
             })
@@ -427,7 +429,66 @@ export default {
                     reject(error)
                 }
             })
-        }
+        },
+
+        /**
+         * Get the file and display images or download other files
+         *
+         * @param id
+         */
+        getFile(id) {
+            api.getFile(id)
+                .then(response => {
+                    if (response.headers["content-type"].includes('image')) { // If file is image
+                        this.image = {
+                            src: 'data: ${response.headers["content-type"]};base64,' + response.data.content,
+                            filename: response.data.filename
+                        };
+                        this.$refs.attachmentModal.show();
+                    } else { // If file is not image
+                        const url = window.URL.createObjectURL(new Blob([
+                            base64StringToBlob(response.data.content, response.headers["content-type"])
+                        ]));
+                        const link = document.createElement('a');
+                        link.href = url;
+                        link.setAttribute('download', response.data.filename);
+                        document.body.appendChild(link);
+                        link.click();
+                    }
+                })
+                .catch(error => {
+                    this.response.message = error.response.data.message;
+                    this.response.status = false;
+                })
+        },
+
+        /**
+         * Get the image and set the this.mainImage to display
+         */
+        getImage(id) {
+            api.getFile(id)
+                .then(response => {
+                    if (response.headers["content-type"].includes('image')) {
+                        this.mainImage = 'data: ${response.headers["content-type"]};base64,' + response.data.content;
+                    }
+                })
+                .catch(error => {
+                    this.response.message = error.response.data.message;
+                    this.response.status = false;
+                })
+        },
+
+        /**
+         * Check if file is image
+         *
+         * @param file
+         * @returns {boolean}
+         */
+        checkFileExtension(file) {
+            let imageExtensions = ['jpeg', 'jpg', 'tif', 'png', 'gif'];
+            let fileExtension = file.substr(file.lastIndexOf('.') + 1);
+            return imageExtensions.includes(fileExtension); // Return true if file is image
+        },
 
     }
 }

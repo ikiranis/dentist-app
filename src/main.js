@@ -20,6 +20,8 @@ import CurrencyEur from 'vue-material-design-icons/CurrencyEur.vue'
 import MinusCircleOutline from 'vue-material-design-icons/MinusCircleOutline.vue'
 import PlusCircleOutline from 'vue-material-design-icons/PlusCircleOutline.vue'
 import Delete from 'vue-material-design-icons/Delete.vue'
+import EyeIcon from 'vue-material-design-icons/Eye.vue'
+import DownloadIcon from 'vue-material-design-icons/Download.vue'
 
 Vue.config.productionTip = true
 Vue.use(BootstrapVue)
@@ -37,6 +39,8 @@ Vue.component('medical-bag-icon', MedicalBag)
 Vue.component('currency-eur-icon', CurrencyEur)
 Vue.component('minus-circle-outline', MinusCircleOutline)
 Vue.component('plus-circle-outline', PlusCircleOutline)
+Vue.component('eye-icon', EyeIcon)
+Vue.component('download-icon', DownloadIcon)
 Vue.component('delete', Delete)
 
 new Vue({
