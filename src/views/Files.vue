@@ -31,13 +31,13 @@
                             <span class="col-8 text-white">{{ file.name }}</span>
                             <span class="col-4 text-right">
                                 <button class="btn btn-sm btn-danger"
-                                        @click="deleteFile(file.id)">Delete</button>
+                                        @click="deleteFileFromDisk(file)">Delete</button>
                             </span>
                         </div>
                     </li>
                 </ul>
 
-                <div v-if="rejectedFiles.length > 0" class="mt-3">
+                <div v-if="rejectedFiles.length" class="mt-3">
                     <div class="alert alert-warning w-100 text-center">Rejected files for size limit or file error</div>
                     <ul class="list-group mt-2">
                         <li class="list-group-item bg-danger text-white my-1"
@@ -54,7 +54,7 @@
                     <label for="description" class="col-md-4 col-form-label text-md-right">Περιγραφή</label>
                     <div class="col-md-8">
                         <input id="description" type="text" class="form-control"
-                               v-model="file.description" required>
+                               v-model="file.description" maxlength="150">
                         <form-error v-if="response.errors.description" :error="response.errors.description[0]"/>
                     </div>
                 </div>
@@ -296,6 +296,8 @@
              * Display file modal
              */
             newFile() {
+				this.setFiles([])
+
                 this.file = {
                     id: 0,
                     patient_id: this.patientId
@@ -442,6 +444,32 @@
                     }
                 })
             },
+
+			deleteFileFromDisk(file) {
+				let choise = confirm('Θέλεις σίγουρα να σβήσεις το αρχείο;')
+
+				if (choise) {
+					this.loading = true
+
+					api.removeFile(file)
+						.then(response => {
+							this.loading = false
+
+							this.response.message = 'Το αρχείο διαγράφηκε'
+							this.response.status = true
+
+							this.setFiles([])
+						})
+						.catch(error => {
+							this.loading = false
+
+							this.response.message = error.response.data.message
+							this.response.status = false
+
+							utility.debug(error.response.data.debug)
+						})
+				}
+			},
 
             /**
              * Remove file on file error
