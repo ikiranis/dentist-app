@@ -488,7 +488,7 @@
             },
 
             /**
-             * Get the image and set the this.mainImage to display
+             * Get the image and set the image to display
              */
             getImage(file) {
                 api.getFile(file.id)
