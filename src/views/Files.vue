@@ -153,7 +153,6 @@
                 file: {
                     id: 0,
                     patient_id: 0,
-                    thumbnail: null,
                     filename: null,
                     path: null,
                     description: null,
@@ -481,24 +480,22 @@
              * Check files for images and read the image data
              */
             findImages() {
-                this.filesList.forEach((file, index) => {
+                this.filesList.forEach(file => {
                     if (this.checkFileExtension(file.filename)) {
-                        this.getImage(file.id, index)
+                        this.getImage(file)
                     }
                 })
-
-                console.log(this.filesList)
             },
 
             /**
              * Get the image and set the this.mainImage to display
              */
-            getImage(id, index) {
-                api.getFile(id)
+            getImage(file) {
+                api.getFile(file.id)
                     .then(response => {
                         if (response.headers["content-type"].includes('image')) {
                             let image = `data: ${response.headers["content-type"]};base64,` + response.data.content
-                            this.$set(this.filesList[index], 'image', image)
+                            this.$set(file, 'image', image)
                         }
                     })
                     .catch(error => {
