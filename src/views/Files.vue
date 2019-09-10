@@ -215,6 +215,8 @@
                     filename: null
                 },
 
+				sizeLimit: 30000000
+
             }
         },
 
@@ -319,6 +321,13 @@
 
                         this.$refs.fileModal.hide()
 
+						console.log(this.files)
+
+						// let files = utility.removeObjFromArray(this.files, 'id', response.id);
+						// this.setFiles(files);
+
+						this.setFiles([])
+
                         this.getFiles(null)
                     })
                     .catch(error => {
@@ -404,7 +413,7 @@
             },
 
             uploadFile() {
-                uploadFiles.startUpload(this.patientId, '#file', this.storeFile, this.removeFile, this.handleError, 30000000, false)
+                uploadFiles.startUpload(this.patientId, '#file', this.storeFile, this.removeFile, this.handleError, this.sizeLimit, false)
             },
 
             /**
