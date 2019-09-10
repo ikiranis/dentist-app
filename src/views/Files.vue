@@ -270,8 +270,7 @@ export default {
         newFile () {
             this.file = {
                 id: 0,
-                patient_id: this.patientId,
-                size: 0
+                patient_id: this.patientId
             }
 
             this.fileTitle = 'Εισαγωγή αρχείου'

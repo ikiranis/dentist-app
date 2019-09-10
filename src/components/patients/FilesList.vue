@@ -32,7 +32,7 @@
                     {{ file.created_at }}
                 </td>
                 <td class="align-middle">
-                    {{ file.size }} kb
+                    {{ (file.size/1024).toFixed(1) }} kb
                 </td>
             </tr>
             </tbody>
