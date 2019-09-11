@@ -51,34 +51,34 @@
 </template>
 
 <script>
-    export default {
-        props: {
-            files: {
-                required: true,
-                type: Array
-            },
-            clickUpdate: {
-                required: true,
-                type: Function
-            },
-            clickDelete: {
-                required: true,
-                type: Function
-            },
-            checkFileExtension: {
-                required: true,
-                type: Function
-            },
-            getFile: {
-                required: true,
-                type: Function
-            },
-            getImage: {
-                required: true,
-                type: Function
-            }
+export default {
+    props: {
+        files: {
+            required: true,
+            type: Array
+        },
+        clickUpdate: {
+            required: true,
+            type: Function
+        },
+        clickDelete: {
+            required: true,
+            type: Function
+        },
+        checkFileExtension: {
+            required: true,
+            type: Function
+        },
+        getFile: {
+            required: true,
+            type: Function
+        },
+        getImage: {
+            required: true,
+            type: Function
         }
     }
+}
 </script>
 
 <style scoped>
