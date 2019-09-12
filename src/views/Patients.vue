@@ -140,9 +140,7 @@
                     .catch(error => {
                         this.loading = false
 
-                        if (error.response.status === 403) {
-                            this.userOk = false
-                        }
+                        this.userOk = utility.checkAccessError(error.response.status)
 
                         this.response.message = error.response.data.message
                         this.response.status = false

@@ -21,6 +21,16 @@ const utility = {
      */
     removeObjFromArray (myArray, key, value) {
         return myArray.filter(obj => (obj[key] !== value))
+    },
+
+    /**
+     * Return false if code is 401 or 403
+     *
+     * @param code
+     * @returns {boolean}
+     */
+    checkAccessError (code) {
+        return !(code === 401 || code === 403);
     }
 
 }
