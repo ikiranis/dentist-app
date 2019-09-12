@@ -8,37 +8,37 @@
                 <div class="form-group row">
                     <label for="number1" class="sr-only">Number</label>
                     <div class="col-md-4 mb-2">
-                        <input id="number1" type="number" class="form-control"
+                        <input id="number1" type="number" min="0" max="99" class="form-control"
                                v-model="note.measure1" required>
                     </div>
 
                     <label for="number2" class="sr-only">Number</label>
                     <div class="col-md-4 mb-2">
-                        <input id="number2" type="number" class="form-control"
+                        <input id="number2" type="number" min="0" max="99" class="form-control"
                                v-model="note.measure2" required>
                     </div>
 
                     <label for="number3" class="sr-only">Number</label>
                     <div class="col-md-4 mb-2">
-                        <input id="number3" type="number" class="form-control"
+                        <input id="number3" type="number" min="0" max="99" class="form-control"
                                v-model="note.measure3" required>
                     </div>
 
                     <label for="number4" class="sr-only">Number</label>
                     <div class="col-md-4 mb-2">
-                        <input id="number4" type="number" class="form-control"
+                        <input id="number4" type="number" min="0" max="99" class="form-control"
                                v-model="note.measure4" required>
                     </div>
 
                     <label for="number5" class="sr-only">Number</label>
                     <div class="col-md-4 mb-2">
-                        <input id="number5" type="number" class="form-control"
+                        <input id="number5" type="number" min="0" max="99" class="form-control"
                                v-model="note.measure5" required>
                     </div>
 
                     <label for="number6" class="sr-only">Number</label>
                     <div class="col-md-4 mb-2">
-                        <input id="number6" type="number" class="form-control"
+                        <input id="number6" type="number" min="0" max="99" class="form-control"
                                v-model="note.measure6" required>
                     </div>
                 </div>
