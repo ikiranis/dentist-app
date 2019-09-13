@@ -11,7 +11,7 @@
         </div>
 
         <div v-else>
-            Api OFFLINE
+            <no-access-page message="API: OFFLINE" />
         </div>
 
     </div>
@@ -22,9 +22,10 @@
 import api from '@/api'
 import MenuBar from '@/components/basic/MenuBar'
 import utility from './library/utility'
+import NoAccessPage from '@/components/basic/NoAccessPage'
 
 export default {
-    components: { MenuBar },
+    components: { MenuBar, NoAccessPage },
 
     data: () => ({
         apiWorks: true,
