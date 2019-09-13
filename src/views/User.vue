@@ -62,6 +62,8 @@
             <paginate :pagination="pagination" @click="getUsers"/>
 
             <users-table :users="users"
+                         :currentUserId="userInfo.id"
+                         @toggleAdmin="toggleAdmin"
                          @deleteUser="deleteUser" />
 
             <paginate :pagination="pagination" @click="getUsers"/>
@@ -215,7 +217,11 @@ export default {
         },
 
         deleteUser(id) {
-        //
+            alert('delete user ' + id)
+        },
+
+        toggleAdmin(id) {
+            alert('toggle admin ' + id)
         }
 
     }
