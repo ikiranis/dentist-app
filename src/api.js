@@ -68,6 +68,26 @@ let api = {
         return data
     },
 
+	/**
+	 * Delete a user
+	 *
+	 * @param userId
+	 * @returns {Promise<Promise<AxiosResponse<T>>>}
+	 */
+	async deleteUser (userId) {
+		return axios.delete(ROOT_API + '/user/' + userId)
+	},
+
+	/**
+	 * Toggle Role
+	 *
+	 * @param userId
+	 * @returns {Promise<Promise<AxiosResponse<T>>>}
+	 */
+	async toggleRole (userId) {
+		return axios.patch(ROOT_API + '/toggleRole/' + userId)
+	},
+
     /**
      *
      * @param username

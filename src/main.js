@@ -22,6 +22,7 @@ import PlusCircleOutline from 'vue-material-design-icons/PlusCircleOutline.vue'
 import Delete from 'vue-material-design-icons/Delete.vue'
 import EyeIcon from 'vue-material-design-icons/Eye.vue'
 import DownloadIcon from 'vue-material-design-icons/Download.vue'
+import SwapHorizontalBold from 'vue-material-design-icons/SwapHorizontalBold.vue'
 
 Vue.config.productionTip = true
 Vue.use(BootstrapVue)
@@ -42,6 +43,7 @@ Vue.component('plus-circle-outline', PlusCircleOutline)
 Vue.component('eye-icon', EyeIcon)
 Vue.component('download-icon', DownloadIcon)
 Vue.component('delete', Delete)
+Vue.component('swap-horizontal-bold', SwapHorizontalBold)
 
 new Vue({
     router,

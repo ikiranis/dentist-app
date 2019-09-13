@@ -13,20 +13,24 @@
             </thead>
             <tbody v-for="user in props.users" :key="user.id">
             <tr>
-                <td class="text-center btn-icon">
-                    <delete class="deleteUser"
+                <td class="text-center align-middle">
+                    <delete class="deleteUser btn-icon"
                             @click="listeners.deleteUser(user.id)"
                             title="Διαγραφή ασθενή"/>
                 </td>
-                <th scope="row" class="userId">{{ user.id }}</th>
-                <td>
+                <th scope="row" class="userId align-middle">{{ user.id }}</th>
+                <td class="align-middle">
                     <span>{{ user.name }}</span>
                 </td>
-                <td>
+                <td class="align-middle">
                     <span>{{ user.email }}</span>
                 </td>
-                <td>
-                    <span @click="listeners.toggleAdmin(user.id)"
+                <td class="align-middle">
+					<swap-horizontal-bold class="toggleRole btn-icon"
+										  @click="listeners.toggleRole(user)"
+										  title="Αλλαγή ρόλου"/>
+
+                    <span @click="listeners.toggleRole(user)"
                           v-if="user.id !== props.currentUserId">
                         {{ user.isAdmin ? 'Διαχειριστής' : 'Χρήστης' }}
                     </span>

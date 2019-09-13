@@ -63,7 +63,7 @@
 
             <users-table :users="users"
                          :currentUserId="userInfo.id"
-                         @toggleAdmin="toggleAdmin"
+                         @toggleRole="toggleRole"
                          @deleteUser="deleteUser" />
 
             <paginate :pagination="pagination" @click="getUsers"/>
@@ -223,11 +223,56 @@ export default {
         },
 
         deleteUser(id) {
-            alert('delete user ' + id)
+			let choise = confirm('Θέλεις σίγουρα να σβήσεις τον χρήστη με id: ' + id + ';')
+
+			if (choise) {
+				this.loading = true
+
+				api.deleteUser(id)
+					.then(response => {
+						this.loading = false
+
+						this.response.message = 'Ο χρήστης διαγράφηκε'
+						this.response.status = true
+
+						this.getUsers(null)
+					})
+					.catch(error => {
+						this.loading = false
+
+						this.response.message = error.response.data.message
+						this.response.status = false
+
+						utility.debug(error.response.data.debug)
+					})
+			}
         },
 
-        toggleAdmin(id) {
-            alert('toggle admin ' + id)
+        toggleRole(user) {
+			this.loading = true
+
+			api.toggleRole(user.id)
+				.then(response => {
+					let selectedUser = this.users.find(obj => {
+						return obj.id === user.id
+					})
+
+					selectedUser.isAdmin = response.data.isAdmin
+
+					this.response.message = `Ο χρήστης ${user.name} άλλαξε ρόλο`
+					this.response.status = true
+
+					this.loading = false
+				})
+				.catch(error => {
+					this.response.message = error.response.data.message
+					this.response.status = false
+					if (error.response.data.errors) {
+						this.response.errors = error.response.data.errors
+					}
+
+					this.loading = false
+				})
         }
 
     }
