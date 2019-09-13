@@ -26,12 +26,12 @@
                     <span>{{ user.email }}</span>
                 </td>
                 <td class="align-middle">
-					<swap-horizontal-bold class="toggleRole btn-icon"
+					<swap-horizontal-bold v-if="user.id !== props.currentUserId"
+										  class="toggleRole btn-icon"
 										  @click="listeners.toggleRole(user)"
 										  title="Αλλαγή ρόλου"/>
 
-                    <span @click="listeners.toggleRole(user)"
-                          v-if="user.id !== props.currentUserId">
+                    <span @click="listeners.toggleRole(user)">
                         {{ user.isAdmin ? 'Διαχειριστής' : 'Χρήστης' }}
                     </span>
                 </td>
