@@ -1,10 +1,10 @@
 <template>
-    <div>
+    <div v-if="userIsAdmin">
         <div class="col-lg col-12 row fixed-bottom mb-5">
             <Loading class="mx-auto" :loading="loading"/>
         </div>
 
-        <div class="container-fluid my-3" v-if="userOk && !loading">
+        <div class="container-fluid my-3" v-if="!loading">
 
             <div class="justify-content-center">
 
@@ -62,9 +62,11 @@
 
         </div>
 
-        <no-access-page v-if="!userOk && !loading"
-                        :message="response.message" />
+
     </div>
+
+    <no-access-page v-else
+                    message="Ο χρήστης δεν έχει δικαίωμα να δει αυτό το περιεχόμενο" />
 </template>
 
 <script>
@@ -76,14 +78,13 @@
     import DisplayAlertText from '@/components/basic/DisplayAlertText'
     import Loading from '@/components/basic/Loading'
     import utility from '../library/utility'
+    import {mapState} from "vuex";
 
     export default {
         components: {DisplayError, Paginate, PatientsTable, Loading, DisplayAlertText, NoAccessPage},
 
         data() {
             return {
-                userOk: true,
-
                 response: {
                     message: ' ',
                     status: '',
@@ -106,6 +107,10 @@
                 }
 
             }
+        },
+
+        computed: {
+            ...mapState(['userIsAdmin'])
         },
 
         created: function () {
@@ -139,8 +144,6 @@
                     })
                     .catch(error => {
                         this.loading = false
-
-                        this.userOk = utility.checkAccessError(error.response.status)
 
                         this.response.message = error.response.data.message
                         this.response.status = false

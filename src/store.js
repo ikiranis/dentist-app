@@ -10,6 +10,7 @@ export default new Vuex.Store({
     state: {
         username: null,
         userId: 0,
+        userIsAdmin: false,
         loading: false,
         files: [],
         rejectedFiles: [],
@@ -35,6 +36,16 @@ export default new Vuex.Store({
          */
         setUserId (state, userId) {
             state.userId = userId
+        },
+
+        /**
+         * userId setter
+         *
+         * @param state
+         * @param userIsAdmin
+         */
+        setUserIsAdmin (state, userIsAdmin) {
+            state.userIsAdmin = userIsAdmin
         },
 
         /**
@@ -91,6 +102,7 @@ export default new Vuex.Store({
                 .then(response => {
                     context.commit('setUsername', response.name)
                     context.commit('setUserId', response.id)
+                    context.commit('setUserIsAdmin', response.isAdmin)
                 })
                 .catch(error => {
                     if (error.response.statusText === 'Unauthorized') {
