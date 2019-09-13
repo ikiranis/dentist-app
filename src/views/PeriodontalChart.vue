@@ -1,5 +1,5 @@
 <template>
-    <div class="container-fluid my-3">
+    <div class="container-fluid my-3" v-if="userIsAdmin">
 
         <b-modal ref="noteModal" size="md" centered hide-footer :title="noteTitle">
 
@@ -93,6 +93,9 @@
         </div>
 
     </div>
+
+    <no-access-page v-else
+                    message="Ο χρήστης δεν έχει δικαίωμα να δει αυτό το περιεχόμενο" />
 </template>
 
 <script>
@@ -103,9 +106,11 @@ import utility from '../library/utility'
 import moment from 'moment'
 import DisplayError from '@/components/basic/DisplayError'
 import Loading from '@/components/basic/Loading'
+import {mapState} from "vuex";
+import NoAccessPage from '@/components/basic/NoAccessPage'
 
 export default {
-    components: { MenuBar, PeriodontalChartToothsTable, DisplayError, Loading },
+    components: { MenuBar, PeriodontalChartToothsTable, DisplayError, Loading, NoAccessPage },
 
     data () {
         return {
@@ -184,6 +189,8 @@ export default {
     },
 
     computed: {
+        ...mapState(['userIsAdmin']),
+
         /**
          * Filter upper teeth
          */

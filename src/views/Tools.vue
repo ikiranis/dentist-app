@@ -1,5 +1,5 @@
 <template>
-    <div class="container-fluid my-3">
+    <div class="container-fluid my-3" v-if="userIsAdmin">
         <div class="row justify-content-center">
 
             <div class="col-12">
@@ -18,14 +18,26 @@
 
         </div>
     </div>
+
+    <no-access-page v-else
+                    message="Ο χρήστης δεν έχει δικαίωμα να δει αυτό το περιεχόμενο" />
 </template>
 
 <script>
+    import NoAccessPage from '@/components/basic/NoAccessPage'
+    import {mapState} from "vuex";
+
 export default {
+    components: { NoAccessPage },
+
     data () {
         return {
             //
         }
+    },
+
+    computed: {
+        ...mapState(['userIsAdmin']),
     },
 
     methods: {

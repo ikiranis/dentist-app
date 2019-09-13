@@ -1,5 +1,5 @@
 <template>
-    <div class="container-fluid my-3">
+    <div class="container-fluid my-3" v-if="userIsAdmin">
 
         <b-modal ref="treatmentModal" size="md" centered hide-footer :title="treatmentTitle">
 
@@ -87,6 +87,9 @@
         </div>
 
     </div>
+
+    <no-access-page v-else
+                    message="Ο χρήστης δεν έχει δικαίωμα να δει αυτό το περιεχόμενο" />
 </template>
 
 <script>
@@ -99,9 +102,11 @@ import TreatmentsList from '@/components/patients/TreatmentsList'
 import moment from 'moment'
 import utility from '../library/utility'
 import api from '../api'
+import {mapState} from "vuex";
+import NoAccessPage from '@/components/basic/NoAccessPage'
 
 export default {
-    components: { MenuBar, FormError, Paginate, DisplayError, Loading, TreatmentsList },
+    components: { MenuBar, FormError, Paginate, DisplayError, Loading, TreatmentsList, NoAccessPage },
 
     data () {
         return {
@@ -178,6 +183,8 @@ export default {
     },
 
     computed: {
+        ...mapState(['userIsAdmin']),
+
         patientId: function () {
             return this.$route.params.id
         }

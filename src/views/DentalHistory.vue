@@ -1,5 +1,5 @@
 <template>
-    <div class="container-fluid my-3">
+    <div class="container-fluid my-3" v-if="userIsAdmin">
 
 		<menu-bar brand="Ασθενής" :brandRoute="{ name: 'patient', params: { id: patientId } }"
 				  :menuItems="menuItems" userInfo="false" fixed=""
@@ -26,6 +26,9 @@
 
         </div>
     </div>
+
+    <no-access-page v-else
+                    message="Ο χρήστης δεν έχει δικαίωμα να δει αυτό το περιεχόμενο" />
 </template>
 
 <script>
@@ -34,9 +37,11 @@ import Tabs from '@/components/basic/Tabs'
 import ClinicalExamination from '@/components/patients/ClinicalExamination'
 import DentalHistory from '@/components/patients/DentalHistoryCompo'
 import Loading from '@/components/basic/Loading'
+import {mapState} from "vuex";
+import NoAccessPage from '@/components/basic/NoAccessPage'
 
 export default {
-    components: { MenuBar, ClinicalExamination, DentalHistory, Loading, Tabs },
+    components: { MenuBar, ClinicalExamination, DentalHistory, Loading, Tabs, NoAccessPage },
 
     data () {
         return {
@@ -108,6 +113,8 @@ export default {
     },
 
     computed: {
+        ...mapState(['userIsAdmin']),
+
         patientId: function () {
             return this.$route.params.id
         }

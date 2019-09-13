@@ -1,5 +1,5 @@
 <template>
-    <div class="container-fluid my-3" v-if="!userIsAdmin">
+    <div class="container-fluid my-3" v-if="userIsAdmin">
 
 		<menu-bar brand="Ασθενής" :brandRoute="{ name: 'patient', params: { id: patientId } }"
 				  :menuItems="menuItems" userInfo="false" fixed=""

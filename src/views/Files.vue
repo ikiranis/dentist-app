@@ -1,5 +1,5 @@
 <template>
-    <div class="container-fluid my-3">
+    <div class="container-fluid my-3" v-if="userIsAdmin">
 
         <b-modal ref="attachmentModal" size="lg" centered hide-footer :title="image.filename">
             <div v-if="image.src"><img :src="image.src" width="100%"></div>
@@ -110,6 +110,9 @@
         </div>
 
     </div>
+
+    <no-access-page v-else
+                    message="Ο χρήστης δεν έχει δικαίωμα να δει αυτό το περιεχόμενο" />
 </template>
 
 <script>
@@ -123,9 +126,10 @@ import api from '../api'
 import { mapState, mapMutations } from 'vuex'
 import uploadFiles from '@/library/uploadFiles'
 import { base64StringToBlob } from 'blob-util'
+import NoAccessPage from '@/components/basic/NoAccessPage'
 
 export default {
-    components: { MenuBar, FormError, DisplayError, Loading, FilesList },
+    components: { MenuBar, FormError, DisplayError, Loading, FilesList, NoAccessPage },
 
     data () {
         return {
@@ -208,7 +212,7 @@ export default {
     },
 
     computed: {
-        ...mapState(['files', 'progress', 'rejectedFiles']),
+        ...mapState(['files', 'progress', 'rejectedFiles', 'userIsAdmin']),
 
         patientId: function () {
             return this.$route.params.id

@@ -1,5 +1,5 @@
 <template>
-    <div class="container-fluid my-3">
+    <div class="container-fluid my-3" v-if="userIsAdmin">
 
 		<menu-bar brand="Ασθενής" :brandRoute="{ name: 'patient', params: { id: patientId } }"
 				  :menuItems="menuItems" userInfo="false" fixed=""
@@ -359,6 +359,9 @@
 
         </div>
     </div>
+
+    <no-access-page v-else
+                    message="Ο χρήστης δεν έχει δικαίωμα να δει αυτό το περιεχόμενο" />
 </template>
 
 <script>
@@ -369,9 +372,11 @@ import api from '../api'
 import utility from '../library/utility'
 import DisplayError from '@/components/basic/DisplayError'
 import Loading from '@/components/basic/Loading'
+import {mapState} from "vuex";
+import NoAccessPage from '@/components/basic/NoAccessPage'
 
 export default {
-    components: { MenuBar, FormError, FieldsList, DisplayError, Loading },
+    components: { MenuBar, FormError, FieldsList, DisplayError, Loading, NoAccessPage },
 
     data () {
         return {
@@ -532,6 +537,8 @@ export default {
     },
 
     computed: {
+        ...mapState(['userIsAdmin']),
+
         // Find if any field is selected. True if any
         fieldSelected () {
             return Object.values(this.fields).find((field) => {

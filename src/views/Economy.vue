@@ -1,5 +1,5 @@
 <template>
-	<div class="container-fluid my-3">
+	<div class="container-fluid my-3" v-if="userIsAdmin">
 
 		<b-modal ref="transactionModal" size="md" centered hide-footer :title="transactionTitle">
 
@@ -161,6 +161,9 @@
 		</div>
 
 	</div>
+
+	<no-access-page v-else
+					message="Ο χρήστης δεν έχει δικαίωμα να δει αυτό το περιεχόμενο" />
 </template>
 
 <script>
@@ -172,9 +175,11 @@ import DisplayError from '@/components/basic/DisplayError'
 import Loading from '@/components/basic/Loading'
 import moment from 'moment'
 import utility from '../library/utility'
+import NoAccessPage from '@/components/basic/NoAccessPage'
+import {mapState} from "vuex";
 
 export default {
-    components: { FormError, FinancialList, Paginate, DisplayError, Loading },
+    components: { FormError, FinancialList, Paginate, DisplayError, Loading, NoAccessPage },
 
     data () {
         return {
@@ -216,6 +221,8 @@ export default {
     },
 
     computed: {
+		...mapState(['userIsAdmin']),
+
         income () {
             return this.transactions.filter((transaction) => {
                 return transaction.kind === 0
