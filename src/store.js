@@ -10,7 +10,7 @@ export default new Vuex.Store({
     state: {
         username: null,
         userId: 0,
-        userIsAdmin: false,
+        userIsAdmin: true,
         loading: false,
         files: [],
         rejectedFiles: [],
