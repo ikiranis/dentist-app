@@ -57,6 +57,17 @@
 
         </div>
 
+        <div class="container mt-4" v-if="users.length">
+
+            <paginate :pagination="pagination" @click="getUsers"/>
+
+            <users-table :users="users"
+                         @deleteUser="deleteUser" />
+
+            <paginate :pagination="pagination" @click="getUsers"/>
+
+        </div>
+
     </div>
 
 </template>
@@ -66,10 +77,13 @@ import api from '@/api'
 import DisplayError from '@/components/basic/DisplayError'
 import FormError from '@/components/basic/FormError'
 import Loading from '@/components/basic/Loading'
+import Paginate from '@/components/basic/Paginate'
+import UsersTable from '@/components/users/UsersTable'
+import utility from "../library/utility";
 
 export default {
 
-    components: { Loading, DisplayError, FormError },
+    components: { Loading, DisplayError, FormError, Paginate, UsersTable },
 
     data: () => ({
         response: {
@@ -77,6 +91,12 @@ export default {
             status: '',
             errors: []
         },
+
+        pagination: {
+            meta: {},
+            links: {}
+        },
+
         userInfo: {
             id: null,
             name: null,
@@ -85,6 +105,9 @@ export default {
             role_id: 2,
             api_key: null
         },
+
+        users: [],
+
         password_confirmation: '',
         progressMax: 100,
         loading: false
@@ -98,9 +121,44 @@ export default {
 
     created: function () {
         this.getCurrentUser()
+        this.getUsers(null)
     },
 
     methods: {
+        /**
+         * Get all the users
+         *
+         * @param page
+         */
+        getUsers(page) {
+            this.loading = true
+
+            api.getUsers(page)
+                .then(response => {
+                    this.loading = false
+
+                    if (response.status === 200) {
+                        this.users = response.data.data
+                        this.pagination.meta = response.data.meta
+                        this.pagination.links = response.data.links
+
+                        window.scrollTo(0, 0)
+
+                        return
+                    }
+
+                    this.users = []
+                })
+                .catch(error => {
+                    this.loading = false
+
+                    this.response.message = error.response.data.message
+                    this.response.status = false
+
+                    utility.debug(error.response.data.debug)
+                })
+        },
+
         /**
              * Get current user info
              */
@@ -154,6 +212,10 @@ export default {
 
                 this.loading = false
             }
+        },
+
+        deleteUser(id) {
+        //
         }
 
     }

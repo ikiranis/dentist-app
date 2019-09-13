@@ -38,6 +38,21 @@ let api = {
     },
 
     /**
+     * Get all users
+     *
+     * @returns {Promise<void>}
+     */
+    async getUsers (page) {
+        if (page !== null) {
+            page = '?' + page.toString().split('?')[1]
+        } else {
+            page = ''
+        }
+
+        return axios.get(ROOT_API + '/users' + page)
+    },
+
+    /**
      * Register new user
      *
      * @param args
