@@ -6,9 +6,9 @@
             <tr>
                 <th scope="col" class="user-label"></th>
                 <th scope="col" class="user-label">#</th>
-                <th scope="col" class="user-label">Username</th>
+                <th scope="col" class="user-label">Χρήστης</th>
                 <th scope="col" class="user-label">email</th>
-                <th scope="col" class="user-label">Admin</th>
+                <th scope="col" class="user-label">Ρόλος</th>
             </tr>
             </thead>
             <tbody v-for="user in props.users" :key="user.id">
