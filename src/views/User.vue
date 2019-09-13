@@ -57,7 +57,7 @@
 
         </div>
 
-        <div class="container mt-4" v-if="users.length">
+        <div class="container mt-4" v-if="users.length && userIsAdmin">
 
             <paginate :pagination="pagination" @click="getUsers"/>
 
@@ -82,6 +82,7 @@ import Loading from '@/components/basic/Loading'
 import Paginate from '@/components/basic/Paginate'
 import UsersTable from '@/components/users/UsersTable'
 import utility from "../library/utility";
+import {mapState} from "vuex";
 
 export default {
 
@@ -116,6 +117,8 @@ export default {
     }),
 
     computed: {
+		...mapState(['userIsAdmin']),
+
         userToken: function () {
             return localStorage.accessToken ? localStorage.accessToken : null
         }
@@ -123,7 +126,10 @@ export default {
 
     created: function () {
         this.getCurrentUser()
-        this.getUsers(null)
+
+        if(this.userIsAdmin) {
+        	this.getUsers(null)
+		}
     },
 
     methods: {
