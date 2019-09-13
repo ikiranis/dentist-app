@@ -35,6 +35,7 @@ export default {
                 route: '/patients',
                 name: 'Ασθενείς',
                 loggedIn: true,
+                isForAdmin: true,
                 active: false,
                 disabled: false
             },
@@ -42,6 +43,7 @@ export default {
                 route: '/economy',
                 name: 'Οικονομικά',
                 loggedIn: true,
+                isForAdmin: true,
                 active: false,
                 disabled: false
             },
@@ -49,6 +51,7 @@ export default {
                 route: '/calendar',
                 name: 'Ημερολόγιο',
                 loggedIn: true,
+                isForAdmin: true,
                 active: false,
                 disabled: false
             },
@@ -56,6 +59,7 @@ export default {
                 route: '/tools',
                 name: 'Εργαλεία',
                 loggedIn: true,
+                isForAdmin: true,
                 active: false,
                 disabled: false
             },
@@ -63,6 +67,7 @@ export default {
                 route: '/about',
                 name: 'About',
                 loggedIn: false,
+                isForAdmin: false,
                 active: false,
                 disabled: false
             }

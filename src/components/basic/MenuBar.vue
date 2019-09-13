@@ -14,7 +14,7 @@
                 <!-- User LoggedIn items -->
                 <b-nav-item class="my-auto"
 							v-for="item in menuItems" :key="item.name"
-                            v-if="userId !== 0 && item.loggedIn"
+                            v-if="(userId !== 0 && item.loggedIn) && checkAdminRights(item)"
                             :disabled="!!item.disabled">
                     <router-link :to="item.route"
                                  class="nav-link px-1"
@@ -68,11 +68,25 @@ export default {
     },
 
     computed: {
-        ...mapState(['userId', 'username'])
+        ...mapState(['userId', 'username', 'userIsAdmin'])
     },
 
     methods: {
         ...mapMutations(['setUsername']),
+
+        /**
+         * Check if user have rights to see the item
+         *
+         * @param item
+         * @return boolean
+         */
+        checkAdminRights(item) {
+            if (!item.isForAdmin) {
+                return true
+            }
+
+            return !this.userIsAdmin;
+        },
 
         /**
              * Do the logout
