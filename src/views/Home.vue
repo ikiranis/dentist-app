@@ -1,7 +1,7 @@
 <template>
-    <div class="container-fluid mt-3">
+    <div class="container-fluid mt-3" v-if="isUserLoggedIn">
 
-        <div class="container mb-3 col-12 col-lg-4 mx-auto" v-if="isUserLoggedIn">
+        <div class="container mb-3 col-12 col-lg-4 mx-auto" v-if="userIsAdmin">
             <h1 class="text-center">Επιλογές</h1>
 
             <router-link to="/patients">
@@ -21,6 +21,9 @@
             </router-link>
         </div>
 
+        <no-access-page v-else
+                        message="Ο χρήστης δεν έχει δικαίωμα να δει αυτό το περιεχόμενο" />
+
     </div>
 </template>
 
@@ -28,17 +31,20 @@
 // @ is an alias to /src
 import api from '@/api'
 import { mapState } from 'vuex'
+import NoAccessPage from '@/components/basic/NoAccessPage'
 
 // TODO delete localStorage.accessToken if not valid
 export default {
     name: 'home',
+
+    components: { NoAccessPage },
 
     data: () => ({
         isUserLoggedIn: false
     }),
 
     computed: {
-        ...mapState(['username']),
+        ...mapState(['username', 'userIsAdmin']),
 
         routeName: function () {
             return this.$route.name

@@ -85,7 +85,7 @@ export default {
                 return true
             }
 
-            return !this.userIsAdmin;
+            return this.userIsAdmin;
         },
 
         /**
