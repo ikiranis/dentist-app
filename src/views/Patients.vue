@@ -1,10 +1,11 @@
 <template>
     <div v-if="userIsAdmin">
-        <div class="col-lg col-12 row fixed-bottom mb-5">
-            <Loading class="mx-auto" :loading="loading"/>
-        </div>
 
-        <div class="container-fluid my-3" v-if="!loading">
+        <div class="container-fluid my-3">
+
+			<div class="col-lg col-12 row fixed-bottom mb-5">
+				<Loading class="mx-auto" :loading="loading"/>
+			</div>
 
             <div class="justify-content-center">
 
