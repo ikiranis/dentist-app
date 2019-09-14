@@ -200,7 +200,7 @@ export default {
 
                 api.updateUser(args)
                     .then(response => {
-                        this.response.message = `User ${response.name} updated`
+                        this.response.message = `Ο χρήστης ${response.name} ενημερώθηκε`
                         this.response.status = true
 
                         this.loading = false
@@ -215,7 +215,7 @@ export default {
                         this.loading = false
                     })
             } else {
-                this.response.message = 'Passwords not validated'
+                this.response.message = 'Τα passwords δεν είναι ίδια'
                 this.response.status = false
 
                 this.loading = false
