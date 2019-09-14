@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import store from './store' // Display console warning at development mode
+import store from './store'
 
 // Bootstrap
 import BootstrapVue from 'bootstrap-vue'
