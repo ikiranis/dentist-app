@@ -17,19 +17,19 @@
 
             <tbody v-for="transaction in props.transactions" :key="transaction.id">
             <tr>
-                <td>
+                <td class="align-middle">
                     <delete class="btn-icon"
                             @click="listeners.clickDelete(transaction.id)"
                             title="Διαγραφή κίνησης"/>
                 </td>
-                <th scope="row">
+                <th scope="row" class="align-middle">
                     <a href="#" class="px-2" @click="listeners.clickUpdate(transaction.id)">{{ transaction.formated_date
                         }}</a>
                 </th>
-                <td>
+                <td class="align-middle">
                     {{ transaction.description }}
                 </td>
-                <td>
+                <td class="align-middle">
                     {{ transaction.value }}
                 </td>
             </tr>
