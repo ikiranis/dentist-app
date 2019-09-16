@@ -5,7 +5,7 @@
             Δεν βρέθηκαν οικονομικές κινήσεις
         </div>
 
-        <table class="table" v-if="props.transactions.length">
+        <table class="table table-responsive table-sm" v-if="props.transactions.length">
             <thead>
             <tr>
                 <th scope="col"></th>
@@ -17,14 +17,15 @@
 
             <tbody v-for="transaction in props.transactions" :key="transaction.id">
             <tr>
-				<td>
-					<delete class="btn-icon"
-							@click="listeners.clickDelete(transaction.id)"
-							title="Διαγραφή κίνησης"/>
-				</td>
+                <td>
+                    <delete class="btn-icon"
+                            @click="listeners.clickDelete(transaction.id)"
+                            title="Διαγραφή κίνησης"/>
+                </td>
                 <th scope="row">
-					<a href="#" class="px-2" @click="listeners.clickUpdate(transaction.id)">{{ transaction.formated_date }}</a>
-				</th>
+                    <a href="#" class="px-2" @click="listeners.clickUpdate(transaction.id)">{{ transaction.formated_date
+                        }}</a>
+                </th>
                 <td>
                     {{ transaction.description }}
                 </td>
@@ -33,18 +34,30 @@
                 </td>
             </tr>
             </tbody>
+            <tr>
+                <td></td>
+                <td></td>
+                <td class="text-right"><strong>Σύνολο</strong></td>
+                <td>
+                    <stong>{{ props.sum }}</stong>
+                </td>
+            </tr>
         </table>
 
     </div>
 </template>
 
 <script>
-export default {
-    props: {
-        transactions: {
-            required: true,
-            type: Array
+    export default {
+        props: {
+            transactions: {
+                required: true,
+                type: Array
+            },
+            sum: {
+                required: true,
+                type: Number
+            }
         }
     }
-}
 </script>

@@ -111,6 +111,7 @@
 						<h3>Έσοδα</h3>
 
 						<financial-list :transactions="income"
+										:sum="incomeSum"
 										@clickDelete="deleteTransaction"
 										@clickUpdate="getTransaction" />
 
@@ -124,6 +125,7 @@
 						<h3>Έξοδα</h3>
 
 						<financial-list :transactions="expenses"
+										:sum="expensesSum"
 										@clickDelete="deleteTransaction"
 										@clickUpdate="getTransaction" />
 
@@ -237,7 +239,29 @@ export default {
             return this.transactions.filter((transaction) => {
                 return transaction.kind === 1
             })
-        }
+        },
+
+		// Get income sum
+		incomeSum () {
+			let sum = 0;
+
+			Object.values(this.income).forEach(obj => {
+				sum += obj.value
+			})
+
+			return sum
+		},
+
+		// Get expense sum
+		expensesSum () {
+			let sum = 0;
+
+			Object.values(this.expenses).forEach(obj => {
+				sum += obj.value
+			})
+
+			return sum
+		}
     },
 
     created: function () {
