@@ -278,7 +278,7 @@ let api = {
 	 */
     async getTransactions (page, search) {
         if (page !== null) {
-            page = '?' + page.toString().split('?')[1]
+            page = '?page=' + page.toString().split('?')[1]
         } else {
             page = ''
         }
