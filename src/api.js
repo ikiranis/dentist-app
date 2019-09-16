@@ -278,12 +278,12 @@ let api = {
 	 */
     async getTransactions (page, search) {
         if (page !== null) {
-            page = '?page=' + page.toString().split('?')[1]
+            page = '?' + page.toString().split('?')[1]
         } else {
             page = ''
         }
 
-        if (search.dateFrom && search.dateTo) {
+		if (search.dateFrom && search.dateTo) {
             let dateFrom = moment(search.dateFrom).format('YYYYMMDD')
             let dateTo = moment(search.dateTo).format('YYYYMMDD')
 
