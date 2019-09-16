@@ -258,7 +258,7 @@ export default {
 
                     if (response.status === 200) {
                         this.transactions = response.data.data
-                        // this.pagination.meta = response.data.meta
+                        this.pagination.meta = response.data.meta
                         this.pagination.links = response.data.links
 
                         window.scrollTo(0, 0)
