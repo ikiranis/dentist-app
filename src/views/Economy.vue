@@ -101,6 +101,10 @@
 					<paginate :pagination="pagination" @click="getTransactions"/>
 				</div>
 
+				<div class="row col-12">
+					<h2 class="mx-auto">{{ pagination.meta.monthText }}</h2>
+				</div>
+
 				<div class="col-lg-6 col-12">
 
 					<div class="col-12 text-center">
