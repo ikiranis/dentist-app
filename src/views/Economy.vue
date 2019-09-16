@@ -102,7 +102,7 @@
 				</div>
 
 				<div class="row col-12">
-					<h2 class="mx-auto">{{ pagination.meta.monthText }}</h2>
+					<h2 class="mx-auto">{{ pagination.meta.month_text }}</h2>
 				</div>
 
 				<div class="col-lg-6 col-12">
