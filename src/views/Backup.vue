@@ -42,6 +42,8 @@
     import DisplayError from '@/components/basic/DisplayError'
     import Loading from '@/components/basic/Loading'
     import api from "../api";
+    import utility from "../library/utility";
+    import { base64StringToBlob } from 'blob-util'
 
     export default {
         components: { DisplayError, Loading },
@@ -66,12 +68,17 @@
                     .then(response => {
                         this.loading = false
 
-                        console.log(response)
+                        const url = window.URL.createObjectURL(new Blob([
+                            base64StringToBlob(response.data.content, response.headers['content-type'])
+                        ]))
 
-                        if (response.status === 200) {
-                            this.response.message = response.data.message
-                            this.response.status = true
-                        }
+                        const link = document.createElement('a')
+
+                        link.href = url
+                        link.setAttribute('download', response.data.filename)
+                        document.body.appendChild(link)
+
+                        link.click()
                     })
                     .catch(error => {
                         this.loading = false
