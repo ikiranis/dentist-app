@@ -1,6 +1,7 @@
 <template functional>
     <span class="toothNotes">
-        <span>{{ props.note.description }}</span>
+        <div>{{ props.note.formated_date }}</div>
+        <div>{{ props.note.description }}</div>
     </span>
 </template>
 
