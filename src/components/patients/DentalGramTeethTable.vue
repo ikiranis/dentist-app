@@ -1,7 +1,7 @@
 <template>
 
     <div>
-        <table class="table table-hover table-sm">
+        <table class="table table-hover">
 
             <thead class="table-borderless">
             <tr>
@@ -18,7 +18,7 @@
                     <span class="toothNotes">Ιστορικό</span>
                 </td>
 
-                <td v-for="tooth in teeth" :key="tooth.id" class="text-center">
+                <td v-for="tooth in teeth" :key="tooth.id" class="text-center align-middle">
                     <div v-if="note = getOriginNote(tooth.number)">
                         <a href="#" @click="updateOriginNote(getOriginNote(tooth.number))">
                             <note-description :note="note"/>
@@ -35,7 +35,7 @@
             <tr>
 				<td></td>
                 <td v-for="tooth in teeth" :key="tooth.id" class="text-center">
-                    <div v-for="note in getNotes(tooth.number)">
+                    <div v-for="note in getNotes(tooth.number)" class="mb-2">
                         <a href="#" @click="updateNote(note)">
                             <note-description :note="note"/>
                         </a>
@@ -118,37 +118,7 @@
             moment,
 
             /**
-             * Get all the dates, without duplicates
-             *
-             * @returns {*[]}
-             */
-            getDates() {
-                // Get only the dates from array
-                let dates = []
-
-                this.notes.forEach(note => {
-                    dates.push(note.formated_date)
-                })
-
-                // Filter duplicates
-                return dates.filter((item, index) =>
-                    dates.indexOf(item) === index
-                )
-            },
-
-            /**
-             * Find if there is a note in current date already
-             * Returns true when find any
-             */
-            findDateInNote(tooth) {
-                return this.notes.find(note =>
-                    note.tooth_number === tooth.number &&
-                    note.formated_date === this.currentDate
-                )
-            },
-
-            /**
-             * Get the note with date and toothNumber
+             * Get the notes with toothNumber
              *
              * @param toothNumber
              * @returns {*}

@@ -1,6 +1,6 @@
 <template functional>
     <span class="toothNotes">
-        <div>{{ props.note.formated_date }}</div>
+        <div v-if="props.note.formated_date"><strong>{{ props.note.formated_date }}</strong></div>
         <div>{{ props.note.description }}</div>
     </span>
 </template>
