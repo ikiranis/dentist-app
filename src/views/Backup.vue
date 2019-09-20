@@ -6,7 +6,31 @@
                 <h1>Backup</h1>
             </div>
 
+            <div class="col-lg col-12 row fixed-bottom mb-5">
+                <Loading class="mx-auto" :loading="loading"/>
+            </div>
+
             <div class="container">
+
+                <div class="col-12">
+                    <div class="row">
+                        <input type="submit" class="btn btn-success col-md-6 col-12 my-3 mx-auto"
+                               @click="startBackup" value="Εναρξη backup">
+                    </div>
+                </div>
+
+                <div class="col-12">
+                    <div class="row">
+                        <input type="submit" class="btn btn-danger col-md-6 col-12 my-3 mx-auto"
+                               @click="startRestore" value="Εναρξη restore">
+                    </div>
+                </div>
+
+                <div class="row fixed-bottom mb-2">
+                    <display-error class="mx-auto"
+                                   v-if="response.message"
+                                   :response="response"/>
+                </div>
 
             </div>
 
@@ -15,15 +39,53 @@
 </template>
 
 <script>
-export default {
-    data () {
-        return {
-            //
-        }
-    },
+    import DisplayError from '@/components/basic/DisplayError'
+    import Loading from '@/components/basic/Loading'
+    import api from "../api";
 
-    methods: {
-    //
+    export default {
+        components: { DisplayError, Loading },
+
+        data() {
+            return {
+                loading: false,
+
+                response: {
+                    message: ' ',
+                    status: '',
+                    errors: []
+                },
+            }
+        },
+
+        methods: {
+            startBackup() {
+                this.loading = true
+
+                api.startBackup()
+                    .then(response => {
+                        this.loading = false
+
+                        console.log(response)
+
+                        if (response.status === 200) {
+                            this.response.message = response.data.message
+                            this.response.status = true
+                        }
+                    })
+                    .catch(error => {
+                        this.loading = false
+
+                        this.response.message = error.response.data.message
+                        this.response.status = false
+
+                        utility.debug(error.response.data.debug)
+                    })
+            },
+
+            startRestore() {
+                alert('RESTORE')
+            }
+        }
     }
-}
 </script>

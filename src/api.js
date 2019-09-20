@@ -863,7 +863,18 @@ let api = {
      */
     async deleteMedicine (medicineId) {
         return axios.delete(ROOT_API + '/medicine/' + medicineId)
-    }
+    },
+
+    // ************** Backup api calls **************
+
+    /**
+     * Start the backup
+     *
+     * @returns {Promise<void>}
+     */
+    async startBackup () {
+        return axios.get(ROOT_API + '/backup')
+    },
 }
 
 export default api
