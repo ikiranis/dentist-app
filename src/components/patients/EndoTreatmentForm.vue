@@ -1,99 +1,56 @@
 <template>
-    <div class="card">
-        <div class="card-header row text-center">
-            <div class="input-group row mb-2 mx-auto">
-                <div class="input-group-prepend">
-                    <div class="input-group-text">
-                        <label for="chozenRoot" class="my-auto">Ρίζα</label>
-                    </div>
-                </div>
+    <td>
+        <tr class="label">
+            <select class="form-control" id="chozenRoot"
+                    v-model="treatment.root_id">
+                <option v-for="root in roots"
+                        :key="root.id"
+                        :value="root.id">
+                    {{ root.name }}
+                </option>
+            </select>
+        </tr>
 
-                <select class="form-control" id="chozenRoot"
-                        v-model="treatment.root_id">
-                    <option v-for="root in roots"
-                            :key="root.id"
-                            :value="root.id">
-                        {{ root.name }}
-                    </option>
-                </select>
-            </div>
-        </div>
+        <tr class="label">
+            <select class="form-control" id="tooth_number"
+                    v-model="treatment.tooth_number">
+                <option v-for="tooth in teeth"
+                        :key="tooth.id"
+                        :value="tooth.number"
+                        :selected="(tooth.number === treatment.tooth_number) ? 'selected' : ''">
+                    {{ tooth.number }}
+                </option>
+            </select>
+        </tr>
 
-        <div class="card-body">
+        <tr class="label"> </tr>
 
-            <div class="input-group mb-3 mx-autο">
-                <div class="input-group-prepend">
-                    <div class="input-group-text">
-                        <label for="tooth_number" class="my-auto">Επιλογή δοντιού</label>
-                    </div>
-                </div>
+        <tr class="label">
+            <input id="counter" type="text" class="form-control"
+                   v-model="treatment.counter" maxlength="10">
+            <form-error v-if="response.errors.counter"
+                        :error="response.errors.counter[0]"/>
+        </tr>
 
-                <select class="form-control" id="tooth_number"
-                        v-model="treatment.tooth_number">
-                    <option v-for="tooth in teeth"
-                            :key="tooth.id"
-                            :value="tooth.number"
-                            :selected="(tooth.number === treatment.tooth_number) ? 'selected' : ''">
-                        {{ tooth.number }}
-                    </option>
-                </select>
-            </div>
 
-            <div class="card mb-2 w-100 mx-auto">
-                <div class="card-header">
-                    <span>Μήκος εργαλείου</span>
-                </div>
+        <tr class="label">
+            <input id="radiography" type="text" class="form-control"
+                   v-model="treatment.radiography" maxlength="10">
+            <form-error v-if="response.errors.radiography"
+                        :error="response.errors.radiography[0]"/>
+        </tr>
 
-                <div class="card-body">
 
-                    <div class="input-group mb-2">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">
-                                <label for="counter" class="my-auto">Μετρητής</label>
-                            </div>
-                        </div>
-                        <input id="counter" type="text" class="form-control"
-                               v-model="treatment.counter" maxlength="10">
-                        <form-error v-if="response.errors.counter"
-                                    :error="response.errors.counter[0]"/>
-                    </div>
+        <tr class="label">
+            <input id="workingLength" type="text" class="form-control"
+                   v-model="treatment.workingLength" maxlength="10">
+            <form-error v-if="response.errors.workingLength"
+                        :error="response.errors.workingLength[0]"/>
+        </tr>
 
-                    <div class="input-group mb-2">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text">
-                                <label for="radiography" class="my-auto">Ακτινογραφία</label>
-                            </div>
-                        </div>
+        <tr class="label">
 
-                        <input id="radiography" type="text" class="form-control"
-                               v-model="treatment.radiography" maxlength="10">
-                        <form-error v-if="response.errors.radiography"
-                                    :error="response.errors.radiography[0]"/>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="input-group row mb-2 mx-auto">
-                <div class="input-group-prepend">
-                    <div class="input-group-text">
-                        <label for="workingLength" class="my-auto">Μήκος εργασίας</label>
-                    </div>
-                </div>
-
-                <input id="workingLength" type="text" class="form-control"
-                       v-model="treatment.workingLength" maxlength="10">
-                <form-error v-if="response.errors.workingLength"
-                            :error="response.errors.workingLength[0]"/>
-            </div>
-
-            <div class="input-group row mb-2 mx-auto">
-                <div class="input-group-prepend">
-                    <div class="input-group-text">
-                        <label for="benchmark" class="my-auto">Σημείο αναφοράς</label>
-                    </div>
-                </div>
-
+            <div class="input-group">
                 <input id="benchmark" type="text" class="form-control"
                        v-model="treatment.benchmark" maxlength="20">
 
@@ -110,104 +67,103 @@
                 <form-error v-if="response.errors.benchmark"
                             :error="response.errors.benchmark[0]"/>
             </div>
+        </tr>
 
-            <div class="input-group row mb-2 mx-auto">
-                <div class="input-group-prepend">
-                    <div class="input-group-text">
-                        <label for="MAF" class="my-auto">MAF</label>
-                    </div>
-                </div>
 
-                <input id="MAF" type="text" class="form-control"
-                       v-model="treatment.MAF" maxlength="10">
-                <form-error v-if="response.errors.MAF"
-                            :error="response.errors.MAF[0]"/>
-            </div>
 
-            <div class="input-group row mb-2 mx-auto">
-                <div class="input-group-prepend">
-                    <div class="input-group-text">
-                        <label for="chemicalMechanicalTreatment"
-                               class="my-auto">Χημικομηχανική επεξεργασία</label>
-                    </div>
-                </div>
+        <tr class="label">
+            <input id="MAF" type="text" class="form-control"
+                   v-model="treatment.MAF" maxlength="10">
+            <form-error v-if="response.errors.MAF"
+                        :error="response.errors.MAF[0]"/>
+        </tr>
 
-                <input id="chemicalMechanicalTreatment" type="text" class="form-control"
-                       v-model="treatment.chemicalMechanicalTreatment" maxlength="10">
-                <form-error v-if="response.errors.chemicalMechanicalTreatment"
-                            :error="response.errors.chemicalMechanicalTreatment[0]"/>
-            </div>
 
-            <div class="input-group row mb-2 mx-auto">
-                <div class="input-group-prepend">
-                    <div class="input-group-text">
-                        <label for="chozenBlockingTechnique" class="my-auto">Τεχνική έφραξης</label>
-                    </div>
-                </div>
+        <tr class="label">
+            <input id="chemicalMechanicalTreatment" type="text" class="form-control"
+                   v-model="treatment.chemicalMechanicalTreatment" maxlength="10">
+            <form-error v-if="response.errors.chemicalMechanicalTreatment"
+                        :error="response.errors.chemicalMechanicalTreatment[0]"/>
+        </tr>
 
-                <select class="form-control" id="chozenBlockingTechnique"
-                        v-model="treatment.blocking_technique_id">
-                    <option v-for="blockingTechnique in treatment.blockingTechniques"
-                            :key="blockingTechnique.id"
-                            :value="blockingTechnique.id"
-                            :selected="(blockingTechnique.id === treatment.blocking_technique_id) ? 'selected' : ''">
-                        {{ blockingTechnique.name }}
-                    </option>
-                </select>
-            </div>
 
+        <tr class="label">
+            <select class="form-control" id="chozenBlockingTechnique"
+                    v-model="treatment.blocking_technique_id">
+                <option v-for="blockingTechnique in treatment.blockingTechniques"
+                        :key="blockingTechnique.id"
+                        :value="blockingTechnique.id"
+                        :selected="(blockingTechnique.id === treatment.blocking_technique_id) ? 'selected' : ''">
+                    {{ blockingTechnique.name }}
+                </option>
+            </select>
+        </tr>
+
+        <tr class="label">
             <div class="row">
-                <input type="submit"
-                       class="btn btn-success col-md-5 col-12 my-3 mx-auto"
-                       @click="saveData(treatment)"
-                       value="Αποθήκευση">
+                <zip-disk class="btn-icon ml-auto my-auto"
+                        @click="saveData(treatment)"
+                        title="Αποθήκευση"/>
 
-                <input v-if="treatment.id !== 0"
-                       type="button"
-                       class="btn btn-danger col-md-5 col-12 my-3 mx-auto"
-                       @click="deleteEndoTreatment(treatment.id)"
-                       value="Διαγραφή">
+                <delete v-if="treatment.id !== 0"
+                        class="btn-icon mr-auto my-auto"
+                        @click="deleteEndoTreatment(treatment.id)"
+                        title="Διαγραφή"/>
+
             </div>
+        </tr>
 
-        </div>
-    </div>
+    </td>
+
 </template>
 
 <script>
-import FormError from '@/components/basic/FormError'
+    import FormError from '@/components/basic/FormError'
 
-export default {
-    components: { FormError },
+    export default {
+        components: {FormError},
 
-    props: {
-        treatment: {
-            required: true,
-            type: Object
+        props: {
+            treatment: {
+                required: true,
+                type: Object
+            },
+            roots: {
+                required: true,
+                type: Array
+            },
+            teeth: {
+                required: true,
+                type: Array
+            },
+            response: {
+                required: true,
+                type: Object
+            },
+            saveData: {
+                required: true,
+                type: Function
+            },
+            deleteEndoTreatment: {
+                required: true,
+                type: Function
+            }
         },
-        roots: {
-            required: true,
-            type: Array
-        },
-        teeth: {
-            required: true,
-            type: Array
-        },
-        response: {
-            required: true,
-            type: Object
-        },
-        saveData: {
-            required: true,
-            type: Function
-        },
-        deleteEndoTreatment: {
-            required: true,
-            type: Function
+
+        methods: {
+            //
         }
-    },
-
-    methods: {
-        //
     }
-}
 </script>
+
+<style scoped>
+    .label {
+        height: 3em;
+
+    }
+
+    td {
+        width: 10em;
+    }
+
+</style>

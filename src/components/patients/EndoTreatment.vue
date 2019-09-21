@@ -8,19 +8,23 @@
                         :newEndoTreatmentCard="newEndoTreatment"/>
         </div>
 
-        <div class="row" v-if="!displayInsertNew">
+
+        <table v-if="!displayInsertNew" class="table">
+
+            <tbody>
+                <endo-treatment-labels />
 
                 <endo-treatment-form v-for="treatment in selectedEndoTreatments"
                                      :key="treatment.id"
                                      :treatment="treatment"
                                      :response="response"
-                                     class="mb-3 col-lg-4 col-12"
                                      :roots="roots"
                                      :teeth="teeth"
                                      :deleteEndoTreatment="deleteEndoTreatment"
                                      :saveData="saveData"/>
+            </tbody>
+        </table>
 
-        </div>
 
         <div class="container col-lg-7 col-12 mt-3"
              v-if="displayInsertNew">
@@ -50,9 +54,10 @@ import api from '../../api'
 import DisplayError from '@/components/basic/DisplayError'
 import TeethList from '@/components/patients/TeethList'
 import EndoTreatmentForm from '@/components/patients/EndoTreatmentForm'
+import EndoTreatmentLabels from '@/components/patients/EndoTreatmentLabels'
 
 export default {
-    components: { DisplayError, TeethList, EndoTreatmentForm },
+    components: { DisplayError, TeethList, EndoTreatmentForm, EndoTreatmentLabels },
 
     data () {
         return {
