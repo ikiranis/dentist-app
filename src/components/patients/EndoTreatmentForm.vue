@@ -93,7 +93,9 @@
                 <option v-for="blockingTechnique in treatment.blockingTechniques"
                         :key="blockingTechnique.id"
                         :value="blockingTechnique.id"
-                        :selected="(blockingTechnique.id === treatment.blocking_technique_id) ? 'selected' : ''">
+                        :selected="(blockingTechnique.id === treatment.blocking_technique_id)
+                            ? 'selected'
+                            : ''">
                     {{ blockingTechnique.name }}
                 </option>
             </select>
@@ -148,10 +150,6 @@
                 required: true,
                 type: Function
             }
-        },
-
-        methods: {
-            //
         }
     }
 </script>
@@ -165,5 +163,4 @@
     td {
         width: 10em;
     }
-
 </style>

@@ -9,7 +9,7 @@
         </div>
 
 
-        <table v-if="!displayInsertNew" class="table">
+        <table class="table">
 
             <tbody>
                 <endo-treatment-labels />
@@ -24,19 +24,6 @@
                                      :saveData="saveData"/>
             </tbody>
         </table>
-
-
-        <div class="container col-lg-7 col-12 mt-3"
-             v-if="displayInsertNew">
-
-            <endo-treatment-form :treatment="endoTreatment"
-                                 :response="response"
-                                 :roots="roots"
-                                 class="col-12"
-                                 :teeth="teeth"
-                                 :deleteEndoTreatment="deleteEndoTreatment"
-                                 :saveData="saveData"/>
-        </div>
 
         <div class="row fixed-bottom mb-2">
             <display-error class="mx-auto"
@@ -81,9 +68,8 @@ export default {
 
             teeth: [],
 
-            haveTeeth: {},
+            haveTeeth: {}
 
-            displayInsertNew: false
         }
     },
 
@@ -127,7 +113,6 @@ export default {
         // When selected tooth change, load the data
         selectedTooth () {
             if (this.selectedTooth) {
-                this.displayInsertNew = false
                 this.getEndoTreatmentsForTooth()
             }
         }
@@ -204,7 +189,6 @@ export default {
                     this.response.status = true
 
                     this.getEndoTreatments()
-                    this.newEndoTreatment()
                 })
                 .catch(error => {
                     this.loading = false
@@ -334,7 +318,10 @@ export default {
         // Reset all values for new card
         newEndoTreatment () {
             this.resetEndoTreatment()
-            this.displayInsertNew = true
+
+            this.endoTreatments.push(this.endoTreatment)
+
+            this.getEndoTreatmentsForTooth()
         },
 
         // Reset values of endoTreatment
