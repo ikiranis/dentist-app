@@ -468,6 +468,15 @@ let api = {
     },
 
     /**
+     * Get all simple endo treatment cards
+     *
+     * @returns {Promise<void>}
+     */
+    async getSimpleEndoTreatmentCards (patientId) {
+        return axios.get(ROOT_API + '/simpleEndoTreatmentCards/' + patientId)
+    },
+
+    /**
      * Get Endo Treatment Card info
      *
      * @param patientId

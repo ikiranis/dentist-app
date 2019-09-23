@@ -12,6 +12,12 @@
                 <Loading class="mx-auto" :loading="loading"/>
             </div>
 
+            <div class="row">
+                <teeth-list class="mb-2 mx-auto"
+                            :teeth="haveTeeth"
+                            :newEndoTreatmentCard="newCard" />
+            </div>
+
             <div class="row col-12 mb-3">
                 <tabs :tabs="tabs" class="mx-auto"/>
             </div>
@@ -48,9 +54,13 @@ import EndoTreatmentNotes from '@/components/patients/EndoTreatmentNotes'
 import Loading from '@/components/basic/Loading'
 import {mapState} from "vuex";
 import NoAccessPage from '@/components/basic/NoAccessPage'
+import TeethList from '@/components/patients/TeethList'
+import api from "../api";
+import utility from "../library/utility";
 
 export default {
-    components: { MenuBar, EndoTreatmentCard, EndoTreatment, EndoTreatmentNotes, Loading, Tabs, NoAccessPage },
+    components: { MenuBar, EndoTreatmentCard, EndoTreatment, EndoTreatmentNotes,
+        Loading, Tabs, NoAccessPage, TeethList },
 
     data () {
         return {
@@ -61,6 +71,10 @@ export default {
             },
 
             loading: false,
+
+            haveTeeth: {},
+
+            endoTreatmentCards: [],
 
             menuItems: [
                 {
@@ -132,7 +146,64 @@ export default {
         }
     },
 
+    watch: {
+        endoTreatmentCards () {
+            this.haveTeeth = {}
+
+            this.endoTreatmentCards.forEach((card, index) => {
+                let tooth = {
+                    endoTreatmentIndex: index,
+                    number: card.tooth_number,
+                    display: false
+                }
+
+                this.$set(this.haveTeeth, card.id, tooth)
+            })
+        },
+
+        // When selected tooth change, load the data
+        // selectedTooth () {
+        //     if (this.selectedTooth) {
+        //         this.endoTreatment = this.endoTreatmentCards[this.selectedTooth.endoTreatmentIndex]
+        //         this.checkEndoTreatmentFields()
+        //     }
+        // }
+    },
+
+    created: function () {
+        // this.getTeeth()
+        this.getSimpleEndoTreatmentCards()
+    },
+
     methods: {
+        /**
+         * Get all simple endo treatment cards for patientId
+         */
+        getSimpleEndoTreatmentCards () {
+            this.loading = true
+
+            api.getSimpleEndoTreatmentCards(this.patientId)
+                .then(response => {
+                    this.loading = false
+
+                    if (response.status === 200) {
+                        this.endoTreatmentCards = response.data
+
+                        return
+                    }
+
+                    this.endoTreatmentCards = []
+                })
+                .catch(error => {
+                    this.loading = false
+
+                    this.response.message = error.response.data.message
+                    this.response.status = false
+
+                    utility.debug(error.response.data.debug)
+                })
+        },
+
         /**
              * Get loading value from components
              *
@@ -140,6 +211,10 @@ export default {
              */
         getLoading (loading) {
             this.loading = loading
+        },
+
+        newCard () {
+
         }
     }
 }
