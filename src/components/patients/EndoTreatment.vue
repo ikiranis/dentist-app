@@ -53,11 +53,7 @@ export default {
 
             endoTreatments: [],
 
-            selectedEndoTreatments: [],
-
             endoTreatment: {},
-
-            chozenRoots: [],
         }
     },
 
