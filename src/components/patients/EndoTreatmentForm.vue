@@ -11,18 +11,6 @@
             </select>
         </tr>
 
-        <tr class="label">
-            <select class="form-control" id="tooth_number"
-                    v-model="treatment.tooth_number">
-                <option v-for="tooth in teeth"
-                        :key="tooth.id"
-                        :value="tooth.number"
-                        :selected="(tooth.number === treatment.tooth_number) ? 'selected' : ''">
-                    {{ tooth.number }}
-                </option>
-            </select>
-        </tr>
-
         <tr class="label"> </tr>
 
         <tr class="label">

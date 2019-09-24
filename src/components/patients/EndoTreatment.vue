@@ -2,13 +2,6 @@
 
     <div>
 
-        <div class="row">
-            <teeth-list class="mb-2 mx-auto"
-                        :teeth="haveTeeth"
-                        :newEndoTreatmentCard="newEndoTreatment"/>
-        </div>
-
-
         <table class="table">
 
             <tbody>
@@ -65,24 +58,19 @@ export default {
             endoTreatment: {},
 
             chozenRoots: [],
+        }
+    },
 
-            teeth: [],
-
-            haveTeeth: {}
-
+    props: {
+        selectedTooth: {
+            required: true,
+            type: Object
         }
     },
 
     computed: {
         patientId: function () {
             return this.$route.params.id
-        },
-
-        // Find the tooth with display (true)
-        selectedTooth: function () {
-            return Object.values(this.haveTeeth).find((tooth) => {
-                return tooth.display
-            })
         }
     },
 
@@ -113,13 +101,12 @@ export default {
         // When selected tooth change, load the data
         selectedTooth () {
             if (this.selectedTooth) {
-                this.getEndoTreatmentsForTooth()
+                this.getEndoTreatments()
             }
         }
     },
 
     created: function () {
-        this.getTeeth()
         this.getRoots()
         this.getEndoTreatments()
     },
@@ -138,20 +125,13 @@ export default {
             this.updateEndoTreatment(endoTreatment)
         },
 
-        // Filter endo treatments and get only those with chosen tooth number
-        getEndoTreatmentsForTooth () {
-            this.selectedEndoTreatments = this.endoTreatments.filter(item => {
-                return item.tooth_number === this.selectedTooth.number
-            })
-        },
-
         /**
              * Get all endo treatments for patientId
              */
         getEndoTreatments () {
             this.loading = true
 
-            api.getEndoTreatments(this.patientId)
+            api.getEndoTreatments(this.patientId, this.selectedTooth.number)
                 .then(response => {
                     this.loading = false
 
@@ -293,28 +273,6 @@ export default {
                 })
         },
 
-        /**
-             * Get all teeth
-             */
-        getTeeth () {
-            api.getTeeth()
-                .then(response => {
-                    if (response.status === 200) {
-                        this.teeth = response.data
-
-                        return
-                    }
-
-                    this.teeth = []
-                })
-                .catch(error => {
-                    this.response.message = error.response.data.message
-                    this.response.status = false
-
-                    utility.debug(error.response.data.debug)
-                })
-        },
-
         // Reset all values for new card
         newEndoTreatment () {
             this.resetEndoTreatment()
@@ -329,7 +287,7 @@ export default {
             this.endoTreatment = {
                 id: 0,
                 root_id: 0,
-                tooth_number: 18,
+                tooth_number: this.selectedTooth,
                 roots: [],
                 counter: null,
                 radiography: null,

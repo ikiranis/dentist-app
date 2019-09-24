@@ -32,12 +32,12 @@
                 <endo-treatment-notes
                         :selectedTooth="selectedTooth"
                         @loading="getLoading"
-                        v-if="tabs.endoTreatmentNotes.display"/>
+                        v-if="tabs.endoTreatmentNotes.display && selectedTooth"/>
 
                 <endo-treatment
                         :selectedTooth="selectedTooth"
                         @loading="getLoading"
-                        v-if="tabs.endoTreatment.display"/>
+                        v-if="tabs.endoTreatment.display && selectedTooth"/>
 
             </div>
 

@@ -1,7 +1,6 @@
 <template functional>
     <td nowrap>
         <tr>Ρίζα</tr>
-        <tr>Επιλογή δοντιού</tr>
         <tr>Μήκος εργαλείου</tr>
         <tr>Μετρητής</tr>
         <tr>Ακτινογραφία</tr>
