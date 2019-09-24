@@ -7,7 +7,7 @@
             <tbody>
                 <endo-treatment-labels />
 
-                <endo-treatment-form v-for="treatment in selectedEndoTreatments"
+                <endo-treatment-form v-for="treatment in endoTreatments"
                                      :key="treatment.id"
                                      :treatment="treatment"
                                      :response="response"
