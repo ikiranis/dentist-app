@@ -9,7 +9,7 @@ git clone git@github.com:ikiranis/apache-for-vue-app.git .
 - Edit .env file
 
 ``
-docker-compose up -d
+docker-compose build && docker-compose up -d
 ``
 
 - Clone app files at /www folder
