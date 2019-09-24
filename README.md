@@ -26,6 +26,11 @@ npm install
 
 # Create and edit .env files
 
+```
+cp .env.production.example .env.production
+nano .env.production
+```
+
 # Build app
 
 ``
