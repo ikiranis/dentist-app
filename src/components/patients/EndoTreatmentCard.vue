@@ -1,11 +1,5 @@
 <template>
     <div>
-		<div class="row">
-			<teeth-list class="mb-2 mx-auto"
-                        :teeth="haveTeeth"
-                        :newEndoTreatmentCard="newEndoTreatmentCard" />
-		</div>
-
         <FieldsList :fields="fields" v-if="!loading" />
 
         <div class="alert alert-success text-center w-50 mt-5 mx-auto" v-if="!fieldSelected && !loading">
@@ -13,26 +7,6 @@
         </div>
 
         <form @submit.prevent class="row col-12 mt-3 no-gutters" v-if="fieldSelected">
-
-            <div class="container">
-                <div class="input-group row mb-2 mx-auto col-lg-4 col-12">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text ">
-                            <label for="tooth_number" class="my-auto">Επιλογή δοντιού</label>
-                        </div>
-                    </div>
-
-                    <select class="form-control" id="tooth_number"
-                            v-model="endoTreatment.tooth_number">
-                        <option v-for="tooth in teeth"
-                                :key="tooth.id"
-                                :value="tooth.number"
-                                :selected="(tooth.number === endoTreatment.tooth_number) ? 'selected' : ''">
-                            {{ tooth.number }}
-                        </option>
-                    </select>
-                </div>
-            </div>
 
             <div class="col-lg-6 col-12 px-1">
 
@@ -802,8 +776,6 @@ export default {
                 }
             },
 
-            endoTreatmentCards: [],
-
             endoTreatment: {
                 id: 0,
                 tooth_number: 18,
@@ -850,11 +822,15 @@ export default {
                 outerAbsorption: false,
                 fracture: null,
                 fractureCheck: false
-            },
+            }
 
-            haveTeeth: {},
+        }
+    },
 
-            teeth: []
+    props: {
+        selectedTooth: {
+            required: true,
+            type: Object
         }
     },
 
@@ -900,13 +876,6 @@ export default {
 
         patientId: function () {
             return this.$route.params.id
-        },
-
-        // Find the tooth with display (true)
-        selectedTooth: function () {
-            return Object.values(this.haveTeeth).find((tooth) => {
-                return tooth.display
-            })
         }
     },
 
@@ -916,32 +885,14 @@ export default {
             this.$emit('loading', this.loading)
         },
 
-        endoTreatmentCards () {
-            this.haveTeeth = {}
-
-            this.endoTreatmentCards.forEach((card, index) => {
-                let tooth = {
-                    endoTreatmentIndex: index,
-                    number: card.tooth_number,
-                    display: false
-                }
-
-                this.$set(this.haveTeeth, card.id, tooth)
-            })
-        },
-
-        // When selected tooth change, load the data
-        selectedTooth () {
-            if (this.selectedTooth) {
-                this.endoTreatment = this.endoTreatmentCards[this.selectedTooth.endoTreatmentIndex]
-                this.checkEndoTreatmentFields()
-            }
+        // Get the endotreatment card when selected tooth changed
+        selectedTooth: function () {
+            this.getEndoTreatmentCard()
         }
     },
 
     created: function () {
-        this.getTeeth()
-        this.getEndoTreatmentCards()
+        this.getEndoTreatmentCard()
     },
 
     methods: {
@@ -970,22 +921,22 @@ export default {
         },
 
         /**
-		 * Get all endo treatment cards for patientId
+		 * Get endo treatment card
 		 */
-        getEndoTreatmentCards () {
+        getEndoTreatmentCard () {
             this.loading = true
 
-            api.getEndoTreatmentCards(this.patientId)
+            api.getEndoTreatmentCard(this.patientId, this.selectedTooth.number)
                 .then(response => {
                     this.loading = false
 
                     if (response.status === 200) {
-                        this.endoTreatmentCards = response.data
+                        this.endoTreatment = response.data
 
-                        return
+                        console.log(this.endoTreatment)
+
+                        this.checkEndoTreatmentFields()
                     }
-
-                    this.endoTreatmentCards = []
                 })
                 .catch(error => {
                     this.loading = false
@@ -1028,7 +979,7 @@ export default {
                 })
         },
 
-        /**
+        /**checkEndoTreatmentFields
          * Update the Endo Treatment Card info
          */
         updateEndoTreatmentCard () {
@@ -1085,28 +1036,6 @@ export default {
                         utility.debug(error.response.data.debug)
                     })
             }
-        },
-
-        /**
-         * Get all teeth
-         */
-        getTeeth () {
-            api.getTeeth()
-                .then(response => {
-                    if (response.status === 200) {
-                        this.teeth = response.data
-
-                        return
-                    }
-
-                    this.teeth = []
-                })
-                .catch(error => {
-                    this.response.message = error.response.data.message
-                    this.response.status = false
-
-                    utility.debug(error.response.data.debug)
-                })
         },
 
         /**

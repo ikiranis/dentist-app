@@ -25,14 +25,17 @@
             <div class="container">
 
                 <endo-treatment-card
+                        :selectedTooth="selectedTooth"
                         @loading="getLoading"
-                        v-if="tabs.endoTreatmentCard.display" />
+                        v-if="tabs.endoTreatmentCard.display && selectedTooth" />
 
                 <endo-treatment-notes
+                        :selectedTooth="selectedTooth"
                         @loading="getLoading"
                         v-if="tabs.endoTreatmentNotes.display"/>
 
                 <endo-treatment
+                        :selectedTooth="selectedTooth"
                         @loading="getLoading"
                         v-if="tabs.endoTreatment.display"/>
 
@@ -143,6 +146,13 @@ export default {
 
         patientId: function () {
             return this.$route.params.id
+        },
+
+        // Find the tooth with display (true)
+        selectedTooth: function () {
+            return Object.values(this.haveTeeth).find((tooth) => {
+                return tooth.display
+            })
         }
     },
 
@@ -159,15 +169,7 @@ export default {
 
                 this.$set(this.haveTeeth, card.id, tooth)
             })
-        },
-
-        // When selected tooth change, load the data
-        // selectedTooth () {
-        //     if (this.selectedTooth) {
-        //         this.endoTreatment = this.endoTreatmentCards[this.selectedTooth.endoTreatmentIndex]
-        //         this.checkEndoTreatmentFields()
-        //     }
-        // }
+        }
     },
 
     created: function () {
