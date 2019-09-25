@@ -37,7 +37,7 @@ import Tabs from '@/components/basic/Tabs'
 import ClinicalExamination from '@/components/patients/ClinicalExamination'
 import DentalHistory from '@/components/patients/DentalHistoryCompo'
 import Loading from '@/components/basic/Loading'
-import {mapState} from "vuex";
+import { mapState } from 'vuex'
 import NoAccessPage from '@/components/basic/NoAccessPage'
 
 export default {

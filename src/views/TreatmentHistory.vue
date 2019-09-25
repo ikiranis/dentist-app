@@ -102,7 +102,7 @@ import TreatmentsList from '@/components/patients/TreatmentsList'
 import moment from 'moment'
 import utility from '../library/utility'
 import api from '../api'
-import {mapState} from "vuex";
+import { mapState } from 'vuex'
 import NoAccessPage from '@/components/basic/NoAccessPage'
 
 export default {

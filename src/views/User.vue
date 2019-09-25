@@ -81,8 +81,8 @@ import FormError from '@/components/basic/FormError'
 import Loading from '@/components/basic/Loading'
 import Paginate from '@/components/basic/Paginate'
 import UsersTable from '@/components/users/UsersTable'
-import utility from "../library/utility";
-import {mapState} from "vuex";
+import utility from '../library/utility'
+import { mapState } from 'vuex'
 
 export default {
 
@@ -117,7 +117,7 @@ export default {
     }),
 
     computed: {
-		...mapState(['userIsAdmin']),
+        ...mapState(['userIsAdmin']),
 
         userToken: function () {
             return localStorage.accessToken ? localStorage.accessToken : null
@@ -127,9 +127,9 @@ export default {
     created: function () {
         this.getCurrentUser()
 
-        if(this.userIsAdmin) {
-        	this.getUsers(null)
-		}
+        if (this.userIsAdmin) {
+            this.getUsers(null)
+        }
     },
 
     methods: {
@@ -138,7 +138,7 @@ export default {
          *
          * @param page
          */
-        getUsers(page) {
+        getUsers (page) {
             this.loading = true
 
             api.getUsers(page)
@@ -222,57 +222,57 @@ export default {
             }
         },
 
-        deleteUser(id) {
-			let choise = confirm('Θέλεις σίγουρα να σβήσεις τον χρήστη με id: ' + id + ';')
+        deleteUser (id) {
+            let choise = confirm('Θέλεις σίγουρα να σβήσεις τον χρήστη με id: ' + id + ';')
 
-			if (choise) {
-				this.loading = true
+            if (choise) {
+                this.loading = true
 
-				api.deleteUser(id)
-					.then(response => {
-						this.loading = false
+                api.deleteUser(id)
+                    .then(response => {
+                        this.loading = false
 
-						this.response.message = 'Ο χρήστης διαγράφηκε'
-						this.response.status = true
+                        this.response.message = 'Ο χρήστης διαγράφηκε'
+                        this.response.status = true
 
-						this.getUsers(null)
-					})
-					.catch(error => {
-						this.loading = false
+                        this.getUsers(null)
+                    })
+                    .catch(error => {
+                        this.loading = false
 
-						this.response.message = error.response.data.message
-						this.response.status = false
+                        this.response.message = error.response.data.message
+                        this.response.status = false
 
-						utility.debug(error.response.data.debug)
-					})
-			}
+                        utility.debug(error.response.data.debug)
+                    })
+            }
         },
 
-        toggleRole(user) {
-			this.loading = true
+        toggleRole (user) {
+            this.loading = true
 
-			api.toggleRole(user.id)
-				.then(response => {
-					let selectedUser = this.users.find(obj => {
-						return obj.id === user.id
-					})
+            api.toggleRole(user.id)
+                .then(response => {
+                    let selectedUser = this.users.find(obj => {
+                        return obj.id === user.id
+                    })
 
-					selectedUser.isAdmin = response.data.isAdmin
+                    selectedUser.isAdmin = response.data.isAdmin
 
-					this.response.message = `Ο χρήστης ${user.name} άλλαξε ρόλο`
-					this.response.status = true
+                    this.response.message = `Ο χρήστης ${user.name} άλλαξε ρόλο`
+                    this.response.status = true
 
-					this.loading = false
-				})
-				.catch(error => {
-					this.response.message = error.response.data.message
-					this.response.status = false
-					if (error.response.data.errors) {
-						this.response.errors = error.response.data.errors
-					}
+                    this.loading = false
+                })
+                .catch(error => {
+                    this.response.message = error.response.data.message
+                    this.response.status = false
+                    if (error.response.data.errors) {
+                        this.response.errors = error.response.data.errors
+                    }
 
-					this.loading = false
-				})
+                    this.loading = false
+                })
         }
 
     }

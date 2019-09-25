@@ -91,15 +91,15 @@ export default {
         loading: false
     }),
 
-	beforeCreate: function () {
-		api.getUsersCount()
-			.then(response => {
-				if (response.count === 0) {
-					this.userInfo.role_id = 1
-				}
-			})
-			.catch(error => console.log(error.response))
-	},
+    beforeCreate: function () {
+        api.getUsersCount()
+            .then(response => {
+                if (response.count === 0) {
+                    this.userInfo.role_id = 1
+                }
+            })
+            .catch(error => console.log(error.response))
+    },
 
     methods: {
         /**

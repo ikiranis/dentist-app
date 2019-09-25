@@ -13,9 +13,9 @@
 </template>
 
 <script>
-    export default {
-        name: 'EndoTreatmentLabels',
-    }
+export default {
+    name: 'EndoTreatmentLabels'
+}
 </script>
 
 <style scoped>

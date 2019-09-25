@@ -24,8 +24,8 @@
 </template>
 
 <script>
-    import NoAccessPage from '@/components/basic/NoAccessPage'
-    import {mapState} from "vuex";
+import NoAccessPage from '@/components/basic/NoAccessPage'
+import { mapState } from 'vuex'
 
 export default {
     components: { NoAccessPage },
@@ -37,7 +37,7 @@ export default {
     },
 
     computed: {
-        ...mapState(['userIsAdmin']),
+        ...mapState(['userIsAdmin'])
     },
 
     methods: {

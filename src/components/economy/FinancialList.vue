@@ -48,16 +48,16 @@
 </template>
 
 <script>
-    export default {
-        props: {
-            transactions: {
-                required: true,
-                type: Array
-            },
-            sum: {
-                required: true,
-                type: Number
-            }
+export default {
+    props: {
+        transactions: {
+            required: true,
+            type: Array
+        },
+        sum: {
+            required: true,
+            type: Number
         }
     }
+}
 </script>

@@ -182,7 +182,7 @@ import Loading from '@/components/basic/Loading'
 import moment from 'moment'
 import utility from '../library/utility'
 import NoAccessPage from '@/components/basic/NoAccessPage'
-import {mapState} from "vuex";
+import { mapState } from 'vuex'
 
 export default {
     components: { FormError, FinancialList, Paginate, DisplayError, Loading, NoAccessPage },
@@ -227,7 +227,7 @@ export default {
     },
 
     computed: {
-		...mapState(['userIsAdmin']),
+        ...mapState(['userIsAdmin']),
 
         income () {
             return this.transactions.filter((transaction) => {
@@ -241,27 +241,27 @@ export default {
             })
         },
 
-		// Get income sum
-		incomeSum () {
-			let sum = 0;
+        // Get income sum
+        incomeSum () {
+            let sum = 0
 
-			Object.values(this.income).forEach(obj => {
-				sum += obj.value
-			})
+            Object.values(this.income).forEach(obj => {
+                sum += obj.value
+            })
 
-			return sum
-		},
+            return sum
+        },
 
-		// Get expense sum
-		expensesSum () {
-			let sum = 0;
+        // Get expense sum
+        expensesSum () {
+            let sum = 0
 
-			Object.values(this.expenses).forEach(obj => {
-				sum += obj.value
-			})
+            Object.values(this.expenses).forEach(obj => {
+                sum += obj.value
+            })
 
-			return sum
-		}
+            return sum
+        }
     },
 
     created: function () {

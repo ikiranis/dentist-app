@@ -30,7 +30,7 @@ const utility = {
      * @returns {boolean}
      */
     checkAccessError (code) {
-        return !(code === 401 || code === 403);
+        return !(code === 401 || code === 403)
     }
 
 }

@@ -43,18 +43,18 @@
 </template>
 
 <script>
-    export default {
-        name: 'UsersTable',
+export default {
+    name: 'UsersTable',
 
-        props: {
-            users: {
-                required: true,
-                type: Array
-            },
-            currentUserId: {
-                required: true,
-                type: Number
-            }
+    props: {
+        users: {
+            required: true,
+            type: Array
+        },
+        currentUserId: {
+            required: true,
+            type: Number
         }
     }
+}
 </script>

@@ -490,7 +490,7 @@ export default {
                 .then(response => {
                     if (response.headers['content-type'].includes('image')) { // If file is image
                         this.image = {
-                            src: 'data: ${response.headers["content-type"]};base64,' + response.data.content,
+                            src: `data: ${response.headers['content-type']};base64,` + response.data.content,
                             filename: response.data.filename
                         }
                         this.$refs.attachmentModal.show()

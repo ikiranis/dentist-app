@@ -665,7 +665,7 @@ import api from '../../api'
 import DisplayError from '@/components/basic/DisplayError'
 
 export default {
-    components: { FormError, FieldsList, DisplayError, TeethList },
+    components: { FormError, FieldsList, DisplayError },
 
     data () {
         return {
@@ -909,7 +909,6 @@ export default {
 
         // Get the endotreatment card when selected tooth changed
         selectedTooth: function () {
-
             if (this.selectedTooth.number === 0) {
                 this.getTeeth()
                 this.newEndoTreatmentCard()
@@ -1009,7 +1008,7 @@ export default {
                 })
         },
 
-        /**checkEndoTreatmentFields
+        /** checkEndoTreatmentFields
          * Update the Endo Treatment Card info
          */
         updateEndoTreatmentCard () {
@@ -1189,7 +1188,7 @@ export default {
                     this.response.status = false
                     utility.debug(error.response.data.debug)
                 })
-        },
+        }
     }
 }
 </script>

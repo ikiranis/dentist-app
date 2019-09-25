@@ -80,12 +80,12 @@ export default {
          * @param item
          * @return boolean
          */
-        checkAdminRights(item) {
+        checkAdminRights (item) {
             if (!item.isForAdmin) {
                 return true
             }
 
-            return this.userIsAdmin;
+            return this.userIsAdmin
         },
 
         /**

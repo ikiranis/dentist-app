@@ -41,7 +41,7 @@ import EndoTreatmentLabels from '@/components/patients/EndoTreatmentLabels'
 import EndoTreatmentNotes from '@/components/patients/EndoTreatmentNotes'
 
 export default {
-    components: { DisplayError, TeethList, EndoTreatmentForm, EndoTreatmentLabels, EndoTreatmentNotes },
+    components: { DisplayError, EndoTreatmentForm, EndoTreatmentLabels, EndoTreatmentNotes },
 
     data () {
         return {

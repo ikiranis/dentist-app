@@ -39,60 +39,60 @@
 </template>
 
 <script>
-    import DisplayError from '@/components/basic/DisplayError'
-    import Loading from '@/components/basic/Loading'
-    import api from "../api";
-    import utility from "../library/utility";
-    import { base64StringToBlob } from 'blob-util'
+import DisplayError from '@/components/basic/DisplayError'
+import Loading from '@/components/basic/Loading'
+import api from '../api'
+import utility from '../library/utility'
+import { base64StringToBlob } from 'blob-util'
 
-    export default {
-        components: { DisplayError, Loading },
+export default {
+    components: { DisplayError, Loading },
 
-        data() {
-            return {
-                loading: false,
+    data () {
+        return {
+            loading: false,
 
-                response: {
-                    message: ' ',
-                    status: '',
-                    errors: []
-                },
-            }
-        },
-
-        methods: {
-            startBackup() {
-                this.loading = true
-
-                api.startBackup()
-                    .then(response => {
-                        this.loading = false
-
-                        const url = window.URL.createObjectURL(new Blob([
-                            base64StringToBlob(response.data.content, response.headers['content-type'])
-                        ]))
-
-                        const link = document.createElement('a')
-
-                        link.href = url
-                        link.setAttribute('download', response.data.filename)
-                        document.body.appendChild(link)
-
-                        link.click()
-                    })
-                    .catch(error => {
-                        this.loading = false
-
-                        this.response.message = error.response.data.message
-                        this.response.status = false
-
-                        utility.debug(error.response.data.debug)
-                    })
-            },
-
-            startRestore() {
-                alert('RESTORE')
+            response: {
+                message: ' ',
+                status: '',
+                errors: []
             }
         }
+    },
+
+    methods: {
+        startBackup () {
+            this.loading = true
+
+            api.startBackup()
+                .then(response => {
+                    this.loading = false
+
+                    const url = window.URL.createObjectURL(new Blob([
+                        base64StringToBlob(response.data.content, response.headers['content-type'])
+                    ]))
+
+                    const link = document.createElement('a')
+
+                    link.href = url
+                    link.setAttribute('download', response.data.filename)
+                    document.body.appendChild(link)
+
+                    link.click()
+                })
+                .catch(error => {
+                    this.loading = false
+
+                    this.response.message = error.response.data.message
+                    this.response.status = false
+
+                    utility.debug(error.response.data.debug)
+                })
+        },
+
+        startRestore () {
+            alert('RESTORE')
+        }
     }
+}
 </script>

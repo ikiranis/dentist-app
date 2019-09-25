@@ -20,14 +20,12 @@
                         :error="response.errors.counter[0]"/>
         </tr>
 
-
         <tr class="label">
             <input id="radiography" type="text" class="form-control"
                    v-model="treatment.radiography" maxlength="10">
             <form-error v-if="response.errors.radiography"
                         :error="response.errors.radiography[0]"/>
         </tr>
-
 
         <tr class="label">
             <input id="workingLength" type="text" class="form-control"
@@ -57,8 +55,6 @@
             </div>
         </tr>
 
-
-
         <tr class="label">
             <input id="MAF" type="text" class="form-control"
                    v-model="treatment.MAF" maxlength="10">
@@ -66,14 +62,12 @@
                         :error="response.errors.MAF[0]"/>
         </tr>
 
-
         <tr class="label">
             <input id="chemicalMechanicalTreatment" type="text" class="form-control"
                    v-model="treatment.chemicalMechanicalTreatment" maxlength="10">
             <form-error v-if="response.errors.chemicalMechanicalTreatment"
                         :error="response.errors.chemicalMechanicalTreatment[0]"/>
         </tr>
-
 
         <tr class="label">
             <select class="form-control" id="chozenBlockingTechnique"
@@ -108,34 +102,34 @@
 </template>
 
 <script>
-    import FormError from '@/components/basic/FormError'
+import FormError from '@/components/basic/FormError'
 
-    export default {
-        components: {FormError},
+export default {
+    components: { FormError },
 
-        props: {
-            treatment: {
-                required: true,
-                type: Object
-            },
-            roots: {
-                required: true,
-                type: Array
-            },
-            response: {
-                required: true,
-                type: Object
-            },
-            saveData: {
-                required: true,
-                type: Function
-            },
-            deleteEndoTreatment: {
-                required: true,
-                type: Function
-            }
+    props: {
+        treatment: {
+            required: true,
+            type: Object
+        },
+        roots: {
+            required: true,
+            type: Array
+        },
+        response: {
+            required: true,
+            type: Object
+        },
+        saveData: {
+            required: true,
+            type: Function
+        },
+        deleteEndoTreatment: {
+            required: true,
+            type: Function
         }
     }
+}
 </script>
 
 <style scoped>

@@ -49,15 +49,22 @@ import Tabs from '@/components/basic/Tabs'
 import EndoTreatmentCard from '@/components/patients/EndoTreatmentCard'
 import EndoTreatment from '@/components/patients/EndoTreatment'
 import Loading from '@/components/basic/Loading'
-import {mapState} from "vuex";
+import { mapState } from 'vuex'
 import NoAccessPage from '@/components/basic/NoAccessPage'
 import TeethList from '@/components/patients/TeethList'
-import api from "../api";
-import utility from "../library/utility";
+import api from '../api'
+import utility from '../library/utility'
 
 export default {
-    components: { MenuBar, EndoTreatmentCard, EndoTreatment,
-        Loading, Tabs, NoAccessPage, TeethList },
+    components: {
+        MenuBar,
+        EndoTreatmentCard,
+        EndoTreatment,
+        Loading,
+        Tabs,
+        NoAccessPage,
+        TeethList
+    },
 
     data () {
         return {
@@ -148,7 +155,7 @@ export default {
                 number: 0
             }
 
-            return selected ? selected : tooth
+            return selected || tooth
         }
     },
 

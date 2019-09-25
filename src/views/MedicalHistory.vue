@@ -372,7 +372,7 @@ import api from '../api'
 import utility from '../library/utility'
 import DisplayError from '@/components/basic/DisplayError'
 import Loading from '@/components/basic/Loading'
-import {mapState} from "vuex";
+import { mapState } from 'vuex'
 import NoAccessPage from '@/components/basic/NoAccessPage'
 
 export default {

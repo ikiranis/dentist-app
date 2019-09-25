@@ -59,89 +59,89 @@
 </template>
 
 <script>
-    import NoteDescription from './NoteDescription'
-    import moment from 'moment'
+import NoteDescription from './NoteDescription'
+import moment from 'moment'
 
-    export default {
-        components: {NoteDescription},
+export default {
+    components: { NoteDescription },
 
-        props: {
-            teeth: {
-                required: true,
-                type: Array
-            },
-            notes: {
-                required: true,
-                type: Array
-            },
-            newNote: {
-                required: true,
-                type: Function
-            },
-            updateNote: {
-                required: true,
-                type: Function
-            },
-            deleteNote: {
-                required: true,
-                type: Function
-            },
-            originNotes: {
-                required: true,
-                type: Array
-            },
-            newOriginNote: {
-                required: true,
-                type: Function
-            },
-            updateOriginNote: {
-                required: true,
-                type: Function
-            },
-            deleteOriginNote: {
-                required: true,
-                type: Function
-            }
+    props: {
+        teeth: {
+            required: true,
+            type: Array
         },
-
-        data() {
-            return {
-                currentDate: null
-            }
+        notes: {
+            required: true,
+            type: Array
         },
-
-        created: function () {
-            this.currentDate = moment(new Date()).format('DD/MM/YYYY')
+        newNote: {
+            required: true,
+            type: Function
         },
+        updateNote: {
+            required: true,
+            type: Function
+        },
+        deleteNote: {
+            required: true,
+            type: Function
+        },
+        originNotes: {
+            required: true,
+            type: Array
+        },
+        newOriginNote: {
+            required: true,
+            type: Function
+        },
+        updateOriginNote: {
+            required: true,
+            type: Function
+        },
+        deleteOriginNote: {
+            required: true,
+            type: Function
+        }
+    },
 
-        methods: {
-            moment,
+    data () {
+        return {
+            currentDate: null
+        }
+    },
 
-            /**
+    created: function () {
+        this.currentDate = moment(new Date()).format('DD/MM/YYYY')
+    },
+
+    methods: {
+        moment,
+
+        /**
              * Get the notes with toothNumber
              *
              * @param toothNumber
              * @returns {*}
              */
-            getNotes(toothNumber) {
-                return this.notes.filter(note => {
-                    return note.tooth_number === toothNumber
-                })
-            },
+        getNotes (toothNumber) {
+            return this.notes.filter(note => {
+                return note.tooth_number === toothNumber
+            })
+        },
 
-            /**
+        /**
              * Get the origin note with date and toothNumber
              *
              * @param toothNumber
              * @returns {*}
              */
-            getOriginNote(toothNumber) {
-                return this.originNotes.find(note =>
-                    note.tooth_number === toothNumber
-                )
-            }
+        getOriginNote (toothNumber) {
+            return this.originNotes.find(note =>
+                note.tooth_number === toothNumber
+            )
         }
     }
+}
 </script>
 
 <style scoped>

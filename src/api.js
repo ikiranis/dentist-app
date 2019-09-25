@@ -68,25 +68,25 @@ let api = {
         return data
     },
 
-	/**
+    /**
 	 * Delete a user
 	 *
 	 * @param userId
 	 * @returns {Promise<Promise<AxiosResponse<T>>>}
 	 */
-	async deleteUser (userId) {
-		return axios.delete(ROOT_API + '/user/' + userId)
-	},
+    async deleteUser (userId) {
+        return axios.delete(ROOT_API + '/user/' + userId)
+    },
 
-	/**
+    /**
 	 * Toggle Role
 	 *
 	 * @param userId
 	 * @returns {Promise<Promise<AxiosResponse<T>>>}
 	 */
-	async toggleRole (userId) {
-		return axios.patch(ROOT_API + '/toggleRole/' + userId)
-	},
+    async toggleRole (userId) {
+        return axios.patch(ROOT_API + '/toggleRole/' + userId)
+    },
 
     /**
      *
@@ -283,7 +283,7 @@ let api = {
             page = ''
         }
 
-		if (search.dateFrom && search.dateTo) {
+        if (search.dateFrom && search.dateTo) {
             let dateFrom = moment(search.dateFrom).format('YYYYMMDD')
             let dateTo = moment(search.dateTo).format('YYYYMMDD')
 
@@ -883,7 +883,7 @@ let api = {
      */
     async startBackup () {
         return axios.get(ROOT_API + '/backup')
-    },
+    }
 }
 
 export default api
