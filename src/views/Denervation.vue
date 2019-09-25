@@ -27,12 +27,12 @@
                 <endo-treatment-card
                         :selectedTooth="selectedTooth"
                         @loading="getLoading"
-                        v-if="tabs.endoTreatmentCard.display && selectedTooth" />
+                        v-if="tabs.endoTreatmentCard.display" />
 
                 <endo-treatment
                         :selectedTooth="selectedTooth"
                         @loading="getLoading"
-                        v-if="tabs.endoTreatment.display && selectedTooth"/>
+                        v-if="tabs.endoTreatment.display"/>
 
             </div>
 
@@ -140,9 +140,15 @@ export default {
 
         // Find the tooth with display (true)
         selectedTooth: function () {
-            return Object.values(this.haveTeeth).find((tooth) => {
+            let selected = Object.values(this.haveTeeth).find((tooth) => {
                 return tooth.display
             })
+
+            let tooth = {
+                number: 0
+            }
+
+            return selected ? selected : tooth
         }
     },
 
@@ -163,7 +169,6 @@ export default {
     },
 
     created: function () {
-        // this.getTeeth()
         this.getSimpleEndoTreatmentCards()
     },
 
@@ -206,7 +211,9 @@ export default {
         },
 
         newCard () {
-
+            Object.values(this.haveTeeth).forEach(tooth => {
+                tooth.display = false
+            })
         }
     }
 }

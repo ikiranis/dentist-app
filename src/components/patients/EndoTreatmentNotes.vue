@@ -79,7 +79,7 @@ export default {
 
     props: {
         selectedTooth: {
-            required: true,
+            required: false,
             type: Object
         }
     },

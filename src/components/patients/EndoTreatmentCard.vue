@@ -8,6 +8,26 @@
 
         <form @submit.prevent class="row col-12 mt-3 no-gutters" v-if="fieldSelected">
 
+            <div class="container" v-if="selectedTooth.number === 0">
+                <div class="input-group row mb-2 mx-auto col-lg-4 col-12">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text ">
+                            <label for="tooth_number" class="my-auto">Επιλογή δοντιού</label>
+                        </div>
+                    </div>
+
+                    <select class="form-control" id="tooth_number"
+                            v-model="endoTreatment.tooth_number">
+                        <option v-for="tooth in teeth"
+                                :key="tooth.id"
+                                :value="tooth.number"
+                                :selected="(tooth.number === endoTreatment.tooth_number) ? 'selected' : ''">
+                            {{ tooth.number }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+
             <div class="col-lg-6 col-12 px-1">
 
                 <div class="col-12 text-center">
@@ -657,6 +677,8 @@ export default {
 
             loading: false,
 
+            teeth: [],
+
             fields: {
                 pain: {
                     label: 'Πόνος',
@@ -778,7 +800,7 @@ export default {
 
             endoTreatment: {
                 id: 0,
-                tooth_number: 18,
+                tooth_number: 0,
                 automatic: false,
                 challenged: false,
                 reason: null,
@@ -829,7 +851,7 @@ export default {
 
     props: {
         selectedTooth: {
-            required: true,
+            required: false,
             type: Object
         }
     },
@@ -887,12 +909,22 @@ export default {
 
         // Get the endotreatment card when selected tooth changed
         selectedTooth: function () {
+
+            if (this.selectedTooth.number === 0) {
+                this.getTeeth()
+                this.newEndoTreatmentCard()
+
+                return
+            }
+
             this.getEndoTreatmentCard()
         }
     },
 
     created: function () {
-        this.getEndoTreatmentCard()
+        if (this.selectedTooth) {
+            this.getEndoTreatmentCard()
+        }
     },
 
     methods: {
@@ -1086,7 +1118,7 @@ export default {
         newEndoTreatmentCard () {
             this.resetEndoTreatment()
             this.setAllFieldsFalse()
-            this.setAllTeethFalse()
+            // this.setAllTeethFalse()
         },
 
         // Reset values of endoTreatment
@@ -1138,7 +1170,26 @@ export default {
                 fracture: null,
                 fractureCheck: false
             }
-        }
+        },
+
+        /**
+         * Get all teeth
+         */
+        getTeeth () {
+            api.getTeeth()
+                .then(response => {
+                    if (response.status === 200) {
+                        this.teeth = response.data
+                        return
+                    }
+                    this.teeth = []
+                })
+                .catch(error => {
+                    this.response.message = error.response.data.message
+                    this.response.status = false
+                    utility.debug(error.response.data.debug)
+                })
+        },
     }
 }
 </script>
