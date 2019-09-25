@@ -177,8 +177,6 @@ export default {
         createEndoTreatment (endoTreatment) {
             this.loading = true
 
-            endoTreatment.patient_id = this.patientId
-
             api.createEndoTreatment(endoTreatment)
                 .then(response => {
                     this.loading = false
@@ -296,16 +294,15 @@ export default {
             this.resetEndoTreatment()
 
             this.endoTreatments.push(this.endoTreatment)
-
-            this.getEndoTreatmentsForTooth()
         },
 
         // Reset values of endoTreatment
         resetEndoTreatment () {
             this.endoTreatment = {
                 id: 0,
+                patient_id: this.patientId,
                 root_id: 0,
-                tooth_number: this.selectedTooth,
+                tooth_number: this.selectedTooth.number,
                 roots: [],
                 counter: null,
                 radiography: null,
