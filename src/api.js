@@ -580,8 +580,8 @@ let api = {
      *
      * @returns {Promise<void>}
      */
-    async getTreatmentNotes (patientId) {
-        return axios.get(ROOT_API + '/treatmentNotes/' + patientId)
+    async getTreatmentNotes (patientId, toothNumber) {
+        return axios.get(ROOT_API + '/treatmentNotes/' + patientId + '/' + toothNumber)
     },
 
     /**

@@ -350,7 +350,7 @@ export default {
         getTreatmentNotes () {
             this.loading = true
 
-            api.getTreatmentNotes(this.patientId)
+            api.getTreatmentNotes(this.patientId, this.selectedTooth.number)
                 .then(response => {
                     this.loading = false
 
