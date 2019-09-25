@@ -98,7 +98,7 @@ export default {
         // When selected tooth change, load the data
         selectedTooth () {
             if (this.selectedTooth) {
-                this.getEndoTreatments()
+                this.getTreatmentNotes()
             }
         }
     },
@@ -115,7 +115,7 @@ export default {
         getTreatmentNotes () {
             this.loading = true
 
-            api.getTreatmentNotes(this.patientId)
+            api.getTreatmentNotes(this.patientId, this.selectedTooth.number)
                 .then(response => {
                     this.loading = false
 

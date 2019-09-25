@@ -526,7 +526,6 @@ let api = {
 	 * @returns {Promise<void>}
 	 */
     async getEndoTreatments (patientId, toothNumber) {
-        console.log(toothNumber)
         return axios.get(ROOT_API + '/endoTreatments/' + patientId + '/' + toothNumber)
     },
 

@@ -122,10 +122,6 @@
                 required: true,
                 type: Array
             },
-            teeth: {
-                required: true,
-                type: Array
-            },
             response: {
                 required: true,
                 type: Object
