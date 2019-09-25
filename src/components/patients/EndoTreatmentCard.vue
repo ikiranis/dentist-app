@@ -1024,8 +1024,6 @@ export default {
 
                     this.response.message = 'Τα δεδομένα αποθηκεύτηκαν'
                     this.response.status = true
-
-                    this.getEndoTreatmentCards()
                 })
                 .catch(error => {
                     this.loading = false
