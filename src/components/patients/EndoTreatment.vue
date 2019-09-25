@@ -3,16 +3,23 @@
     <div>
 
         <table class="table">
-            <tbody>
-                <endo-treatment-labels />
+            <tbody class="row">
+                <endo-treatment-labels class="col"/>
 
                 <endo-treatment-form v-for="treatment in endoTreatments"
                                      :key="treatment.id"
+									 class="col"
                                      :treatment="treatment"
                                      :response="response"
                                      :roots="roots"
                                      :deleteEndoTreatment="deleteEndoTreatment"
                                      :saveData="saveData"/>
+
+				<td class="my-auto">
+					<plus-circle-outline fillColor="black" :size="30"
+										 class="btn-icon" title="Εισαγωγή σημείωσης"
+										 @click="newEndoTreatment"/>
+				</td>
             </tbody>
         </table>
 
@@ -324,3 +331,9 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+	td {
+		width: 2em;
+	}
+</style>

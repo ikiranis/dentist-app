@@ -1,14 +1,14 @@
 <template functional>
-    <td nowrap>
-        <tr>Ρίζα</tr>
-        <tr>Μήκος εργαλείου</tr>
-        <tr>Μετρητής</tr>
-        <tr>Ακτινογραφία</tr>
-        <tr>Μήκος εργασίας</tr>
-        <tr>Σημείο αναφοράς</tr>
-        <tr>MAF</tr>
-        <tr>Χημικομηχανική επεξεργασία</tr>
-        <tr>Τεχνική έφραξης</tr>
+    <td nowrap class="text-light bg-secondary">
+		<tr><span class="px-2">Ρίζα</span></tr>
+        <tr><span class="px-2">Μήκος εργαλείου</span></tr>
+        <tr><span class="px-2">Μετρητής</span></tr>
+        <tr><span class="px-2">Ακτινογραφία</span></tr>
+        <tr><span class="px-2">Μήκος εργασίας</span></tr>
+        <tr><span class="px-2">Σημείο αναφοράς</span></tr>
+        <tr><span class="px-2">MAF</span></tr>
+        <tr><span class="px-2">Χημικομηχανική επεξεργασία</span></tr>
+        <tr><span class="px-2">Τεχνική έφραξης</span></tr>
     </td>
 </template>
 
@@ -21,9 +21,5 @@ export default {
 <style scoped>
     tr {
         line-height: 3em;
-    }
-
-    td {
-        width: 10em;
     }
 </style>

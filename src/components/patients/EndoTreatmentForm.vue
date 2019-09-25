@@ -135,7 +135,6 @@ export default {
 <style scoped>
     .label {
         height: 3em;
-
     }
 
     td {
