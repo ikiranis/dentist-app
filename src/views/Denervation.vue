@@ -27,6 +27,7 @@
                 <endo-treatment-card
                         :selectedTooth="selectedTooth"
                         @loading="getLoading"
+						:reloadTeeth="getSimpleEndoTreatmentCards"
                         v-if="tabs.endoTreatmentCard.display" />
 
                 <endo-treatment

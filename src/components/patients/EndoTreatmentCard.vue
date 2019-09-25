@@ -853,7 +853,11 @@ export default {
         selectedTooth: {
             required: false,
             type: Object
-        }
+        },
+		reloadTeeth: {
+        	required: true,
+			type: Function
+		}
     },
 
     computed: {
@@ -992,7 +996,7 @@ export default {
                     this.response.message = 'Τα δεδομένα αποθηκεύτηκαν'
                     this.response.status = true
 
-                    this.getEndoTreatmentCards()
+					this.refreshTeeth()
                 })
                 .catch(error => {
                     this.loading = false
