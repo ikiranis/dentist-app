@@ -29,11 +29,6 @@
                         @loading="getLoading"
                         v-if="tabs.endoTreatmentCard.display && selectedTooth" />
 
-                <endo-treatment-notes
-                        :selectedTooth="selectedTooth"
-                        @loading="getLoading"
-                        v-if="tabs.endoTreatmentNotes.display && selectedTooth"/>
-
                 <endo-treatment
                         :selectedTooth="selectedTooth"
                         @loading="getLoading"
@@ -53,7 +48,6 @@ import MenuBar from '@/components/basic/MenuBar'
 import Tabs from '@/components/basic/Tabs'
 import EndoTreatmentCard from '@/components/patients/EndoTreatmentCard'
 import EndoTreatment from '@/components/patients/EndoTreatment'
-import EndoTreatmentNotes from '@/components/patients/EndoTreatmentNotes'
 import Loading from '@/components/basic/Loading'
 import {mapState} from "vuex";
 import NoAccessPage from '@/components/basic/NoAccessPage'
@@ -62,7 +56,7 @@ import api from "../api";
 import utility from "../library/utility";
 
 export default {
-    components: { MenuBar, EndoTreatmentCard, EndoTreatment, EndoTreatmentNotes,
+    components: { MenuBar, EndoTreatmentCard, EndoTreatment,
         Loading, Tabs, NoAccessPage, TeethList },
 
     data () {
@@ -132,10 +126,6 @@ export default {
                 endoTreatment: {
                     display: false,
                     label: 'Ενδοδοντική θεραπεία'
-                },
-                endoTreatmentNotes: {
-                    display: false,
-                    label: 'Σημειώσεις'
                 }
             }
         }

@@ -77,6 +77,13 @@ export default {
         }
     },
 
+    props: {
+        selectedTooth: {
+            required: true,
+            type: Object
+        }
+    },
+
     computed: {
         patientId: function () {
             return this.$route.params.id
@@ -86,6 +93,13 @@ export default {
     watch: {
         loading () {
             this.$emit('loading', this.loading)
+        },
+
+        // When selected tooth change, load the data
+        selectedTooth () {
+            if (this.selectedTooth) {
+                this.getEndoTreatments()
+            }
         }
     },
 
