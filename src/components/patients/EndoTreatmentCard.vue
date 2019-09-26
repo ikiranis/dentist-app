@@ -852,10 +852,10 @@ export default {
             required: false,
             type: Object
         },
-		reloadTeeth: {
-        	required: true,
-			type: Function
-		},
+        reloadTeeth: {
+            required: true,
+            type: Function
+        },
         teeth: {
             required: true,
             type: Array
@@ -997,7 +997,7 @@ export default {
                     this.response.message = 'Τα δεδομένα αποθηκεύτηκαν'
                     this.response.status = true
 
-					this.reloadTeeth()
+                    this.reloadTeeth()
                 })
                 .catch(error => {
                     this.loading = false

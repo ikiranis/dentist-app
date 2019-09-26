@@ -295,7 +295,7 @@ export default {
 
         // Reset all values for new card
         newEndoTreatment () {
-            if(this.checkEndoTreatmentSingularity()) {
+            if (this.checkEndoTreatmentSingularity()) {
                 this.response.message = 'Μπορείς να προσθέσεις μόνο μία ρίζα την φορά'
                 this.response.status = false
 
@@ -332,8 +332,8 @@ export default {
          * Check if we have already item with id = 0
          * Return true if exist
          */
-        checkEndoTreatmentSingularity() {
-            return  !!this.endoTreatments.find(item => {
+        checkEndoTreatmentSingularity () {
+            return !!this.endoTreatments.find(item => {
                 return item.id === 0
             })
         },

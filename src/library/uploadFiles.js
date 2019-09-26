@@ -25,7 +25,7 @@ let uploadFiles = {
     theFile: [], // Το κάθε αρχείο
     slice_size: 700 * 1024, // Το μέγεθος του slice
     filesInputElement: '', // Το input element που παίρνει τα αρχεία
-    user_id: '', // User Id
+    userId: '', // User Id
     files: [], // array with the uploaded files
     rejectedFiles: [], // array of rejected files
     successFileCallback: null, // callback function to run after any uploaded file
@@ -37,7 +37,7 @@ let uploadFiles = {
     /**
      * Start the uploading
      *
-     * @param user_id
+     * @param userId
      * @param inputElement
      * @param successFileCallback
      * @param failFileCallback
@@ -45,10 +45,10 @@ let uploadFiles = {
      * @param fileLimit
      * @param tempFile
      */
-    startUpload: function (user_id, inputElement, successFileCallback, failFileCallback, handleError, fileLimit, tempFile) {
+    startUpload: function (userId, inputElement, successFileCallback, failFileCallback, handleError, fileLimit, tempFile) {
         // Init values
         this.filesInputElement = inputElement
-        this.user_id = user_id
+        this.userId = userId
         this.rejectedFiles = []
         this.percent_done = []
         this.reader = []
@@ -98,7 +98,7 @@ let uploadFiles = {
 
             this.reader[i].onloadend = function (event) {
                 if (event.target.readyState !== FileReader.DONE) {
-                    reject('error')
+                    reject(new Error('MD5 hash error'))
                 }
 
                 resolve(cryptoJS.MD5(cryptoJS.enc.Latin1.parse(event.target.result)).toString(cryptoJS.enc.Hex))
@@ -116,8 +116,8 @@ let uploadFiles = {
      * @param fileName
      */
     uploadSliceOfFile: function (start, i, fileName) {
-        let next_slice = start + this.slice_size + 1
-        let blob = this.theFile[i].slice(start, next_slice)
+        let nextSlice = start + this.slice_size + 1
+        let blob = this.theFile[i].slice(start, nextSlice)
 
         this.reader[i].onloadend = function (event) {
             if (event.target.readyState !== FileReader.DONE) {
@@ -134,20 +134,20 @@ let uploadFiles = {
 
             api.uploadFile(args)
                 .then(response => {
-                    let size_done = start + this.slice_size
-                    this.percent_done[i] = parseInt(((size_done / this.theFile[i].size) * 100).toFixed(0))
+                    let sizeDone = start + this.slice_size
+                    this.percent_done[i] = parseInt(((sizeDone / this.theFile[i].size) * 100).toFixed(0))
 
                     // Fix για τα mp3 που για κάποιο λόγο ανεβάζουν πάνω από το 100%
                     if (this.percent_done[i] > 100) {
                         this.percent_done[i] = 100
                     }
 
-                    if (next_slice < this.theFile[i].size) {
+                    if (nextSlice < this.theFile[i].size) {
                         // Update upload progress
                         this.showFileUploadProgress()
 
                         // More to upload, call function recursively
-                        this.uploadSliceOfFile(next_slice, i, fileName)
+                        this.uploadSliceOfFile(nextSlice, i, fileName)
                     } else {
                         this.insertFileToDatabase(response, i)
                     }
