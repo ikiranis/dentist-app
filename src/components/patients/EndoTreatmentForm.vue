@@ -1,6 +1,6 @@
 <template>
-    <td>
-        <tr class="label">
+    <div>
+        <div class="label">
             <select class="form-control" id="chozenRoot"
                     v-model="treatment.root_id">
                 <option v-for="root in roots"
@@ -9,32 +9,32 @@
                     {{ root.name }}
                 </option>
             </select>
-        </tr>
+        </div>
 
-        <tr class="label"> </tr>
+        <div class="label"> </div>
 
-        <tr class="label">
+        <div class="label">
             <input id="counter" type="text" class="form-control"
                    v-model="treatment.counter" maxlength="10">
             <form-error v-if="response.errors.counter"
                         :error="response.errors.counter[0]"/>
-        </tr>
+        </div>
 
-        <tr class="label">
+        <div class="label">
             <input id="radiography" type="text" class="form-control"
                    v-model="treatment.radiography" maxlength="10">
             <form-error v-if="response.errors.radiography"
                         :error="response.errors.radiography[0]"/>
-        </tr>
+        </div>
 
-        <tr class="label">
+        <div class="label">
             <input id="workingLength" type="text" class="form-control"
                    v-model="treatment.workingLength" maxlength="10">
             <form-error v-if="response.errors.workingLength"
                         :error="response.errors.workingLength[0]"/>
-        </tr>
+        </div>
 
-        <tr class="label">
+        <div class="label">
 
             <div class="input-group">
                 <input id="benchmark" type="text" class="form-control"
@@ -53,23 +53,23 @@
                 <form-error v-if="response.errors.benchmark"
                             :error="response.errors.benchmark[0]"/>
             </div>
-        </tr>
+        </div>
 
-        <tr class="label">
+        <div class="label">
             <input id="MAF" type="text" class="form-control"
                    v-model="treatment.MAF" maxlength="10">
             <form-error v-if="response.errors.MAF"
                         :error="response.errors.MAF[0]"/>
-        </tr>
+        </div>
 
-        <tr class="label">
+        <div class="label">
             <input id="chemicalMechanicalTreatment" type="text" class="form-control"
                    v-model="treatment.chemicalMechanicalTreatment" maxlength="10">
             <form-error v-if="response.errors.chemicalMechanicalTreatment"
                         :error="response.errors.chemicalMechanicalTreatment[0]"/>
-        </tr>
+        </div>
 
-        <tr class="label">
+        <div class="label">
             <select class="form-control" id="chozenBlockingTechnique"
                     v-model="treatment.blocking_technique_id">
                 <option v-for="blockingTechnique in treatment.blockingTechniques"
@@ -81,9 +81,9 @@
                     {{ blockingTechnique.name }}
                 </option>
             </select>
-        </tr>
+        </div>
 
-        <tr class="label">
+        <div class="label">
             <div class="row">
                 <zip-disk class="btn-icon ml-auto my-auto"
                         @click="saveData(treatment)"
@@ -95,9 +95,9 @@
                         title="Διαγραφή"/>
 
             </div>
-        </tr>
+        </div>
 
-    </td>
+    </div>
 
 </template>
 
@@ -135,9 +135,5 @@ export default {
 <style scoped>
     .label {
         height: 3em;
-    }
-
-    td {
-        width: 10em;
     }
 </style>

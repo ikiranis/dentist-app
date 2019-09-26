@@ -1,15 +1,15 @@
 <template functional>
-    <td nowrap class="text-light bg-secondary">
-		<tr><span class="px-2">Ρίζα</span></tr>
-        <tr><span class="px-2">Μήκος εργαλείου</span></tr>
-        <tr><span class="px-2">Μετρητής</span></tr>
-        <tr><span class="px-2">Ακτινογραφία</span></tr>
-        <tr><span class="px-2">Μήκος εργασίας</span></tr>
-        <tr><span class="px-2">Σημείο αναφοράς</span></tr>
-        <tr><span class="px-2">MAF</span></tr>
-        <tr><span class="px-2">Χημικομηχανική επεξεργασία</span></tr>
-        <tr><span class="px-2">Τεχνική έφραξης</span></tr>
-    </td>
+    <div class="text-light bg-secondary">
+		<div class="px-2 label">Ρίζα</div>
+        <div class="px-2 label text-center">Μήκος εργαλείου</div>
+        <div class="px-2 label">Μετρητής</div>
+        <div class="px-2 label">Ακτινογραφία</div>
+        <div class="px-2 label">Μήκος εργασίας</div>
+        <div class="px-2 label">Σημείο αναφοράς</div>
+        <div class="px-2 label">MAF</div>
+        <div class="px-2 label">Χημικομηχανική επεξεργασία</div>
+        <div class="px-2 label">Τεχνική έφραξης</div>
+    </div>
 </template>
 
 <script>
@@ -19,7 +19,7 @@ export default {
 </script>
 
 <style scoped>
-    tr {
+    .label {
         line-height: 3em;
     }
 </style>

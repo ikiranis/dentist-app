@@ -7,7 +7,7 @@
         </div>
 
         <table class="table" v-if="selectedTooth.number !== 0">
-            <tbody class="row">
+            <div class="row">
                 <endo-treatment-labels class="col"/>
 
                 <endo-treatment-form v-for="treatment in endoTreatments"
@@ -19,12 +19,12 @@
                                      :deleteEndoTreatment="deleteEndoTreatment"
                                      :saveData="saveData"/>
 
-				<td class="my-auto">
+				<div class="my-auto">
 					<plus-circle-outline fillColor="black" :size="30"
 										 class="btn-icon" title="Εισαγωγή σημείωσης"
 										 @click="newEndoTreatment"/>
-				</td>
-            </tbody>
+				</div>
+            </div>
         </table>
 
         <endo-treatment-notes
