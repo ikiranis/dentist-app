@@ -35,7 +35,7 @@
             <tr>
 				<td></td>
                 <td v-for="tooth in teeth" :key="tooth.id" class="text-center">
-                    <div v-for="note in getNotes(tooth.number)" class="mb-2">
+                    <div v-for="note in getNotes(tooth.number)" :key="note.id" class="mb-2">
                         <a href="#" @click="updateNote(note)">
                             <note-description :note="note"/>
                         </a>

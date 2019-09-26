@@ -23,8 +23,8 @@
                             title="Διαγραφή κίνησης"/>
                 </td>
                 <th scope="row" class="align-middle">
-                    <a href="#" class="px-2" @click="listeners.clickUpdate(transaction.id)">{{ transaction.formated_date
-                        }}</a>
+                    <a href="#" class="px-2"
+					   @click="listeners.clickUpdate(transaction.id)">{{ transaction.formated_date }}</a>
                 </th>
                 <td class="align-middle">
                     {{ transaction.description }}
@@ -39,7 +39,7 @@
                 <td></td>
                 <td class="text-right"><strong>Σύνολο</strong></td>
                 <td>
-                    <stong>{{ props.sum }}</stong>
+                    <strong>{{ props.sum }}</strong>
                 </td>
             </tr>
         </table>
