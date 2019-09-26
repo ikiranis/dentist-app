@@ -2,7 +2,11 @@
 
     <div>
 
-        <table class="table">
+        <div class="alert alert-success text-center w-50 mt-5 mx-auto" v-if="selectedTooth.number === 0">
+            Πρέπει να επιλέξεις δόντι
+        </div>
+
+        <table class="table" v-if="selectedTooth.number !== 0">
             <tbody class="row">
                 <endo-treatment-labels class="col"/>
 
@@ -15,7 +19,7 @@
                                      :deleteEndoTreatment="deleteEndoTreatment"
                                      :saveData="saveData"/>
 
-				<td class="my-auto" v-if="selectedTooth.number !== 0">
+				<td class="my-auto">
 					<plus-circle-outline fillColor="black" :size="30"
 										 class="btn-icon" title="Εισαγωγή σημείωσης"
 										 @click="newEndoTreatment"/>
@@ -26,7 +30,7 @@
         <endo-treatment-notes
                 :selectedTooth="selectedTooth"
                 @loading="getLoading"
-                v-if="selectedTooth"/>
+                v-if="selectedTooth.number !== 0"/>
 
         <div class="row fixed-bottom mb-2">
             <display-error class="mx-auto"
