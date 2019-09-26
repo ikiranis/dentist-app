@@ -155,6 +155,8 @@ export default {
         createTreatmentNote () {
             this.loading = true
 
+            this.note.tooth_number = this.selectedTooth.number
+
             api.createTreatmentNote(this.note)
                 .then(response => {
                     this.loading = false
