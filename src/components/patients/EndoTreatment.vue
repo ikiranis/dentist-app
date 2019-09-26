@@ -15,7 +15,7 @@
                                      :deleteEndoTreatment="deleteEndoTreatment"
                                      :saveData="saveData"/>
 
-				<td class="my-auto">
+				<td class="my-auto" v-if="selectedTooth.number !== 0">
 					<plus-circle-outline fillColor="black" :size="30"
 										 class="btn-icon" title="Εισαγωγή σημείωσης"
 										 @click="newEndoTreatment"/>
