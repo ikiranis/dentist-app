@@ -46,7 +46,6 @@
 import utility from '../../library/utility'
 import api from '../../api'
 import DisplayError from '@/components/basic/DisplayError'
-import TeethList from '@/components/patients/TeethList'
 import EndoTreatmentForm from '@/components/patients/EndoTreatmentForm'
 import EndoTreatmentLabels from '@/components/patients/EndoTreatmentLabels'
 import EndoTreatmentNotes from '@/components/patients/EndoTreatmentNotes'
