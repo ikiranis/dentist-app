@@ -677,8 +677,6 @@ export default {
 
             loading: false,
 
-            teeth: [],
-
             fields: {
                 pain: {
                     label: 'Πόνος',
@@ -857,7 +855,11 @@ export default {
 		reloadTeeth: {
         	required: true,
 			type: Function
-		}
+		},
+        teeth: {
+            required: true,
+            type: Array
+        }
     },
 
     computed: {
@@ -914,7 +916,6 @@ export default {
         // Get the endotreatment card when selected tooth changed
         selectedTooth: function () {
             if (this.selectedTooth.number === 0) {
-                this.getTeeth()
                 this.newEndoTreatmentCard()
 
                 return
@@ -996,7 +997,7 @@ export default {
                     this.response.message = 'Τα δεδομένα αποθηκεύτηκαν'
                     this.response.status = true
 
-					this.refreshTeeth()
+					this.reloadTeeth()
                 })
                 .catch(error => {
                     this.loading = false
@@ -1055,7 +1056,7 @@ export default {
                         this.response.message = 'Τα δεδομένα διαγράφηκαν'
                         this.response.status = true
 
-                        this.getEndoTreatmentCards()
+                        this.reloadTeeth()
                         this.newEndoTreatmentCard()
                     })
                     .catch(error => {
@@ -1119,14 +1120,13 @@ export default {
         newEndoTreatmentCard () {
             this.resetEndoTreatment()
             this.setAllFieldsFalse()
-            // this.setAllTeethFalse()
         },
 
         // Reset values of endoTreatment
         resetEndoTreatment () {
             this.endoTreatment = {
                 id: 0,
-                tooth_number: 18,
+                tooth_number: 0,
                 automatic: false,
                 challenged: false,
                 reason: null,
@@ -1171,25 +1171,6 @@ export default {
                 fracture: null,
                 fractureCheck: false
             }
-        },
-
-        /**
-         * Get all teeth
-         */
-        getTeeth () {
-            api.getTeeth()
-                .then(response => {
-                    if (response.status === 200) {
-                        this.teeth = response.data
-                        return
-                    }
-                    this.teeth = []
-                })
-                .catch(error => {
-                    this.response.message = error.response.data.message
-                    this.response.status = false
-                    utility.debug(error.response.data.debug)
-                })
         }
     }
 }

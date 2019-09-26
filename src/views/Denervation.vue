@@ -27,6 +27,7 @@
                 <endo-treatment-card
                         :selectedTooth="selectedTooth"
                         @loading="getLoading"
+                        :teeth="teeth"
 						:reloadTeeth="getSimpleEndoTreatmentCards"
                         v-if="tabs.endoTreatmentCard.display" />
 
@@ -78,6 +79,8 @@ export default {
             loading: false,
 
             haveTeeth: {},
+
+            teeth: [],
 
             endoTreatmentCards: [],
 
@@ -161,6 +164,7 @@ export default {
     },
 
     watch: {
+        // Check when endoTreatmentCards change
         endoTreatmentCards () {
             this.haveTeeth = {}
 
@@ -178,6 +182,7 @@ export default {
 
     created: function () {
         this.getSimpleEndoTreatmentCards()
+        this.getTeeth()
     },
 
     methods: {
@@ -218,10 +223,33 @@ export default {
             this.loading = loading
         },
 
+        // Add new endotreatment card
         newCard () {
             Object.values(this.haveTeeth).forEach(tooth => {
                 tooth.display = false
             })
+
+            this.tabs.endoTreatmentCard.display = true
+            this.tabs.endoTreatment.display = false
+        },
+
+        /**
+         * Get all teeth
+         */
+        getTeeth () {
+            api.getTeeth()
+                .then(response => {
+                    if (response.status === 200) {
+                        this.teeth = response.data
+                        return
+                    }
+                    this.teeth = []
+                })
+                .catch(error => {
+                    this.response.message = error.response.data.message
+                    this.response.status = false
+                    utility.debug(error.response.data.debug)
+                })
         }
     }
 }
