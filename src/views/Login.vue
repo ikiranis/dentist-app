@@ -82,8 +82,8 @@ export default {
         },
 
         /**
-             * Do the login
-             */
+         * Do the login
+         */
         login () {
             this.loading = true
 

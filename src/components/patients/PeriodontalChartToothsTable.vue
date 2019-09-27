@@ -89,10 +89,10 @@ export default {
         moment,
 
         /**
-             * Get all the dates, without duplicates
-             *
-             * @returns {*[]}
-             */
+         * Get all the dates, without duplicates
+         *
+         * @returns {*[]}
+         */
         getDates () {
             // Get only the dates from array
             let dates = []
@@ -108,9 +108,9 @@ export default {
         },
 
         /**
-			 * Find if there is a note in current date already
-			 * Returns true when find any
-			 */
+         * Find if there is a note in current date already
+         * Returns true when find any
+         */
         findDateInNote (tooth) {
             return this.notes.find(note =>
                 note.tooth_number === tooth.number &&
@@ -119,12 +119,12 @@ export default {
         },
 
         /**
-             * Get the note with date and  toothNumber
-             *
-             * @param date
-             * @param toothNumber
-             * @returns {*}
-             */
+         * Get the note with date and  toothNumber
+         *
+         * @param date
+         * @param toothNumber
+         * @returns {*}
+         */
         getNote (date, toothNumber) {
             return this.notes.find(note =>
                 note.formated_date === date && note.tooth_number === toothNumber
@@ -132,11 +132,11 @@ export default {
         },
 
         /**
-             * Get the image path
-             *
-             * @param toothNumber
-             * @returns {string}
-             */
+         * Get the image path
+         *
+         * @param toothNumber
+         * @returns {string}
+         */
         imagePath (toothNumber) {
             return '/images/teeth/' + toothNumber + '.png'
         }

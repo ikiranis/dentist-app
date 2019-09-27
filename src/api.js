@@ -69,21 +69,21 @@ let api = {
     },
 
     /**
-	 * Delete a user
-	 *
-	 * @param userId
-	 * @returns {Promise<Promise<AxiosResponse<T>>>}
-	 */
+     * Delete a user
+     *
+     * @param userId
+     * @returns {Promise<Promise<AxiosResponse<T>>>}
+     */
     async deleteUser (userId) {
         return axios.delete(ROOT_API + '/user/' + userId)
     },
 
     /**
-	 * Toggle Role
-	 *
-	 * @param userId
-	 * @returns {Promise<Promise<AxiosResponse<T>>>}
-	 */
+     * Toggle Role
+     *
+     * @param userId
+     * @returns {Promise<Promise<AxiosResponse<T>>>}
+     */
     async toggleRole (userId) {
         return axios.patch(ROOT_API + '/toggleRole/' + userId)
     },
@@ -138,10 +138,10 @@ let api = {
     // ************** Calendar api calls **************
 
     /**
-	 * Get all events
-	 *
-	 * @returns {Promise<void>}
-	 */
+     * Get all events
+     *
+     * @returns {Promise<void>}
+     */
     async getEvents (page, search) {
         if (page !== null) {
             page = '?' + page.toString().split('?')[1]
@@ -190,11 +190,11 @@ let api = {
     },
 
     /**
-	 * Delete an event
-	 *
-	 * @param eventId
-	 * @returns {Promise<Promise<AxiosResponse<T>>>}
-	 */
+     * Delete an event
+     *
+     * @param eventId
+     * @returns {Promise<Promise<AxiosResponse<T>>>}
+     */
     async deleteEvent (eventId) {
         return axios.delete(ROOT_API + '/event/' + eventId)
     },
@@ -272,10 +272,10 @@ let api = {
     // ************** Transaction api calls **************
 
     /**
-	 * Get all transactions
-	 *
-	 * @returns {Promise<void>}
-	 */
+     * Get all transactions
+     *
+     * @returns {Promise<void>}
+     */
     async getTransactions (page, search) {
         if (page !== null) {
             page = '?' + page.toString().split('?')[1]
@@ -294,41 +294,41 @@ let api = {
     },
 
     /**
-	 * Get a transaction
-	 *
-	 * @returns {Promise<AxiosResponse<T>>}
-	 */
+     * Get a transaction
+     *
+     * @returns {Promise<AxiosResponse<T>>}
+     */
     async getTransaction (transactionId) {
         return axios.get(ROOT_API + '/transaction/' + transactionId)
     },
 
     /**
-	 * Create a transaction
-	 *
-	 * @param args
-	 * @returns {Promise<AxiosResponse<T>>}
-	 */
+     * Create a transaction
+     *
+     * @param args
+     * @returns {Promise<AxiosResponse<T>>}
+     */
     async createTransaction (args) {
         return axios.post(ROOT_API + '/transaction', args)
     },
 
     /**
-	 * Update a transaction
-	 *
-	 * @param args
-	 * @param transactionId
-	 * @returns {Promise<Promise<AxiosResponse<T>>>}
-	 */
+     * Update a transaction
+     *
+     * @param args
+     * @param transactionId
+     * @returns {Promise<Promise<AxiosResponse<T>>>}
+     */
     async updateTransaction (args, transactionId) {
         return axios.patch(ROOT_API + '/transaction/' + transactionId, args)
     },
 
     /**
-	 * Delete a transaction
-	 *
-	 * @param transactionId
-	 * @returns {Promise<Promise<AxiosResponse<T>>>}
-	 */
+     * Delete a transaction
+     *
+     * @param transactionId
+     * @returns {Promise<Promise<AxiosResponse<T>>>}
+     */
     async deleteTransaction (transactionId) {
         return axios.delete(ROOT_API + '/transaction/' + transactionId)
     },
@@ -358,21 +358,21 @@ let api = {
     // ************** Dental History api calls **************
 
     /**
-	 * Get Dental History info
-	 *
-	 * @returns {Promise<AxiosResponse<T>>}
-	 */
+     * Get Dental History info
+     *
+     * @returns {Promise<AxiosResponse<T>>}
+     */
     async getDentalHistory (patientId) {
         return axios.get(ROOT_API + '/dentalHistory/' + patientId)
     },
 
     /**
-	 * Update Dental History
-	 *
-	 * @param args
-	 * @param patientId
-	 * @returns {Promise<Promise<AxiosResponse<T>>>}
-	 */
+     * Update Dental History
+     *
+     * @param args
+     * @param patientId
+     * @returns {Promise<Promise<AxiosResponse<T>>>}
+     */
     async updateDentalHistory (args, patientId) {
         return axios.patch(ROOT_API + '/dentalHistory/' + patientId, args)
     },
@@ -459,10 +459,10 @@ let api = {
     // ************** Endo Treatment Card api calls **************
 
     /**
-	 * Get all endo treatment cards
-	 *
-	 * @returns {Promise<void>}
-	 */
+     * Get all endo treatment cards
+     *
+     * @returns {Promise<void>}
+     */
     async getEndoTreatmentCards (patientId) {
         return axios.get(ROOT_API + '/endoTreatmentCards/' + patientId)
     },
@@ -488,11 +488,11 @@ let api = {
     },
 
     /**
-	 * Create am endo treatment card
-	 *
-	 * @param args
-	 * @returns {Promise<AxiosResponse<T>>}
-	 */
+     * Create am endo treatment card
+     *
+     * @param args
+     * @returns {Promise<AxiosResponse<T>>}
+     */
     async createEndoTreatmentCard (args) {
         return axios.post(ROOT_API + '/endoTreatmentCard', args)
     },
@@ -509,11 +509,11 @@ let api = {
     },
 
     /**
-	 * Delete an endo treatment card
-	 *
-	 * @param id
-	 * @returns {Promise<Promise<AxiosResponse<T>>>}
-	 */
+     * Delete an endo treatment card
+     *
+     * @param id
+     * @returns {Promise<Promise<AxiosResponse<T>>>}
+     */
     async deleteEndoTreatmentCard (id) {
         return axios.delete(ROOT_API + '/endoTreatmentCard/' + id)
     },
@@ -521,32 +521,32 @@ let api = {
     // ************** Endo Treatment api calls **************
 
     /**
-	 * Get all endo treatments
-	 *
-	 * @returns {Promise<void>}
-	 */
+     * Get all endo treatments
+     *
+     * @returns {Promise<void>}
+     */
     async getEndoTreatments (patientId, toothNumber) {
         return axios.get(ROOT_API + '/endoTreatments/' + patientId + '/' + toothNumber)
     },
 
     /**
-	 * Get Endo Treatment info
-	 *
-	 * @param patientId
-	 * @param rootId
-	 * @param toothNumber
-	 * @returns {Promise<Promise<AxiosResponse<T>>>}
-	 */
+     * Get Endo Treatment info
+     *
+     * @param patientId
+     * @param rootId
+     * @param toothNumber
+     * @returns {Promise<Promise<AxiosResponse<T>>>}
+     */
     async getEndoTreatment (patientId, rootId, toothNumber) {
         return axios.get(ROOT_API + '/endoTreatment/' + patientId + '/' + rootId + '/' + toothNumber)
     },
 
     /**
-	 * Create an endo treatment
-	 *
-	 * @param args
-	 * @returns {Promise<AxiosResponse<T>>}
-	 */
+     * Create an endo treatment
+     *
+     * @param args
+     * @returns {Promise<AxiosResponse<T>>}
+     */
     async createEndoTreatment (args) {
         return axios.post(ROOT_API + '/endoTreatment', args)
     },
@@ -563,11 +563,11 @@ let api = {
     },
 
     /**
-	 * Delete an endo treatment
-	 *
-	 * @param id
-	 * @returns {Promise<Promise<AxiosResponse<T>>>}
-	 */
+     * Delete an endo treatment
+     *
+     * @param id
+     * @returns {Promise<Promise<AxiosResponse<T>>>}
+     */
     async deleteEndoTreatment (id) {
         return axios.delete(ROOT_API + '/endoTreatment/' + id)
     },
@@ -736,32 +736,32 @@ let api = {
     },
 
     /**
-	 * Create a note
-	 *
-	 * @param args
-	 * @returns {Promise<AxiosResponse<T>>}
-	 */
+     * Create a note
+     *
+     * @param args
+     * @returns {Promise<AxiosResponse<T>>}
+     */
     async createPeriodontalChartNote (args) {
         return axios.post(ROOT_API + '/periodontalChartNote', args)
     },
 
     /**
-	 * Update a note
-	 *
-	 * @param args
-	 * @param noteId
-	 * @returns {Promise<Promise<AxiosResponse<T>>>}
-	 */
+     * Update a note
+     *
+     * @param args
+     * @param noteId
+     * @returns {Promise<Promise<AxiosResponse<T>>>}
+     */
     async updatePeriodontalChartNote (args, noteId) {
         return axios.patch(ROOT_API + '/periodontalChartNote/' + noteId, args)
     },
 
     /**
-	 * Delete a note
-	 *
-	 * @param noteId
-	 * @returns {Promise<Promise<AxiosResponse<T>>>}
-	 */
+     * Delete a note
+     *
+     * @param noteId
+     * @returns {Promise<Promise<AxiosResponse<T>>>}
+     */
     async deletePeriodontalChartNote (noteId) {
         return axios.delete(ROOT_API + '/periodontalChartNote/' + noteId)
     },
@@ -769,42 +769,42 @@ let api = {
     // ************** Dental gram notes api calls **************
 
     /**
-	 * Get all Dental Gram Notes
-	 *
-	 * @param patientId
-	 * @returns {Promise<void>}
-	 */
+     * Get all Dental Gram Notes
+     *
+     * @param patientId
+     * @returns {Promise<void>}
+     */
     async getDentalGramNotes (patientId) {
         return axios.get(ROOT_API + '/dentalGramNotes/' + patientId)
     },
 
     /**
-	 * Create a note
-	 *
-	 * @param args
-	 * @returns {Promise<AxiosResponse<T>>}
-	 */
+     * Create a note
+     *
+     * @param args
+     * @returns {Promise<AxiosResponse<T>>}
+     */
     async createDentalGramNote (args) {
         return axios.post(ROOT_API + '/dentalGramNote', args)
     },
 
     /**
-	 * Update a note
-	 *
-	 * @param args
-	 * @param noteId
-	 * @returns {Promise<Promise<AxiosResponse<T>>>}
-	 */
+     * Update a note
+     *
+     * @param args
+     * @param noteId
+     * @returns {Promise<Promise<AxiosResponse<T>>>}
+     */
     async updateDentalGramNote (args, noteId) {
         return axios.patch(ROOT_API + '/dentalGramNote/' + noteId, args)
     },
 
     /**
-	 * Delete a note
-	 *
-	 * @param noteId
-	 * @returns {Promise<Promise<AxiosResponse<T>>>}
-	 */
+     * Delete a note
+     *
+     * @param noteId
+     * @returns {Promise<Promise<AxiosResponse<T>>>}
+     */
     async deleteDentalGramNote (noteId) {
         return axios.delete(ROOT_API + '/dentalGramNote/' + noteId)
     },
@@ -812,42 +812,42 @@ let api = {
     // ************** Origin dental notes api calls **************
 
     /**
-	 * Get all Origin Dental Notes
-	 *
-	 * @param patientId
-	 * @returns {Promise<void>}
-	 */
+     * Get all Origin Dental Notes
+     *
+     * @param patientId
+     * @returns {Promise<void>}
+     */
     async getOriginDentalNotes (patientId) {
         return axios.get(ROOT_API + '/originDentalNotes/' + patientId)
     },
 
     /**
-	 * Create a note
-	 *
-	 * @param args
-	 * @returns {Promise<AxiosResponse<T>>}
-	 */
+     * Create a note
+     *
+     * @param args
+     * @returns {Promise<AxiosResponse<T>>}
+     */
     async createOriginDentalNote (args) {
         return axios.post(ROOT_API + '/originDentalNote', args)
     },
 
     /**
-	 * Update a note
-	 *
-	 * @param args
-	 * @param noteId
-	 * @returns {Promise<Promise<AxiosResponse<T>>>}
-	 */
+     * Update a note
+     *
+     * @param args
+     * @param noteId
+     * @returns {Promise<Promise<AxiosResponse<T>>>}
+     */
     async updateOriginDentalNote (args, noteId) {
         return axios.patch(ROOT_API + '/originDentalNote/' + noteId, args)
     },
 
     /**
-	 * Delete a note
-	 *
-	 * @param noteId
-	 * @returns {Promise<Promise<AxiosResponse<T>>>}
-	 */
+     * Delete a note
+     *
+     * @param noteId
+     * @returns {Promise<Promise<AxiosResponse<T>>>}
+     */
     async deleteOriginDentalNote (noteId) {
         return axios.delete(ROOT_API + '/originDentalNote/' + noteId)
     },

@@ -35,6 +35,7 @@
 
                         <patients-table :patients="patients"
                                         @deletePatient="deletePatient"
+                                        @databaseExport="databaseExport"
                                         @displayIconText="displayIconText"/>
 
                         <paginate :pagination="pagination" @click="getPatients"/>
@@ -119,10 +120,10 @@ export default {
 
     methods: {
         /**
-             * Get all the patients
-             *
-             * @param page
-             */
+         * Get all the patients
+         *
+         * @param page
+         */
         getPatients (page) {
             this.loading = true
 
@@ -153,8 +154,8 @@ export default {
         },
 
         /**
-             * Delete a patient
-             */
+         * Delete a patient
+         */
         deletePatient (patientId) {
             let choise = confirm('Θέλεις σίγουρα να σβήσεις τον ασθενή με id: ' + patientId + ';')
 
@@ -182,22 +183,27 @@ export default {
         },
 
         /**
-             * Clear the search text and get the bookmarks
-             */
+         * Clear the search text and get the bookmarks
+         */
         clearSearch () {
             this.search = null
             this.getPatients(null)
         },
 
         /**
-             *  Create ne patient
-             */
+         *  Create ne patient
+         */
         newPatient () {
             this.$router.push({ name: 'patient', params: { id: 0 } })
         },
 
         displayIconText (text) {
             this.alert.text = text
+        },
+
+        // Export the data of a patient to print
+        databaseExport (patientId) {
+            //
         }
     }
 }

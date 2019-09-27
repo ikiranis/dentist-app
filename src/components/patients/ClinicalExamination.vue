@@ -769,8 +769,8 @@ export default {
 
     methods: {
         /**
-			 * Get Clinical Examination info
-			 */
+         * Get Clinical Examination info
+         */
         getClinicalExamination () {
             this.loading = true
 
@@ -795,8 +795,8 @@ export default {
         },
 
         /**
-			 * Update the Clinical Examination info
-			 */
+         * Update the Clinical Examination info
+         */
         updateClinicalExamination () {
             this.loading = true
 
@@ -822,8 +822,8 @@ export default {
         },
 
         /**
-			 * Check for fields. If not empty, display it
-			 */
+         * Check for fields. If not empty, display it
+         */
         checkFields () {
             Object.keys(this.clinicalExamination).forEach(key => {
                 if (this.clinicalExamination[key] === null || this.clinicalExamination[key].length < 1) {
@@ -839,10 +839,10 @@ export default {
         },
 
         /**
-			 * Εξαφάνιση του πεδίου
-			 *
-			 * @param field
-			 */
+         * Εξαφάνιση του πεδίου
+         *
+         * @param field
+         */
         removeField (field) {
             field.display = false
         }

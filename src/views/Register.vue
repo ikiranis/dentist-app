@@ -103,8 +103,8 @@ export default {
 
     methods: {
         /**
-             * Register new user
-             */
+         * Register new user
+         */
         register () {
             this.loading = true
 

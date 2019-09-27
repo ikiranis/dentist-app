@@ -88,11 +88,11 @@ export default {
         },
 
         /**
-			 * Check if user have rights to see the item
-			 *
-			 * @param item
-			 * @return boolean
-			 */
+         * Check if user have rights to see the item
+         *
+         * @param item
+         * @return boolean
+         */
         checkAdminRights (item) {
             if (!item.isForAdmin) {
                 return true
@@ -102,13 +102,15 @@ export default {
         },
 
         /**
-			 * Do the logout
-			 */
+         * Do the logout
+         */
         logout () {
             user.logout()
             this.$store.dispatch('getCurrentUser')
-            // Hack Alert!!!
-            // Force to empty the username, because it need some time to run getCurrentUser and do it
+            /*
+             * Hack Alert!!!
+             * Force to empty the username, because it need some time to run getCurrentUser and do it
+             */
             this.setUsername(null)
             this.$router.push({ name: 'home' }) // Force to load home page
         }

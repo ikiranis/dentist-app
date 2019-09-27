@@ -26,10 +26,10 @@ export default {
 
     methods: {
         /**
-			 * Change teeth display values
-			 *
-			 * @param tooth
-			 */
+         * Change teeth display values
+         *
+         * @param tooth
+         */
         chooseTooth (tooth) {
             Object.keys(this.teeth).forEach(key => {
                 this.teeth[key].display = this.teeth[key] === tooth

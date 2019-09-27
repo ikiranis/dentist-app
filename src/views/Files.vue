@@ -227,10 +227,10 @@ export default {
         ...mapMutations(['setFiles', 'setProgress']),
 
         /**
-             * Get all the files
-             *
-             * @param page
-             */
+         * Get all the files
+         *
+         * @param page
+         */
         getFiles (page) {
             this.loading = true
 
@@ -261,8 +261,8 @@ export default {
         },
 
         /**
-             * Display file for edit
-             */
+         * Display file for edit
+         */
         getFileData (fileId) {
             this.setFiles([])
 
@@ -284,8 +284,8 @@ export default {
         },
 
         /**
-             * Display file modal
-             */
+         * Display file modal
+         */
         newFile () {
             this.setFiles([])
 
@@ -299,8 +299,8 @@ export default {
         },
 
         /**
-             * Run the appropriate save action
-             */
+         * Run the appropriate save action
+         */
         saveFile () {
             if (this.file.id === 0) {
                 this.createFile()
@@ -311,8 +311,8 @@ export default {
         },
 
         /**
-             * Create a file
-             */
+         * Create a file
+         */
         createFile () {
             this.loading = true
 
@@ -344,8 +344,8 @@ export default {
         },
 
         /**
-             * Update the file
-             */
+         * Update the file
+         */
         updateFile () {
             this.loading = true
 
@@ -377,8 +377,8 @@ export default {
         },
 
         /**
-             * Delete a file
-             */
+         * Delete a file
+         */
         deleteFile (fileId) {
             let choise = confirm('Θέλεις σίγουρα να σβήσεις το αρχείο με id: ' + fileId + ';')
 
@@ -406,8 +406,8 @@ export default {
         },
 
         /**
-             * Display the error on every error
-             */
+         * Display the error on every error
+         */
         handleError (error) {
             this.response.message = error
             this.response.status = false
@@ -418,8 +418,8 @@ export default {
         },
 
         /**
-             * Store file to database
-             */
+         * Store file to database
+         */
         storeFile (fileAdded) {
             return new Promise(async (resolve, reject) => {
                 try {
@@ -467,8 +467,8 @@ export default {
         },
 
         /**
-             * Remove file on file error
-             */
+         * Remove file on file error
+         */
         removeFile (file) {
             return new Promise(async (resolve, reject) => {
                 try {
@@ -481,10 +481,10 @@ export default {
         },
 
         /**
-             * Get the file and display images or download other files
-             *
-             * @param id
-             */
+         * Get the file and display images or download other files
+         *
+         * @param id
+         */
         getFile (id) {
             api.getFile(id)
                 .then(response => {
@@ -515,8 +515,8 @@ export default {
         },
 
         /**
-             * Check files for images and read the image data
-             */
+         * Check files for images and read the image data
+         */
         findImages () {
             this.filesList.forEach(file => {
                 if (this.checkFileExtension(file.filename)) {
@@ -526,8 +526,8 @@ export default {
         },
 
         /**
-             * Get the image and set the image to display
-             */
+         * Get the image and set the image to display
+         */
         getImage (file) {
             api.getFile(file.id)
                 .then(response => {
@@ -543,11 +543,11 @@ export default {
         },
 
         /**
-             * Check if file is image
-             *
-             * @param file
-             * @returns {boolean}
-             */
+         * Check if file is image
+         *
+         * @param file
+         * @returns {boolean}
+         */
         checkFileExtension (file) {
             let imageExtensions = ['jpeg', 'jpg', 'tif', 'png', 'gif']
             let fileExtension = file.substr(file.lastIndexOf('.') + 1)

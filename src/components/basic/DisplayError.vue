@@ -45,10 +45,10 @@ export default {
         },
 
         /**
-		 * On countdown = 0, reset message
-		 *
-		 * @param value
-		 */
+         * On countdown = 0, reset message
+         *
+         * @param value
+         */
         dismissCountDown (value) {
             if (value === 0) {
                 this.response.message = ' '

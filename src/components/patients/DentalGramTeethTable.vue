@@ -118,11 +118,11 @@ export default {
         moment,
 
         /**
-             * Get the notes with toothNumber
-             *
-             * @param toothNumber
-             * @returns {*}
-             */
+         * Get the notes with toothNumber
+         *
+         * @param toothNumber
+         * @returns {*}
+         */
         getNotes (toothNumber) {
             return this.notes.filter(note => {
                 return note.tooth_number === toothNumber
@@ -130,11 +130,11 @@ export default {
         },
 
         /**
-             * Get the origin note with date and toothNumber
-             *
-             * @param toothNumber
-             * @returns {*}
-             */
+         * Get the origin note with date and toothNumber
+         *
+         * @param toothNumber
+         * @returns {*}
+         */
         getOriginNote (toothNumber) {
             return this.originNotes.find(note =>
                 note.tooth_number === toothNumber

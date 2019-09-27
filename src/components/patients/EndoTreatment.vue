@@ -134,8 +134,8 @@ export default {
 
     methods: {
         /**
-             * Create or update data
-             */
+         * Create or update data
+         */
         saveData (endoTreatment) {
             if (endoTreatment.id === 0) {
                 this.createEndoTreatment(endoTreatment)
@@ -147,8 +147,8 @@ export default {
         },
 
         /**
-             * Get all endo treatments for patientId
-             */
+         * Get all endo treatments for patientId
+         */
         getEndoTreatments () {
             this.loading = true
 
@@ -175,8 +175,8 @@ export default {
         },
 
         /**
-             * Create an endo treatment
-             */
+         * Create an endo treatment
+         */
         createEndoTreatment (endoTreatment) {
             this.loading = true
 
@@ -204,10 +204,10 @@ export default {
         },
 
         /**
-             * Update the Endo Treatment info
-             *
-             * @param endoTreatment
-             */
+         * Update the Endo Treatment info
+         *
+         * @param endoTreatment
+         */
         updateEndoTreatment (endoTreatment) {
             this.loading = true
 
@@ -235,8 +235,8 @@ export default {
         },
 
         /**
-             * Delete an endo treatment
-             */
+         * Delete an endo treatment
+         */
         deleteEndoTreatment (id) {
             let choise = confirm('Θέλεις σίγουρα να σβήσεις τα δεδομένα;')
 
@@ -265,8 +265,8 @@ export default {
         },
 
         /**
-             * Get all roots
-             */
+         * Get all roots
+         */
         getRoots () {
             this.loading = true
 

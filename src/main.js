@@ -12,8 +12,10 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 // User Authentication
 import user from '@/library/user'
 
-// Material Design icons
-// @link https://materialdesignicons.com/
+/*
+ * Material Design icons
+ * @link https://materialdesignicons.com/
+ */
 import Biohazard from 'vue-material-design-icons/Biohazard.vue'
 import MedicalBag from 'vue-material-design-icons/MedicalBag.vue'
 import CurrencyEur from 'vue-material-design-icons/CurrencyEur.vue'
@@ -24,6 +26,7 @@ import EyeIcon from 'vue-material-design-icons/Eye.vue'
 import DownloadIcon from 'vue-material-design-icons/Download.vue'
 import SwapHorizontalBold from 'vue-material-design-icons/SwapHorizontalBold.vue'
 import ZipDisk from 'vue-material-design-icons/ZipDisk.vue'
+import DatabaseExport from 'vue-material-design-icons/DatabaseExport.vue'
 
 Vue.config.productionTip = true
 Vue.use(BootstrapVue)
@@ -46,6 +49,7 @@ Vue.component('download-icon', DownloadIcon)
 Vue.component('delete', Delete)
 Vue.component('swap-horizontal-bold', SwapHorizontalBold)
 Vue.component('zip-disk', ZipDisk)
+Vue.component('database-export', DatabaseExport)
 
 new Vue({
     router,

@@ -215,10 +215,10 @@ export default {
         },
 
         /**
-             * Get loading value from components
-             *
-             * @param loading
-             */
+         * Get loading value from components
+         *
+         * @param loading
+         */
         getLoading (loading) {
             this.loading = loading
         },

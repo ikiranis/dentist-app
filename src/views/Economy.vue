@@ -273,10 +273,10 @@ export default {
         moment,
 
         /**
-			 * Get all the transactions
-			 *
-			 * @param page
-			 */
+         * Get all the transactions
+         *
+         * @param page
+         */
         getTransactions (page) {
             this.loading = true
 
@@ -307,8 +307,8 @@ export default {
         },
 
         /**
-			 * Display transaction for edit
-			 */
+         * Display transaction for edit
+         */
         getTransaction (transactionId) {
             this.transaction = this.transactions.find((transaction) => {
                 return transaction.id === transactionId
@@ -319,10 +319,10 @@ export default {
         },
 
         /**
-			 * Display transaction modal
-			 *
-			 * @param kind
-			 */
+         * Display transaction modal
+         *
+         * @param kind
+         */
         newTransaction (kind) {
             this.transaction = {
                 id: 0,
@@ -335,8 +335,8 @@ export default {
         },
 
         /**
-			 * Run the appropriate save action
-			 */
+         * Run the appropriate save action
+         */
         saveTransaction () {
             if (this.transaction.id === 0) {
                 this.createTransaction()
@@ -347,8 +347,8 @@ export default {
         },
 
         /**
-			 * Create a transaction
-			 */
+         * Create a transaction
+         */
         createTransaction () {
             this.loading = true
 
@@ -378,8 +378,8 @@ export default {
         },
 
         /**
-			 * Update the transaction
-			 */
+         * Update the transaction
+         */
         updateTransaction () {
             this.loading = true
 
@@ -409,8 +409,8 @@ export default {
         },
 
         /**
-			 * Delete a transaction
-			 */
+         * Delete a transaction
+         */
         deleteTransaction (transactionId) {
             let choise = confirm('Θέλεις σίγουρα να σβήσεις την κίνηση με id: ' + transactionId + ';')
 
@@ -438,8 +438,8 @@ export default {
         },
 
         /**
-			 * Get the simple list of patients
-			 */
+         * Get the simple list of patients
+         */
         getSimplePatients () {
             api.getSimplePatients()
                 .then(response => {

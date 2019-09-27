@@ -19,10 +19,10 @@ export default {
 
     methods: {
         /**
-			 * Change tabs display values
-			 *
-			 * @param tab
-			 */
+         * Change tabs display values
+         *
+         * @param tab
+         */
         chooseTab (tab) {
             Object.keys(this.tabs).forEach(key => {
                 this.tabs[key].display = this.tabs[key] === tab

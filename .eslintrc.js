@@ -14,7 +14,8 @@ module.exports = {
         'vue/script-indent': ['error', 4],
         'indent': ['error', 4],
         'no-tabs': 0,
-        'no-mixed-spaces-and-tabs': [2, 'smart-tabs']
+        'no-mixed-spaces-and-tabs': [2, 'smart-tabs'],
+        'multiline-comment-style': ["error", "starred-block"]
     },
     parserOptions: {
         parser: 'babel-eslint'

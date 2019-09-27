@@ -263,8 +263,8 @@ export default {
         },
 
         /**
-		 * Save note
-		 */
+         * Save note
+         */
         saveNote (note) {
             if (this.note.id === 0) {
                 this.createPeriodontalChartNote()
@@ -297,8 +297,8 @@ export default {
         },
 
         /**
-		 * Display note for edit
-		 */
+         * Display note for edit
+         */
         getNote (note) {
             this.note = note
             delete this.note.created_at // Remove created_at, because it trigger error
@@ -336,8 +336,8 @@ export default {
         },
 
         /**
-		 * Create a periodontal chart note
-		 */
+         * Create a periodontal chart note
+         */
         createPeriodontalChartNote () {
             this.loading = true
 
@@ -367,8 +367,8 @@ export default {
         },
 
         /**
-		 * Update the Periodontal Chart Note
-		 */
+         * Update the Periodontal Chart Note
+         */
         updatePeriodontalChartNote () {
             this.loading = true
 
@@ -398,8 +398,8 @@ export default {
         },
 
         /**
-		 * Delete a Periodontal Chart Note
-		 */
+         * Delete a Periodontal Chart Note
+         */
         deletePeriodontalChartNote () {
             let choise = confirm('Θέλεις σίγουρα να σβήσεις τις μετρήσεις;')
 

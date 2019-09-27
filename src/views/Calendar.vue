@@ -193,8 +193,8 @@ export default {
     methods: {
 
         /**
-             * Run the appropriate save action
-             */
+         * Run the appropriate save action
+         */
         saveEvent () {
             if (this.event.id === 0) {
                 this.createEvent()
@@ -205,8 +205,8 @@ export default {
         },
 
         /**
-             * Display event for edit
-             */
+         * Display event for edit
+         */
         getEvent (eventId) {
             this.event = this.events.find((event) => {
                 return event.id === eventId
@@ -216,10 +216,10 @@ export default {
         },
 
         /**
-             * Get all the events
-             *
-             * @param page
-             */
+         * Get all the events
+         *
+         * @param page
+         */
         getEvents (page) {
             this.loading = true
 
@@ -250,8 +250,8 @@ export default {
         },
 
         /**
-             * Delete an event
-             */
+         * Delete an event
+         */
         deleteEvent (eventId) {
             let choise = confirm('Θέλεις σίγουρα να σβήσεις το ραντεβού με id: ' + eventId + ';')
 
@@ -279,8 +279,8 @@ export default {
         },
 
         /**
-             * Create an event
-             */
+         * Create an event
+         */
         createEvent () {
             this.loading = true
 
@@ -310,8 +310,8 @@ export default {
         },
 
         /**
-             * Update the event
-             */
+         * Update the event
+         */
         updateEvent () {
             this.loading = true
 
@@ -341,8 +341,8 @@ export default {
         },
 
         /**
-             * Get the simple list of patients
-             */
+         * Get the simple list of patients
+         */
         getSimplePatients () {
             api.getSimplePatients()
                 .then(response => {
@@ -365,8 +365,8 @@ export default {
         },
 
         /**
-             * Display event modal
-             */
+         * Display event modal
+         */
         newEvent () {
             this.event = { id: 0 }
             this.$refs.eventModal.show()

@@ -168,8 +168,8 @@ export default {
         },
 
         /**
-             * Get current user info
-             */
+         * Get current user info
+         */
         getCurrentUser () {
             this.loading = true
 
@@ -186,8 +186,8 @@ export default {
         },
 
         /**
-             * Update user's info
-             */
+         * Update user's info
+         */
         updateUser () {
             if (this.userInfo.password === undefined || this.userInfo.password === this.password_confirmation) {
                 let args = {

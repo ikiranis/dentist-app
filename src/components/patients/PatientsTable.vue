@@ -13,10 +13,14 @@
 			</thead>
 			<tbody v-for="patient in props.patients" :key="patient.id">
 			<tr>
-				<td class="text-center btn-icon">
-					<delete class="deletePatient"
+				<td class="text-center">
+					<delete class="deletePatient btn-icon"
 							@click="listeners.deletePatient(patient.id)"
 							title="Διαγραφή ασθενή"/>
+
+					<database-export class="btn-icon"
+							@click="listeners.databaseExport(patient.id)"
+							title="Εξαγωγή δεδομένων"/>
 				</td>
 				<th scope="row" class="patientId">{{ patient.id }}</th>
 				<td>

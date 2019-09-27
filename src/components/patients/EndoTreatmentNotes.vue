@@ -110,8 +110,8 @@ export default {
     methods: {
 
         /**
-             * Get all treatment notes for patientId
-             */
+         * Get all treatment notes for patientId
+         */
         getTreatmentNotes () {
             this.loading = true
 
@@ -138,8 +138,8 @@ export default {
         },
 
         /**
-             * Display note for edit
-             */
+         * Display note for edit
+         */
         getTreatmentNote (treatmentNoteId) {
             this.note = this.notes.find((note) => {
                 return note.id === treatmentNoteId
@@ -150,8 +150,8 @@ export default {
         },
 
         /**
-             * Create a note
-             */
+         * Create a note
+         */
         createTreatmentNote () {
             this.loading = true
 
@@ -183,8 +183,8 @@ export default {
         },
 
         /**
-             * Update a note
-             */
+         * Update a note
+         */
         updateTreatmentNote () {
             this.loading = true
 
@@ -214,8 +214,8 @@ export default {
         },
 
         /**
-             * Delete a transaction
-             */
+         * Delete a transaction
+         */
         deleteTreatmentNote (treatmentNoteId) {
             let choise = confirm('Θέλεις σίγουρα να σβήσεις την σημείωση με id: ' + treatmentNoteId + ';')
 
@@ -243,8 +243,8 @@ export default {
         },
 
         /**
-             * Run the appropriate save action
-             */
+         * Run the appropriate save action
+         */
         saveNote () {
             if (this.note.id === 0) {
                 this.createTreatmentNote()
@@ -255,8 +255,8 @@ export default {
         },
 
         /**
-             * Display note modal
-             */
+         * Display note modal
+         */
         newNote () {
             this.note = {
                 id: 0,

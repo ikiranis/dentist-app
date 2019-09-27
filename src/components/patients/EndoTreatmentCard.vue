@@ -956,8 +956,8 @@ export default {
         },
 
         /**
-		 * Get endo treatment card
-		 */
+         * Get endo treatment card
+         */
         getEndoTreatmentCard () {
             this.loading = true
 
@@ -982,8 +982,8 @@ export default {
         },
 
         /**
-		 * Create an endo treatment card
-		 */
+         * Create an endo treatment card
+         */
         createEndoTreatmentCard () {
             this.loading = true
 
@@ -1012,7 +1012,8 @@ export default {
                 })
         },
 
-        /** checkEndoTreatmentFields
+        /**
+         * checkEndoTreatmentFields
          * Update the Endo Treatment Card info
          */
         updateEndoTreatmentCard () {
@@ -1040,8 +1041,8 @@ export default {
         },
 
         /**
-		 * Delete an endo treatment card
-		 */
+         * Delete an endo treatment card
+         */
         deleteEndoTreatmentCard () {
             let choise = confirm('Θέλεις σίγουρα να σβήσεις τα δεδομένα;')
 

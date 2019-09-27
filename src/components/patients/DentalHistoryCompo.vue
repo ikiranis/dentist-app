@@ -461,8 +461,8 @@ export default {
     methods: {
 
         /**
-		 * Get Dental History info
-		 */
+         * Get Dental History info
+         */
         getDentalHistory () {
             this.loading = true
 
@@ -487,8 +487,8 @@ export default {
         },
 
         /**
-		 * Update the Dental History info
-		 */
+         * Update the Dental History info
+         */
         updateDentalHistory () {
             this.loading = true
 
@@ -514,8 +514,8 @@ export default {
         },
 
         /**
-		 * Check for fields. If not empty, display it
-		 */
+         * Check for fields. If not empty, display it
+         */
         checkFields () {
             Object.keys(this.dentalHistory).forEach(key => {
                 if (this.dentalHistory[key] === null ||

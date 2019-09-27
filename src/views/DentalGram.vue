@@ -203,8 +203,8 @@ export default {
         ...mapState(['userIsAdmin']),
 
         /**
-		 * Filter upper teeth
-		 */
+         * Filter upper teeth
+         */
         upperTeeth () {
             return this.teeth.filter((tooth) => {
                 return tooth.number <= 28
@@ -212,8 +212,8 @@ export default {
         },
 
         /**
-		 * Filter down teeth
-		 */
+         * Filter down teeth
+         */
         downTeeth () {
             return this.teeth.filter((tooth) => {
                 return tooth.number > 28
@@ -221,8 +221,8 @@ export default {
         },
 
         /**
-		 * Filter upper notes
-		 */
+         * Filter upper notes
+         */
         upperNotes () {
             return this.notes.filter((note) => {
                 return note.tooth_number <= 28
@@ -230,8 +230,8 @@ export default {
         },
 
         /**
-		 * Filter down notes
-		 */
+         * Filter down notes
+         */
         downNotes () {
             return this.notes.filter((note) => {
                 return note.tooth_number > 28
@@ -239,8 +239,8 @@ export default {
         },
 
         /**
-		 * Filter upper origin notes
-		 */
+         * Filter upper origin notes
+         */
         upperOriginNotes () {
             return this.originDentalNotes.filter((note) => {
                 return note.tooth_number <= 28
@@ -248,8 +248,8 @@ export default {
         },
 
         /**
-		 * Filter down origin notes
-		 */
+         * Filter down origin notes
+         */
         downOriginNotes () {
             return this.originDentalNotes.filter((note) => {
                 return note.tooth_number > 28
@@ -271,8 +271,8 @@ export default {
         moment,
 
         /**
-		 * Display note modal
-		 */
+         * Display note modal
+         */
         newNote (tooth) {
             this.note = {
                 id: 0,
@@ -288,8 +288,8 @@ export default {
         },
 
         /**
-		 * Display Origin note modal
-		 */
+         * Display Origin note modal
+         */
         newOriginNote (tooth) {
             this.originNote = {
                 id: 0,
@@ -304,8 +304,8 @@ export default {
         },
 
         /**
-		 * Save note
-		 */
+         * Save note
+         */
         saveNote () {
             if (this.note.id === 0) {
                 this.createDentalGramNote()
@@ -316,8 +316,8 @@ export default {
         },
 
         /**
-		 * Save origin note
-		 */
+         * Save origin note
+         */
         saveOriginNote () {
             if (this.originNote.id === 0) {
                 this.createOriginDentalNote()
@@ -350,8 +350,8 @@ export default {
         },
 
         /**
-		 * Display note for edit
-		 */
+         * Display note for edit
+         */
         getNote (note) {
             this.note = note
             delete this.note.created_at // Remove created_at, because it trigger error
@@ -361,8 +361,8 @@ export default {
         },
 
         /**
-		 * Display origin note for edit
-		 */
+         * Display origin note for edit
+         */
         getOriginNote (note) {
             this.originNote = note
             delete this.originNote.created_at // Remove created_at, because it trigger error
@@ -372,8 +372,8 @@ export default {
         },
 
         /**
-		 * Get all Dental Gram Notes
-		 */
+         * Get all Dental Gram Notes
+         */
         getDentalGramNotes () {
             this.loading = true
 
@@ -400,8 +400,8 @@ export default {
         },
 
         /**
-		 * Create a Dental Gram note
-		 */
+         * Create a Dental Gram note
+         */
         createDentalGramNote () {
             this.loading = true
 
@@ -431,8 +431,8 @@ export default {
         },
 
         /**
-		 * Update the Dental Gram Note
-		 */
+         * Update the Dental Gram Note
+         */
         updateDentalGramNote () {
             this.loading = true
 
@@ -462,8 +462,8 @@ export default {
         },
 
         /**
-		 * Delete a Dental Gram Note
-		 */
+         * Delete a Dental Gram Note
+         */
         deleteDentalGramNote () {
             let choise = confirm('Θέλεις σίγουρα να σβήσεις σημείωση;')
 
@@ -493,8 +493,8 @@ export default {
         },
 
         /**
-		 * Get all Origin Dental Notes
-		 */
+         * Get all Origin Dental Notes
+         */
         getOriginDentalNotes () {
             this.loading = true
 
@@ -521,8 +521,8 @@ export default {
         },
 
         /**
-		 * Create a Origin Dental note
-		 */
+         * Create a Origin Dental note
+         */
         createOriginDentalNote () {
             this.loading = true
 
@@ -552,8 +552,8 @@ export default {
         },
 
         /**
-		 * Update the Origin Dental Note
-		 */
+         * Update the Origin Dental Note
+         */
         updateOriginDentalNote () {
             this.loading = true
 
@@ -583,8 +583,8 @@ export default {
         },
 
         /**
-		 * Delete an Origin Dental Note
-		 */
+         * Delete an Origin Dental Note
+         */
         deleteOriginDentalNote () {
             let choise = confirm('Θέλεις σίγουρα να σβήσεις σημείωση;')
 
