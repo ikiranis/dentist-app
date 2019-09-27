@@ -10,10 +10,6 @@
                 <router-link to="/backup">
                     <b-button variant="secondary" class="w-100 mt-3">Backup</b-button>
                 </router-link>
-
-                <router-link to="/export">
-                    <b-button variant="secondary" class="w-100 mt-3">Εξαγωγή δεδομένων</b-button>
-                </router-link>
             </div>
 
         </div>
