@@ -7,17 +7,17 @@
             </div>
 
             <div class="container">
-                <patient />
-                <medical-history />
-                <dental-history />
-                <clinical-examination />
-                <dental-gram />
-                <periodontal-chart />
-                <treatment-history />
-                <endo-treatment-card />
-                <endo-treatment />
-                <endo-treatment-notes />
-                <files />
+                <patient readOnly="true" />
+                <medical-history readOnly="true" />
+                <dental-history readOnly="true" />
+                <clinical-examination readOnly="true" />
+                <dental-gram readOnly="true" />
+                <periodontal-chart readOnly="true" />
+                <treatment-history readOnly="true" />
+                <endo-treatment-card readOnly="true" />
+                <endo-treatment readOnly="true" />
+                <endo-treatment-notes readOnly="true" />
+                <files readOnly="true" />
             </div>
 
         </div>

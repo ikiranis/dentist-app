@@ -211,6 +211,13 @@ export default {
         }
     },
 
+    props: {
+        readOnly: {
+            required: false,
+            type: Boolean
+        }
+    },
+
     computed: {
         ...mapState(['files', 'progress', 'rejectedFiles', 'userIsAdmin']),
 

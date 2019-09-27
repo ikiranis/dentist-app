@@ -1,7 +1,8 @@
 <template>
     <div class="container-fluid my-3" v-if="userIsAdmin">
 
-		<menu-bar brand="Ασθενής" :brandRoute="{ name: 'patient', params: { id: patientId } }"
+		<menu-bar v-if="!readOnly"
+                  brand="Ασθενής" :brandRoute="{ name: 'patient', params: { id: patientId } }"
 				  :menuItems="menuItems" userInfo="false" fixed=""
 				  variant="" type="light" valign="mx-auto" toggle="md" navCollapseText="patientBar" />
 
@@ -161,7 +162,7 @@
 
                 </form>
 
-                <div class="row">
+                <div v-if="!readOnly" class="row">
                     <input type="button" id="saveInfo"
                            class="btn btn-success col-md-6 col-12 my-3 mx-auto"
                            @click="saveInfo" value="Αποθήκευση">
@@ -277,6 +278,13 @@ export default {
                     disabled: false
                 }
             ]
+        }
+    },
+
+    props: {
+        readOnly: {
+            required: false,
+            type: Boolean
         }
     },
 
