@@ -1,6 +1,6 @@
 <template>
     <div>
-		<FieldsList :fields="fields" v-if="!loading" />
+		<FieldsList :fields="fields" v-if="!loading && !readOnly" />
 
         <div class="alert alert-success text-center w-50 mt-5 mx-auto" v-if="!fieldSelected && !loading">
             Επιλογή πεδίων
@@ -304,7 +304,7 @@
 
         </form>
 
-        <div class="row" v-if="fieldSelected">
+        <div class="row" v-if="fieldSelected && !readOnly">
             <input type="submit" class="btn btn-success col-md-6 col-12 my-3 mx-auto"
                    @click="updateDentalHistory" value="Αποθήκευση">
         </div>

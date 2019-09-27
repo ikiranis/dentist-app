@@ -19,7 +19,7 @@
                                      :deleteEndoTreatment="deleteEndoTreatment"
                                      :saveData="saveData"/>
 
-                <div class="my-auto">
+                <div class="my-auto" v-if="!readOnly">
                     <plus-circle-outline fillColor="black" :size="30"
                                          class="btn-icon" title="Εισαγωγή σημείωσης"
                                          @click="newEndoTreatment"/>
@@ -27,10 +27,9 @@
             </div>
         </table>
 
-        <endo-treatment-notes
+        <endo-treatment-notes v-if="selectedTooth.number !== 0 && !readOnly"
                 :selectedTooth="selectedTooth"
-                @loading="getLoading"
-                v-if="selectedTooth.number !== 0"/>
+                @loading="getLoading" />
 
         <div class="row fixed-bottom mb-2">
             <display-error class="mx-auto"

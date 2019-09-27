@@ -70,7 +70,8 @@
 
         </b-modal>
 
-        <menu-bar brand="Ασθενής" :brandRoute="{ name: 'patient', params: { id: patientId } }"
+        <menu-bar v-if="!readOnly"
+                  brand="Ασθενής" :brandRoute="{ name: 'patient', params: { id: patientId } }"
                   :menuItems="menuItems" userInfo="false" fixed=""
                   variant="" type="light" valign="mx-auto" toggle="md"
                   navCollapseText="patientBar"/>
@@ -96,7 +97,7 @@
 
             </div>
 
-            <div class="row w-100" v-if="!loading">
+            <div class="row w-100" v-if="!loading && !readOnly">
                 <input type="button" class="btn btn-success col-md-6 col-12 my-3 mx-auto"
                        @click="newFile" value="Εισαγωγή αρχείου">
             </div>

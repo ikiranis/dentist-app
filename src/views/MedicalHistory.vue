@@ -1,7 +1,8 @@
 <template>
     <div class="container-fluid my-3" v-if="userIsAdmin">
 
-		<menu-bar brand="Ασθενής" :brandRoute="{ name: 'patient', params: { id: patientId } }"
+		<menu-bar v-if="!readOnly"
+                  brand="Ασθενής" :brandRoute="{ name: 'patient', params: { id: patientId } }"
 				  :menuItems="menuItems" userInfo="false" fixed=""
 				  variant="" type="light" valign="mx-auto" toggle="md"
 				  navCollapseText="patientBar" />
@@ -14,7 +15,7 @@
 
             <div class="container">
 
-                <FieldsList v-if="!loading" :fields="fields"/>
+                <FieldsList v-if="!loading && !readOnly" :fields="fields"/>
 
                 <div class="alert alert-success text-center w-50 mt-5 mx-auto" v-if="!fieldSelected && !loading">
                     Επιλογή πεδίων
@@ -344,7 +345,7 @@
 
                 </form>
 
-                <div class="row" v-if="fieldSelected">
+                <div class="row" v-if="fieldSelected && !readOnly">
                     <input type="submit" class="btn btn-success col-md-6 col-12 my-3 mx-auto"
                            @click="updateMedicalHistory" value="Αποθήκευση">
                 </div>
