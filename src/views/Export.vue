@@ -17,8 +17,12 @@
                 <endo-treatment-card v-for="tooth in haveTeeth"
                                      readOnly="true"
                                      :selectedTooth="tooth" />
-                <endo-treatment readOnly="true" />
-                <endo-treatment-notes readOnly="true" />
+                <endo-treatment v-for="tooth in haveTeeth"
+                                readOnly="true"
+                                :selectedTooth="tooth" />
+                <endo-treatment-notes v-for="tooth in haveTeeth"
+                                      readOnly="true"
+                                      :selectedTooth="tooth" />
                 <files readOnly="true" />
             </div>
 
