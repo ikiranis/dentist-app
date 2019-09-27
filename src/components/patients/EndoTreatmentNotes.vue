@@ -26,7 +26,7 @@
                         @clickDelete="deleteTreatmentNote"
                         @clickUpdate="getTreatmentNote"/>
 
-            <div class="row">
+            <div class="row" v-if="!readOnly">
                 <input type="submit" class="btn btn-success col-md-6 col-12 my-3 mx-auto"
                        @click="newNote" value="Εισαγωγή σημείωσης">
             </div>
