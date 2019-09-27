@@ -201,9 +201,13 @@ export default {
             this.alert.text = text
         },
 
-        // Export the data of a patient to print
+        /**
+         * Export the data of a patient to print
+         *
+         * @param patientId
+         */
         databaseExport (patientId) {
-            //
+            this.$router.push({ name: 'export', params: { id: patientId } })
         }
     }
 }

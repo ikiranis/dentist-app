@@ -182,7 +182,7 @@ export default new Router({
             }
         },
         {
-            path: '/export',
+            path: '/export/:id',
             name: 'export',
             component: Export,
             meta: {
