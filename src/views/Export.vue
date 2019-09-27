@@ -7,8 +7,6 @@
             </div>
 
             <div class="container">
-<!--                TODO να μπούνε τίτλοι
-                    TODO να δω αν μπορούν να χωριστούν σε σελίδες, για εκτύπωση-->
 				<div class="row bg-secondary text-light">
 					<h1 class="mx-auto">Στοιχεία ασθενή</h1>
 				</div>

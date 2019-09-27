@@ -60,17 +60,9 @@
 
             <div class="container" v-if="treatments.length">
 
-                <div class="w-100">
-                    <paginate :pagination="pagination" @click="getTreatments"/>
-                </div>
-
                 <treatments-list :treatments="treatments"
                             @clickDelete="deleteTreatment"
                             @clickUpdate="getTreatment"/>
-
-                <div class="w-100">
-                    <paginate :pagination="pagination" @click="getTreatments"/>
-                </div>
 
             </div>
 
@@ -96,7 +88,6 @@
 <script>
 import FormError from '@/components/basic/FormError'
 import MenuBar from '@/components/basic/MenuBar'
-import Paginate from '@/components/basic/Paginate'
 import DisplayError from '@/components/basic/DisplayError'
 import Loading from '@/components/basic/Loading'
 import TreatmentsList from '@/components/patients/TreatmentsList'
@@ -106,10 +97,8 @@ import api from '../api'
 import { mapState } from 'vuex'
 import NoAccessPage from '@/components/basic/NoAccessPage'
 
-// TODO να μην κάνει pagination στο readonly
-
 export default {
-    components: { MenuBar, FormError, Paginate, DisplayError, Loading, TreatmentsList, NoAccessPage },
+    components: { MenuBar, FormError, DisplayError, Loading, TreatmentsList, NoAccessPage },
 
     data () {
         return {
@@ -120,11 +109,6 @@ export default {
             },
 
             loading: false,
-
-            pagination: {
-                meta: {},
-                links: {}
-            },
 
             menuItems: [
                 {
@@ -201,7 +185,7 @@ export default {
     },
 
     created: function () {
-        this.getTreatments(null)
+        this.getTreatments()
     },
 
     methods: {
@@ -209,22 +193,16 @@ export default {
 
         /**
          * Get all the treatments
-         *
-         * @param page
          */
-        getTreatments (page) {
+        getTreatments () {
             this.loading = true
 
-            api.getTreatments(page, this.patientId)
+            api.getTreatments(this.patientId)
                 .then(response => {
                     this.loading = false
 
                     if (response.status === 200) {
-                        this.treatments = response.data.data
-                        this.pagination.meta = response.data.meta
-                        this.pagination.links = response.data.links
-
-                        window.scrollTo(0, 0)
+                        this.treatments = response.data
 
                         return
                     }
