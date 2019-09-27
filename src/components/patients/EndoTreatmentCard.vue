@@ -8,7 +8,7 @@
 
         <form @submit.prevent class="row col-12 mt-3 no-gutters" v-if="fieldSelected">
 
-            <div class="container" v-if="selectedTooth.number === 0">
+            <div class="container" v-if="selectedTooth.number === 0 && !readOnly">
                 <div class="input-group row mb-2 mx-auto col-lg-4 col-12">
                     <div class="input-group-prepend">
                         <div class="input-group-text ">
@@ -852,11 +852,11 @@
                 type: Object
             },
             reloadTeeth: {
-                required: true,
+                required: false,
                 type: Function
             },
             teeth: {
-                required: true,
+                required: false,
                 type: Array
             },
             readOnly: {
