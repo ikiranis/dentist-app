@@ -700,12 +700,12 @@ export default {
         }
     },
 
-	props: {
-		readOnly: {
-			required: false,
-			type: Boolean
-		}
-	},
+    props: {
+        readOnly: {
+            required: false,
+            type: Boolean
+        }
+    },
 
     computed: {
         // Find if any field is selected. True if any

@@ -6,6 +6,10 @@
             Επιλογή πεδίων
         </div>
 
+		<div v-if="readOnly" class="row text-light">
+			<h3 class="mx-auto bg-secondary px-3">Δόντι {{ selectedTooth.number }}</h3>
+		</div>
+
         <form @submit.prevent class="row col-12 mt-3 no-gutters" v-if="fieldSelected">
 
             <div class="container" v-if="selectedTooth.number === 0 && !readOnly">
@@ -657,350 +661,411 @@
 </template>
 
 <script>
-    import FormError from '@/components/basic/FormError'
-    import FieldsList from '@/components/patients/FieldsList'
-    import utility from '../../library/utility'
-    import api from '../../api'
-    import DisplayError from '@/components/basic/DisplayError'
+import FormError from '@/components/basic/FormError'
+import FieldsList from '@/components/patients/FieldsList'
+import utility from '../../library/utility'
+import api from '../../api'
+import DisplayError from '@/components/basic/DisplayError'
 
-    export default {
-        components: {FormError, FieldsList, DisplayError},
+export default {
+    components: { FormError, FieldsList, DisplayError },
 
-        data() {
-            return {
-                response: {
-                    message: ' ',
-                    status: '',
-                    errors: []
+    data () {
+        return {
+            response: {
+                message: ' ',
+                status: '',
+                errors: []
+            },
+
+            loading: false,
+
+            fields: {
+                pain: {
+                    label: 'Πόνος',
+                    display: false
                 },
+                historyEdema: {
+                    label: 'Ιστορικό : Οίδημα',
+                    display: false
+                },
+                feelingOfToothElongation: {
+                    label: 'Αίσθηση επιμήκυνησης δοντιού',
+                    display: false
+                },
+                fever: {
+                    label: 'Πυρετός',
+                    display: false
+                },
+                lymphadenitis: {
+                    label: 'Λεμφαδενίτιδα',
+                    display: false
+                },
+                others: {
+                    label: 'Άλλα',
+                    display: false
+                },
+                previousAction: {
+                    label: 'Προηγούμενη αγωγή',
+                    display: false
+                },
+                treatEdema: {
+                    label: 'Κλινική εξέταση : Οίδημα',
+                    display: false
+                },
+                fistula: {
+                    label: 'Συρίγγιο',
+                    display: false
+                },
+                tintOfAMill: {
+                    label: 'Απόχρωση μύλης',
+                    display: false
+                },
+                revelationOfPulpCheck: {
+                    label: 'Αποκάλυψη πολφού',
+                    display: false
+                },
+                sensitivityToPalpationAtTheTip: {
+                    label: 'Ευαισθησία στη ψηλάφηση ακρορριζικά',
+                    display: false
+                },
+                painInTheAttack: {
+                    label: 'Πόνος στην επίκρουση',
+                    display: false
+                },
+                elation: {
+                    label: 'Ευσειστότητα',
+                    display: false
+                },
+                vitality: {
+                    label: 'Ζωτικότητα',
+                    display: false
+                },
+                periodontalTissues: {
+                    label: 'Περιοδοντικοί ιστοί',
+                    display: false
+                },
+                radiographicExamination: {
+                    label: 'Ακτινογραφική εξέταση',
+                    display: false
+                },
+                revelationCheck: {
+                    label: 'Αποκάλυψη',
+                    display: false
+                },
+                hyperemia: {
+                    label: 'Υπεραιμία',
+                    display: false
+                },
+                acutePulpitis: {
+                    label: 'Οξεία Πολφίτιδα',
+                    display: false
+                },
+                chronicPulpitis: {
+                    label: 'Χρονία Πολφίτιδα',
+                    display: false
+                },
+                necrosis: {
+                    label: 'Νέκρωση',
+                    display: false
+                },
+                abscess: {
+                    label: 'Απόστημα',
+                    display: false
+                },
+                granulation: {
+                    label: 'Κοκκίωμα',
+                    display: false
+                },
+                cyst: {
+                    label: 'Κύστη',
+                    display: false
+                },
+                reactiveOsteoconduction: {
+                    label: 'Αντιδραστική οστεοπύκνωση',
+                    display: false
+                },
+                endoPeriodontalDamageCheck: {
+                    label: 'Ενδοπεριοδοντική βλάβη',
+                    display: false
+                },
+                absorption: {
+                    label: 'Απορρόφηση',
+                    display: false
+                },
+                fracture: {
+                    label: 'Κάταγμα',
+                    display: false
+                }
+            },
 
-                loading: false,
+            endoTreatment: {
+                id: 0,
+                tooth_number: 0,
+                automatic: false,
+                challenged: false,
+                reason: null,
+                duration: null,
+                reduceToTheCold: false,
+                historyEdema: false,
+                feelingOfToothElongation: false,
+                fever: false,
+                lymphadenitis: false,
+                others: null,
+                previousAction: null,
+                treatEdema: false,
+                fistula: false,
+                tintOfAMill: false,
+                revelationOfPulp: null,
+                revelationOfPulpCheck: false,
+                sensitivityToPalpationAtTheTip: false,
+                painInTheAttack: false,
+                elation: false,
+                vitality: false,
+                periodontalTissues: null,
+                radiographicExamination: null,
+                revelation: null,
+                revelationCheck: false,
+                hyperemia: false,
+                acutePulpitis: false,
+                partialAcutePulpitis: false,
+                universalAcutePulpitis: false,
+                chronicPulpitis: false,
+                ulceratingChronicPulpitis: false,
+                superplasticChronicPulpitis: false,
+                necrosis: false,
+                abscess: false,
+                granulation: false,
+                cyst: false,
+                reactiveOsteoconduction: false,
+                endoPeriodontalDamage: null,
+                endoPeriodontalDamageCheck: false,
+                absorption: false,
+                innerAbsorption: false,
+                outerAbsorption: false,
+                fracture: null,
+                fractureCheck: false
+            }
 
-                fields: {
-                    pain: {
-                        label: 'Πόνος',
-                        display: false
-                    },
-                    historyEdema: {
-                        label: 'Ιστορικό : Οίδημα',
-                        display: false
-                    },
-                    feelingOfToothElongation: {
-                        label: 'Αίσθηση επιμήκυνησης δοντιού',
-                        display: false
-                    },
-                    fever: {
-                        label: 'Πυρετός',
-                        display: false
-                    },
-                    lymphadenitis: {
-                        label: 'Λεμφαδενίτιδα',
-                        display: false
-                    },
-                    others: {
-                        label: 'Άλλα',
-                        display: false
-                    },
-                    previousAction: {
-                        label: 'Προηγούμενη αγωγή',
-                        display: false
-                    },
-                    treatEdema: {
-                        label: 'Κλινική εξέταση : Οίδημα',
-                        display: false
-                    },
-                    fistula: {
-                        label: 'Συρίγγιο',
-                        display: false
-                    },
-                    tintOfAMill: {
-                        label: 'Απόχρωση μύλης',
-                        display: false
-                    },
-                    revelationOfPulpCheck: {
-                        label: 'Αποκάλυψη πολφού',
-                        display: false
-                    },
-                    sensitivityToPalpationAtTheTip: {
-                        label: 'Ευαισθησία στη ψηλάφηση ακρορριζικά',
-                        display: false
-                    },
-                    painInTheAttack: {
-                        label: 'Πόνος στην επίκρουση',
-                        display: false
-                    },
-                    elation: {
-                        label: 'Ευσειστότητα',
-                        display: false
-                    },
-                    vitality: {
-                        label: 'Ζωτικότητα',
-                        display: false
-                    },
-                    periodontalTissues: {
-                        label: 'Περιοδοντικοί ιστοί',
-                        display: false
-                    },
-                    radiographicExamination: {
-                        label: 'Ακτινογραφική εξέταση',
-                        display: false
-                    },
-                    revelationCheck: {
-                        label: 'Αποκάλυψη',
-                        display: false
-                    },
-                    hyperemia: {
-                        label: 'Υπεραιμία',
-                        display: false
-                    },
-                    acutePulpitis: {
-                        label: 'Οξεία Πολφίτιδα',
-                        display: false
-                    },
-                    chronicPulpitis: {
-                        label: 'Χρονία Πολφίτιδα',
-                        display: false
-                    },
-                    necrosis: {
-                        label: 'Νέκρωση',
-                        display: false
-                    },
-                    abscess: {
-                        label: 'Απόστημα',
-                        display: false
-                    },
-                    granulation: {
-                        label: 'Κοκκίωμα',
-                        display: false
-                    },
-                    cyst: {
-                        label: 'Κύστη',
-                        display: false
-                    },
-                    reactiveOsteoconduction: {
-                        label: 'Αντιδραστική οστεοπύκνωση',
-                        display: false
-                    },
-                    endoPeriodontalDamageCheck: {
-                        label: 'Ενδοπεριοδοντική βλάβη',
-                        display: false
-                    },
-                    absorption: {
-                        label: 'Απορρόφηση',
-                        display: false
-                    },
-                    fracture: {
-                        label: 'Κάταγμα',
-                        display: false
+        }
+    },
+
+    props: {
+        selectedTooth: {
+            required: false,
+            type: Object
+        },
+        reloadTeeth: {
+            required: false,
+            type: Function
+        },
+        teeth: {
+            required: false,
+            type: Array
+        },
+        readOnly: {
+            required: false,
+            type: Boolean
+        }
+    },
+
+    computed: {
+        // Find if any field is selected. True if any
+        fieldSelected () {
+            return Object.values(this.fields).find((field) => {
+                return field.display
+            })
+        },
+
+        // Return true if all fields have no value
+        haveNoPain () {
+            return (
+                !this.endoTreatment.automatic &&
+                !this.endoTreatment.challenged &&
+                !this.endoTreatment.reason &&
+                !this.endoTreatment.duration &&
+                !this.endoTreatment.reduceToTheCold
+            )
+        },
+
+        // Check if any of pulse fields are enabled
+        havePulseFields () {
+            return (
+                this.fields.revelationCheck.display ||
+                this.fields.hyperemia.display ||
+                this.fields.acutePulpitis.display ||
+                this.fields.chronicPulpitis.display ||
+                this.fields.necrosis.display
+            )
+        },
+
+        // Check if any of tissues fields are enabled
+        haveTissuesFields () {
+            return (
+                this.fields.abscess.display ||
+                this.fields.granulation.display ||
+                this.fields.cyst.display ||
+                this.fields.reactiveOsteoconduction.display
+            )
+        },
+
+        patientId: function () {
+            return this.$route.params.id
+        }
+    },
+
+    watch: {
+        // Send back to parent component
+        loading () {
+            this.$emit('loading', this.loading)
+        },
+
+        // Get the endotreatment card when selected tooth changed
+        selectedTooth: function () {
+            if (this.selectedTooth.number === 0) {
+                this.newEndoTreatmentCard()
+
+                return
+            }
+
+            this.getEndoTreatmentCard()
+        }
+    },
+
+    created: function () {
+        if (this.selectedTooth) {
+            this.getEndoTreatmentCard()
+        }
+    },
+
+    methods: {
+        /**
+         * Create or update data
+         */
+        saveData () {
+            if (this.endoTreatment.id === 0) {
+                this.createEndoTreatmentCard()
+
+                return
+            }
+
+            this.updateEndoTreatmentCard()
+        },
+
+        // Check if any of these fields have value. Return true if any
+        painFields () {
+            return (
+                this.endoTreatment.automatic ||
+                this.endoTreatment.challenged ||
+                this.endoTreatment.reason ||
+                this.endoTreatment.duration ||
+                this.endoTreatment.reduceToTheCold
+            )
+        },
+
+        /**
+         * Get endo treatment card
+         */
+        getEndoTreatmentCard () {
+            this.loading = true
+
+            api.getEndoTreatmentCard(this.patientId, this.selectedTooth.number)
+                .then(response => {
+                    this.loading = false
+
+                    if (response.status === 200) {
+                        this.endoTreatment = response.data
+
+                        this.checkEndoTreatmentFields()
                     }
-                },
-
-                endoTreatment: {
-                    id: 0,
-                    tooth_number: 0,
-                    automatic: false,
-                    challenged: false,
-                    reason: null,
-                    duration: null,
-                    reduceToTheCold: false,
-                    historyEdema: false,
-                    feelingOfToothElongation: false,
-                    fever: false,
-                    lymphadenitis: false,
-                    others: null,
-                    previousAction: null,
-                    treatEdema: false,
-                    fistula: false,
-                    tintOfAMill: false,
-                    revelationOfPulp: null,
-                    revelationOfPulpCheck: false,
-                    sensitivityToPalpationAtTheTip: false,
-                    painInTheAttack: false,
-                    elation: false,
-                    vitality: false,
-                    periodontalTissues: null,
-                    radiographicExamination: null,
-                    revelation: null,
-                    revelationCheck: false,
-                    hyperemia: false,
-                    acutePulpitis: false,
-                    partialAcutePulpitis: false,
-                    universalAcutePulpitis: false,
-                    chronicPulpitis: false,
-                    ulceratingChronicPulpitis: false,
-                    superplasticChronicPulpitis: false,
-                    necrosis: false,
-                    abscess: false,
-                    granulation: false,
-                    cyst: false,
-                    reactiveOsteoconduction: false,
-                    endoPeriodontalDamage: null,
-                    endoPeriodontalDamageCheck: false,
-                    absorption: false,
-                    innerAbsorption: false,
-                    outerAbsorption: false,
-                    fracture: null,
-                    fractureCheck: false
-                }
-
-            }
-        },
-
-        props: {
-            selectedTooth: {
-                required: false,
-                type: Object
-            },
-            reloadTeeth: {
-                required: false,
-                type: Function
-            },
-            teeth: {
-                required: false,
-                type: Array
-            },
-            readOnly: {
-                required: false,
-                type: Boolean
-            }
-        },
-
-        computed: {
-            // Find if any field is selected. True if any
-            fieldSelected() {
-                return Object.values(this.fields).find((field) => {
-                    return field.display
                 })
-            },
+                .catch(error => {
+                    this.loading = false
 
-            // Return true if all fields have no value
-            haveNoPain() {
-                return (
-                    !this.endoTreatment.automatic &&
-                    !this.endoTreatment.challenged &&
-                    !this.endoTreatment.reason &&
-                    !this.endoTreatment.duration &&
-                    !this.endoTreatment.reduceToTheCold
-                )
-            },
+                    this.response.message = error.response.data.message
+                    this.response.status = false
 
-            // Check if any of pulse fields are enabled
-            havePulseFields() {
-                return (
-                    this.fields.revelationCheck.display ||
-                    this.fields.hyperemia.display ||
-                    this.fields.acutePulpitis.display ||
-                    this.fields.chronicPulpitis.display ||
-                    this.fields.necrosis.display
-                )
-            },
-
-            // Check if any of tissues fields are enabled
-            haveTissuesFields() {
-                return (
-                    this.fields.abscess.display ||
-                    this.fields.granulation.display ||
-                    this.fields.cyst.display ||
-                    this.fields.reactiveOsteoconduction.display
-                )
-            },
-
-            patientId: function () {
-                return this.$route.params.id
-            }
+                    utility.debug(error.response.data.debug)
+                })
         },
 
-        watch: {
-            // Send back to parent component
-            loading() {
-                this.$emit('loading', this.loading)
-            },
+        /**
+         * Create an endo treatment card
+         */
+        createEndoTreatmentCard () {
+            this.loading = true
 
-            // Get the endotreatment card when selected tooth changed
-            selectedTooth: function () {
-                if (this.selectedTooth.number === 0) {
-                    this.newEndoTreatmentCard()
+            this.endoTreatment.patient_id = this.patientId
 
-                    return
-                }
+            api.createEndoTreatmentCard(this.endoTreatment)
+                .then(response => {
+                    this.loading = false
 
-                this.getEndoTreatmentCard()
-            }
+                    this.response.message = 'Τα δεδομένα αποθηκεύτηκαν'
+                    this.response.status = true
+
+                    this.reloadTeeth()
+                })
+                .catch(error => {
+                    this.loading = false
+
+                    this.response.message = error.response.data.message
+                    this.response.status = false
+
+                    if (error.response.data.errors) {
+                        this.response.errors = error.response.data.errors
+                    }
+
+                    utility.debug(error.response.data.debug)
+                })
         },
 
-        created: function () {
-            if (this.selectedTooth) {
-                this.getEndoTreatmentCard()
-            }
+        /**
+         * checkEndoTreatmentFields
+         * Update the Endo Treatment Card info
+         */
+        updateEndoTreatmentCard () {
+            this.loading = true
+
+            api.updateEndoTreatmentCard(this.endoTreatment, this.endoTreatment.id)
+                .then(response => {
+                    this.loading = false
+
+                    this.response.message = 'Τα δεδομένα αποθηκεύτηκαν'
+                    this.response.status = true
+                })
+                .catch(error => {
+                    this.loading = false
+
+                    this.response.message = error.response.data.message
+                    this.response.status = false
+
+                    if (error.response.data.errors) {
+                        this.response.errors = error.response.data.errors
+                    }
+
+                    utility.debug(error.response.data.debug)
+                })
         },
 
-        methods: {
-            /**
-             * Create or update data
-             */
-            saveData() {
-                if (this.endoTreatment.id === 0) {
-                    this.createEndoTreatmentCard()
+        /**
+         * Delete an endo treatment card
+         */
+        deleteEndoTreatmentCard () {
+            let choise = confirm('Θέλεις σίγουρα να σβήσεις τα δεδομένα;')
 
-                    return
-                }
-
-                this.updateEndoTreatmentCard()
-            },
-
-            // Check if any of these fields have value. Return true if any
-            painFields() {
-                return (
-                    this.endoTreatment.automatic ||
-                    this.endoTreatment.challenged ||
-                    this.endoTreatment.reason ||
-                    this.endoTreatment.duration ||
-                    this.endoTreatment.reduceToTheCold
-                )
-            },
-
-            /**
-             * Get endo treatment card
-             */
-            getEndoTreatmentCard() {
+            if (choise) {
                 this.loading = true
 
-                api.getEndoTreatmentCard(this.patientId, this.selectedTooth.number)
+                api.deleteEndoTreatmentCard(this.endoTreatment.id)
                     .then(response => {
                         this.loading = false
 
-                        if (response.status === 200) {
-                            this.endoTreatment = response.data
-
-                            this.checkEndoTreatmentFields()
-                        }
-                    })
-                    .catch(error => {
-                        this.loading = false
-
-                        this.response.message = error.response.data.message
-                        this.response.status = false
-
-                        utility.debug(error.response.data.debug)
-                    })
-            },
-
-            /**
-             * Create an endo treatment card
-             */
-            createEndoTreatmentCard() {
-                this.loading = true
-
-                this.endoTreatment.patient_id = this.patientId
-
-                api.createEndoTreatmentCard(this.endoTreatment)
-                    .then(response => {
-                        this.loading = false
-
-                        this.response.message = 'Τα δεδομένα αποθηκεύτηκαν'
+                        this.response.message = 'Τα δεδομένα διαγράφηκαν'
                         this.response.status = true
 
                         this.reloadTeeth()
+                        this.newEndoTreatmentCard()
                     })
                     .catch(error => {
                         this.loading = false
@@ -1008,174 +1073,113 @@
                         this.response.message = error.response.data.message
                         this.response.status = false
 
-                        if (error.response.data.errors) {
-                            this.response.errors = error.response.data.errors
-                        }
-
                         utility.debug(error.response.data.debug)
                     })
-            },
+            }
+        },
 
-            /**
-             * checkEndoTreatmentFields
-             * Update the Endo Treatment Card info
-             */
-            updateEndoTreatmentCard() {
-                this.loading = true
+        /**
+         * Check for fields. If not empty, display it
+         */
+        checkEndoTreatmentFields () {
+            this.setAllFieldsFalse()
 
-                api.updateEndoTreatmentCard(this.endoTreatment, this.endoTreatment.id)
-                    .then(response => {
-                        this.loading = false
-
-                        this.response.message = 'Τα δεδομένα αποθηκεύτηκαν'
-                        this.response.status = true
-                    })
-                    .catch(error => {
-                        this.loading = false
-
-                        this.response.message = error.response.data.message
-                        this.response.status = false
-
-                        if (error.response.data.errors) {
-                            this.response.errors = error.response.data.errors
-                        }
-
-                        utility.debug(error.response.data.debug)
-                    })
-            },
-
-            /**
-             * Delete an endo treatment card
-             */
-            deleteEndoTreatmentCard() {
-                let choise = confirm('Θέλεις σίγουρα να σβήσεις τα δεδομένα;')
-
-                if (choise) {
-                    this.loading = true
-
-                    api.deleteEndoTreatmentCard(this.endoTreatment.id)
-                        .then(response => {
-                            this.loading = false
-
-                            this.response.message = 'Τα δεδομένα διαγράφηκαν'
-                            this.response.status = true
-
-                            this.reloadTeeth()
-                            this.newEndoTreatmentCard()
-                        })
-                        .catch(error => {
-                            this.loading = false
-
-                            this.response.message = error.response.data.message
-                            this.response.status = false
-
-                            utility.debug(error.response.data.debug)
-                        })
+            Object.keys(this.endoTreatment).forEach(key => {
+                if (this.endoTreatment[key] === null ||
+                    this.endoTreatment[key] === 0 ||
+                    this.endoTreatment[key].length < 1) {
+                    return
                 }
-            },
 
-            /**
-             * Check for fields. If not empty, display it
-             */
-            checkEndoTreatmentFields() {
-                this.setAllFieldsFalse()
-
-                Object.keys(this.endoTreatment).forEach(key => {
-                    if (this.endoTreatment[key] === null ||
-                        this.endoTreatment[key] === 0 ||
-                        this.endoTreatment[key].length < 1) {
-                        return
-                    }
-
-                    if (this.fields[key] === undefined) {
-                        return
-                    }
-
-                    this.fields[key].display = true
-                })
-
-                this.fields.pain.display = this.painFields()
-            },
-
-            // Reset fields
-            setAllFieldsFalse() {
-                Object.keys(this.fields).forEach(key => {
-                    this.fields[key].display = false
-                })
-            },
-
-            // Reset teeth display
-            setAllTeethFalse() {
-                Object.keys(this.haveTeeth).forEach(key => {
-                    this.haveTeeth[key].display = false
-                })
-            },
-
-            /**
-             * Εξαφάνιση του πεδίου
-             *
-             * @param field
-             */
-            removeField(field) {
-                field.display = false
-            },
-
-            // Reset all values for new card
-            newEndoTreatmentCard() {
-                this.resetEndoTreatment()
-                this.setAllFieldsFalse()
-            },
-
-            // Reset values of endoTreatment
-            resetEndoTreatment() {
-                this.endoTreatment = {
-                    id: 0,
-                    tooth_number: 0,
-                    automatic: false,
-                    challenged: false,
-                    reason: null,
-                    duration: null,
-                    reduceToTheCold: false,
-                    historyEdema: false,
-                    feelingOfToothElongation: false,
-                    fever: false,
-                    lymphadenitis: false,
-                    others: null,
-                    previousAction: null,
-                    treatEdema: false,
-                    fistula: false,
-                    tintOfAMill: false,
-                    revelationOfPulp: null,
-                    revelationOfPulpCheck: false,
-                    sensitivityToPalpationAtTheTip: false,
-                    painInTheAttack: false,
-                    elation: false,
-                    vitality: false,
-                    periodontalTissues: null,
-                    radiographicExamination: null,
-                    revelation: null,
-                    revelationCheck: false,
-                    hyperemia: false,
-                    acutePulpitis: false,
-                    partialAcutePulpitis: false,
-                    universalAcutePulpitis: false,
-                    chronicPulpitis: false,
-                    ulceratingChronicPulpitis: false,
-                    superplasticChronicPulpitis: false,
-                    necrosis: false,
-                    abscess: false,
-                    granulation: false,
-                    cyst: false,
-                    reactiveOsteoconduction: false,
-                    endoPeriodontalDamage: null,
-                    endoPeriodontalDamageCheck: false,
-                    absorption: false,
-                    innerAbsorption: false,
-                    outerAbsorption: false,
-                    fracture: null,
-                    fractureCheck: false
+                if (this.fields[key] === undefined) {
+                    return
                 }
+
+                this.fields[key].display = true
+            })
+
+            this.fields.pain.display = this.painFields()
+        },
+
+        // Reset fields
+        setAllFieldsFalse () {
+            Object.keys(this.fields).forEach(key => {
+                this.fields[key].display = false
+            })
+        },
+
+        // Reset teeth display
+        setAllTeethFalse () {
+            Object.keys(this.haveTeeth).forEach(key => {
+                this.haveTeeth[key].display = false
+            })
+        },
+
+        /**
+         * Εξαφάνιση του πεδίου
+         *
+         * @param field
+         */
+        removeField (field) {
+            field.display = false
+        },
+
+        // Reset all values for new card
+        newEndoTreatmentCard () {
+            this.resetEndoTreatment()
+            this.setAllFieldsFalse()
+        },
+
+        // Reset values of endoTreatment
+        resetEndoTreatment () {
+            this.endoTreatment = {
+                id: 0,
+                tooth_number: 0,
+                automatic: false,
+                challenged: false,
+                reason: null,
+                duration: null,
+                reduceToTheCold: false,
+                historyEdema: false,
+                feelingOfToothElongation: false,
+                fever: false,
+                lymphadenitis: false,
+                others: null,
+                previousAction: null,
+                treatEdema: false,
+                fistula: false,
+                tintOfAMill: false,
+                revelationOfPulp: null,
+                revelationOfPulpCheck: false,
+                sensitivityToPalpationAtTheTip: false,
+                painInTheAttack: false,
+                elation: false,
+                vitality: false,
+                periodontalTissues: null,
+                radiographicExamination: null,
+                revelation: null,
+                revelationCheck: false,
+                hyperemia: false,
+                acutePulpitis: false,
+                partialAcutePulpitis: false,
+                universalAcutePulpitis: false,
+                chronicPulpitis: false,
+                ulceratingChronicPulpitis: false,
+                superplasticChronicPulpitis: false,
+                necrosis: false,
+                abscess: false,
+                granulation: false,
+                cyst: false,
+                reactiveOsteoconduction: false,
+                endoPeriodontalDamage: null,
+                endoPeriodontalDamageCheck: false,
+                absorption: false,
+                innerAbsorption: false,
+                outerAbsorption: false,
+                fracture: null,
+                fractureCheck: false
             }
         }
     }
+}
 </script>

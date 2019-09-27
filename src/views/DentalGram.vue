@@ -200,12 +200,12 @@ export default {
         }
     },
 
-	props: {
-		readOnly: {
-			required: false,
-			type: Boolean
-		}
-	},
+    props: {
+        readOnly: {
+            required: false,
+            type: Boolean
+        }
+    },
 
     computed: {
         ...mapState(['userIsAdmin']),
