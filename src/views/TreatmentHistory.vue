@@ -106,6 +106,8 @@ import api from '../api'
 import { mapState } from 'vuex'
 import NoAccessPage from '@/components/basic/NoAccessPage'
 
+// TODO να μην κάνει pagination στο readonly
+
 export default {
     components: { MenuBar, FormError, Paginate, DisplayError, Loading, TreatmentsList, NoAccessPage },
 

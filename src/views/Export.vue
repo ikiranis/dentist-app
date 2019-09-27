@@ -7,6 +7,8 @@
             </div>
 
             <div class="container">
+<!--                TODO να μπούνε τίτλοι
+                    TODO να δω αν μπορούν να χωριστούν σε σελίδες, για εκτύπωση-->
                 <patient readOnly="true" />
                 <medical-history readOnly="true" />
                 <dental-history readOnly="true" />
