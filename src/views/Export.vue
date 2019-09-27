@@ -12,38 +12,45 @@
 				<div class="row bg-secondary text-light">
 					<h1 class="mx-auto">Στοιχεία ασθενή</h1>
 				</div>
-                <patient readOnly="true" />
+                <patient readOnly="true"/>
 
+				<p class="page-break"></p>
 				<div class="row bg-secondary text-light">
 					<h1 class="mx-auto">Ιατρικό ιστορικό</h1>
 				</div>
 				<medical-history readOnly="true" />
 
+				<p class="page-break"></p>
 				<div class="row bg-secondary text-light">
 					<h1 class="mx-auto">Οδοντιατρικό ιστορικό</h1>
 				</div>
 				<dental-history readOnly="true" />
 
+				<p class="page-break"></p>
 				<div class="row bg-secondary text-light">
 					<h1 class="mx-auto">Κλινική εξέταση</h1>
 				</div>
 				<clinical-examination readOnly="true" />
 
+				<p class="page-break"></p>
 				<div class="row bg-secondary text-light">
 					<h1 class="mx-auto">Οδοντόγραμμα</h1>
 				</div>
 				<dental-gram readOnly="true" />
 
+				<p class="page-break"></p>
 				<div class="row bg-secondary text-light">
 					<h1 class="mx-auto">Περιοδοντόγραμμα</h1>
 				</div>
 				<periodontal-chart readOnly="true" />
 
+				<p class="page-break"></p>
 				<div class="row bg-secondary text-light">
 					<h1 class="mx-auto">Ιστορικό θεραπειών</h1>
 				</div>
 				<treatment-history readOnly="true" />
 
+				<p class="page-break"></p>
 				<div class="row bg-secondary text-light">
 					<h1 class="mx-auto">Απονεύρωση</h1>
 				</div>
@@ -54,6 +61,7 @@
                                      readOnly="true"
                                      :selectedTooth="tooth" />
 
+				<p class="page-break"></p>
 				<div class="row">
 					<h3 class="mx-auto">Ενδοδοντικές θεραπείες</h3>
 				</div>
@@ -61,6 +69,7 @@
                                 readOnly="true"
                                 :selectedTooth="tooth" />
 
+				<p class="page-break"></p>
 				<div class="row">
 					<h3 class="mx-auto">Σημειώσεις</h3>
 				</div>
@@ -68,6 +77,7 @@
                                       readOnly="true"
                                       :selectedTooth="tooth" />
 
+				<p class="page-break"></p>
 				<div class="row bg-secondary text-light">
 					<h1 class="mx-auto">Αρχεία</h1>
 				</div>
@@ -173,3 +183,12 @@ export default {
     }
 }
 </script>
+
+<style>
+	@media print {
+		.page-break {
+			clear: both;
+			page-break-after: always;
+		}
+	}
+</style>
