@@ -6,7 +6,6 @@
             Πρέπει να επιλέξεις δόντι
         </div>
 
-		<p class="page-break"></p>
 		<div v-if="readOnly" class="row text-light">
 			<h3 class="mx-auto bg-secondary px-3">Δόντι {{ selectedTooth.number }}</h3>
 		</div>
@@ -31,6 +30,8 @@
                 </div>
             </div>
         </table>
+
+		<p class="page-break"></p>
 
         <endo-treatment-notes v-if="selectedTooth.number !== 0 && !readOnly"
                 :selectedTooth="selectedTooth"

@@ -20,7 +20,6 @@
             </div>
         </b-modal>
 
-		<p class="page-break"></p>
 		<div v-if="readOnly" class="row text-light">
 			<h3 class="mx-auto bg-secondary px-3">Δόντι {{ selectedTooth.number }}</h3>
 		</div>
@@ -37,6 +36,8 @@
             </div>
 
         </div>
+
+		<p class="page-break"></p>
 
         <div class="row fixed-bottom mb-2">
             <display-error class="mx-auto"

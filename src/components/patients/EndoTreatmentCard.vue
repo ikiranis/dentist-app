@@ -6,7 +6,6 @@
             Επιλογή πεδίων
         </div>
 
-		<p class="page-break"></p>
 		<div v-if="readOnly" class="row text-light">
 			<h3 class="mx-auto bg-secondary px-3">Δόντι {{ selectedTooth.number }}</h3>
 		</div>
@@ -637,6 +636,8 @@
             </div>
 
         </form>
+
+		<p class="page-break"></p>
 
         <div class="row col-lg-6 col-12 mx-auto" v-if="fieldSelected && !readOnly">
             <input type="button"
