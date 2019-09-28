@@ -7,7 +7,7 @@
         </div>
 
         <div class="mt-1">
-            <div class="row" v-for="week in 6">
+            <div class="row" v-for="week in weeks">
                 <div class="col card text-center" v-for="day in 7">
                     <div class="card-head text-left"> {{ daysOfMonth[((week-1)*7 + day) - 1] }}</div>
                     <div class="card-body">something</div>
@@ -25,7 +25,8 @@
             return {
                 days: ['Κυριακή', 'Δευτέρα', 'Τρίτη', 'Τετάρτη', 'Πέμπτη', 'Παρασκευή', 'Σάββατο'],
                 daysOfMonth: [],
-                month: '2019-04'
+                month: '2019-10',
+                weeks: 0
             }
         },
         // props: {
@@ -40,16 +41,17 @@
 
         methods: {
             getDaysOfMonth () {
-                let startOfMonth = moment(this.month, "YYYY-MM").startOf('month').format('d');
-                let daysInMonth = moment(this.month, "YYYY-MM").daysInMonth();
+                let startOfMonth = parseInt(moment(this.month, "YYYY-MM").startOf('month').format('d'));
+                let daysInMonth = parseInt(moment(this.month, "YYYY-MM").daysInMonth());
                 let counter = 1;
 
-                for(let i=startOfMonth; i<(parseInt(daysInMonth)+parseInt(startOfMonth)); i++) {
+                let addWeek = (daysInMonth + startOfMonth > 35) ? 1 : 0
+                this.weeks = 5 + addWeek
+
+                for(let i=startOfMonth; i<daysInMonth+startOfMonth; i++) {
                     this.daysOfMonth[i] = counter++
                 }
 
-                console.log(daysInMonth)
-                console.log(this.daysOfMonth)
             }
         },
     }
