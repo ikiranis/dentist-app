@@ -99,14 +99,14 @@
             <div>
 
                 <div class="container" v-if="events.length">
+                    <month-calendar />
+<!--                    <paginate :pagination="pagination" @click="getEvents"/>-->
 
-                    <paginate :pagination="pagination" @click="getEvents"/>
+<!--                    <calendar-table :events="events"-->
+<!--                                    @clickDelete="deleteEvent"-->
+<!--                                    @clickUpdate="getEvent"/>-->
 
-                    <calendar-table :events="events"
-                                    @clickDelete="deleteEvent"
-                                    @clickUpdate="getEvent"/>
-
-                    <paginate :pagination="pagination" @click="getEvents"/>
+<!--                    <paginate :pagination="pagination" @click="getEvents"/>-->
 
                 </div>
 
@@ -138,11 +138,12 @@ import Loading from '@/components/basic/Loading'
 import utility from '../library/utility'
 import Paginate from '@/components/basic/Paginate'
 import CalendarTable from '@/components/calendar/CalendarTable'
+import MonthCalendar from '@/components/calendar/MonthCalendar'
 import NoAccessPage from '@/components/basic/NoAccessPage'
 import { mapState } from 'vuex'
 
 export default {
-    components: { FormError, Loading, DisplayError, Paginate, CalendarTable, NoAccessPage },
+    components: { FormError, Loading, DisplayError, Paginate, CalendarTable, NoAccessPage, MonthCalendar },
 
     data () {
         return {
