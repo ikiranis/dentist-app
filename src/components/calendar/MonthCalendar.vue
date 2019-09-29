@@ -9,13 +9,19 @@
         <div class="mt-1">
             <div class="row" v-for="week in weeks">
                 <div class="col card text-center" v-for="weekDay in 7">
-                    <div v-if="getDay(weekDay, week)">
-                        <div class="card-head text-left"> {{ getDay(weekDay, week) }}</div>
+                    <div v-if="getMonthsDay(weekDay, week)">
+                        <div class="card-head row px-2">
+                            <span class="mr-auto day align-middle">{{ getMonthsDay(weekDay, week) }}</span>
+                            <plus-circle-outline fillColor="green" :size="15"
+                                                 class="btn-icon ml-auto my-1"
+                                                 title="Εισαγωγή ραντεβού"
+                                                 @click="newEvent(getDate(getMonthsDay(weekDay, week)))" />
+                        </div>
                         <div class="card-body px-0">
                             <day-events
                                     @clickUpdate="updateEvent"
                                     @clickDelete="deleteEvent"
-                                    :dates="getDayEvents(getDay(weekDay, week))" />
+                                    :dates="getDayEvents(getMonthsDay(weekDay, week))" />
                         </div>
                     </div>
                 </div>
@@ -54,6 +60,10 @@
             deleteEvent: {
                 required: true,
                 type: Function
+            },
+            newEvent: {
+                required: true,
+                type: Function
             }
         },
 
@@ -90,7 +100,7 @@
              * @returns {*}
              */
             getDayEvents(day) {
-                let date = moment(day + ' ' + this.month, 'D MMMM, YYYY').format('YYYY-MM-DD')
+                let date = this.getDate(day)
 
                 return this.events.filter(event => {
                     return event.date === date
@@ -103,9 +113,19 @@
              * @param week
              * @returns {*}
              */
-            getDay(weekDay, week) {
+            getMonthsDay(weekDay, week) {
                 return this.daysOfMonth[((week-1)*7 + weekDay) - 1]
+            },
+
+            getDate(day) {
+                return moment(day + ' ' + this.month, 'D MMMM, YYYY').format('YYYY-MM-DD')
             }
         },
     }
 </script>
+
+<style scoped>
+    .day {
+        font-size: 1.3em;
+    }
+</style>

@@ -50,7 +50,7 @@
                 </div>
 
                 <div class="row">
-                    <input class="btn btn-success col-md-6 col-12 my-3 mx-auto"
+                    <input class="btn btn-success btn-icon col-md-6 col-12 my-3 mx-auto"
                            @click="saveEvent" value="Εισαγωγή">
                 </div>
 
@@ -108,6 +108,7 @@
 
                     <month-calendar :month="pagination.meta.month_text"
                                     :events="events"
+                                    :newEvent="newEvent"
                                     :updateEvent="getEvent"
                                     :deleteEvent="deleteEvent" />
 
@@ -115,11 +116,6 @@
 
                 </div>
 
-            </div>
-
-            <div class="row" v-if="!loading">
-                <input type="submit" class="btn btn-success col-md-6 col-12 my-3 mx-auto"
-                       @click="newEvent()" value="Εισαγωγή ραντεβού">
             </div>
         </div>
 
@@ -372,8 +368,8 @@ export default {
         /**
          * Display event modal
          */
-        newEvent () {
-            this.event = { id: 0 }
+        newEvent (date) {
+            this.event = { id: 0, date: date }
             this.$refs.eventModal.show()
         }
     }
