@@ -42,14 +42,22 @@
             }
         },
 
+        watch: {
+            month() {
+                this.init()
+            }
+        },
+
         created() {
             this.init()
         },
 
         methods: {
             init () {
-                let startOfMonth = parseInt(moment(this.month, "YYYY-MM").startOf('month').format('d'));
-                let daysInMonth = parseInt(moment(this.month, "YYYY-MM").daysInMonth());
+                this.daysOfMonth = []
+
+                let startOfMonth = parseInt(moment(this.month, "MMMM, YYYY").startOf('month').format('d'));
+                let daysInMonth = parseInt(moment(this.month, "MMMM, YYYY").daysInMonth());
                 let counter = 1;
 
                 let addWeek = (daysInMonth + startOfMonth > 35) ? 1 : 0
@@ -69,7 +77,7 @@
                     return event.date === date
                 })
 
-                console.log(events)
+                // console.log(events)
 
                 return events
             }

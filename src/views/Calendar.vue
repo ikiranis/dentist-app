@@ -99,16 +99,17 @@
             <div>
 
                 <div class="container" v-if="events.length">
-                    <month-calendar month="2019-01"
+
+                    <paginate :pagination="pagination" @click="getEvents"/>
+
+                    <div class="row col-12">
+                        <h2 class="mx-auto">{{ pagination.meta.month_text }}</h2>
+                    </div>
+
+                    <month-calendar :month="pagination.meta.month_text"
                                     :events="events" />
 
-<!--                    <paginate :pagination="pagination" @click="getEvents"/>-->
-
-<!--                    <calendar-table :events="events"-->
-<!--                                    @clickDelete="deleteEvent"-->
-<!--                                    @clickUpdate="getEvent"/>-->
-
-<!--                    <paginate :pagination="pagination" @click="getEvents"/>-->
+                    <paginate :pagination="pagination" @click="getEvents"/>
 
                 </div>
 
@@ -139,13 +140,12 @@ import DisplayError from '@/components/basic/DisplayError'
 import Loading from '@/components/basic/Loading'
 import utility from '../library/utility'
 import Paginate from '@/components/basic/Paginate'
-import CalendarTable from '@/components/calendar/CalendarTable'
 import MonthCalendar from '@/components/calendar/MonthCalendar'
 import NoAccessPage from '@/components/basic/NoAccessPage'
 import { mapState } from 'vuex'
 
 export default {
-    components: { FormError, Loading, DisplayError, Paginate, CalendarTable, NoAccessPage, MonthCalendar },
+    components: { FormError, Loading, DisplayError, Paginate, NoAccessPage, MonthCalendar },
 
     data () {
         return {
