@@ -12,7 +12,10 @@
                     <div v-if="daysOfMonth[((week-1)*7 + day) - 1]">
                         <div class="card-head text-left"> {{ daysOfMonth[((week-1)*7 + day) - 1] }}</div>
                         <div class="card-body px-0">
-                            <day-events :dates="getDayEvents(daysOfMonth[((week-1)*7 + day) - 1])" />
+                            <day-events
+                                    @clickUpdate="updateEvent"
+                                    @clickDelete="deleteEvent"
+                                    :dates="getDayEvents(daysOfMonth[((week-1)*7 + day) - 1])" />
                         </div>
                     </div>
                 </div>
@@ -43,6 +46,14 @@
             events: {
                 required: true,
                 type: Array
+            },
+            updateEvent: {
+                required: true,
+                type: Function
+            },
+            deleteEvent: {
+                required: true,
+                type: Function
             }
         },
 

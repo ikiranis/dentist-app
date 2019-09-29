@@ -107,7 +107,9 @@
                     </div>
 
                     <month-calendar :month="pagination.meta.month_text"
-                                    :events="events" />
+                                    :events="events"
+                                    :updateEvent="getEvent"
+                                    :deleteEvent="deleteEvent" />
 
                     <paginate :pagination="pagination" @click="getEvents"/>
 
@@ -322,7 +324,7 @@ export default {
                 .then(response => {
                     this.loading = false
 
-                    this.response.message = 'Ο ασθενής ενημερώθηκε'
+                    this.response.message = 'Το ραντεβού ενημερώθηκε'
                     this.response.status = true
 
                     this.$refs.eventModal.hide()
