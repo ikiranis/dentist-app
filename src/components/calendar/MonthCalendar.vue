@@ -9,13 +9,13 @@
         <div class="mt-1">
             <div class="row" v-for="week in weeks">
                 <div class="col card text-center" v-for="day in 7">
-                    <div v-if="daysOfMonth[((week-1)*7 + day) - 1]">
-                        <div class="card-head text-left"> {{ daysOfMonth[((week-1)*7 + day) - 1] }}</div>
+                    <div v-if="getDay(day, week)">
+                        <div class="card-head text-left"> {{ getDay(day, week) }}</div>
                         <div class="card-body px-0">
                             <day-events
                                     @clickUpdate="updateEvent"
                                     @clickDelete="deleteEvent"
-                                    :dates="getDayEvents(daysOfMonth[((week-1)*7 + day) - 1])" />
+                                    :dates="getDayEvents(getDay(day, week))" />
                         </div>
                     </div>
                 </div>
@@ -68,6 +68,7 @@
         },
 
         methods: {
+            // Init all needed variables
             init () {
                 this.daysOfMonth = []
 
@@ -83,14 +84,27 @@
                 }
             },
 
+            /**
+             *
+             * @param day
+             * @returns {*}
+             */
             getDayEvents(day) {
                 let date = moment(day + ' ' + this.month, 'D MMMM, YYYY').format('YYYY-MM-DD')
 
-                let events = this.events.filter(event => {
+                return this.events.filter(event => {
                     return event.date === date
                 })
+            },
 
-                return events
+            /**
+             *
+             * @param day
+             * @param week
+             * @returns {*}
+             */
+            getDay(day, week) {
+                return this.daysOfMonth[((week-1)*7 + day) - 1]
             }
         },
     }
