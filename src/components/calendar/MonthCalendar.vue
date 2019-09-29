@@ -2,20 +2,20 @@
     <div class="container">
         <div class="row bg-secondary">
             <div class="col text-center text-light" v-for="day in days">
-                <span>{{day}}</span>
+                <span>{{ day }}</span>
             </div>
         </div>
 
         <div class="mt-1">
             <div class="row" v-for="week in weeks">
-                <div class="col card text-center" v-for="day in 7">
-                    <div v-if="getDay(day, week)">
-                        <div class="card-head text-left"> {{ getDay(day, week) }}</div>
+                <div class="col card text-center" v-for="weekDay in 7">
+                    <div v-if="getDay(weekDay, week)">
+                        <div class="card-head text-left"> {{ getDay(weekDay, week) }}</div>
                         <div class="card-body px-0">
                             <day-events
                                     @clickUpdate="updateEvent"
                                     @clickDelete="deleteEvent"
-                                    :dates="getDayEvents(getDay(day, week))" />
+                                    :dates="getDayEvents(getDay(weekDay, week))" />
                         </div>
                     </div>
                 </div>
@@ -99,12 +99,12 @@
 
             /**
              *
-             * @param day
+             * @param weekDay
              * @param week
              * @returns {*}
              */
-            getDay(day, week) {
-                return this.daysOfMonth[((week-1)*7 + day) - 1]
+            getDay(weekDay, week) {
+                return this.daysOfMonth[((week-1)*7 + weekDay) - 1]
             }
         },
     }
