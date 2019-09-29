@@ -270,7 +270,7 @@ export default {
                         this.response.message = 'Το ραντεβού διαγράφηκε'
                         this.response.status = true
 
-                        this.getEvents(null)
+                        this.getEvents(this.pagination.links.current)
                     })
                     .catch(error => {
                         this.loading = false
@@ -298,7 +298,7 @@ export default {
 
                     this.$refs.eventModal.hide()
 
-                    this.getEvents(null)
+                    this.getEvents(this.pagination.meta.current_page)
                 })
                 .catch(error => {
                     this.loading = false
@@ -329,7 +329,7 @@ export default {
 
                     this.$refs.eventModal.hide()
 
-                    this.getEvents(null)
+                    this.getEvents(this.pagination.links.current)
                 })
                 .catch(error => {
                     this.loading = false

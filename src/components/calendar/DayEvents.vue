@@ -3,7 +3,7 @@
         <div v-for="date in props.dates" :key="date.id" class="mb-2">
             <div class="bg-secondary text-light row px-3 py-1">
                 <a href="#" class="px-2 text-light" @click="listeners.clickUpdate(date.id)">{{ date.time }}</a>
-                <delete class="btn-icon ml-auto" size="15"
+                <delete class="btn-icon ml-auto" :size="15"
                         @click="listeners.clickDelete(date.id)"
                         title="Διαγραφή ραντεβού"/>
             </div>
