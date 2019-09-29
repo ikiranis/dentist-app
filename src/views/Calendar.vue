@@ -99,7 +99,9 @@
             <div>
 
                 <div class="container" v-if="events.length">
-                    <month-calendar />
+                    <month-calendar month="2019-01"
+                                    :events="events" />
+
 <!--                    <paginate :pagination="pagination" @click="getEvents"/>-->
 
 <!--                    <calendar-table :events="events"-->

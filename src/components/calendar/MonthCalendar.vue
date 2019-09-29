@@ -9,8 +9,10 @@
         <div class="mt-1">
             <div class="row" v-for="week in weeks">
                 <div class="col card text-center" v-for="day in 7">
-                    <div class="card-head text-left"> {{ daysOfMonth[((week-1)*7 + day) - 1] }}</div>
-                    <div class="card-body">something</div>
+                    <div v-if="daysOfMonth[((week-1)*7 + day) - 1]">
+                        <div class="card-head text-left"> {{ daysOfMonth[((week-1)*7 + day) - 1] }}</div>
+                        <div class="card-body">something</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -25,33 +27,41 @@
             return {
                 days: ['Κυριακή', 'Δευτέρα', 'Τρίτη', 'Τετάρτη', 'Πέμπτη', 'Παρασκευή', 'Σάββατο'],
                 daysOfMonth: [],
-                month: '2019-10',
-                weeks: 0
+                weeks: 5
             }
         },
-        // props: {
-        //     month: {
-        //         required: true,
-        //         type: String
-        //     }
-        // }
+
+        props: {
+            month: {
+                required: true,
+                type: String
+            },
+            events: {
+                required: true,
+                type: Array
+            }
+        },
+
         created() {
-            this.getDaysOfMonth()
+            this.init()
         },
 
         methods: {
-            getDaysOfMonth () {
+            init () {
                 let startOfMonth = parseInt(moment(this.month, "YYYY-MM").startOf('month').format('d'));
                 let daysInMonth = parseInt(moment(this.month, "YYYY-MM").daysInMonth());
                 let counter = 1;
 
                 let addWeek = (daysInMonth + startOfMonth > 35) ? 1 : 0
-                this.weeks = 5 + addWeek
+                this.weeks += addWeek
 
                 for(let i=startOfMonth; i<daysInMonth+startOfMonth; i++) {
                     this.daysOfMonth[i] = counter++
                 }
+            },
 
+            getDayEvents(day) {
+            //
             }
         },
     }
