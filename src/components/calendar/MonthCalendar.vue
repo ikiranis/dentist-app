@@ -11,7 +11,7 @@
                 <div class="col card text-center" v-for="day in 7">
                     <div v-if="daysOfMonth[((week-1)*7 + day) - 1]">
                         <div class="card-head text-left"> {{ daysOfMonth[((week-1)*7 + day) - 1] }}</div>
-                        <div class="card-body">something</div>
+                        <div class="card-body">{{ getDayEvents(daysOfMonth[((week-1)*7 + day) - 1]) }}</div>
                     </div>
                 </div>
             </div>
@@ -61,7 +61,17 @@
             },
 
             getDayEvents(day) {
-            //
+                let date = this.month + '-' + day
+
+                date = moment(date, 'YYYY-MM-D').format('YYYY-MM-DD')
+
+                let events = this.events.filter(event => {
+                    return event.date === date
+                })
+
+                console.log(events)
+
+                return events
             }
         },
     }
