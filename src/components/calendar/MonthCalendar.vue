@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="row bg-secondary">
-            <div class="col text-center text-light" v-for="day in days">
+            <div class="col text-center text-light py-1" v-for="day in days">
                 <span>{{ day }}</span>
             </div>
         </div>

@@ -1,7 +1,7 @@
 <template>
     <div>
         <div v-for="date in dates" :key="date.id" class="mb-2">
-            <div class="bg-secondary text-light row btn-icon px-3 py-1">
+            <div class="bg-info text-light row btn-icon px-3 py-1">
                 <menu-down v-if="!date.display" :size="20" @click="toggleDisplayEvent(date)" />
                 <menu-up v-if="date.display" :size="20" @click="toggleDisplayEvent(date)" />
                 <a href="#" class="px-2 text-light" @click="updateEvent(date.id)">{{ date.time }}</a>
