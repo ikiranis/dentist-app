@@ -27,6 +27,8 @@ import DownloadIcon from 'vue-material-design-icons/Download.vue'
 import SwapHorizontalBold from 'vue-material-design-icons/SwapHorizontalBold.vue'
 import ZipDisk from 'vue-material-design-icons/ZipDisk.vue'
 import DatabaseExport from 'vue-material-design-icons/DatabaseExport.vue'
+import MenuUp from 'vue-material-design-icons/MenuUp.vue'
+import MenuDown from 'vue-material-design-icons/MenuDown.vue'
 
 Vue.config.productionTip = true
 Vue.use(BootstrapVue)
@@ -50,6 +52,8 @@ Vue.component('delete', Delete)
 Vue.component('swap-horizontal-bold', SwapHorizontalBold)
 Vue.component('zip-disk', ZipDisk)
 Vue.component('database-export', DatabaseExport)
+Vue.component('menu-up', MenuUp)
+Vue.component('menu-down', MenuDown)
 
 new Vue({
     router,

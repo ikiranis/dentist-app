@@ -18,10 +18,9 @@
                                                  @click="newEvent(getDate(getMonthsDay(weekDay, week)))" />
                         </div>
                         <div class="card-body px-0">
-                            <day-events
-                                    @clickUpdate="updateEvent"
-                                    @clickDelete="deleteEvent"
-                                    :dates="getDayEvents(getMonthsDay(weekDay, week))" />
+                            <day-events :updateEvent="updateEvent"
+                                        :deleteEvent="deleteEvent"
+                                        :dates="getDayEvents(getMonthsDay(weekDay, week))" />
                         </div>
                     </div>
                 </div>
