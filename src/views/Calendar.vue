@@ -226,7 +226,9 @@ export default {
         getEvents (page) {
             this.loading = true
 
-            this.getLinks(moment(page, "YYYY-MM"))
+			if(!this.search.dateFrom && !this.search.dateTo) {
+				this.getLinks(moment(page, "YYYY-MM"))
+			}
 
             api.getEvents(page, this.search)
                 .then(response => {
@@ -234,8 +236,10 @@ export default {
 
                     if (response.status === 200) {
                         this.events = response.data.data
-                        // this.pagination.meta = response.data.meta
-                        // this.pagination.links = response.data.links
+						if(this.search.dateFrom && this.search.dateTo) {
+							this.pagination.meta = response.data.meta
+							this.pagination.links = response.data.links
+						}
 
                         window.scrollTo(0, 0)
 
