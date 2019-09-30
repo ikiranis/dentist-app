@@ -141,6 +141,7 @@ import Paginate from '@/components/basic/Paginate'
 import MonthCalendar from '@/components/calendar/MonthCalendar'
 import NoAccessPage from '@/components/basic/NoAccessPage'
 import { mapState } from 'vuex'
+import moment from "moment";
 
 export default {
     components: { FormError, Loading, DisplayError, Paginate, NoAccessPage, MonthCalendar },
@@ -187,7 +188,8 @@ export default {
     },
 
     created: function () {
-        this.getEvents(null)
+        this.getLinks(moment())
+        this.getEvents(this.pagination.links.current)
         this.getSimplePatients()
     },
 
@@ -224,14 +226,16 @@ export default {
         getEvents (page) {
             this.loading = true
 
+            this.getLinks(moment(page, "YYYY-MM"))
+
             api.getEvents(page, this.search)
                 .then(response => {
                     this.loading = false
 
                     if (response.status === 200) {
                         this.events = response.data.data
-                        this.pagination.meta = response.data.meta
-                        this.pagination.links = response.data.links
+                        // this.pagination.meta = response.data.meta
+                        // this.pagination.links = response.data.links
 
                         window.scrollTo(0, 0)
 
@@ -371,6 +375,14 @@ export default {
         newEvent (date) {
             this.event = { id: 0, date: date }
             this.$refs.eventModal.show()
+        },
+
+        getLinks (currentMonth) {
+            console.log(currentMonth)
+            this.pagination.meta.month_text = currentMonth.format('MMMM, YYYY')
+            this.pagination.links.current = currentMonth.format('YYYY-MM')
+            this.pagination.links.prev = currentMonth.subtract(1, "month").format('YYYY-MM')
+            this.pagination.links.next = currentMonth.add(2, "month").format('YYYY-MM')
         }
     }
 }

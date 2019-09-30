@@ -144,10 +144,12 @@ let api = {
      */
     async getEvents (page, search) {
         if (page !== null) {
-            page = '?' + page.toString().split('?')[1]
+            page = '?page=' + page
         } else {
             page = ''
         }
+
+        console.log(page)
 
         if (search.dateFrom && search.dateTo) {
             let dateFrom = moment(search.dateFrom).format('YYYYMMDD')
