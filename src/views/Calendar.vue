@@ -378,7 +378,6 @@ export default {
         },
 
         getLinks (currentMonth) {
-            console.log(currentMonth)
             this.pagination.meta.month_text = currentMonth.format('MMMM, YYYY')
             this.pagination.links.current = currentMonth.format('YYYY-MM')
             this.pagination.links.prev = currentMonth.subtract(1, "month").format('YYYY-MM')

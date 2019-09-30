@@ -12,7 +12,7 @@
             </div>
             <div v-if="date.display">
                 <div class="w-100 text-left description mt-2 mb-2">{{ date.description }}</div>
-                <div class="w-100 text-right patient">με
+                <div class="w-100 text-right patient" v-if="date.patient_id">με
                     <router-link :to="{ name: 'patient', params: { id: date.patient_id } }" class="patientName">
                         <strong>{{ date.patient_name }}</strong>
                     </router-link>
