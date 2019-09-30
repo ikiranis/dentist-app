@@ -149,8 +149,6 @@ let api = {
             page = ''
         }
 
-        console.log(page)
-
         if (search.dateFrom && search.dateTo) {
             let dateFrom = moment(search.dateFrom).format('YYYYMMDD')
             let dateTo = moment(search.dateTo).format('YYYYMMDD')

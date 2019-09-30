@@ -298,7 +298,7 @@ export default {
 
                     this.$refs.eventModal.hide()
 
-                    this.getEvents(this.pagination.meta.current_page)
+                    this.getEvents(this.pagination.links.current)
                 })
                 .catch(error => {
                     this.loading = false
