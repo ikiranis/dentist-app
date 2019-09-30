@@ -143,6 +143,7 @@ let api = {
      * @returns {Promise<void>}
      */
     async getEvents (page, search) {
+    	// TODO refactoring
         if (search.dateFrom && search.dateTo) {
 			if (page !== null) {
 				page = '?' + page.toString().split('?')[1]
