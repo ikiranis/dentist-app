@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+    <div>
         <div class="row bg-secondary">
             <div class="col text-center text-light py-1" v-for="day in days">
                 <span>{{ day }}</span>
