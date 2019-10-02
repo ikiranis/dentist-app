@@ -883,7 +883,29 @@ let api = {
      */
     async startBackup () {
         return axios.get(ROOT_API + '/backup')
-    }
+    },
+
+	// ************** Benchmarks api calls **************
+
+	/**
+	 * Get all Benchmarks
+	 *
+	 * @returns {Promise<void>}
+	 */
+	async getBenchmarks () {
+		return axios.get(ROOT_API + '/benchmarks')
+	},
+
+	// ************** Blocking techniques api calls **************
+
+	/**
+	 * Get all Blocking techniques
+	 *
+	 * @returns {Promise<void>}
+	 */
+	async getBlockingTechniques () {
+		return axios.get(ROOT_API + '/blockingTechniques')
+	}
 }
 
 export default api

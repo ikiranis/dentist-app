@@ -42,7 +42,7 @@
 
                 <select class="form-control" id="chozenBenchmark"
                         v-model="treatment.benchmark_id">
-                    <option v-for="benchmark in treatment.benchmarks"
+                    <option v-for="benchmark in benchmarks"
                             :key="benchmark.id"
                             :value="benchmark.id"
                             :selected="(benchmark.id === treatment.benchmark_id) ? 'selected' : ''">
@@ -72,7 +72,7 @@
         <div class="label">
             <select class="form-control" id="chozenBlockingTechnique"
                     v-model="treatment.blocking_technique_id">
-                <option v-for="blockingTechnique in treatment.blockingTechniques"
+                <option v-for="blockingTechnique in blockingTechniques"
                         :key="blockingTechnique.id"
                         :value="blockingTechnique.id"
                         :selected="(blockingTechnique.id === treatment.blocking_technique_id)
@@ -116,6 +116,14 @@ export default {
             required: true,
             type: Array
         },
+		benchmarks: {
+			required: true,
+			type: Array
+		},
+		blockingTechniques: {
+			required: true,
+			type: Array
+		},
         response: {
             required: true,
             type: Object

@@ -18,6 +18,8 @@
                                      :key="treatment.id"
                                      class="col"
                                      :treatment="treatment"
+									 :benchmarks="benchmarks"
+									 :blockingTechniques="blockingTechniques"
                                      :response="response"
                                      :roots="roots"
                                      :deleteEndoTreatment="deleteEndoTreatment"
@@ -83,7 +85,11 @@ export default {
 
             notes: [],
 
-            noteTitle: ''
+            noteTitle: '',
+
+			benchmarks: [],
+
+			blockingTechniques: []
         }
     },
 
@@ -138,6 +144,8 @@ export default {
 
     created: function () {
         this.getRoots()
+		this.getBenchmarks()
+		this.getBlockingTechniques()
         this.getEndoTreatments()
     },
 
@@ -353,7 +361,63 @@ export default {
          */
         getLoading (loading) {
             this.loading = loading
-        }
+        },
+
+		/**
+		 * Get all benchmarks
+		 */
+		getBenchmarks () {
+			this.loading = true
+
+			api.getBenchmarks()
+				.then(response => {
+					this.loading = false
+
+					if (response.status === 200) {
+						this.benchmarks = response.data
+
+						return
+					}
+
+					this.benchmarks = []
+				})
+				.catch(error => {
+					this.loading = false
+
+					this.response.message = error.response.data.message
+					this.response.status = false
+
+					utility.debug(error.response.data.debug)
+				})
+		},
+
+		/**
+		 * Get all Blocking techniques
+		 */
+		getBlockingTechniques () {
+			this.loading = true
+
+			api.getBlockingTechniques()
+				.then(response => {
+					this.loading = false
+
+					if (response.status === 200) {
+						this.blockingTechniques = response.data
+
+						return
+					}
+
+					this.blockingTechniques = []
+				})
+				.catch(error => {
+					this.loading = false
+
+					this.response.message = error.response.data.message
+					this.response.status = false
+
+					utility.debug(error.response.data.debug)
+				})
+		}
     }
 }
 </script>
