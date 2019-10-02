@@ -141,7 +141,7 @@ import Paginate from '@/components/basic/Paginate'
 import MonthCalendar from '@/components/calendar/MonthCalendar'
 import NoAccessPage from '@/components/basic/NoAccessPage'
 import { mapState } from 'vuex'
-import moment from "moment";
+import moment from 'moment'
 
 export default {
     components: { FormError, Loading, DisplayError, Paginate, NoAccessPage, MonthCalendar },
@@ -226,9 +226,9 @@ export default {
         getEvents (page) {
             this.loading = true
 
-			if(!this.search.dateFrom && !this.search.dateTo) {
-				this.getLinks(moment(page, "YYYY-MM"))
-			}
+            if (!this.search.dateFrom && !this.search.dateTo) {
+                this.getLinks(moment(page, 'YYYY-MM'))
+            }
 
             api.getEvents(page, this.search)
                 .then(response => {
@@ -236,10 +236,10 @@ export default {
 
                     if (response.status === 200) {
                         this.events = response.data.data
-						if(this.search.dateFrom && this.search.dateTo) {
-							this.pagination.meta = response.data.meta
-							this.pagination.links = response.data.links
-						}
+                        if (this.search.dateFrom && this.search.dateTo) {
+                            this.pagination.meta = response.data.meta
+                            this.pagination.links = response.data.links
+                        }
 
                         window.scrollTo(0, 0)
 
@@ -384,8 +384,8 @@ export default {
         getLinks (currentMonth) {
             this.pagination.meta.month_text = currentMonth.format('MMMM, YYYY')
             this.pagination.links.current = currentMonth.format('YYYY-MM')
-            this.pagination.links.prev = currentMonth.subtract(1, "month").format('YYYY-MM')
-            this.pagination.links.next = currentMonth.add(2, "month").format('YYYY-MM')
+            this.pagination.links.prev = currentMonth.subtract(1, 'month').format('YYYY-MM')
+            this.pagination.links.next = currentMonth.add(2, 'month').format('YYYY-MM')
         }
     }
 }

@@ -23,44 +23,44 @@
 </template>
 
 <script>
-    export default {
-        props: {
-            dates: {
-                required: true,
-                type: Array
-            },
-            deleteEvent: {
-                required: true,
-                type: Function
-            },
-            updateEvent: {
-                required: true,
-                type: Function
-            }
+export default {
+    props: {
+        dates: {
+            required: true,
+            type: Array
         },
-
-        watch: {
-            dates() {
-                this.addDisplayToDates()
-            }
+        deleteEvent: {
+            required: true,
+            type: Function
         },
+        updateEvent: {
+            required: true,
+            type: Function
+        }
+    },
 
-        created() {
+    watch: {
+        dates () {
             this.addDisplayToDates()
+        }
+    },
+
+    created () {
+        this.addDisplayToDates()
+    },
+
+    methods: {
+        addDisplayToDates () {
+            this.dates.forEach(date => {
+                this.$set(date, 'display', false)
+            })
         },
 
-        methods: {
-            addDisplayToDates() {
-                this.dates.forEach(date => {
-                    this.$set(date, 'display', false)
-                })
-            },
-
-            toggleDisplayEvent(date) {
-                date.display = !date.display
-            },
+        toggleDisplayEvent (date) {
+            date.display = !date.display
         }
     }
+}
 </script>
 
 <style scoped>

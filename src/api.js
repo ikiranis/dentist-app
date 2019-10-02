@@ -143,24 +143,24 @@ let api = {
      * @returns {Promise<void>}
      */
     async getEvents (page, search) {
-    	// TODO refactoring
         if (search.dateFrom && search.dateTo) {
-			if (page !== null) {
-				page = '?' + page.toString().split('?')[1]
-			} else {
-				page = ''
-			}
+            // TODO refactoring
+            if (page !== null) {
+                page = '?' + page.toString().split('?')[1]
+            } else {
+                page = ''
+            }
             let dateFrom = moment(search.dateFrom).format('YYYYMMDD')
             let dateTo = moment(search.dateTo).format('YYYYMMDD')
 
             return axios.get(ROOT_API + '/events/search/' + dateFrom + '/' + dateTo + page)
         }
 
-		if (page !== null) {
-			page = '?page=' + page
-		} else {
-			page = ''
-		}
+        if (page !== null) {
+            page = '?page=' + page
+        } else {
+            page = ''
+        }
 
         return axios.get(ROOT_API + '/events' + page)
     },

@@ -1,14 +1,14 @@
 <template>
     <div>
         <div class="row bg-secondary">
-            <div class="col text-center text-light py-1" v-for="day in days">
+            <div class="col text-center text-light py-1" v-for="day in days" :key="day">
                 <span>{{ day }}</span>
             </div>
         </div>
 
         <div class="mt-1">
-            <div class="row" v-for="week in weeks">
-                <div class="col card text-center" v-for="weekDay in 7">
+            <div class="row" v-for="week in weeks" :key="week">
+                <div class="col card text-center" v-for="weekDay in 7" :key="weekDay">
                     <div v-if="getMonthsDay(weekDay, week)">
                         <div class="card-head row px-2">
                             <span class="mr-auto day align-middle">{{ getMonthsDay(weekDay, week) }}</span>
@@ -30,97 +30,97 @@
 </template>
 
 <script>
-    import moment from "moment";
-    import DayEvents from "./DayEvents";
+import moment from 'moment'
+import DayEvents from './DayEvents'
 
-    export default {
-        components: {DayEvents},
-        data() {
-            return {
-                days: ['Κυριακή', 'Δευτέρα', 'Τρίτη', 'Τετάρτη', 'Πέμπτη', 'Παρασκευή', 'Σάββατο'],
-                daysOfMonth: [],
-                weeks: 5
-            }
+export default {
+    components: { DayEvents },
+    data () {
+        return {
+            days: ['Κυριακή', 'Δευτέρα', 'Τρίτη', 'Τετάρτη', 'Πέμπτη', 'Παρασκευή', 'Σάββατο'],
+            daysOfMonth: [],
+            weeks: 5
+        }
+    },
+
+    props: {
+        month: {
+            required: true,
+            type: String
         },
-
-        props: {
-            month: {
-                required: true,
-                type: String
-            },
-            events: {
-                required: true,
-                type: Array
-            },
-            updateEvent: {
-                required: true,
-                type: Function
-            },
-            deleteEvent: {
-                required: true,
-                type: Function
-            },
-            newEvent: {
-                required: true,
-                type: Function
-            }
+        events: {
+            required: true,
+            type: Array
         },
-
-        watch: {
-            month() {
-                this.init()
-            }
+        updateEvent: {
+            required: true,
+            type: Function
         },
+        deleteEvent: {
+            required: true,
+            type: Function
+        },
+        newEvent: {
+            required: true,
+            type: Function
+        }
+    },
 
-        created() {
+    watch: {
+        month () {
             this.init()
-        },
+        }
+    },
 
-        methods: {
-            // Init all needed variables
-            init () {
-                this.daysOfMonth = []
+    created () {
+        this.init()
+    },
 
-                let startOfMonth = parseInt(moment(this.month, "MMMM, YYYY").startOf('month').format('d'));
-                let daysInMonth = parseInt(moment(this.month, "MMMM, YYYY").daysInMonth());
-                let counter = 1;
+    methods: {
+        // Init all needed variables
+        init () {
+            this.daysOfMonth = []
 
-                let addWeek = (daysInMonth + startOfMonth > 35) ? 1 : 0
-                this.weeks += addWeek
+            let startOfMonth = parseInt(moment(this.month, 'MMMM, YYYY').startOf('month').format('d'))
+            let daysInMonth = parseInt(moment(this.month, 'MMMM, YYYY').daysInMonth())
+            let counter = 1
 
-                for(let i=startOfMonth; i<daysInMonth+startOfMonth; i++) {
-                    this.daysOfMonth[i] = counter++
-                }
-            },
+            let addWeek = (daysInMonth + startOfMonth > 35) ? 1 : 0
+            this.weeks += addWeek
 
-            /**
-             *
-             * @param day
-             * @returns {*}
-             */
-            getDayEvents(day) {
-                let date = this.getDate(day)
-
-                return this.events.filter(event => {
-                    return event.date === date
-                })
-            },
-
-            /**
-             *
-             * @param weekDay
-             * @param week
-             * @returns {*}
-             */
-            getMonthsDay(weekDay, week) {
-                return this.daysOfMonth[((week-1)*7 + weekDay) - 1]
-            },
-
-            getDate(day) {
-                return moment(day + ' ' + this.month, 'D MMMM, YYYY').format('YYYY-MM-DD')
+            for (let i = startOfMonth; i < daysInMonth + startOfMonth; i++) {
+                this.daysOfMonth[i] = counter++
             }
         },
+
+        /**
+         *
+         * @param day
+         * @returns {*}
+         */
+        getDayEvents (day) {
+            let date = this.getDate(day)
+
+            return this.events.filter(event => {
+                return event.date === date
+            })
+        },
+
+        /**
+         *
+         * @param weekDay
+         * @param week
+         * @returns {*}
+         */
+        getMonthsDay (weekDay, week) {
+            return this.daysOfMonth[((week - 1) * 7 + weekDay) - 1]
+        },
+
+        getDate (day) {
+            return moment(day + ' ' + this.month, 'D MMMM, YYYY').format('YYYY-MM-DD')
+        }
     }
+}
 </script>
 
 <style scoped>
