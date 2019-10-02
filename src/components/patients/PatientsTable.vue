@@ -35,7 +35,7 @@
 				</td>
 				<td class="text-right" v-if="patient.icons.length">
 					<span v-for="icon in patient.icons" :key="icon.id">
-					   <biohazard-icon v-if="icon.label === 'Ασθένεια' && icon.name"
+					   <hospital v-if="icon.label === 'Ασθένεια' && icon.name"
 									   :title="icon.name"
 									   class="patient-icon btn-icon"
 									   @click="listeners.displayIconText(icon.name)" />

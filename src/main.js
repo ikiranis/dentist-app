@@ -16,7 +16,7 @@ import user from '@/library/user'
  * Material Design icons
  * @link https://materialdesignicons.com/
  */
-import Biohazard from 'vue-material-design-icons/Biohazard.vue'
+import Hospital from 'vue-material-design-icons/Hospital.vue'
 import MedicalBag from 'vue-material-design-icons/MedicalBag.vue'
 import CurrencyEur from 'vue-material-design-icons/CurrencyEur.vue'
 import MinusCircleOutline from 'vue-material-design-icons/MinusCircleOutline.vue'
@@ -41,7 +41,7 @@ router.beforeEach((to, from, next) => {
 })
 
 // Add icons components
-Vue.component('biohazard-icon', Biohazard)
+Vue.component('hospital', Hospital)
 Vue.component('medical-bag-icon', MedicalBag)
 Vue.component('currency-eur-icon', CurrencyEur)
 Vue.component('minus-circle-outline', MinusCircleOutline)
