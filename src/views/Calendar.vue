@@ -90,15 +90,10 @@
                 </div>
             </div>
 
-            <div class="alert alert-success text-center w-50 mt-5 mx-auto"
-                 v-if="!events.length && !loading">
-                Δεν βρέθηκαν ραντεβού
-            </div>
-
             <!-- Περιεχόμενα -->
             <div>
 
-                <div class="container" v-if="events.length">
+                <div class="container">
 
                     <paginate :pagination="pagination" @click="getEvents"/>
 
@@ -236,6 +231,7 @@ export default {
 
                     if (response.status === 200) {
                         this.events = response.data.data
+
                         if (this.search.dateFrom && this.search.dateTo) {
                             this.pagination.meta = response.data.meta
                             this.pagination.links = response.data.links
