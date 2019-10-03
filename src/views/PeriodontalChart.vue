@@ -5,6 +5,15 @@
 
             <form @submit.prevent class="container-fluid">
 
+				<div class="form-group row">
+					<label for="date" class="col-md-4 col-form-label text-md-right">Ημ/νία</label>
+					<div class="col-md-8">
+						<input id="date" type="date" class="form-control"
+							   v-model="note.created_at">
+						<form-error v-if="response.errors.created_at" :error="response.errors.created_at[0]"/>
+					</div>
+				</div>
+
                 <div class="form-group row">
                     <label for="number1" class="sr-only">Number</label>
                     <div class="col-md-4 mb-2">
@@ -102,6 +111,7 @@
 <script>
 import MenuBar from '@/components/basic/MenuBar'
 import PeriodontalChartToothsTable from '@/components/patients/PeriodontalChartToothsTable'
+import FormError from '@/components/basic/FormError'
 import api from '../api'
 import utility from '../library/utility'
 import moment from 'moment'
@@ -111,7 +121,7 @@ import { mapState } from 'vuex'
 import NoAccessPage from '@/components/basic/NoAccessPage'
 
 export default {
-    components: { MenuBar, PeriodontalChartToothsTable, DisplayError, Loading, NoAccessPage },
+    components: { MenuBar, FormError, PeriodontalChartToothsTable, DisplayError, Loading, NoAccessPage },
 
     data () {
         return {
@@ -308,8 +318,8 @@ export default {
          * Display note for edit
          */
         getNote (note) {
+			note.created_at = moment(note.created_at).format('YYYY-MM-DD')
             this.note = note
-            delete this.note.created_at // Remove created_at, because it trigger error
 
             this.noteTitle = 'Ενημέρωση μετρήσεων'
             this.$refs.noteModal.show()
