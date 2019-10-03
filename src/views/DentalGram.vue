@@ -5,6 +5,15 @@
 
             <form @submit.prevent class="container-fluid">
 
+				<div class="form-group row">
+					<label for="date" class="col-md-4 col-form-label text-md-right">Ημ/νία</label>
+					<div class="col-md-8">
+						<input id="date" type="date" class="form-control"
+							   v-model="note.created_at">
+						<form-error v-if="response.errors.created_at" :error="response.errors.created_at[0]"/>
+					</div>
+				</div>
+
                 <div class="form-group row">
                     <label for="description" class="col-md-4 col-form-label text-md-right">Περιγραφή</label>
                     <div class="col-md-8">
@@ -31,6 +40,15 @@
 		<b-modal ref="originNoteModal" size="md" centered hide-footer :title="noteTitle">
 
 			<form @submit.prevent class="container-fluid">
+
+				<div class="form-group row">
+					<label for="originDate" class="col-md-4 col-form-label text-md-right">Ημ/νία</label>
+					<div class="col-md-8">
+						<input id="originDate" type="date" class="form-control"
+							   v-model="originNote.created_at">
+						<form-error v-if="response.errors.created_at" :error="response.errors.created_at[0]"/>
+					</div>
+				</div>
 
 				<div class="form-group row">
 					<label for="description" class="col-md-4 col-form-label text-md-right">Περιγραφή</label>
@@ -180,13 +198,13 @@ export default {
 
             note: {
                 toothId: 0,
-                date: '',
+                created_at: '',
                 description: ''
             },
 
             originNote: {
                 toothId: 0,
-                date: '',
+                created_at: '',
                 description: ''
             },
 
@@ -303,7 +321,8 @@ export default {
                 id: 0,
                 tooth_number: tooth.number,
                 patient_id: this.patientId,
-                description: ''
+                description: '',
+				created_at: moment(new Date()).format('YYYY-MM-DD')
             }
 
             this.noteTitle = 'Εισαγωγή σημείωσης'
@@ -361,8 +380,8 @@ export default {
          * Display note for edit
          */
         getNote (note) {
+			note.created_at = moment(note.created_at).format('YYYY-MM-DD')
             this.note = note
-            delete this.note.created_at // Remove created_at, because it trigger error
 
             this.noteTitle = 'Ενημέρωση σημείωσης'
             this.$refs.noteModal.show()
@@ -372,8 +391,8 @@ export default {
          * Display origin note for edit
          */
         getOriginNote (note) {
+			note.created_at = moment(note.created_at).format('YYYY-MM-DD')
             this.originNote = note
-            delete this.originNote.created_at // Remove created_at, because it trigger error
 
             this.noteTitle = 'Ενημέρωση σημείωσης'
             this.$refs.originNoteModal.show()
