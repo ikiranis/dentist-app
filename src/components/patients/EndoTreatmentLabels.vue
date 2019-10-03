@@ -1,7 +1,6 @@
 <template functional>
     <div class="text-light bg-secondary">
 		<div class="px-2 label">Ρίζα</div>
-        <div class="px-2 label text-center">Μήκος εργαλείου</div>
         <div class="px-2 label">Μετρητής</div>
         <div class="px-2 label">Ακτινογραφία</div>
         <div class="px-2 label">Μήκος εργασίας</div>

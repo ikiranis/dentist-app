@@ -11,8 +11,6 @@
             </select>
         </div>
 
-        <div class="label"> </div>
-
         <div class="label">
             <input id="counter" type="text" class="form-control"
                    v-model="treatment.counter" maxlength="10">
