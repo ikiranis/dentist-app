@@ -87,9 +87,9 @@ export default {
 
             noteTitle: '',
 
-			benchmarks: [],
+            benchmarks: [],
 
-			blockingTechniques: []
+            blockingTechniques: []
         }
     },
 
@@ -144,8 +144,8 @@ export default {
 
     created: function () {
         this.getRoots()
-		this.getBenchmarks()
-		this.getBlockingTechniques()
+        this.getBenchmarks()
+        this.getBlockingTechniques()
         this.getEndoTreatments()
     },
 
@@ -363,61 +363,61 @@ export default {
             this.loading = loading
         },
 
-		/**
-		 * Get all benchmarks
-		 */
-		getBenchmarks () {
-			this.loading = true
+        /**
+         * Get all benchmarks
+         */
+        getBenchmarks () {
+            this.loading = true
 
-			api.getBenchmarks()
-				.then(response => {
-					this.loading = false
+            api.getBenchmarks()
+                .then(response => {
+                    this.loading = false
 
-					if (response.status === 200) {
-						this.benchmarks = response.data
+                    if (response.status === 200) {
+                        this.benchmarks = response.data
 
-						return
-					}
+                        return
+                    }
 
-					this.benchmarks = []
-				})
-				.catch(error => {
-					this.loading = false
+                    this.benchmarks = []
+                })
+                .catch(error => {
+                    this.loading = false
 
-					this.response.message = error.response.data.message
-					this.response.status = false
+                    this.response.message = error.response.data.message
+                    this.response.status = false
 
-					utility.debug(error.response.data.debug)
-				})
-		},
+                    utility.debug(error.response.data.debug)
+                })
+        },
 
-		/**
-		 * Get all Blocking techniques
-		 */
-		getBlockingTechniques () {
-			this.loading = true
+        /**
+         * Get all Blocking techniques
+         */
+        getBlockingTechniques () {
+            this.loading = true
 
-			api.getBlockingTechniques()
-				.then(response => {
-					this.loading = false
+            api.getBlockingTechniques()
+                .then(response => {
+                    this.loading = false
 
-					if (response.status === 200) {
-						this.blockingTechniques = response.data
+                    if (response.status === 200) {
+                        this.blockingTechniques = response.data
 
-						return
-					}
+                        return
+                    }
 
-					this.blockingTechniques = []
-				})
-				.catch(error => {
-					this.loading = false
+                    this.blockingTechniques = []
+                })
+                .catch(error => {
+                    this.loading = false
 
-					this.response.message = error.response.data.message
-					this.response.status = false
+                    this.response.message = error.response.data.message
+                    this.response.status = false
 
-					utility.debug(error.response.data.debug)
-				})
-		}
+                    utility.debug(error.response.data.debug)
+                })
+        }
     }
 }
 </script>

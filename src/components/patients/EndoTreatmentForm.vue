@@ -116,14 +116,14 @@ export default {
             required: true,
             type: Array
         },
-		benchmarks: {
-			required: true,
-			type: Array
-		},
-		blockingTechniques: {
-			required: true,
-			type: Array
-		},
+        benchmarks: {
+            required: true,
+            type: Array
+        },
+        blockingTechniques: {
+            required: true,
+            type: Array
+        },
         response: {
             required: true,
             type: Object
