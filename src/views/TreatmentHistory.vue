@@ -17,8 +17,8 @@
                 <div class="form-group row">
                     <label for="description" class="col-md-4 col-form-label text-md-right">Θεραπεία</label>
                     <div class="col-md-8">
-                        <input id="description" type="text" class="form-control"
-                               v-model="treatment.description" required>
+                        <textarea id="description" class="form-control"
+                                  v-model="treatment.description" required> </textarea>
                         <form-error v-if="response.errors.description" :error="response.errors.description[0]"/>
                     </div>
                 </div>
