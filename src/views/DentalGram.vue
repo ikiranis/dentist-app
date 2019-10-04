@@ -322,7 +322,7 @@ export default {
                 tooth_number: tooth.number,
                 patient_id: this.patientId,
                 description: '',
-				created_at: moment(new Date()).format('YYYY-MM-DD')
+                created_at: moment(new Date()).format('YYYY-MM-DD')
             }
 
             this.noteTitle = 'Εισαγωγή σημείωσης'
@@ -380,7 +380,7 @@ export default {
          * Display note for edit
          */
         getNote (note) {
-			note.created_at = moment(note.created_at).format('YYYY-MM-DD')
+            note.created_at = moment(note.created_at).format('YYYY-MM-DD')
             this.note = note
 
             this.noteTitle = 'Ενημέρωση σημείωσης'
@@ -391,7 +391,7 @@ export default {
          * Display origin note for edit
          */
         getOriginNote (note) {
-			note.created_at = moment(note.created_at).format('YYYY-MM-DD')
+            note.created_at = moment(note.created_at).format('YYYY-MM-DD')
             this.originNote = note
 
             this.noteTitle = 'Ενημέρωση σημείωσης'

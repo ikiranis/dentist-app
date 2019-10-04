@@ -318,7 +318,7 @@ export default {
          * Display note for edit
          */
         getNote (note) {
-			note.created_at = moment(note.created_at).format('YYYY-MM-DD')
+            note.created_at = moment(note.created_at).format('YYYY-MM-DD')
             this.note = note
 
             this.noteTitle = 'Ενημέρωση μετρήσεων'
