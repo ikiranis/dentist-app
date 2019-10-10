@@ -19,6 +19,7 @@ import TreatmentHistory from './views/TreatmentHistory.vue'
 import DentalHistory from './views/DentalHistory.vue'
 import Backup from './views/Backup.vue'
 import Export from './views/Export.vue'
+import ForgotPassword from './views/ForgotPassword.vue'
 
 Vue.use(Router)
 
@@ -188,7 +189,15 @@ export default new Router({
             meta: {
                 title: 'Εξαγωγή δεδομένων - Dentist'
             }
-        }
+        },
+		{
+			path: '/forgotPassword',
+			name: 'forgotPassword',
+			component: ForgotPassword,
+			meta: {
+				title: 'Forgot Password - Dentist'
+			}
+		},
     ]
 
 })
