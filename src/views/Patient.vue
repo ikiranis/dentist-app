@@ -107,7 +107,7 @@
                             <label for="created_at" class="col-md-6 col-form-label text-md-right">Ημ. Εγγραφής</label>
                             <div class="col-md-6">
                                 <input id="created_at" type="date" class="form-control"
-                                       :value="patient.created_at" disabled>
+                                       v-model="patient.created_at">
                             </div>
                         </div>
 
@@ -357,6 +357,11 @@ export default {
         createPatient () {
             this.loading = true
 
+			// If empty take today date
+			if(this.patient.created_at === '') {
+				this.patient.created_at = moment().format('YYYY-MM-DD')
+			}
+
             api.createPatient(this.patient)
                 .then(response => {
                     this.loading = false
@@ -385,6 +390,8 @@ export default {
          */
         updatePatient () {
             this.loading = true
+
+			// this.patient.created_at = moment(this.patient.created_at).format('YYYY-MM-DD')
 
             api.updatePatient(this.patient, this.patientId)
                 .then(response => {
