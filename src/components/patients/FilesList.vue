@@ -20,6 +20,7 @@
                             title="Διαγραφή αρχείου"/>
                 </td>
                 <th scope="row" class="text-center align-middle">
+					<div v-if="file.filename">
                         <span v-if="checkFileExtension(file.filename)">
                             <img class="btn-icon thumbnail"
                                  :src="file.image"
@@ -30,6 +31,7 @@
                             <download-icon @click.native="getFile(file.id)" class="btn-icon"
                                            title="Download file"/>
                         </span>
+					</div>
                 </th>
                 <td class="align-middle">
                     <a href="#" class="px-2"

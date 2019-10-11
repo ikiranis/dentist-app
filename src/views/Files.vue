@@ -324,8 +324,6 @@ export default {
         createFile () {
             this.loading = true
 
-			console.log(this.file)
-
             api.createFile(this.file)
                 .then(response => {
                     this.loading = false
@@ -463,6 +461,7 @@ export default {
 
                         this.file.filename = null
                         this.file.path = null
+
                         this.setFiles([])
                     })
                     .catch(error => {
@@ -483,6 +482,7 @@ export default {
             return new Promise(async (resolve, reject) => {
                 try {
                     let response = await api.removeFile(file)
+
                     resolve(response)
                 } catch (error) {
                     reject(error)
