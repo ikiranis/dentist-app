@@ -324,6 +324,8 @@ export default {
         createFile () {
             this.loading = true
 
+			console.log(this.file)
+
             api.createFile(this.file)
                 .then(response => {
                     this.loading = false

@@ -125,7 +125,7 @@ let uploadFiles = {
             }
 
             let args = {
-                user_id: this.user_id,
+                user_id: this.userId,
                 file: fileName,
                 uploadKind: 'slice',
                 file_data: event.target.result,
@@ -169,7 +169,7 @@ let uploadFiles = {
         let md5hash = null
 
         let args = {
-            user_id: this.user_id,
+            user_id: this.userId,
             fullPathFilename: data.fullPathFilename,
             fileName: data.fileName,
             uploadKind: 'finalizedFile',
@@ -194,7 +194,7 @@ let uploadFiles = {
                     id: null,
                     name: response.filename,
                     path: response.path,
-                    user_id: this.user_id
+                    user_id: this.userId
                 }
 
                 if (md5hash === response.md5hash) { // if files match, add file to files
