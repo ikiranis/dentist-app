@@ -2,11 +2,11 @@
 	<div>
 		<span>Επιλογή δοντιού: </span>
 		<span v-for="(value, index) in teeth" :key="index">
-            <span class="tooth badge mx-1"
+            <span class="tooth badge mx-1 align-middle"
 				  :class="value.display ? 'badge-primary' : 'badge-secondary'"
 				  @click="chooseTooth(value)">{{ value.number }}</span>
         </span>
-		<input type="button" class="btn btn-sm btn-success"
+		<input type="button" class="btn btn-success my-auto"
 			   @click="newEndoTreatmentCard" value="Εισαγωγή">
 	</div>
 </template>
@@ -41,7 +41,7 @@ export default {
 
 <style scoped>
 	.tooth {
-		font-size: 1em;
+		font-size: 1.4em;
 		cursor: pointer;
 	}
 </style>
