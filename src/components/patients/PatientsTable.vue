@@ -36,7 +36,7 @@
 				<td class="text-right" v-if="patient.icons.length">
 					<span v-for="icon in patient.icons" :key="icon.id">
 					   <hospital v-if="icon.label === 'Ασθένεια' && icon.name"
-									   :title="icon.name"
+									   :title="icon.name" fillColor="red"
 									   class="patient-icon btn-icon"
 									   @click="listeners.displayIconText(icon.name)" />
 					   <medical-bag-icon v-if="icon.label === 'Εκρεμείς θεραπείες' && icon.name"

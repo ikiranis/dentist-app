@@ -126,7 +126,7 @@
 
                                 <div class="form-group row my-1">
                                     <label for="disease" class="col-md-5 col-form-label text-md-right">
-                                        Ασθένεια <hospital title="Ασθένεια"/>
+                                        Ασθένεια <hospital title="Ασθένεια" fillColor="red"/>
                                     </label>
                                     <div class="col-md-7">
                                         <input id="disease" type="text" class="form-control col-form"
