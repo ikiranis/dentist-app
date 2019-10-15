@@ -102,13 +102,15 @@ export default {
             let dates = []
 
             this.notes.forEach(value => {
-                dates.push(value.formated_date)
+            	if(value.kind === this.kind) {
+					dates.push(value.formated_date)
+				}
             })
 
             // Filter duplicates
             return dates.filter((item, index) =>
-                dates.indexOf(item) === index
-            )
+				dates.indexOf(item) === index
+			)
         },
 
         /**
