@@ -96,9 +96,10 @@
                 <Loading class="mx-auto" :loading="loading"/>
             </div>
 
-			<div class="container row">
+			<div class="container row" v-for="kind in 2">
 					<periodontal-chart-tooths-table v-if="!loading"
 													class="mx-auto"
+													:kind="kind"
 													:teeth="upperTeeth"
 													:notes="upperNotes"
 													:newNote="newNote"
@@ -107,6 +108,7 @@
 
 					<periodontal-chart-tooths-table v-if="!loading"
 													class="mx-auto"
+													:kind="kind"
 													:teeth="downTeeth"
 													:notes="downNotes"
 													:newNote="newNote"

@@ -1,6 +1,7 @@
 <template>
 
 	<div>
+		{{ kind-1 }}
 		<table class="table table-responsive table-hover">
 
 			<thead class="table-borderless">
@@ -72,7 +73,11 @@ export default {
         deleteNote: {
             required: true,
             type: Function
-        }
+        },
+		kind: {
+			required: true,
+			type: Number
+		}
     },
 
     data () {
@@ -127,7 +132,7 @@ export default {
          */
         getNote (date, toothNumber) {
             return this.notes.find(note =>
-                note.formated_date === date && note.tooth_number === toothNumber
+                note.formated_date === date && note.tooth_number === toothNumber && note.kind === this.kind-1
             )
         },
 
