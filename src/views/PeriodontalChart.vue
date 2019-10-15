@@ -208,7 +208,10 @@ export default {
                 measure4: 0,
                 measure5: 0,
                 measure6: 0,
-                created_at: null
+                created_at: null,
+				kind: null,
+				data1: null,
+				data2: null
             },
 
             notes: [],
@@ -292,7 +295,10 @@ export default {
                 measure4: 0,
                 measure5: 0,
                 measure6: 0,
-                created_at: moment(new Date()).format('YYYY-MM-DD')
+                created_at: moment(new Date()).format('YYYY-MM-DD'),
+				kind: 0,
+				data1: null,
+				data2: null
             }
 
             this.noteTitle = 'Εισαγωγή μετρήσεων'
