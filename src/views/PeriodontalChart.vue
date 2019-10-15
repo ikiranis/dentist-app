@@ -14,7 +14,25 @@
 					</div>
 				</div>
 
-                <div class="form-group row">
+				<div class="form-group row">
+					<label for="data1" class="col-md-4 col-form-label text-md-right">Μέτρηση</label>
+					<div class="col-md-8">
+						<input id="data1" type="text" maxlength="10" class="form-control"
+							   v-model="note.data1">
+						<form-error v-if="response.errors.data1" :error="response.errors.data1[0]"/>
+					</div>
+				</div>
+
+				<div class="form-group row">
+					<label for="data2" class="col-md-4 col-form-label text-md-right">Μέτρηση</label>
+					<div class="col-md-8">
+						<input id="data2" type="text" maxlength="10" class="form-control"
+							   v-model="note.data1">
+						<form-error v-if="response.errors.data2" :error="response.errors.data2[0]"/>
+					</div>
+				</div>
+
+                <div class="form-group row bg-danger py-2">
                     <label for="number1" class="sr-only">Number</label>
                     <div class="col-md-4 mb-2">
                         <input id="number1" type="number" min="0" max="99" class="form-control"
@@ -50,6 +68,8 @@
                         <input id="number6" type="number" min="0" max="99" class="form-control"
                                v-model="note.measure6" required>
                     </div>
+
+					<p class="text-light mx-auto">Θα αφαιρεθούν στην επόμενη αναβάθμιση</p>
                 </div>
 
                 <div class="row">
