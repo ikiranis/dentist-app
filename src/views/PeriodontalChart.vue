@@ -27,7 +27,7 @@
 					<label for="data2" class="col-md-4 col-form-label text-md-right">Μέτρηση</label>
 					<div class="col-md-8">
 						<input id="data2" type="text" maxlength="10" class="form-control"
-							   v-model="note.data1">
+							   v-model="note.data2">
 						<form-error v-if="response.errors.data2" :error="response.errors.data2[0]"/>
 					</div>
 				</div>
