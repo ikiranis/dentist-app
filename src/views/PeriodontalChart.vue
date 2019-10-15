@@ -97,9 +97,13 @@
             </div>
 
 			<div class="container row" v-for="kind in 2">
+					<div class="row col-12">
+						<h3 class="mx-auto">{{ kind === 1 ? 'Τίτλος 1' : 'Τίτλος 2' }}</h3>
+					</div>
+
 					<periodontal-chart-tooths-table v-if="!loading"
 													class="mx-auto"
-													:kind="kind"
+													:kind="kind-1"
 													:teeth="upperTeeth"
 													:notes="upperNotes"
 													:newNote="newNote"
@@ -108,7 +112,7 @@
 
 					<periodontal-chart-tooths-table v-if="!loading"
 													class="mx-auto"
-													:kind="kind"
+													:kind="kind-1"
 													:teeth="downTeeth"
 													:notes="downNotes"
 													:newNote="newNote"
@@ -286,7 +290,7 @@ export default {
         /**
          * Display note modal
          */
-        newNote (tooth) {
+        newNote (tooth, kind) {
             this.note = {
                 id: 0,
                 tooth_number: tooth.number,
@@ -298,7 +302,7 @@ export default {
                 measure5: 0,
                 measure6: 0,
                 created_at: moment(new Date()).format('YYYY-MM-DD'),
-				kind: 0,
+				kind: kind,
 				data1: null,
 				data2: null
             }

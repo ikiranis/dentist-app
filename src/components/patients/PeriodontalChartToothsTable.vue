@@ -1,7 +1,6 @@
 <template>
 
 	<div>
-		{{ kind-1 }}
 		<table class="table table-responsive table-hover">
 
 			<thead class="table-borderless">
@@ -36,7 +35,7 @@
 						<plus-circle-outline v-if="!findDateInNote(tooth)"
 											 fillColor="green" :size="15"
 											 class="btn-icon" title="Εισαγωγή μετρήσεων"
-											 @click="newNote(tooth)" />
+											 @click="newNote(tooth, kind)" />
 					</td>
 				</tr>
 			</tbody>
@@ -132,7 +131,7 @@ export default {
          */
         getNote (date, toothNumber) {
             return this.notes.find(note =>
-                note.formated_date === date && note.tooth_number === toothNumber && note.kind === this.kind-1
+                note.formated_date === date && note.tooth_number === toothNumber && note.kind === this.kind
             )
         },
 
