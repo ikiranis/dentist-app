@@ -7,7 +7,7 @@
 				<tr>
 					<th></th>
 					<th v-for="tooth in teeth" :key="tooth.id"
-						class="text-center px-2">
+						class="text-center px-2 label">
 						<img :src="imagePath(tooth.number)" class="toothImage">
 						<div class="toothNumbers text-secondary">{{ tooth.number }}</div>
 					</th>
@@ -20,7 +20,7 @@
 						<span class="toothNotes">{{ date }}</span>
 					</td>
 
-					<td v-for="tooth in teeth" :key="tooth.id" class="text-center">
+					<td v-for="tooth in teeth" :key="tooth.id" class="text-center toothNotes">
 						<div v-if="note = getNote(date, tooth.number)">
 							<a href="#" @click="updateNote(getNote(date, tooth.number))">
 								<note-measurements :note="note" />
@@ -153,7 +153,12 @@ export default {
 <style scoped>
     .toothNotes {
         font-size: 0.8em;
+		min-width: 5em;
     }
+
+	.label {
+		min-width: 5em;
+	}
 
     .toothNumbers {
         font-size: 1.5em;
