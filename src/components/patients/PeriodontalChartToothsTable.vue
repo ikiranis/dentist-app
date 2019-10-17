@@ -73,10 +73,10 @@ export default {
             required: true,
             type: Function
         },
-		kind: {
-			required: true,
-			type: Number
-		}
+        kind: {
+            required: true,
+            type: Number
+        }
     },
 
     data () {
@@ -102,15 +102,15 @@ export default {
             let dates = []
 
             this.notes.forEach(value => {
-            	if(value.kind === this.kind) {
-					dates.push(value.formated_date)
-				}
+                if (value.kind === this.kind) {
+                    dates.push(value.formated_date)
+                }
             })
 
             // Filter duplicates
             return dates.filter((item, index) =>
-				dates.indexOf(item) === index
-			)
+                dates.indexOf(item) === index
+            )
         },
 
         /**

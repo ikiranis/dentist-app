@@ -357,10 +357,10 @@ export default {
         createPatient () {
             this.loading = true
 
-			// If empty take today date
-			if(this.patient.created_at === '') {
-				this.patient.created_at = moment().format('YYYY-MM-DD')
-			}
+            // If empty take today date
+            if (this.patient.created_at === '') {
+                this.patient.created_at = moment().format('YYYY-MM-DD')
+            }
 
             api.createPatient(this.patient)
                 .then(response => {
@@ -391,7 +391,7 @@ export default {
         updatePatient () {
             this.loading = true
 
-			// this.patient.created_at = moment(this.patient.created_at).format('YYYY-MM-DD')
+            // this.patient.created_at = moment(this.patient.created_at).format('YYYY-MM-DD')
 
             api.updatePatient(this.patient, this.patientId)
                 .then(response => {

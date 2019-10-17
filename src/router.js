@@ -190,14 +190,14 @@ export default new Router({
                 title: 'Εξαγωγή δεδομένων - Dentist'
             }
         },
-		{
-			path: '/forgotPassword',
-			name: 'forgotPassword',
-			component: ForgotPassword,
-			meta: {
-				title: 'Forgot Password - Dentist'
-			}
-		},
+        {
+            path: '/forgotPassword',
+            name: 'forgotPassword',
+            component: ForgotPassword,
+            meta: {
+                title: 'Forgot Password - Dentist'
+            }
+        }
     ]
 
 })

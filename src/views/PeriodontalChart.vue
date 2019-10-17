@@ -96,7 +96,7 @@
                 <Loading class="mx-auto" :loading="loading"/>
             </div>
 
-			<div class="container row" v-for="kind in 2">
+			<div class="container row" v-for="kind in 2" :key="kind">
 					<div class="row col-12">
 						<h3 class="mx-auto">{{ kind === 1 ? 'Τίτλος 1' : 'Τίτλος 2' }}</h3>
 					</div>
@@ -215,9 +215,9 @@ export default {
                 measure5: 0,
                 measure6: 0,
                 created_at: null,
-				kind: null,
-				data1: null,
-				data2: null
+                kind: null,
+                data1: null,
+                data2: null
             },
 
             notes: [],
@@ -302,9 +302,9 @@ export default {
                 measure5: 0,
                 measure6: 0,
                 created_at: moment(new Date()).format('YYYY-MM-DD'),
-				kind: kind,
-				data1: null,
-				data2: null
+                kind: kind,
+                data1: null,
+                data2: null
             }
 
             this.noteTitle = 'Εισαγωγή μετρήσεων'

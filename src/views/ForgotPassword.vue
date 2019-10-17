@@ -45,61 +45,59 @@
 </template>
 
 <script>
-	import api from "../api";
-	import Loading from "@/components/basic/Loading";
-	import {mapState, mapMutations} from 'vuex';
-	import DisplayError from "@/components/basic/DisplayError";
-	import FormError from "@/components/basic/FormError";
+import api from '../api'
+import Loading from '@/components/basic/Loading'
+import DisplayError from '@/components/basic/DisplayError'
+import FormError from '@/components/basic/FormError'
 
-	export default {
-		components: {Loading, DisplayError, FormError},
+export default {
+    components: { Loading, DisplayError, FormError },
 
-		data: () => ({
-			loading: false,
+    data: () => ({
+        loading: false,
 
-			response: {
-				message: ' ',
-				status: '',
-				errors: []
-			},
-			email: ''
-		}),
+        response: {
+            message: ' ',
+            status: '',
+            errors: []
+        },
+        email: ''
+    }),
 
-		methods: {
-			async sendToken() {
-				let args = {
-					email: this.email,
-					app_path: window.location.origin + '/resetPassword/'
-				};
+    methods: {
+        async sendToken () {
+            let args = {
+                email: this.email,
+                app_path: window.location.origin + '/resetPassword/'
+            }
 
-				this.response = {
-					message: '',
-					status: '',
-					errors: []
-				};
+            this.response = {
+                message: '',
+                status: '',
+                errors: []
+            }
 
-				this.loading = true
+            this.loading = true
 
-				try {
-					let response = await api.sendResetToken(args);
+            try {
+                let response = await api.sendResetToken(args)
 
-					this.response.message = response.data.message;
-					this.response.status = true;
+                this.response.message = response.data.message
+                this.response.status = true
 
-					this.loading = false
-				} catch (error) {
-					this.response.message = error.response.data.message;
-					this.response.status = false;
+                this.loading = false
+            } catch (error) {
+                this.response.message = error.response.data.message
+                this.response.status = false
 
-					if (error.response.data.errors) {
-						this.response.errors = error.response.data.errors;
-					}
+                if (error.response.data.errors) {
+                    this.response.errors = error.response.data.errors
+                }
 
-					this.loading = false
-				}
+                this.loading = false
+            }
+        }
 
-			}
-
-		}
-	}
+    }
+}
 </script>
