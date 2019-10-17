@@ -32,6 +32,7 @@
 					</div>
 				</div>
 
+<!--				TODO remove this-->
                 <div class="form-group row bg-danger py-2">
                     <label for="number1" class="sr-only">Number</label>
                     <div class="col-md-4 mb-2">
