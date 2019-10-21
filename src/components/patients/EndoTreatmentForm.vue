@@ -84,11 +84,11 @@
 
         <div class="label">
             <div class="row">
-                <zip-disk class="btn-icon ml-auto my-auto"
+                <zip-disk class="btn-icon ml-auto my-auto" :size="15"
                         @click="saveData(treatment)"
                         title="Αποθήκευση"/>
 
-                <delete v-if="treatment.id !== 0"
+                <delete v-if="treatment.id !== 0" :size="15"
                         class="btn-icon mr-auto my-auto"
                         @click="deleteEndoTreatment(treatment.id)"
                         title="Διαγραφή"/>
