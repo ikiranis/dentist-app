@@ -35,8 +35,6 @@
         <div class="label">
 
             <div class="input-group">
-                <input id="benchmark" type="text" class="form-control"
-                       v-model="treatment.benchmark" maxlength="20">
 
                 <select class="form-control" id="chozenBenchmark"
                         v-model="treatment.benchmark_id">
@@ -47,6 +45,9 @@
                         {{ benchmark.name }}
                     </option>
                 </select>
+
+				<input id="benchmark" type="text" class="form-control"
+					   v-model="treatment.benchmark" maxlength="20">
 
                 <form-error v-if="response.errors.benchmark"
                             :error="response.errors.benchmark[0]"/>
