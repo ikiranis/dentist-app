@@ -99,7 +99,7 @@
 
 			<div class="container row" v-for="kind in 2" :key="kind">
 					<div class="row col-12">
-						<h3 class="mx-auto">{{ kind === 1 ? 'Τίτλος 1' : 'Τίτλος 2' }}</h3>
+						<h3 class="mx-auto">{{ kind === 1 ? 'Προστομιακά' : 'Γλωσσικά-υπερώρια' }}</h3>
 					</div>
 
 					<periodontal-chart-tooths-table v-if="!loading"
