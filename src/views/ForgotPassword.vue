@@ -8,7 +8,7 @@
 		<div class="row justify-content-center">
 			<div class="col-md-8">
 				<div class="card card-default">
-					<div class="card-header">Send reset token</div>
+					<div class="card-header">Αποστολή reset token</div>
 					<div class="card-body">
 						<form>
 							<div class="form-group row">
@@ -24,7 +24,7 @@
 							<div class="form-group mb-3">
 								<div class="col-md-8 mx-auto">
 									<button type="submit" class="btn btn-info btn-block" @click.prevent="sendToken">
-										Send me reset token
+										Αποστολή του token
 									</button>
 								</div>
 							</div>
@@ -85,8 +85,6 @@ export default {
             } catch (error) {
                 this.response.message = error.response.data.message
                 this.response.status = false
-
-				console.log(error)
 
                 if (error.response.data.errors) {
                     this.response.errors = error.response.data.errors

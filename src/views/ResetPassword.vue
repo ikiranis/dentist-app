@@ -8,7 +8,7 @@
 		<div class="row justify-content-center">
 			<div class="col-md-8">
 				<div class="card card-default">
-					<div class="card-header">Reset Password</div>
+					<div class="card-header">Αλλαγή Password</div>
 					<div class="card-body">
 						<form>
 							<div class="form-group row">
@@ -39,7 +39,7 @@
 							<div class="form-group row mb-0">
 								<div class="col-md-8 ml-auto mr-auto">
 									<button type="submit" class="btn btn-primary w-100" @click.prevent="resetPassword">
-										Reset Password
+										Αλλαγή Password
 									</button>
 								</div>
 							</div>
@@ -125,7 +125,7 @@
 							this.loading = false
 						});
 				} else {
-					this.response.message = 'Passwords not validated';
+					this.response.message = 'Τα password δεν είναι ίδια';
 					this.response.status = false;
 
 					this.loading = false
