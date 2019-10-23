@@ -310,17 +310,21 @@
 												  class="removeItem my-auto ml-2" title="Αφαίρεση πεδίου"
                                                   @click="removeField(fields.medicines)"/>
 
-                            <div class="col-12">
-                                <select multiple class="form-control mt-2" id="medicines"
-                                        @keyup.delete="deleteMedicine($event)"
+                            <div class="col-12 row mx-auto">
+                                <select multiple class="form-control mt-2 col-11" id="medicines"
+                                        v-model="selectedMedicines"
                                         v-if="medicalHistory.medicines.length">
                                     <option v-for="medicine in medicalHistory.medicines"
                                             :key="medicine.id" :value="medicine.id">
                                         {{ medicine.name }}
                                     </option>
                                 </select>
-                                <div class="row w-100" v-if="medicalHistory.medicines.length">
-                                    <small class="text-danger mx-auto">Πάτα delete για διαγραφή</small>
+
+                                <div class="col-1 row" v-if="medicalHistory.medicines.length">
+									<delete :size="15"
+											class="btn-icon ml-auto my-auto"
+											@click="deleteMedicines"
+											title="Διαγραφή επιλεγμένου φάρμακου"/>
                                 </div>
                             </div>
                         </div>
@@ -533,7 +537,9 @@ export default {
                 familyHistory: null
             },
 
-            medicine: ''
+            medicine: '',
+
+			selectedMedicines: []
         }
     },
 
@@ -689,31 +695,31 @@ export default {
 
         /**
          * Delete item from medicines array
-         *
-         * @param event
          */
-        deleteMedicine (event) {
+        deleteMedicines () {
             this.loading = true
 
-            api.deleteMedicine(event.target.value)
-                .then(response => {
-                    this.loading = false
+			this.selectedMedicines.forEach(medicine => {
+				api.deleteMedicine(medicine)
+					.then(response => {
+						this.loading = false
 
-                    this.response.message = 'Το φάρμακο διαγράφηκε'
-                    this.response.status = true
+						this.response.message = 'Το φάρμακο διαγράφηκε'
+						this.response.status = true
 
-                    this.medicalHistory.medicines = this.medicalHistory.medicines.filter((medicine) => {
-                        return (medicine.id !== response.data.id)
-                    })
-                })
-                .catch(error => {
-                    this.loading = false
+						this.medicalHistory.medicines = this.medicalHistory.medicines.filter((medicine) => {
+							return (medicine.id !== response.data.id)
+						})
+					})
+					.catch(error => {
+						this.loading = false
 
-                    this.response.message = error.response.data.message
-                    this.response.status = false
+						this.response.message = error.response.data.message
+						this.response.status = false
 
-                    utility.debug(error.response.data.debug)
-                })
+						utility.debug(error.response.data.debug)
+					})
+			})
         }
     }
 }
