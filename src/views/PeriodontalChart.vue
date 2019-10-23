@@ -32,47 +32,6 @@
 					</div>
 				</div>
 
-<!--				TODO remove this-->
-                <div class="form-group row bg-danger py-2">
-                    <label for="number1" class="sr-only">Number</label>
-                    <div class="col-md-4 mb-2">
-                        <input id="number1" type="number" min="0" max="99" class="form-control"
-                               v-model="note.measure1" required>
-                    </div>
-
-                    <label for="number2" class="sr-only">Number</label>
-                    <div class="col-md-4 mb-2">
-                        <input id="number2" type="number" min="0" max="99" class="form-control"
-                               v-model="note.measure2" required>
-                    </div>
-
-                    <label for="number3" class="sr-only">Number</label>
-                    <div class="col-md-4 mb-2">
-                        <input id="number3" type="number" min="0" max="99" class="form-control"
-                               v-model="note.measure3" required>
-                    </div>
-
-                    <label for="number4" class="sr-only">Number</label>
-                    <div class="col-md-4 mb-2">
-                        <input id="number4" type="number" min="0" max="99" class="form-control"
-                               v-model="note.measure4" required>
-                    </div>
-
-                    <label for="number5" class="sr-only">Number</label>
-                    <div class="col-md-4 mb-2">
-                        <input id="number5" type="number" min="0" max="99" class="form-control"
-                               v-model="note.measure5" required>
-                    </div>
-
-                    <label for="number6" class="sr-only">Number</label>
-                    <div class="col-md-4 mb-2">
-                        <input id="number6" type="number" min="0" max="99" class="form-control"
-                               v-model="note.measure6" required>
-                    </div>
-
-					<p class="text-light mx-auto">Θα αφαιρεθούν στην επόμενη αναβάθμιση</p>
-                </div>
-
                 <div class="row">
                     <input type="button" class="btn btn-success col-md-5 col-12 my-3 mx-auto"
                             @click="saveNote" value="Αποθήκευση">
@@ -209,12 +168,6 @@ export default {
                 id: 0,
                 tooth_number: 0,
                 patient_id: 0,
-                measure1: 0,
-                measure2: 0,
-                measure3: 0,
-                measure4: 0,
-                measure5: 0,
-                measure6: 0,
                 created_at: null,
                 kind: null,
                 data1: null,
@@ -296,12 +249,6 @@ export default {
                 id: 0,
                 tooth_number: tooth.number,
                 patient_id: this.patientId,
-                measure1: 0,
-                measure2: 0,
-                measure3: 0,
-                measure4: 0,
-                measure5: 0,
-                measure6: 0,
                 created_at: moment(new Date()).format('YYYY-MM-DD'),
                 kind: kind,
                 data1: null,
