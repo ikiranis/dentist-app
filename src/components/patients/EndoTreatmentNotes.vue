@@ -3,6 +3,16 @@
     <div>
 
         <b-modal ref="noteModal" size="md" centered hide-footer :title="noteTitle">
+
+			<div class="form-group row">
+				<label for="date" class="col-md-4 col-form-label text-md-right">Ημ/νία</label>
+				<div class="col-md-8">
+					<input id="date" type="date" class="form-control"
+						   v-model="note.date">
+					<form-error v-if="response.errors.date" :error="response.errors.date[0]"/>
+				</div>
+			</div>
+
             <div class="form-group row">
                 <label for="description" class="col-md-4 col-form-label text-md-right">Περιγραφή</label>
                 <div class="col-md-8">
