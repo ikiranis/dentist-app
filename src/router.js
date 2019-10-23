@@ -20,6 +20,7 @@ import DentalHistory from './views/DentalHistory.vue'
 import Backup from './views/Backup.vue'
 import Export from './views/Export.vue'
 import ForgotPassword from './views/ForgotPassword.vue'
+import ResetPassword from './views/ResetPassword.vue'
 
 Vue.use(Router)
 
@@ -197,7 +198,15 @@ export default new Router({
             meta: {
                 title: 'Forgot Password - Dentist'
             }
-        }
+        },
+		{
+			path: '/resetPassword/:token',
+			name: 'resetPassword',
+			component: ResetPassword,
+			meta: {
+				title: 'Reset Password - Dentist'
+			}
+		}
     ]
 
 })

@@ -33,14 +33,15 @@
 					</div>
 				</div>
 
-				<div class="row fixed-bottom mb-2">
-					<display-error class="mx-auto"
-								   v-if="response.message"
-								   :response="response"/>
-				</div>
-
 			</div>
 		</div>
+
+		<div class="row fixed-bottom mb-2">
+			<display-error class="mx-auto"
+						   v-if="response.message"
+						   :response="response"/>
+		</div>
+
 	</div>
 </template>
 
@@ -61,6 +62,7 @@ export default {
             status: '',
             errors: []
         },
+
         email: ''
     }),
 
@@ -69,12 +71,6 @@ export default {
             let args = {
                 email: this.email,
                 app_path: window.location.origin + '/resetPassword/'
-            }
-
-            this.response = {
-                message: '',
-                status: '',
-                errors: []
             }
 
             this.loading = true
@@ -89,6 +85,8 @@ export default {
             } catch (error) {
                 this.response.message = error.response.data.message
                 this.response.status = false
+
+				console.log(error)
 
                 if (error.response.data.errors) {
                     this.response.errors = error.response.data.errors
