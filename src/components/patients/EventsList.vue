@@ -1,19 +1,12 @@
 <template functional>
 	<div>
 
-		<table class="table table-sm table-hover table-responsive">
-			<thead>
-			<tr>
-				<th scope="col" class="text-center">Ημ/νία</th>
-				<th scope="col" class="text-center">Περιγραφή</th>
-			</tr>
-			</thead>
-
+		<table class="table table-sm table-hover">
 			<tbody v-for="event in props.events" :key="event.id">
 			<tr>
-				<th scope="row" class="align-middle">
+				<th scope="row" class="align-middle small">
 					<div>{{ event.formated_date }}</div>
-					<div>@ {{ event.time }}</div>
+					<div><strong>@ {{ event.time }}</strong></div>
 				</th>
 				<td class="align-middle">
 					{{ event.description }}
