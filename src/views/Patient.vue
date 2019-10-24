@@ -161,7 +161,7 @@
 						<div class="card mt-3" v-if="events.length">
 
 							<div class="card-header">
-								Ραντεβού
+								Επόμενα ραντεβού
 							</div>
 
 							<div class="card-body">
