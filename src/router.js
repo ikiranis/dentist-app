@@ -199,14 +199,14 @@ export default new Router({
                 title: 'Forgot Password - Dentist'
             }
         },
-		{
-			path: '/resetPassword/:token',
-			name: 'resetPassword',
-			component: ResetPassword,
-			meta: {
-				title: 'Reset Password - Dentist'
-			}
-		}
+        {
+            path: '/resetPassword/:token',
+            name: 'resetPassword',
+            component: ResetPassword,
+            meta: {
+                title: 'Reset Password - Dentist'
+            }
+        }
     ]
 
 })

@@ -60,77 +60,77 @@
 </template>
 
 <script>
-	import api from "../api";
-	import DisplayError from "@/components/basic/DisplayError";
-	import FormError from "@/components/basic/FormError";
-	import Loading from "@/components/basic/Loading";
+import api from '../api'
+import DisplayError from '@/components/basic/DisplayError'
+import FormError from '@/components/basic/FormError'
+import Loading from '@/components/basic/Loading'
 
-	export default {
-		components: {Loading, DisplayError, FormError},
-		data: () => ({
-			loading: false,
+export default {
+    components: { Loading, DisplayError, FormError },
+    data: () => ({
+        loading: false,
 
-			response: {
-				message: ' ',
-				status: '',
-				errors: []
-			},
+        response: {
+            message: ' ',
+            status: '',
+            errors: []
+        },
 
-			userInfo: {
-				email: '',
-				password: ''
-			},
+        userInfo: {
+            email: '',
+            password: ''
+        },
 
-			password_confirmation: ''
-		}),
+        password_confirmation: ''
+    }),
 
-		computed: {
-			token: function() {
-				return this.$route.params.token;
-			}
-		},
+    computed: {
+        token: function () {
+            return this.$route.params.token
+        }
+    },
 
-		methods: {
-			/**
-			 * Update user's info
-			 */
-			resetPassword() {
-				if (this.userInfo.password === undefined || this.userInfo.password === this.password_confirmation) {
-					let args = {
-						email: this.userInfo.email,
-						password: this.userInfo.password,
-						password_confirmation: this.password_confirmation,
-						token: this.token
-					};
+    methods: {
+        /**
+         * Update user's info
+         */
+        resetPassword () {
+            if (this.userInfo.password === undefined || this.userInfo.password === this.password_confirmation) {
+                let args = {
+                    email: this.userInfo.email,
+                    password: this.userInfo.password,
+                    password_confirmation: this.password_confirmation,
+                    token: this.token
+                }
 
-					this.loading = true
+                this.loading = true
 
-					api.resetPassword(args)
-						.then((response) => {
-							this.response.message = response.message;
-							this.response.status = true;
+                api.resetPassword(args)
+                    .then((response) => {
+                        this.response.message = response.message
+                        this.response.status = true
 
-							this.loading = false
+                        this.loading = false
 
-							this.$router.push({name: 'home'});
-						})
-						.catch(error => {
-							this.response.message = error.response.data.message;
-							this.response.status = false;
+                        this.$router.push({ name: 'home' })
+                    })
+                    .catch(error => {
+                        this.response.message = error.response.data.message
+                        this.response.status = false
 
-							if (error.response.data.errors) {
-								this.response.errors = error.response.data.errors;
-							}
+                        if (error.response.data.errors) {
+                            this.response.errors = error.response.data.errors
+                        }
 
-							this.loading = false
-						});
-				} else {
-					this.response.message = 'Τα password δεν είναι ίδια';
-					this.response.status = false;
+                        this.loading = false
+                    })
+            } else {
+                this.response.message = 'Τα password δεν είναι ίδια'
+                this.response.status = false
 
-					this.loading = false
-				}
-			},
-		}
-	}
+                this.loading = false
+            }
+        }
+    }
+}
 </script>

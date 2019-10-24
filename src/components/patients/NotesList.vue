@@ -29,12 +29,12 @@
 </template>
 
 <script>
-	export default {
-		props: {
-			notes: {
-				required: true,
-				type: Array
-			}
-		}
-	}
+export default {
+    props: {
+        notes: {
+            required: true,
+            type: Array
+        }
+    }
+}
 </script>

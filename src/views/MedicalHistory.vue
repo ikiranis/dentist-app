@@ -539,7 +539,7 @@ export default {
 
             medicine: '',
 
-			selectedMedicines: []
+            selectedMedicines: []
         }
     },
 
@@ -699,27 +699,27 @@ export default {
         deleteMedicines () {
             this.loading = true
 
-			this.selectedMedicines.forEach(medicine => {
-				api.deleteMedicine(medicine)
-					.then(response => {
-						this.loading = false
+            this.selectedMedicines.forEach(medicine => {
+                api.deleteMedicine(medicine)
+                    .then(response => {
+                        this.loading = false
 
-						this.response.message = 'Το φάρμακο διαγράφηκε'
-						this.response.status = true
+                        this.response.message = 'Το φάρμακο διαγράφηκε'
+                        this.response.status = true
 
-						this.medicalHistory.medicines = this.medicalHistory.medicines.filter((medicine) => {
-							return (medicine.id !== response.data.id)
-						})
-					})
-					.catch(error => {
-						this.loading = false
+                        this.medicalHistory.medicines = this.medicalHistory.medicines.filter((medicine) => {
+                            return (medicine.id !== response.data.id)
+                        })
+                    })
+                    .catch(error => {
+                        this.loading = false
 
-						this.response.message = error.response.data.message
-						this.response.status = false
+                        this.response.message = error.response.data.message
+                        this.response.status = false
 
-						utility.debug(error.response.data.debug)
-					})
-			})
+                        utility.debug(error.response.data.debug)
+                    })
+            })
         }
     }
 }
