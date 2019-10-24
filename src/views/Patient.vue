@@ -158,6 +158,7 @@
 
                         </div>
 
+						<!-- Events -->
 						<div class="card mt-3" v-if="events.length">
 
 							<div class="card-header">
@@ -167,6 +168,7 @@
 							<div class="card-body">
 								<events-list :events="events" />
 							</div>
+
 						</div>
 
                     </div>
@@ -313,7 +315,6 @@ export default {
     created: function () {
         this.checkForNullPatient()
         this.getPatient()
-		this.getPatientEvents()
     },
 
     methods: {
@@ -342,6 +343,8 @@ export default {
 
                     if (response.status === 200) {
                         this.patient = response.data
+
+						this.getPatientEvents()
                     }
                 })
                 .catch(error => {
