@@ -5,7 +5,7 @@
             Δεν βρέθηκαν οικονομικές κινήσεις
         </div>
 
-        <table class="table table-responsive table-sm" v-if="props.transactions.length">
+        <table class="table table-responsive table-sm table-hover" v-if="props.transactions.length">
             <thead>
             <tr>
                 <th scope="col"></th>

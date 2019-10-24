@@ -1,7 +1,7 @@
 <template functional>
 	<div>
 
-		<table class="table">
+		<table class="table table-hover">
 			<thead>
 			<tr>
 				<th scope="col" class="patient-label"></th>
@@ -13,7 +13,7 @@
 			</thead>
 			<tbody v-for="patient in props.patients" :key="patient.id">
 			<tr>
-				<td class="text-center">
+				<td class="text-center align-middle">
 					<delete class="deletePatient btn-icon"
 							@click="listeners.deletePatient(patient.id)"
 							title="Διαγραφή ασθενή"/>
@@ -23,17 +23,17 @@
 							title="Εξαγωγή δεδομένων"/>
 				</td>
 				<th scope="row" class="patientId">{{ patient.id }}</th>
-				<td>
+				<td class="align-middle">
 					<router-link :to="{ name: 'patient', params: { id: patient.id } }" class="patientName">
 						<span>{{ patient.fname }}</span>
 					</router-link>
 				</td>
-				<td>
+				<td class="align-middle">
 					<router-link :to="{ name: 'patient', params: { id: patient.id } }" class="patientName">
-						<span>{{ patient.lname }}</span>
+						<span class="my-auto">{{ patient.lname }}</span>
 					</router-link>
 				</td>
-				<td class="text-right" v-if="patient.icons.length">
+				<td class="text-right align-middle" v-if="patient.icons.length">
 					<span v-for="icon in patient.icons" :key="icon.id">
 					   <hospital v-if="icon.label === 'Ασθένεια' && icon.name"
 									   :title="icon.name" fillColor="red"

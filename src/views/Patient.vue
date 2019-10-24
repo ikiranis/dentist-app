@@ -158,6 +158,17 @@
 
                         </div>
 
+						<div class="card mt-3" v-if="events.length">
+
+							<div class="card-header">
+								Ραντεβού
+							</div>
+
+							<div class="card-body">
+								<events-list :events="events" />
+							</div>
+						</div>
+
                     </div>
 
                 </form>
@@ -194,9 +205,10 @@ import Loading from '@/components/basic/Loading'
 import moment from 'moment'
 import { mapState } from 'vuex'
 import NoAccessPage from '@/components/basic/NoAccessPage'
+import EventsList from '@/components/patients/EventsList'
 
 export default {
-    components: { FormError, MenuBar, DisplayError, Loading, NoAccessPage },
+    components: { FormError, MenuBar, DisplayError, Loading, NoAccessPage, EventsList },
 
     data () {
         return {
@@ -277,7 +289,9 @@ export default {
                     active: false,
                     disabled: false
                 }
-            ]
+            ],
+
+			events: []
         }
     },
 
@@ -299,6 +313,7 @@ export default {
     created: function () {
         this.checkForNullPatient()
         this.getPatient()
+		this.getPatientEvents()
     },
 
     methods: {
@@ -338,6 +353,30 @@ export default {
                     utility.debug(error.response.data.debug)
                 })
         },
+
+		/**
+		 * Get the patient events
+		 */
+		getPatientEvents () {
+			this.loading = true
+
+			api.getPatientEvents(this.patientId)
+				.then(response => {
+					this.loading = false
+
+					if (response.status === 200) {
+						this.events = response.data
+					}
+				})
+				.catch(error => {
+					this.loading = false
+
+					this.response.message = error.response.data.message
+					this.response.status = false
+
+					utility.debug(error.response.data.debug)
+				})
+		},
 
         /**
          * Run the appropriate save action
