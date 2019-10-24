@@ -1,28 +1,34 @@
 <template>
-    <div class="container-fluid mt-3" v-if="isUserLoggedIn">
+    <div class="container-fluid mt-3 row" v-if="isUserLoggedIn">
 
-        <div class="container mb-3 col-12 col-lg-4 mx-auto" v-if="userIsAdmin">
-            <h1 class="text-center">Επιλογές</h1>
+		<div class="col-lg-6 col-12 text-center">
+			<img src="/images/tooth_logo.png" height="300">
+		</div>
 
-            <router-link to="/patients">
-                <b-button id="patients" variant="secondary" class="w-100 mt-3">Ασθενείς</b-button>
-            </router-link>
+		<div class="col-lg-6 col-12 row">
+			<div class="mb-3 col-12 mx-auto" v-if="userIsAdmin">
+				<h1 class="text-center">Επιλογές</h1>
 
-            <router-link to="/economy">
-                <b-button id="economy" variant="secondary" class="w-100 mt-3">Οικονομικά</b-button>
-            </router-link>
+				<router-link to="/patients">
+					<b-button id="patients" variant="secondary" class="w-100 mt-3">Ασθενείς</b-button>
+				</router-link>
 
-            <router-link to="/calendar">
-                <b-button id="calendar" variant="secondary" class="w-100 mt-3">Ημερολόγιο</b-button>
-            </router-link>
+				<router-link to="/economy">
+					<b-button id="economy" variant="secondary" class="w-100 mt-3">Οικονομικά</b-button>
+				</router-link>
 
-            <router-link to="/tools">
-                <b-button id="tools" variant="secondary" class="w-100 mt-3">Εργαλεία</b-button>
-            </router-link>
-        </div>
+				<router-link to="/calendar">
+					<b-button id="calendar" variant="secondary" class="w-100 mt-3">Ημερολόγιο</b-button>
+				</router-link>
 
-        <no-access-page v-else
-                        message="Ο χρήστης δεν έχει δικαίωμα να δει αυτό το περιεχόμενο" />
+				<router-link to="/tools">
+					<b-button id="tools" variant="secondary" class="w-100 mt-3">Εργαλεία</b-button>
+				</router-link>
+			</div>
+
+			<no-access-page v-else
+							message="Ο χρήστης δεν έχει δικαίωμα να δει αυτό το περιεχόμενο" />
+		</div>
 
     </div>
 </template>
