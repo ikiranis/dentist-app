@@ -10,8 +10,10 @@
             <div class="row" v-for="week in weeks" :key="week">
                 <div class="col card text-center" v-for="weekDay in 7" :key="weekDay">
                     <div v-if="getMonthsDay(weekDay, week)">
-                        <div class="card-head row px-2">
+                        <div class="card-head row px-2"
+							 :class="checkCurrentDate(getMonthsDay(weekDay, week)) ? 'bg-warning' : ''">
                             <span class="mr-auto day align-middle">{{ getMonthsDay(weekDay, week) }}</span>
+
                             <plus-circle-outline fillColor="green" :size="15"
                                                  class="btn-icon ml-auto my-1"
                                                  title="Εισαγωγή ραντεβού"
@@ -35,11 +37,14 @@ import DayEvents from './DayEvents'
 
 export default {
     components: { DayEvents },
+
     data () {
         return {
             days: ['Κυριακή', 'Δευτέρα', 'Τρίτη', 'Τετάρτη', 'Πέμπτη', 'Παρασκευή', 'Σάββατο'],
             daysOfMonth: [],
-            weeks: 5
+            weeks: 5,
+			currentMonth: null,
+			currentDay: null
         }
     },
 
@@ -80,6 +85,8 @@ export default {
         // Init all needed variables
         init () {
             this.daysOfMonth = []
+			this.currentMonth = moment().format('MMMM, YYYY')
+			this.currentDay = parseInt(moment().format('DD'))
 
             let startOfMonth = parseInt(moment(this.month, 'MMMM, YYYY').startOf('month').format('d'))
             let daysInMonth = parseInt(moment(this.month, 'MMMM, YYYY').daysInMonth())
@@ -118,7 +125,12 @@ export default {
 
         getDate (day) {
             return moment(day + ' ' + this.month, 'D MMMM, YYYY').format('YYYY-MM-DD')
-        }
+        },
+
+		// Check if current date is equal with displayed date
+        checkCurrentDate(day) {
+			return (this.month === this.currentMonth && day === this.currentDay)
+		}
     }
 }
 </script>
