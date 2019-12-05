@@ -911,42 +911,42 @@ export default {
             )
         },
 
-		haveHistoryFields () {
-			return (
-				!this.haveNoPain ||
-				this.fields.historyEdema.display ||
-				this.fields.feelingOfToothElongation.display ||
-				this.fields.fever.display ||
-				this.fields.lymphadenitis.display ||
-				this.fields.others.display ||
-				this.fields.previousAction.display
-			)
-		},
+        haveHistoryFields () {
+            return (
+                !this.haveNoPain ||
+                this.fields.historyEdema.display ||
+                this.fields.feelingOfToothElongation.display ||
+                this.fields.fever.display ||
+                this.fields.lymphadenitis.display ||
+                this.fields.others.display ||
+                this.fields.previousAction.display
+            )
+        },
 
-		haveClinicalFields () {
-			return (
-				this.fields.treatEdema.display ||
-				this.fields.fistula.display ||
-				this.fields.tintOfAMill.display ||
-				this.fields.revelationOfPulpCheck.display ||
-				this.fields.sensitivityToPalpationAtTheTip.display ||
-				this.fields.painInTheAttack.display ||
-				this.fields.elation.display ||
-				this.fields.vitality.display ||
-				this.fields.periodontalTissues.display ||
-				this.fields.radiographicExamination.display
-			)
-		},
+        haveClinicalFields () {
+            return (
+                this.fields.treatEdema.display ||
+                this.fields.fistula.display ||
+                this.fields.tintOfAMill.display ||
+                this.fields.revelationOfPulpCheck.display ||
+                this.fields.sensitivityToPalpationAtTheTip.display ||
+                this.fields.painInTheAttack.display ||
+                this.fields.elation.display ||
+                this.fields.vitality.display ||
+                this.fields.periodontalTissues.display ||
+                this.fields.radiographicExamination.display
+            )
+        },
 
-		haveDiagnosisFields () {
-			return (
-				this.havePulseFields ||
-				this.haveTissuesFields ||
-				this.fields.endoPeriodontalDamageCheck.display ||
-				this.fields.absorption.display ||
-				this.fields.fracture.display
-			)
-		},
+        haveDiagnosisFields () {
+            return (
+                this.havePulseFields ||
+                this.haveTissuesFields ||
+                this.fields.endoPeriodontalDamageCheck.display ||
+                this.fields.absorption.display ||
+                this.fields.fracture.display
+            )
+        },
 
         patientId: function () {
             return this.$route.params.id
