@@ -5,7 +5,8 @@
                     v-model="treatment.root_id">
                 <option v-for="root in roots"
                         :key="root.id"
-                        :value="root.id">
+                        :value="root.id"
+						:disabled="selectedRoots.includes(root.id)">
                     {{ root.name }}
                 </option>
             </select>
@@ -115,6 +116,10 @@ export default {
             required: true,
             type: Array
         },
+		selectedRoots: {
+			required: true,
+			type: Array
+		},
         benchmarks: {
             required: true,
             type: Array

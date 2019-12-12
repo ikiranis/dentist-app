@@ -22,6 +22,7 @@
 									 :blockingTechniques="blockingTechniques"
                                      :response="response"
                                      :roots="roots"
+									 :selectedRoots="selectedRoots"
                                      :deleteEndoTreatment="deleteEndoTreatment"
                                      :saveData="saveData"/>
 
@@ -107,7 +108,17 @@ export default {
     computed: {
         patientId: function () {
             return this.$route.params.id
-        }
+        },
+
+		selectedRoots: function () {
+			let roots = []
+
+			this.endoTreatments.forEach(value =>
+				roots.push(value.root_id)
+			)
+
+			return roots
+		}
     },
 
     watch: {
