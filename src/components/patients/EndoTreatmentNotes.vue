@@ -36,7 +36,7 @@
 
         <div v-if="!loading">
 
-            <notes-list :notes="notes"
+            <notes-list :notes="notes" v-if="notes.length"
                         @clickDelete="deleteTreatmentNote"
                         @clickUpdate="getTreatmentNote"/>
 

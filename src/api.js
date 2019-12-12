@@ -174,15 +174,15 @@ let api = {
         return axios.get(ROOT_API + '/event/' + eventId)
     },
 
-	/**
-	 * Get patient events
-	 *
-	 * @param patientId
-	 * @returns {Promise<AxiosResponse<T>>}
-	 */
-	async getPatientEvents (patientId) {
-		return axios.get(ROOT_API + '/events/patient/' + patientId)
-	},
+    /**
+     * Get patient events
+     *
+     * @param patientId
+     * @returns {Promise<AxiosResponse<T>>}
+     */
+    async getPatientEvents (patientId) {
+        return axios.get(ROOT_API + '/events/patient/' + patientId)
+    },
 
     /**
      * Create an event

@@ -293,7 +293,7 @@ export default {
                 }
             ],
 
-			events: []
+            events: []
         }
     },
 
@@ -344,7 +344,7 @@ export default {
                     if (response.status === 200) {
                         this.patient = response.data
 
-						this.getPatientEvents()
+                        this.getPatientEvents()
                     }
                 })
                 .catch(error => {
@@ -357,29 +357,29 @@ export default {
                 })
         },
 
-		/**
-		 * Get the patient events
-		 */
-		getPatientEvents () {
-			this.loading = true
+        /**
+         * Get the patient events
+         */
+        getPatientEvents () {
+            this.loading = true
 
-			api.getPatientEvents(this.patientId)
-				.then(response => {
-					this.loading = false
+            api.getPatientEvents(this.patientId)
+                .then(response => {
+                    this.loading = false
 
-					if (response.status === 200) {
-						this.events = response.data
-					}
-				})
-				.catch(error => {
-					this.loading = false
+                    if (response.status === 200) {
+                        this.events = response.data
+                    }
+                })
+                .catch(error => {
+                    this.loading = false
 
-					this.response.message = error.response.data.message
-					this.response.status = false
+                    this.response.message = error.response.data.message
+                    this.response.status = false
 
-					utility.debug(error.response.data.debug)
-				})
-		},
+                    utility.debug(error.response.data.debug)
+                })
+        },
 
         /**
          * Run the appropriate save action

@@ -19,12 +19,12 @@
 </template>
 
 <script>
-	export default {
-		props: {
-			events: {
-				required: true,
-				type: Array
-			}
-		}
-	}
+export default {
+    props: {
+        events: {
+            required: true,
+            type: Array
+        }
+    }
+}
 </script>

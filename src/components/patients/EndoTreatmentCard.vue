@@ -34,7 +34,7 @@
 
             <div class="col-lg-6 col-12 px-1">
 
-                <div class="col-12 text-center">
+                <div class="col-12 text-center" v-if="haveHistoryFields">
                     <h3>Ιστορικό</h3>
                 </div>
 
@@ -199,7 +199,7 @@
 
             <div class="col-lg-6 col-12 px-1">
 
-                <div class="col-12 text-center">
+                <div class="col-12 text-center" v-if="haveClinicalFields">
                     <h3>Κλινική εξέταση</h3>
                 </div>
 
@@ -357,7 +357,7 @@
                                 :error="response.errors.radiographicExamination[0]"/>
                 </div>
 
-                <div class="col-12 text-center">
+                <div class="col-12 text-center" v-if="haveDiagnosisFields">
                     <h3>Διάγνωση</h3>
                 </div>
 
@@ -908,6 +908,43 @@ export default {
                 this.fields.granulation.display ||
                 this.fields.cyst.display ||
                 this.fields.reactiveOsteoconduction.display
+            )
+        },
+
+        haveHistoryFields () {
+            return (
+                !this.haveNoPain ||
+                this.fields.historyEdema.display ||
+                this.fields.feelingOfToothElongation.display ||
+                this.fields.fever.display ||
+                this.fields.lymphadenitis.display ||
+                this.fields.others.display ||
+                this.fields.previousAction.display
+            )
+        },
+
+        haveClinicalFields () {
+            return (
+                this.fields.treatEdema.display ||
+                this.fields.fistula.display ||
+                this.fields.tintOfAMill.display ||
+                this.fields.revelationOfPulpCheck.display ||
+                this.fields.sensitivityToPalpationAtTheTip.display ||
+                this.fields.painInTheAttack.display ||
+                this.fields.elation.display ||
+                this.fields.vitality.display ||
+                this.fields.periodontalTissues.display ||
+                this.fields.radiographicExamination.display
+            )
+        },
+
+        haveDiagnosisFields () {
+            return (
+                this.havePulseFields ||
+                this.haveTissuesFields ||
+                this.fields.endoPeriodontalDamageCheck.display ||
+                this.fields.absorption.display ||
+                this.fields.fracture.display
             )
         },
 

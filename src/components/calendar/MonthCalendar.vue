@@ -43,8 +43,8 @@ export default {
             days: ['Κυριακή', 'Δευτέρα', 'Τρίτη', 'Τετάρτη', 'Πέμπτη', 'Παρασκευή', 'Σάββατο'],
             daysOfMonth: [],
             weeks: 5,
-			currentMonth: null,
-			currentDay: null
+            currentMonth: null,
+            currentDay: null
         }
     },
 
@@ -85,8 +85,8 @@ export default {
         // Init all needed variables
         init () {
             this.daysOfMonth = []
-			this.currentMonth = moment().format('MMMM, YYYY')
-			this.currentDay = parseInt(moment().format('DD'))
+            this.currentMonth = moment().format('MMMM, YYYY')
+            this.currentDay = parseInt(moment().format('DD'))
 
             let startOfMonth = parseInt(moment(this.month, 'MMMM, YYYY').startOf('month').format('d'))
             let daysInMonth = parseInt(moment(this.month, 'MMMM, YYYY').daysInMonth())
@@ -127,10 +127,10 @@ export default {
             return moment(day + ' ' + this.month, 'D MMMM, YYYY').format('YYYY-MM-DD')
         },
 
-		// Check if current date is equal with displayed date
-        checkCurrentDate(day) {
-			return (this.month === this.currentMonth && day === this.currentDay)
-		}
+        // Check if current date is equal with displayed date
+        checkCurrentDate (day) {
+            return (this.month === this.currentMonth && day === this.currentDay)
+        }
     }
 }
 </script>

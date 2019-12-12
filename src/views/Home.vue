@@ -34,56 +34,56 @@
 </template>
 
 <script>
-	// @ is an alias to /src
-	import api from '@/api'
-	import {mapState} from 'vuex'
-	import NoAccessPage from '@/components/basic/NoAccessPage'
+// @ is an alias to /src
+import api from '@/api'
+import { mapState } from 'vuex'
+import NoAccessPage from '@/components/basic/NoAccessPage'
 
-	// TODO delete localStorage.accessToken if not valid
-	export default {
-		name: 'home',
+// TODO delete localStorage.accessToken if not valid
+export default {
+    name: 'home',
 
-		components: {NoAccessPage},
+    components: { NoAccessPage },
 
-		data: () => ({
-			isUserLoggedIn: false
-		}),
+    data: () => ({
+        isUserLoggedIn: false
+    }),
 
-		computed: {
-			...mapState(['username', 'userIsAdmin']),
+    computed: {
+        ...mapState(['username', 'userIsAdmin']),
 
-			routeName: function () {
-				return this.$route.name
-			}
-		},
+        routeName: function () {
+            return this.$route.name
+        }
+    },
 
-		watch: {
-			username() {
-				// We make sure to take new value of localStorage.accessToken when username is changed
-				this.isUserLoggedIn = !!localStorage.accessToken
+    watch: {
+        username () {
+            // We make sure to take new value of localStorage.accessToken when username is changed
+            this.isUserLoggedIn = !!localStorage.accessToken
 
-				if (!this.isUserLoggedIn) {
-					this.$router.push({name: 'login'}) // Force to load Login page
-				}
-			}
-		},
+            if (!this.isUserLoggedIn) {
+                this.$router.push({ name: 'login' }) // Force to load Login page
+            }
+        }
+    },
 
-		mounted: function () {
-			this.isUserLoggedIn = !!localStorage.accessToken
+    mounted: function () {
+        this.isUserLoggedIn = !!localStorage.accessToken
 
-			if (!this.isUserLoggedIn) {
-				this.$router.push({name: 'login'}) // Force to load Login page
-			}
-		},
+        if (!this.isUserLoggedIn) {
+            this.$router.push({ name: 'login' }) // Force to load Login page
+        }
+    },
 
-		beforeCreate: function () {
-			api.getUsersCount()
-				.then(response => {
-					if (response.count === 0) {
-						this.$router.push({name: 'register'}) // Force to load register page
-					}
-				})
-				.catch(error => console.log(error.response))
-		}
-	}
+    beforeCreate: function () {
+        api.getUsersCount()
+            .then(response => {
+                if (response.count === 0) {
+                    this.$router.push({ name: 'register' }) // Force to load register page
+                }
+            })
+            .catch(error => console.log(error.response))
+    }
+}
 </script>
