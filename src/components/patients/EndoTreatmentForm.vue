@@ -116,10 +116,10 @@ export default {
             required: true,
             type: Array
         },
-		selectedRoots: {
-			required: true,
-			type: Array
-		},
+        selectedRoots: {
+            required: true,
+            type: Array
+        },
         benchmarks: {
             required: true,
             type: Array

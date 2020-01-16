@@ -110,15 +110,15 @@ export default {
             return this.$route.params.id
         },
 
-		selectedRoots: function () {
-			let roots = []
+        selectedRoots: function () {
+            let roots = []
 
-			this.endoTreatments.forEach(value =>
-				roots.push(value.root_id)
-			)
+            this.endoTreatments.forEach(value =>
+                roots.push(value.root_id)
+            )
 
-			return roots
-		}
+            return roots
+        }
     },
 
     watch: {
