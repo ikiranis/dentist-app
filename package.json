@@ -17,11 +17,11 @@
     "bootstrap-vue": "^2.15.0",
     "core-js": "^2.6.11",
     "cypress": "^3.8.3",
-    "moment": "^2.26.0",
+    "moment": "^2.27.0",
     "vue": "^2.6.11",
     "vue-material-design-icons": "^3.4.0",
-    "vue-router": "^3.3.2",
-    "vuex": "^3.4.0"
+    "vue-router": "^3.3.4",
+    "vuex": "^3.5.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.12.1",
@@ -36,7 +36,7 @@
     "crypto-js": "^3.3.0",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
-    "sass": "^1.26.7",
+    "sass": "^1.26.10",
     "sass-loader": "^7.3.1",
     "vue-template-compiler": "^2.6.11"
   }
