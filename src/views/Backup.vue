@@ -23,8 +23,8 @@
 					<div class="row">
 						<div class="custom-file form-group my-3 col-lg-6 col-12 mx-auto">
 							<input type="file" class="custom-file-input"
-								   name="uploadFile" id="uploadFile" v-bind="file"
-								   accept=".zip">
+								   name="uploadFile" id="uploadFile"
+								   accept=".zip" @change="getFile">
 							<label class="custom-file-label"
 								   for="uploadFile">Αρχείο zip</label>
 
@@ -73,7 +73,7 @@
 					errors: []
 				},
 
-				file: {}
+				file: ''
 			}
 		},
 
@@ -107,18 +107,27 @@
 					})
 			},
 
-			startRestore() {
+			getFile(event) {
+				this.file = event.target.files[0]
+
+				console.log('File uploaded')
+			},
+
+			startRestore(event) {
 				let formData = new FormData()
 				formData.append('file', this.file)
 				this.loading = true
 				api.startRestore(formData)
 					.then(response => {
+						console.log(response)
 						this.response.message = "Η ανάκτηση δεδομένων ολοκληρώθηκε..."
 						this.response.status = true
 						this.loading = false
 					})
 					.catch(error => {
 						this.response.message = 'Υπάρχει πρόβλημα'
+
+						console.log(error.response)
 						this.response.status = false
 						this.response.errors = error.response.data.errors
 						this.loading = false
