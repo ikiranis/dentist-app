@@ -895,6 +895,19 @@ let api = {
         return axios.get(ROOT_API + '/backup')
     },
 
+	/**
+	 * Start the restore
+	 *
+	 * @returns {Promise<void>}
+	 */
+	async startRestore (formData) {
+		return axios.post(ROOT_API + '/restore', formData, {
+			headers: {
+				'Content-Type': 'multipart/form-data'
+			}
+		})
+	},
+
     // ************** Benchmarks api calls **************
 
     /**
