@@ -22,7 +22,7 @@
 				<div class="border border-danger col-lg-6 col-12 mt-5 mx-auto">
 					<div class="col-12">
 						<div class="row">
-							<div class="custom-file form-group my-3 col-lg-6 col-12 mx-auto">
+							<div class="custom-file form-group my-3 mx-auto">
 								<input type="file" class="custom-file-input"
 									   name="uploadFile" id="uploadFile"
 									   accept=".zip" @change="getFile">
@@ -35,17 +35,13 @@
 						</div>
 					</div>
 
-					<div class="col-12">
-						<div class="row">
-							<input type="submit" class="btn btn-danger col-md-6 col-12 my-3 mx-auto"
-								   :disabled="fileNotUploaded"
-								   @click="startRestore" value="Εναρξη restore">
-						</div>
-					</div>
+					<input type="submit" class="btn btn-danger col-12 my-3 mx-auto"
+						   :disabled="fileNotUploaded"
+						   @click="startRestore" value="Εναρξη restore">
 
 					<div class="small text-danger mx-auto mb-3">
-						<strong>ΠΡΟΣΟΧΗ!</strong> Η ενέργεια αυτή θα σβήσει όλα τα υπάρχοντα δεδομένα και θα κάνει ανάκτηση των δεδομένων από
-						το αρχείο backup.zip
+						<strong>ΠΡΟΣΟΧΗ!</strong> Η ενέργεια αυτή θα σβήσει όλα τα υπάρχοντα δεδομένα και θα κάνει
+						ανάκτηση των δεδομένων από το αρχείο backup.zip
 					</div>
 				</div>
 
@@ -125,7 +121,7 @@
 			startRestore(event) {
 				let choise = confirm('Θέλεις σίγουρα να γίνει ανάκτηση δεδομένων και να σβήσεις τα υπάρχοντα;')
 
-				if(!choise) {
+				if (!choise) {
 					return
 				}
 
