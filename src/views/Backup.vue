@@ -19,26 +19,33 @@
 					</div>
 				</div>
 
-				<div class="col-12 mt-5">
-					<div class="row">
-						<div class="custom-file form-group my-3 col-lg-6 col-12 mx-auto">
-							<input type="file" class="custom-file-input"
-								   name="uploadFile" id="uploadFile"
-								   accept=".zip" @change="getFile">
-							<label class="custom-file-label"
-								   for="uploadFile">Αρχείο zip</label>
+				<div class="border border-danger col-lg-6 col-12 mt-5 mx-auto">
+					<div class="col-12">
+						<div class="row">
+							<div class="custom-file form-group my-3 col-lg-6 col-12 mx-auto">
+								<input type="file" class="custom-file-input"
+									   name="uploadFile" id="uploadFile"
+									   accept=".zip" @change="getFile">
+								<label class="custom-file-label"
+									   for="uploadFile">Αρχείο zip</label>
 
-							<form-error v-if="response.errors.file"
-										:error="response.errors.file[0]"/>
+								<form-error v-if="response.errors.file"
+											:error="response.errors.file[0]"/>
+							</div>
 						</div>
 					</div>
-				</div>
 
-				<div class="col-12">
-					<div class="row">
-						<input type="submit" class="btn btn-danger col-md-6 col-12 my-3 mx-auto"
-							   :disabled="fileNotUploaded"
-							   @click="startRestore" value="Εναρξη restore">
+					<div class="col-12">
+						<div class="row">
+							<input type="submit" class="btn btn-danger col-md-6 col-12 my-3 mx-auto"
+								   :disabled="fileNotUploaded"
+								   @click="startRestore" value="Εναρξη restore">
+						</div>
+					</div>
+
+					<div class="small text-danger mx-auto">
+						ΠΡΟΣΟΧΗ! Η ενέργεια αυτή θα σβήσει όλα τα δεδομένα και θα κάνει ανάκτηση των δεδομένων από
+						το αρχείο backup.zip
 					</div>
 				</div>
 
