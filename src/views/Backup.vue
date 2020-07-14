@@ -43,8 +43,8 @@
 						</div>
 					</div>
 
-					<div class="small text-danger mx-auto">
-						ΠΡΟΣΟΧΗ! Η ενέργεια αυτή θα σβήσει όλα τα δεδομένα και θα κάνει ανάκτηση των δεδομένων από
+					<div class="small text-danger mx-auto mb-3">
+						<strong>ΠΡΟΣΟΧΗ!</strong> Η ενέργεια αυτή θα σβήσει όλα τα υπάρχοντα δεδομένα και θα κάνει ανάκτηση των δεδομένων από
 						το αρχείο backup.zip
 					</div>
 				</div>
@@ -123,23 +123,31 @@
 			},
 
 			startRestore(event) {
+				let choise = confirm('Θέλεις σίγουρα να γίνει ανάκτηση δεδομένων και να σβήσεις τα υπάρχοντα;')
+
+				if(!choise) {
+					return
+				}
+
 				let formData = new FormData()
 				formData.append('file', this.file)
 				this.loading = true
 				api.startRestore(formData)
 					.then(response => {
-						console.log(response)
 						this.response.message = "Η ανάκτηση δεδομένων ολοκληρώθηκε..."
 						this.response.status = true
 						this.loading = false
+
+						this.fileNotUploaded = true
 					})
 					.catch(error => {
 						this.response.message = 'Υπάρχει πρόβλημα'
 
-						console.log(error.response)
 						this.response.status = false
 						this.response.errors = error.response.data.errors
 						this.loading = false
+
+						this.fileNotUploaded = true
 					})
 			}
 		}
