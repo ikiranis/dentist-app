@@ -37,6 +37,7 @@
 				<div class="col-12">
 					<div class="row">
 						<input type="submit" class="btn btn-danger col-md-6 col-12 my-3 mx-auto"
+							   :disabled="fileNotUploaded"
 							   @click="startRestore" value="Εναρξη restore">
 					</div>
 				</div>
@@ -73,7 +74,8 @@
 					errors: []
 				},
 
-				file: ''
+				file: '',
+				fileNotUploaded: true
 			}
 		},
 
@@ -110,7 +112,7 @@
 			getFile(event) {
 				this.file = event.target.files[0]
 
-				console.log('File uploaded')
+				this.fileNotUploaded = false
 			},
 
 			startRestore(event) {
