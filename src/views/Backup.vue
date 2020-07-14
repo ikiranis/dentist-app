@@ -58,94 +58,94 @@
 </template>
 
 <script>
-	import DisplayError from '@/components/basic/DisplayError'
-	import Loading from '@/components/basic/Loading'
-	import api from '../api'
-	import utility from '../library/utility'
-	import {base64StringToBlob} from 'blob-util'
+import DisplayError from '@/components/basic/DisplayError'
+import Loading from '@/components/basic/Loading'
+import api from '../api'
+import utility from '../library/utility'
+import { base64StringToBlob } from 'blob-util'
 
-	export default {
-		components: {DisplayError, Loading},
+export default {
+    components: { DisplayError, Loading },
 
-		data() {
-			return {
-				loading: false,
+    data () {
+        return {
+            loading: false,
 
-				response: {
-					message: ' ',
-					status: '',
-					errors: []
-				},
+            response: {
+                message: ' ',
+                status: '',
+                errors: []
+            },
 
-				file: '',
-				fileNotUploaded: true
-			}
-		},
+            file: '',
+            fileNotUploaded: true
+        }
+    },
 
-		methods: {
-			startBackup() {
-				this.loading = true
+    methods: {
+        startBackup () {
+            this.loading = true
 
-				api.startBackup()
-					.then(response => {
-						this.loading = false
+            api.startBackup()
+                .then(response => {
+                    this.loading = false
 
-						const url = window.URL.createObjectURL(new Blob([
-							base64StringToBlob(response.data.content, response.headers['content-type'])
-						]))
+                    const url = window.URL.createObjectURL(new Blob([
+                        base64StringToBlob(response.data.content, response.headers['content-type'])
+                    ]))
 
-						const link = document.createElement('a')
+                    const link = document.createElement('a')
 
-						link.href = url
-						link.setAttribute('download', response.data.filename)
-						document.body.appendChild(link)
+                    link.href = url
+                    link.setAttribute('download', response.data.filename)
+                    document.body.appendChild(link)
 
-						link.click()
-					})
-					.catch(error => {
-						this.loading = false
+                    link.click()
+                })
+                .catch(error => {
+                    this.loading = false
 
-						this.response.message = error.response.data.message
-						this.response.status = false
+                    this.response.message = error.response.data.message
+                    this.response.status = false
 
-						utility.debug(error.response.data.debug)
-					})
-			},
+                    utility.debug(error.response.data.debug)
+                })
+        },
 
-			getFile(event) {
-				this.file = event.target.files[0]
+        getFile (event) {
+            this.file = event.target.files[0]
 
-				this.fileNotUploaded = false
-			},
+            this.fileNotUploaded = false
+        },
 
-			startRestore(event) {
-				let choise = confirm('Θέλεις σίγουρα να γίνει ανάκτηση δεδομένων και να σβήσεις τα υπάρχοντα;')
+        startRestore (event) {
+            let choise = confirm('Θέλεις σίγουρα να γίνει ανάκτηση δεδομένων και να σβήσεις τα υπάρχοντα;')
 
-				if (!choise) {
-					return
-				}
+            if (!choise) {
+                return
+            }
 
-				let formData = new FormData()
-				formData.append('file', this.file)
-				this.loading = true
-				api.startRestore(formData)
-					.then(response => {
-						this.response.message = "Η ανάκτηση δεδομένων ολοκληρώθηκε..."
-						this.response.status = true
-						this.loading = false
+            let formData = new FormData()
+            formData.append('file', this.file)
+            this.loading = true
+            api.startRestore(formData)
+                .then(response => {
+                    this.response.message = 'Η ανάκτηση δεδομένων ολοκληρώθηκε...'
+                    this.response.status = true
+                    this.loading = false
 
-						this.fileNotUploaded = true
-					})
-					.catch(error => {
-						this.response.message = 'Υπάρχει πρόβλημα'
+                    this.fileNotUploaded = true
+                })
+                .catch(error => {
+                    this.response.message = 'Υπάρχει πρόβλημα'
 
-						this.response.status = false
-						this.response.errors = error.response.data.errors
-						this.loading = false
+                    this.response.status = false
+                    this.response.errors = error.response.data.errors
+                    this.loading = false
 
-						this.fileNotUploaded = true
-					})
-			}
-		}
-	}
+                    this.fileNotUploaded = true
+                })
+        }
+    }
+}
 </script>
