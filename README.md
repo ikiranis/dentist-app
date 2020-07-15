@@ -20,11 +20,10 @@ git clone git@github.com:ikiranis/dentist-app.git .
 
 - Install npm depedencies
 
-``
+```
 npm install
-
 npm install --only=prod (on production)
-``
+```
 
 # Create and edit .env files
 
