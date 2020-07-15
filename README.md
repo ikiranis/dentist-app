@@ -22,6 +22,7 @@ git clone git@github.com:ikiranis/dentist-app.git .
 
 ``
 npm install
+
 npm install --only=prod (on production)
 ``
 
