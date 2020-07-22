@@ -643,6 +643,7 @@
             <input type="button"
                    class="btn btn-success col-md-5 col-12 my-3 mx-auto"
                    @click="saveData"
+                   :disabled="!endoTreatment.tooth_number"
                    value="Αποθήκευση">
 
             <input v-if="endoTreatment.id !== 0"
