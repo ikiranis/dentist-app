@@ -29,6 +29,7 @@
                         @loading="getLoading"
                         :teeth="teeth"
 						:reloadTeeth="getSimpleEndoTreatmentCards"
+						:patientTeeth="patientTeeth"
                         v-if="tabs.endoTreatmentCard.display" />
 
                 <endo-treatment
@@ -160,7 +161,13 @@ export default {
             }
 
             return selected || tooth
-        }
+        },
+
+		patientTeeth: function () {
+			return this.endoTreatmentCards.map((tooth) => {
+				return tooth.tooth_number
+			})
+		}
     },
 
     watch: {

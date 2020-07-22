@@ -25,6 +25,7 @@
                         <option v-for="tooth in teeth"
                                 :key="tooth.id"
                                 :value="tooth.number"
+								:disabled="patientTeeth.includes(tooth.number)"
                                 :selected="(tooth.number === endoTreatment.tooth_number) ? 'selected' : ''">
                             {{ tooth.number }}
                         </option>
@@ -866,6 +867,10 @@ export default {
             required: false,
             type: Array
         },
+		patientTeeth: {
+			required: false,
+			type: Array
+		},
         readOnly: {
             required: false,
             type: Boolean
