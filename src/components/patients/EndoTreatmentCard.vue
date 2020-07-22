@@ -867,10 +867,10 @@ export default {
             required: false,
             type: Array
         },
-		patientTeeth: {
-			required: false,
-			type: Array
-		},
+        patientTeeth: {
+            required: false,
+            type: Array
+        },
         readOnly: {
             required: false,
             type: Boolean

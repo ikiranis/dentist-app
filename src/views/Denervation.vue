@@ -163,11 +163,11 @@ export default {
             return selected || tooth
         },
 
-		patientTeeth: function () {
-			return this.endoTreatmentCards.map((tooth) => {
-				return tooth.tooth_number
-			})
-		}
+        patientTeeth: function () {
+            return this.endoTreatmentCards.map((tooth) => {
+                return tooth.tooth_number
+            })
+        }
     },
 
     watch: {
