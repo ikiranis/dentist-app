@@ -17,7 +17,7 @@
     "bootstrap-vue": "^2.16.0",
     "core-js": "^2.6.11",
     "cypress": "^3.8.3",
-    "moment": "^2.27.0",
+    "moment": "^2.29.2",
     "vue": "^2.6.11",
     "vue-material-design-icons": "^3.4.0",
     "vue-router": "^3.3.4",
