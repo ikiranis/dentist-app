@@ -21,18 +21,24 @@
 					</td>
 
 					<td v-for="tooth in teeth" :key="tooth.id" class="text-center toothNotes">
-						<div v-if="note = getNote(date, tooth.number)">
-							<a href="#" @click="updateNote(getNote(date, tooth.number))">
+						<div v-for="note in getNotes(date, tooth.number)" :key="note.id">
+							<a href="#" @click="updateNote(note)">
 								<note-measurements :note="note" />
 							</a>
 						</div>
+
+<!--						<div v-if="note = getNote(date, tooth.number)">-->
+<!--							<a href="#" @click="updateNote(getNote(date, tooth.number))">-->
+<!--								<note-measurements :note="note" />-->
+<!--							</a>-->
+<!--						</div>-->
 					</td>
 				</tr>
 
 				<tr>
 					<td></td>
 					<td v-for="tooth in teeth" :key="tooth.id" class="text-center">
-						<plus-circle-outline v-if="!findDateInNote(tooth)"
+						<plus-circle-outline
 											 fillColor="green" :size="15"
 											 class="btn-icon" title="Εισαγωγή μετρήσεων"
 											 @click="newNote(tooth, kind)" />
@@ -136,6 +142,19 @@ export default {
                 note.formated_date === date && note.tooth_number === toothNumber && note.kind === this.kind
             )
         },
+
+		/**
+		 * Get notes in date, for toothNumber
+		 *
+		 * @param date
+		 * @param toothNumber
+		 * @returns {*[]}
+		 */
+		getNotes (date, toothNumber) {
+			return this.notes.filter(note =>
+				note.formated_date === date && note.tooth_number === toothNumber && note.kind === this.kind
+			)
+		},
 
         /**
          * Get the image path
